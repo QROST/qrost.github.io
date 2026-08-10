@@ -1,10 +1,12 @@
 /* Public, bilingual planning data for Monterey Car Week 2026.
- * Event facts and prices were checked against organizer or authorized ticketing
- * pages on 2026-08-06. Editorial scores and commute bands are QROST planning
- * judgments, not organizer guarantees.
+ * The full catalog baseline was checked on 2026-08-06. Selected fast-changing
+ * facts were rechecked against organizer or authorized ticketing pages on
+ * 2026-08-10. Editorial scores and commute bands are QROST planning judgments,
+ * not organizer guarantees.
  */
 window.PEBBLE_DATA = {
   checked: '2026-08-06',
+  dynamicUpdatesChecked: '2026-08-10',
 
   labels: {
     pageTitle: {
@@ -29,7 +31,7 @@ window.PEBBLE_DATA = {
     navStay: { zh: '住宿', en: 'Stay' },
     navCommute: { zh: '通勤', en: 'Travel' },
     heroEyebrow: { zh: '公众行程指南 · 2026', en: 'Public trip guide · 2026' },
-    checkedChip: { zh: '已核对 8 月 6 日', en: 'Checked Aug 6' },
+    checkedChip: { zh: '全量核对 8 月 6 日 · 部分动态更新 8 月 10 日', en: 'Full audit Aug 6 · selected updates Aug 10' },
     heroTitleTop: { zh: '圆石滩，不只一场车展', en: 'Pebble Beach is not one show' },
     heroTitleBottom: { zh: '早到一周，再迎旗舰主展', en: 'Arrive early, then hit the flagship' },
     heroLead: {
@@ -66,7 +68,7 @@ window.PEBBLE_DATA = {
       en: 'Pick Asilomar Day or Pre-Reunion on Saturday—not both. Monday’s ACE automobilia expo is worth a dedicated stop. Tuesday’s Concours for a Cause and Wednesday’s Little Car Show are the strongest free early anchors. Peak Friday and Saturday overlap heavily: do not cram Werks, The Quail, Paddock, Laguna Seca, Concorso and Exotics into one day; the peninsula is not a single venue.'
     },
     planStops: { zh: '当日地点', en: 'Stops today' },
-    planRouteHint: { zh: '实线为推荐驾车顺序；虚线/圆点为二选一地点。', en: 'Solid line = recommended drive order; dashed/dots = either-or picks.' },
+    planRouteHint: { zh: '实线为推荐驾车顺序；虚线/圆点为互斥备选地点。', en: 'Solid line = recommended drive order; dashed/dots = mutually exclusive picks.' },
     planRouteOr: { zh: '或', en: 'or' },
     planRouteLoading: { zh: '路线加载中…', en: 'Loading route…' },
     planRouteUnavailable: { zh: '路线暂不可用，仍显示地点。', en: 'Route unavailable; stops still shown.' },
@@ -74,7 +76,7 @@ window.PEBBLE_DATA = {
     planTimelineHint: { zh: '规划缓冲，非官方时刻表；临行前以各活动官方页为准。', en: 'Planning buffers, not an official timetable—recheck each event page before travel.' },
     planToneCore: { zh: '主场', en: 'Core' },
     planToneOptional: { zh: '可选', en: 'Optional' },
-    planToneAlt: { zh: '二选一', en: 'Either/or' },
+    planToneAlt: { zh: '互斥备选', en: 'Exclusive alternative' },
     planToneTransit: { zh: '转场', en: 'Transit' },
     liveClockLabel: { zh: '当前时间', en: 'Local time' },
     liveModeBrowse: { zh: '浏览全部', en: 'Browse all' },
@@ -152,8 +154,8 @@ window.PEBBLE_DATA = {
     footerWeChat: { zh: '微信', en: 'WeChat' },
     footerInstagram: { zh: 'Instagram', en: 'Instagram' },
     footerDisclaimer: {
-      zh: '最后核对 2026-08-06。非官方、非主办方关联；不构成票务、住宿或交通保证。',
-      en: 'Last checked Aug 6, 2026. Independent and unaffiliated; no ticket, lodging or transportation guarantee.'
+      zh: '全量目录核对于 2026-08-06，部分动态事实更新至 2026-08-10。非官方、非主办方关联；不构成票务、住宿或交通保证。',
+      en: 'Full catalog audited Aug 6, with selected dynamic facts updated through Aug 10, 2026. Independent and unaffiliated; no ticket, lodging or transportation guarantee.'
     },
     nearbyKicker: { zh: '车展前 · 半岛周边', en: 'Before Car Week · peninsula nearby' },
     nearbyTitle: { zh: '若能更早抵达，这些也值得顺路', en: 'Worth a detour if you land even earlier' },
@@ -261,7 +263,7 @@ window.PEBBLE_DATA = {
       },
       schedule: [
         { time: "06:30", title: { zh: "早起出发 · 赛道分支", en: "Early departure · track branch" }, note: { zh: "选 Pre-Reunion 时建议 7 点前到 Laguna Seca。", en: "If choosing Pre-Reunion, aim for Laguna Seca before 7:00." }, tone: "transit" },
-        { time: "07:00–17:00", title: { zh: "或 Pre-Reunion + Corkscrew Hillclimb", en: "or Pre-Reunion + Corkscrew Hillclimb" }, note: { zh: "单日票含爬坡赛，与公园日完全冲突。", en: "Single-day pass includes hillclimb; fully conflicts with park day." }, tone: "alt" },
+        { time: "07:00–20:00", title: { zh: "或 Pre-Reunion + Corkscrew Hillclimb", en: "or Pre-Reunion + Corkscrew Hillclimb" }, note: { zh: "官方赛程延续至晚间；与公园日完全冲突。", en: "The official program runs into the evening and fully conflicts with park day." }, tone: "alt" },
         { time: "09:30", title: { zh: "转场至 Asilomar", en: "Transit to Asilomar" }, note: { zh: "Pacific Grove 周末车位先到先得。", en: "Pacific Grove weekend parking is first come." }, tone: "transit" },
         { time: "10:00–16:00", title: { zh: "或 Asilomar Day", en: "or Asilomar Day" }, note: { zh: "免费州立公园生日庆典。", en: "Free state-parks birthday celebration." }, tone: "alt" },
       ],
@@ -278,7 +280,7 @@ window.PEBBLE_DATA = {
       },
       schedule: [
         { time: "07:00", title: { zh: "转场至 Laguna Seca", en: "Transit to Laguna Seca" }, note: { zh: "大型活动走 South Boundary Road。", en: "Major events use South Boundary Road." }, tone: "transit" },
-        { time: "07:00–17:00", title: { zh: "或 Pre-Reunion 次日", en: "or Pre-Reunion day 2" }, note: { zh: "周六已买两日票则自然接续。", en: "Natural follow-up if you bought a two-day pass Saturday." }, tone: "alt" },
+        { time: "07:00–18:15", title: { zh: "或 Pre-Reunion 次日", en: "or Pre-Reunion day 2" }, note: { zh: "官方赛程至 18:15；周六已买两日票则自然接续。", en: "The official program runs to 18:15; a natural follow-up with a two-day pass." }, tone: "alt" },
         { time: "10:00", title: { zh: "或 休整 · 补票与周一计划", en: "or Rest · tickets and Monday plans" }, note: { zh: "核对 ACE 与街展时段，线上购票。", en: "Lock ACE and street-show windows; buy tickets online." }, tone: "alt" },
         { time: "14:00", title: { zh: "轻量补给 · 缓冲", en: "Light resupply · buffer" }, note: { zh: "周日傍晚交通相对宽松。", en: "Sunday evening traffic is usually lighter." }, tone: "optional" },
       ],
@@ -328,8 +330,8 @@ window.PEBBLE_DATA = {
     {
       id: 'qp-0812',
       date: { zh: '8 月 12 日', en: 'Aug 12' }, day: { zh: '周三', en: 'Wed' },
-      title: { zh: 'Little Car + Astons · 晚场二选一', en: 'Little Car + Astons · pick an evening' },
-      body: { zh: '白天免费串 Pacific Grove 微型车展与 Carmel Astons；傍晚在 Asilomar Luau（$70）与 Jet Center Motorlux（$825）之间只选一个，或看 Motoring Classic 抵达。', en: 'Free daytime link: Pacific Grove Little Car Show and Carmel Astons; evenings pick only one of Asilomar Luau ($70) or Jet Center Motorlux ($825), or watch Motoring Classic arrivals.' },
+      title: { zh: 'Little Car + Astons · 晚场三选一', en: 'Little Car + Astons · pick one evening' },
+      body: { zh: '白天免费串 Pacific Grove 微型车展与 Carmel Astons；傍晚在 Asilomar Luau（$70）与 Jet Center Motorlux（$845）之间只选一个，或看 Motoring Classic 抵达。', en: 'Free daytime link: Pacific Grove Little Car Show and Carmel Astons; evenings pick only one of Asilomar Luau ($70) or Jet Center Motorlux ($845), or watch Motoring Classic arrivals.' },
       cost: { zh: '$0 · 晚场另计', en: '$0 · evening optional' },
       route: {
         mode: 'sequence',
@@ -343,9 +345,9 @@ window.PEBBLE_DATA = {
         { time: "10:45", title: { zh: "转场至 Carmel", en: "Transit to Carmel" }, note: { zh: "Astons 11:00 开门，先占 Ocean Ave。", en: "Astons opens 11:00—secure Ocean Ave first." }, tone: "transit" },
         { time: "11:00–13:30", title: { zh: "Astons on the Avenue", en: "Astons on the Avenue" }, note: { zh: "Carmel 免费阿斯顿·马丁街展。", en: "Free Aston Martin street show on Carmel's Ocean Ave." }, tone: "core" },
         { time: "13:45", title: { zh: "转场至 Pacific Grove", en: "Transit to Pacific Grove" }, note: { zh: "Lighthouse Ave 约 15–25 分钟。", en: "About 15–25 minutes to Lighthouse Ave." }, tone: "transit" },
-        { time: "14:00–17:00", title: { zh: "The Little Car Show", en: "The Little Car Show" }, note: { zh: "观众免费；参展另收费。", en: "Spectators free; exhibitors pay separately." }, tone: "core" },
+        { time: "14:00–16:15", title: { zh: "The Little Car Show · 建议停留", en: "The Little Car Show · suggested stay" }, note: { zh: "官方活动窗口至 17:00；观众免费，若选晚场请提前离开。", en: "The official event runs until 17:00; spectators are free, but leave early if choosing an evening branch." }, tone: "core" },
         { time: "16:30", title: { zh: "转场 · 晚场只选一个", en: "Transit · pick only one evening" }, note: { zh: "Luau / Motorlux / Motoring Classic 互斥。", en: "Luau, Motorlux and Motoring Classic conflict." }, tone: "transit" },
-        { time: "17:00–22:00", title: { zh: "或 Luau / Motorlux / Motoring Classic 抵达", en: "or Luau / Motorlux / Motoring Classic arrivals" }, note: { zh: "Luau $70 · Motorlux $825 · 抵达观赏免费。", en: "Luau $70 · Motorlux $825 · arrivals viewing free." }, tone: "alt" },
+        { time: "17:00–22:00", title: { zh: "或 Luau / Motorlux / Motoring Classic 抵达", en: "or Luau / Motorlux / Motoring Classic arrivals" }, note: { zh: "Luau $70 · Motorlux $845 · 抵达观赏免费。", en: "Luau $70 · Motorlux $845 · arrivals viewing free." }, tone: "alt" },
       ],
     },
     {
@@ -411,7 +413,7 @@ window.PEBBLE_DATA = {
         { time: "07:30", title: { zh: "转场 · 周六路线分流", en: "Transit · Saturday route fork" }, note: { zh: "街展路线与赛道不可兼得。", en: "Street-show route and track day are mutually exclusive." }, tone: "transit" },
         { time: "08:00–13:30", title: { zh: "Concours d’Lemons", en: "Concours d’Lemons" }, note: { zh: "免费幽默车展，最亲民周六早晨。", en: "Free comic car show—most accessible Saturday morning." }, tone: "core" },
         { time: "11:00–16:00", title: { zh: "Exotics on Broadway", en: "Exotics on Broadway" }, note: { zh: "接 Lemons 后转 Broadway，免费区无需买票。", en: "Follow Lemons onto Broadway; free zone needs no ticket." }, tone: "core" },
-        { time: "08:00–18:10", title: { zh: "或 Reunion 周六全天", en: "or Reunion full Saturday" }, note: { zh: "赛车迷主日，勿中途离开赛道。", en: "Race fans' main day—do not leave mid-day." }, tone: "alt" },
+        { time: "08:00–18:30", title: { zh: "或 Reunion 周六全天", en: "or Reunion full Saturday" }, note: { zh: "07:00 入场；赛车迷主日，勿中途离开赛道。", en: "Gates open 07:00; race fans should stay at the track for the full day." }, tone: "alt" },
         { time: "13:45", title: { zh: "街展路线 · Seaside 接驳缓冲", en: "Street route · Seaside shuttle buffer" }, note: { zh: "远端停车 + 接驳 9:00–17:00。", en: "Remote parking plus shuttle 9:00–17:00." }, tone: "transit" },
       ],
     },
@@ -838,22 +840,22 @@ window.PEBBLE_DATA = {
       ]
     },
     {
-      id: 'prereunion-sat', thumbId: 'prereunion-sat', area: 'laguna', date: '2026-08-08', time: '07:00–17:00+', timeNote: { zh: 'Corkscrew Hillclimb 周六', en: 'Corkscrew Hillclimb Saturday' },
+      id: 'prereunion-sat', thumbId: 'prereunion-sat', area: 'laguna', date: '2026-08-08', time: '07:00–20:00', timeNote: { zh: 'Corkscrew Hillclimb · 晚间赛程至 20:00', en: 'Corkscrew Hillclimb · evening program to 20:00' },
       title: { zh: 'Monterey Pre-Reunion & Corkscrew Hillclimb · 周六', en: 'Monterey Pre-Reunion & Corkscrew Hillclimb · Saturday' }, location: { zh: 'WeatherTech Raceway Laguna Seca', en: 'WeatherTech Raceway Laguna Seca' },
       summary: { zh: 'Pre-Reunion 首日：200+ 辆历史赛车，含 Corkscrew Hillclimb 爬坡赛。', en: 'Pre-Reunion day one: 200+ historic race cars including the Corkscrew Hillclimb.' },
       why: { zh: '想在 Reunion 前先看历史赛车、且预算低于正赛周末的赛道迷首选；与 Asilomar Day 完全冲突，只能二选一。', en: 'The track pick for historic-racing fans who want action before Reunion at a lower price than peak weekend—directly conflicts with Asilomar Day.' },
       access: { zh: '大型活动走 South Boundary Road；Grounds+Paddock 票含普通停车。', en: 'Major-event access via South Boundary Road; Grounds+Paddock pass includes general parking.' },
       price: { zh: '单日 ~$82.62 · 2 日 ~$124.15', en: '~$82.62 single day · ~$124.15 two-day' }, tags: ['paid', 'subjectTag'], categories: ['essential', 'paid'], score: '4.5',
-      source: 'https://tickets.weathertechraceway.com/event/2-day-grounds-and-paddock-pass-monterey-pre-reunion--corkscrew-hillclimb---august-8-9-2026'
+      source: 'https://weathertechraceway.com/pages/monterey-pre-reunion-and-corkscrew-hillclimb'
     },
     {
-      id: 'prereunion-sun', thumbId: 'prereunion-sun', area: 'laguna', date: '2026-08-09', time: '07:00–17:00+', timeNote: { zh: '正赛日', en: 'race day' },
+      id: 'prereunion-sun', thumbId: 'prereunion-sun', area: 'laguna', date: '2026-08-09', time: '07:00–18:15', timeNote: { zh: '正赛日 · 最后赛程至 18:15', en: 'race day · final program to 18:15' },
       title: { zh: 'Monterey Pre-Reunion · 周日', en: 'Monterey Pre-Reunion · Sunday' }, location: { zh: 'WeatherTech Raceway Laguna Seca', en: 'WeatherTech Raceway Laguna Seca' },
       summary: { zh: 'Pre-Reunion 次日：历史赛车正赛与 paddock 近距离观赏。', en: 'Pre-Reunion day two: historic race action and close paddock access.' },
       why: { zh: '若周六选了 Asilomar，周日可补赛道；若已买 2 日票则自然接续。单日性价比略低于周六 hillclimb 特色日。', en: 'Catch the track on Sunday if you chose Asilomar Saturday; natural follow-up with a two-day pass. Single-day value is slightly below Saturday’s hillclimb hook.' },
       access: { zh: '大型活动走 South Boundary Road；Grounds+Paddock 票含普通停车。', en: 'Major-event access via South Boundary Road; Grounds+Paddock pass includes general parking.' },
       price: { zh: '单日 ~$82.62 · 2 日 ~$124.15', en: '~$82.62 single day · ~$124.15 two-day' }, tags: ['paid', 'subjectTag'], categories: ['paid'], score: '4.0',
-      source: 'https://tickets.weathertechraceway.com/event/2-day-grounds-and-paddock-pass-monterey-pre-reunion--corkscrew-hillclimb---august-8-9-2026'
+      source: 'https://weathertechraceway.com/pages/monterey-pre-reunion-and-corkscrew-hillclimb'
     },
     {
       id: 'electric-coast-mon', thumbId: 'electric-coast-mon', area: 'pacificgrove', date: '2026-08-10', time: '12:00–16:00', timeNote: { zh: '官方时段', en: 'official hours' },
@@ -952,11 +954,14 @@ window.PEBBLE_DATA = {
     {
       id: 'little-car', thumbId: 'little-car', area: 'pacificgrove', date: '2026-08-12', time: '12:00–17:00', timeNote: { zh: '含巡航', en: 'includes cruise' },
       title: { zh: 'The Little Car Show', en: 'The Little Car Show' }, location: { zh: 'Lighthouse Ave · Pacific Grove', en: 'Lighthouse Ave · Pacific Grove' },
-      summary: { zh: '观众免费的微型/迷你经典车展，展后有巡航；参展报名另收费（约 $100–$125），勿当作“带车也免费”。', en: 'Spectator-free micro/mini classic show with a post-show cruise; exhibitor registration is separate (~$100–$125)—not free if you bring a car.' },
+      summary: { zh: '观众免费的微型/迷你经典车展，展后有巡航；常规参展报名已关闭，如现场仍有名额则为 $125。', en: 'Free-for-spectators micro/mini classic show with a post-show cruise; regular exhibitor entries are closed, with $125 day-of spots only if available.' },
       why: { zh: '早场最有趣、记忆点最强的免费主场（对观众）；与同日 Carmel Astons 可组合，但不必两边赶。', en: 'The most memorable free early anchor for spectators—pair with Carmel Astons the same day, but do not rush both.' },
-      access: { zh: 'Lighthouse Ave 步行区；Pacific Grove 停车先到先得。想参展请走官方报名，勿按观众免费理解。', en: 'Lighthouse Ave pedestrian zone; Pacific Grove parking is first come. Exhibitors must register officially—do not treat spectator free as exhibitor free.' },
-      price: { zh: '观众免费 · 参展约 $100–$125', en: 'Spectators free · exhibitors ~$100–$125' }, tags: ['mixedTag'], categories: ['essential', 'free', 'paid'], score: '4.5',
-      source: 'https://www.thelittlecarshow.com/'
+      access: { zh: 'Lighthouse Ave 步行区；Pacific Grove 停车先到先得。常规参展报名已关闭，不要把观众免费理解为带车免费。', en: 'Lighthouse Ave pedestrian zone; Pacific Grove parking is first come. Regular exhibitor entries are closed—do not treat spectator free as exhibitor free.' },
+      price: { zh: '观众免费 · 如有现场参展名额 $125', en: 'Spectators free · day-of exhibitor spots $125 if available' }, tags: ['mixedTag'], categories: ['essential', 'free', 'paid'], score: '4.5',
+      sources: [
+        { url: 'https://www.thelittlecarshow.com/the-little-car-show-schedule/', label: { zh: '2026 官方日程 ↗', en: 'Official 2026 schedule ↗' } },
+        { url: 'https://www.thelittlecarshow.com/', label: { zh: '官方参展状态 ↗', en: 'Official exhibitor status ↗' } }
+      ]
     },
     {
       id: 'astons', thumbId: 'astons', area: 'carmel', date: '2026-08-12', time: '11:00–16:00', timeNote: { zh: '公众时段', en: 'public hours' },
@@ -977,13 +982,16 @@ window.PEBBLE_DATA = {
       source: 'https://www.seemonterey.com/monterey-car-week-events-by-day/'
     },
     {
-      id: 'rmmr-wed', thumbId: 'rmmr-wed', area: 'laguna', date: '2026-08-12', time: '07:00–', timeNote: { zh: 'Reunion 首日', en: 'Reunion day 1' },
+      id: 'rmmr-wed', thumbId: 'rmmr-wed', area: 'laguna', date: '2026-08-12', time: '07:00–17:10', timeNote: { zh: '07:00 入场 · 08:00–17:10 赛程', en: 'gates 07:00 · on-track 08:00–17:10' },
       title: { zh: 'Rolex Monterey Motorsports Reunion · 周三', en: 'Rolex Monterey Motorsports Reunion · Wednesday' }, location: { zh: 'WeatherTech Raceway Laguna Seca', en: 'WeatherTech Raceway Laguna Seca' },
-      summary: { zh: 'Rolex Reunion 开幕日；赛程与票价以官方票务页为准。', en: 'Opening day of Rolex Reunion; schedule and pricing per the official ticket page.' },
+      summary: { zh: 'Rolex Reunion 开幕日；当前 Tier 2 成人票 $93.10 含费用，15 岁及以下免费。', en: 'Opening day of Rolex Reunion; the current Tier 2 adult ticket is $93.10 all-in, and ages 15 and under are free.' },
       why: { zh: '赛道迷可提前一天进场；若只能去一天，周四至周六票价与内容组合需对比后再买。', en: 'Track fans can enter a day early; if buying only one day, compare Wednesday through Saturday pricing and programming first.' },
-      access: { zh: '大型活动走 South Boundary Road；购买前重查官方票务页。', en: 'Major-event access via South Boundary Road; recheck the official ticket page before buying.' },
-      price: { zh: '票价见官方', en: 'See official tickets' }, tags: ['unknownTag', 'subjectTag'], categories: ['paid', 'unpriced'], score: '4.0',
-      source: 'https://weathertechraceway.com/pages/rolex-monterey-motorsports-reunion'
+      access: { zh: '大型活动走 South Boundary Road；成人票含普通停车、paddock 和指定看台。', en: 'Major-event access via South Boundary Road; adult admission includes general parking, paddock and designated grandstands.' },
+      price: { zh: 'Tier 2 成人 $93.10 含费用', en: 'Tier 2 adult $93.10 all-in' }, tags: ['paid', 'subjectTag'], categories: ['paid'], score: '4.0',
+      sources: [
+        { url: 'https://weathertechraceway.com/pages/rolex-monterey-motorsports-reunion', label: { zh: '官方赛程 ↗', en: 'Official schedule ↗' } },
+        { url: 'https://tickets.weathertechraceway.com/event/rolex-reunion-wednesday---august-12-2026', label: { zh: '官方票务 ↗', en: 'Official tickets ↗' } }
+      ]
     },
     {
       id: 'luau', thumbId: 'luau', area: 'pacificgrove', date: '2026-08-12', time: '17:00–20:00', timeNote: { zh: 'Woodies 前夜开场', en: 'Woodies kickoff evening' },
@@ -1002,8 +1010,8 @@ window.PEBBLE_DATA = {
       title: { zh: 'Motorlux', en: 'Motorlux' }, location: { zh: 'Monterey Jet Center', en: 'Monterey Jet Center' },
       summary: { zh: '喷气中心停机坪夜场：稀有汽车 + 飞机 + 餐饮酒水与现场娱乐；21+。前身为 McCall’s Motorworks Revival，现名 Motorlux。', en: 'Jet-center tarmac evening: rare cars and aircraft with cuisine, drinks and entertainment; 21+. Formerly McCall’s Motorworks Revival; now Motorlux.' },
       why: { zh: '周三最高规格社交夜场；票价极高。持票可获 Broad Arrow @ The Quail 拍卖竞拍注册（Quail 入场另购）。多数公众应跳过，改看免费抵达或另寻晚场。', en: 'Wednesday’s highest-spec social night—and extremely expensive. Tickets include Broad Arrow @ The Quail bidder registration (Quail entry separate). Most visitors should skip for free arrivals or another evening.' },
-      access: { zh: 'Monterey Jet Center；成人 $825（8/7 后可能涨价），鸡尾酒着装，禁牛仔裤/人字拖；VIP 停车另售。', en: 'Monterey Jet Center; adult $825 (may rise after Aug 7), cocktail attire, no jeans/flip-flops; VIP tarmac parking sold separately.' },
-      price: { zh: '成人 $825 · VIP 停车 $225', en: 'Adult $825 · VIP parking $225' }, tags: ['paid'], categories: ['paid'], score: '3.0',
+      access: { zh: 'Monterey Jet Center；成人 $845，21+，鸡尾酒着装，禁牛仔裤/人字拖；VIP 停机坪停车已售罄。', en: 'Monterey Jet Center; adult $845, ages 21+, cocktail attire, no jeans/flip-flops; VIP Tarmac Parking is sold out.' },
+      price: { zh: '成人 $845 · VIP 停机坪停车已售罄', en: 'Adult $845 · VIP Tarmac Parking sold out' }, tags: ['paid', 'soldOutTag'], categories: ['paid'], score: '3.0',
       source: 'https://motorlux.com/tickets/'
     },
     {
@@ -1049,19 +1057,16 @@ window.PEBBLE_DATA = {
       why: { zh: 'Tour 上午之后的轻松下午选择；若不想在 Village/Legends 之间赶场，这里是冲浪文化与老爷车的低压力替代。', en: 'A relaxed Thursday afternoon after the Tour morning; a low-pressure surf-culture alternative if you do not want to rush between Village and Legends.' },
       access: { zh: 'Asilomar Grand Cypress Meadow；园区内免费停车。', en: 'Asilomar Grand Cypress Meadow; free parking inside the grounds.' },
       price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['free'], score: '4.0',
-      sources: [
-        { url: 'https://www.santacruzwoodies.com/august-14-2025-woodies-in-the-woods/', label: { zh: 'Santa Cruz Woodies：2026 日程 ↗', en: 'Santa Cruz Woodies: 2026 schedule ↗' } },
-        { url: 'https://www.visitasilomar.com/things-to-do/car-week', label: { zh: 'Asilomar Car Week ↗', en: 'Asilomar Car Week ↗' } }
-      ]
+      source: 'https://www.visitasilomar.com/things-to-do/car-week'
     },
     {
-      id: 'village-thu', thumbId: 'village-thu', area: 'pebble', date: '2026-08-13', time: '09:00–18:00', timeNote: { zh: '保守开放时间', en: 'conservative hours' },
+      id: 'village-thu', thumbId: 'village-thu', area: 'pebble', date: '2026-08-13', time: '08:00–18:00', timeNote: { zh: '官方开放时间', en: 'official hours' },
       title: { zh: 'Concours Village + RetroAuto', en: 'Concours Village + RetroAuto' }, location: { zh: 'Forest Lake Rd × Stevenson Dr · Pebble Beach', en: 'Forest Lake Rd at Stevenson Dr · Pebble Beach' },
       summary: { zh: '免费品牌展、概念车、收藏品与 RetroAuto 市集；部分试驾先到先得。', en: 'Free manufacturer displays, concepts, collectibles and the RetroAuto marketplace; some drives are first come.' },
       why: { zh: '不买周日主展票也能获得完整车周氛围，是 Tour 之后最稳妥的免费下午。', en: 'The most complete free Car Week atmosphere without a Sunday ticket, and the safest Thursday-afternoon choice after the Tour.' },
       access: { zh: '网约车统一在 Village 上下客。各品牌试驾可能要求 21 岁、驾照、免责签署与包脚鞋，排队不能保证。', en: 'Rideshare uses the Village node. Brand drives may require age 21+, license, waiver and closed-toe shoes; queues and availability are not guaranteed.' },
       price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['essential', 'free'], score: '5.0',
-      source: 'https://www.pebblebeachconcours.net/displays-and-ride-amp-drive-schedule/'
+      source: 'https://www.pebblebeachconcours.net/events/concours-village/'
     },
     {
       id: 'rmmr-thu', thumbId: 'rmmr-thu', area: 'laguna', date: '2026-08-13', time: '08:00–17:35', timeNote: { zh: '赛程会调整', en: 'schedule may change' },
@@ -1082,7 +1087,7 @@ window.PEBBLE_DATA = {
       source: 'https://www.goodingco.com/auction/pebble-beach-auctions-2026/'
     },
     {
-      id: 'mecum-thu', thumbId: 'mecum-thu', area: 'monterey', date: '2026-08-13', time: '10:00–', timeNote: { zh: '拍卖/区块', en: 'auction / blocks' },
+      id: 'mecum-thu', thumbId: 'mecum-thu', area: 'monterey', date: '2026-08-13', time: '08:00–', timeNote: { zh: '08:00 入场 · 09:00 艺术品 · 10:00 整车拍卖', en: 'gates 08:00 · Road Art 09:00 · cars 10:00' },
       title: { zh: 'Mecum Monterey', en: 'Mecum Monterey' }, location: { zh: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd', en: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd' },
       summary: { zh: '约 600 辆汽车 + 约 100 辆摩托车；8:00 开门，周四 10:00 开拍。白天户外拍卖，公众友好。', en: 'Roughly 600 cars and ~100 motorcycles; gates at 8:00, bidding from 10:00 Thursday. Daytime outdoor auction—visitor-friendly.' },
       why: { zh: '整周最亲民的大型整车拍卖之一：白天、户外、票价低于多数夜场；适合首次体验拍卖或想多看肌肉车/美式经典的人。', en: 'One of the week’s most visitor-friendly major car auctions—daytime, outdoor and cheaper than most evening sales; ideal for a first auction or muscle/American classics.' },
@@ -1124,10 +1129,10 @@ window.PEBBLE_DATA = {
     {
       id: 'werks', thumbId: 'werks', area: 'monterey', date: '2026-08-14', time: '09:00–15:00', timeNote: { zh: '7:00 车辆签到', en: '7:00 car check-in' },
       title: { zh: 'Werks Reunion Monterey', en: 'Werks Reunion Monterey' }, location: { zh: 'Monterey Pines Golf Course', en: 'Monterey Pines Golf Course' },
-      summary: { zh: '保时捷俱乐部大聚会；9:30–12:00 评审，14:00–15:00 颁奖。', en: 'The major Porsche gathering; judging runs 9:30–12:00 and awards 14:00–15:00.' },
+      summary: { zh: '保时捷俱乐部大聚会；9:30–12:00 评审，14:00–15:00 颁奖。车辆报名已关闭，Corral 与 Judged 车位均已售罄。', en: 'The major Porsche gathering; judging runs 9:30–12:00 and awards 14:00–15:00. Vehicle registration is closed, with both Corral and Judged spots sold out.' },
       why: { zh: '保时捷车迷 5/5，普通观众也有 4.5/5；周五最强的免费主场。', en: 'A 5/5 for Porsche fans and 4.5/5 generally—the strongest free Friday anchor.' },
-      access: { zh: '观众停车每车 $40、摩托 $20，只收现金且现场无 ATM；入场本身免费。', en: 'Spectator parking is $40 per car or $20 per motorcycle, cash only, with no onsite ATM. Admission itself is free.' },
-      price: { zh: '观众免费 · 停车 $40 现金', en: 'Free · $40 cash parking' }, tags: ['free'], categories: ['essential', 'free'], score: '4.5',
+      access: { zh: '观众停车每车 $40、摩托 $20，只收现金且现场无 ATM；观众入场仍免费，售罄仅指参展车位。', en: 'Spectator parking is $40 per car or $20 per motorcycle, cash only, with no onsite ATM. Spectator admission remains free; sold-out status applies only to display-car spots.' },
+      price: { zh: '观众免费 · 停车 $40 现金 · 参展车位已售罄', en: 'Spectators free · $40 cash parking · display spots sold out' }, tags: ['free', 'soldOutTag'], categories: ['essential', 'free'], score: '4.5',
       source: 'https://www.werksreunion.com/monterey.cfm'
     },
     {
@@ -1179,9 +1184,9 @@ window.PEBBLE_DATA = {
       source: 'https://www.goodingco.com/auction/pebble-beach-auctions-2026/'
     },
     {
-      id: 'mecum-fri', thumbId: 'mecum-fri', area: 'monterey', date: '2026-08-14', time: '09:00–', timeNote: { zh: '拍卖/区块', en: 'auction / blocks' },
+      id: 'mecum-fri', thumbId: 'mecum-fri', area: 'monterey', date: '2026-08-14', time: '08:00–', timeNote: { zh: '08:00 入场 · 09:00 艺术品 · 10:00 整车拍卖', en: 'gates 08:00 · Road Art 09:00 · cars 10:00' },
       title: { zh: 'Mecum Monterey', en: 'Mecum Monterey' }, location: { zh: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd', en: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd' },
-      summary: { zh: '周五 9:00 开拍；与 Werks、Laguna Seca、The Quail 同日，需二选一或只留半天。', en: 'Friday bidding from 9:00; same day as Werks, Laguna Seca and The Quail—pick one anchor or budget half a day.' },
+      summary: { zh: '周五 8:00 入场、9:00 Road Art、10:00 整车开拍；与 Werks、Laguna Seca、The Quail 同日，需选一个主场或只留半天。', en: 'Friday gates open at 8:00, Road Art starts at 9:00 and collector cars at 10:00; it shares the day with Werks, Laguna Seca and The Quail, so choose one anchor or budget half a day.' },
       why: { zh: '若周五不去赛道或 Quail，Mecum 是白天看整车拍卖的最佳替代；三日票 $75 若周四已入场则继续有效。', en: 'If skipping the track or Quail on Friday, Mecum is the best daytime car-auction alternative; a $75 3-day pass remains valid if you entered Thursday.' },
       access: { zh: '8:00 开门；12 岁及以下免费。网上预购可能有折扣。', en: 'Gates at 8:00; ages ≤12 free. Online advance purchase may discount.' },
       price: { zh: '$30/日 · $75/三日 · ≤12 岁免费', en: '$30/day · $75/3-day · ages ≤12 free' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.5',
@@ -1211,8 +1216,8 @@ window.PEBBLE_DATA = {
       access: { zh: '预展对公众免费；拍卖席位优先委托方/注册竞拍人/媒体，开拍约 1 小时后可能对其他观众开放。电话/缺席/网络竞拍免费注册。Motorlux 持票含竞拍注册权益。', en: 'Preview is free to the public; auction seating prioritizes consignors, registered bidders and media, then may open ~1 hour after each session starts. Phone/absentee/internet bidding registration is complimentary. Motorlux tickets include bidder registration.' },
       price: { zh: '预展免费 · 现场竞拍注册 $300', en: 'Preview free · in-person bidder reg. $300' }, tags: ['paid'], categories: ['paid'], score: '4.0',
       sources: [
-        { url: 'https://www.broadarrowauctions.com/events/event/The%20Quail%20Auction%202026', label: { zh: 'Broad Arrow 活动页 ↗', en: 'Broad Arrow event page ↗' } },
         { url: 'https://bid.broadarrowauctions.com/auctions/1-CQGJK8/the-quail-auction-2026', label: { zh: '在线图录 / 竞拍 ↗', en: 'Online catalog / bidding ↗' } },
+        { url: 'https://www.broadarrowauctions.com/events/event/The%20Quail%20Auction%202026', label: { zh: 'Broad Arrow 活动页 ↗', en: 'Broad Arrow event page ↗' } },
         { url: 'https://motorlux.com/tickets/', label: { zh: 'Motorlux 票页（竞拍权益）↗', en: 'Motorlux tickets (bidder perk) ↗' } }
       ]
     },
@@ -1235,15 +1240,15 @@ window.PEBBLE_DATA = {
       source: 'https://www.rmsothebys.com/auctions/mo26/'
     },
     {
-      id: 'lemons', thumbId: 'lemons', area: 'seaside', date: '2026-08-15', time: '08:00–13:30', timeNote: { zh: '时间为县旅游页所列', en: 'hours per county listing' },
+      id: 'lemons', thumbId: 'lemons', area: 'seaside', date: '2026-08-15', time: '08:00–13:30', timeNote: { zh: '官方票务时段', en: 'official ticketed hours' },
       title: { zh: 'Concours d’Lemons', en: 'Concours d’Lemons' }, location: { zh: 'Seaside City Hall', en: 'Seaside City Hall' },
-      summary: { zh: '用幽默对冲顶级车展的“烂车”评选；主办方确认免费，但 2026 详细时段尚未在主办方页发布。', en: 'A comic antidote to elite concours culture. The organizer confirms free admission, but has not posted detailed 2026 hours.' },
+      summary: { zh: '用幽默对冲顶级车展的“烂车”评选；官方 2026 票务页确认观众免费，8:00–13:30。', en: 'A comic antidote to elite concours culture; the official 2026 ticket page confirms free spectator admission from 8:00–13:30.' },
       why: { zh: '最亲民、最有记忆点的周六早晨，也能自然接上 Exotics on Broadway。', en: 'The funniest, most accessible Saturday morning and a natural lead-in to Exotics on Broadway.' },
-      access: { zh: 'Seaside City Hall 草坪一带；08:00–13:30 来自县级活动页，不是主办方最终时刻表；临行前复核停车和时段。', en: 'Around Seaside City Hall lawn; 08:00–13:30 comes from a county listing, not the organizer’s final timetable—recheck hours and parking.' },
-      price: { zh: '免费', en: 'Free' }, tags: ['free', 'subjectTag'], categories: ['essential', 'free'], score: '5.0',
+      access: { zh: 'Seaside City Hall · 440 Harcourt Ave；观众免费，临行前仍请复核停车安排。', en: 'Seaside City Hall, 440 Harcourt Ave; spectators are free. Recheck parking arrangements before departure.' },
+      price: { zh: '观众免费', en: 'Spectators free' }, tags: ['free'], categories: ['essential', 'free'], score: '5.0',
       sources: [
         { url: 'https://24hoursoflemons.com/concours-d-lemons/', label: { zh: '主办方：免费入场 ↗', en: 'Organizer: free admission ↗' } },
-        { url: 'https://www.seemonterey.com/event/concours-dlemons/', label: { zh: '县旅游页：所列时段 ↗', en: 'County listing: listed hours ↗' } }
+        { url: 'https://www.eventbrite.com/e/2026-concours-dlemons-ca-tickets-1980210018471', label: { zh: '官方票务：2026 时段与地址 ↗', en: 'Official tickets: 2026 hours and address ↗' } }
       ]
     },
     {
@@ -1260,8 +1265,8 @@ window.PEBBLE_DATA = {
       title: { zh: 'Ferrari Event at The Barnyard', en: 'Ferrari Event at The Barnyard' }, location: { zh: 'The Barnyard · Carmel', en: 'The Barnyard · Carmel' },
       summary: { zh: '第 28 届 Barnyard 法拉利慈善展，受益 Big Sur Food & Wine Foundation。', en: '28th annual Barnyard Ferrari charity exhibition benefiting the Big Sur Food & Wine Foundation.' },
       why: { zh: '周六下午意式车氛围、票价低于 Concorso；与 Exotics / Concorso / MMF 冲突，只适合法拉利主题专程。', en: 'Italian-car Saturday afternoon below Concorso pricing—but it conflicts with Exotics/Concorso/MMF, so only if Ferrari is the draw.' },
-      access: { zh: 'The Barnyard Shopping Village（3663 The Barnyard）；16+ GA，≤15 免费；品酒 21+。', en: 'The Barnyard Shopping Village (3663 The Barnyard); GA ages 16+, ≤15 free; wine tastings 21+.' },
-      price: { zh: 'GA $80 + 费用（约 $86）', en: 'GA $80 + fees (~$86)' }, tags: ['paid'], categories: ['paid'], score: '3.5',
+      access: { zh: 'The Barnyard Shopping Village（3663 The Barnyard）；16+ GA，≤15 免费；品酒 21+。预售票当前可购，现场票更贵。', en: 'The Barnyard Shopping Village (3663 The Barnyard); GA ages 16+, ≤15 free; wine tastings 21+. Advance tickets are currently in stock; day-of gate admission costs more.' },
+      price: { zh: '预售 GA $85.81 含费用 · 现场 $107.01 含费用', en: 'Advance GA $85.81 all-in · day-of $107.01 all-in' }, tags: ['paid'], categories: ['paid'], score: '3.5',
       sources: [
         { url: 'https://www.bigsurfoodandwine.org/popup-events/28th-annual-ferrari-event-at-the-barnyard', label: { zh: '主办方活动页 ↗', en: 'Organizer event page ↗' } },
         { url: 'https://bsfw.ticketsauce.com/e/ferrari-event-at-the-barnyard-6/tickets', label: { zh: '购票 ↗', en: 'Tickets ↗' } }
@@ -1270,17 +1275,17 @@ window.PEBBLE_DATA = {
     {
       id: 'exotics', thumbId: 'exotics', area: 'seaside', date: '2026-08-15', time: '11:00–16:00', timeNote: { zh: '接驳 9:00–17:00', en: 'shuttle 9:00–17:00' },
       title: { zh: 'Exotics on Broadway', en: 'Exotics on Broadway' }, location: { zh: 'Broadway Ave / Del Monte Blvd · Seaside', en: 'Broadway Ave / Del Monte Blvd · Seaside' },
-      summary: { zh: 'Broadway 四街区免费；封闭 hypercar / vendor 区普通票 $40，VIP $375 起。', en: 'Four blocks of Broadway are free; the enclosed hypercar/vendor zone is $40 GA, with VIP from $375.' },
+      summary: { zh: 'Broadway 四街区免费；封闭 hypercar / vendor 区 GA $40 仍可购，$375 VIP Lounge 与 $925 VIP Package 已售罄。', en: 'Four blocks of Broadway are free; $40 GA for the enclosed hypercar/vendor zone remains on sale, while the $375 VIP Lounge and $925 VIP Package are sold out.' },
       why: { zh: '免费区 5/5，付费区 3/5；预算路线无需买票，就能与 Lemons 拼成完整一天。', en: 'The free zone is 5/5 and paid enclosure 3/5. The budget route needs no ticket and pairs cleanly with Lemons.' },
       access: { zh: 'General Jim Moore Blvd × Eucalyptus Rd 设免费远端停车与接驳，9:00–17:00。停车 FAQ 与 2026 票务页的场地用语尚未完全同步，临行前复核。', en: 'Free remote parking and shuttle at General Jim Moore Blvd/Eucalyptus Rd, 9:00–17:00. The parking FAQ is not fully synchronized with the 2026 ticket page’s venue wording, so recheck before departure.' },
-      price: { zh: 'Broadway 免费 · 付费区 $40', en: 'Broadway free · paid zone $40' }, tags: ['mixedTag'], categories: ['essential', 'free', 'paid'], score: '5.0',
+      price: { zh: 'Broadway 免费 · GA $40 可购 · VIP 已售罄', en: 'Broadway free · GA $40 on sale · VIP sold out' }, tags: ['mixedTag', 'soldOutTag'], categories: ['essential', 'free', 'paid'], score: '5.0',
       sources: [
         { url: 'https://exoticsonbroadway.com/tickets/', label: { zh: '官方票务：2026 价格与 Del Monte 付费区 ↗', en: 'Official tickets: 2026 prices and Del Monte paid zone ↗' } },
         { url: 'https://exoticsonbroadway.com/knowbeforeyougo/', label: { zh: '官方出行页：停车与接驳 ↗', en: 'Official visitor page: parking and shuttle ↗' } }
       ]
     },
     {
-      id: 'rmmr-sat', thumbId: 'rmmr-sat', area: 'laguna', date: '2026-08-15', time: '08:00–18:10', timeNote: { zh: '赛程会调整', en: 'schedule may change' },
+      id: 'rmmr-sat', thumbId: 'rmmr-sat', area: 'laguna', date: '2026-08-15', time: '07:00–18:30', timeNote: { zh: '07:00 入场 · 08:00–18:30 赛程会调整', en: 'gates 07:00 · on-track 08:00–18:30 may change' },
       title: { zh: 'Rolex Monterey Motorsports Reunion · 周六', en: 'Rolex Monterey Motorsports Reunion · Saturday' }, location: { zh: 'WeatherTech Raceway Laguna Seca', en: 'WeatherTech Raceway Laguna Seca' },
       summary: { zh: '整日正赛，是赛车迷的主日，但会完全占用 Lemons、Exotics 与 Concorso 的时间。', en: 'A full race day for committed fans, but it consumes the same window as Lemons, Exotics and Concorso.' },
       why: { zh: '赛车迷 5/5；普通首次访客可用周五赛道 + 周六免费街展获得更多变化。', en: 'A 5/5 for race fans. First-timers may get more variety from Friday at the track and Saturday’s free street shows.' },
@@ -1316,9 +1321,9 @@ window.PEBBLE_DATA = {
       source: 'https://www.goodingco.com/auction/pebble-beach-auctions-2026/'
     },
     {
-      id: 'mecum-sat', thumbId: 'mecum-sat', area: 'monterey', date: '2026-08-15', time: '09:00–', timeNote: { zh: '拍卖/区块', en: 'auction / blocks' },
+      id: 'mecum-sat', thumbId: 'mecum-sat', area: 'monterey', date: '2026-08-15', time: '08:00–', timeNote: { zh: '08:00 入场 · 09:00 艺术品 · 10:00 整车拍卖', en: 'gates 08:00 · Road Art 09:00 · cars 10:00' },
       title: { zh: 'Mecum Monterey', en: 'Mecum Monterey' }, location: { zh: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd', en: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd' },
-      summary: { zh: '周六 9:00 最后一日拍卖；与 Lemons、Exotics、Laguna Seca 完全冲突。', en: 'Saturday’s final day from 9:00; in direct conflict with Lemons, Exotics and Laguna Seca.' },
+      summary: { zh: '周六 8:00 入场、9:00 Road Art、10:00 整车开拍；与 Lemons、Exotics、Laguna Seca 完全冲突。', en: 'Saturday’s final day opens at 8:00, with Road Art at 9:00 and collector cars at 10:00; it directly conflicts with Lemons, Exotics and Laguna Seca.' },
       why: { zh: '若周六主场在 Seaside 免费街展，不必专程折返；若已买三日票且想看肌肉车收尾，可当作下午备选。', en: 'Skip if Saturday’s anchor is free Seaside street shows; if you bought the 3-day pass and want a muscle-car finale, treat it as an afternoon backup.' },
       access: { zh: '8:00 开门；12 岁及以下免费。', en: 'Gates at 8:00; ages ≤12 free.' },
       price: { zh: '$30/日 · $75/三日 · ≤12 岁免费', en: '$30/day · $75/3-day · ages ≤12 free' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.5',
@@ -1340,13 +1345,13 @@ window.PEBBLE_DATA = {
     {
       id: 'mmf', thumbId: 'mmf', area: 'monterey', date: '2026-08-15', time: '17:00–23:00', timeNote: { zh: '停车信息有冲突', en: 'parking conflict' },
       title: { zh: 'Monterey Motorsports Festival', en: 'Monterey Motorsports Festival' }, location: { zh: 'Monterey County Fairgrounds', en: 'Monterey County Fairgrounds' },
-      summary: { zh: '晚间展演型活动；当前主办方页面写 $175 + $5 处理费，授权票务页仍显示 $189。', en: 'An evening festival; the organizer currently says $175 + a $5 processing fee, while the authorized seller still shows $189.' },
+      summary: { zh: '晚间展演型活动；主办方与授权票务当前均列 GA $175，主办方另注明 $5 结账费。', en: 'An evening festival; both the organizer and authorized seller currently list GA at $175, with the organizer noting a $5 checkout fee.' },
       why: { zh: '2.5/5 的可选夜场；除非演出内容特别对口，不优先于免费 Seaside 路线。', en: 'An optional 2.5/5 evening. Do not prioritize it over the free Seaside route unless the program is a specific draw.' },
       access: { zh: '当前官方停车页写 Gate 8 免费先到先得，Monterey Pines 为 overflow；价格与停车都应在购买和出发前复核。', en: 'The current organizer page says free first-come parking at Gate 8, with Monterey Pines as overflow. Recheck both price and parking before purchase and arrival.' },
-      price: { zh: '主办方 $175 + $5 · 票务页 $189', en: 'Organizer $175 + $5 · seller $189' }, tags: ['paid', 'subjectTag'], categories: ['paid'], score: '2.5',
+      price: { zh: 'GA $175 + 结账费用', en: 'GA $175 + checkout fees' }, tags: ['paid', 'subjectTag'], categories: ['paid'], score: '2.5',
       sources: [
         { url: 'https://montereymotorsportsfestival.com/get-tickets/', label: { zh: '主办方票页：$175 + $5 ↗', en: 'Organizer tickets: $175 + $5 ↗' } },
-        { url: 'https://montereymotorsportsfestival.saffire.com/p/tickets', label: { zh: '授权票务：$189 ↗', en: 'Authorized seller: $189 ↗' } },
+        { url: 'https://montereymotorsportsfestival.saffire.com/p/tickets', label: { zh: '授权票务：GA $175 ↗', en: 'Authorized seller: GA $175 ↗' } },
         { url: 'https://montereymotorsportsfestival.com/general-info/', label: { zh: '主办方停车说明 ↗', en: 'Organizer parking information ↗' } }
       ]
     },
@@ -1613,8 +1618,8 @@ window.PEBBLE_DATA = {
     { label: { zh: 'Ferrari Event at The Barnyard', en: 'Ferrari Event at The Barnyard' }, url: 'https://www.bigsurfoodandwine.org/popup-events/28th-annual-ferrari-event-at-the-barnyard' },
     { label: { zh: 'The Little Car Show', en: 'The Little Car Show' }, url: 'https://www.thelittlecarshow.com/' },
     { label: { zh: 'Asilomar · Car Week 活动', en: 'Asilomar · Car Week events' }, url: 'https://www.visitasilomar.com/things-to-do/car-week' },
-    { label: { zh: 'Pre-Reunion · 官方票务', en: 'Pre-Reunion · official tickets' }, url: 'https://tickets.weathertechraceway.com/event/2-day-grounds-and-paddock-pass-monterey-pre-reunion--corkscrew-hillclimb---august-8-9-2026' },
-    { label: { zh: 'Santa Cruz Woodies · Woodies in the Woods', en: 'Santa Cruz Woodies · Woodies in the Woods' }, url: 'https://www.santacruzwoodies.com/august-14-2025-woodies-in-the-woods/' },
+    { label: { zh: 'Pre-Reunion · 官方活动页', en: 'Pre-Reunion · official event page' }, url: 'https://weathertechraceway.com/pages/monterey-pre-reunion-and-corkscrew-hillclimb' },
+    { label: { zh: 'Asilomar · Woodies in the Woods', en: 'Asilomar · Woodies in the Woods' }, url: 'https://www.visitasilomar.com/things-to-do/car-week' },
     { label: { zh: 'HOLO-FEST 2.0 · Eventbrite', en: 'HOLO-FEST 2.0 · Eventbrite' }, url: 'https://www.eventbrite.com/e/july-31-aug-2nd-holo-fest-20-featuring-jerry-garcia-b-day-bash-and-more-tickets-1993501930939' },
     { label: { zh: 'Watsonville Strawberry Festival', en: 'Watsonville Strawberry Festival' }, url: 'https://www.watsonville.gov/1117/Watsonville-Strawberry-Festival' },
     { label: { zh: 'Pebble Beach Concours · 周日主展', en: 'Pebble Beach Concours · Sunday show' }, url: 'https://www.pebblebeachconcours.net/event/pebble-beach-concours-delegance/' },
