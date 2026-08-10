@@ -1,5 +1,55 @@
 # Architecture History data tools
 
+## Data source of truth (read this first)
+
+The **local SQLite store** (`data/architecture-history.db`, gitignored) is the
+single editable authority for the entity graph. All data fixes and additions
+happen there first; the public JSON is a projection that must never be hand-edited.
+
+Data flows in **one direction**:
+
+```
+SQLite store  ──db.py export──▶  catalog shard  ──build.py──▶  8 public JSON
+(data/architecture-history.db)  (assets/data/catalog/       (assets/data/*.json
+  edit here                      wikidata-hydration.json)     + manifest, git-tracked)
+```
+
+- The catalog shard is retained as an SQLite **export projection** (not the
+  Wikidata importer's product anymore) because `validate.py` and
+  `test_wikidata_pilot.py` hard-depend on it: validate asserts the public arrays
+  equal the catalog merge, and test_wikidata_pilot pins shard sha256s.
+- The export is **lossless**: entity/claim/relation payloads are stored complete,
+  shard top-level provenance (`generated_from`, `source_id`, `transformer_*`) is
+  captured in `schema_meta`, and a roundtrip reproduces the shard byte-for-byte
+  (covered by `test_db.py`).
+
+### Everyday edit flow
+
+```bash
+# 1. Rebuild the SQLite store from the current shard / public JSON (first time,
+#    or after a Wikidata re-hydrate overwrote the shard):
+python3 tools/db.py import
+
+# 2. Edit the store directly (SQL) or via a script.
+sqlite3 data/architecture-history.db
+
+# 3. Export the store to the shard AND run build.py's full validate/test gate:
+python3 tools/db.py export
+#    Use --no-build for fast iteration (writes only the shard).
+
+# 4. Review the diff, then commit. Only the 8 public JSON tables + manifest
+#    + loader constants + index.html tokens change in git:
+git diff --stat assets/data/ index.html assets/js/data-loader.js
+git commit
+```
+
+### Wikidata re-hydrate (non-daily, only when pulling fresh Wikidata data)
+
+The fetch→import pipeline below produces a new shard from Wikidata; afterwards
+run `db.py import` to absorb it into the SQLite store (verification state is
+preserved by `import_wikidata_pilot.py`'s `preserve_verification_state()`).
+This path is **not** for routine data corrections — those go through SQLite.
+
 ## Commands
 
 ```bash

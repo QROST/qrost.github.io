@@ -8,24 +8,30 @@ The project is intentionally a **curated pilot**, not a claim to have completed
 global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
-The current catalog contains 559 cross-regional seed works, 539 people, 29
-practices, 39 country-place records, 191 raw relationship review edges, and 9324
-source claims. Exact direct-P31 mapping currently classifies 286 works, while
-255 remain unmapped and 18 remain ambiguous. Wikidata is the primary structured
-source; a refreshed 24-anchor Getty ULAN P245 crosswalk is committed, but the
-reciprocal Getty identity overlay is blocked as of 2026-08-07 because
-`vocab.getty.edu` returns HTTP 499 (`Service temporarily degraded`) for JSON-LD
-and RDF downloads. Public people therefore still carry zero `ulan` external ids.
-Of 539 people, 281 have Wikidata-backed `name_zh`; the remaining 258 lack a safe
-authority Chinese label (enwiki→zh langlink seeds are empty after reciprocal
-Wikidata ownership checks). Agentic verification (`reviewer-agentic-cursor`,
-2026-08-07) currently covers all 39 country places, all 29 practices, 274 people,
-and 126 no-credit works with `period=unknown` (472 verified entities). Known-period
-works stay candidate because `field_period` is only indirectly evidenced from
-P571/P1619. Seven people with Chinese labels still lack a mapped P106 occupation;
-credited works and all 191 relations remain `candidate`.
+The current catalog contains 1063 works, 853 people, 57 practices, 42
+country-place records, 577 relationship edges, and 11654 source claims. Exact
+direct-P31 mapping currently classifies 784 works, while 255 remain unmapped and
+24 remain ambiguous. Wikidata is the primary structured source; a refreshed
+24-anchor Getty ULAN P245 crosswalk is committed, but the reciprocal Getty
+identity overlay is blocked as of 2026-08-07 because `vocab.getty.edu` returns
+HTTP 499 (`Service temporarily degraded`) for JSON-LD and RDF downloads. Public
+people therefore still carry zero `ulan` external ids. Agentic verification
+(`reviewer-agentic-cursor`, 2026-08-09) currently covers all 42 country places,
+all 57 practices, 205 people, and 137 no-credit works with `period=unknown`
+(441 verified entities and relations). Known-period works stay candidate because
+`field_period` is only indirectly evidenced from P571/P1619. All 577 relations
+remain `candidate` by design — Wikidata's relationship dimension is
+`candidate`-authority, so verified lineage requires a stronger source (Getty
+ULAN relationships, academic literature) than Wikidata alone provides.
 
 ## Data authority
+
+The **local SQLite store** (`data/architecture-history.db`, gitignored) is the
+single editable source of truth. Edits flow one direction — SQLite → catalog
+shard → public JSON — via `python3 tools/db.py export` (which also runs the
+full validate/test gate). The public JSON below is a projection; never hand-edit
+it. See `tools/README.md` for the complete edit flow and the Wikidata re-hydrate
+path.
 
 The public data graph lives in `assets/data/`:
 
