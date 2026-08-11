@@ -39,7 +39,7 @@ ADAPTER_ID = "wikidata-hydration-pilot"
 ADAPTER_VERSION = "0.1.0"
 TRANSFORMER_ID = "wikidata-hydration-to-architecture-history"
 TRANSFORMER_VERSION = "0.4.0"
-PERIOD_RULE_ID = "wikidata-p571-best-rank-period-v3"
+PERIOD_RULE_ID = "wikidata-p571-best-rank-period-v4"
 WORK_TYPE_RULE_ID = "wikidata-p31-exact-instance-work-type-v1"
 LEGACY_WORK_TYPE_ALLOWLIST_SHA256 = (
     "35758ba09c3a00ea6ea3d20776a1870a38ec136c56469b9faa9a42b0d28be4bf"
@@ -400,7 +400,7 @@ def validate_transform_config(config: dict) -> None:
         "rule_id": PERIOD_RULE_ID,
         "basis_property": "P571",
         "fallback_property": "P1619",
-        "accepted_precisions": [9, 10, 11],
+        "accepted_precisions": [7, 8, 9, 10, 11],
         "accepted_calendar_models": list(SUPPORTED_CALENDAR_MODELS),
         "latest_year_inclusive": 2026,
         "qualifier_policy": "metadata_qualifiers_allowed",

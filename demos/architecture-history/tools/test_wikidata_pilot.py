@@ -38,7 +38,7 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q1054169": "2000_present",
     "work-wd-q1068063": "1800_1918",
     "work-wd-q106843470": "2000_present",
-    "work-wd-q1138070": "1946_1979",
+    "work-wd-q1138070": "1000_1499",
     "work-wd-q1139574": "2000_present",
     "work-wd-q1140026": "1946_1979",
     "work-wd-q11819": "1800_1918",
@@ -96,7 +96,7 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q917274": "2000_present",
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
-    "af8f33fa4b28848b652c7426fc1b8ec911a2babc31457ed6e74fb25ce8ca977c"
+    "ef8d1dd9c495ae54edb6f8fba61d6e06542e439c95859430cd1ecfe0f0ab707b"
 )
 NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q2977",
@@ -461,7 +461,6 @@ class WikidataPilotTests(unittest.TestCase):
 
     def test_unsupported_time_semantics_fail_closed(self):
         unsupported = {
-            "decade precision": wikidata_time_statement(1900, precision=8),
             "unsupported calendar": wikidata_time_statement(
                 1900,
                 calendar_model="http://www.wikidata.org/entity/Q999999",
@@ -1053,25 +1052,25 @@ class WikidataPilotTests(unittest.TestCase):
             sort_keys=True,
             separators=(",", ":"),
         ).encode("utf-8")
-        self.assertEqual(len(prior_assignments), 771)
+        self.assertEqual(len(prior_assignments), 815)
         self.assertEqual(
             hashlib.sha256(prior_payload).hexdigest(),
             PRIOR_PERIOD_ASSIGNMENT_SHA256,
         )
         self.assertEqual(
             sum(period != "unknown" for period in assignments.values()),
-            832,
+            876,
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
-            231,
+            187,
         )
         self.assertEqual(
             sum(
                 claim["predicate"] == "field_period"
                 for claim in self.catalog["claims"]
             ),
-            832,
+            876,
         )
 
     def test_raw_lineage_edges_never_become_mentorship(self):

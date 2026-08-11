@@ -54,10 +54,10 @@ DATE_AUTHORITY_PREDICATES = {
     "source_official_opening",
 }
 SUPPORTED_PERIOD_RULE = {
-    "rule_id": "wikidata-p571-best-rank-period-v3",
+    "rule_id": "wikidata-p571-best-rank-period-v4",
     "basis_property": "P571",
     "fallback_property": "P1619",
-    "accepted_precisions": [9, 10, 11],
+    "accepted_precisions": [7, 8, 9, 10, 11],
     "accepted_calendar_models": [
         "http://www.wikidata.org/entity/Q1985727",
         "http://www.wikidata.org/entity/Q1985786",
