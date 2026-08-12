@@ -3,84 +3,9 @@
   "config_version": "0.4.0",
   "country_region_authority": [
     {
-      "country_qid": "Q148",
-      "iso2": "CN",
-      "region": "east_asia"
-    },
-    {
-      "country_qid": "Q668",
-      "iso2": "IN",
-      "region": "south_asia"
-    },
-    {
-      "country_qid": "Q424",
-      "iso2": "KH",
-      "region": "southeast_asia"
-    },
-    {
-      "country_qid": "Q252",
-      "iso2": "ID",
-      "region": "southeast_asia"
-    },
-    {
-      "country_qid": "Q833",
-      "iso2": "MY",
-      "region": "southeast_asia"
-    },
-    {
-      "country_qid": "Q794",
-      "iso2": "IR",
-      "region": "central_west_asia"
-    },
-    {
-      "country_qid": "Q878",
-      "iso2": "AE",
-      "region": "central_west_asia"
-    },
-    {
-      "country_qid": "Q79",
-      "iso2": "EG",
-      "region": "africa"
-    },
-    {
-      "country_qid": "Q912",
-      "iso2": "ML",
-      "region": "africa"
-    },
-    {
-      "country_qid": "Q38",
-      "iso2": "IT",
-      "region": "europe"
-    },
-    {
       "country_qid": "Q142",
       "iso2": "FR",
       "region": "europe"
-    },
-    {
-      "country_qid": "Q183",
-      "iso2": "DE",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q30",
-      "iso2": "US",
-      "region": "north_america"
-    },
-    {
-      "country_qid": "Q96",
-      "iso2": "MX",
-      "region": "latin_america_caribbean"
-    },
-    {
-      "country_qid": "Q155",
-      "iso2": "BR",
-      "region": "latin_america_caribbean"
-    },
-    {
-      "country_qid": "Q408",
-      "iso2": "AU",
-      "region": "oceania"
     },
     {
       "country_qid": "Q145",
@@ -88,68 +13,18 @@
       "region": "europe"
     },
     {
-      "country_qid": "Q29",
-      "iso2": "ES",
-      "region": "europe"
+      "country_qid": "Q148",
+      "iso2": "CN",
+      "region": "east_asia"
     },
     {
-      "country_qid": "Q41",
-      "iso2": "GR",
-      "region": "europe"
+      "country_qid": "Q155",
+      "iso2": "BR",
+      "region": "latin_america_caribbean"
     },
     {
       "country_qid": "Q159",
       "iso2": "RU",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q237",
-      "iso2": "VA",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q40",
-      "iso2": "AT",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q213",
-      "iso2": "CZ",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q45",
-      "iso2": "PT",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q55",
-      "iso2": "NL",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q39",
-      "iso2": "CH",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q36",
-      "iso2": "PL",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q34",
-      "iso2": "SE",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q28",
-      "iso2": "HU",
-      "region": "europe"
-    },
-    {
-      "country_qid": "Q218",
-      "iso2": "RO",
       "region": "europe"
     },
     {
@@ -163,13 +38,98 @@
       "region": "east_asia"
     },
     {
-      "country_qid": "Q884",
-      "iso2": "KR",
-      "region": "east_asia"
+      "country_qid": "Q183",
+      "iso2": "DE",
+      "region": "europe"
     },
     {
-      "country_qid": "Q869",
-      "iso2": "TH",
+      "country_qid": "Q213",
+      "iso2": "CZ",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q218",
+      "iso2": "RO",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q237",
+      "iso2": "VA",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q252",
+      "iso2": "ID",
+      "region": "southeast_asia"
+    },
+    {
+      "country_qid": "Q28",
+      "iso2": "HU",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q29",
+      "iso2": "ES",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q30",
+      "iso2": "US",
+      "region": "north_america"
+    },
+    {
+      "country_qid": "Q33",
+      "iso2": "FI",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q34",
+      "iso2": "SE",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q36",
+      "iso2": "PL",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q38",
+      "iso2": "IT",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q39",
+      "iso2": "CH",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q40",
+      "iso2": "AT",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q408",
+      "iso2": "AU",
+      "region": "oceania"
+    },
+    {
+      "country_qid": "Q41",
+      "iso2": "GR",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q414",
+      "iso2": "AR",
+      "region": "latin_america_caribbean"
+    },
+    {
+      "country_qid": "Q419",
+      "iso2": "PE",
+      "region": "latin_america_caribbean"
+    },
+    {
+      "country_qid": "Q424",
+      "iso2": "KH",
       "region": "southeast_asia"
     },
     {
@@ -178,19 +138,14 @@
       "region": "central_west_asia"
     },
     {
-      "country_qid": "Q851",
-      "iso2": "SA",
-      "region": "central_west_asia"
+      "country_qid": "Q45",
+      "iso2": "PT",
+      "region": "europe"
     },
     {
-      "country_qid": "Q419",
-      "iso2": "PE",
-      "region": "latin_america_caribbean"
-    },
-    {
-      "country_qid": "Q414",
-      "iso2": "AR",
-      "region": "latin_america_caribbean"
+      "country_qid": "Q55",
+      "iso2": "NL",
+      "region": "europe"
     },
     {
       "country_qid": "Q664",
@@ -198,8 +153,28 @@
       "region": "oceania"
     },
     {
-      "country_qid": "Q881",
-      "iso2": "VN",
+      "country_qid": "Q668",
+      "iso2": "IN",
+      "region": "south_asia"
+    },
+    {
+      "country_qid": "Q79",
+      "iso2": "EG",
+      "region": "africa"
+    },
+    {
+      "country_qid": "Q794",
+      "iso2": "IR",
+      "region": "central_west_asia"
+    },
+    {
+      "country_qid": "Q819",
+      "iso2": "LA",
+      "region": "southeast_asia"
+    },
+    {
+      "country_qid": "Q833",
+      "iso2": "MY",
       "region": "southeast_asia"
     },
     {
@@ -208,9 +183,39 @@
       "region": "southeast_asia"
     },
     {
-      "country_qid": "Q819",
-      "iso2": "LA",
+      "country_qid": "Q851",
+      "iso2": "SA",
+      "region": "central_west_asia"
+    },
+    {
+      "country_qid": "Q869",
+      "iso2": "TH",
       "region": "southeast_asia"
+    },
+    {
+      "country_qid": "Q878",
+      "iso2": "AE",
+      "region": "central_west_asia"
+    },
+    {
+      "country_qid": "Q881",
+      "iso2": "VN",
+      "region": "southeast_asia"
+    },
+    {
+      "country_qid": "Q884",
+      "iso2": "KR",
+      "region": "east_asia"
+    },
+    {
+      "country_qid": "Q912",
+      "iso2": "ML",
+      "region": "africa"
+    },
+    {
+      "country_qid": "Q96",
+      "iso2": "MX",
+      "region": "latin_america_caribbean"
     }
   ],
   "coverage_grid": {

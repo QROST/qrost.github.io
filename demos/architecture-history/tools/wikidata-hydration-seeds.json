@@ -2256,6 +2256,16 @@
       ]
     },
     {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Einstein Tower",
+      "qid": "Q321789",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "ES",
       "expected_country_qid": "Q29",
       "label_hint_en": "Palau de la Música Catalana",
@@ -2334,6 +2344,16 @@
       "risk_tags": [
         "university_campus",
         "baroque"
+      ]
+    },
+    {
+      "expected_country_code": "FI",
+      "expected_country_qid": "Q33",
+      "label_hint_en": "Paimio Sanatorium",
+      "qid": "Q368706",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -6367,6 +6387,16 @@
       "qid": "Q3241606",
       "region": "east_asia",
       "risk_tags": []
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "21st Century Museum of Contemporary Art",
+      "qid": "Q3242206",
+      "region": "east_asia",
+      "risk_tags": [
+        "single_phase"
+      ]
     },
     {
       "expected_country_code": "MY",
