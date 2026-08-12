@@ -491,6 +491,76 @@
       "label_en": "parliament building",
       "qid": "Q7138926",
       "work_type": "building"
+    },
+    {
+      "label_en": "museum",
+      "qid": "Q33506",
+      "work_type": "building"
+    },
+    {
+      "label_en": "art museum",
+      "qid": "Q207694",
+      "work_type": "building"
+    },
+    {
+      "label_en": "art gallery",
+      "qid": "Q1007870",
+      "work_type": "building"
+    },
+    {
+      "label_en": "public library",
+      "qid": "Q28564",
+      "work_type": "building"
+    },
+    {
+      "label_en": "railway station",
+      "qid": "Q55488",
+      "work_type": "infrastructure"
+    },
+    {
+      "label_en": "airport terminal",
+      "qid": "Q849706",
+      "work_type": "infrastructure"
+    },
+    {
+      "label_en": "opera house",
+      "qid": "Q153562",
+      "work_type": "building"
+    },
+    {
+      "label_en": "cultural center",
+      "qid": "Q1329623",
+      "work_type": "building"
+    },
+    {
+      "label_en": "city hall",
+      "qid": "Q25550691",
+      "work_type": "building"
+    },
+    {
+      "label_en": "movie theater",
+      "qid": "Q41253",
+      "work_type": "building"
+    },
+    {
+      "label_en": "hospital",
+      "qid": "Q16917",
+      "work_type": "building"
+    },
+    {
+      "label_en": "university building",
+      "qid": "Q19844914",
+      "work_type": "building"
+    },
+    {
+      "label_en": "sanatorium",
+      "qid": "Q46124",
+      "work_type": "building"
+    },
+    {
+      "label_en": "shopping center",
+      "qid": "Q11315",
+      "work_type": "building_complex"
     }
   ],
   "excluded_discovery_classes": [
@@ -576,12 +646,26 @@
         "qids": [
           "Q2977",
           "Q3950",
+          "Q11315",
+          "Q16917",
+          "Q28564",
+          "Q33506",
+          "Q41253",
+          "Q46124",
+          "Q55488",
           "Q92026",
+          "Q153562",
+          "Q207694",
+          "Q849706",
+          "Q1007870",
           "Q1060829",
           "Q1307276",
-          "Q7138926"
+          "Q1329623",
+          "Q7138926",
+          "Q19844914",
+          "Q25550691"
         ],
-        "snapshot_id": "wikidata-work-type-authority-2026-08-08-6e8a235064d4"
+        "snapshot_id": "wikidata-work-type-authority-2026-08-10-b3be76af6ea6"
       }
     ],
     "authority_policy": "new_mappings_require_revision_pinned_snapshot",

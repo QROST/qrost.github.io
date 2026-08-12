@@ -105,9 +105,23 @@ NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q1060829",
     "Q1307276",
     "Q7138926",
+    "Q33506",
+    "Q207694",
+    "Q1007870",
+    "Q28564",
+    "Q55488",
+    "Q849706",
+    "Q153562",
+    "Q1329623",
+    "Q25550691",
+    "Q41253",
+    "Q16917",
+    "Q19844914",
+    "Q46124",
+    "Q11315",
 }
 NEW_WORK_TYPE_WORK_IDS_SHA256 = (
-    "8759e774a839c4347ae1d5f62d45c280b368859acac4893e1b64bd31c6507a07"
+    "005ae7234e8263d2335577330c739e715e29b576464c90478f220255ab815270"
 )
 
 
@@ -811,6 +825,10 @@ class WikidataPilotTests(unittest.TestCase):
             for row in self.config["exact_instance_allowlist"]
             if row["qid"] not in NEW_WORK_TYPE_AUTHORITY_QIDS
         }
+        work_type_by_class = {
+            row["qid"]: row["work_type"]
+            for row in self.config["exact_instance_allowlist"]
+        }
         for work in self.catalog["works"]:
             qid = work["external_ids"]["wikidata"]
             record = self.snapshot["entities"][qid]["record"]
@@ -837,7 +855,10 @@ class WikidataPilotTests(unittest.TestCase):
                 ),
                 None,
             )
-            self.assertEqual(work["work_type"], "building")
+            expected_work_type = work_type_by_class[
+                claim["qualifiers"]["matched_class_qid"]
+            ]
+            self.assertEqual(work["work_type"], expected_work_type)
             self.assertEqual(work["work_type_mapping_status"], "mapped_exact")
             self.assertIsNotNone(claim)
             prior_mapped_types = {
@@ -863,7 +884,7 @@ class WikidataPilotTests(unittest.TestCase):
                     next(iter(self.authority_snapshots)),
                 )
         affected_ids.sort()
-        self.assertEqual(len(affected_ids), 89)
+        self.assertEqual(len(affected_ids), 155)
         self.assertEqual(
             hashlib.sha256(
                 json.dumps(
@@ -883,7 +904,7 @@ class WikidataPilotTests(unittest.TestCase):
         }
         self.assertEqual(
             statuses,
-            {"mapped_exact": 784, "unmapped": 255, "ambiguous": 24},
+            {"mapped_exact": 841, "unmapped": 189, "ambiguous": 33},
         )
 
     def test_automatic_records_remain_candidates(self):

@@ -1158,6 +1158,7 @@
       "claim_ids": [
         "claim-wd-q1048694-name-en",
         "claim-wd-q1048694-name-zh",
+        "claim-wd-q1048694-work-type",
         "claim-wd-q1048694-coordinates",
         "claim-wd-q1048694-period",
         "claim-wd-q1048694-p571-1",
@@ -1211,8 +1212,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -1296,6 +1297,7 @@
       "claim_ids": [
         "claim-wd-q1054169-name-en",
         "claim-wd-q1054169-name-zh",
+        "claim-wd-q1054169-work-type",
         "claim-wd-q1054169-coordinates",
         "claim-wd-q1054169-p84-q526725-1",
         "claim-wd-q1054169-p84-q19945063-2",
@@ -1377,8 +1379,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -3393,6 +3395,7 @@
       "claim_ids": [
         "claim-wd-q1093941-name-en",
         "claim-wd-q1093941-name-zh",
+        "claim-wd-q1093941-work-type",
         "claim-wd-q1093941-coordinates",
         "claim-wd-q1093941-p84-q937566-1",
         "claim-wd-q1093941-period",
@@ -3456,8 +3459,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -4239,7 +4242,6 @@
       "claim_ids": [
         "claim-wd-q111973-name-en",
         "claim-wd-q111973-name-zh",
-        "claim-wd-q111973-work-type",
         "claim-wd-q111973-coordinates",
         "claim-wd-q111973-p84-q151794-1",
         "claim-wd-q111973-period",
@@ -4303,8 +4305,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "building_complex",
-      "work_type_mapping_status": "mapped_exact"
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [],
@@ -8900,6 +8902,7 @@
       "attribution_mode": "unknown",
       "claim_ids": [
         "claim-wd-q118314575-name-en",
+        "claim-wd-q118314575-work-type",
         "claim-wd-q118314575-coordinates",
         "claim-wd-q118314575-p84-q46868-1",
         "claim-wd-q118314575-period",
@@ -8963,8 +8966,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -9995,6 +9998,7 @@
       "attribution_mode": "unknown",
       "claim_ids": [
         "claim-wd-q119684-name-en",
+        "claim-wd-q119684-work-type",
         "claim-wd-q119684-coordinates",
         "claim-wd-q119684-p84-q6181299-1",
         "claim-wd-q119684-period",
@@ -10057,8 +10061,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -14024,6 +14028,7 @@
       "attribution_mode": "unknown",
       "claim_ids": [
         "claim-wd-q129673434-name-en",
+        "claim-wd-q129673434-work-type",
         "claim-wd-q129673434-coordinates",
         "claim-wd-q129673434-p84-q973881-1",
         "claim-wd-q129673434-period",
@@ -14086,8 +14091,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -14426,6 +14431,7 @@
       "claim_ids": [
         "claim-wd-q131330-name-en",
         "claim-wd-q131330-name-zh",
+        "claim-wd-q131330-work-type",
         "claim-wd-q131330-coordinates",
         "claim-wd-q131330-p84-q84305-1",
         "claim-wd-q131330-p84-q78775-2",
@@ -14497,8 +14503,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -14577,6 +14583,7 @@
       "claim_ids": [
         "claim-wd-q131631-name-en",
         "claim-wd-q131631-name-zh",
+        "claim-wd-q131631-work-type",
         "claim-wd-q131631-coordinates",
         "claim-wd-q131631-p84-q395578-1",
         "claim-wd-q131631-p84-q55761504-2",
@@ -14648,8 +14655,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -15257,7 +15264,6 @@
       "claim_ids": [
         "claim-wd-q1344856-name-en",
         "claim-wd-q1344856-name-zh",
-        "claim-wd-q1344856-work-type",
         "claim-wd-q1344856-coordinates",
         "claim-wd-q1344856-p84-q46868-1",
         "claim-wd-q1344856-p84-q5726216-2",
@@ -15330,8 +15336,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "building",
-      "work_type_mapping_status": "mapped_exact"
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [
@@ -15475,6 +15481,7 @@
       "attribution_mode": "unknown",
       "claim_ids": [
         "claim-wd-q135725826-name-en",
+        "claim-wd-q135725826-work-type",
         "claim-wd-q135725826-coordinates",
         "claim-wd-q135725826-p84-q2015762-1",
         "claim-wd-q135725826-p84-q232364-2",
@@ -15546,8 +15553,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -15622,6 +15629,7 @@
       "claim_ids": [
         "claim-wd-q1359892-name-en",
         "claim-wd-q1359892-name-zh",
+        "claim-wd-q1359892-work-type",
         "claim-wd-q1359892-coordinates",
         "claim-wd-q1359892-p84-q952826-1",
         "claim-wd-q1359892-period",
@@ -15685,8 +15693,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -15829,6 +15837,7 @@
       "claim_ids": [
         "claim-wd-q1362629-name-en",
         "claim-wd-q1362629-name-zh",
+        "claim-wd-q1362629-work-type",
         "claim-wd-q1362629-coordinates",
         "claim-wd-q1362629-p84-q4724-1",
         "claim-wd-q1362629-p84-q129938-2",
@@ -15901,8 +15910,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -17441,6 +17450,7 @@
       "claim_ids": [
         "claim-wd-q1435689-name-en",
         "claim-wd-q1435689-name-zh",
+        "claim-wd-q1435689-work-type",
         "claim-wd-q1435689-coordinates",
         "claim-wd-q1435689-p84-q467712-1",
         "claim-wd-q1435689-period",
@@ -17504,8 +17514,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -21470,6 +21480,7 @@
       "claim_ids": [
         "claim-wd-q1668856-name-en",
         "claim-wd-q1668856-name-zh",
+        "claim-wd-q1668856-work-type",
         "claim-wd-q1668856-coordinates",
         "claim-wd-q1668856-p84-q232364-1",
         "claim-wd-q1668856-p84-q2015762-2",
@@ -21543,8 +21554,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -21630,6 +21641,7 @@
       "claim_ids": [
         "claim-wd-q167863-name-en",
         "claim-wd-q167863-name-zh",
+        "claim-wd-q167863-work-type",
         "claim-wd-q167863-coordinates",
         "claim-wd-q167863-p84-q214317-1",
         "claim-wd-q167863-period",
@@ -21693,8 +21705,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -23897,6 +23909,7 @@
       "claim_ids": [
         "claim-wd-q178065-name-en",
         "claim-wd-q178065-name-zh",
+        "claim-wd-q178065-work-type",
         "claim-wd-q178065-coordinates",
         "claim-wd-q178065-p84-q237412-1",
         "claim-wd-q178065-p84-q190148-2",
@@ -23969,8 +23982,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -24265,6 +24278,7 @@
       "claim_ids": [
         "claim-wd-q179199-name-en",
         "claim-wd-q179199-name-zh",
+        "claim-wd-q179199-work-type",
         "claim-wd-q179199-coordinates",
         "claim-wd-q179199-p84-q180374-1",
         "claim-wd-q179199-period",
@@ -24328,8 +24342,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -26697,6 +26711,7 @@
       "claim_ids": [
         "claim-wd-q187840-name-en",
         "claim-wd-q187840-name-zh",
+        "claim-wd-q187840-work-type",
         "claim-wd-q187840-coordinates",
         "claim-wd-q187840-p84-q313556-1",
         "claim-wd-q187840-period",
@@ -26761,8 +26776,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -26784,6 +26799,7 @@
       "claim_ids": [
         "claim-wd-q188112-name-en",
         "claim-wd-q188112-name-zh",
+        "claim-wd-q188112-work-type",
         "claim-wd-q188112-coordinates",
         "claim-wd-q188112-period",
         "claim-wd-q188112-p571-1",
@@ -26837,8 +26853,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -26930,6 +26946,7 @@
       "claim_ids": [
         "claim-wd-q188740-name-en",
         "claim-wd-q188740-name-zh",
+        "claim-wd-q188740-work-type",
         "claim-wd-q188740-p84-q1396719-1",
         "claim-wd-q188740-p84-q3048508-2",
         "claim-wd-q188740-p84-unresolved-3",
@@ -27011,8 +27028,8 @@
         }
       ],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -28443,6 +28460,7 @@
       "claim_ids": [
         "claim-wd-q193375-name-en",
         "claim-wd-q193375-name-zh",
+        "claim-wd-q193375-work-type",
         "claim-wd-q193375-coordinates",
         "claim-wd-q193375-p84-unresolved-1",
         "claim-wd-q193375-period",
@@ -28508,8 +28526,8 @@
         }
       ],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -28962,6 +28980,7 @@
       "claim_ids": [
         "claim-wd-q19675-name-en",
         "claim-wd-q19675-name-zh",
+        "claim-wd-q19675-work-type",
         "claim-wd-q19675-coordinates",
         "claim-wd-q19675-p84-q381724-1",
         "claim-wd-q19675-p84-q347699-2",
@@ -29052,8 +29071,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -29820,6 +29839,7 @@
       "claim_ids": [
         "claim-wd-q201469-name-en",
         "claim-wd-q201469-name-zh",
+        "claim-wd-q201469-work-type",
         "claim-wd-q201469-coordinates",
         "claim-wd-q201469-p84-q5604-1",
         "claim-wd-q201469-period",
@@ -29883,8 +29903,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -30048,6 +30068,7 @@
       "claim_ids": [
         "claim-wd-q20196262-name-en",
         "claim-wd-q20196262-name-zh",
+        "claim-wd-q20196262-work-type",
         "claim-wd-q20196262-coordinates",
         "claim-wd-q20196262-period",
         "claim-wd-q20196262-p1619-1"
@@ -30100,8 +30121,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -31049,7 +31070,6 @@
       "claim_ids": [
         "claim-wd-q208559-name-en",
         "claim-wd-q208559-name-zh",
-        "claim-wd-q208559-work-type",
         "claim-wd-q208559-coordinates",
         "claim-wd-q208559-p84-q61188-1",
         "claim-wd-q208559-p84-q455143-2",
@@ -31121,8 +31141,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "building_complex",
-      "work_type_mapping_status": "mapped_exact"
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [
@@ -31418,6 +31438,7 @@
       "claim_ids": [
         "claim-wd-q209937-name-en",
         "claim-wd-q209937-name-zh",
+        "claim-wd-q209937-work-type",
         "claim-wd-q209937-coordinates",
         "claim-wd-q209937-p84-q78968-1",
         "claim-wd-q209937-p84-q78979-2",
@@ -31490,8 +31511,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -31575,6 +31596,7 @@
       "attribution_mode": "unknown",
       "claim_ids": [
         "claim-wd-q21094945-name-en",
+        "claim-wd-q21094945-work-type",
         "claim-wd-q21094945-coordinates",
         "claim-wd-q21094945-period",
         "claim-wd-q21094945-p571-1",
@@ -31628,8 +31650,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -32214,6 +32236,7 @@
       "claim_ids": [
         "claim-wd-q215423-name-en",
         "claim-wd-q215423-name-zh",
+        "claim-wd-q215423-work-type",
         "claim-wd-q215423-coordinates",
         "claim-wd-q215423-p84-q767288-1",
         "claim-wd-q215423-period",
@@ -32277,8 +32300,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -33866,6 +33889,7 @@
       "claim_ids": [
         "claim-wd-q22948398-name-en",
         "claim-wd-q22948398-name-zh",
+        "claim-wd-q22948398-work-type",
         "claim-wd-q22948398-coordinates",
         "claim-wd-q22948398-p84-unresolved-1",
         "claim-wd-q22948398-period",
@@ -33929,8 +33953,8 @@
         }
       ],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -34860,6 +34884,7 @@
       "attribution_mode": "unknown",
       "claim_ids": [
         "claim-wd-q2379884-name-en",
+        "claim-wd-q2379884-work-type",
         "claim-wd-q2379884-coordinates",
         "claim-wd-q2379884-p84-q369645-1",
         "claim-wd-q2379884-period",
@@ -34923,8 +34948,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -35068,7 +35093,6 @@
       "claim_ids": [
         "claim-wd-q239935-name-en",
         "claim-wd-q239935-name-zh",
-        "claim-wd-q239935-work-type",
         "claim-wd-q239935-coordinates",
         "claim-wd-q239935-p84-q168482-1",
         "claim-wd-q239935-period",
@@ -35132,8 +35156,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "building_complex",
-      "work_type_mapping_status": "mapped_exact"
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [],
@@ -36768,6 +36792,7 @@
       "claim_ids": [
         "claim-wd-q250773-name-en",
         "claim-wd-q250773-name-zh",
+        "claim-wd-q250773-work-type",
         "claim-wd-q250773-coordinates",
         "claim-wd-q250773-p84-q124614868-1",
         "claim-wd-q250773-p84-q16972153-2",
@@ -36840,8 +36865,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -36917,6 +36942,7 @@
       "claim_ids": [
         "claim-wd-q2527311-name-en",
         "claim-wd-q2527311-name-zh",
+        "claim-wd-q2527311-work-type",
         "claim-wd-q2527311-coordinates",
         "claim-wd-q2527311-p84-q317164-1",
         "claim-wd-q2527311-period",
@@ -36980,8 +37006,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -38269,6 +38295,7 @@
       "claim_ids": [
         "claim-wd-q265129-name-en",
         "claim-wd-q265129-name-zh",
+        "claim-wd-q265129-work-type",
         "claim-wd-q265129-coordinates",
         "claim-wd-q265129-p84-q44911-1",
         "claim-wd-q265129-period",
@@ -38331,8 +38358,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -38724,6 +38751,7 @@
       "claim_ids": [
         "claim-wd-q271928-name-en",
         "claim-wd-q271928-name-zh",
+        "claim-wd-q271928-work-type",
         "claim-wd-q271928-coordinates",
         "claim-wd-q271928-p84-q315249-1",
         "claim-wd-q271928-period",
@@ -38786,8 +38814,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -40166,6 +40194,7 @@
       "claim_ids": [
         "claim-wd-q283196-name-en",
         "claim-wd-q283196-name-zh",
+        "claim-wd-q283196-work-type",
         "claim-wd-q283196-coordinates",
         "claim-wd-q283196-p84-q1186865-1",
         "claim-wd-q283196-p84-q77311-2",
@@ -40247,8 +40276,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "infrastructure",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -40754,6 +40783,7 @@
       "claim_ids": [
         "claim-wd-q29014-name-en",
         "claim-wd-q29014-name-zh",
+        "claim-wd-q29014-work-type",
         "claim-wd-q29014-coordinates",
         "claim-wd-q29014-p84-q237412-1",
         "claim-wd-q29014-period",
@@ -40816,8 +40846,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -41038,7 +41068,6 @@
       "claim_ids": [
         "claim-wd-q29247-name-en",
         "claim-wd-q29247-name-zh",
-        "claim-wd-q29247-work-type",
         "claim-wd-q29247-coordinates",
         "claim-wd-q29247-p84-q159612-1",
         "claim-wd-q29247-period",
@@ -41102,8 +41131,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "building_complex",
-      "work_type_mapping_status": "mapped_exact"
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [
@@ -41121,6 +41150,7 @@
       "claim_ids": [
         "claim-wd-q29257-name-en",
         "claim-wd-q29257-name-zh",
+        "claim-wd-q29257-work-type",
         "claim-wd-q29257-coordinates",
         "claim-wd-q29257-p84-q167073-1",
         "claim-wd-q29257-period",
@@ -41183,8 +41213,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "infrastructure",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -41289,6 +41319,7 @@
       "claim_ids": [
         "claim-wd-q29286-name-en",
         "claim-wd-q29286-name-zh",
+        "claim-wd-q29286-work-type",
         "claim-wd-q29286-coordinates",
         "claim-wd-q29286-p84-q174330-1",
         "claim-wd-q29286-p84-q2255983-2",
@@ -41361,8 +41392,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -42634,6 +42665,7 @@
       "claim_ids": [
         "claim-wd-q30595198-name-en",
         "claim-wd-q30595198-name-zh",
+        "claim-wd-q30595198-work-type",
         "claim-wd-q30595198-period",
         "claim-wd-q30595198-p571-1"
       ],
@@ -42685,8 +42717,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -42894,6 +42926,7 @@
       "claim_ids": [
         "claim-wd-q3075489-name-en",
         "claim-wd-q3075489-name-zh",
+        "claim-wd-q3075489-work-type",
         "claim-wd-q3075489-coordinates",
         "claim-wd-q3075489-p84-q180374-1",
         "claim-wd-q3075489-period",
@@ -42957,8 +42990,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -43564,6 +43597,7 @@
       "claim_ids": [
         "claim-wd-q3176133-name-en",
         "claim-wd-q3176133-name-zh",
+        "claim-wd-q3176133-work-type",
         "claim-wd-q3176133-coordinates",
         "claim-wd-q3176133-p84-q214317-1",
         "claim-wd-q3176133-period",
@@ -43627,8 +43661,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -43915,6 +43949,7 @@
       "claim_ids": [
         "claim-wd-q32659772-name-en",
         "claim-wd-q32659772-name-zh",
+        "claim-wd-q32659772-work-type",
         "claim-wd-q32659772-coordinates",
         "claim-wd-q32659772-period",
         "claim-wd-q32659772-p571-1"
@@ -43967,8 +44002,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -44276,6 +44311,7 @@
       "claim_ids": [
         "claim-wd-q327983-name-en",
         "claim-wd-q327983-name-zh",
+        "claim-wd-q327983-work-type",
         "claim-wd-q327983-coordinates",
         "claim-wd-q327983-p84-q359424-1",
         "claim-wd-q327983-period",
@@ -44339,8 +44375,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -44995,6 +45031,7 @@
       "claim_ids": [
         "claim-wd-q3378907-name-en",
         "claim-wd-q3378907-name-zh",
+        "claim-wd-q3378907-work-type",
         "claim-wd-q3378907-coordinates",
         "claim-wd-q3378907-p84-q214317-1",
         "claim-wd-q3378907-p84-q312838-2",
@@ -45067,8 +45104,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -45482,15 +45519,9 @@
       "aliases_zh": [],
       "attribution_mode": "unknown",
       "claim_ids": [
-        "claim-wd-q3511923-attribution-mode",
-        "claim-wd-q3511923-coordinates",
-        "claim-wd-q3511923-credit-set-completeness",
-        "claim-wd-q3511923-external-ids",
         "claim-wd-q3511923-name-en",
-        "claim-wd-q3511923-place-id",
-        "claim-wd-q3511923-region",
-        "claim-wd-q3511923-status",
-        "claim-wd-q3511923-work-type-mapping-status"
+        "claim-wd-q3511923-work-type",
+        "claim-wd-q3511923-coordinates"
       ],
       "confidence": 0.6,
       "coordinates": {
@@ -45526,7 +45557,7 @@
         "wikidata": "Q3511923"
       },
       "id": "work-wd-q3511923",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-08",
       "name_en": "Peckham Library",
       "name_native": null,
       "name_zh": null,
@@ -45539,9 +45570,9 @@
       "summary_en": "",
       "summary_zh": "",
       "unresolved_credits": [],
-      "verification_status": "verified",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -46307,6 +46338,7 @@
       "claim_ids": [
         "claim-wd-q36833-name-en",
         "claim-wd-q36833-name-zh",
+        "claim-wd-q36833-work-type",
         "claim-wd-q36833-coordinates",
         "claim-wd-q36833-p84-q1072997-1",
         "claim-wd-q36833-period",
@@ -46370,8 +46402,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -47047,6 +47079,7 @@
       "claim_ids": [
         "claim-wd-q39054-name-en",
         "claim-wd-q39054-name-zh",
+        "claim-wd-q39054-work-type",
         "claim-wd-q39054-coordinates",
         "claim-wd-q39054-p84-q892084-1",
         "claim-wd-q39054-p84-q95950894-2",
@@ -47128,8 +47161,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -47681,6 +47714,7 @@
       "claim_ids": [
         "claim-wd-q405543-name-en",
         "claim-wd-q405543-name-zh",
+        "claim-wd-q405543-work-type",
         "claim-wd-q405543-coordinates",
         "claim-wd-q405543-p84-q253350-1",
         "claim-wd-q405543-period",
@@ -47744,8 +47778,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -50086,6 +50120,7 @@
       "claim_ids": [
         "claim-wd-q45178-name-en",
         "claim-wd-q45178-name-zh",
+        "claim-wd-q45178-work-type",
         "claim-wd-q45178-coordinates",
         "claim-wd-q45178-p84-q180398-1",
         "claim-wd-q45178-p84-q64797517-2",
@@ -50158,8 +50193,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -51747,7 +51782,6 @@
       "attribution_mode": "unknown",
       "claim_ids": [
         "claim-wd-q47488973-name-en",
-        "claim-wd-q47488973-work-type",
         "claim-wd-q47488973-coordinates",
         "claim-wd-q47488973-p84-q180374-1",
         "claim-wd-q47488973-p84-unresolved-2",
@@ -51820,8 +51854,8 @@
         }
       ],
       "verification_status": "candidate",
-      "work_type": "building_complex",
-      "work_type_mapping_status": "mapped_exact"
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [
@@ -53052,6 +53086,7 @@
       "claim_ids": [
         "claim-wd-q486382-name-en",
         "claim-wd-q486382-name-zh",
+        "claim-wd-q486382-work-type",
         "claim-wd-q486382-coordinates",
         "claim-wd-q486382-p84-q5249685-1",
         "claim-wd-q486382-period",
@@ -53115,8 +53150,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -54489,6 +54524,7 @@
       "attribution_mode": "unknown",
       "claim_ids": [
         "claim-wd-q4991927-name-en",
+        "claim-wd-q4991927-work-type",
         "claim-wd-q4991927-coordinates",
         "claim-wd-q4991927-p84-q134165-1",
         "claim-wd-q4991927-period",
@@ -54551,8 +54587,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -54637,6 +54673,7 @@
       "claim_ids": [
         "claim-wd-q501851-name-en",
         "claim-wd-q501851-name-zh",
+        "claim-wd-q501851-work-type",
         "claim-wd-q501851-coordinates",
         "claim-wd-q501851-p84-q511335-1",
         "claim-wd-q501851-period",
@@ -54699,8 +54736,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -55537,7 +55574,6 @@
       "claim_ids": [
         "claim-wd-q516770-name-en",
         "claim-wd-q516770-name-zh",
-        "claim-wd-q516770-work-type",
         "claim-wd-q516770-coordinates",
         "claim-wd-q516770-p84-q61071-1"
       ],
@@ -55598,8 +55634,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "building_complex",
-      "work_type_mapping_status": "mapped_exact"
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [
@@ -57179,7 +57215,6 @@
       "claim_ids": [
         "claim-wd-q5471-name-en",
         "claim-wd-q5471-name-zh",
-        "claim-wd-q5471-work-type",
         "claim-wd-q5471-p84-q647911-1",
         "claim-wd-q5471-p84-q3610289-2",
         "claim-wd-q5471-p84-q17329022-3",
@@ -57269,8 +57304,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "building_complex",
-      "work_type_mapping_status": "mapped_exact"
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [],
@@ -60062,6 +60097,7 @@
       "claim_ids": [
         "claim-wd-q597137-name-en",
         "claim-wd-q597137-name-zh",
+        "claim-wd-q597137-work-type",
         "claim-wd-q597137-coordinates",
         "claim-wd-q597137-p84-q1249215-1",
         "claim-wd-q597137-p84-q5145102-2",
@@ -60134,8 +60170,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -62003,17 +62039,10 @@
       ],
       "attribution_mode": "unknown",
       "claim_ids": [
-        "claim-wd-q623908-aliases-zh",
-        "claim-wd-q623908-attribution-mode",
-        "claim-wd-q623908-coordinates",
-        "claim-wd-q623908-credit-set-completeness",
-        "claim-wd-q623908-external-ids",
         "claim-wd-q623908-name-en",
         "claim-wd-q623908-name-zh",
-        "claim-wd-q623908-place-id",
-        "claim-wd-q623908-region",
-        "claim-wd-q623908-status",
-        "claim-wd-q623908-work-type-mapping-status"
+        "claim-wd-q623908-work-type",
+        "claim-wd-q623908-coordinates"
       ],
       "confidence": 0.6,
       "coordinates": {
@@ -62049,7 +62078,7 @@
         "wikidata": "Q623908"
       },
       "id": "work-wd-q623908",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-08",
       "name_en": "Seoul City Hall",
       "name_native": null,
       "name_zh": "首尔市政厅",
@@ -62062,9 +62091,9 @@
       "summary_en": "",
       "summary_zh": "",
       "unresolved_credits": [],
-      "verification_status": "verified",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -62683,6 +62712,7 @@
       "claim_ids": [
         "claim-wd-q6373-name-en",
         "claim-wd-q6373-name-zh",
+        "claim-wd-q6373-work-type",
         "claim-wd-q6373-coordinates",
         "claim-wd-q6373-p84-q983719-1",
         "claim-wd-q6373-period",
@@ -62746,8 +62776,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -63320,6 +63350,7 @@
       "claim_ids": [
         "claim-wd-q64436-name-en",
         "claim-wd-q64436-name-zh",
+        "claim-wd-q64436-work-type",
         "claim-wd-q64436-coordinates",
         "claim-wd-q64436-p84-q525487-1",
         "claim-wd-q64436-p84-q3260862-2",
@@ -63410,8 +63441,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -63764,6 +63795,7 @@
       "claim_ids": [
         "claim-wd-q648483-name-en",
         "claim-wd-q648483-name-zh",
+        "claim-wd-q648483-work-type",
         "claim-wd-q648483-coordinates",
         "claim-wd-q648483-p84-q944344-1",
         "claim-wd-q648483-period",
@@ -63827,8 +63859,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -64442,6 +64474,7 @@
       "claim_ids": [
         "claim-wd-q6542576-name-en",
         "claim-wd-q6542576-name-zh",
+        "claim-wd-q6542576-work-type",
         "claim-wd-q6542576-coordinates",
         "claim-wd-q6542576-p84-q2009000-1",
         "claim-wd-q6542576-p84-q6804385-2",
@@ -64513,8 +64546,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -66427,6 +66460,7 @@
       "claim_ids": [
         "claim-wd-q688659-name-en",
         "claim-wd-q688659-name-zh",
+        "claim-wd-q688659-work-type",
         "claim-wd-q688659-coordinates",
         "claim-wd-q688659-p84-q715086-1",
         "claim-wd-q688659-period",
@@ -66489,8 +66523,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -68045,6 +68079,7 @@
       "claim_ids": [
         "claim-wd-q720102-name-en",
         "claim-wd-q720102-name-zh",
+        "claim-wd-q720102-work-type",
         "claim-wd-q720102-coordinates",
         "claim-wd-q720102-p84-q681007-1",
         "claim-wd-q720102-p84-q3568691-2",
@@ -68117,8 +68152,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "infrastructure",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -69123,6 +69158,7 @@
       "claim_ids": [
         "claim-wd-q7400532-name-en",
         "claim-wd-q7400532-name-zh",
+        "claim-wd-q7400532-work-type",
         "claim-wd-q7400532-coordinates",
         "claim-wd-q7400532-p84-q1208016-1",
         "claim-wd-q7400532-p84-q3567241-2",
@@ -69194,8 +69230,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -69504,7 +69540,6 @@
       "claim_ids": [
         "claim-wd-q750444-name-en",
         "claim-wd-q750444-name-zh",
-        "claim-wd-q750444-work-type",
         "claim-wd-q750444-coordinates",
         "claim-wd-q750444-p84-q455143-1",
         "claim-wd-q750444-p84-q1038985-2",
@@ -69576,8 +69611,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "building_complex",
-      "work_type_mapping_status": "mapped_exact"
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [
@@ -69592,6 +69627,7 @@
       "claim_ids": [
         "claim-wd-q751987-name-en",
         "claim-wd-q751987-name-zh",
+        "claim-wd-q751987-work-type",
         "claim-wd-q751987-coordinates",
         "claim-wd-q751987-period",
         "claim-wd-q751987-p571-1"
@@ -69644,8 +69680,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -70867,6 +70903,7 @@
       "claim_ids": [
         "claim-wd-q779736-name-en",
         "claim-wd-q779736-name-zh",
+        "claim-wd-q779736-work-type",
         "claim-wd-q779736-coordinates",
         "claim-wd-q779736-p84-q1769830-1",
         "claim-wd-q779736-period",
@@ -70929,8 +70966,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -71690,6 +71727,7 @@
       "claim_ids": [
         "claim-wd-q795228-name-en",
         "claim-wd-q795228-name-zh",
+        "claim-wd-q795228-work-type",
         "claim-wd-q795228-coordinates",
         "claim-wd-q795228-p84-q5145318-1",
         "claim-wd-q795228-period",
@@ -71753,8 +71791,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -73442,6 +73480,7 @@
       "claim_ids": [
         "claim-wd-q840886-name-en",
         "claim-wd-q840886-name-zh",
+        "claim-wd-q840886-work-type",
         "claim-wd-q840886-coordinates",
         "claim-wd-q840886-p84-q79098-1",
         "claim-wd-q840886-period",
@@ -73505,8 +73544,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -74295,6 +74334,7 @@
       "claim_ids": [
         "claim-wd-q860166-name-en",
         "claim-wd-q860166-name-zh",
+        "claim-wd-q860166-work-type",
         "claim-wd-q860166-coordinates",
         "claim-wd-q860166-p84-q214317-1",
         "claim-wd-q860166-p84-q634960-2",
@@ -74366,8 +74406,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -74381,6 +74421,7 @@
       "claim_ids": [
         "claim-wd-q860188-name-en",
         "claim-wd-q860188-name-zh",
+        "claim-wd-q860188-work-type",
         "claim-wd-q860188-coordinates",
         "claim-wd-q860188-p84-q381827-1",
         "claim-wd-q860188-period",
@@ -74444,8 +74485,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -75024,6 +75065,7 @@
       "claim_ids": [
         "claim-wd-q907052-name-en",
         "claim-wd-q907052-name-zh",
+        "claim-wd-q907052-work-type",
         "claim-wd-q907052-coordinates",
         "claim-wd-q907052-period",
         "claim-wd-q907052-p571-1",
@@ -75077,8 +75119,8 @@
       "summary_zh": "",
       "unresolved_credits": [],
       "verification_status": "candidate",
-      "work_type": "unknown",
-      "work_type_mapping_status": "unmapped"
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
