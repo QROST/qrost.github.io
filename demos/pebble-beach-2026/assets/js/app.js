@@ -255,6 +255,55 @@
     }
   }
 
+  function renderTourMorning() {
+    const tour = DATA.tourMorning;
+    if (!tour) return;
+
+    const routeRoot = document.getElementById('tour-route');
+    if (routeRoot) {
+      routeRoot.innerHTML = (tour.route || []).map((road) => (
+        `<span class="tour-route-step" role="listitem">${escapeHtml(road)}</span>`
+      )).join('');
+    }
+
+    const waveRoot = document.getElementById('tour-wave-list');
+    if (waveRoot) {
+      waveRoot.innerHTML = (tour.waves || []).map((wave, index) => {
+        const label = state.lang === 'zh' ? `第 ${index + 1} 批` : `Wave ${index + 1}`;
+        const datetime = `${tour.date}T${wave}:00-07:00`;
+        return `<span class="tour-wave" role="listitem"><span>${escapeHtml(label)}</span><time datetime="${escapeHtml(datetime)}">${escapeHtml(wave)}</time></span>`;
+      }).join('');
+    }
+
+    const toneKeys = {
+      guide: 'tourToneGuide',
+      official: 'tourToneOfficial',
+      walk: 'tourToneWalk'
+    };
+    const planRoot = document.getElementById('tour-plan-list');
+    if (planRoot) {
+      planRoot.innerHTML = (tour.viewingPlan || []).map((step) => {
+        const tone = toneKeys[step.tone] ? step.tone : 'guide';
+        const datetime = `${tour.date}T${step.start}:00-07:00`;
+        return `<li class="tour-plan-item tone-${escapeHtml(tone)}">
+          <div class="tour-plan-meta">
+            <time datetime="${escapeHtml(datetime)}">${escapeHtml(step.time)}</time>
+            <span class="tour-plan-tone">${escapeHtml(text(toneKeys[tone]))}</span>
+          </div>
+          <h4>${escapeHtml(localized(step.title))}</h4>
+          <p>${escapeHtml(localized(step.note))}</p>
+        </li>`;
+      }).join('');
+    }
+
+    const sourceRoot = document.getElementById('tour-source-list');
+    if (sourceRoot) {
+      sourceRoot.innerHTML = (tour.sources || []).map((source) => (
+        `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(source.label))}<span aria-hidden="true">↗</span></a>`
+      )).join('');
+    }
+  }
+
   function renderPlanStops(item) {
     const route = item.route;
     if (!route) return '';
@@ -1202,6 +1251,7 @@
   }
 
   function renderDynamicContent() {
+    renderTourMorning();
     renderQuickPlan();
     renderNearby();
     renderScheduleFilters();

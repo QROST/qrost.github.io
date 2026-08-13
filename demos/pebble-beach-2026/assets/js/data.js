@@ -1,8 +1,8 @@
 /* Public, bilingual planning data for Monterey Car Week 2026.
- * The full catalog baseline was checked on 2026-08-06. Selected fast-changing
- * facts were rechecked against organizer or authorized ticketing pages on
- * 2026-08-10. Editorial scores and commute bands are QROST planning judgments,
- * not organizer guarantees.
+ * The full catalog baseline was checked on 2026-08-06. Tour routing, timing and
+ * parking guidance were rechecked on 2026-08-13; other selected dynamic facts
+ * remain current through 2026-08-10. Editorial scores and commute bands are
+ * QROST planning judgments, not organizer guarantees.
  */
 const planText = (zh, en) => ({ zh, en });
 const planStop = (marker, place, zh, en, optional = false, precision = 'area') => ({
@@ -77,16 +77,9 @@ const reviewedQuickPlanRoutes = {
     ]
   },
   'qp-0813': {
-    mode: 'branching',
-    stops: [
-      planStop('1', 'portola', 'Tour d’Elegance', 'Tour d’Elegance'),
-      planStop('2', 'village', 'Concours Village', 'Concours Village')
-    ],
-    branches: [
-      planBranch('A', 'Ferrari Carmel', 'Ferrari Carmel', [planStop('3A', 'carmel', 'Ferrari Carmel', 'Ferrari Carmel')]),
-      planBranch('B', 'Legends', 'Legends', [planStop('3B', 'pgolf', 'Legends of the Autobahn', 'Legends of the Autobahn', false, 'venue')]),
-      planBranch('C', 'Woodies', 'Woodies', [planStop('3C', 'asilomar', 'Woodies in the Woods', 'Woodies in the Woods')])
-    ]
+    mode: 'single',
+    stops: [planStop('1', 'portola', 'Tour 起终点', 'Tour start / finish')],
+    branches: []
   },
   'qp-0814': {
     mode: 'choice',
@@ -134,7 +127,7 @@ const reviewedTimelineMarkers = {
   'qp-0810': [['1'], ['1'], ['2A', '2B', '2C'], ['2A', '2B', '2C'], []],
   'qp-0811': [['1'], ['1'], ['2A', '2B'], ['2A'], ['2B']],
   'qp-0812': [['1'], ['1'], ['2'], ['2'], ['3A', '3B', '3C'], ['3A', '3B', '3C']],
-  'qp-0813': [['1'], ['1'], ['2'], ['2'], ['3A', '3B', '3C'], ['3A', '3B', '3C']],
+  'qp-0813': [['1'], ['1'], ['1'], ['1'], [], ['1']],
   'qp-0814': [['A1', 'B1'], ['A1'], ['B1'], ['A1'], ['A2'], ['A2']],
   'qp-0815': [['A0'], ['A1', 'B1'], ['A1'], ['A2'], ['B1'], ['A2']],
   'qp-0816': [['A', 'B'], ['A'], ['A'], ['B'], ['C']],
@@ -158,6 +151,7 @@ function scheduleFor(planId, schedule) {
 window.PEBBLE_DATA = {
   checked: '2026-08-06',
   dynamicUpdatesChecked: '2026-08-10',
+  tourUpdatesChecked: '2026-08-13',
 
   labels: {
     pageTitle: {
@@ -177,19 +171,20 @@ window.PEBBLE_DATA = {
       en: 'Where to go, what is worth it, where to stay and how much travel time to reserve during Monterey Car Week.'
     },
     skip: { zh: '跳到正文', en: 'Skip to content' },
+    navTour: { zh: '8.13 Tour', en: 'Aug 13 Tour' },
     navSchedule: { zh: '日程', en: 'Schedule' },
     navNearby: { zh: '周边早场', en: 'Nearby early' },
     navStay: { zh: '住宿', en: 'Stay' },
     navCommute: { zh: '通勤', en: 'Travel' },
     heroEyebrow: { zh: '公众行程指南 · 2026', en: 'Public trip guide · 2026' },
-    checkedChip: { zh: '全量核对 8 月 6 日 · 部分动态更新 8 月 10 日', en: 'Full audit Aug 6 · selected updates Aug 10' },
+    checkedChip: { zh: '全量核对 8 月 6 日 · Tour 复核至 8 月 13 日', en: 'Full audit Aug 6 · Tour rechecked Aug 13' },
     heroTitleTop: { zh: '圆石滩，不只一场车展', en: 'Pebble Beach is not one show' },
     heroTitleBottom: { zh: '早到一周，再迎旗舰主展', en: 'Arrive early, then hit the flagship' },
     heroLead: {
       zh: '官方 Monterey Car Week 自 8 月 7 日开场，高峰仍在 13–16 日。这份指南覆盖从免费早场街展到周一返程的完整 11 天：何时、去哪里、值不值得、住哪里、路上多久。',
       en: 'Official Monterey Car Week opens August 7, with peak days still August 13–16. This guide spans all eleven days from free early street shows through Monday departure: when, where, value, lodging and travel time in one plan.'
     },
-    buildTrip: { zh: '开始排日程', en: 'Build your schedule' },
+    tourHeroCta: { zh: '看 8.13 Tour 早晨计划', en: 'See the Aug 13 Tour plan' },
     seeQuickPlan: { zh: '先看推荐方案', en: 'See the quick plan' },
     heroFineprint: {
       zh: 'Kickoff · ACE 藏品 · 慈善街展 · 微型车展 · Tour · 品牌/赛道 · Concours · 返程',
@@ -207,6 +202,50 @@ window.PEBBLE_DATA = {
     kpiHubs: { zh: '个主要活动区', en: 'main event hubs' },
     kpiTickets: { zh: '核心活动票价', en: 'core event prices' },
     kpiBuffer: { zh: '分钟活动周缓冲', en: 'min event-week buffer' },
+    tourKicker: { zh: '8.13 周四早晨 · 最新路线', en: 'Thu Aug 13 morning · revised route' },
+    tourTitle: { zh: '停一次、步行看完三批发车与归来', en: 'Park once, then walk for all three waves and the return' },
+    tourIntro: {
+      zh: '官方 8 月 12 日更新因 Big Sur Timber Fire 与相关疏散调整传统路线。以下把官方时刻与本站观看规划分开标注，避免把建议误当成主办方保证。',
+      en: 'The official Aug 12 update changes the traditional route because of the Big Sur Timber Fire and related evacuations. Official times and this guide’s viewing plan are labeled separately below.'
+    },
+    tourOfficialBadge: { zh: '官方更新 · 8 月 12 日', en: 'Official update · Aug 12' },
+    tourUpdateTitle: { zh: '路线只留在 Pebble Beach 与 Monterey', en: 'The route now stays in Pebble Beach and Monterey' },
+    tourUpdateBody: {
+      zh: '8 月 11 日官方新版地图显示环线经 17-Mile Drive、Hwy 1、Hwy 68、Olmsted Road 与 Aguajito Road；不再进入 Carmel 或 Big Sur。',
+      en: 'The official Aug 11 map shows a loop via 17-Mile Drive, Hwy 1, Hwy 68, Olmsted Road and Aguajito Road; it no longer enters Carmel or Big Sur.'
+    },
+    tourRouteLabel: { zh: '新版环线', en: 'Revised loop' },
+    tourRouteNote: {
+      zh: '道路顺序来自官方路线图的视觉判读；更新正文仅明确路线留在 Pebble Beach 与 Monterey。',
+      en: 'Road order is read from the official map; the written update states only that the route remains in Pebble Beach and Monterey.'
+    },
+    tourWaveTitle: { zh: '官方时刻', en: 'Official timing' },
+    tourWaveIntro: { zh: 'Portola Road 起终点', en: 'Portola Road start / finish' },
+    tourLineupLabel: { zh: '车辆约 7:00 集结', en: 'Cars gather around 7:00' },
+    tourReturnLabel: { zh: '约中午返回', en: 'Approximate return around noon' },
+    tourTimeCaveat: { zh: '官方注明所有时间均为约数，可能调整。', en: 'The organizer says all times are approximate and subject to change.' },
+    tourParkingTitle: { zh: '停车：早进、停一次、全程步行', en: 'Parking: arrive early, park once, stay on foot' },
+    tourParkingArrivalLabel: { zh: '本站建议入园', en: 'Guide-recommended arrival' },
+    tourParkingArrivalNote: { zh: '6:15–6:30 不是官方开放时间', en: '6:15–6:30 is not an official opening time' },
+    tourParkingBody: {
+      zh: '官方没有公布普通观众固定停车场。进入 Pebble Beach 后，按现场路标和工作人员指示，停在 Portola Road 起终点附近的指定停车区域，再步行观看。',
+      en: 'No fixed general-spectator lot is published. Once inside Pebble Beach, follow event signs and staff directions to designated nearby parking for the Portola Road start / finish, then continue on foot.'
+    },
+    tourParkingBoundary: {
+      zh: '不要把未经官方确认的路肩、住宅街或 ADA Lot 9 当作普通观众停车点。',
+      en: 'Do not rely on unconfirmed shoulders, residential streets or ADA Lot 9 as general-spectator parking.'
+    },
+    tourPlanTitle: { zh: '推荐观看顺序', en: 'Suggested viewing sequence' },
+    tourPlanIntro: { zh: '以下为本站规划，不是官方时刻表。', en: 'This sequence is a guide recommendation, not an official timetable.' },
+    tourToneGuide: { zh: '本站建议', en: 'Guide' },
+    tourToneOfficial: { zh: '官方时刻', en: 'Official' },
+    tourToneWalk: { zh: '步行', en: 'Walk' },
+    tourWarningTitle: { zh: '不要追车，也不要去 Carmel 等待', en: 'Do not chase the convoy or wait in Carmel' },
+    tourWarningBody: {
+      zh: '新版路线不经过 Carmel 或 Big Sur。驾车追逐会增加封路与第一响应人员周边交通压力；把车留在官方引导的停车区，只在允许的步行区域观看。',
+      en: 'The revised route does not pass through Carmel or Big Sur. Chasing it adds traffic around closures and first responders; leave the car in the directed parking area and watch only from permitted pedestrian areas.'
+    },
+    tourSourcesLabel: { zh: '四个官方复核入口', en: 'Four official checks' },
     quickKicker: { zh: '早到 + 主周 · 推荐', en: 'Early + peak · recommended' },
     quickTitle: { zh: '先捡免费早场，再进高峰五天', en: 'Grab free early shows, then the peak five' },
     quickIntro: {
@@ -301,8 +340,8 @@ window.PEBBLE_DATA = {
     sourcePrimary: { zh: '主要来源与复核入口', en: 'Primary sources and live checks' },
     boundaryTitle: { zh: '发布口径', en: 'Publication standard' },
     boundaryBody: {
-      zh: '全量目录基线核对至 2026-08-06；部分动态时段、票价、售罄状态与来源于 2026-08-10 复核。酒店价格是单次库存快照；通勤为有意放宽的活动周计划值。任何“值得去”都是编辑判断，不是主办方背书。',
-      en: 'The full catalog baseline was checked Aug 6, 2026; selected fast-changing hours, prices, sold-out states and sources were rechecked Aug 10. Hotel prices are a one-time inventory snapshot, and travel bands are deliberately padded planning values. Every “worth it” score is editorial, not an organizer endorsement.'
+      zh: '全量目录基线核对至 2026-08-06；Tour 路线、时刻与停车口径于 2026-08-13 复核，其余部分动态事实更新至 8 月 10 日。酒店价格是单次库存快照；通勤为有意放宽的活动周计划值。任何“值得去”都是编辑判断，不是主办方背书。',
+      en: 'The full catalog baseline was checked Aug 6, 2026; Tour routing, timing and parking guidance were rechecked Aug 13, while other selected dynamic facts remain current through Aug 10. Hotel prices are a one-time inventory snapshot, and travel bands are deliberately padded planning values. Every “worth it” score is editorial, not an organizer endorsement.'
     },
     boundaryUpdate: {
       zh: '临行前 24 小时请重查：官方活动页、票务页、停车图、天气和道路状态。',
@@ -313,8 +352,8 @@ window.PEBBLE_DATA = {
     footerWeChat: { zh: '微信', en: 'WeChat' },
     footerInstagram: { zh: 'Instagram', en: 'Instagram' },
     footerDisclaimer: {
-      zh: '全量目录核对于 2026-08-06，部分动态事实更新至 2026-08-10。非官方、非主办方关联；不构成票务、住宿或交通保证。',
-      en: 'Full catalog audited Aug 6, with selected dynamic facts updated through Aug 10, 2026. Independent and unaffiliated; no ticket, lodging or transportation guarantee.'
+      zh: '全量目录核对于 2026-08-06；Tour 口径于 2026-08-13 复核，其余部分动态事实更新至 8 月 10 日。非官方、非主办方关联；不构成票务、住宿或交通保证。',
+      en: 'Full catalog audited Aug 6; Tour guidance rechecked Aug 13, with other selected dynamic facts current through Aug 10, 2026. Independent and unaffiliated; no ticket, lodging or transportation guarantee.'
     },
     nearbyKicker: { zh: '车展前 · 半岛周边', en: 'Before Car Week · peninsula nearby' },
     nearbyTitle: { zh: '若能更早抵达，这些也值得顺路', en: 'Worth a detour if you land even earlier' },
@@ -373,6 +412,72 @@ window.PEBBLE_DATA = {
     lightAria: { zh: '切换浅色模式', en: 'Switch to light mode' },
     darkTitle: { zh: '深色模式', en: 'Dark mode' },
     lightTitle: { zh: '浅色模式', en: 'Light mode' }
+  },
+
+  tourMorning: {
+    date: '2026-08-13',
+    noticeDate: '2026-08-12',
+    mapDate: '2026-08-11',
+    recommendedArrival: { start: '06:15', end: '06:30' },
+    lineup: '07:00',
+    waves: ['09:30', '09:45', '10:00'],
+    returnApprox: '12:00',
+    route: ['17-Mile Drive', 'Hwy 1', 'Hwy 68', 'Olmsted Road', 'Aguajito Road'],
+    excludes: ['Carmel', 'Big Sur'],
+    viewingPlan: [
+      {
+        start: '06:15', time: '06:15–06:30', tone: 'guide',
+        title: { zh: '进入 Pebble Beach，按指示停一次', en: 'Enter Pebble Beach and park once as directed' },
+        note: { zh: '本站为避开拥堵给出的建议；官方未发布普通观众固定停车场或 6:15 开放时间。', en: 'This is the guide’s congestion-avoidance advice; no fixed general lot or 6:15 opening time is published.' }
+      },
+      {
+        start: '07:00', time: '07:00–09:10', tone: 'guide',
+        title: { zh: '沿 Portola Road 看集结车辆', en: 'See the cars staging along Portola Road' },
+        note: { zh: '车辆约 7:00 开始集结；留在人行区域并服从工作人员。', en: 'Cars gather around 7:00; remain in pedestrian areas and follow staff.' }
+      },
+      {
+        start: '09:15', time: '09:15', tone: 'walk',
+        title: { zh: '步行到 Portola / Stevenson 一侧就位', en: 'Walk into position on the Portola / Stevenson side' },
+        note: { zh: 'Portola 是官方起终点，Stevenson 通往 Village；只在现场允许的位置观看。', en: 'Portola is the official start / finish and Stevenson leads toward Village; use only staff-permitted viewing space.' }
+      },
+      {
+        start: '09:30', time: '09:30 · 09:45 · 10:00', tone: 'official',
+        title: { zh: '观看三批车辆发车', en: 'Watch all three departure waves' },
+        note: { zh: '三批时间来自 8 月 11 日官方新版路线图，均可能调整。', en: 'All three times come from the official Aug 11 revised map and remain subject to change.' }
+      },
+      {
+        start: '10:05', time: '10:05–11:30', tone: 'walk',
+        title: { zh: '步行去 Concours Village / RetroAuto', en: 'Walk to Concours Village / RetroAuto' },
+        note: { zh: '免费展区位于 Forest Lake Road 与 Stevenson Drive 一带；不要开车换点。', en: 'The free displays sit around Forest Lake Road and Stevenson Drive; do not move the car.' }
+      },
+      {
+        start: '11:40', time: '11:40', tone: 'walk',
+        title: { zh: '返回 Portola Road 等待车辆归来', en: 'Return to Portola Road for the cars’ return' },
+        note: { zh: '官方活动页预计约中午返回；时间是约数，预留等待。', en: 'The event page gives an approximate noon return; allow for delay.' }
+      }
+    ],
+    sources: [
+      {
+        id: 'event',
+        label: { zh: 'Tour 官方活动页', en: 'Official Tour event page' },
+        url: 'https://www.pebblebeachconcours.net/event/pebble-beach-tour-delegance/'
+      },
+      {
+        id: 'update',
+        label: { zh: '8 月 12 日官方更新', en: 'Official Aug 12 update' },
+        url: 'https://www.pebblebeachconcours.net/updates/'
+      },
+      {
+        id: 'map',
+        label: { zh: '8 月 11 日新版路线图 PDF', en: 'Aug 11 revised route map PDF' },
+        url: 'https://www.pebblebeachconcours.net/wp-content/uploads/2026/08/2026-Concours-Tour-Map-8-11-26-web.pdf'
+      },
+      {
+        id: 'parking',
+        label: { zh: '官方方向、停车与活动图', en: 'Official directions, parking & maps' },
+        url: 'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/'
+      }
+    ]
   },
 
   days: [
@@ -481,17 +586,17 @@ window.PEBBLE_DATA = {
     {
       id: 'qp-0813',
       date: { zh: '8 月 13 日', en: 'Aug 13' }, day: { zh: '周四', en: 'Thu' },
-      title: { zh: 'Tour 发车 → 免费展区', en: 'Tour departure → free displays' },
-      body: { zh: '7 点前到 Portola Road；9:30 发车后，下午在 Village，再按品牌偏好选 Carmel Ferrari、Legends 或 Asilomar Woodies。', en: 'Reach Portola Road before 7; after the 9:30 departure, use Village, then choose Ferrari Carmel, Legends or Asilomar Woodies by marque.' },
-      cost: { zh: '免费项目为主 · 停车另算', en: 'Mostly free · parking varies' },
+      title: { zh: 'Tour 早晨 · 停一次，全程步行', en: 'Tour morning · park once, stay on foot' },
+      body: { zh: '6:15–6:30 进入 Pebble Beach 后按指示停车；看完 7:00 集结与三批发车，步行去 Village / RetroAuto，11:40 返回等车辆归来。不要追车或去 Carmel 等待。', en: 'Enter Pebble Beach at 6:15–6:30 and park as directed; see the 7:00 lineup and all three waves, walk to Village / RetroAuto, then return at 11:40. Do not chase the convoy or wait in Carmel.' },
+      cost: { zh: '观看免费 · 停车听现场指示', en: 'Viewing free · follow onsite parking directions' },
       route: routeFor('qp-0813'),
       schedule: scheduleFor('qp-0813', [
-        { time: "06:15", title: { zh: "转场至 Portola Road", en: "Transit to Portola Road" }, note: { zh: "7 点前到起点看车辆集结。", en: "Reach the start before 7:00 to see cars stage." }, tone: "transit" },
-        { time: "07:00–09:30", title: { zh: "Tour d’Elegance 集结 · 09:30 发车", en: "Tour d’Elegance staging · 9:30 departure" }, note: { zh: "听引擎驶上 17-Mile Drive 与 Highway 1。", en: "Watch entrants depart onto 17-Mile Drive and Highway 1." }, tone: "core" },
-        { time: "09:45", title: { zh: "转场至 Concours Village", en: "Transit to Concours Village" }, note: { zh: "发车后前往免费品牌展区。", en: "Head to free manufacturer displays after departure." }, tone: "transit" },
-        { time: "10:00–14:00", title: { zh: "Concours Village + RetroAuto", en: "Concours Village + RetroAuto" }, note: { zh: "免费品牌展与市集，试驾先到先得。", en: "Free displays and marketplace; drives are first come." }, tone: "core" },
-        { time: "14:15", title: { zh: "转场 · 下午品牌选一", en: "Transit · afternoon marque pick" }, note: { zh: "按品牌偏好只选一个下午主场。", en: "Choose one afternoon anchor by marque interest." }, tone: "transit" },
-        { time: "14:30–17:00", title: { zh: "或 Ferrari Carmel / Legends / Woodies", en: "or Ferrari Carmel / Legends / Woodies" }, note: { zh: "法拉利街展、德系聚会或木旅行车。", en: "Ferrari street show, German marques, or woodies." }, tone: "alt" },
+        { time: "06:15–06:30", title: { zh: "进入 Pebble Beach · 按指示停车", en: "Enter Pebble Beach · park as directed" }, note: { zh: "本站建议时段，并非官方开放时间；停一次后全程步行。", en: "Guide-recommended window, not an official opening time; park once and stay on foot." }, tone: "transit" },
+        { time: "07:00–09:10", title: { zh: "Portola Road 车辆集结", en: "Cars stage on Portola Road" }, note: { zh: "留在人行区域，听从现场工作人员。", en: "Remain in pedestrian areas and follow onsite staff." }, tone: "core" },
+        { time: "09:15", title: { zh: "步行到 Portola / Stevenson 一侧就位", en: "Walk into position on the Portola / Stevenson side" }, note: { zh: "只在现场允许的观看区域停留。", en: "Use only staff-permitted viewing space." }, tone: "transit" },
+        { time: "09:30 · 09:45 · 10:00", title: { zh: "Tour 三批发车", en: "Three Tour departure waves" }, note: { zh: "三批时刻来自官方 8 月 11 日路线图，可能调整。", en: "All three times come from the official Aug 11 route map and may change." }, tone: "core" },
+        { time: "10:05–11:30", title: { zh: "步行去 Concours Village / RetroAuto", en: "Walk to Concours Village / RetroAuto" }, note: { zh: "不要开车换点，也不要追车队。", en: "Do not move the car or chase the convoy." }, tone: "optional" },
+        { time: "11:40", title: { zh: "返回 Portola Road 等待归来", en: "Return to Portola Road for the return" }, note: { zh: "官方预计约中午返回，时间可能延后。", en: "The official return is around noon and may run late." }, tone: "core" },
       ]),
     },
     {
@@ -1127,18 +1232,23 @@ window.PEBBLE_DATA = {
       source: 'https://www.rmsothebys.com/auctions/mo26/'
     },
     {
-      id: 'tour', thumbId: 'tour', area: 'pebble', date: '2026-08-13', time: '07:00–12:00', timeNote: { zh: '9:30 发车', en: '9:30 departure' },
+      id: 'tour', thumbId: 'tour', area: 'pebble', date: '2026-08-13', time: '07:00–12:00', timeNote: { zh: '9:30 / 9:45 / 10:00 三批发车', en: 'waves at 9:30 / 9:45 / 10:00' },
       title: { zh: 'Pebble Beach Tour d’Elegance', en: 'Pebble Beach Tour d’Elegance' }, location: { zh: 'Portola Road · Pebble Beach', en: 'Portola Road · Pebble Beach' },
-      summary: { zh: '先在起点看主展车辆集结，再听着引擎驶上 17-Mile Drive 与 Highway 1；2026 年不在 Carmel 停靠。', en: 'Watch concours entrants gather, then hear them leave for 17-Mile Drive and Highway 1. The 2026 route does not stop in Carmel.' },
-      why: { zh: '主展级车辆真正开起来，而且公众观看免费；这是整周性价比最高、最不能错过的一段。优先看清晨集结与 9:30 发车。', en: 'Concours-level cars in motion, free to the public. It is the week’s strongest value and the best first-timer anchor; prioritize lineup and departure.' },
-      access: { zh: '7:00 前到 Portola Road 附近，跟随活动标识停车。17-Mile Drive 对无关交通关闭，但活动观众可按现场规则进入。', en: 'Arrive near Portola Road before 7 and follow event parking signs. The road is closed to unrelated traffic, but event visitors enter under onsite rules.' },
+      summary: { zh: '因 Big Sur Timber Fire，官方新版环线只留在 Pebble Beach 与 Monterey，经 17-Mile Drive、Hwy 1、Hwy 68、Olmsted Road 与 Aguajito Road；不再经过 Carmel 或 Big Sur。', en: 'Because of the Big Sur Timber Fire, the revised loop stays in Pebble Beach and Monterey via 17-Mile Drive, Hwy 1, Hwy 68, Olmsted Road and Aguajito Road; it no longer passes through Carmel or Big Sur.' },
+      why: { zh: '主展级车辆真正开起来，而且公众观看免费。优先看 7:00 起集结、9:30 / 9:45 / 10:00 三批发车，再于约中午看车辆归来。', en: 'Concours-level cars in motion, free to the public. Prioritize staging from 7:00, all three waves at 9:30 / 9:45 / 10:00, then the approximate noon return.' },
+      access: { zh: '本站建议 6:15–6:30 入园；官方未公布普通观众固定停车场。进入 Pebble Beach 后按现场指示停在 Portola Road 起终点附近指定区域，再步行观看。不要追车或去 Carmel 等待。', en: 'This guide suggests entering at 6:15–6:30; no fixed general-spectator lot is published. Follow onsite signs to designated nearby parking for the Portola Road start / finish, then watch on foot. Do not chase the convoy or wait in Carmel.' },
       price: { zh: '公众观看免费', en: 'Free public viewing' }, tags: ['free'], categories: ['essential', 'free'], score: '5.0',
-      source: 'https://www.pebblebeachconcours.net/event/pebble-beach-tour-delegance/'
+      sources: [
+        { label: { zh: 'Tour 官方活动页', en: 'Official Tour event page' }, url: 'https://www.pebblebeachconcours.net/event/pebble-beach-tour-delegance/' },
+        { label: { zh: '8 月 12 日官方更新', en: 'Official Aug 12 update' }, url: 'https://www.pebblebeachconcours.net/updates/' },
+        { label: { zh: '8 月 11 日新版路线图 PDF', en: 'Aug 11 revised route map PDF' }, url: 'https://www.pebblebeachconcours.net/wp-content/uploads/2026/08/2026-Concours-Tour-Map-8-11-26-web.pdf' },
+        { label: { zh: '官方方向、停车与活动图', en: 'Official directions, parking & maps' }, url: 'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/' }
+      ]
     },
     {
       id: 'ferrari-carmel', thumbId: 'ferrari-carmel', area: 'carmel', date: '2026-08-13', time: '09:00–16:00', timeNote: { zh: '公众时段', en: 'public hours' },
       title: { zh: 'Ferrari Owners Club Concours Carmel', en: 'Ferrari Owners Club Concours Carmel' }, location: { zh: 'Ocean Ave × Dolores St · Carmel', en: 'Ocean Ave at Dolores St · Carmel' },
-      summary: { zh: 'Carmel 市中心的法拉利主题街展，适合接在 Tour 发车之后。', en: 'A Ferrari-centered downtown street show that pairs naturally with the Tour departure.' },
+      summary: { zh: 'Carmel 市中心的法拉利主题街展；它是同日独立备选，不是 Tour 路线上的观看点，也不要在看完发车后追车赶去。', en: 'A Ferrari-centered downtown street show. Treat it as a separate same-day alternative, not a Tour viewing point or a stop to chase after the departures.' },
       why: { zh: '免费、步行尺度友好，也是下午在意大利车与德系品牌之间做选择时的优质一站。', en: 'Free and walkable; a strong Italian-car choice when deciding between Carmel and the German-marque event.' },
       access: { zh: 'Larson Field 免费停车；8:00–21:00 免费接驳约每 10–15 分钟到 Carmel Plaza。', en: 'Free parking at Larson Field; free shuttle to Carmel Plaza roughly every 10–15 minutes from 8:00–21:00.' },
       price: { zh: '观众免费', en: 'Spectators free' }, tags: ['free'], categories: ['free'], score: '4.0',
@@ -1730,6 +1840,8 @@ window.PEBBLE_DATA = {
     { label: { zh: 'Watsonville Strawberry Festival', en: 'Watsonville Strawberry Festival' }, url: 'https://www.watsonville.gov/1117/Watsonville-Strawberry-Festival' },
     { label: { zh: 'Pebble Beach Concours · 周日主展', en: 'Pebble Beach Concours · Sunday show' }, url: 'https://www.pebblebeachconcours.net/event/pebble-beach-concours-delegance/' },
     { label: { zh: 'Tour d’Elegance · 官方日程', en: 'Tour d’Elegance · official schedule' }, url: 'https://www.pebblebeachconcours.net/event/pebble-beach-tour-delegance/' },
+    { label: { zh: 'Tour d’Elegance · 8 月 12 日路线更新', en: 'Tour d’Elegance · Aug 12 route update' }, url: 'https://www.pebblebeachconcours.net/updates/' },
+    { label: { zh: 'Tour d’Elegance · 8 月 11 日新版路线图 PDF', en: 'Tour d’Elegance · Aug 11 revised route map PDF' }, url: 'https://www.pebblebeachconcours.net/wp-content/uploads/2026/08/2026-Concours-Tour-Map-8-11-26-web.pdf' },
     { label: { zh: 'Village / 展示与试驾日程', en: 'Village / displays and drives' }, url: 'https://www.pebblebeachconcours.net/displays-and-ride-amp-drive-schedule/' },
     { label: { zh: 'Concours 门票商店', en: 'Concours official ticket store' }, url: 'https://theconcoursstore.com/collections/tickets' },
     { label: { zh: 'Pebble Beach 停车与接驳', en: 'Pebble Beach parking and shuttles' }, url: 'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/' },

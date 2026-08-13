@@ -35,7 +35,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=57dc76a72c">
+  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=e86755d4db">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳到正文</a>
@@ -44,6 +44,7 @@
     <div class="nav-inner">
       <a class="wordmark" href="../../index.html" aria-label="返回 QROST 首页">QROST</a>
       <div class="nav-links" aria-label="页面章节">
+        <a class="tour-nav-link" href="#tour-0813" data-i18n="navTour">8.13 Tour</a>
         <a href="#schedule" data-i18n="navSchedule">日程</a>
         <a href="#nearby" data-i18n="navNearby">周边早场</a>
         <a href="#stay" data-i18n="navStay">住宿</a>
@@ -64,12 +65,12 @@
       <div class="hero-copy">
         <div class="eyebrow-row">
           <span class="eyebrow" data-i18n="heroEyebrow">公众行程指南 · 2026</span>
-          <span class="live-chip"><span class="live-dot" aria-hidden="true"></span><span data-i18n="checkedChip">全量核对 8 月 6 日 · 部分动态更新 8 月 10 日</span></span>
+          <span class="live-chip"><span class="live-dot" aria-hidden="true"></span><span data-i18n="checkedChip">全量核对 8 月 6 日 · Tour 复核至 8 月 13 日</span></span>
         </div>
         <h1><span data-i18n="heroTitleTop">圆石滩，不只一场车展</span><em data-i18n="heroTitleBottom">早到一周，再迎旗舰主展</em></h1>
         <p class="hero-lead" data-i18n="heroLead">官方 Monterey Car Week 自 8 月 7 日开场，高峰仍在 13–16 日。这份指南覆盖从免费早场街展到周一返程的完整 11 天：何时、去哪里、值不值得、住哪里、路上多久。</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#schedule"><span data-i18n="buildTrip">开始排日程</span><span aria-hidden="true">↓</span></a>
+          <a class="button button-primary" href="#tour-0813"><span data-i18n="tourHeroCta">看 8.13 Tour 早晨计划</span><span aria-hidden="true">↓</span></a>
           <a class="button button-ghost" href="#quick-plan" data-i18n="seeQuickPlan">先看推荐方案</a>
         </div>
         <p class="hero-fineprint" data-i18n="heroFineprint">Kickoff · ACE 藏品 · 慈善街展 · 微型车展 · Tour · 品牌/赛道 · Concours · 返程</p>
@@ -93,6 +94,71 @@
       <div class="kpi"><span class="kpi-value">6</span><span data-i18n="kpiHubs">个主要活动区</span></div>
       <div class="kpi"><span class="kpi-value">$0–650</span><span data-i18n="kpiTickets">核心活动票价</span></div>
       <div class="kpi"><span class="kpi-value">30–90</span><span data-i18n="kpiBuffer">分钟活动周缓冲</span></div>
+    </section>
+
+    <section id="tour-0813" class="section-block tour-section" aria-labelledby="tour-0813-title">
+      <div class="section-heading tour-heading">
+        <div>
+          <span class="section-kicker" data-i18n="tourKicker">8.13 周四早晨 · 最新路线</span>
+          <h2 id="tour-0813-title" data-i18n="tourTitle">停一次、步行看完三批发车与归来</h2>
+        </div>
+        <p data-i18n="tourIntro">官方 8 月 12 日更新因 Big Sur Timber Fire 与相关疏散调整传统路线。以下把官方时刻与本站观看规划分开标注，避免把建议误当成主办方保证。</p>
+      </div>
+
+      <div class="tour-facts-grid">
+        <article class="tour-fact-card tour-route-card">
+          <span class="tour-badge" data-i18n="tourOfficialBadge">官方更新 · 8 月 12 日</span>
+          <h3 data-i18n="tourUpdateTitle">路线只留在 Pebble Beach 与 Monterey</h3>
+          <p data-i18n="tourUpdateBody">8 月 11 日官方新版地图显示环线经 17-Mile Drive、Hwy 1、Hwy 68、Olmsted Road 与 Aguajito Road；不再进入 Carmel 或 Big Sur。</p>
+          <div class="tour-route-block">
+            <strong id="tour-route-label" data-i18n="tourRouteLabel">新版环线</strong>
+            <div id="tour-route" class="tour-route" role="list" aria-labelledby="tour-route-label"></div>
+          </div>
+          <p class="tour-fineprint" data-i18n="tourRouteNote">道路顺序来自官方路线图的视觉判读；更新正文仅明确路线留在 Pebble Beach 与 Monterey。</p>
+        </article>
+
+        <article class="tour-fact-card tour-wave-card">
+          <span class="tour-badge is-time" data-i18n="tourWaveTitle">官方时刻</span>
+          <h3 data-i18n="tourWaveIntro">Portola Road 起终点</h3>
+          <div id="tour-wave-list" class="tour-wave-list" role="list"></div>
+          <div class="tour-time-anchors">
+            <span data-i18n="tourLineupLabel">车辆约 7:00 集结</span>
+            <span data-i18n="tourReturnLabel">约中午返回</span>
+          </div>
+          <p class="tour-fineprint" data-i18n="tourTimeCaveat">官方注明所有时间均为约数，可能调整。</p>
+        </article>
+      </div>
+
+      <article class="tour-parking-card">
+        <div class="tour-parking-copy">
+          <span class="tour-badge is-guide" data-i18n="tourParkingArrivalLabel">本站建议入园</span>
+          <h3 data-i18n="tourParkingTitle">停车：早进、停一次、全程步行</h3>
+          <p data-i18n="tourParkingBody">官方没有公布普通观众固定停车场。进入 Pebble Beach 后，按现场路标和工作人员指示，停在 Portola Road 起终点附近的指定停车区域，再步行观看。</p>
+          <p class="tour-parking-boundary" data-i18n="tourParkingBoundary">不要把未经官方确认的路肩、住宅街或 ADA Lot 9 当作普通观众停车点。</p>
+        </div>
+        <div class="tour-arrival-time">
+          <span data-i18n="tourParkingArrivalLabel">本站建议入园</span>
+          <strong>6:15–6:30</strong>
+          <small data-i18n="tourParkingArrivalNote">6:15–6:30 不是官方开放时间</small>
+        </div>
+      </article>
+
+      <div class="tour-plan-card">
+        <div class="tour-plan-heading">
+          <div><span class="section-kicker" data-i18n="tourPlanIntro">以下为本站规划，不是官方时刻表。</span><h3 data-i18n="tourPlanTitle">推荐观看顺序</h3></div>
+        </div>
+        <ol id="tour-plan-list" class="tour-plan-list"></ol>
+      </div>
+
+      <aside class="tour-warning" aria-labelledby="tour-warning-title">
+        <span class="tour-warning-icon" aria-hidden="true">!</span>
+        <div><h3 id="tour-warning-title" data-i18n="tourWarningTitle">不要追车，也不要去 Carmel 等待</h3><p data-i18n="tourWarningBody">新版路线不经过 Carmel 或 Big Sur。驾车追逐会增加封路与第一响应人员周边交通压力；把车留在官方引导的停车区，只在允许的步行区域观看。</p></div>
+      </aside>
+
+      <div class="tour-source-bar">
+        <strong data-i18n="tourSourcesLabel">四个官方复核入口</strong>
+        <div id="tour-source-list" class="tour-source-list"></div>
+      </div>
     </section>
 
     <section id="quick-plan" class="section-block quick-plan">
@@ -197,7 +263,7 @@
         </div>
         <div class="boundary-card">
           <h3 data-i18n="boundaryTitle">发布口径</h3>
-          <p data-i18n="boundaryBody">全量目录基线核对至 2026-08-06；部分动态时段、票价、售罄状态与来源于 2026-08-10 复核。酒店价格是单次库存快照；通勤为有意放宽的活动周计划值。任何“值得去”都是编辑判断，不是主办方背书。</p>
+          <p data-i18n="boundaryBody">全量目录基线核对至 2026-08-06；Tour 路线、时刻与停车口径于 2026-08-13 复核，其余部分动态事实更新至 8 月 10 日。酒店价格是单次库存快照；通勤为有意放宽的活动周计划值。任何“值得去”都是编辑判断，不是主办方背书。</p>
           <p data-i18n="boundaryUpdate">临行前 24 小时请重查：官方活动页、票务页、停车图、天气和道路状态。</p>
         </div>
       </div>
@@ -221,12 +287,12 @@
           <a href="https://www.instagram.com/addin_cui/" target="_blank" rel="noopener noreferrer">addin_cui</a>
         </p>
       </div>
-      <p data-i18n="footerDisclaimer">全量目录核对于 2026-08-06，部分动态事实更新至 2026-08-10。非官方、非主办方关联；不构成票务、住宿或交通保证。</p>
+      <p data-i18n="footerDisclaimer">全量目录核对于 2026-08-06；Tour 口径于 2026-08-13 复核，其余部分动态事实更新至 8 月 10 日。非官方、非主办方关联；不构成票务、住宿或交通保证。</p>
     </div>
   </footer>
 
   <script src="assets/vendor/leaflet/leaflet.js"></script>
-  <script src="assets/js/data.js?v=cc6eae9053"></script>
-  <script src="assets/js/app.js?v=0023c71b85"></script>
+  <script src="assets/js/data.js?v=2966d4bc6a"></script>
+  <script src="assets/js/app.js?v=7feadbc737"></script>
 </body>
 </html>

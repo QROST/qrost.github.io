@@ -9,6 +9,14 @@ require(path.join(__dirname, '..', 'assets', 'js', 'data.js'));
 const data = global.PEBBLE_DATA;
 const errors = [];
 const allowedCategories = new Set(['essential', 'free', 'paid', 'unpriced']);
+const tourOfficialUrls = [
+  'https://www.pebblebeachconcours.net/event/pebble-beach-tour-delegance/',
+  'https://www.pebblebeachconcours.net/updates/',
+  'https://www.pebblebeachconcours.net/wp-content/uploads/2026/08/2026-Concours-Tour-Map-8-11-26-web.pdf',
+  'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/'
+];
+const expectedTourRoute = ['17-Mile Drive', 'Hwy 1', 'Hwy 68', 'Olmsted Road', 'Aguajito Road'];
+const expectedTourWaves = ['09:30', '09:45', '10:00'];
 const expectedRouteSignatures = {
   'qp-0807': 'single::1:alvarado@area::-',
   'qp-0808': 'choice::-::A:choice:A:asilomar@area|B:choice:B:laguna@venue',
@@ -16,7 +24,7 @@ const expectedRouteSignatures = {
   'qp-0810': 'branching::1:embassy@venue::A:choice:2A:carmel-valley-history@area|B:choice:2B:asilomar@area|C:choice:2C:porsche-seaside@area',
   'qp-0811': 'branching::1:carmel@area::A:choice:2A:embassy?@venue|B:choice:2B:asilomar?@area',
   'qp-0812': 'branching::1:carmel@area>2:lighthouse@area::A:choice:3A:asilomar?@area|B:choice:3B:jetcenter?@venue|C:choice:3C:pebble?@area',
-  'qp-0813': 'branching::1:portola@area>2:village@area::A:choice:3A:carmel@area|B:choice:3B:pgolf@venue|C:choice:3C:asilomar@area',
+  'qp-0813': 'single::1:portola@area::-',
   'qp-0814': 'choice::-::A:choice:A1:werks@venue>A2:bayonet?@venue|B:choice:B1:laguna@venue',
   'qp-0815': 'choice::-::A:choice:A0:embassy?@area>A1:lemons@venue>A2:exotics@area|B:choice:B1:laguna@venue',
   'qp-0816': 'choice::-::A:choice:A:pebble@venue|B:choice:B:village@area|C:addOn:C:touring-vehicles?@area',
@@ -29,7 +37,7 @@ const expectedTimelineSignatures = {
   'qp-0810': '1/1/2A+2B+2C/2A+2B+2C/-',
   'qp-0811': '1/1/2A+2B/2A/2B',
   'qp-0812': '1/1/2/2/3A+3B+3C/3A+3B+3C',
-  'qp-0813': '1/1/2/2/3A+3B+3C/3A+3B+3C',
+  'qp-0813': '1/1/1/1/-/1',
   'qp-0814': 'A1+B1/A1/B1/A1/A2/A2',
   'qp-0815': 'A0/A1+B1/A1/A2/B1/A2',
   'qp-0816': 'A+B/A/A/B/C',
@@ -64,8 +72,58 @@ function checkUrl(value, label) {
 
 check(data && typeof data === 'object', 'PEBBLE_DATA must load');
 if (data) {
+  check(data.checked === '2026-08-06', 'full catalog baseline date must remain 2026-08-06');
+  check(data.dynamicUpdatesChecked === '2026-08-10', 'non-Tour dynamic facts must remain scoped through 2026-08-10');
+  check(data.tourUpdatesChecked === '2026-08-13', 'Tour guidance recheck date must remain 2026-08-13');
   for (const [key, value] of Object.entries(data.labels || {})) checkBilingual(value, `labels.${key}`);
   for (const [key, value] of Object.entries(data.ui || {})) checkBilingual(value, `ui.${key}`);
+
+  const tourMorning = data.tourMorning;
+  check(tourMorning && typeof tourMorning === 'object', 'tourMorning is required');
+  if (tourMorning) {
+    check(tourMorning.date === '2026-08-13', 'tourMorning.date must be 2026-08-13');
+    check(tourMorning.noticeDate === '2026-08-12', 'tourMorning.noticeDate must track the Aug 12 update');
+    check(tourMorning.mapDate === '2026-08-11', 'tourMorning.mapDate must track the Aug 11 revised map');
+    check(
+      tourMorning.recommendedArrival
+        && tourMorning.recommendedArrival.start === '06:15'
+        && tourMorning.recommendedArrival.end === '06:30',
+      'tourMorning recommended arrival must remain 06:15–06:30'
+    );
+    check(tourMorning.lineup === '07:00', 'tourMorning lineup must remain 07:00');
+    check(tourMorning.returnApprox === '12:00', 'tourMorning approximate return must remain 12:00');
+    check(JSON.stringify(tourMorning.waves) === JSON.stringify(expectedTourWaves), 'tourMorning wave times drifted');
+    check(JSON.stringify(tourMorning.route) === JSON.stringify(expectedTourRoute), 'tourMorning revised route drifted');
+    check(JSON.stringify(tourMorning.excludes) === JSON.stringify(['Carmel', 'Big Sur']), 'tourMorning route exclusions drifted');
+
+    const expectedPlanStarts = ['06:15', '07:00', '09:15', '09:30', '10:05', '11:40'];
+    check(Array.isArray(tourMorning.viewingPlan), 'tourMorning.viewingPlan must be an array');
+    check(
+      JSON.stringify((tourMorning.viewingPlan || []).map((step) => step.start)) === JSON.stringify(expectedPlanStarts),
+      'tourMorning viewing sequence drifted'
+    );
+    for (const [index, step] of (tourMorning.viewingPlan || []).entries()) {
+      const label = `tourMorning.viewingPlan[${index}]`;
+      check(typeof step.start === 'string' && /^\d{2}:\d{2}$/.test(step.start), `${label}.start is invalid`);
+      check(typeof step.time === 'string' && step.time.trim(), `${label}.time is required`);
+      check(['guide', 'official', 'walk'].includes(step.tone), `${label}.tone is invalid`);
+      checkBilingual(step.title, `${label}.title`);
+      checkBilingual(step.note, `${label}.note`);
+    }
+
+    const tourSourceIds = new Set();
+    const tourSourceUrls = [];
+    for (const [index, source] of (tourMorning.sources || []).entries()) {
+      const label = `tourMorning.sources[${index}]`;
+      check(typeof source.id === 'string' && /^[a-z]+$/.test(source.id), `${label}.id is invalid`);
+      check(!tourSourceIds.has(source.id), `${label}.id is duplicated`);
+      tourSourceIds.add(source.id);
+      checkBilingual(source.label, `${label}.label`);
+      checkUrl(source.url, `${label}.url`);
+      tourSourceUrls.push(source.url);
+    }
+    check(JSON.stringify(tourSourceUrls) === JSON.stringify(tourOfficialUrls), 'tourMorning must preserve all four official URLs in priority order');
+  }
 
   const dayIds = new Set();
   for (const [index, day] of (data.days || []).entries()) {
@@ -172,9 +230,20 @@ if (data) {
   }
   check((data.quickPlan || []).length === 11, `quickPlan must contain exactly 11 items, found ${(data.quickPlan || []).length}`);
   check(Object.keys(expectedRouteSignatures).every((id) => quickPlanIds.has(id)), 'quickPlan ids do not match golden route fixtures');
-  check(routeModeCounts.single === 2, `expected 2 single routes, found ${routeModeCounts.single}`);
+  check(routeModeCounts.single === 3, `expected 3 single routes, found ${routeModeCounts.single}`);
   check(routeModeCounts.choice === 5, `expected 5 choice routes, found ${routeModeCounts.choice}`);
-  check(routeModeCounts.branching === 4, `expected 4 branching routes, found ${routeModeCounts.branching}`);
+  check(routeModeCounts.branching === 3, `expected 3 branching routes, found ${routeModeCounts.branching}`);
+  const tourQuickPlan = (data.quickPlan || []).find((item) => item.id === 'qp-0813');
+  check(Boolean(tourQuickPlan), 'qp-0813 is required');
+  if (tourQuickPlan) {
+    const serializedTourPlan = JSON.stringify(tourQuickPlan);
+    check(!serializedTourPlan.includes('Ferrari Carmel'), 'qp-0813 must not restore the obsolete Carmel branch');
+    check(!serializedTourPlan.includes('Legends of the Autobahn'), 'qp-0813 must stay focused on the revised Tour morning');
+    for (const wave of expectedTourWaves) check(serializedTourPlan.includes(wave), `qp-0813 is missing departure wave ${wave}`);
+    check(serializedTourPlan.includes('11:40'), 'qp-0813 must preserve the return-viewing walk-back time');
+    check(!/^\$0\b/.test(tourQuickPlan.cost.en), 'qp-0813 cost must not imply that parking is free');
+    check(tourQuickPlan.cost.en.includes('Viewing free'), 'qp-0813 must label free viewing explicitly');
+  }
 
   const liveAreaIds = new Set();
   for (const [index, area] of (data.liveAreas || []).entries()) {
@@ -235,6 +304,28 @@ if (data) {
     }
   }
   check(eventIds.size === 58, `expected exactly 58 events, found ${eventIds.size}`);
+  const tourEvent = (data.events || []).find((event) => event.id === 'tour');
+  check(Boolean(tourEvent), 'Tour event is required');
+  if (tourEvent) {
+    check(tourEvent.date === '2026-08-13', 'Tour event date must remain 2026-08-13');
+    check(tourEvent.time === '07:00–12:00', 'Tour event must retain the official approximate 07:00–12:00 window');
+    const tourEventText = JSON.stringify(tourEvent);
+    for (const road of expectedTourRoute) check(tourEventText.includes(road), `Tour event is missing revised route road: ${road}`);
+    for (const wave of expectedTourWaves) check(tourEventText.includes(wave.replace(/^0/, '')) || tourEventText.includes(wave), `Tour event is missing wave time: ${wave}`);
+    check(tourEventText.includes('Big Sur Timber Fire'), 'Tour event must explain the Timber Fire route change');
+    check(tourEventText.includes('Do not chase the convoy'), 'Tour event English access note must prohibit convoy chasing');
+    check(tourEventText.includes('不要追车'), 'Tour event Chinese access note must prohibit convoy chasing');
+    const eventSourceUrls = (tourEvent.sources || []).map((source) => source.url);
+    check(JSON.stringify(eventSourceUrls) === JSON.stringify(tourOfficialUrls), 'Tour event must cite all four official URLs in priority order');
+  }
+  const ferrariCarmelEvent = (data.events || []).find((event) => event.id === 'ferrari-carmel');
+  check(Boolean(ferrariCarmelEvent), 'Ferrari Carmel event is required');
+  if (ferrariCarmelEvent) {
+    const ferrariSummary = JSON.stringify(ferrariCarmelEvent.summary);
+    check(ferrariSummary.includes('独立备选'), 'Ferrari Carmel must be labeled as a separate Tour-day alternative');
+    check(ferrariSummary.includes('separate same-day alternative'), 'Ferrari Carmel English summary must remain separate from the Tour plan');
+    check(!ferrariSummary.includes('pairs naturally with the Tour'), 'Ferrari Carmel must not be presented as a Tour continuation');
+  }
 
   for (const [index, stay] of (data.stays || []).entries()) {
     checkBilingual(stay.name, `stays[${index}].name`);
@@ -278,6 +369,8 @@ if (data) {
     checkBilingual(source.label, `sources[${index}].label`);
     checkUrl(source.url, `sources[${index}].url`);
   }
+  const globalSourceUrls = new Set((data.sources || []).map((source) => source.url));
+  for (const url of tourOfficialUrls) check(globalSourceUrls.has(url), `global sources missing official Tour URL: ${url}`);
 
   for (const [index, item] of (data.nearby || []).entries()) {
     const label = `nearby[${index}]`;

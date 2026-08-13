@@ -115,6 +115,7 @@ def validate() -> list[str]:
     html = DEMO_HTML.read_text(encoding="utf-8")
     home = HOME_HTML.read_text(encoding="utf-8")
     data_js = (DEMO_DIR / "assets/js/data.js").read_text(encoding="utf-8")
+    app_js = (DEMO_DIR / "assets/js/app.js").read_text(encoding="utf-8")
 
     check_tokens(errors, html, DEMO_DIR, DEMO_ASSETS)
     check_tokens(errors, home, REPO_ROOT, (HOME_ASSET,))
@@ -169,6 +170,26 @@ def validate() -> list[str]:
 
     if "demos/pebble-beach-2026/index.html" not in home:
         errors.append("homepage card for pebble-beach-2026 is missing")
+    tour_contract = {
+        'class="tour-nav-link" href="#tour-0813"': "Tour navigation anchor",
+        'id="tour-0813"': "Tour section",
+        'id="tour-route"': "Tour route renderer root",
+        'id="tour-wave-list"': "Tour wave renderer root",
+        'id="tour-plan-list"': "Tour viewing-plan renderer root",
+        'id="tour-source-list"': "Tour official-source renderer root",
+    }
+    for snippet, label in tour_contract.items():
+        if html.count(snippet) != 1:
+            errors.append(f"expected exactly one {label}, found {html.count(snippet)}")
+    for root_id in ("tour-route", "tour-wave-list", "tour-plan-list", "tour-source-list"):
+        renderer_lookup = f"getElementById('{root_id}')"
+        if app_js.count(renderer_lookup) != 1:
+            errors.append(
+                f"expected Tour renderer to bind {root_id} exactly once, "
+                f"found {app_js.count(renderer_lookup)}"
+            )
+    if not re.search(r"function\s+renderDynamicContent\(\)\s*\{\s*renderTourMorning\(\);", app_js):
+        errors.append("renderDynamicContent must invoke renderTourMorning")
     for date in range(13, 18):
         if f"2026-08-{date:02d}" not in data_js:
             errors.append(f"data is missing 2026-08-{date:02d}")
