@@ -199,6 +199,48 @@ def validate() -> list[str]:
             )
     if not re.search(r"function\s+renderDynamicContent\(\)\s*\{\s*renderTourMorning\(\);", app_js):
         errors.append("renderDynamicContent must invoke renderTourMorning")
+    parking_map_contract = {
+        'href="#parking-traffic"': "parking-map navigation anchor",
+        'id="parking-traffic"': "parking-map section",
+        'id="parking-map-day-filter"': "parking-map day filter",
+        'id="parking-map-layer-filter"': "parking-map layer filter",
+        'id="parking-traffic-map"': "parking-map Leaflet root",
+        'id="parking-map-list"': "parking-map accessible list",
+        'id="parking-map-status"': "parking-map live status",
+        'id="parking-map-touch-toggle"': "parking-map touch control",
+        'id="parking-map-line-legend"': "parking-map line legend",
+    }
+    for snippet, label in parking_map_contract.items():
+        if html.count(snippet) != 1:
+            errors.append(f"expected exactly one {label}, found {html.count(snippet)}")
+    for root_id in (
+        "parking-map-day-filter",
+        "parking-map-layer-filter",
+        "parking-traffic-map",
+        "parking-map-list",
+        "parking-map-status",
+        "parking-map-touch-toggle",
+        "parking-map-line-legend",
+    ):
+        renderer_lookup = f"getElementById('{root_id}')"
+        if app_js.count(renderer_lookup) != 1:
+            errors.append(
+                f"expected parking-map renderer to bind {root_id} exactly once, "
+                f"found {app_js.count(renderer_lookup)}"
+            )
+    if not re.search(r"renderTourMorning\(\);\s*renderParkingTraffic\(\);", app_js):
+        errors.append("renderDynamicContent must invoke renderParkingTraffic after renderTourMorning")
+    for function_name in (
+        "renderParkingTrafficControls",
+        "renderParkingTrafficList",
+        "ensureParkingTrafficMap",
+        "syncParkingTrafficMap",
+    ):
+        if len(re.findall(rf"function\s+{function_name}\(\)", app_js)) != 1:
+            errors.append(f"expected exactly one {function_name} implementation")
+    official_parking_pdf = "https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf"
+    if html.count(official_parking_pdf) != 2:
+        errors.append("parking-map static fallback and source bar must both link the official PDF")
     for date in range(13, 18):
         if f"2026-08-{date:02d}" not in data_js:
             errors.append(f"data is missing 2026-08-{date:02d}")

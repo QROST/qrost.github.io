@@ -17,6 +17,16 @@ const tourOfficialUrls = [
 ];
 const expectedTourRoute = ['17-Mile Drive', 'Hwy 1', 'Hwy 68', 'Olmsted Road', 'Aguajito Road'];
 const expectedTourWaves = ['09:30', '09:45', '10:00'];
+const parkingTrafficOfficialUrls = [
+  'https://www.pebblebeachconcours.net/entrants-guide/sponsor-maps-directions/',
+  'https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf',
+  'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/',
+  'https://www.openstreetmap.org/copyright'
+];
+const expectedParkingTrafficCodes = [
+  'T', 'V', '1', '2', '3', '4', '5', '6', '7', '8', '8A', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', 'RS', 'BD', 'PO', 'CC'
+];
+const expectedParkingTrafficIds = ['traffic-loop', 'one-way', 'road-closed', 'permit-only', 'test-drives'];
 const expectedRouteSignatures = {
   'qp-0807': 'single::1:alvarado@area::-',
   'qp-0808': 'choice::-::A:choice:A:asilomar@area|B:choice:B:laguna@venue',
@@ -191,6 +201,108 @@ if (data) {
       tourSourceUrls.push(source.url);
     }
     check(JSON.stringify(tourSourceUrls) === JSON.stringify(tourOfficialUrls), 'tourMorning must preserve all four official URLs in priority order');
+  }
+
+  const parkingMap = data.parkingTrafficMap;
+  check(parkingMap && typeof parkingMap === 'object', 'parkingTrafficMap is required');
+  if (parkingMap) {
+    check(parkingMap.checked === '2026-08-13', 'parkingTrafficMap.checked must remain 2026-08-13');
+    check(parkingMap.mapVersion === '2026-07-20', 'parking traffic-map version must remain 2026-07-20');
+    check(parkingMap.defaultDay === 'thu-sat', 'parking map must default to the Aug 13 Thu–Sat scope');
+    check(parkingMap.defaultLayer === 'guide', 'parking map must default to the guide layer');
+
+    const expectedDayScopes = [
+      ['thu-sat', ['2026-08-13', '2026-08-14', '2026-08-15'], '06:00–18:00'],
+      ['sunday', ['2026-08-16'], '04:00–16:00']
+    ];
+    check(
+      JSON.stringify((parkingMap.dayScopes || []).map((scope) => [scope.id, scope.dates, scope.hours])) === JSON.stringify(expectedDayScopes),
+      'parking map day scopes or official hours drifted'
+    );
+    for (const [index, scope] of (parkingMap.dayScopes || []).entries()) {
+      check(typeof scope.labelKey === 'string' && scope.labelKey in data.labels, `parkingTrafficMap.dayScopes[${index}].labelKey is invalid`);
+    }
+    check(
+      JSON.stringify((parkingMap.layerFilters || []).map((filter) => filter.id)) === JSON.stringify(['guide', 'general', 'ada', 'assigned', 'traffic', 'all']),
+      'parking map layer filters drifted'
+    );
+    for (const [index, filter] of (parkingMap.layerFilters || []).entries()) {
+      check(typeof filter.labelKey === 'string' && filter.labelKey in data.labels, `parkingTrafficMap.layerFilters[${index}].labelKey is invalid`);
+    }
+
+    const pointIds = new Set();
+    const pointCodes = [];
+    const allowedPointKinds = new Set(['guide', 'general', 'ada', 'assigned', 'transit']);
+    const allowedPointLayers = new Set(['guide', 'general', 'ada', 'assigned']);
+    const allowedDayScopes = new Set(['thu-sat', 'sunday']);
+    check(Array.isArray(parkingMap.points) && parkingMap.points.length === 27, 'parking map must contain 25 official codes plus two guide anchors');
+    for (const [index, point] of (parkingMap.points || []).entries()) {
+      const label = `parkingTrafficMap.points[${index}]`;
+      check(typeof point.id === 'string' && /^[a-z0-9-]+$/.test(point.id), `${label}.id is invalid`);
+      check(!pointIds.has(point.id), `${label}.id is duplicated`);
+      pointIds.add(point.id);
+      check(typeof point.code === 'string' && point.code.trim(), `${label}.code is required`);
+      pointCodes.push(point.code);
+      check(allowedPointKinds.has(point.kind), `${label}.kind is invalid`);
+      check(Array.isArray(point.layers) && point.layers.length >= 1, `${label}.layers is required`);
+      for (const layer of point.layers || []) check(allowedPointLayers.has(layer), `${label}.layers contains invalid layer ${layer}`);
+      check(Array.isArray(point.dayScopes) && point.dayScopes.length >= 1, `${label}.dayScopes is required`);
+      for (const scope of point.dayScopes || []) check(allowedDayScopes.has(scope), `${label}.dayScopes contains invalid scope ${scope}`);
+      check(Array.isArray(point.guideScopes), `${label}.guideScopes must be an array`);
+      for (const scope of point.guideScopes || []) check(allowedDayScopes.has(scope), `${label}.guideScopes contains invalid scope ${scope}`);
+      if (point.adaScopes != null) {
+        check(Array.isArray(point.adaScopes), `${label}.adaScopes must be an array`);
+        for (const scope of point.adaScopes || []) check(allowedDayScopes.has(scope), `${label}.adaScopes contains invalid scope ${scope}`);
+      }
+      check(['official', 'photo'].includes(point.evidence), `${label}.evidence is invalid`);
+      check(Number.isFinite(point.lat) && point.lat >= 36.56 && point.lat <= 36.60, `${label}.lat is outside the mapped Pebble Beach area`);
+      check(Number.isFinite(point.lng) && point.lng >= -121.98 && point.lng <= -121.94, `${label}.lng is outside the mapped Pebble Beach area`);
+      checkBilingual(point.name, `${label}.name`);
+      checkBilingual(point.audience, `${label}.audience`);
+      checkBilingual(point.access, `${label}.access`);
+    }
+    check(JSON.stringify(pointCodes) === JSON.stringify(expectedParkingTrafficCodes), 'parking traffic-map codes or order drifted');
+    check(new Set(pointCodes).size === pointCodes.length, 'parking traffic-map codes must be unique');
+    check(JSON.stringify(parkingMap.points.find((point) => point.id === 'lot-9').adaScopes) === JSON.stringify(['thu-sat']), 'Lot 9 must remain Thu–Sat ADA only');
+    check(JSON.stringify(parkingMap.points.find((point) => point.id === 'lot-18').adaScopes) === JSON.stringify(['sunday']), 'Lot 18 must remain Sunday ADA only');
+    const generalCodes = (parkingMap.points || []).filter((point) => point.layers.includes('general')).map((point) => point.code);
+    check(JSON.stringify(generalCodes) === JSON.stringify(['9', '13', '16', '18', '19']), 'friend-photo General Spectators codes drifted');
+    const mapPointText = JSON.stringify(parkingMap.points || []);
+    check(mapPointText.includes('do not self-route') && mapPointText.includes('follow gate assignment'), 'parking-map points must preserve the no-self-routing boundary');
+    check(mapPointText.includes('not a fixed parking entrance'), 'Portola pin must remain an area anchor, not a parking entrance');
+    check(!mapPointText.includes('Open in OpenStreetMap'), 'approximate parking points must not offer direct navigation');
+
+    const controls = parkingMap.trafficControls || [];
+    check(JSON.stringify(controls.map((control) => control.id)) === JSON.stringify(expectedParkingTrafficIds), 'parking traffic-control ids drifted');
+    check(JSON.stringify(controls.map((control) => control.kind)) === JSON.stringify(['loop', 'oneway', 'closed', 'permit', 'test']), 'parking traffic-control kinds drifted');
+    for (const [index, control] of controls.entries()) {
+      const label = `parkingTrafficMap.trafficControls[${index}]`;
+      check(typeof control.labelKey === 'string' && control.labelKey in data.labels, `${label}.labelKey is invalid`);
+      check(Array.isArray(control.dayScopes) && control.dayScopes.length >= 1, `${label}.dayScopes is required`);
+      check(Array.isArray(control.guideScopes), `${label}.guideScopes must be an array`);
+      check(Array.isArray(control.paths) && control.paths.length >= 1, `${label}.paths is required`);
+      for (const [pathIndex, segment] of (control.paths || []).entries()) {
+        check(Array.isArray(segment) && segment.length >= 2, `${label}.paths[${pathIndex}] needs at least two coordinates`);
+        for (const coord of segment || []) {
+          check(Array.isArray(coord) && coord.length === 2 && coord.every(Number.isFinite), `${label}.paths[${pathIndex}] has an invalid coordinate`);
+        }
+      }
+      checkBilingual(control.note, `${label}.note`);
+    }
+    check(JSON.stringify(controls).includes('not live closure'), 'traffic lines must preserve the schematic, non-live boundary');
+
+    const mapSourceIds = new Set();
+    const mapSourceUrls = [];
+    for (const [index, source] of (parkingMap.sources || []).entries()) {
+      const label = `parkingTrafficMap.sources[${index}]`;
+      check(typeof source.id === 'string' && /^[a-z]+$/.test(source.id), `${label}.id is invalid`);
+      check(!mapSourceIds.has(source.id), `${label}.id is duplicated`);
+      mapSourceIds.add(source.id);
+      checkBilingual(source.label, `${label}.label`);
+      checkUrl(source.url, `${label}.url`);
+      mapSourceUrls.push(source.url);
+    }
+    check(JSON.stringify(mapSourceUrls) === JSON.stringify(parkingTrafficOfficialUrls), 'parking map must preserve official/PDF/OSM sources in order');
   }
 
   const dayIds = new Set();

@@ -26,6 +26,19 @@
     to: 'pebble'
   };
   const mapState = { map: null, layer: null, markers: [] };
+  const parkingTrafficState = {
+    map: null,
+    tile: null,
+    markerLayer: null,
+    trafficLayer: null,
+    markers: new Map(),
+    traffic: new Map(),
+    day: DATA.parkingTrafficMap ? DATA.parkingTrafficMap.defaultDay : 'thu-sat',
+    layer: DATA.parkingTrafficMap ? DATA.parkingTrafficMap.defaultLayer : 'guide',
+    touchActive: false,
+    coarsePointer: false,
+    tileError: false
+  };
   const routeCache = new Map();
   const planMaps = new Map();
   let planMapObserver = null;
@@ -336,6 +349,162 @@
         `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(source.label))}<span aria-hidden="true">↗</span></a>`
       )).join('');
     }
+  }
+
+  function parkingTrafficConfig() {
+    return DATA.parkingTrafficMap || null;
+  }
+
+  function parkingPointVisible(point) {
+    const day = parkingTrafficState.day;
+    const layer = parkingTrafficState.layer;
+    if (!(point.dayScopes || []).includes(day)) return false;
+    if (layer === 'all') return true;
+    if (layer === 'guide') return (point.guideScopes || []).includes(day);
+    if (layer === 'ada') return (point.adaScopes || []).includes(day);
+    if (layer === 'general') return (point.layers || []).includes('general');
+    if (layer === 'assigned') return (point.layers || []).includes('assigned');
+    return false;
+  }
+
+  function parkingTrafficVisible(control) {
+    const day = parkingTrafficState.day;
+    const layer = parkingTrafficState.layer;
+    if (!(control.dayScopes || []).includes(day)) return false;
+    if (layer === 'all' || layer === 'traffic') return true;
+    return layer === 'guide' && (control.guideScopes || []).includes(day);
+  }
+
+  function visibleParkingPoints() {
+    const config = parkingTrafficConfig();
+    return config ? (config.points || []).filter(parkingPointVisible) : [];
+  }
+
+  function visibleParkingTraffic() {
+    const config = parkingTrafficConfig();
+    return config ? (config.trafficControls || []).filter(parkingTrafficVisible) : [];
+  }
+
+  function parkingPointKind(point) {
+    if ((point.adaScopes || []).includes(parkingTrafficState.day)) return 'ada';
+    if (point.kind === 'guide') return 'guide';
+    if (point.kind === 'general' || (point.layers || []).includes('general')) return 'general';
+    if (point.kind === 'transit') return 'transit';
+    return 'assigned';
+  }
+
+  function parkingPointKindLabel(point) {
+    const keyByKind = {
+      guide: 'parkingMapKindGuide',
+      general: 'parkingMapKindGeneral',
+      ada: 'parkingMapKindAda',
+      assigned: 'parkingMapKindAssigned',
+      transit: 'parkingMapKindTransit'
+    };
+    return text(keyByKind[parkingPointKind(point)] || 'parkingMapKindAssigned');
+  }
+
+  function parkingEvidenceLabel(point) {
+    return text(point.evidence === 'official' ? 'parkingMapOfficialEvidence' : 'parkingMapPhotoEvidence');
+  }
+
+  function renderParkingTrafficControls() {
+    const config = parkingTrafficConfig();
+    if (!config) return;
+
+    const dayRoot = document.getElementById('parking-map-day-filter');
+    if (dayRoot) {
+      dayRoot.setAttribute('aria-label', text('parkingMapDayLegend'));
+      dayRoot.innerHTML = (config.dayScopes || []).map((scope) => (
+        `<button type="button" class="parking-map-filter-button" data-parking-day="${escapeHtml(scope.id)}" aria-pressed="${scope.id === parkingTrafficState.day ? 'true' : 'false'}">
+          <span>${escapeHtml(text(scope.labelKey))}</span><small>${escapeHtml(scope.hours)}</small>
+        </button>`
+      )).join('');
+    }
+
+    const layerRoot = document.getElementById('parking-map-layer-filter');
+    if (layerRoot) {
+      layerRoot.setAttribute('aria-label', text('parkingMapLayerLegend'));
+      layerRoot.innerHTML = (config.layerFilters || []).map((filter) => (
+        `<button type="button" class="parking-map-filter-button is-layer" data-parking-layer="${escapeHtml(filter.id)}" aria-pressed="${filter.id === parkingTrafficState.layer ? 'true' : 'false'}">${escapeHtml(text(filter.labelKey))}</button>`
+      )).join('');
+    }
+
+    const legendRoot = document.getElementById('parking-map-line-legend');
+    if (legendRoot) {
+      legendRoot.setAttribute('aria-label', text('parkingMapLayerTraffic'));
+      const kinds = [
+        ['loop', 'parkingMapTrafficLoop'],
+        ['oneway', 'parkingMapTrafficOneWay'],
+        ['closed', 'parkingMapTrafficClosed'],
+        ['permit', 'parkingMapTrafficPermit'],
+        ['test', 'parkingMapTrafficTest']
+      ];
+      legendRoot.innerHTML = kinds.map(([kind, key]) => (
+        `<span><i class="parking-line-swatch kind-${escapeHtml(kind)}" aria-hidden="true"></i>${escapeHtml(text(key))}</span>`
+      )).join('');
+    }
+    updateParkingTouchToggle();
+  }
+
+  function parkingListItem(point) {
+    const kind = parkingPointKind(point);
+    const label = `${point.code} · ${localized(point.name)}`;
+    return `<li class="parking-map-list-item kind-${escapeHtml(kind)}">
+      <button type="button" data-parking-focus="${escapeHtml(point.id)}" aria-label="${escapeHtml(`${text('parkingMapLocate')}: ${label}`)}">
+        <span class="parking-map-list-code">${escapeHtml(point.code)}</span>
+        <span class="parking-map-list-copy">
+          <span class="parking-map-list-meta"><strong>${escapeHtml(localized(point.name))}</strong><em>${escapeHtml(parkingPointKindLabel(point))}</em></span>
+          <span>${escapeHtml(localized(point.audience))}</span>
+          <small>${escapeHtml(localized(point.access))}</small>
+        </span>
+      </button>
+    </li>`;
+  }
+
+  function parkingTrafficListItem(control) {
+    return `<li class="parking-map-list-item is-traffic kind-${escapeHtml(control.kind)}">
+      <button type="button" data-parking-traffic-focus="${escapeHtml(control.id)}" aria-label="${escapeHtml(`${text('parkingMapLocate')}: ${text(control.labelKey)}`)}">
+        <span class="parking-map-list-code" aria-hidden="true">↝</span>
+        <span class="parking-map-list-copy">
+          <span class="parking-map-list-meta"><strong>${escapeHtml(text(control.labelKey))}</strong><em>${escapeHtml(text('parkingMapLayerTraffic'))}</em></span>
+          <small>${escapeHtml(localized(control.note))}</small>
+        </span>
+      </button>
+    </li>`;
+  }
+
+  function updateParkingMapStatus(count) {
+    const status = document.getElementById('parking-map-status');
+    if (!status) return;
+    const countText = count ? statusWithCount('parkingMapStatus', count) : text('parkingMapEmpty');
+    status.textContent = parkingTrafficState.tileError
+      ? `${countText} · ${text('parkingMapTileError')}`
+      : countText;
+  }
+
+  function renderParkingTrafficList() {
+    const points = visibleParkingPoints();
+    const traffic = visibleParkingTraffic();
+    const root = document.getElementById('parking-map-list');
+    if (root) {
+      root.innerHTML = [
+        ...points.map(parkingListItem),
+        ...traffic.map(parkingTrafficListItem)
+      ].join('');
+      if (!points.length && !traffic.length) {
+        root.innerHTML = `<li class="parking-map-empty">${escapeHtml(text('parkingMapEmpty'))}</li>`;
+      }
+    }
+    updateParkingMapStatus(points.length + traffic.length);
+  }
+
+  function renderParkingTraffic() {
+    if (!parkingTrafficConfig()) return;
+    renderParkingTrafficControls();
+    renderParkingTrafficList();
+    ensureParkingTrafficMap();
+    syncParkingTrafficMap();
   }
 
   function renderPlanStops(item) {
@@ -985,6 +1154,165 @@
     });
   }
 
+  function makeParkingTrafficIcon(point) {
+    const kind = parkingPointKind(point);
+    return window.L.divIcon({
+      className: 'parking-map-marker-wrap',
+      html: `<span class="parking-map-marker kind-${escapeHtml(kind)}" aria-hidden="true"><span>${escapeHtml(point.code)}</span></span>`,
+      iconSize: [34, 34],
+      iconAnchor: [17, 17],
+      popupAnchor: [0, -18]
+    });
+  }
+
+  function parkingPointPopupHtml(point) {
+    return `<div class="parking-map-popup">
+      <div class="parking-map-popup-title"><span>${escapeHtml(point.code)}</span><div><strong>${escapeHtml(localized(point.name))}</strong><em>${escapeHtml(parkingPointKindLabel(point))}</em></div></div>
+      <dl>
+        <div><dt>${escapeHtml(text('parkingMapAudienceLabel'))}</dt><dd>${escapeHtml(localized(point.audience))}</dd></div>
+        <div><dt>${escapeHtml(text('parkingMapAccessLabel'))}</dt><dd>${escapeHtml(localized(point.access))}</dd></div>
+        <div><dt>${escapeHtml(text('parkingMapEvidenceLabel'))}</dt><dd>${escapeHtml(parkingEvidenceLabel(point))}</dd></div>
+        <div><dt>${escapeHtml(text('parkingMapPrecisionLabel'))}</dt><dd>${escapeHtml(text('parkingMapPrecisionValue'))}</dd></div>
+      </dl>
+    </div>`;
+  }
+
+  function parkingTrafficStyle(kind) {
+    const styles = {
+      loop: { color: '#d5a900', weight: 5, opacity: 0.86 },
+      oneway: { color: '#e86018', weight: 5, opacity: 0.9, dashArray: '3 8' },
+      closed: { color: '#c73333', weight: 5, opacity: 0.9, dashArray: '2 9' },
+      permit: { color: '#df6ea6', weight: 5, opacity: 0.88, dashArray: '14 10' },
+      test: { color: '#22292b', weight: 5, opacity: 0.88, dashArray: '5 7' }
+    };
+    return styles[kind] || styles.loop;
+  }
+
+  function parkingTrafficPopupHtml(control) {
+    return `<div class="parking-map-popup is-traffic">
+      <strong>${escapeHtml(text(control.labelKey))}</strong>
+      <p>${escapeHtml(localized(control.note))}</p>
+      <small>${escapeHtml(text('parkingMapTrafficSchematic'))}</small>
+    </div>`;
+  }
+
+  function updateParkingTouchToggle() {
+    const button = document.getElementById('parking-map-touch-toggle');
+    if (!button) return;
+    button.hidden = !parkingTrafficState.coarsePointer;
+    button.setAttribute('aria-pressed', parkingTrafficState.touchActive ? 'true' : 'false');
+    button.textContent = text(parkingTrafficState.touchActive ? 'parkingMapTouchDisable' : 'parkingMapTouchEnable');
+  }
+
+  function ensureParkingTrafficMap() {
+    const root = document.getElementById('parking-traffic-map');
+    if (!root || parkingTrafficState.map) return;
+    if (!window.L) return;
+
+    parkingTrafficState.coarsePointer = (typeof window.matchMedia === 'function' && window.matchMedia('(any-pointer: coarse)').matches)
+      || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
+    root.innerHTML = '';
+    const map = window.L.map(root, {
+      scrollWheelZoom: false,
+      zoomControl: true,
+      attributionControl: true,
+      dragging: !parkingTrafficState.coarsePointer,
+      touchZoom: !parkingTrafficState.coarsePointer
+    });
+    parkingTrafficState.map = map;
+    parkingTrafficState.tile = window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>'
+    }).addTo(map);
+    parkingTrafficState.tile.on('tileerror', () => {
+      if (parkingTrafficState.tileError) return;
+      parkingTrafficState.tileError = true;
+      updateParkingMapStatus(visibleParkingPoints().length + visibleParkingTraffic().length);
+    });
+    parkingTrafficState.trafficLayer = window.L.layerGroup().addTo(map);
+    parkingTrafficState.markerLayer = window.L.layerGroup().addTo(map);
+    root.addEventListener('wheel', (event) => {
+      if (event.metaKey || event.ctrlKey) map.scrollWheelZoom.enable();
+      else map.scrollWheelZoom.disable();
+    }, { passive: true });
+    updateParkingTouchToggle();
+    window.setTimeout(() => map.invalidateSize(), 40);
+  }
+
+  function syncParkingTrafficMap() {
+    const map = parkingTrafficState.map;
+    if (!map || !window.L || !parkingTrafficState.markerLayer || !parkingTrafficState.trafficLayer) return;
+
+    parkingTrafficState.markerLayer.clearLayers();
+    parkingTrafficState.trafficLayer.clearLayers();
+    parkingTrafficState.markers.clear();
+    parkingTrafficState.traffic.clear();
+    const pointBounds = [];
+    const trafficBounds = [];
+
+    visibleParkingTraffic().forEach((control) => {
+      const lines = [];
+      (control.paths || []).forEach((path) => {
+        const line = window.L.polyline(path, {
+          ...parkingTrafficStyle(control.kind),
+          className: `parking-traffic-line kind-${control.kind}`
+        }).addTo(parkingTrafficState.trafficLayer);
+        line.bindPopup(parkingTrafficPopupHtml(control), { maxWidth: 280, className: 'hub-leaflet-popup' });
+        line.bindTooltip(text(control.labelKey), { sticky: true, opacity: 0.95, className: 'hub-tooltip' });
+        lines.push(line);
+        path.forEach((coord) => trafficBounds.push(coord));
+      });
+      parkingTrafficState.traffic.set(control.id, lines);
+    });
+
+    visibleParkingPoints().forEach((point) => {
+      const title = `${point.code} · ${localized(point.name)} · ${parkingPointKindLabel(point)}`;
+      const marker = window.L.marker([point.lat, point.lng], {
+        icon: makeParkingTrafficIcon(point),
+        title,
+        keyboard: true,
+        riseOnHover: true
+      }).addTo(parkingTrafficState.markerLayer);
+      marker.bindPopup(parkingPointPopupHtml(point), { maxWidth: 320, className: 'hub-leaflet-popup parking-leaflet-popup' });
+      marker.bindTooltip(title, { direction: 'top', offset: [0, -18], opacity: 0.96, className: 'hub-tooltip' });
+      parkingTrafficState.markers.set(point.id, marker);
+      pointBounds.push([point.lat, point.lng]);
+    });
+
+    const fit = pointBounds.length ? pointBounds : trafficBounds;
+    if (fit.length) map.fitBounds(fit, { padding: [44, 44], maxZoom: 14 });
+    window.setTimeout(() => map.invalidateSize(), 40);
+  }
+
+  function focusParkingPoint(id) {
+    const marker = parkingTrafficState.markers.get(id);
+    if (!marker || !parkingTrafficState.map) return;
+    const currentZoom = parkingTrafficState.map.getZoom();
+    parkingTrafficState.map.setView(marker.getLatLng(), Math.max(currentZoom, 15), { animate: false });
+    marker.openPopup();
+  }
+
+  function focusParkingTraffic(id) {
+    const lines = parkingTrafficState.traffic.get(id);
+    if (!lines || !lines.length || !parkingTrafficState.map) return;
+    const group = window.L.featureGroup(lines);
+    parkingTrafficState.map.fitBounds(group.getBounds(), { padding: [44, 44], maxZoom: 14 });
+    lines[0].openPopup();
+  }
+
+  function toggleParkingMapTouch() {
+    if (!parkingTrafficState.map || !parkingTrafficState.coarsePointer) return;
+    parkingTrafficState.touchActive = !parkingTrafficState.touchActive;
+    if (parkingTrafficState.touchActive) {
+      parkingTrafficState.map.dragging.enable();
+      parkingTrafficState.map.touchZoom.enable();
+    } else {
+      parkingTrafficState.map.dragging.disable();
+      parkingTrafficState.map.touchZoom.disable();
+    }
+    updateParkingTouchToggle();
+  }
+
   function getMapPlace(placeId) {
     return DATA.mapPlaces && DATA.mapPlaces[placeId];
   }
@@ -1286,6 +1614,7 @@
 
   function renderDynamicContent() {
     renderTourMorning();
+    renderParkingTraffic();
     renderQuickPlan();
     renderNearby();
     renderScheduleFilters();
@@ -1325,6 +1654,7 @@
     }
     updateToggleUi();
     if (mapState.map) window.setTimeout(() => mapState.map.invalidateSize(), 40);
+    if (parkingTrafficState.map) window.setTimeout(() => parkingTrafficState.map.invalidateSize(), 40);
     invalidatePlanMaps();
   }
 
@@ -1334,11 +1664,52 @@
     const from = document.getElementById('commute-from');
     const to = document.getElementById('commute-to');
     const filterPanel = document.querySelector('.filter-panel');
+    const parkingPanel = document.getElementById('parking-traffic');
 
     if (langButton) langButton.addEventListener('click', () => setLanguage(state.lang === 'zh' ? 'en' : 'zh'));
     if (themeButton) themeButton.addEventListener('click', () => setTheme(!isDark(), true));
     if (from) from.addEventListener('change', () => { state.from = from.value; renderCommuteResult(); });
     if (to) to.addEventListener('change', () => { state.to = to.value; renderCommuteResult(); });
+
+    if (parkingPanel) {
+      parkingPanel.addEventListener('click', (event) => {
+        const dayButton = event.target.closest('[data-parking-day]');
+        if (dayButton) {
+          const nextDay = dayButton.getAttribute('data-parking-day');
+          if (nextDay && nextDay !== parkingTrafficState.day) {
+            parkingTrafficState.day = nextDay;
+            renderParkingTraffic();
+            const replacement = parkingPanel.querySelector(`[data-parking-day="${nextDay}"]`);
+            if (replacement) replacement.focus();
+          }
+          return;
+        }
+        const layerButton = event.target.closest('[data-parking-layer]');
+        if (layerButton) {
+          const nextLayer = layerButton.getAttribute('data-parking-layer');
+          if (nextLayer && nextLayer !== parkingTrafficState.layer) {
+            parkingTrafficState.layer = nextLayer;
+            renderParkingTraffic();
+            const replacement = parkingPanel.querySelector(`[data-parking-layer="${nextLayer}"]`);
+            if (replacement) replacement.focus();
+          }
+          return;
+        }
+        const pointButton = event.target.closest('[data-parking-focus]');
+        if (pointButton) {
+          focusParkingPoint(pointButton.getAttribute('data-parking-focus'));
+          return;
+        }
+        const trafficButton = event.target.closest('[data-parking-traffic-focus]');
+        if (trafficButton) {
+          focusParkingTraffic(trafficButton.getAttribute('data-parking-traffic-focus'));
+          return;
+        }
+        if (event.target.id === 'parking-map-touch-toggle' || event.target.closest('#parking-map-touch-toggle')) {
+          toggleParkingMapTouch();
+        }
+      });
+    }
 
     if (filterPanel) {
       filterPanel.addEventListener('click', (event) => {
