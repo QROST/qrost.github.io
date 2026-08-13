@@ -2,11 +2,11 @@
   "places": [
     {
       "claim_ids": [
-        "claim-wd-q142-country-code",
-        "claim-wd-q142-external-ids",
         "claim-wd-q142-name-en",
         "claim-wd-q142-name-zh",
-        "claim-wd-q142-region"
+        "claim-wd-q142-country-code",
+        "claim-wd-q142-region",
+        "claim-wd-q142-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "FR",
@@ -15,7 +15,7 @@
         "wikidata": "Q142"
       },
       "id": "place-wd-q142",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "France",
@@ -26,11 +26,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q145-country-code",
-        "claim-wd-q145-external-ids",
         "claim-wd-q145-name-en",
         "claim-wd-q145-name-zh",
-        "claim-wd-q145-region"
+        "claim-wd-q145-country-code",
+        "claim-wd-q145-region",
+        "claim-wd-q145-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "GB",
@@ -39,7 +39,7 @@
         "wikidata": "Q145"
       },
       "id": "place-wd-q145",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "United Kingdom",
@@ -50,11 +50,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q148-country-code",
-        "claim-wd-q148-external-ids",
         "claim-wd-q148-name-en",
         "claim-wd-q148-name-zh",
-        "claim-wd-q148-region"
+        "claim-wd-q148-country-code",
+        "claim-wd-q148-region",
+        "claim-wd-q148-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "CN",
@@ -63,7 +63,7 @@
         "wikidata": "Q148"
       },
       "id": "place-wd-q148",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "People's Republic of China",
@@ -74,11 +74,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q155-country-code",
-        "claim-wd-q155-external-ids",
         "claim-wd-q155-name-en",
         "claim-wd-q155-name-zh",
-        "claim-wd-q155-region"
+        "claim-wd-q155-country-code",
+        "claim-wd-q155-region",
+        "claim-wd-q155-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "BR",
@@ -87,7 +87,7 @@
         "wikidata": "Q155"
       },
       "id": "place-wd-q155",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Brazil",
@@ -98,11 +98,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q159-country-code",
-        "claim-wd-q159-external-ids",
         "claim-wd-q159-name-en",
         "claim-wd-q159-name-zh",
-        "claim-wd-q159-region"
+        "claim-wd-q159-country-code",
+        "claim-wd-q159-region",
+        "claim-wd-q159-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "RU",
@@ -111,7 +111,7 @@
         "wikidata": "Q159"
       },
       "id": "place-wd-q159",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Russia",
@@ -122,11 +122,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q16-country-code",
-        "claim-wd-q16-external-ids",
         "claim-wd-q16-name-en",
         "claim-wd-q16-name-zh",
-        "claim-wd-q16-region"
+        "claim-wd-q16-country-code",
+        "claim-wd-q16-region",
+        "claim-wd-q16-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "CA",
@@ -135,7 +135,7 @@
         "wikidata": "Q16"
       },
       "id": "place-wd-q16",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Canada",
@@ -146,11 +146,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q17-country-code",
-        "claim-wd-q17-external-ids",
         "claim-wd-q17-name-en",
         "claim-wd-q17-name-zh",
-        "claim-wd-q17-region"
+        "claim-wd-q17-country-code",
+        "claim-wd-q17-region",
+        "claim-wd-q17-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "JP",
@@ -159,7 +159,7 @@
         "wikidata": "Q17"
       },
       "id": "place-wd-q17",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Japan",
@@ -170,11 +170,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q183-country-code",
-        "claim-wd-q183-external-ids",
         "claim-wd-q183-name-en",
         "claim-wd-q183-name-zh",
-        "claim-wd-q183-region"
+        "claim-wd-q183-country-code",
+        "claim-wd-q183-region",
+        "claim-wd-q183-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "DE",
@@ -183,7 +183,7 @@
         "wikidata": "Q183"
       },
       "id": "place-wd-q183",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Germany",
@@ -194,11 +194,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q213-country-code",
-        "claim-wd-q213-external-ids",
         "claim-wd-q213-name-en",
         "claim-wd-q213-name-zh",
-        "claim-wd-q213-region"
+        "claim-wd-q213-country-code",
+        "claim-wd-q213-region",
+        "claim-wd-q213-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "CZ",
@@ -207,7 +207,7 @@
         "wikidata": "Q213"
       },
       "id": "place-wd-q213",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Czech Republic",
@@ -218,11 +218,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q218-country-code",
-        "claim-wd-q218-external-ids",
         "claim-wd-q218-name-en",
         "claim-wd-q218-name-zh",
-        "claim-wd-q218-region"
+        "claim-wd-q218-country-code",
+        "claim-wd-q218-region",
+        "claim-wd-q218-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "RO",
@@ -231,7 +231,7 @@
         "wikidata": "Q218"
       },
       "id": "place-wd-q218",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Romania",
@@ -242,11 +242,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q237-country-code",
-        "claim-wd-q237-external-ids",
         "claim-wd-q237-name-en",
         "claim-wd-q237-name-zh",
-        "claim-wd-q237-region"
+        "claim-wd-q237-country-code",
+        "claim-wd-q237-region",
+        "claim-wd-q237-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "VA",
@@ -255,7 +255,7 @@
         "wikidata": "Q237"
       },
       "id": "place-wd-q237",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Vatican City",
@@ -266,11 +266,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q252-country-code",
-        "claim-wd-q252-external-ids",
         "claim-wd-q252-name-en",
         "claim-wd-q252-name-zh",
-        "claim-wd-q252-region"
+        "claim-wd-q252-country-code",
+        "claim-wd-q252-region",
+        "claim-wd-q252-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "ID",
@@ -279,7 +279,7 @@
         "wikidata": "Q252"
       },
       "id": "place-wd-q252",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Indonesia",
@@ -290,11 +290,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q28-country-code",
-        "claim-wd-q28-external-ids",
         "claim-wd-q28-name-en",
         "claim-wd-q28-name-zh",
-        "claim-wd-q28-region"
+        "claim-wd-q28-country-code",
+        "claim-wd-q28-region",
+        "claim-wd-q28-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "HU",
@@ -303,7 +303,7 @@
         "wikidata": "Q28"
       },
       "id": "place-wd-q28",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Hungary",
@@ -314,11 +314,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q29-country-code",
-        "claim-wd-q29-external-ids",
         "claim-wd-q29-name-en",
         "claim-wd-q29-name-zh",
-        "claim-wd-q29-region"
+        "claim-wd-q29-country-code",
+        "claim-wd-q29-region",
+        "claim-wd-q29-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "ES",
@@ -327,7 +327,7 @@
         "wikidata": "Q29"
       },
       "id": "place-wd-q29",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Spain",
@@ -338,11 +338,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q30-country-code",
-        "claim-wd-q30-external-ids",
         "claim-wd-q30-name-en",
         "claim-wd-q30-name-zh",
-        "claim-wd-q30-region"
+        "claim-wd-q30-country-code",
+        "claim-wd-q30-region",
+        "claim-wd-q30-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "US",
@@ -351,7 +351,7 @@
         "wikidata": "Q30"
       },
       "id": "place-wd-q30",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "United States",
@@ -362,11 +362,35 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q34-country-code",
-        "claim-wd-q34-external-ids",
+        "claim-wd-q33-name-en",
+        "claim-wd-q33-name-zh",
+        "claim-wd-q33-country-code",
+        "claim-wd-q33-region",
+        "claim-wd-q33-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "FI",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q33"
+      },
+      "id": "place-wd-q33",
+      "last_verified": "2026-08-13",
+      "lat": null,
+      "lng": null,
+      "name_en": "Finland",
+      "name_native": null,
+      "name_zh": "芬兰",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q34-name-en",
         "claim-wd-q34-name-zh",
-        "claim-wd-q34-region"
+        "claim-wd-q34-country-code",
+        "claim-wd-q34-region",
+        "claim-wd-q34-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "SE",
@@ -375,7 +399,7 @@
         "wikidata": "Q34"
       },
       "id": "place-wd-q34",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Sweden",
@@ -386,11 +410,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q36-country-code",
-        "claim-wd-q36-external-ids",
         "claim-wd-q36-name-en",
         "claim-wd-q36-name-zh",
-        "claim-wd-q36-region"
+        "claim-wd-q36-country-code",
+        "claim-wd-q36-region",
+        "claim-wd-q36-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "PL",
@@ -399,7 +423,7 @@
         "wikidata": "Q36"
       },
       "id": "place-wd-q36",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Poland",
@@ -410,11 +434,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q38-country-code",
-        "claim-wd-q38-external-ids",
         "claim-wd-q38-name-en",
         "claim-wd-q38-name-zh",
-        "claim-wd-q38-region"
+        "claim-wd-q38-country-code",
+        "claim-wd-q38-region",
+        "claim-wd-q38-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "IT",
@@ -423,7 +447,7 @@
         "wikidata": "Q38"
       },
       "id": "place-wd-q38",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Italy",
@@ -434,11 +458,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q39-country-code",
-        "claim-wd-q39-external-ids",
         "claim-wd-q39-name-en",
         "claim-wd-q39-name-zh",
-        "claim-wd-q39-region"
+        "claim-wd-q39-country-code",
+        "claim-wd-q39-region",
+        "claim-wd-q39-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "CH",
@@ -447,7 +471,7 @@
         "wikidata": "Q39"
       },
       "id": "place-wd-q39",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Switzerland",
@@ -458,11 +482,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q40-country-code",
-        "claim-wd-q40-external-ids",
         "claim-wd-q40-name-en",
         "claim-wd-q40-name-zh",
-        "claim-wd-q40-region"
+        "claim-wd-q40-country-code",
+        "claim-wd-q40-region",
+        "claim-wd-q40-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "AT",
@@ -471,7 +495,7 @@
         "wikidata": "Q40"
       },
       "id": "place-wd-q40",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Austria",
@@ -482,11 +506,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q408-country-code",
-        "claim-wd-q408-external-ids",
         "claim-wd-q408-name-en",
         "claim-wd-q408-name-zh",
-        "claim-wd-q408-region"
+        "claim-wd-q408-country-code",
+        "claim-wd-q408-region",
+        "claim-wd-q408-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "AU",
@@ -495,7 +519,7 @@
         "wikidata": "Q408"
       },
       "id": "place-wd-q408",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Australia",
@@ -506,11 +530,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q41-country-code",
-        "claim-wd-q41-external-ids",
         "claim-wd-q41-name-en",
         "claim-wd-q41-name-zh",
-        "claim-wd-q41-region"
+        "claim-wd-q41-country-code",
+        "claim-wd-q41-region",
+        "claim-wd-q41-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "GR",
@@ -519,7 +543,7 @@
         "wikidata": "Q41"
       },
       "id": "place-wd-q41",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Greece",
@@ -530,11 +554,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q414-country-code",
-        "claim-wd-q414-external-ids",
         "claim-wd-q414-name-en",
         "claim-wd-q414-name-zh",
-        "claim-wd-q414-region"
+        "claim-wd-q414-country-code",
+        "claim-wd-q414-region",
+        "claim-wd-q414-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "AR",
@@ -543,7 +567,7 @@
         "wikidata": "Q414"
       },
       "id": "place-wd-q414",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Argentina",
@@ -554,11 +578,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q419-country-code",
-        "claim-wd-q419-external-ids",
         "claim-wd-q419-name-en",
         "claim-wd-q419-name-zh",
-        "claim-wd-q419-region"
+        "claim-wd-q419-country-code",
+        "claim-wd-q419-region",
+        "claim-wd-q419-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "PE",
@@ -567,7 +591,7 @@
         "wikidata": "Q419"
       },
       "id": "place-wd-q419",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Peru",
@@ -578,11 +602,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q424-country-code",
-        "claim-wd-q424-external-ids",
         "claim-wd-q424-name-en",
         "claim-wd-q424-name-zh",
-        "claim-wd-q424-region"
+        "claim-wd-q424-country-code",
+        "claim-wd-q424-region",
+        "claim-wd-q424-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "KH",
@@ -591,7 +615,7 @@
         "wikidata": "Q424"
       },
       "id": "place-wd-q424",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Cambodia",
@@ -602,11 +626,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q43-country-code",
-        "claim-wd-q43-external-ids",
         "claim-wd-q43-name-en",
         "claim-wd-q43-name-zh",
-        "claim-wd-q43-region"
+        "claim-wd-q43-country-code",
+        "claim-wd-q43-region",
+        "claim-wd-q43-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "TR",
@@ -615,7 +639,7 @@
         "wikidata": "Q43"
       },
       "id": "place-wd-q43",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Turkey",
@@ -626,11 +650,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q45-country-code",
-        "claim-wd-q45-external-ids",
         "claim-wd-q45-name-en",
         "claim-wd-q45-name-zh",
-        "claim-wd-q45-region"
+        "claim-wd-q45-country-code",
+        "claim-wd-q45-region",
+        "claim-wd-q45-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "PT",
@@ -639,7 +663,7 @@
         "wikidata": "Q45"
       },
       "id": "place-wd-q45",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Portugal",
@@ -650,11 +674,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q55-country-code",
-        "claim-wd-q55-external-ids",
         "claim-wd-q55-name-en",
         "claim-wd-q55-name-zh",
-        "claim-wd-q55-region"
+        "claim-wd-q55-country-code",
+        "claim-wd-q55-region",
+        "claim-wd-q55-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "NL",
@@ -663,7 +687,7 @@
         "wikidata": "Q55"
       },
       "id": "place-wd-q55",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Netherlands",
@@ -674,11 +698,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q664-country-code",
-        "claim-wd-q664-external-ids",
         "claim-wd-q664-name-en",
         "claim-wd-q664-name-zh",
-        "claim-wd-q664-region"
+        "claim-wd-q664-country-code",
+        "claim-wd-q664-region",
+        "claim-wd-q664-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "NZ",
@@ -687,7 +711,7 @@
         "wikidata": "Q664"
       },
       "id": "place-wd-q664",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "New Zealand",
@@ -698,11 +722,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q668-country-code",
-        "claim-wd-q668-external-ids",
         "claim-wd-q668-name-en",
         "claim-wd-q668-name-zh",
-        "claim-wd-q668-region"
+        "claim-wd-q668-country-code",
+        "claim-wd-q668-region",
+        "claim-wd-q668-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "IN",
@@ -711,7 +735,7 @@
         "wikidata": "Q668"
       },
       "id": "place-wd-q668",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "India",
@@ -722,11 +746,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q79-country-code",
-        "claim-wd-q79-external-ids",
         "claim-wd-q79-name-en",
         "claim-wd-q79-name-zh",
-        "claim-wd-q79-region"
+        "claim-wd-q79-country-code",
+        "claim-wd-q79-region",
+        "claim-wd-q79-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "EG",
@@ -735,7 +759,7 @@
         "wikidata": "Q79"
       },
       "id": "place-wd-q79",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Egypt",
@@ -746,11 +770,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q794-country-code",
-        "claim-wd-q794-external-ids",
         "claim-wd-q794-name-en",
         "claim-wd-q794-name-zh",
-        "claim-wd-q794-region"
+        "claim-wd-q794-country-code",
+        "claim-wd-q794-region",
+        "claim-wd-q794-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "IR",
@@ -759,7 +783,7 @@
         "wikidata": "Q794"
       },
       "id": "place-wd-q794",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Iran",
@@ -770,11 +794,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q819-country-code",
-        "claim-wd-q819-external-ids",
         "claim-wd-q819-name-en",
         "claim-wd-q819-name-zh",
-        "claim-wd-q819-region"
+        "claim-wd-q819-country-code",
+        "claim-wd-q819-region",
+        "claim-wd-q819-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "LA",
@@ -783,7 +807,7 @@
         "wikidata": "Q819"
       },
       "id": "place-wd-q819",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Laos",
@@ -794,11 +818,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q833-country-code",
-        "claim-wd-q833-external-ids",
         "claim-wd-q833-name-en",
         "claim-wd-q833-name-zh",
-        "claim-wd-q833-region"
+        "claim-wd-q833-country-code",
+        "claim-wd-q833-region",
+        "claim-wd-q833-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "MY",
@@ -807,7 +831,7 @@
         "wikidata": "Q833"
       },
       "id": "place-wd-q833",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Malaysia",
@@ -818,11 +842,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q836-country-code",
-        "claim-wd-q836-external-ids",
         "claim-wd-q836-name-en",
         "claim-wd-q836-name-zh",
-        "claim-wd-q836-region"
+        "claim-wd-q836-country-code",
+        "claim-wd-q836-region",
+        "claim-wd-q836-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "MM",
@@ -831,7 +855,7 @@
         "wikidata": "Q836"
       },
       "id": "place-wd-q836",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Myanmar",
@@ -842,11 +866,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q851-country-code",
-        "claim-wd-q851-external-ids",
         "claim-wd-q851-name-en",
         "claim-wd-q851-name-zh",
-        "claim-wd-q851-region"
+        "claim-wd-q851-country-code",
+        "claim-wd-q851-region",
+        "claim-wd-q851-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "SA",
@@ -855,7 +879,7 @@
         "wikidata": "Q851"
       },
       "id": "place-wd-q851",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Saudi Arabia",
@@ -866,11 +890,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q869-country-code",
-        "claim-wd-q869-external-ids",
         "claim-wd-q869-name-en",
         "claim-wd-q869-name-zh",
-        "claim-wd-q869-region"
+        "claim-wd-q869-country-code",
+        "claim-wd-q869-region",
+        "claim-wd-q869-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "TH",
@@ -879,7 +903,7 @@
         "wikidata": "Q869"
       },
       "id": "place-wd-q869",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Thailand",
@@ -890,11 +914,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q878-country-code",
-        "claim-wd-q878-external-ids",
         "claim-wd-q878-name-en",
         "claim-wd-q878-name-zh",
-        "claim-wd-q878-region"
+        "claim-wd-q878-country-code",
+        "claim-wd-q878-region",
+        "claim-wd-q878-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "AE",
@@ -903,7 +927,7 @@
         "wikidata": "Q878"
       },
       "id": "place-wd-q878",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "United Arab Emirates",
@@ -914,11 +938,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q881-country-code",
-        "claim-wd-q881-external-ids",
         "claim-wd-q881-name-en",
         "claim-wd-q881-name-zh",
-        "claim-wd-q881-region"
+        "claim-wd-q881-country-code",
+        "claim-wd-q881-region",
+        "claim-wd-q881-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "VN",
@@ -927,7 +951,7 @@
         "wikidata": "Q881"
       },
       "id": "place-wd-q881",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Vietnam",
@@ -938,11 +962,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q884-country-code",
-        "claim-wd-q884-external-ids",
         "claim-wd-q884-name-en",
         "claim-wd-q884-name-zh",
-        "claim-wd-q884-region"
+        "claim-wd-q884-country-code",
+        "claim-wd-q884-region",
+        "claim-wd-q884-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "KR",
@@ -951,7 +975,7 @@
         "wikidata": "Q884"
       },
       "id": "place-wd-q884",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "South Korea",
@@ -962,11 +986,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q912-country-code",
-        "claim-wd-q912-external-ids",
         "claim-wd-q912-name-en",
         "claim-wd-q912-name-zh",
-        "claim-wd-q912-region"
+        "claim-wd-q912-country-code",
+        "claim-wd-q912-region",
+        "claim-wd-q912-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "ML",
@@ -975,7 +999,7 @@
         "wikidata": "Q912"
       },
       "id": "place-wd-q912",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Mali",
@@ -986,11 +1010,11 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q96-country-code",
-        "claim-wd-q96-external-ids",
         "claim-wd-q96-name-en",
         "claim-wd-q96-name-zh",
-        "claim-wd-q96-region"
+        "claim-wd-q96-country-code",
+        "claim-wd-q96-region",
+        "claim-wd-q96-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "MX",
@@ -999,7 +1023,7 @@
         "wikidata": "Q96"
       },
       "id": "place-wd-q96",
-      "last_verified": "2026-08-09",
+      "last_verified": "2026-08-13",
       "lat": null,
       "lng": null,
       "name_en": "Mexico",
