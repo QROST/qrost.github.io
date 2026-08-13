@@ -296,6 +296,40 @@
       }).join('');
     }
 
+    const parkingLinkHtml = (link) => {
+      const type = ['source', 'map'].includes(link.type) ? link.type : 'source';
+      return `<a class="tour-parking-link is-${escapeHtml(type)}" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(link.label))}<span aria-hidden="true">↗</span></a>`;
+    };
+    const alternativeRoot = document.getElementById('tour-parking-alternative-list');
+    if (alternativeRoot) {
+      alternativeRoot.innerHTML = (tour.parkingAlternatives || []).map((option) => {
+        const tone = ['campus', 'city'].includes(option.tone) ? option.tone : 'city';
+        return `<article class="tour-parking-option tone-${escapeHtml(tone)}" role="listitem">
+          <span class="tour-parking-option-badge">${escapeHtml(localized(option.badge))}</span>
+          <h4>${escapeHtml(localized(option.title))}</h4>
+          <dl class="tour-parking-option-facts">
+            <div><dt>${escapeHtml(text('tourParkingPlaceLabel'))}</dt><dd><address>${escapeHtml(localized(option.place))}</address></dd></div>
+            <div><dt>${escapeHtml(text('tourParkingCostLabel'))}</dt><dd>${escapeHtml(localized(option.cost))}</dd></div>
+            <div><dt>${escapeHtml(text('tourParkingWalkLabel'))}</dt><dd>${escapeHtml(localized(option.walk))}</dd></div>
+            <div><dt>${escapeHtml(text('tourParkingWatchLabel'))}</dt><dd>${escapeHtml(localized(option.watch))}</dd></div>
+          </dl>
+          <div class="tour-parking-option-note"><strong>${escapeHtml(text('tourParkingBestLabel'))}</strong><p>${escapeHtml(localized(option.best))}</p></div>
+          <div class="tour-parking-option-note is-boundary"><strong>${escapeHtml(text('tourParkingRuleLabel'))}</strong><p>${escapeHtml(localized(option.rule))}</p></div>
+          <div class="tour-parking-links">${(option.links || []).map(parkingLinkHtml).join('')}</div>
+        </article>`;
+      }).join('');
+    }
+
+    const noGoRoot = document.getElementById('tour-parking-no-go-list');
+    if (noGoRoot) {
+      noGoRoot.innerHTML = (tour.parkingExclusions || []).map((item) => (
+        `<li class="tour-parking-no-go-item">
+          <div><h4>${escapeHtml(localized(item.title))}</h4><p>${escapeHtml(localized(item.body))}</p></div>
+          <div class="tour-parking-links">${(item.links || []).map(parkingLinkHtml).join('')}</div>
+        </li>`
+      )).join('');
+    }
+
     const sourceRoot = document.getElementById('tour-source-list');
     if (sourceRoot) {
       sourceRoot.innerHTML = (tour.sources || []).map((source) => (

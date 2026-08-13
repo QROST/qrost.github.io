@@ -175,13 +175,22 @@ def validate() -> list[str]:
         'id="tour-0813"': "Tour section",
         'id="tour-route"': "Tour route renderer root",
         'id="tour-wave-list"': "Tour wave renderer root",
+        'id="tour-parking-alternative-list"': "Tour parking-alternative renderer root",
+        'id="tour-parking-no-go-list"': "Tour parking-exclusion renderer root",
         'id="tour-plan-list"': "Tour viewing-plan renderer root",
         'id="tour-source-list"': "Tour official-source renderer root",
     }
     for snippet, label in tour_contract.items():
         if html.count(snippet) != 1:
             errors.append(f"expected exactly one {label}, found {html.count(snippet)}")
-    for root_id in ("tour-route", "tour-wave-list", "tour-plan-list", "tour-source-list"):
+    for root_id in (
+        "tour-route",
+        "tour-wave-list",
+        "tour-parking-alternative-list",
+        "tour-parking-no-go-list",
+        "tour-plan-list",
+        "tour-source-list",
+    ):
         renderer_lookup = f"getElementById('{root_id}')"
         if app_js.count(renderer_lookup) != 1:
             errors.append(

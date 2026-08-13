@@ -35,7 +35,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=e86755d4db">
+  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=800844d742">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳到正文</a>
@@ -143,16 +143,40 @@
         </div>
       </article>
 
+      <div class="tour-parking-alternatives" aria-labelledby="tour-parking-alternatives-title">
+        <div class="tour-parking-alternatives-heading">
+          <div>
+            <span class="section-kicker" data-i18n="tourParkingAlternativesKicker">路线边停车调查 · 与 Portola 互斥</span>
+            <h3 id="tour-parking-alternatives-title" data-i18n="tourParkingAlternativesTitle">一个条件候选，一个仅供排除的调查笔记</h3>
+          </div>
+          <p data-i18n="tourParkingAlternativesIntro">这是个人指南对公开停车规则的筛选，不是 Tour 官方停车场或官方观看区。MPC 仅是需要出发前完成现场安全确认的条件候选；MB7 已因步行链未证而排除。不与 Portola 方案串联。</p>
+        </div>
+        <div id="tour-parking-alternative-list" class="tour-parking-alternative-list" role="list"></div>
+        <p class="tour-parking-estimate" data-i18n="tourParkingEstimate">步行时间为本站按公开地图估算，不是无障碍路线或当日封控保证；一律走公共人行道和标线过街处。Tour 没有公布车队到达 Aguajito Road 的时间；没有现场确认的连续安全步行路线，就不执行 Monterey 方案。</p>
+        <aside class="tour-parking-conditional">
+          <strong data-i18n="tourParkingConditionalTitle">17-Mile Drive 景点停车位不列为 8.13 选项</strong>
+          <p data-i18n="tourParkingConditionalBody">普通日的划线景点停车位不等于 Tour 观众停车位；主办方也没有指定任何 scenic turnout 供 8 月 13 日 Tour 观众使用。本页不推荐 Bird Rock、Lone Cypress 或任何命名 pullout，也不停路肩；进入 Pebble Beach 后只按 Tour 当日停车指引行动。</p>
+        </aside>
+      </div>
+
+      <div class="tour-parking-no-go" aria-labelledby="tour-parking-no-go-title">
+        <div class="tour-parking-no-go-heading">
+          <h3 id="tour-parking-no-go-title" data-i18n="tourParkingNoGoTitle">已排除的“看起来很近”停车点</h3>
+          <p data-i18n="tourParkingNoGoIntro">“付费”或“有空地”不等于允许赛事观看停车；现场标志、物业权限与交通指挥永远优先。</p>
+        </div>
+        <ul id="tour-parking-no-go-list" class="tour-parking-no-go-list"></ul>
+      </div>
+
       <div class="tour-plan-card">
         <div class="tour-plan-heading">
-          <div><span class="section-kicker" data-i18n="tourPlanIntro">以下为本站规划，不是官方时刻表。</span><h3 data-i18n="tourPlanTitle">推荐观看顺序</h3></div>
+          <div><span class="section-kicker" data-i18n="tourPortolaPlanKicker">Portola 方案专属 · 不适用于 Monterey 条件候选</span><h3 data-i18n="tourPlanTitle">推荐观看顺序</h3><p class="tour-plan-intro" data-i18n="tourPlanIntro">以下为本站规划，不是官方时刻表。</p></div>
         </div>
         <ol id="tour-plan-list" class="tour-plan-list"></ol>
       </div>
 
       <aside class="tour-warning" aria-labelledby="tour-warning-title">
         <span class="tour-warning-icon" aria-hidden="true">!</span>
-        <div><h3 id="tour-warning-title" data-i18n="tourWarningTitle">不要追车，也不要去 Carmel 等待</h3><p data-i18n="tourWarningBody">新版路线不经过 Carmel 或 Big Sur。驾车追逐会增加封路与第一响应人员周边交通压力；把车留在官方引导的停车区，只在允许的步行区域观看。</p></div>
+        <div><h3 id="tour-warning-title" data-i18n="tourWarningTitle">不要追车，也不要去 Carmel 等待</h3><p data-i18n="tourWarningBody">新版路线不经过 Carmel 或 Big Sur。Portola 起终点方案与 Monterey 路段备选互斥：出发前选好一处，把车留在那里，不在发车后开车换点。只在现场允许的公共步行区域观看。</p></div>
       </aside>
 
       <div class="tour-source-bar">
@@ -292,7 +316,7 @@
   </footer>
 
   <script src="assets/vendor/leaflet/leaflet.js"></script>
-  <script src="assets/js/data.js?v=2966d4bc6a"></script>
-  <script src="assets/js/app.js?v=7feadbc737"></script>
+  <script src="assets/js/data.js?v=a10c5adcd2"></script>
+  <script src="assets/js/app.js?v=4d031e23ae"></script>
 </body>
 </html>

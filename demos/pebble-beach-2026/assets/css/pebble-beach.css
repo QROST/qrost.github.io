@@ -492,9 +492,136 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .tour-arrival-time > span { color: var(--gold); font-size: .65rem; font-weight: 850; letter-spacing: .07em; text-transform: uppercase; }
 .tour-arrival-time strong { margin-top: 5px; color: var(--ink); font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.65rem); font-weight: 600; line-height: 1.1; white-space: nowrap; }
 .tour-arrival-time small { margin-top: 8px; color: var(--muted); font-size: .67rem; line-height: 1.45; }
+.tour-parking-alternatives,
+.tour-parking-no-go {
+  margin-top: 14px;
+  padding: clamp(24px, 4vw, 38px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-small);
+}
+.tour-parking-alternatives-heading {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(300px, 1.2fr);
+  gap: clamp(24px, 5vw, 70px);
+  align-items: end;
+}
+.tour-parking-alternatives-heading .section-kicker { color: var(--blue); }
+.tour-parking-alternatives-heading h3,
+.tour-parking-no-go-heading h3 {
+  margin: 7px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(1.45rem, 2.5vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1.16;
+}
+.tour-parking-alternatives-heading > p,
+.tour-parking-no-go-heading > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.68;
+}
+.tour-parking-alternative-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 26px;
+}
+.tour-parking-option {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--blue);
+  border-radius: var(--radius-small);
+  background: color-mix(in srgb, var(--surface) 88%, var(--blue-soft));
+}
+.tour-parking-option.tone-city {
+  border-top-color: var(--orange);
+  background: color-mix(in srgb, var(--surface) 88%, var(--orange-soft));
+}
+.tour-parking-option-badge {
+  display: inline-flex;
+  min-height: 27px;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: .59rem;
+  font-weight: 850;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.tour-parking-option.tone-city .tour-parking-option-badge { background: var(--orange-soft); color: var(--orange); }
+.tour-parking-option h4 { margin: 13px 0 0; font-family: var(--serif); font-size: 1.18rem; line-height: 1.25; }
+.tour-parking-option-facts { display: grid; gap: 0; margin: 17px 0 0; }
+.tour-parking-option-facts > div {
+  display: grid;
+  grid-template-columns: minmax(66px, .25fr) minmax(0, 1fr);
+  gap: 10px;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+}
+.tour-parking-option-facts dt,
+.tour-parking-option-note > strong {
+  color: var(--faint);
+  font-size: .61rem;
+  font-weight: 850;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.tour-parking-option-facts dd,
+.tour-parking-option-facts address {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: .72rem;
+  font-style: normal;
+  line-height: 1.52;
+}
+.tour-parking-option-note { margin-top: 14px; padding: 13px 14px; border-radius: 10px; background: color-mix(in srgb, var(--bg-soft) 75%, transparent); }
+.tour-parking-option-note.is-boundary { border-left: 3px solid var(--orange); background: color-mix(in srgb, var(--orange-soft) 35%, var(--surface)); }
+.tour-parking-option-note p { margin: 6px 0 0; color: var(--muted); font-size: .69rem; line-height: 1.56; }
+.tour-parking-links { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+.tour-parking-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--green);
+  font-size: .65rem;
+  font-weight: 750;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.tour-parking-link.is-map { color: var(--blue); }
+.tour-parking-link:hover { border-color: currentColor; background: var(--bg-soft); }
+.tour-parking-estimate { margin: 16px 0 0; color: var(--faint); font-size: .68rem; line-height: 1.55; }
+.tour-parking-conditional {
+  margin-top: 14px;
+  padding: 15px 17px;
+  border: 1px dashed color-mix(in srgb, var(--orange) 50%, var(--line));
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--orange-soft) 34%, var(--surface));
+}
+.tour-parking-conditional strong { color: var(--orange); font-size: .75rem; }
+.tour-parking-conditional p { margin: 7px 0 0; color: var(--muted); font-size: .69rem; line-height: 1.55; }
+.tour-parking-no-go { background: color-mix(in srgb, var(--orange-soft) 30%, var(--surface)); }
+.tour-parking-no-go-heading { display: grid; grid-template-columns: minmax(0, .8fr) minmax(300px, 1.2fr); gap: clamp(24px, 5vw, 70px); align-items: end; }
+.tour-parking-no-go-heading h3 { color: var(--orange); }
+.tour-parking-no-go-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+.tour-parking-no-go-item { min-width: 0; padding: 17px; border: 1px solid color-mix(in srgb, var(--orange) 30%, var(--line)); border-radius: 11px; background: var(--surface); }
+.tour-parking-no-go-item h4 { margin: 0; font-size: .78rem; line-height: 1.4; }
+.tour-parking-no-go-item p { margin: 8px 0 0; color: var(--muted); font-size: .67rem; line-height: 1.55; }
+.tour-parking-no-go-item .tour-parking-links { margin-top: 12px; }
 .tour-plan-card { margin-top: 14px; padding: clamp(24px, 4vw, 38px); }
 .tour-plan-heading .section-kicker { display: block; color: var(--gold); }
 .tour-plan-heading h3 { margin-top: 6px; }
+.tour-plan-intro { margin: 8px 0 0; color: var(--muted); font-size: .74rem; line-height: 1.55; }
 .tour-plan-list {
   counter-reset: tour-step;
   display: grid;
@@ -1143,6 +1270,7 @@ html[lang="en"] .only-zh { display: none; }
   }
   .plan-timeline-item { grid-template-columns: minmax(78px, 32%) 1fr; gap: 8px; }
   .tour-plan-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tour-parking-no-go-list { grid-template-columns: 1fr; }
   .nearby-grid { grid-template-columns: 1fr; }
   .stay-grid { grid-template-columns: repeat(2, 1fr); }
   .price-method { grid-template-columns: 1fr; gap: 9px; }
@@ -1168,6 +1296,8 @@ html[lang="en"] .only-zh { display: none; }
   .section-heading { grid-template-columns: 1fr; gap: 18px; margin-bottom: 28px; }
   .section-heading h2 { font-size: clamp(1.95rem, 10vw, 2.7rem); }
   .tour-facts-grid, .tour-parking-card { grid-template-columns: 1fr; }
+  .tour-parking-alternatives-heading, .tour-parking-no-go-heading { grid-template-columns: 1fr; gap: 12px; }
+  .tour-parking-alternative-list { grid-template-columns: 1fr; }
   .tour-arrival-time { width: min(100%, 360px); }
   .tour-source-bar { flex-direction: column; gap: 8px; }
   .tour-source-bar > strong { padding-top: 0; }
@@ -1194,7 +1324,10 @@ html[lang="en"] .only-zh { display: none; }
   .kpi { min-height: 92px; padding: 18px; }
   .kpi-value { font-size: 1.5rem; }
   .plan-track, .stay-grid, .nearby-grid, .tour-plan-list { grid-template-columns: 1fr; }
-  .tour-fact-card, .tour-parking-card, .tour-plan-card { padding: 20px; }
+  .tour-fact-card, .tour-parking-card, .tour-parking-alternatives, .tour-parking-no-go, .tour-plan-card { padding: 20px; }
+  .tour-parking-option { padding: 17px; }
+  .tour-parking-option-facts > div { grid-template-columns: 1fr; gap: 4px; }
+  .tour-parking-links, .tour-parking-link { width: 100%; }
   .tour-wave { min-height: 68px; padding: 9px 5px; }
   .tour-wave time { font-size: 1.08rem; }
   .tour-arrival-time strong { white-space: normal; }

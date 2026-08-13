@@ -111,6 +111,74 @@ if (data) {
       checkBilingual(step.note, `${label}.note`);
     }
 
+    const expectedParkingIds = ['mpc', 'mb7'];
+    check(Array.isArray(tourMorning.parkingAlternatives), 'tourMorning.parkingAlternatives must be an array');
+    check(
+      JSON.stringify((tourMorning.parkingAlternatives || []).map((option) => option.id)) === JSON.stringify(expectedParkingIds),
+      'tourMorning parking alternative ids drifted'
+    );
+    for (const [index, option] of (tourMorning.parkingAlternatives || []).entries()) {
+      const label = `tourMorning.parkingAlternatives[${index}]`;
+      check(['campus', 'city'].includes(option.tone), `${label}.tone is invalid`);
+      for (const key of ['badge', 'title', 'place', 'cost', 'walk', 'watch', 'best', 'rule']) {
+        checkBilingual(option[key], `${label}.${key}`);
+      }
+      check(Array.isArray(option.links) && option.links.length >= 2, `${label}.links needs at least two entries`);
+      for (const [linkIndex, link] of (option.links || []).entries()) {
+        const linkLabel = `${label}.links[${linkIndex}]`;
+        check(['source', 'map'].includes(link.type), `${linkLabel}.type is invalid`);
+        checkBilingual(link.label, `${linkLabel}.label`);
+        checkUrl(link.url, `${linkLabel}.url`);
+      }
+    }
+    const parkingText = JSON.stringify(tourMorning.parkingAlternatives || []);
+    check(parkingText.includes('$3'), 'MPC alternative must preserve the $3 daily-pass rule');
+    check(parkingText.includes('30-minute'), 'MPC alternative must exclude Lot D 30-minute spaces');
+    check(parkingText.includes('21009'), 'MB7 alternative must preserve ParkMobile zone 21009');
+    check(parkingText.includes('34 spaces'), 'MB7 alternative must preserve its limited 34-space capacity');
+    check(parkingText.includes('not a Tour lot'), 'parking alternatives must preserve the non-event-lot boundary');
+    check(parkingText.includes('no official source confirms'), 'parking alternatives must preserve the unconfirmed pedestrian-continuity boundary');
+    check(parkingText.includes('Rejected as a Tour viewing plan'), 'MB7 must remain explicitly rejected for Tour viewing');
+    check(parkingText.includes('$2/hour') && parkingText.includes('$14 daily maximum'), 'MB7 current rate details drifted');
+    check(parkingText.includes('9:00–20:00'), 'MB7 enforcement window drifted');
+    check(parkingText.includes('daily pass'), 'MPC daily-pass availability boundary drifted');
+    check(!parkingText.includes('Bird Rock') && !parkingText.includes('Lone Cypress'), 'named 17-Mile Drive pullouts cannot be parking alternatives');
+    const parkingAlternativeUrls = (tourMorning.parkingAlternatives || []).flatMap((option) => (option.links || []).map((link) => link.url));
+    for (const url of [
+      'https://www.mpc.edu/campus-life/coming-to-campus/parking-and-transportation/index.html',
+      'https://www.mpc.edu/campus-life/coming-to-campus/campus-maps.html',
+      'https://monterey.gov/your_city_hall/departments/public_works/parking/public_garages_and_lots.php'
+    ]) check(parkingAlternativeUrls.includes(url), `parking alternatives must preserve source: ${url}`);
+
+    const expectedParkingExclusionIds = ['freeway', 'airport', 'restricted'];
+    check(Array.isArray(tourMorning.parkingExclusions), 'tourMorning.parkingExclusions must be an array');
+    check(
+      JSON.stringify((tourMorning.parkingExclusions || []).map((item) => item.id)) === JSON.stringify(expectedParkingExclusionIds),
+      'tourMorning parking exclusion ids drifted'
+    );
+    for (const [index, item] of (tourMorning.parkingExclusions || []).entries()) {
+      const label = `tourMorning.parkingExclusions[${index}]`;
+      checkBilingual(item.title, `${label}.title`);
+      checkBilingual(item.body, `${label}.body`);
+      check(Array.isArray(item.links) && item.links.length >= 1, `${label}.links needs at least one entry`);
+      for (const [linkIndex, link] of (item.links || []).entries()) {
+        const linkLabel = `${label}.links[${linkIndex}]`;
+        check(link.type === 'source', `${linkLabel}.type must be source`);
+        checkBilingual(link.label, `${linkLabel}.label`);
+        checkUrl(link.url, `${linkLabel}.url`);
+      }
+    }
+    const exclusionText = JSON.stringify(tourMorning.parkingExclusions || []);
+    check(exclusionText.includes('21718'), 'parking exclusions must preserve the freeway-parking law source');
+    check(exclusionText.includes('nearing capacity'), 'parking exclusions must preserve the airport capacity reason');
+    check(exclusionText.includes('permit-only'), 'parking exclusions must preserve permit-only lot guidance');
+    const parkingExclusionUrls = (tourMorning.parkingExclusions || []).flatMap((item) => (item.links || []).map((link) => link.url));
+    for (const url of [
+      'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21718.',
+      'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21960.',
+      'https://www.montereyairport.com/parking'
+    ]) check(parkingExclusionUrls.includes(url), `parking exclusions must preserve source: ${url}`);
+
     const tourSourceIds = new Set();
     const tourSourceUrls = [];
     for (const [index, source] of (tourMorning.sources || []).entries()) {

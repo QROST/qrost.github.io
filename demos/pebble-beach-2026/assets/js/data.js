@@ -235,6 +235,33 @@ window.PEBBLE_DATA = {
       zh: '不要把未经官方确认的路肩、住宅街或 ADA Lot 9 当作普通观众停车点。',
       en: 'Do not rely on unconfirmed shoulders, residential streets or ADA Lot 9 as general-spectator parking.'
     },
+    tourParkingAlternativesKicker: { zh: '路线边停车调查 · 与 Portola 互斥', en: 'Route-side parking research · choose instead of Portola' },
+    tourParkingAlternativesTitle: { zh: '一个条件候选，一个仅供排除的调查笔记', en: 'One conditional candidate, one rejected research note' },
+    tourParkingAlternativesIntro: {
+      zh: '这是个人指南对公开停车规则的筛选，不是 Tour 官方停车场或官方观看区。MPC 仅是需要出发前完成现场安全确认的条件候选；MB7 已因步行链未证而排除。不与 Portola 方案串联。',
+      en: 'This is the guide’s screening of published parking rules—not official Tour lots or official spectator zones. MPC is only a conditional candidate requiring a pre-departure onsite safety check; MB7 is rejected because the walking chain is unverified. Do not combine either with the Portola plan.'
+    },
+    tourParkingPlaceLabel: { zh: '停车', en: 'Park' },
+    tourParkingCostLabel: { zh: '费用 / 规则', en: 'Cost / rule' },
+    tourParkingWalkLabel: { zh: '步行', en: 'Walk' },
+    tourParkingWatchLabel: { zh: '观看', en: 'Watch' },
+    tourParkingBestLabel: { zh: '结论', en: 'Verdict' },
+    tourParkingRuleLabel: { zh: '使用边界', en: 'Use boundary' },
+    tourParkingEstimate: {
+      zh: '步行时间为本站按公开地图估算，不是无障碍路线或当日封控保证；一律走公共人行道和标线过街处。Tour 没有公布车队到达 Aguajito Road 的时间；没有现场确认的连续安全步行路线，就不执行 Monterey 方案。',
+      en: 'Walking times are guide estimates from public maps, not accessible-route or event-closure guarantees. Use public sidewalks and marked crossings only. The Tour has not published a pass time for Aguajito Road; without an onsite-confirmed continuous safe walk, do not use a Monterey-side plan.'
+    },
+    tourPortolaPlanKicker: { zh: 'Portola 方案专属 · 不适用于 Monterey 条件候选', en: 'Portola plan only · not for the Monterey conditional candidate' },
+    tourParkingConditionalTitle: { zh: '17-Mile Drive 景点停车位不列为 8.13 选项', en: '17-Mile Drive scenic bays are not an Aug 13 option' },
+    tourParkingConditionalBody: {
+      zh: '普通日的划线景点停车位不等于 Tour 观众停车位；主办方也没有指定任何 scenic turnout 供 8 月 13 日 Tour 观众使用。本页不推荐 Bird Rock、Lone Cypress 或任何命名 pullout，也不停路肩；进入 Pebble Beach 后只按 Tour 当日停车指引行动。',
+      en: 'A scenic bay that is legal on an ordinary day is not Tour spectator parking, and the organizer has not designated any scenic turnout for Aug 13 spectators. This guide does not recommend Bird Rock, Lone Cypress or any named pullout, and shoulders remain off limits; once inside Pebble Beach, use only day-of Tour parking directions.'
+    },
+    tourParkingNoGoTitle: { zh: '已排除的“看起来很近”停车点', en: 'Nearby-looking places this guide rejects' },
+    tourParkingNoGoIntro: {
+      zh: '“付费”或“有空地”不等于允许赛事观看停车；现场标志、物业权限与交通指挥永远优先。',
+      en: 'A fee or an empty space does not make a place spectator parking. Posted signs, property permission and traffic control always take priority.'
+    },
     tourPlanTitle: { zh: '推荐观看顺序', en: 'Suggested viewing sequence' },
     tourPlanIntro: { zh: '以下为本站规划，不是官方时刻表。', en: 'This sequence is a guide recommendation, not an official timetable.' },
     tourToneGuide: { zh: '本站建议', en: 'Guide' },
@@ -242,8 +269,8 @@ window.PEBBLE_DATA = {
     tourToneWalk: { zh: '步行', en: 'Walk' },
     tourWarningTitle: { zh: '不要追车，也不要去 Carmel 等待', en: 'Do not chase the convoy or wait in Carmel' },
     tourWarningBody: {
-      zh: '新版路线不经过 Carmel 或 Big Sur。驾车追逐会增加封路与第一响应人员周边交通压力；把车留在官方引导的停车区，只在允许的步行区域观看。',
-      en: 'The revised route does not pass through Carmel or Big Sur. Chasing it adds traffic around closures and first responders; leave the car in the directed parking area and watch only from permitted pedestrian areas.'
+      zh: '新版路线不经过 Carmel 或 Big Sur。Portola 起终点方案与 Monterey 路段备选互斥：出发前选好一处，把车留在那里，不在发车后开车换点。只在现场允许的公共步行区域观看。',
+      en: 'The revised route does not pass through Carmel or Big Sur. The Portola start/finish plan and the Monterey route-side alternatives are mutually exclusive: choose before departure, leave the car there and do not drive between viewing points after the Tour starts. Watch only from public pedestrian space that remains open onsite.'
     },
     tourSourcesLabel: { zh: '四个官方复核入口', en: 'Four official checks' },
     quickKicker: { zh: '早到 + 主周 · 推荐', en: 'Early + peak · recommended' },
@@ -456,6 +483,68 @@ window.PEBBLE_DATA = {
         note: { zh: '官方活动页预计约中午返回；时间是约数，预留等待。', en: 'The event page gives an approximate noon return; allow for delay.' }
       }
     ],
+    parkingAlternatives: [
+      {
+        id: 'mpc', tone: 'campus',
+        badge: { zh: '校方公开规则 · 非赛事专用', en: 'Published campus rules · not an event lot' },
+        title: { zh: 'Monterey Peninsula College Lot A', en: 'Monterey Peninsula College Lot A' },
+        place: { zh: '980 Fremont Street；从 Via Lavandera 按校内指示前往 Lot A，只停学生 / 普通标线车位', en: '980 Fremont Street; follow campus signs from Via Lavandera to Lot A and use only a marked student/general stall' },
+        cost: { zh: '校方说任何人均可在停车场自助机购买 $3 日票；购买后正确展示', en: 'MPC says anyone may buy a $3 daily pass at a parking-lot kiosk; display it correctly' },
+        walk: { zh: '约 8–12 分钟 / 0.4–0.6 mi 到 Aguajito / Mark Thomas 一带（地图估算）', en: 'About 8–12 min / 0.4–0.6 mi to the Aguajito / Mark Thomas area (map estimate)' },
+        watch: { zh: '只有在现场确认存在连续、开放的公共步行路线与可停留位置时，才前往 Aguajito / Mark Thomas 一带', en: 'Proceed toward Aguajito / Mark Thomas only if a continuous, open public pedestrian route and a legal place to stand are confirmed onsite' },
+        best: { zh: '必须在出发前确认校园 / 自助机开放，并能确认连续、开放的公共步行路线。任一条件失效就放弃路线边观看；发车后不转去 Portola，也不沿线找路肩。', en: 'Confirm before departure that campus/kiosks are open and that a continuous open public pedestrian route is available. If either condition fails, abandon route-side viewing; do not switch to Portola after departure or improvise along a shoulder.' },
+        rule: { zh: '先确认校园与自助机当日开放；只停划线的 public / student 车位。不用员工、黄色、无证无障碍车位，也不依赖 Lot D 30 分钟免费访客位。MPC 不是 Tour 停车场；当日告示、保安或临时封控优先。', en: 'First confirm that campus and the kiosk are open that day; use only a marked public/student stall. Do not use staff, yellow, unpermitted accessible, or Lot D 30-minute visitor spaces. MPC is not a Tour lot; day-of signs, Security and temporary controls override this guide.' },
+        links: [
+          { type: 'source', label: { zh: 'MPC 停车证与校规', en: 'MPC permits and rules' }, url: 'https://www.mpc.edu/campus-life/coming-to-campus/parking-and-transportation/index.html' },
+          { type: 'map', label: { zh: 'MPC 校园地图', en: 'MPC campus map' }, url: 'https://www.mpc.edu/campus-life/coming-to-campus/campus-maps.html' },
+          { type: 'map', label: { zh: 'Aguajito / Mark Thomas 候选区域地图', en: 'Aguajito / Mark Thomas guide-candidate map' }, url: 'https://www.openstreetmap.org/?mlat=36.5908&mlon=-121.8799#map=18/36.5908/-121.8799' }
+        ]
+      },
+      {
+        id: 'mb7', tone: 'city',
+        badge: { zh: '公共车位可核 · 观看路线不成立', en: 'Public parking verified · viewing route rejected' },
+        title: { zh: 'MB7 · Monterey Bay Park', en: 'MB7 · Monterey Bay Park' },
+        place: { zh: 'Del Monte Avenue × El Estero；市政公开资料列 34 个车位', en: 'Del Monte Avenue at El Estero; city materials list 34 spaces' },
+        cost: { zh: '$2 / 小时，每日最高 $14；每日 9:00–20:00 执法，自助机或 ParkMobile 21009', en: '$2/hour, $14 daily maximum; enforced daily 9:00–20:00, pay station or ParkMobile 21009' },
+        walk: { zh: '约 18–24 分钟 / 0.9–1.1 mi 到 Aguajito / Mark Thomas 一带（地图估算）', en: 'About 18–24 min / 0.9–1.1 mi to the Aguajito / Mark Thomas area (map estimate)' },
+        watch: { zh: '只有在现场确认存在连续、开放的公共步行路线与可停留位置时，才继续前往 Aguajito / Mark Thomas', en: 'Continue toward Aguajito / Mark Thomas only if a continuous, open public pedestrian route and a legal place to stand are confirmed onsite' },
+        best: { zh: '排除，不作为 Tour 观看方案：市营车位本身可核，但从车位到可合法停留观看处的连续安全步行链未获官方确认。', en: 'Rejected as a Tour viewing plan. The city parking itself is verifiable, but no official source confirms a continuous safe walk from the lot to a legal place to stand.' },
+        rule: { zh: '车位只有 34 个，并且连续安全步行路线未获官方确认，因此不执行此 Tour 观看方案。不要改停两小时的 Sports Center Lot，也不停 permit-only Lot B / 18。', en: 'There are only 34 spaces, and no official source confirms a continuous safe walk, so do not use this as a Tour viewing plan. Do not substitute the two-hour Sports Center lot or permit-only Lots B / 18.' },
+        links: [
+          { type: 'source', label: { zh: '市政停车费率与规则', en: 'City parking rates and rules' }, url: 'https://monterey.gov/your_city_hall/departments/public_works/parking/public_garages_and_lots.php' },
+          { type: 'map', label: { zh: '打开 MB7', en: 'Open MB7' }, url: 'https://www.openstreetmap.org/search?query=Monterey%20Bay%20Park%2C%20Monterey%2C%20CA' },
+          { type: 'map', label: { zh: 'Aguajito / Mark Thomas 距离参考地图', en: 'Aguajito / Mark Thomas distance-reference map' }, url: 'https://www.openstreetmap.org/?mlat=36.5908&mlon=-121.8799#map=18/36.5908/-121.8799' }
+        ]
+      }
+    ],
+    parkingExclusions: [
+      {
+        id: 'freeway',
+        title: { zh: 'Hwy 1 主线 / 匝道，Hwy 68 高速路段与路肩', en: 'Hwy 1 mainline / ramps and Hwy 68 freeway sections / shoulders' },
+        body: { zh: '除紧急或明确许可情形外，加州法禁止在全控制出入高速公路停车；现场标志也可限制行人。这些法条不授权在 Hwy 68、Olmsted 或 Aguajito 其他路段停车；当地路缘、标志、物业与临时交通管制均优先，且目前没有官方指定的 Tour 停车或观看区。', en: 'California law bars parking on fully access-controlled freeways except narrow exceptions, and posted controls may restrict pedestrians. These statutes do not authorize parking elsewhere on Hwy 68, Olmsted or Aguajito; local curbs, signs, property rights and temporary traffic controls apply, and no official Tour parking or spectator area has been designated there.' },
+        links: [
+          { type: 'source', label: { zh: '加州车辆法 § 21718', en: 'California Vehicle Code § 21718' }, url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21718.' },
+          { type: 'source', label: { zh: '加州车辆法 § 21960', en: 'California Vehicle Code § 21960' }, url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21960.' }
+        ]
+      },
+      {
+        id: 'airport',
+        title: { zh: 'Monterey Regional Airport 停车场', en: 'Monterey Regional Airport parking' },
+        body: { zh: '机场当前公开提醒车位接近满载，并请附近居民把位置留给旅客。即使付费，本页也不把它列为 Tour 观看停车点。', en: 'The airport currently says its lots are nearing capacity and asks nearby residents to preserve spaces for travelers. This guide does not treat paid airport parking as Tour spectator parking.' },
+        links: [
+          { type: 'source', label: { zh: '机场当前停车通知', en: 'Current airport parking notice' }, url: 'https://www.montereyairport.com/parking' }
+        ]
+      },
+      {
+        id: 'restricted',
+        title: { zh: '员工、限时、许可证及私人车位', en: 'Staff, time-limited, permit-only and private spaces' },
+        body: { zh: 'MPC 员工 / 黄色车位、Lot D 30 分钟访客位、市政 permit-only Lot B / 18，以及酒店、商家、住宅或其他顾客专用车位都不适合长时间观看。', en: 'MPC staff/yellow spaces, Lot D 30-minute visitor stalls, city permit-only Lots B / 18, and hotel, merchant, residential or customer-only property are unsuitable for a long spectator wait.' },
+        links: [
+          { type: 'source', label: { zh: 'MPC 停车规则', en: 'MPC parking rules' }, url: 'https://www.mpc.edu/campus-life/coming-to-campus/parking-and-transportation/index.html' },
+          { type: 'source', label: { zh: '市政停车表', en: 'City parking table' }, url: 'https://monterey.gov/your_city_hall/departments/public_works/parking/public_garages_and_lots.php' }
+        ]
+      }
+    ],
     sources: [
       {
         id: 'event',
@@ -587,8 +676,8 @@ window.PEBBLE_DATA = {
       id: 'qp-0813',
       date: { zh: '8 月 13 日', en: 'Aug 13' }, day: { zh: '周四', en: 'Thu' },
       title: { zh: 'Tour 早晨 · 停一次，全程步行', en: 'Tour morning · park once, stay on foot' },
-      body: { zh: '6:15–6:30 进入 Pebble Beach 后按指示停车；看完 7:00 集结与三批发车，步行去 Village / RetroAuto，11:40 返回等车辆归来。不要追车或去 Carmel 等待。', en: 'Enter Pebble Beach at 6:15–6:30 and park as directed; see the 7:00 lineup and all three waves, walk to Village / RetroAuto, then return at 11:40. Do not chase the convoy or wait in Carmel.' },
-      cost: { zh: '观看免费 · 停车听现场指示', en: 'Viewing free · follow onsite parking directions' },
+      body: { zh: '6:15–6:30 进入 Pebble Beach 后按指示停车；看完 7:00 集结与三批发车，步行去 Village / RetroAuto，11:40 返回等车辆归来。若放弃 Portola 集结与归来，可在 8.13 Tour 区块中另选一个 Monterey 条件备选；两套方案不串联。', en: 'Enter Pebble Beach at 6:15–6:30 and park as directed; see the 7:00 lineup and all three waves, walk to Village / RetroAuto, then return at 11:40. If you skip the Portola lineup and return, choose one conditional Monterey alternative in the Aug 13 Tour section; never combine the plans.' },
+      cost: { zh: '观看免费 · Portola 停车费用未公布 · MPC 条件候选 $3', en: 'Viewing free · Portola parking price unpublished · conditional MPC option $3' },
       route: routeFor('qp-0813'),
       schedule: scheduleFor('qp-0813', [
         { time: "06:15–06:30", title: { zh: "进入 Pebble Beach · 按指示停车", en: "Enter Pebble Beach · park as directed" }, note: { zh: "本站建议时段，并非官方开放时间；停一次后全程步行。", en: "Guide-recommended window, not an official opening time; park once and stay on foot." }, tone: "transit" },
@@ -1236,7 +1325,7 @@ window.PEBBLE_DATA = {
       title: { zh: 'Pebble Beach Tour d’Elegance', en: 'Pebble Beach Tour d’Elegance' }, location: { zh: 'Portola Road · Pebble Beach', en: 'Portola Road · Pebble Beach' },
       summary: { zh: '因 Big Sur Timber Fire，官方新版环线只留在 Pebble Beach 与 Monterey，经 17-Mile Drive、Hwy 1、Hwy 68、Olmsted Road 与 Aguajito Road；不再经过 Carmel 或 Big Sur。', en: 'Because of the Big Sur Timber Fire, the revised loop stays in Pebble Beach and Monterey via 17-Mile Drive, Hwy 1, Hwy 68, Olmsted Road and Aguajito Road; it no longer passes through Carmel or Big Sur.' },
       why: { zh: '主展级车辆真正开起来，而且公众观看免费。优先看 7:00 起集结、9:30 / 9:45 / 10:00 三批发车，再于约中午看车辆归来。', en: 'Concours-level cars in motion, free to the public. Prioritize staging from 7:00, all three waves at 9:30 / 9:45 / 10:00, then the approximate noon return.' },
-      access: { zh: '本站建议 6:15–6:30 入园；官方未公布普通观众固定停车场。进入 Pebble Beach 后按现场指示停在 Portola Road 起终点附近指定区域，再步行观看。不要追车或去 Carmel 等待。', en: 'This guide suggests entering at 6:15–6:30; no fixed general-spectator lot is published. Follow onsite signs to designated nearby parking for the Portola Road start / finish, then watch on foot. Do not chase the convoy or wait in Carmel.' },
+      access: { zh: '本站建议 6:15–6:30 入园；官方未公布普通观众固定停车场。进入 Pebble Beach 后按现场指示停在 Portola Road 起终点附近指定区域，再步行观看。若改用 Monterey 条件备选，必须放弃 Portola 观看并在发车前停好；不要追车或去 Carmel 等待。', en: 'This guide suggests entering at 6:15–6:30; no fixed general-spectator lot is published. Follow onsite signs to designated nearby parking for the Portola Road start / finish, then watch on foot. A conditional Monterey alternative means skipping Portola and parking before departure. Do not chase the convoy or wait in Carmel.' },
       price: { zh: '公众观看免费', en: 'Free public viewing' }, tags: ['free'], categories: ['essential', 'free'], score: '5.0',
       sources: [
         { label: { zh: 'Tour 官方活动页', en: 'Official Tour event page' }, url: 'https://www.pebblebeachconcours.net/event/pebble-beach-tour-delegance/' },
