@@ -99,7 +99,7 @@ if (data) {
   check(data.dynamicUpdatesChecked === '2026-08-10', 'non-Tour dynamic facts must remain scoped through 2026-08-10');
   check(data.tourUpdatesChecked === '2026-08-13', 'Tour guidance recheck date must remain 2026-08-13');
   check(data.saturdaySpotlightsChecked === '2026-08-13', 'Saturday spotlight recheck date must remain 2026-08-13');
-  check(data.brandHouseReportsChecked === '2026-08-13', 'brand-house facts and field reports must remain scoped to 2026-08-13');
+  check(data.brandHouseReportsChecked === '2026-08-14', 'brand-house facts and field reports must remain scoped to 2026-08-14');
   check(!JSON.stringify(data).includes('chatgpt.com/'), 'private ChatGPT conversation URLs must never be published as evidence');
   for (const [key, value] of Object.entries(data.labels || {})) checkBilingual(value, `labels.${key}`);
   for (const [key, value] of Object.entries(data.ui || {})) checkBilingual(value, `ui.${key}`);
@@ -232,21 +232,52 @@ if (data) {
   const brandGuide = data.brandHouseGuide;
   check(brandGuide && typeof brandGuide === 'object', 'brandHouseGuide is required');
   if (brandGuide) {
-    check(brandGuide.checked === '2026-08-13', 'brandHouseGuide.checked must remain 2026-08-13');
-    check(brandGuide.fieldReportDate === '2026-08-13', 'brandHouseGuide field report date must remain 2026-08-13');
-    const expectedBrandIds = ['cadillac-v-series', 'bmw-villa', 'aston-martin-house'];
-    check(
-      JSON.stringify((brandGuide.cards || []).map((card) => card.id)) === JSON.stringify(expectedBrandIds),
-      'brand-house card set or priority order drifted'
-    );
+    check(brandGuide.checked === '2026-08-14', 'brandHouseGuide.checked must remain 2026-08-14');
+    check(brandGuide.throughDate === '2026-08-16', 'brandHouseGuide must remain active through 2026-08-16');
+    check(brandGuide.directorySource === 'https://www.pebblebeachconcours.net/displays-and-ride-amp-drive-schedule/', 'brandHouseGuide must retain the official complete display schedule');
+    check(brandGuide.permitProcessSource === 'https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/permit-center/special-events-getting-started', 'brandHouseGuide must retain the county approval / permit-process boundary source');
+    const expectedPublicIds = ['cadillac-v-series', 'mercedes-benz-drive', 'lexus-drive', 'lucid-drive'];
+    const expectedHouseIds = ['bentley-home', 'lamborghini-villa', 'range-rover-residence', 'bmw-villa', 'bugatti-le-domaine', 'aston-martin-house', 'mclaren-event', 'rolls-royce-event', 'koenigsegg-private'];
+    const expectedBrandIds = [...expectedPublicIds, ...expectedHouseIds];
+    const lanes = brandGuide.lanes || [];
+    check(lanes.length === 2, 'brand chapter must preserve exactly two access lanes');
+    check(JSON.stringify(lanes[0]?.cardIds) === JSON.stringify(expectedPublicIds), 'public-drive lane set or priority order drifted');
+    check(JSON.stringify(lanes[1]?.cardIds) === JSON.stringify(expectedHouseIds), 'house-hospitality lane set or priority order drifted');
+    const cardIds = (brandGuide.cards || []).map((card) => card.id);
+    check(new Set(cardIds).size === cardIds.length, 'brand-house card ids must be unique');
+    check(expectedBrandIds.every((id) => cardIds.includes(id)) && cardIds.length === expectedBrandIds.length, 'brand-house researched set drifted');
+    for (const lane of lanes) {
+      for (const id of lane.cardIds || []) {
+        check((brandGuide.cards || []).find((card) => card.id === id)?.lane === lane.id, `brand card ${id} must agree with its ${lane.id} lane`);
+      }
+    }
     for (const [index, card] of (brandGuide.cards || []).entries()) {
       const label = `brandHouseGuide.cards[${index}]`;
+      check(['public-drive', 'house-hospitality'].includes(card.lane), `${label}.lane is invalid`);
       check(['public', 'conditional', 'invite'].includes(card.tone), `${label}.tone is invalid`);
-      check(['public-free', 'unpublished', 'invitation-only'].includes(card.accessStatus), `${label}.accessStatus is invalid`);
-      for (const key of ['badge', 'title', 'location', 'schedule', 'access', 'drive', 'parking', 'fieldReport']) {
+      check(['public-free', 'request-required', 'credential-only', 'unpublished', 'invitation-only', 'private'].includes(card.accessStatus), `${label}.accessStatus is invalid`);
+      check(['confirmed', 'partial', 'unpublished'].includes(card.dateStatus), `${label}.dateStatus is invalid`);
+      check(/^2026-08-\d{2}$/.test(card.verifiedOn || ''), `${label}.verifiedOn must be an ISO August 2026 date`);
+      if (card.startDate || card.endDate) {
+        check(/^2026-08-\d{2}$/.test(card.startDate || ''), `${label}.startDate must be an ISO August 2026 date`);
+        check(/^2026-08-\d{2}$/.test(card.endDate || ''), `${label}.endDate must be an ISO August 2026 date`);
+        check(card.startDate <= card.endDate, `${label} date range is reversed`);
+      } else {
+        check(card.dateStatus !== 'confirmed', `${label} confirmed dates require a startDate and endDate`);
+      }
+      for (const key of ['badge', 'title', 'location', 'schedule', 'access', 'drive', 'parking']) {
         checkBilingual(card[key], `${label}.${key}`);
       }
-      check(Array.isArray(card.sources) && card.sources.length >= 2, `${label}.sources needs at least two primary records`);
+      if (card.lane === 'public-drive') {
+        check(card.accessStatus === 'public-free', `${label} public drive must remain explicitly free and public`);
+      } else {
+        checkBilingual(card.publicAction, `${label}.publicAction`);
+      }
+      if (card.fieldReport) {
+        check(/^2026-08-\d{2}$/.test(card.fieldReport.date || ''), `${label}.fieldReport.date must be ISO`);
+        checkBilingual(card.fieldReport.body, `${label}.fieldReport.body`);
+      }
+      check(Array.isArray(card.sources) && card.sources.length >= 1, `${label}.sources needs at least one primary record`);
       for (const [sourceIndex, source] of (card.sources || []).entries()) {
         checkUrl(source.url, `${label}.sources[${sourceIndex}].url`);
         checkBilingual(source.label, `${label}.sources[${sourceIndex}].label`);
@@ -254,9 +285,18 @@ if (data) {
     }
 
     const brandText = JSON.stringify(brandGuide);
-    const privatePoppyHousePattern = /(?:\b\d{1,5}\s+poppy(?:\s+lane)?\b|\bpoppy(?:\s+lane)?\s*(?:#|no\.?|number|号)?\s*\d{1,5}\b)/i;
-    check(!privatePoppyHousePattern.test(brandText), 'residential house numbers near Poppy Lane must not be published or made inferable');
+    const numberedStreetPattern = /(?:\b\d{1,5}\s+(?:[a-z0-9.'-]+\s+){0,4}(?:street|st\.?|road|rd\.?|lane|ln\.?|drive|dr\.?|avenue|ave\.?|boulevard|blvd\.?|court|ct\.?|way)\b|\b(?:[a-z0-9.'-]+\s+){0,4}(?:street|st\.?|road|rd\.?|lane|ln\.?|drive|dr\.?|avenue|ave\.?|boulevard|blvd\.?|court|ct\.?|way)\s*(?:#|no\.?|number)\s*\d{1,5}\b|\d{1,5}\s*号)/i;
+    for (const card of (brandGuide.cards || []).filter((item) => item.lane === 'house-hospitality')) {
+      const displayCopy = ['badge', 'title', 'location', 'schedule', 'access', 'drive', 'parking', 'publicAction']
+        .flatMap((key) => [card[key]?.zh, card[key]?.en])
+        .concat([card.fieldReport?.body?.zh, card.fieldReport?.body?.en])
+        .filter(Boolean)
+        .map((value) => value.replace(/\b20(?:24|25|26)\b/g, 'YEAR'));
+      check(!displayCopy.some((value) => numberedStreetPattern.test(value)), `private hospitality card ${card.id} must not publish a street number in displayed copy`);
+    }
     check(!brandText.includes('Cadillac House'), 'Cadillac public experience must not be misnamed Cadillac House');
+    check(!/Poppy Lane/i.test(brandText), 'brand chapter must not publish the residential street lead');
+    check(!/(County permit confirmed|County event confirmed|BMW Villa permit|县许可确认|县活动确认)/i.test(brandText), 'task-force agenda listings must not be mislabeled as issued permits or confirmed events');
 
     const cadillac = (brandGuide.cards || []).find((card) => card.id === 'cadillac-v-series');
     check(Boolean(cadillac), 'Cadillac V-Series card is required');
@@ -274,18 +314,54 @@ if (data) {
       ]) check(cadillacUrls.includes(url), `Cadillac sources missing: ${url}`);
     }
 
+    const mercedes = (brandGuide.cards || []).find((card) => card.id === 'mercedes-benz-drive');
+    if (mercedes) {
+      const text = JSON.stringify(mercedes);
+      for (const fact of ['August 13', 'detail page lists a 9:00am start', 'MBUSA lists 10:00am', 'timing varies with the Tour start', 'plan for 10:00am or later', 'August 14–16', 'Future Classics Auction House', 'House welcomes visitors', 'Complimentary test drives', 'no reservation', 'must complete a waiver and survey']) {
+        check(text.includes(fact), `Mercedes-Benz public House / drive boundary drifted: ${fact}`);
+      }
+    }
+    const lexus = (brandGuide.cards || []).find((card) => card.id === 'lexus-drive');
+    check(JSON.stringify(lexus || {}).includes('18+') && JSON.stringify(lexus || {}).includes('Sunday drives are closed') && JSON.stringify(lexus || {}).includes('display hours'), 'Lexus age, Sunday drive closure and display boundary must remain explicit');
+    const lucid = (brandGuide.cards || []).find((card) => card.id === 'lucid-drive');
+    check(JSON.stringify(lucid || {}).includes('detail page says') && JSON.stringify(lucid || {}).includes('master schedule says') && JSON.stringify(lucid || {}).includes('Display only August 16'), 'Lucid schedule conflict and Sunday display-only boundary must remain explicit');
+    const bentley = (brandGuide.cards || []).find((card) => card.id === 'bentley-home');
+    check(bentley?.accessStatus === 'request-required' && JSON.stringify(bentley).includes('not a walk-in guarantee') && JSON.stringify(bentley).includes('does not confirm a Monterey drive slot this week'), 'Bentley must remain request-based and must not imply a confirmed Monterey drive');
+    const lamborghini = (brandGuide.cards || []).find((card) => card.id === 'lamborghini-villa');
+    check(lamborghini?.accessStatus === 'credential-only' && JSON.stringify(lamborghini).includes('Parking at the Villa is prohibited') && JSON.stringify(lamborghini).includes('non-transferable'), 'Lamborghini credential and no-parking boundary drifted');
+    for (const fact of ['$2,500', '$6,560', '$10,000', '$11,000', 'event ticket portal']) {
+      check(JSON.stringify(lamborghini || {}).includes(fact), `Lamborghini current package boundary drifted: ${fact}`);
+    }
+    for (const fact of ['same official FAQ lists both 9:00am and 11:00am starts', 'Follow your credential or dealer confirmation', 'plan around 11:00am']) {
+      check(JSON.stringify(lamborghini || {}).includes(fact), `Lamborghini conflicting Friday-hours boundary drifted: ${fact}`);
+    }
+    check((lamborghini?.sources || []).some((source) => source.url === 'https://eventsala.com/products/monterey-car-week-2026'), 'Lamborghini package-price source is required');
+    const rangeRover = (brandGuide.cards || []).find((card) => card.id === 'range-rover-residence');
+    check(JSON.stringify(rangeRover || {}).includes('$23,500') && JSON.stringify(rangeRover || {}).includes('$31,500') && JSON.stringify(rangeRover || {}).includes('check out August 17') && JSON.stringify(rangeRover || {}).includes('one Residence parking space'), 'Range Rover current package, stay and parking terms drifted');
+    const bugatti = (brandGuide.cards || []).find((card) => card.id === 'bugatti-le-domaine');
+    if (bugatti) {
+      const text = JSON.stringify(bugatti);
+      for (const fact of ['one-off Destrier', 'August 16 Concours', 'no 2026 public RSVP', 'does not grant house access']) {
+        check(text.includes(fact), `Bugatti evidence boundary drifted: ${fact}`);
+      }
+      check(bugatti.accessStatus === 'unpublished' && !/free and open|open to all/i.test(text), 'Bugatti house must not be presented as public or free');
+      check(bugatti.fieldReport?.date === '2026-08-14', 'Bugatti current House lead must remain dated 2026-08-14');
+    }
+
     const bmw = (brandGuide.cards || []).find((card) => card.id === 'bmw-villa');
     check(Boolean(bmw), 'BMW Villa card is required');
     if (bmw) {
       const bmwText = JSON.stringify(bmw);
       check(bmw.accessStatus === 'unpublished', 'BMW 2026 access must remain unpublished');
-      for (const fact of ['Poppy Lane area', 'does not publish a residential house number', 'August 12–15', '2026 daily hours are not published', 'No published price does not mean', '2026 valet terms are unpublished', 'not self-parking']) {
+      check(bmw.dateStatus === 'partial', 'BMW dates must remain an agenda listing, not confirmed occurrence');
+      for (const fact of ['Private residential venue in Pebble Beach', 'does not republish the agenda address', 'August 12–15', 'does not establish permit issuance', '2026 daily hours are not published', 'No published price does not mean', '2026 valet terms are unpublished', 'not self-parking']) {
         check(bmwText.includes(fact), `BMW access / parking boundary drifted: ${fact}`);
       }
       check(bmwText.includes('A friend reported daytime walk-ins') && bmwText.includes('do not establish those as general 2026 policy'), 'BMW walk-in / fee / valet must remain a field report, not policy');
       const bmwUrls = bmw.sources.map((source) => source.url);
       for (const url of [
         'https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000',
+        'https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/permit-center/special-events-getting-started',
         'https://www.bmwgroup-classic.com/en/clubs-community/events/kalender-events/monterey-car-week-pebble-beach.html',
         'https://www.countyofmonterey.gov/home/showpublisheddocument/133427/638887756447700000'
       ]) check(bmwUrls.includes(url), `BMW sources missing: ${url}`);
@@ -295,8 +371,8 @@ if (data) {
     check(Boolean(aston), 'Aston Martin House card is required');
     if (aston) {
       const astonText = JSON.stringify(aston);
-      check(aston.accessStatus === 'invitation-only', 'Aston Martin House must remain invitation-only');
-      for (const fact of ['official 2025 House was alongside Spyglass Hill', '2026 location and hours are unpublished', 'invitation-only', 'No public ticket does not mean free public admission', 'do not go without an invitation', 'No public 2026 House walk-in or drive rules', 'Bernardus Lodge', 'No public 2026 valet']) {
+      check(aston.accessStatus === 'unpublished', 'Aston Martin 2026 House access must remain unpublished');
+      for (const fact of ['official 2025 House was alongside Spyglass Hill', '2026 location and hours are unpublished', 'Public 2026 materials do not publish House access rules', 'official 2025 policy used invited guests', 'Plan conservatively as invite-only', 'No public 2026 House walk-in or drive rules', 'Bernardus Lodge', 'No public 2026 valet']) {
         check(astonText.includes(fact), `Aston Martin invitation boundary drifted: ${fact}`);
       }
       const astonUrls = aston.sources.map((source) => source.url);
@@ -306,6 +382,20 @@ if (data) {
         'https://www.countyofmonterey.gov/home/showpublisheddocument/141493/638899014930270000'
       ]) check(astonUrls.includes(url), `Aston Martin sources missing: ${url}`);
     }
+    const mclaren = (brandGuide.cards || []).find((card) => card.id === 'mclaren-event');
+    const rollsRoyce = (brandGuide.cards || []).find((card) => card.id === 'rolls-royce-event');
+    const koenigsegg = (brandGuide.cards || []).find((card) => card.id === 'koenigsegg-private');
+    check(mclaren?.accessStatus === 'unpublished' && rollsRoyce?.accessStatus === 'unpublished', 'county-only McLaren and Rolls-Royce events must keep public access unpublished');
+    check(mclaren?.startDate === '2026-08-12' && mclaren?.endDate === '2026-08-15', 'McLaren county-agenda-listed date range drifted');
+    check(rollsRoyce?.startDate === '2026-08-13' && rollsRoyce?.endDate === '2026-08-15', 'Rolls-Royce county-agenda-listed date range drifted');
+    check(koenigsegg?.startDate === '2026-08-14' && koenigsegg?.endDate === '2026-08-15', 'Koenigsegg county-agenda-listed date range drifted');
+    for (const card of [mclaren, rollsRoyce, koenigsegg]) {
+      check(card?.dateStatus === 'partial', `${card?.id || 'county event'} dates must remain partial because an agenda does not prove final approval`);
+      check(JSON.stringify(card || {}).includes('does not establish permit issuance'), `${card?.id || 'county event'} must preserve the agenda-versus-issued-permit boundary`);
+      check((card?.sources || []).some((source) => source.url === 'https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000'), `${card?.id || 'county event'} must retain the county source`);
+      check((card?.sources || []).some((source) => source.url === 'https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/permit-center/special-events-getting-started'), `${card?.id || 'county event'} must retain the county permit-process boundary source`);
+    }
+    check(koenigsegg?.accessStatus === 'private' && JSON.stringify(koenigsegg).includes('not a public viewing stop'), 'Koenigsegg must remain explicitly private and non-public');
   }
 
   const parkingMap = data.parkingTrafficMap;
@@ -632,7 +722,7 @@ if (data) {
     check(serializedTourPlan.includes('实际归来后–14:00') && serializedTourPlan.includes('Go only after the Tour has actually returned') && serializedTourPlan.includes('Cadillac V-Series'), 'qp-0813 must connect the actual Tour return to the verified public Cadillac experience without promising a fixed handoff time');
     check(tourQuickPlan.route.stops.some((stop) => stop.marker === '2' && stop.place === 'hay-hill' && stop.optional), 'qp-0813 Cadillac add-on must use its own optional Hay Hill map marker');
     check(tourQuickPlan.schedule.at(-1).routeMarkers.length === 1 && tourQuickPlan.schedule.at(-1).routeMarkers[0] === '2', 'qp-0813 Cadillac timeline row must point to Hay Hill marker 2');
-    check(serializedTourPlan.includes('BMW access is unpublished') && serializedTourPlan.includes('Aston Martin is invitation-only'), 'qp-0813 must not promote private brand houses as guaranteed public stops');
+    check(serializedTourPlan.includes('BMW and Aston Martin 2026 access are unpublished') && serializedTourPlan.includes('prior Aston policy') && serializedTourPlan.includes('field report point to invitation-only access'), 'qp-0813 must not promote private brand houses as guaranteed public stops or overstate Aston 2026 access');
     check(!/^\$0\b/.test(tourQuickPlan.cost.en), 'qp-0813 cost must not imply that parking is free');
     check(tourQuickPlan.cost.en.includes('Viewing free'), 'qp-0813 must label free viewing explicitly');
   }

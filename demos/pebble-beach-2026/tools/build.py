@@ -356,12 +356,31 @@ def validate() -> list[str]:
     for snippet, label in brand_house_contract.items():
         if html.count(snippet) != 1:
             errors.append(f"expected exactly one {label}, found {html.count(snippet)}")
-    if html.count('class="brand-house-source-block"') != 3:
-        errors.append("static brand-house fallback must preserve one verification source block per card")
+    if html.count('data-brand-entry=') != 13:
+        errors.append("static brand chapter must preserve four public drives and nine hospitality entries")
+    if html.count('class="brand-house-lane ') != 2:
+        errors.append("static brand chapter must preserve separate public-drive and hospitality lanes")
+    brand_entry_ids = (
+        "cadillac-v-series", "mercedes-benz-drive", "lexus-drive", "lucid-drive",
+        "bentley-home", "lamborghini-villa", "range-rover-residence", "bmw-villa",
+        "bugatti-le-domaine", "aston-martin-house", "mclaren-event",
+        "rolls-royce-event", "koenigsegg-private",
+    )
+    for entry_id in brand_entry_ids:
+        if html.count(f'id="brand-{entry_id}"') != 1 or html.count(f'data-brand-entry="{entry_id}"') != 1:
+            errors.append(f"static brand entry {entry_id} must have one stable deep-link id and one data marker")
     for source_url in (
         "https://www.pebblebeachconcours.net/event/cadillac-v-series-drive-experience/",
+        "https://www.mbusa.com/en/events-and-partnerships/pebble-beach",
+        "https://bentleyexperiences.com/",
+        "https://eventsala.com/products/monterey-car-week-2026",
+        "https://eventsala.com/pages/monterey-car-week-2026-faq",
+        "https://www.rsvprangerover.com/residence/packagedetails.aspx",
+        "https://newsroom.bugatti.com/press-releases/the-bugatti-destrier-a-sculpture-of-speed",
         "https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000",
+        "https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/permit-center/special-events-getting-started",
         "https://media.astonmartin.com/vanquish-25-a-celebration-of-an-automotive-flagship/?lang=eng",
+        "https://www.pebblebeachconcours.net/displays-and-ride-amp-drive-schedule/",
     ):
         if source_url not in html:
             errors.append(f"static brand-house fallback is missing verification source: {source_url}")
@@ -369,8 +388,19 @@ def validate() -> list[str]:
         errors.append("brand-house renderer must bind brand-house-grid exactly once")
     if len(re.findall(r"function\s+renderBrandHouses\(\)", app_js)) != 1:
         errors.append("expected exactly one renderBrandHouses implementation")
+    for snippet, label in (
+        ("data-brand-past-group", "per-lane ended-program disclosure"),
+        ("statusWithCount('brandHousePastSummary'", "localized ended-program count"),
+        ("brand-house-directory-note", "official display-directory note"),
+        ("guide.directorySource", "official display-directory source"),
+        ("guide.permitProcessSource", "county agenda-versus-permit boundary source"),
+    ):
+        if snippet not in app_js:
+            errors.append(f"brand-house renderer is missing {label}")
     if not re.search(r"renderTourMorning\(\);\s*renderParkingTraffic\(\);\s*renderBrandHouses\(\);", app_js):
         errors.append("renderDynamicContent must render Tour, parking and brand content after current plans")
+    if not re.search(r"clock\.dateIso\s*!==\s*lastClockDateIso[\s\S]{0,500}renderBrandHouses\(\);", app_js):
+        errors.append("date-boundary refresh must re-sort ended brand programs without a page reload")
 
     section_order = (
         "quick-plan",
@@ -403,7 +433,7 @@ def validate() -> list[str]:
     for section_id, through_date, label_key in (
         ("tour-0813", "2026-08-13", "temporalTourLabel"),
         ("parking-traffic", "2026-08-16", "temporalParkingLabel"),
-        ("brand-houses", "2026-08-15", "temporalBrandLabel"),
+        ("brand-houses", "2026-08-16", "temporalBrandLabel"),
         ("nearby", "2026-08-02", "temporalNearbyLabel"),
         ("stay", "2026-08-17", "temporalStayLabel"),
     ):
@@ -419,6 +449,8 @@ def validate() -> list[str]:
             errors.append(f"expected exactly one {function_name} implementation")
     if "target.scrollIntoView" not in app_js:
         errors.append("explicit archive hashes must reveal and scroll to their rendered target")
+    if "target instanceof HTMLDetailsElement" not in app_js:
+        errors.append("deep links to a brand-house disclosure must open the target details element")
     if ".temporal-section.is-past > .section-heading" not in demo_css:
         errors.append("expired feature headings must compact so they do not distract from current plans")
     clock_match = re.search(r"function\s+getClock\(\)(.*?)function\s+inCarWeekWindow", app_js, re.DOTALL)
@@ -432,14 +464,14 @@ def validate() -> list[str]:
         errors.append(f"expected at least 18 event records, found {event_count}")
     if "saturdaySpotlightsChecked: '2026-08-13'" not in data_js:
         errors.append("Saturday spotlight recheck marker is missing")
-    if "brandHouseReportsChecked: '2026-08-13'" not in data_js:
+    if "brandHouseReportsChecked: '2026-08-14'" not in data_js:
         errors.append("brand-house recheck marker is missing")
     if "event.verifiedOn" not in app_js or "ui('verified')" not in app_js:
         errors.append("event cards must render the per-event verification marker")
 
     forbidden = ("/users/",)
     private_address_pattern = re.compile(
-        r"(?:\b\d{1,5}\s+poppy(?:\s+lane)?\b|\bpoppy(?:\s+lane)?\s*(?:#|no\.?|number|号)?\s*\d{1,5}\b)",
+        r"(?:\b\d{1,5}\s+(?:poppy|cypress|spindrift)(?:\s+(?:lane|drive|road))?\b|\b(?:poppy|cypress|spindrift)(?:\s+(?:lane|drive|road))?\s*(?:#|no\.?|number|号)?\s*\d{1,5}\b)",
         re.IGNORECASE,
     )
     for path in DEMO_DIR.rglob("*"):
@@ -450,7 +482,7 @@ def validate() -> list[str]:
             if phrase in lowered:
                 errors.append(f"private/source-project phrase found in {path.relative_to(REPO_ROOT)}: {phrase}")
         if private_address_pattern.search(lowered):
-            errors.append(f"private residential house number found near Poppy Lane in {path.relative_to(REPO_ROOT)}")
+            errors.append(f"private residential brand-house number found in {path.relative_to(REPO_ROOT)}")
 
     og_path = DEMO_DIR / "assets/img/pebble-beach-2026-og.png"
     try:

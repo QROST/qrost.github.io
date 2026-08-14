@@ -1,7 +1,8 @@
 /* Public, bilingual planning data for Monterey Car Week 2026.
  * The full catalog baseline was checked on 2026-08-06. Tour routing, timing and
- * parking guidance, the featured Saturday Exotics / RM / Gooding facts and the
- * Cadillac / BMW / Aston Martin access notes were rechecked on 2026-08-13;
+ * parking guidance and the featured Saturday Exotics / RM / Gooding facts were
+ * rechecked on 2026-08-13. Multi-day brand drives and private-hospitality access
+ * notes were rechecked on 2026-08-14;
  * other selected dynamic facts remain current through 2026-08-10. Editorial
  * scores, field reports and commute bands are QROST planning judgments, not
  * organizer guarantees.
@@ -158,7 +159,7 @@ window.PEBBLE_DATA = {
   dynamicUpdatesChecked: '2026-08-10',
   tourUpdatesChecked: '2026-08-13',
   saturdaySpotlightsChecked: '2026-08-13',
-  brandHouseReportsChecked: '2026-08-13',
+  brandHouseReportsChecked: '2026-08-14',
 
   labels: {
     pageTitle: {
@@ -181,7 +182,7 @@ window.PEBBLE_DATA = {
     navTour: { zh: '8.13 Tour', en: 'Aug 13 Tour' },
     navPlan: { zh: '方案', en: 'Plan' },
     navParkingMap: { zh: '停车图', en: 'Parking map' },
-    navBrandHouses: { zh: '品牌体验', en: 'Brand access' },
+    navBrandHouses: { zh: '品牌 House', en: 'Brand houses' },
     navSchedule: { zh: '日程', en: 'Schedule' },
     navNearby: { zh: '周边早场', en: 'Nearby early' },
     navStay: { zh: '住宿', en: 'Stay' },
@@ -189,7 +190,7 @@ window.PEBBLE_DATA = {
     navArchive: { zh: '存档', en: 'Archive' },
     navBackTop: { zh: '回到顶部', en: 'Back to top' },
     heroEyebrow: { zh: '公众行程指南 · 2026', en: 'Public trip guide · 2026' },
-    checkedChip: { zh: '全量核对 8 月 6 日 · Tour、品牌体验与周六精选复核至 8 月 13 日', en: 'Full audit Aug 6 · Tour, brand access + Saturday picks rechecked Aug 13' },
+    checkedChip: { zh: '全量核对 8 月 6 日 · Tour 与周六精选复核至 8 月 13 日 · 品牌专题复核至 8 月 14 日', en: 'Full audit Aug 6 · Tour + Saturday picks rechecked Aug 13 · brand chapter rechecked Aug 14' },
     heroTitleTop: { zh: '圆石滩，不只一场车展', en: 'Pebble Beach is not one show' },
     heroTitleBottom: { zh: '早到一周，再迎旗舰主展', en: 'Arrive early, then hit the flagship' },
     heroLead: {
@@ -394,22 +395,32 @@ window.PEBBLE_DATA = {
     parkingMapTrafficClosed: { zh: '道路封闭', en: 'Road closed' },
     parkingMapTrafficPermit: { zh: '仅持许可', en: 'Permit only' },
     parkingMapTrafficTest: { zh: '试驾流线', en: 'Test drives' },
-    brandHouseKicker: { zh: '8.13 当日回报 × 官方复核', en: 'Aug 13 field report × official checks' },
-    brandHouseTitle: { zh: '三家品牌体验，准入并不相同', en: 'Three brand experiences, three different access rules' },
+    brandHouseKicker: { zh: '8.12–8.16 · 跨日品牌专题', en: 'Aug 12–16 · multi-day brand chapter' },
+    brandHouseTitle: { zh: '品牌 House、私人驻地与公众试驾', en: 'Brand houses, private hospitality & public drives' },
     brandHouseIntro: {
-      zh: '朋友提供的住宅参照点不作为本页公众导航信息。复核后，只有 Cadillac 的 Hay Hill 体验可确认免费向公众开放；BMW 的活动许可可核但 2026 准入规则未公开，Aston Martin 则按受邀活动处理。',
-      en: 'A residential reference supplied by a friend is not published as public navigation information. Official checks confirm only Cadillac at Hay Hill as free and public; BMW has a verifiable event permit but unpublished 2026 access terms, while Aston Martin should be treated as invitation-only.'
+      zh: 'House 往往跨越数日，但品牌“在场”不等于公众可进入。先看四项官方免费公众体验与试驾；再把 Bentley、Lamborghini、Range Rover、BMW、Bugatti、Aston Martin、McLaren、Rolls‑Royce 与 Koenigsegg 作为登记、凭证、邀请或准入未公开的 hospitality 线索。私人住宅门牌不作公众导航。',
+      en: 'Brand houses often span several days, but brand presence does not equal public access. Start with four officially free public experiences and drives; then treat Bentley, Lamborghini, Range Rover, BMW, Bugatti, Aston Martin, McLaren, Rolls‑Royce and Koenigsegg as request-, credential-, invitation- or unpublished-access hospitality leads. Private residential addresses are not public navigation.'
     },
+    brandHousePublicTitle: { zh: '官方公众体验与试驾', en: 'Official public experiences & drives' },
+    brandHousePublicIntro: { zh: '以下项目可作为实际行程候选；试驾仍须满足年龄、驾照、现场容量与先到先得规则，周日部分项目仅保留展示或 House。', en: 'These are actionable public options. Drives remain subject to age, license, onsite capacity and first-come rules; on Sunday some continue only as displays or a house.' },
+    brandHousePrivateTitle: { zh: 'House / 私人 hospitality 观察表', en: 'House / private-hospitality watchlist' },
+    brandHousePrivateIntro: { zh: '仅用于判断品牌活动是否存在、持续到哪一天及如何核实；没有邀请或品牌确认时，不要直接前往。', en: 'Use this list to understand what exists, its date range and how to verify access. Do not arrive without an invitation or brand confirmation.' },
+    brandHousePastSummary: { zh: '已结束项目 · {count} 项（点击展开）', en: 'Ended programs · {count} (expand)' },
+    brandHouseDirectoryNote: { zh: '本章不是完整展台目录。Porsche、Ferrari、Lincoln、Brabus、Mansory 等官方展示请查总日程；“展示”不等于 House。部分县级来源文件含私人场址，只用于核验证据，不用于导航；任务组议程不等于 permit 已签发。', en: 'This is not a complete display directory. Check the master schedule for official Porsche, Ferrari, Lincoln, Brabus, Mansory and other displays; a display is not a house. Some linked county records contain private venues; use them as evidence, not navigation. A task-force agenda is not proof that a permit was issued.' },
+    brandHouseDirectoryLink: { zh: '打开官方展示与试驾总日程', en: 'Open the official displays and drives schedule' },
+    brandHousePermitProcessLink: { zh: '县特别活动审批与许可流程', en: 'County special-event approval and permit process' },
     brandHouseScheduleLabel: { zh: '日期 / 时段', en: 'Dates / hours' },
     brandHouseAccessLabel: { zh: '准入 / 费用', en: 'Access / cost' },
     brandHouseDriveLabel: { zh: '展示 / 试驾', en: 'Display / drive' },
     brandHouseParkingLabel: { zh: '到场 / 停车', en: 'Arrival / parking' },
-    brandHouseFieldReportLabel: { zh: '朋友 8.13 现场回报 · 非官方保证', en: 'Friend’s Aug 13 field report · not an official guarantee' },
+    brandHouseFieldReportLabel: { zh: '现场回报 · 非官方保证', en: 'Field report · not an official guarantee' },
+    brandHouseExpandLabel: { zh: '展开证据与到场边界', en: 'Expand evidence and arrival limits' },
+    brandHouseActionLabel: { zh: '公众应该怎么做', en: 'What the public should do' },
     brandHouseSourcesLabel: { zh: '核验来源', en: 'Verification sources' },
     brandHouseSafetyTitle: { zh: '“门口 valet”不是路边停车许可', en: '“Door-side valet” is not curb-parking permission' },
     brandHouseSafetyBody: {
-      zh: '若工作人员当日提供 valet，含义是按指示在接待点交车，不是自行停在 Poppy Lane 门口、路边或住宅车道。不要把三家串成驾车追点路线；先向门岗确认准入与停车，再决定是否进入。任何试驾都应携带有效驾照，并接受品牌方的年龄、资格与容量限制。',
-      en: 'If event staff offer valet that day, hand the vehicle over only at the directed reception point; do not self-park at a Poppy Lane doorway, curb or residential drive. Do not turn the three venues into a drive-and-chase loop. Confirm access and parking with the gate first, and carry a valid license for any drive subject to brand age, eligibility and capacity rules.'
+      zh: '若工作人员当日提供 valet，含义是按指示在接待点交车，不是自行停在住宅门口、路边或车道。不要把这些 House 串成驾车追点路线；没有品牌确认就选择官方公众试驾。任何试驾都应携带有效驾照，并接受品牌方的年龄、资格与容量限制。',
+      en: 'If event staff offer valet that day, hand the vehicle over only at the directed reception point; do not self-park at a residential doorway, curb or drive. Do not turn these houses into a drive-and-chase loop. Without brand confirmation, choose an official public drive instead. Carry a valid license for any drive and observe brand age, eligibility and capacity rules.'
     },
     quickKicker: { zh: '早到 + 主周 · 推荐', en: 'Early + peak · recommended' },
     quickTitle: { zh: '先捡免费早场，再进高峰五天', en: 'Grab free early shows, then the peak five' },
@@ -464,7 +475,7 @@ window.PEBBLE_DATA = {
     temporalPastBadge: { zh: '已结束 · 保留作参考', en: 'Past · kept for reference' },
     temporalTourLabel: { zh: '8.13 Tour 早晨计划', en: 'Aug 13 Tour morning plan' },
     temporalParkingLabel: { zh: '停车与地图指南', en: 'Parking and map guide' },
-    temporalBrandLabel: { zh: '品牌体验现场回报', en: 'Brand-access field report' },
+    temporalBrandLabel: { zh: '品牌 House 与体验', en: 'Brand houses & experiences' },
     temporalNearbyLabel: { zh: '车展前周边早场', en: 'Pre-week nearby events' },
     temporalStayLabel: { zh: '活动周住宿快照', en: 'Car Week lodging snapshot' },
     quickNoScript: { zh: 'JavaScript 不可用时无法自动整理推荐方案；请查看下方官方来源。', en: 'Automatic plan sorting requires JavaScript; use the official sources below.' },
@@ -516,8 +527,8 @@ window.PEBBLE_DATA = {
     sourcePrimary: { zh: '主要来源与复核入口', en: 'Primary sources and live checks' },
     boundaryTitle: { zh: '发布口径', en: 'Publication standard' },
     boundaryBody: {
-      zh: '全量目录基线核对至 2026-08-06；Tour 路线、停车口径、Cadillac / BMW / Aston Martin 品牌体验边界，以及周六 Exotics、RM Sotheby’s、Gooding Christie’s 三项，于 2026-08-13 逐项复核。品牌卡中的“朋友现场回报”与官方事实分栏呈现，不构成准入、车型或候位保证；其余部分动态事实更新至 8 月 10 日。',
-      en: 'The full catalog baseline was checked Aug 6, 2026. Tour routing and parking, Cadillac / BMW / Aston Martin access boundaries, and Saturday’s Exotics, RM Sotheby’s and Gooding Christie’s entries were individually rechecked Aug 13. Friend field reports are separated from official facts and do not guarantee admission, a vehicle or a wait time; other selected dynamic facts remain current through Aug 10.'
+      zh: '全量目录基线核对至 2026-08-06；Tour 路线、停车口径与周六 Exotics、RM Sotheby’s、Gooding Christie’s 三项于 8 月 13 日复核；跨日品牌 House、公众试驾与私人 hospitality 边界于 8 月 14 日复核。现场回报与官方事实分栏呈现，不构成准入、车型、候位或停车保证；其余动态事实更新至 8 月 10 日。',
+      en: 'The full catalog baseline was checked Aug 6, 2026. Tour routing, parking, and Saturday’s Exotics, RM Sotheby’s and Gooding Christie’s entries were rechecked Aug 13; multi-day brand houses, public drives and private-hospitality boundaries were rechecked Aug 14. Field reports remain separate from official facts and do not guarantee admission, vehicles, waits or parking; other selected dynamic facts remain current through Aug 10.'
     },
     boundaryUpdate: {
       zh: '临行前 24 小时请重查：官方活动页、票务页、停车图、天气和道路状态。',
@@ -528,8 +539,8 @@ window.PEBBLE_DATA = {
     footerWeChat: { zh: '微信', en: 'WeChat' },
     footerInstagram: { zh: 'Instagram', en: 'Instagram' },
     footerDisclaimer: {
-      zh: '全量目录核对于 2026-08-06；Tour、品牌体验与周六精选于 2026-08-13 复核，其余动态事实更新至 8 月 10 日。非官方、非主办方关联；现场回报不构成准入、车型、候位、停车或交通保证。',
-      en: 'Full catalog audited Aug 6; Tour, brand access and Saturday picks rechecked Aug 13, with other dynamic facts current through Aug 10, 2026. Independent and unaffiliated; field reports do not guarantee admission, vehicles, waits, parking or transportation.'
+      zh: '全量目录核对于 2026-08-06；Tour 与周六精选于 8 月 13 日复核，品牌专题于 8 月 14 日复核，其余动态事实更新至 8 月 10 日。非官方、非主办方关联；现场回报不构成准入、车型、候位、停车或交通保证。',
+      en: 'Full catalog audited Aug 6; Tour and Saturday picks rechecked Aug 13, and the brand chapter rechecked Aug 14, with other dynamic facts current through Aug 10, 2026. Independent and unaffiliated; field reports do not guarantee admission, vehicles, waits, parking or transportation.'
     },
     nearbyKicker: { zh: '车展前 · 半岛周边', en: 'Before Car Week · peninsula nearby' },
     nearbyTitle: { zh: '若能更早抵达，这些也值得顺路', en: 'Worth a detour if you land even earlier' },
@@ -719,19 +730,25 @@ window.PEBBLE_DATA = {
   },
 
   brandHouseGuide: {
-    checked: '2026-08-13',
-    fieldReportDate: '2026-08-13',
+    checked: '2026-08-14',
+    throughDate: '2026-08-16',
+    directorySource: 'https://www.pebblebeachconcours.net/displays-and-ride-amp-drive-schedule/',
+    permitProcessSource: 'https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/permit-center/special-events-getting-started',
+    lanes: [
+      { id: 'public-drive', titleKey: 'brandHousePublicTitle', introKey: 'brandHousePublicIntro', cardIds: ['cadillac-v-series', 'mercedes-benz-drive', 'lexus-drive', 'lucid-drive'] },
+      { id: 'house-hospitality', titleKey: 'brandHousePrivateTitle', introKey: 'brandHousePrivateIntro', cardIds: ['bentley-home', 'lamborghini-villa', 'range-rover-residence', 'bmw-villa', 'bugatti-le-domaine', 'aston-martin-house', 'mclaren-event', 'rolls-royce-event', 'koenigsegg-private'] }
+    ],
     cards: [
       {
-        id: 'cadillac-v-series', tone: 'public', accessStatus: 'public-free',
+        id: 'cadillac-v-series', lane: 'public-drive', tone: 'public', accessStatus: 'public-free', startDate: '2026-08-13', endDate: '2026-08-15', dateStatus: 'confirmed', verifiedOn: '2026-08-14',
         badge: { zh: '官方确认 · 免费公众体验', en: 'Officially confirmed · free public experience' },
         title: { zh: 'Cadillac V-Series Drive Experience', en: 'Cadillac V-Series Drive Experience' },
         location: { zh: 'Hay Hill；从 Concours Village 按现场标识步行前往', en: 'Hay Hill; follow onsite signs on foot from Concours Village' },
         schedule: { zh: '8 月 13–15 日，每日 09:00–17:00', en: 'August 13–15, daily 9:00am–5:00pm' },
         access: { zh: '免费向公众开放；可预登记以加快签到，但试驾仍先到先得、名额有限。驾驶者须年满 21 岁并出示有效驾照。', en: 'Free and open to the public. Pre-registration may speed check-in, but drives remain first-come, first-served and capacity-limited. Drivers must be 21+ with a valid license.' },
         drive: { zh: '官方列明 Escalade-V、CT5-V Blackwing、LYRIQ-V，路线约 15 分钟。CELESTIQ 官网标示低 40 万美元起，但官方活动车型表未列该车。', en: 'The official lineup lists Escalade-V, CT5-V Blackwing and LYRIQ-V on an approximately 15-minute route. Cadillac lists CELESTIQ from the low-$400Ks, but the event lineup does not name it.' },
-        parking: { zh: '不要导航到朋友提供的住宅参照点。按 Concours Village / Hay Hill 标识及交通人员指示抵达；官方未承诺 Poppy Lane 门口 valet。', en: 'Do not navigate to the residential reference supplied by a friend. Follow Concours Village / Hay Hill signs and traffic staff; no official source promises door-side valet on Poppy Lane.' },
-        fieldReport: { zh: '朋友当天看到 CELESTIQ 候位约 1 小时。该车型与候位时间均未出现在官方活动页，只能作为到场后向 Cadillac 工作人员复核的即时线索。', en: 'A friend reported an approximately one-hour CELESTIQ wait that day. Neither the car nor the wait appears on the official event page; treat both only as a live lead to confirm with Cadillac staff onsite.' },
+        parking: { zh: '不要导航到朋友提供的住宅参照点。按 Concours Village / Hay Hill 标识及交通人员指示抵达；官方未承诺任何私人住宅门口 valet。', en: 'Do not navigate to the residential reference supplied by a friend. Follow Concours Village / Hay Hill signs and traffic staff; no official source promises door-side valet at a private residence.' },
+        fieldReport: { date: '2026-08-13', body: { zh: '朋友当天看到 CELESTIQ 候位约 1 小时。该车型与候位时间均未出现在官方活动页，只能作为到场后向 Cadillac 工作人员复核的即时线索。', en: 'A friend reported an approximately one-hour CELESTIQ wait that day. Neither the car nor the wait appears on the official event page; treat both only as a live lead to confirm with Cadillac staff onsite.' } },
         sources: [
           { url: 'https://www.pebblebeachconcours.net/event/cadillac-v-series-drive-experience/', label: { zh: '官方 Cadillac 体验日程与规则', en: 'Official Cadillac experience schedule and rules' } },
           { url: 'https://www.pebblebeachconcours.net/plan-your-visit/automotive-week-experiences/ride-drives/', label: { zh: '官方免费展示与试驾总览', en: 'Official free displays and ride-and-drives overview' } },
@@ -740,35 +757,189 @@ window.PEBBLE_DATA = {
         ]
       },
       {
-        id: 'bmw-villa', tone: 'conditional', accessStatus: 'unpublished',
-        badge: { zh: '县许可确认 · 2026 准入未公开', en: 'County permit confirmed · 2026 access unpublished' },
-        title: { zh: 'BMW Villa · Monterey Car Week', en: 'BMW Villa · Monterey Car Week' },
-        location: { zh: 'Poppy Lane 一带；县许可确认 2026 活动，但本页不发布住宅门牌，也不把许可地址当作公众入口', en: 'Poppy Lane area; a county permit confirms the 2026 event, but this guide does not publish a residential house number or treat the permit address as a public entrance' },
-        schedule: { zh: '县许可确认 8 月 12–15 日；2026 每日时段未公开', en: 'County permit confirms August 12–15; 2026 daily hours are not published' },
-        access: { zh: 'BMW / 主办方没有公开 2026 walk-in、票价、试驾资格或预约规则。“未见票价”不等于官方确认免费或人人可进。', en: 'BMW and the organizer have not published 2026 walk-in, pricing, driving-eligibility or reservation rules. No published price does not mean officially confirmed free or open admission.' },
-        drive: { zh: 'BMW 官方只确认更广泛的 Monterey Car Week 展示与驾驶活动，没有公布 Villa 的 2026 车型或候位时间；建议携带有效驾照并先问门岗。', en: 'BMW confirms broader Monterey Car Week displays and driving events, but has not published the Villa’s 2026 cars or wait times. Bring a valid license and ask the gate first.' },
-        parking: { zh: '2026 valet 细则未公开。往年官方记录是入口交车给活动 valet、车辆异地停放，并非自行停在 Poppy Lane 门口或路边；今年仍须完全服从工作人员。', en: '2026 valet terms are unpublished. Prior official records describe handing vehicles to event valet for offsite parking—not self-parking at a Poppy Lane door or curb. Follow staff completely this year.' },
-        fieldReport: { zh: '朋友 8 月 13 日现场回报：白天 walk-in、未另收费，并在入口交车给 valet。公开官方材料尚未确认这三项为 2026 通用政策，到场前与门岗复核。', en: 'A friend reported daytime walk-ins, no separate charge and vehicle handoff to valet on August 13. Public official materials do not establish those as general 2026 policy; reconfirm with the gate before relying on them.' },
+        id: 'mercedes-benz-drive', lane: 'public-drive', tone: 'public', accessStatus: 'public-free', startDate: '2026-08-13', endDate: '2026-08-16', dateStatus: 'confirmed', verifiedOn: '2026-08-14',
+        badge: { zh: '官方确认 · 免费公众体验', en: 'Officially confirmed · free public experience' },
+        title: { zh: 'Mercedes-Benz Test Drive Experience', en: 'Mercedes-Benz Test Drive Experience' },
+        location: { zh: 'Concours Village · Mercedes-Benz Future Classics Auction House', en: 'Concours Village · Mercedes-Benz Future Classics Auction House' },
+        schedule: { zh: '试驾：8 月 13 日 Concours 专页列 09:00 开始、MBUSA 列 10:00 开始，且官方注明受 Tour 发车时间影响；保守按 10:00 后规划。14–15 日 09:00–17:00。Future Classics Auction House：14–16 日 09:00–17:00', en: 'Drives: for August 13, the Concours detail page lists a 9:00am start while MBUSA lists 10:00am, and the official note says Thursday timing varies with the Tour start; conservatively plan for 10:00am or later. August 14–15 drives run 9:00am–5:00pm. Future Classics Auction House: August 14–16, 9:00am–5:00pm' },
+        access: { zh: 'House 在公布时段欢迎到访；免费试驾无需预约、现场先到先得。驾驶者须年满 21 岁、持有效驾照，并完成免责与问卷。', en: 'The House welcomes visitors during published hours. Complimentary test drives require no reservation and are first-come onsite. Drivers must be 21+ with a valid license and must complete a waiver and survey.' },
+        drive: { zh: '官方称车型涵盖 Mercedes-AMG、Mercedes-Maybach 与 G-Class，由产品专家陪同；须穿包脚鞋，鞋跟不得高于 2 英寸。', en: 'The official page names Mercedes-AMG, Mercedes-Maybach and G-Class models with a product specialist. Closed-toe shoes are required and heels over two inches are prohibited.' },
+        parking: { zh: '把 Auction House 当作活动地点而非独立停车场；按 Pebble Beach 场内标识停车后步行至 Village。', en: 'Treat the Auction House as the activity venue, not a standalone parking lot. Park as directed inside Pebble Beach and continue to the Village on foot.' },
         sources: [
-          { url: 'https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000', label: { zh: 'Monterey County · 2026 活动许可记录', en: 'Monterey County · 2026 event permit record' } },
+          { url: 'https://www.mbusa.com/en/events-and-partnerships/pebble-beach', label: { zh: 'Mercedes-Benz USA · House 与试驾时段', en: 'Mercedes-Benz USA · house and drive hours' } },
+          { url: 'https://www.pebblebeachconcours.net/event/mercedes-benz-drive-experience/', label: { zh: '官方 Concours 试驾规则', en: 'Official Concours drive rules' } },
+          { url: 'https://www.pebblebeachconcours.net/plan-your-visit/automotive-week-experiences/ride-drives/', label: { zh: '官方免费展示与试驾总览', en: 'Official free displays and ride-and-drives overview' } }
+        ]
+      },
+      {
+        id: 'lexus-drive', lane: 'public-drive', tone: 'public', accessStatus: 'public-free', startDate: '2026-08-13', endDate: '2026-08-16', dateStatus: 'confirmed', verifiedOn: '2026-08-14',
+        badge: { zh: '官方确认 · 免费公众体验', en: 'Officially confirmed · free public experience' },
+        title: { zh: 'Lexus Driving Experience', en: 'Lexus Driving Experience' },
+        location: { zh: '第三球道，Palmero Way 一带；只按现场活动标识进入', en: '3rd Fairway off Palmero Way; enter only as directed by onsite event signs' },
+        schedule: { zh: '8 月 13–15 日 09:00–17:00 可试驾；周日试驾关闭，但官方总表仍列 08:00–18:00 展示', en: 'Drives August 13–15, 9:00am–5:00pm; Sunday drives are closed, while the official master schedule still lists display hours of 8:00am–6:00pm' },
+        access: { zh: '免费向公众开放、先到先得；驾驶者须年满 18 岁并持有效驾照。', en: 'Complimentary and open to the public on a first-come basis. Drivers must be 18+ with a valid license.' },
+        drive: { zh: '官方列举 GX 550、LC 500 Convertible 与全电 ES 等车型；实际车辆以现场为准。', en: 'The official page lists models including GX 550, LC 500 Convertible and the all-electric ES; onsite availability governs.' },
+        parking: { zh: '第三球道是体验区，不等于普通观众停车位；按活动交通图与工作人员指示停车后步行。', en: 'The 3rd Fairway is the experience area, not a general-spectator parking promise. Park as directed by event signs and staff, then walk.' },
+        sources: [
+          { url: 'https://www.pebblebeachconcours.net/event/lexus-drive-experience/', label: { zh: '官方 Lexus 试驾活动页', en: 'Official Lexus drive page' } },
+          { url: 'https://www.pebblebeachconcours.net/plan-your-visit/automotive-week-experiences/ride-drives/', label: { zh: '官方免费展示与试驾总览', en: 'Official free displays and ride-and-drives overview' } }
+        ]
+      },
+      {
+        id: 'lucid-drive', lane: 'public-drive', tone: 'public', accessStatus: 'public-free', startDate: '2026-08-13', endDate: '2026-08-16', dateStatus: 'confirmed', verifiedOn: '2026-08-14',
+        badge: { zh: '官方确认 · 试驾至周六', en: 'Officially confirmed · drives through Saturday' },
+        title: { zh: 'Lucid Demo Drive Experience', en: 'Lucid Demo Drive Experience' },
+        location: { zh: 'Concours Village', en: 'Concours Village' },
+        schedule: { zh: '8 月 13–15 日：Lucid 专页写 09:00–17:30，官方总表写至 17:00；按 17:00 前到场规划。8 月 16 日 08:00–18:00 仅展示', en: 'August 13–15: the Lucid detail page says 9:00am–5:30pm while the master schedule says 5:00pm; plan to arrive before 5:00pm. Display only August 16, 8:00am–6:00pm' },
+        access: { zh: '免费向公众开放；无需预约、现场先到先得。驾驶者须年满 21 岁并持有效驾照，可能需签署免责与问卷。', en: 'Free and open to the public; no reservation, first-come onsite. Drivers must be 21+ with a valid license and may need to complete a waiver and survey.' },
+        drive: { zh: 'Air、Gravity 与 Air Sapphire 视现场车辆供应；由 Lucid 专家陪同。', en: 'Air, Gravity and Air Sapphire are subject to onsite vehicle availability, with a Lucid specialist.' },
+        parking: { zh: 'Concours Village 是活动地点，不是停车保证；按 Pebble Beach 现场标识停车后步行。', en: 'Concours Village is the activity venue, not a parking guarantee. Park as directed inside Pebble Beach and continue on foot.' },
+        sources: [
+          { url: 'https://www.pebblebeachconcours.net/event/lucid-demo-drive-experience/', label: { zh: '官方 Lucid 试驾活动页', en: 'Official Lucid demo-drive page' } },
+          { url: 'https://www.pebblebeachconcours.net/displays-and-ride-amp-drive-schedule/', label: { zh: '官方展示与试驾总日程', en: 'Official displays and ride-and-drive schedule' } }
+        ]
+      },
+      {
+        id: 'bentley-home', lane: 'house-hospitality', tone: 'conditional', accessStatus: 'request-required', startDate: '2026-08-13', endDate: '2026-08-16', dateStatus: 'confirmed', verifiedOn: '2026-08-14',
+        badge: { zh: '官方 House · 需提交意向', en: 'Official house · submit interest' },
+        title: { zh: 'Home of Bentley', en: 'Home of Bentley' },
+        location: { zh: 'Pebble Beach；准确入口随品牌确认提供', en: 'Pebble Beach; exact arrival details follow brand confirmation' },
+        schedule: { zh: '官方确认 8 月 13–16 日；未公开逐日营业时段', en: 'Officially confirmed August 13–16; daily opening hours are not published' },
+        access: { zh: '官网为 Home of Bentley 提供“submit your interest”；这不是 walk-in 保证，也没有公开票价。', en: 'The site offers “submit your interest” for Home of Bentley. This is not a walk-in guarantee, and no public price is posted.' },
+        drive: { zh: '同一网站另行接受通用 Bentley Drives 体验的意向登记，但没有确认 Monterey 本周提供 Drive 名额；不要把两项合并理解。', en: 'The same site separately accepts interest in the general Bentley Drives program, but does not confirm a Monterey drive slot this week. Do not merge the two offerings.' },
+        parking: { zh: '仅按 Bentley 确认邮件或接待人员到场；没有确认就不要寻找私人入口或停车。', en: 'Arrive only using Bentley confirmation or host instructions; without confirmation, do not search for a private entrance or parking.' },
+        publicAction: { zh: '先在线提交意向；未收到确认时改选上方官方公众试驾。', en: 'Submit interest online first; without confirmation, choose an official public drive above.' },
+        sources: [
+          { url: 'https://bentleyexperiences.com/', label: { zh: 'Bentley Experiences · 2026 Pebble Beach', en: 'Bentley Experiences · Pebble Beach 2026' } }
+        ]
+      },
+      {
+        id: 'lamborghini-villa', lane: 'house-hospitality', tone: 'invite', accessStatus: 'credential-only', startDate: '2026-08-14', endDate: '2026-08-16', dateStatus: 'confirmed', verifiedOn: '2026-08-14',
+        badge: { zh: 'Lamborghini America 活动票务门户 · 凭证制', en: 'Lamborghini America event ticket portal · credential only' },
+        title: { zh: 'Lamborghini Villa Monterey', en: 'Lamborghini Villa Monterey' },
+        location: { zh: 'Pebble Beach Golf Links 一带；本页不复述私人场址，仅按个人凭证导航', en: 'Near Pebble Beach Golf Links; this guide does not republish the private venue address—use personal credential directions' },
+        schedule: { zh: '8 月 14 日的同一官方 FAQ 同时列出 09:00 与 11:00 开始，均至 17:00；以本人凭证或经销商确认为准，未确认时按 11:00 规划。15 日 09:00–17:00；16 日 08:00–16:00；晚间仅限凭证指定场次', en: 'For August 14, the same official FAQ lists both 9:00am and 11:00am starts, each ending at 5:00pm. Follow your credential or dealer confirmation; without it, plan around 11:00am. August 15 is 9:00am–5:00pm and August 16 is 8:00am–4:00pm; evening access is limited to the session on the credential' },
+        access: { zh: '每位来宾须持本人不可转让的品牌 QR 凭证；没有 badge 的同行者不得进入。截至 8 月 14 日，活动票务门户列出 Argento $2,500（1 人）、Oro $6,560（2 人）、Platino $10,000（2 人）与 Diamante $11,000（2 人），价格与库存会变化；不是免费 walk-in House。', en: 'Every guest needs a named, non-transferable brand QR credential; companions without a badge are not admitted. As of August 14, the event ticket portal lists Argento at $2,500 for one, Oro at $6,560 for two, Platino at $10,000 for two and Diamante at $11,000 for two; prices and inventory can change. This is not a free walk-in house.' },
+        drive: { zh: '品牌门户写明完整现款车型与 hospitality；没有公开 walk-in 试驾承诺。8 月 16 日 Miura 展示的 Concours 入场边界另算。', en: 'The brand portal describes the current lineup and hospitality, but gives no public walk-in drive promise. The August 16 Miura display remains subject to separate Concours admission.' },
+        parking: { zh: 'Villa 严禁停车。持凭证者按官方说明前往 Poppy Hills 的指定 valet / 接驳点，约每 15 分钟发车；网约车也应在该处上下客。', en: 'Parking at the Villa is prohibited. Credentialed guests must use the designated valet/shuttle at Poppy Hills, running roughly every 15 minutes; rideshare uses the same transfer point.' },
+        publicAction: { zh: '可在活动票务门户购买仍可用的套案，或向经销商核实；取得本人 QR 凭证前不要前往 Villa。', en: 'Purchase an available package through the event ticket portal or confirm with a dealer; do not go to the Villa before receiving your named QR credential.' },
+        sources: [
+          { url: 'https://eventsala.com/products/monterey-car-week-2026', label: { zh: 'Lamborghini America 活动票务门户 · 2026 套案', en: 'Lamborghini America event ticket portal · 2026 packages' } },
+          { url: 'https://eventsala.com/pages/monterey-car-week-2026-faq', label: { zh: 'Lamborghini America 活动票务门户 · 2026 FAQ', en: 'Lamborghini America event ticket portal · 2026 FAQ' } },
+          { url: 'https://www.lamborghini.com/cn-en/%E6%96%B0%E9%97%BB/lamborghini-marks-miuras-60th-anniversary', label: { zh: 'Lamborghini · Miura 60 周年官方公告', en: 'Lamborghini · official Miura 60th-anniversary announcement' } }
+        ]
+      },
+      {
+        id: 'bmw-villa', lane: 'house-hospitality', tone: 'conditional', accessStatus: 'unpublished', startDate: '2026-08-12', endDate: '2026-08-15', dateStatus: 'partial', verifiedOn: '2026-08-14',
+        badge: { zh: '县任务组议程列名 · 准入未公开', en: 'County task-force agenda listing · access unpublished' },
+        title: { zh: 'BMW Villa · Monterey Car Week', en: 'BMW Villa · Monterey Car Week' },
+        location: { zh: 'Pebble Beach 私人住宅场地；本页不发布县议程中的场址，也不把它当作公众入口', en: 'Private residential venue in Pebble Beach; this guide does not republish the agenda address or treat it as a public entrance' },
+        schedule: { zh: '县任务组议程列出 8 月 12–15 日，但议程不等于 permit 已签发；2026 每日时段未公开', en: 'The county task-force agenda lists August 12–15, but the agenda does not establish permit issuance; 2026 daily hours are not published' },
+        access: { zh: 'BMW / 主办方没有公开 2026 walk-in、票价、试驾资格或预约规则；县议程也不证明活动已获最终批准。“未见票价”不等于官方确认免费或人人可进。', en: 'BMW and the organizer have not published 2026 walk-in, pricing, driving-eligibility or reservation rules, and the county agenda does not establish final approval. No published price does not mean officially confirmed free or open admission.' },
+        drive: { zh: 'BMW 官方只确认更广泛的 Monterey Car Week 参与，没有公布 Villa 的 2026 车型、试驾或候位时间；建议携带有效驾照并先问门岗。', en: 'BMW confirms broader Monterey Car Week participation, but has not published the Villa’s 2026 cars, drives or wait times. Bring a valid license and ask the gate first.' },
+        parking: { zh: '2026 valet 细则未公开。往年官方记录是入口交车给活动 valet、车辆异地停放，并非在私人场地门口或路边自行停车；今年仍须完全服从工作人员。', en: '2026 valet terms are unpublished. Prior official records describe handing vehicles to event valet for offsite parking—not self-parking at the private venue door or curb. Follow staff completely this year.' },
+        publicAction: { zh: '只有门岗或 BMW 当日确认准入后才前往；不要把 8 月 13 日个案当作后续日期保证。', en: 'Go only after same-day confirmation from BMW or the gate; do not treat an August 13 observation as a guarantee for later dates.' },
+        fieldReport: { date: '2026-08-13', body: { zh: '朋友 8 月 13 日现场回报：白天 walk-in、未另收费，并在入口交车给 valet。公开官方材料尚未确认这三项为 2026 通用政策，到场前与门岗复核。', en: 'A friend reported daytime walk-ins, no separate charge and vehicle handoff to valet on August 13. Public official materials do not establish those as general 2026 policy; reconfirm with the gate before relying on them.' } },
+        sources: [
+          { url: 'https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000', label: { zh: 'Monterey County · 2026 特别活动任务组议程', en: 'Monterey County · 2026 special-event task-force agenda' } },
+          { url: 'https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/permit-center/special-events-getting-started', label: { zh: 'Monterey County · 特别活动审批与许可流程', en: 'Monterey County · special-event approval and permit process' } },
           { url: 'https://www.bmwgroup-classic.com/en/clubs-community/events/kalender-events/monterey-car-week-pebble-beach.html', label: { zh: 'BMW Group Classic · 2026 Monterey 参与', en: 'BMW Group Classic · 2026 Monterey participation' } },
           { url: 'https://www.countyofmonterey.gov/home/showpublisheddocument/133427/638887756447700000', label: { zh: 'Monterey County · 2024 walk-in / valet 历史记录', en: 'Monterey County · historical 2024 walk-in / valet record' } }
         ]
       },
       {
-        id: 'aston-martin-house', tone: 'invite', accessStatus: 'invitation-only',
-        badge: { zh: '仅限受邀 · 不作为公众免费活动', en: 'Invitation only · not a free public event' },
+        id: 'bugatti-le-domaine', lane: 'house-hospitality', tone: 'conditional', accessStatus: 'unpublished', dateStatus: 'partial', verifiedOn: '2026-08-14',
+        badge: { zh: '官方新车节点 · House 准入未公开', en: 'Official reveal · house access unpublished' },
+        title: { zh: 'Bugatti · Destrier / Le Domaine 线索', en: 'Bugatti · Destrier / Le Domaine lead' },
+        location: { zh: 'Pebble Beach；2026 House 准确地点未公开', en: 'Pebble Beach; the 2026 house location is unpublished' },
+        schedule: { zh: '官方确认 1/1 Destrier 在 Car Week 亮相，并于 8 月 16 日 Concours 收官；House 日期与时段未发布', en: 'Bugatti confirms the one-off Destrier will appear during Car Week and culminate at the August 16 Concours; house dates and hours are not published' },
+        access: { zh: '没有 2026 公众 RSVP、单独票价或开放说明。往年 Le Domaine 主要接待 Bugatti 客户；“未见票价”不等于免费开放。', en: 'There is no 2026 public RSVP, standalone price or open-access notice. Prior Le Domaine programs primarily hosted Bugatti customers; no posted price does not mean free entry.' },
+        drive: { zh: '官方确认的是 Destrier 发布节点，不是公众试驾；不要推断可试驾 Destrier、Tourbillon 或其他 Bugatti。', en: 'The official fact is the Destrier reveal, not a public drive. Do not infer test-drive access to Destrier, Tourbillon or any other Bugatti.' },
+        parking: { zh: '未发布 2026 House 停车或 valet；受邀者只按品牌信息，Concours 观众则按 Concours 官方停车。', en: 'No 2026 house parking or valet guidance is published. Invitees should follow brand instructions; Concours visitors should use official Concours parking.' },
+        publicAction: { zh: '没有品牌邀请时，不把它当作公众目的地；8 月 16 日 Concours 门票也不等于 House 准入。', en: 'Without a brand invitation, do not treat it as a public destination; an August 16 Concours ticket does not grant house access.' },
+        fieldReport: { date: '2026-08-14', body: { zh: '当日线索称 Bugatti House 正在举行活动；截至复核时，官方仍未发布其 2026 开放时段、入口、停车或公众资格。', en: 'A same-day lead says a Bugatti house is operating; at verification time, Bugatti still had not published 2026 hours, entrance, parking or public eligibility.' } },
+        sources: [
+          { url: 'https://newsroom.bugatti.com/press-releases/the-bugatti-destrier-a-sculpture-of-speed', label: { zh: 'Bugatti · 2026 Destrier 官方公告', en: 'Bugatti · official 2026 Destrier announcement' } },
+          { url: 'https://newsroom.bugatti.com/en/stories/bugatti-craftsmanship-at-monterey-car-week-2025', label: { zh: 'Bugatti · 2025 Le Domaine 客户 hospitality 回顾', en: 'Bugatti · 2025 Le Domaine customer-hospitality recap' } },
+          { url: 'https://www.pebblebeachconcours.net/displays-and-ride-amp-drive-schedule/', label: { zh: '2026 官方公众展示清单（未列 Bugatti）', en: '2026 official public display list (Bugatti not listed)' } }
+        ]
+      },
+      {
+        id: 'aston-martin-house', lane: 'house-hospitality', tone: 'invite', accessStatus: 'unpublished', dateStatus: 'unpublished', verifiedOn: '2026-08-14',
+        badge: { zh: '2026 准入未发布 · 现场回报仅限受邀', en: '2026 access unpublished · field report says invitation only' },
         title: { zh: 'House of Aston Martin', en: 'House of Aston Martin' },
         location: { zh: '2025 官方 House 位于 Spyglass Hill 球场旁；2026 地点与时段未公开，请只使用个人邀请函中的地点', en: 'The official 2025 House was alongside Spyglass Hill; the 2026 location and hours are unpublished, so use only the location in a personal invitation' },
         schedule: { zh: 'Aston Martin 仅确认 Vanquish 25 将在 8 月 10–16 日 Monterey Car Week 首发；未发布 2026 House 专属时段', en: 'Aston Martin confirms the Vanquish 25 premiere during Monterey Car Week, August 10–16, but has not published 2026 House hours' },
-        access: { zh: '按受邀活动处理。没有公开售票不等于免费向所有人开放；无邀请者不要前往。', en: 'Treat it as invitation-only. No public ticket does not mean free public admission; do not go without an invitation.' },
+        access: { zh: '2026 官方公开资料尚未发布 House 准入规则；2025 官方口径为 invited guests，8 月 13 日现场回报也称需要邀请。规划上只按受邀活动处理，但不要把往年规则冒充 2026 公告。', en: 'Public 2026 materials do not publish House access rules. The official 2025 policy used invited guests, and an August 13 field report also says an invitation was required. Plan conservatively as invite-only without presenting prior-year policy as a 2026 announcement.' },
         drive: { zh: '没有 2026 公开 House 现场试驾或 walk-in 规则。2025 官方的专属驾驶从 Bernardus Lodge 出发，不能套用成 House 排队试驾。', en: 'No public 2026 House walk-in or drive rules are posted. Aston Martin’s 2025 exclusive drives departed Bernardus Lodge and cannot be recast as House walk-in test drives.' },
-        parking: { zh: '未找到 2026 公开 valet 或自驾停车说明。受邀者按邀请函与接待人员指示，不把 Poppy Lane 当作公众入口。', en: 'No public 2026 valet or self-parking guidance was found. Invitees should follow their invitation and host staff; do not treat Poppy Lane as a public entrance.' },
-        fieldReport: { zh: '朋友当天反馈“需要 invitation”，与 Aston Martin 往年官方的 invited-guests 口径一致；但 2026 House 的地点、时段与交通细则仍未公开。', en: 'A friend’s same-day report that an invitation is required matches Aston Martin’s prior invited-guest policy, but the 2026 House location, hours and transport terms remain unpublished.' },
+        parking: { zh: '未找到 2026 公开 valet 或自驾停车说明。受邀者按邀请函与接待人员指示，不把任何私人住宅当作公众入口。', en: 'No public 2026 valet or self-parking guidance was found. Invitees should follow their invitation and host staff; do not treat any private residence as a public entrance.' },
+        publicAction: { zh: '只按个人邀请函行动；无邀请者选择公开街展或上方官方公众体验。', en: 'Act only on a personal invitation; without one, choose a public street show or one of the official public experiences above.' },
+        fieldReport: { date: '2026-08-13', body: { zh: '朋友当天反馈“需要 invitation”，与 Aston Martin 往年官方的 invited-guests 口径一致；但 2026 House 的地点、时段与交通细则仍未公开。', en: 'A friend’s same-day report that an invitation is required matches Aston Martin’s prior invited-guest policy, but the 2026 House location, hours and transport terms remain unpublished.' } },
         sources: [
           { url: 'https://media.astonmartin.com/vanquish-25-a-celebration-of-an-automotive-flagship/?lang=eng', label: { zh: 'Aston Martin · 2026 Monterey 首发公告', en: 'Aston Martin · 2026 Monterey premiere announcement' } },
           { url: 'https://media.astonmartin.com/aston-martin-celebrates-75-years-in-the-americas-at-2025-monterey-car-week/?lang=eng', label: { zh: 'Aston Martin · 2025 invited-guests 官方口径', en: 'Aston Martin · official 2025 invited-guest policy' } },
           { url: 'https://www.countyofmonterey.gov/home/showpublisheddocument/141493/638899014930270000', label: { zh: 'Monterey County · 2025 private / invitation-only 记录', en: 'Monterey County · 2025 private / invitation-only record' } }
+        ]
+      },
+      {
+        id: 'range-rover-residence', lane: 'house-hospitality', tone: 'conditional', accessStatus: 'request-required', startDate: '2026-08-12', endDate: '2026-08-16', dateStatus: 'confirmed', verifiedOn: '2026-08-14',
+        badge: { zh: '官方套案 · 需预订确认', en: 'Official package · reservation confirmation required' },
+        title: { zh: 'The Residence at Range Rover House', en: 'The Residence at Range Rover House' },
+        location: { zh: 'Carmel-by-the-Sea 精品酒店包场；仅按预订指示到达', en: 'Boutique-hotel takeover in Carmel-by-the-Sea; arrive only via reservation instructions' },
+        schedule: { zh: 'Car Week 项目 8 月 12–16 日；8 月 12 日入住、17 日退房，共五晚', en: 'Car Week programming August 12–16; check in August 12 and check out August 17 for a five-night stay' },
+        access: { zh: '品牌新闻稿称 invitation only；当前官方套案页允许车主与爱好者提交购买请求，且按先到先得、确认付款后生效。两人套案按房型为 $23,500、$25,500、$29,500 或 $31,500；截至 8 月 14 日，最高档售罄、$29,500 档余量有限，价格与库存实时变化。', en: 'The brand release describes invitation-only access; the current official package page lets owners and enthusiasts request purchase on a first-come basis, final only after confirmation and payment. Two-person packages are $23,500, $25,500, $29,500 or $31,500. As of August 14, the top tier is sold out and the $29,500 tier has limited availability; prices and inventory can change.' },
+        drive: { zh: '包含住宿、餐饮、定制咨询、机场与活动周专车，以及 The Quail 与 Concours 权益。', en: 'Includes lodging, dining, bespoke appointments, airport and event-week chauffeur transport, plus access to The Quail and Concours.' },
+        parking: { zh: '套案含一个 Residence 车位、机场接送与活动周接驳；不要把酒店当作公众参观点。', en: 'The package includes one Residence parking space, airport transfers and Car Week shuttles; do not treat the hotel as a public viewing stop.' },
+        publicAction: { zh: '只能先走官方预订请求；收到 concierge 确认并完成付款后再纳入行程，临时到访者跳过。', en: 'Use the official reservation request first; add it only after concierge confirmation and payment. Walk-up visitors should skip it.' },
+        sources: [
+          { url: 'https://media.landrover.com/en-us/news/2026/05/residence-range-rover-house-new-expression-luxury-hospitality-monterey-car-week', label: { zh: 'Range Rover · 2026 Residence 官方公告', en: 'Range Rover · official 2026 Residence announcement' } },
+          { url: 'https://www.rsvprangerover.com/residence/packagedetails.aspx', label: { zh: 'Range Rover · 官方套案与实时价格', en: 'Range Rover · official packages and current prices' } },
+          { url: 'https://www.rsvprangerover.com/residence/faqs.aspx', label: { zh: 'Range Rover · 官方交通与停车 FAQ', en: 'Range Rover · official transport and parking FAQ' } }
+        ]
+      },
+      {
+        id: 'mclaren-event', lane: 'house-hospitality', tone: 'conditional', accessStatus: 'unpublished', startDate: '2026-08-12', endDate: '2026-08-15', dateStatus: 'partial', verifiedOn: '2026-08-14',
+        badge: { zh: '县任务组议程列名 · 准入未公开', en: 'County task-force agenda listing · access unpublished' },
+        title: { zh: 'McLaren at Monterey Car Week', en: 'McLaren at Monterey Car Week' },
+        location: { zh: 'Monterey Peninsula 住宅场地品牌活动线索；公开准入未发布，本页不复述议程地址', en: 'Brand-activation lead at a residential Monterey Peninsula venue; public access is unpublished and the agenda address is not repeated here' },
+        schedule: { zh: '县任务组议程列出 8 月 12–15 日；议程不等于 permit 已签发，且未公开逐日时段', en: 'The county task-force agenda lists August 12–15; it does not establish permit issuance, and daily hours are not published' },
+        access: { zh: '县议程只证明活动曾列入任务组审议，不证明最终批准、公众 walk-in、免费或可停车。', en: 'The county agenda shows the event was listed for task-force review; it does not establish final approval, public walk-in access, free admission or parking.' },
+        drive: { zh: '没有找到 2026 公开 House 车型、试驾或 RSVP 页面。', en: 'No public 2026 house lineup, drive or RSVP page was found.' },
+        parking: { zh: '仅持 McLaren 发出的确认或邀请前往，并按其交通说明；不要自行找住宅入口。', en: 'Attend only with McLaren-issued confirmation or invitation and follow its transport instructions; do not search for a residential entrance.' },
+        publicAction: { zh: '没有品牌确认就跳过；不作为公众观赛点。', en: 'Skip without brand confirmation; this is not a public viewing stop.' },
+        sources: [
+          { url: 'https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000', label: { zh: 'Monterey County · 2026 特别活动任务组议程', en: 'Monterey County · 2026 special-event task-force agenda' } },
+          { url: 'https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/permit-center/special-events-getting-started', label: { zh: 'Monterey County · 特别活动审批与许可流程', en: 'Monterey County · special-event approval and permit process' } }
+        ]
+      },
+      {
+        id: 'rolls-royce-event', lane: 'house-hospitality', tone: 'conditional', accessStatus: 'unpublished', startDate: '2026-08-13', endDate: '2026-08-15', dateStatus: 'partial', verifiedOn: '2026-08-14',
+        badge: { zh: '县任务组议程列名 · 准入未公开', en: 'County task-force agenda listing · access unpublished' },
+        title: { zh: 'Rolls-Royce Motor Cars North America', en: 'Rolls-Royce Motor Cars North America' },
+        location: { zh: 'Monterey Peninsula 住宅场地品牌活动线索；公开准入未发布，本页不复述议程地址', en: 'Brand-activation lead at a residential Monterey Peninsula venue; public access is unpublished and the agenda address is not repeated here' },
+        schedule: { zh: '县任务组议程列出 8 月 13–15 日；议程不等于 permit 已签发，且未公开逐日时段', en: 'The county task-force agenda lists August 13–15; it does not establish permit issuance, and daily hours are not published' },
+        access: { zh: '县议程不证明最终批准；也没有找到 2026 公众 walk-in、门票或 RSVP 页面，只按品牌确认处理。', en: 'The county agenda does not establish final approval. No 2026 public walk-in, ticket or RSVP page was found; act only on brand confirmation.' },
+        drive: { zh: '没有公开可供散客参加的车型展示或试驾规则。', en: 'No public walk-in vehicle display or drive rules are published.' },
+        parking: { zh: '仅持品牌确认者按邀请中的交通安排；不要尝试住宅路边停车。', en: 'Only confirmed guests should follow the transport instructions in their invitation; do not attempt residential curb parking.' },
+        publicAction: { zh: '无邀请或品牌确认就不前往。', en: 'Do not go without an invitation or brand confirmation.' },
+        sources: [
+          { url: 'https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000', label: { zh: 'Monterey County · 2026 特别活动任务组议程', en: 'Monterey County · 2026 special-event task-force agenda' } },
+          { url: 'https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/permit-center/special-events-getting-started', label: { zh: 'Monterey County · 特别活动审批与许可流程', en: 'Monterey County · special-event approval and permit process' } }
+        ]
+      },
+      {
+        id: 'koenigsegg-private', lane: 'house-hospitality', tone: 'invite', accessStatus: 'private', startDate: '2026-08-14', endDate: '2026-08-15', dateStatus: 'partial', verifiedOn: '2026-08-14',
+        badge: { zh: '县议程标题标注 · 私人活动', en: 'County agenda title · private event' },
+        title: { zh: 'Koenigsegg Automotive · Private Event', en: 'Koenigsegg Automotive · Private Event' },
+        location: { zh: 'Carmel 一带私人活动；不发布议程中的住宅地址', en: 'Private Carmel-area activation; the residential agenda address is not published here' },
+        schedule: { zh: '县任务组议程列出 8 月 14–15 日；议程不等于 permit 已签发，且未公开逐日时段', en: 'The county task-force agenda lists August 14–15; it does not establish permit issuance, and daily hours are not published' },
+        access: { zh: '县议程中的活动名称本身写作 Private Event；即使最终是否获批仍未由该议程证明，也绝不是公众参观点。', en: 'The agenda entry itself is titled Private Event. Although the agenda does not establish final approval, it is not a public viewing stop.' },
+        drive: { zh: '没有公开 walk-in 展示、试驾或 RSVP 规则。', en: 'No public walk-in display, drive or RSVP rules are published.' },
+        parking: { zh: '只有受邀者按品牌信息前往；不要在活动住宅周边寻找停车。', en: 'Only invited guests should follow brand instructions; do not seek parking around the event residence.' },
+        publicAction: { zh: '普通观众直接跳过。', en: 'General visitors should skip it.' },
+        sources: [
+          { url: 'https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000', label: { zh: 'Monterey County · 2026 特别活动任务组议程', en: 'Monterey County · 2026 special-event task-force agenda' } },
+          { url: 'https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/permit-center/special-events-getting-started', label: { zh: 'Monterey County · 特别活动审批与许可流程', en: 'Monterey County · special-event approval and permit process' } }
         ]
       }
     ]
@@ -1224,7 +1395,7 @@ window.PEBBLE_DATA = {
       id: 'qp-0813',
       date: { zh: '8 月 13 日', en: 'Aug 13' }, day: { zh: '周四', en: 'Thu' },
       title: { zh: 'Tour 早晨 · 停一次，全程步行', en: 'Tour morning · park once, stay on foot' },
-      body: { zh: '6:15–6:30 进入 Pebble Beach 后按指示停车；看完集结、三批发车与约中午归来，再步行去 Hay Hill 的免费 Cadillac V-Series 公众试驾。BMW 规则未公开、Aston 仅限受邀，均不作为这条公众路线的保证点。', en: 'Enter Pebble Beach at 6:15–6:30 and park as directed; see the lineup, all three waves and the approximate noon return, then walk to the free public Cadillac V-Series drive at Hay Hill. BMW access is unpublished and Aston Martin is invitation-only, so neither is a guaranteed public stop on this route.' },
+      body: { zh: '6:15–6:30 进入 Pebble Beach 后按指示停车；看完集结、三批发车与约中午归来，再步行去 Hay Hill 的免费 Cadillac V-Series 公众试驾。BMW 与 Aston Martin 的 2026 准入规则均未公开；Aston 往年政策与 8 月 13 日现场回报均指向仅限受邀，因此两者都不是这条公众路线的保证点。', en: 'Enter Pebble Beach at 6:15–6:30 and park as directed; see the lineup, all three waves and the approximate noon return, then walk to the free public Cadillac V-Series drive at Hay Hill. BMW and Aston Martin 2026 access are unpublished; prior Aston policy and an August 13 field report point to invitation-only access, so neither is a guaranteed public stop on this route.' },
       cost: { zh: 'Tour 观看 + Cadillac 体验免费 · Portola 停车费用未公布 · MPC 条件候选 $3', en: 'Viewing free · Cadillac experience free · Portola parking price unpublished · conditional MPC option $3' },
       route: routeFor('qp-0813'),
       schedule: scheduleFor('qp-0813', [
@@ -2494,7 +2665,16 @@ window.PEBBLE_DATA = {
     { label: { zh: 'Pebble Beach 停车与接驳', en: 'Pebble Beach parking and shuttles' }, url: 'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/' },
     { label: { zh: 'Cadillac V-Series Drive Experience', en: 'Cadillac V-Series Drive Experience' }, url: 'https://www.pebblebeachconcours.net/event/cadillac-v-series-drive-experience/' },
     { label: { zh: 'Cadillac CELESTIQ 官方车型页', en: 'Official Cadillac CELESTIQ page' }, url: 'https://www.cadillac.com/electric/celestiq' },
-    { label: { zh: 'Monterey County · 2026 BMW Villa 许可', en: 'Monterey County · 2026 BMW Villa permit' }, url: 'https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000' },
+    { label: { zh: 'Mercedes-Benz USA · Future Classics House', en: 'Mercedes-Benz USA · Future Classics House' }, url: 'https://www.mbusa.com/en/events-and-partnerships/pebble-beach' },
+    { label: { zh: 'Lexus Driving Experience', en: 'Lexus Driving Experience' }, url: 'https://www.pebblebeachconcours.net/event/lexus-drive-experience/' },
+    { label: { zh: 'Lucid Demo Drive Experience', en: 'Lucid Demo Drive Experience' }, url: 'https://www.pebblebeachconcours.net/event/lucid-demo-drive-experience/' },
+    { label: { zh: 'Home of Bentley · Pebble Beach 2026', en: 'Home of Bentley · Pebble Beach 2026' }, url: 'https://bentleyexperiences.com/' },
+    { label: { zh: 'Lamborghini Villa · 2026 凭证与交通', en: 'Lamborghini Villa · 2026 credentials and transport' }, url: 'https://eventsala.com/pages/monterey-car-week-2026-faq' },
+    { label: { zh: 'Lamborghini Villa · 2026 套案价格', en: 'Lamborghini Villa · 2026 package prices' }, url: 'https://eventsala.com/products/monterey-car-week-2026' },
+    { label: { zh: 'Range Rover House · 2026 套案', en: 'Range Rover House · 2026 packages' }, url: 'https://www.rsvprangerover.com/residence/packagedetails.aspx' },
+    { label: { zh: 'Bugatti · Destrier 2026 官方公告', en: 'Bugatti · official 2026 Destrier announcement' }, url: 'https://newsroom.bugatti.com/press-releases/the-bugatti-destrier-a-sculpture-of-speed' },
+    { label: { zh: 'Monterey County · 2026 特别活动任务组议程', en: 'Monterey County · 2026 Special Event Task Force agenda' }, url: 'https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000' },
+    { label: { zh: 'Monterey County · 特别活动审批与许可流程', en: 'Monterey County · special-event approval and permit process' }, url: 'https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/permit-center/special-events-getting-started' },
     { label: { zh: 'BMW Group Classic · Monterey Car Week 2026', en: 'BMW Group Classic · Monterey Car Week 2026' }, url: 'https://www.bmwgroup-classic.com/en/clubs-community/events/kalender-events/monterey-car-week-pebble-beach.html' },
     { label: { zh: 'Aston Martin · 2026 Vanquish 25 Monterey 公告', en: 'Aston Martin · 2026 Vanquish 25 Monterey announcement' }, url: 'https://media.astonmartin.com/vanquish-25-a-celebration-of-an-automotive-flagship/?lang=eng' },
     { label: { zh: 'Aston Martin · 2025 House 受邀口径', en: 'Aston Martin · 2025 House invited-guest policy' }, url: 'https://media.astonmartin.com/aston-martin-celebrates-75-years-in-the-americas-at-2025-monterey-car-week/?lang=eng' },

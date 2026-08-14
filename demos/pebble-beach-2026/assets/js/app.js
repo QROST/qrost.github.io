@@ -283,6 +283,7 @@
   function revealHashTarget(shouldScroll) {
     const target = hashTargetElement();
     if (!target) return;
+    if (target instanceof HTMLDetailsElement) target.open = true;
     let parent = target.parentElement;
     while (parent) {
       if (parent instanceof HTMLDetailsElement) parent.open = true;
@@ -704,12 +705,26 @@
     const root = document.getElementById('brand-house-grid');
     if (!guide || !root) return;
 
-    root.innerHTML = (guide.cards || []).map((card) => {
+    const openHouseIds = new Set(Array.from(root.querySelectorAll('details[data-brand-house-id][open]')).map((item) => item.dataset.brandHouseId));
+    const openPastGroupIds = new Set(Array.from(root.querySelectorAll('details[data-brand-past-group][open]')).map((item) => item.dataset.brandPastGroup));
+    const today = getClock().dateIso;
+    const cardsById = new Map((guide.cards || []).map((card) => [card.id, card]));
+    const sourceLinks = (card) => `<div class="brand-house-source-block">
+      <strong>${escapeHtml(text('brandHouseSourcesLabel'))}</strong>
+      <div class="brand-house-source-links">${(card.sources || []).map((source) => (
+        `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(source.label))}<span aria-hidden="true">↗</span></a>`
+      )).join('')}</div>
+    </div>`;
+    const fieldReport = (card) => card.fieldReport ? `<aside class="brand-house-field-report">
+      <strong>${escapeHtml(text('brandHouseFieldReportLabel'))} · ${escapeHtml(card.fieldReport.date)}</strong>
+      <p>${escapeHtml(localized(card.fieldReport.body))}</p>
+    </aside>` : '';
+    const publicCard = (card) => {
       const tone = ['public', 'conditional', 'invite'].includes(card.tone) ? card.tone : 'conditional';
-      return `<article class="brand-house-card tone-${escapeHtml(tone)}">
+      return `<article id="brand-${escapeHtml(card.id)}" class="brand-house-card tone-${escapeHtml(tone)}" data-brand-entry="${escapeHtml(card.id)}">
         <header class="brand-house-card-header">
           <span class="brand-house-badge">${escapeHtml(localized(card.badge))}</span>
-          <h3>${escapeHtml(localized(card.title))}</h3>
+          <h4>${escapeHtml(localized(card.title))}</h4>
           <p>${escapeHtml(localized(card.location))}</p>
         </header>
         <dl class="brand-house-facts">
@@ -718,18 +733,57 @@
           <div><dt>${escapeHtml(text('brandHouseDriveLabel'))}</dt><dd>${escapeHtml(localized(card.drive))}</dd></div>
           <div><dt>${escapeHtml(text('brandHouseParkingLabel'))}</dt><dd>${escapeHtml(localized(card.parking))}</dd></div>
         </dl>
-        <aside class="brand-house-field-report">
-          <strong>${escapeHtml(text('brandHouseFieldReportLabel'))}</strong>
-          <p>${escapeHtml(localized(card.fieldReport))}</p>
-        </aside>
-        <div class="brand-house-source-block">
-          <strong>${escapeHtml(text('brandHouseSourcesLabel'))}</strong>
-          <div class="brand-house-source-links">${(card.sources || []).map((source) => (
-            `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(source.label))}<span aria-hidden="true">↗</span></a>`
-          )).join('')}</div>
-        </div>
+        ${fieldReport(card)}
+        ${sourceLinks(card)}
       </article>`;
-    }).join('');
+    };
+    const houseRow = (card) => {
+      const tone = ['public', 'conditional', 'invite'].includes(card.tone) ? card.tone : 'conditional';
+      const open = openHouseIds.has(card.id) ? ' open' : '';
+      return `<details id="brand-${escapeHtml(card.id)}" class="brand-house-row tone-${escapeHtml(tone)}" data-brand-house-id="${escapeHtml(card.id)}" data-brand-entry="${escapeHtml(card.id)}"${open}>
+        <summary>
+          <span class="brand-house-row-main"><span class="brand-house-badge">${escapeHtml(localized(card.badge))}</span><strong>${escapeHtml(localized(card.title))}</strong></span>
+          <span class="brand-house-row-date">${escapeHtml(localized(card.schedule))}</span>
+          <span class="brand-house-row-action" aria-hidden="true">${escapeHtml(text('brandHouseExpandLabel'))}</span>
+        </summary>
+        <div class="brand-house-row-content">
+          <p class="brand-house-row-location">${escapeHtml(localized(card.location))}</p>
+          <dl class="brand-house-facts">
+            <div><dt>${escapeHtml(text('brandHouseAccessLabel'))}</dt><dd>${escapeHtml(localized(card.access))}</dd></div>
+            <div><dt>${escapeHtml(text('brandHouseDriveLabel'))}</dt><dd>${escapeHtml(localized(card.drive))}</dd></div>
+            <div><dt>${escapeHtml(text('brandHouseParkingLabel'))}</dt><dd>${escapeHtml(localized(card.parking))}</dd></div>
+            <div><dt>${escapeHtml(text('brandHouseActionLabel'))}</dt><dd>${escapeHtml(localized(card.publicAction))}</dd></div>
+          </dl>
+          ${fieldReport(card)}
+          ${sourceLinks(card)}
+        </div>
+      </details>`;
+    };
+
+    root.innerHTML = (guide.lanes || []).map((lane) => {
+      const cards = (lane.cardIds || []).map((id) => cardsById.get(id)).filter(Boolean);
+      const isPublic = lane.id === 'public-drive';
+      const activeCards = cards.filter((card) => !card.endDate || today <= card.endDate);
+      const pastCards = cards.filter((card) => card.endDate && today > card.endDate);
+      const listClass = isPublic ? 'brand-house-card-grid' : 'brand-house-row-list';
+      const renderCard = isPublic ? publicCard : houseRow;
+      const activeMarkup = activeCards.length
+        ? `<div class="${listClass}">${activeCards.map(renderCard).join('')}</div>`
+        : '';
+      const pastOpen = openPastGroupIds.has(lane.id) ? ' open' : '';
+      const pastMarkup = pastCards.length ? `<details class="brand-house-past-group" data-brand-past-group="${escapeHtml(lane.id)}"${pastOpen}>
+        <summary>${escapeHtml(statusWithCount('brandHousePastSummary', pastCards.length))}</summary>
+        <div class="${listClass}">${pastCards.map(renderCard).join('')}</div>
+      </details>` : '';
+      return `<section class="brand-house-lane brand-house-lane-${escapeHtml(lane.id)}" aria-labelledby="brand-house-lane-${escapeHtml(lane.id)}">
+        <header class="brand-house-lane-heading">
+          <h3 id="brand-house-lane-${escapeHtml(lane.id)}">${escapeHtml(text(lane.titleKey))}</h3>
+          <p>${escapeHtml(text(lane.introKey))}</p>
+        </header>
+        ${activeMarkup}
+        ${pastMarkup}
+      </section>`;
+    }).join('') + `<p class="brand-house-directory-note">${escapeHtml(text('brandHouseDirectoryNote'))} <a href="${escapeHtml(guide.directorySource)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text('brandHouseDirectoryLink'))}<span aria-hidden="true">↗</span></a> <a href="${escapeHtml(guide.permitProcessSource)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text('brandHousePermitProcessLink'))}<span aria-hidden="true">↗</span></a></p>`;
   }
 
   function renderPlanStops(item) {
@@ -2125,6 +2179,7 @@
         renderQuickPlan();
         renderScheduleFilters();
         renderSchedule();
+        renderBrandHouses();
         applyTemporalSections();
         updateHeroPrimaryCta();
         schedulePlanMaps();
