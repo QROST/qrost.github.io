@@ -916,6 +916,55 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .parking-traffic-map .leaflet-image-layer { background: #fff; }
 .parking-traffic-map.leaflet-container { background: #fff; }
 
+.brand-house-heading .section-kicker { color: var(--blue); }
+.brand-house-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.brand-house-card {
+  --brand-house-accent: var(--gold);
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--brand-house-accent);
+  border-radius: var(--radius-small);
+  background: var(--surface);
+  box-shadow: var(--shadow-small);
+}
+.brand-house-card.tone-public { --brand-house-accent: var(--green); }
+.brand-house-card.tone-invite { --brand-house-accent: var(--orange); }
+.brand-house-card-header { padding: 20px 20px 17px; }
+.brand-house-badge {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand-house-accent) 13%, var(--surface));
+  color: var(--brand-house-accent);
+  font-size: .68rem;
+  font-weight: 850;
+  letter-spacing: .035em;
+  line-height: 1.35;
+}
+.brand-house-card-header h3 { margin: 15px 0 0; font-family: var(--serif); font-size: 1.3rem; line-height: 1.22; }
+.brand-house-card-header p { margin: 8px 0 0; color: var(--muted); font-size: .75rem; line-height: 1.55; }
+.brand-house-facts { margin: 0; padding: 0 20px; }
+.brand-house-facts > div { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); }
+.brand-house-facts dt { color: var(--faint); font-size: .68rem; font-weight: 850; letter-spacing: .045em; line-height: 1.45; text-transform: uppercase; }
+.brand-house-facts dd { margin: 0; color: var(--ink-soft); font-size: .75rem; line-height: 1.58; }
+.brand-house-field-report { margin: 4px 20px 0; padding: 13px 14px; border-left: 3px solid var(--gold); border-radius: 9px; background: color-mix(in srgb, var(--gold-soft) 48%, var(--surface)); }
+.brand-house-field-report strong { color: var(--gold); font-size: .68rem; line-height: 1.45; }
+.brand-house-field-report p { margin: 6px 0 0; color: var(--muted); font-size: .75rem; line-height: 1.55; }
+.brand-house-source-block { margin-top: auto; padding: 17px 20px 20px; }
+.brand-house-source-block > strong { color: var(--faint); font-size: .68rem; font-weight: 850; letter-spacing: .045em; text-transform: uppercase; }
+.brand-house-source-links { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+.brand-house-source-links a { display: inline-flex; min-height: 44px; align-items: center; gap: 5px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 9px; color: var(--green); font-size: .72rem; font-weight: 750; line-height: 1.35; text-decoration: none; }
+.brand-house-source-links a:hover { border-color: var(--green); background: var(--green-soft); }
+.brand-house-safety { display: flex; gap: 14px; margin-top: 14px; padding: 19px 21px; border: 1px solid color-mix(in srgb, var(--orange) 42%, var(--line)); border-radius: var(--radius-small); background: color-mix(in srgb, var(--orange-soft) 43%, var(--surface)); }
+.brand-house-safety > span { display: grid; flex: 0 0 auto; width: 32px; height: 32px; place-items: center; border-radius: 50%; background: var(--orange); color: var(--surface); font-weight: 900; }
+.brand-house-safety strong { color: var(--orange); font-size: .8rem; }
+.brand-house-safety p { margin: 6px 0 0; color: var(--muted); font-size: .75rem; line-height: 1.58; }
+
 .plan-track { display: grid; grid-template-columns: 1fr; gap: 14px; }
 .plan-track::before { display: none; }
 .plan-day {
@@ -1503,6 +1552,7 @@ html[lang="en"] .only-zh { display: none; }
   .parking-map-layout { grid-template-columns: 1fr; }
   .parking-map-shell { position: static; }
   .parking-map-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .brand-house-grid { grid-template-columns: 1fr; }
   .nearby-grid { grid-template-columns: 1fr; }
   .stay-grid { grid-template-columns: repeat(2, 1fr); }
   .price-method { grid-template-columns: 1fr; gap: 9px; }
@@ -1575,6 +1625,9 @@ html[lang="en"] .only-zh { display: none; }
   .parking-traffic-map { height: 340px; min-height: 280px; }
   .parking-map-source-links, .parking-map-source-links a { width: 100%; }
   .parking-map-source-links a { justify-content: center; }
+  .brand-house-facts > div { grid-template-columns: 1fr; gap: 4px; }
+  .brand-house-source-links, .brand-house-source-links a { width: 100%; }
+  .brand-house-source-links a { justify-content: center; }
   .plan-day:last-child { grid-column: auto; }
   .plan-branch { grid-template-columns: 1fr; gap: 3px; }
   .plan-branch-label { padding-top: 0; }

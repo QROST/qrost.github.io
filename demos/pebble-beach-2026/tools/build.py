@@ -281,6 +281,30 @@ def validate() -> list[str]:
     official_parking_pdf = "https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf"
     if html.count(official_parking_pdf) != 2:
         errors.append("parking-map static fallback and source bar must both link the official PDF")
+    brand_house_contract = {
+        'href="#brand-houses"': "brand-house navigation anchor",
+        'id="brand-houses"': "brand-house section",
+        'id="brand-house-grid"': "brand-house renderer root",
+        'id="brand-house-title"': "brand-house accessible heading",
+    }
+    for snippet, label in brand_house_contract.items():
+        if html.count(snippet) != 1:
+            errors.append(f"expected exactly one {label}, found {html.count(snippet)}")
+    if html.count('class="brand-house-source-block"') != 3:
+        errors.append("static brand-house fallback must preserve one verification source block per card")
+    for source_url in (
+        "https://www.pebblebeachconcours.net/event/cadillac-v-series-drive-experience/",
+        "https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000",
+        "https://media.astonmartin.com/vanquish-25-a-celebration-of-an-automotive-flagship/?lang=eng",
+    ):
+        if source_url not in html:
+            errors.append(f"static brand-house fallback is missing verification source: {source_url}")
+    if app_js.count("getElementById('brand-house-grid')") != 1:
+        errors.append("brand-house renderer must bind brand-house-grid exactly once")
+    if len(re.findall(r"function\s+renderBrandHouses\(\)", app_js)) != 1:
+        errors.append("expected exactly one renderBrandHouses implementation")
+    if not re.search(r"renderParkingTraffic\(\);\s*renderBrandHouses\(\);\s*renderQuickPlan\(\);", app_js):
+        errors.append("renderDynamicContent must render brand houses between the parking map and quick plan")
     for date in range(13, 18):
         if f"2026-08-{date:02d}" not in data_js:
             errors.append(f"data is missing 2026-08-{date:02d}")
@@ -289,10 +313,13 @@ def validate() -> list[str]:
         errors.append(f"expected at least 18 event records, found {event_count}")
     if "saturdaySpotlightsChecked: '2026-08-13'" not in data_js:
         errors.append("Saturday spotlight recheck marker is missing")
+    if "brandHouseReportsChecked: '2026-08-13'" not in data_js:
+        errors.append("brand-house recheck marker is missing")
     if "event.verifiedOn" not in app_js or "ui('verified')" not in app_js:
         errors.append("event cards must render the per-event verification marker")
 
     forbidden = ("/users/",)
+    private_address_pattern = re.compile(r"(?:poppy.{0,80}\b(?:28|32)\b|\b(?:28|32)\b.{0,80}poppy)", re.IGNORECASE | re.DOTALL)
     for path in DEMO_DIR.rglob("*"):
         if path.suffix.lower() not in {".html", ".js", ".css", ".svg"}:
             continue
@@ -300,6 +327,8 @@ def validate() -> list[str]:
         for phrase in forbidden:
             if phrase in lowered:
                 errors.append(f"private/source-project phrase found in {path.relative_to(REPO_ROOT)}: {phrase}")
+        if private_address_pattern.search(lowered):
+            errors.append(f"private residential house number found near Poppy Lane in {path.relative_to(REPO_ROOT)}")
 
     og_path = DEMO_DIR / "assets/img/pebble-beach-2026-og.png"
     try:

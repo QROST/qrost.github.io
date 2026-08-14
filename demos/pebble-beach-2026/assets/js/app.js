@@ -515,6 +515,39 @@
     syncParkingTrafficMap();
   }
 
+  function renderBrandHouses() {
+    const guide = DATA.brandHouseGuide;
+    const root = document.getElementById('brand-house-grid');
+    if (!guide || !root) return;
+
+    root.innerHTML = (guide.cards || []).map((card) => {
+      const tone = ['public', 'conditional', 'invite'].includes(card.tone) ? card.tone : 'conditional';
+      return `<article class="brand-house-card tone-${escapeHtml(tone)}">
+        <header class="brand-house-card-header">
+          <span class="brand-house-badge">${escapeHtml(localized(card.badge))}</span>
+          <h3>${escapeHtml(localized(card.title))}</h3>
+          <p>${escapeHtml(localized(card.location))}</p>
+        </header>
+        <dl class="brand-house-facts">
+          <div><dt>${escapeHtml(text('brandHouseScheduleLabel'))}</dt><dd>${escapeHtml(localized(card.schedule))}</dd></div>
+          <div><dt>${escapeHtml(text('brandHouseAccessLabel'))}</dt><dd>${escapeHtml(localized(card.access))}</dd></div>
+          <div><dt>${escapeHtml(text('brandHouseDriveLabel'))}</dt><dd>${escapeHtml(localized(card.drive))}</dd></div>
+          <div><dt>${escapeHtml(text('brandHouseParkingLabel'))}</dt><dd>${escapeHtml(localized(card.parking))}</dd></div>
+        </dl>
+        <aside class="brand-house-field-report">
+          <strong>${escapeHtml(text('brandHouseFieldReportLabel'))}</strong>
+          <p>${escapeHtml(localized(card.fieldReport))}</p>
+        </aside>
+        <div class="brand-house-source-block">
+          <strong>${escapeHtml(text('brandHouseSourcesLabel'))}</strong>
+          <div class="brand-house-source-links">${(card.sources || []).map((source) => (
+            `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(source.label))}<span aria-hidden="true">↗</span></a>`
+          )).join('')}</div>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
   function renderPlanStops(item) {
     const route = item.route;
     if (!route) return '';
@@ -1680,6 +1713,7 @@
   function renderDynamicContent() {
     renderTourMorning();
     renderParkingTraffic();
+    renderBrandHouses();
     renderQuickPlan();
     renderNearby();
     renderScheduleFilters();

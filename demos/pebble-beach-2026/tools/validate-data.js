@@ -40,7 +40,7 @@ const expectedRouteSignatures = {
   'qp-0810': 'branching::1:embassy@venue::A:choice:2A:carmel-valley-history@area|B:choice:2B:asilomar@area|C:choice:2C:porsche-seaside@area',
   'qp-0811': 'branching::1:carmel@area::A:choice:2A:embassy?@venue|B:choice:2B:asilomar?@area',
   'qp-0812': 'branching::1:carmel@area>2:lighthouse@area::A:choice:3A:asilomar?@area|B:choice:3B:jetcenter?@venue|C:choice:3C:pebble?@area',
-  'qp-0813': 'single::1:portola@area::-',
+  'qp-0813': 'single::1:portola@area>2:hay-hill?@area::-',
   'qp-0814': 'choice::-::A:choice:A1:werks@venue>A2:bayonet?@venue|B:choice:B1:laguna@venue',
   'qp-0815': 'choice::-::A:choice:A0:embassy?@area>A1:lemons@venue>A2:exotics@area|B:choice:B1:laguna@venue',
   'qp-0816': 'choice::-::A:choice:A:pebble@venue|B:choice:B:village@area|C:addOn:C:touring-vehicles?@area',
@@ -53,7 +53,7 @@ const expectedTimelineSignatures = {
   'qp-0810': '1/1/2A+2B+2C/2A+2B+2C/-',
   'qp-0811': '1/1/2A+2B/2A/2B',
   'qp-0812': '1/1/2/2/3A+3B+3C/3A+3B+3C',
-  'qp-0813': '1/1/1/1/-/1',
+  'qp-0813': '1/1/1/1/-/1/2',
   'qp-0814': 'A1+B1/A1/B1/A1/A2/A2',
   'qp-0815': 'A0/A1+B1/A1/A2/B1/A2',
   'qp-0816': 'A+B/A/A/B/C',
@@ -92,6 +92,7 @@ if (data) {
   check(data.dynamicUpdatesChecked === '2026-08-10', 'non-Tour dynamic facts must remain scoped through 2026-08-10');
   check(data.tourUpdatesChecked === '2026-08-13', 'Tour guidance recheck date must remain 2026-08-13');
   check(data.saturdaySpotlightsChecked === '2026-08-13', 'Saturday spotlight recheck date must remain 2026-08-13');
+  check(data.brandHouseReportsChecked === '2026-08-13', 'brand-house facts and field reports must remain scoped to 2026-08-13');
   check(!JSON.stringify(data).includes('chatgpt.com/'), 'private ChatGPT conversation URLs must never be published as evidence');
   for (const [key, value] of Object.entries(data.labels || {})) checkBilingual(value, `labels.${key}`);
   for (const [key, value] of Object.entries(data.ui || {})) checkBilingual(value, `ui.${key}`);
@@ -209,6 +210,86 @@ if (data) {
       tourSourceUrls.push(source.url);
     }
     check(JSON.stringify(tourSourceUrls) === JSON.stringify(tourOfficialUrls), 'tourMorning must preserve all four official URLs in priority order');
+  }
+
+  const brandGuide = data.brandHouseGuide;
+  check(brandGuide && typeof brandGuide === 'object', 'brandHouseGuide is required');
+  if (brandGuide) {
+    check(brandGuide.checked === '2026-08-13', 'brandHouseGuide.checked must remain 2026-08-13');
+    check(brandGuide.fieldReportDate === '2026-08-13', 'brandHouseGuide field report date must remain 2026-08-13');
+    const expectedBrandIds = ['cadillac-v-series', 'bmw-villa', 'aston-martin-house'];
+    check(
+      JSON.stringify((brandGuide.cards || []).map((card) => card.id)) === JSON.stringify(expectedBrandIds),
+      'brand-house card set or priority order drifted'
+    );
+    for (const [index, card] of (brandGuide.cards || []).entries()) {
+      const label = `brandHouseGuide.cards[${index}]`;
+      check(['public', 'conditional', 'invite'].includes(card.tone), `${label}.tone is invalid`);
+      check(['public-free', 'unpublished', 'invitation-only'].includes(card.accessStatus), `${label}.accessStatus is invalid`);
+      for (const key of ['badge', 'title', 'location', 'schedule', 'access', 'drive', 'parking', 'fieldReport']) {
+        checkBilingual(card[key], `${label}.${key}`);
+      }
+      check(Array.isArray(card.sources) && card.sources.length >= 2, `${label}.sources needs at least two primary records`);
+      for (const [sourceIndex, source] of (card.sources || []).entries()) {
+        checkUrl(source.url, `${label}.sources[${sourceIndex}].url`);
+        checkBilingual(source.label, `${label}.sources[${sourceIndex}].label`);
+      }
+    }
+
+    const brandText = JSON.stringify(brandGuide);
+    const privateHouseNumbers = [String(14 * 2), String(16 * 2)];
+    const privatePoppyHousePattern = new RegExp(`(?:poppy.{0,80}\\b(?:${privateHouseNumbers.join('|')})\\b|\\b(?:${privateHouseNumbers.join('|')})\\b.{0,80}poppy)`, 'i');
+    check(!privatePoppyHousePattern.test(brandText), 'residential house numbers near Poppy Lane must not be published or made inferable');
+    check(!brandText.includes('Cadillac House'), 'Cadillac public experience must not be misnamed Cadillac House');
+
+    const cadillac = (brandGuide.cards || []).find((card) => card.id === 'cadillac-v-series');
+    check(Boolean(cadillac), 'Cadillac V-Series card is required');
+    if (cadillac) {
+      const cadillacText = JSON.stringify(cadillac);
+      for (const fact of ['August 13–15', '9:00am–5:00pm', 'Free and open to the public', '21+', 'valid license', 'first-come, first-served', '15-minute', 'Escalade-V', 'CT5-V Blackwing', 'LYRIQ-V', 'low-$400Ks']) {
+        check(cadillacText.includes(fact), `Cadillac official boundary drifted: ${fact}`);
+      }
+      check(cadillacText.includes('approximately one-hour CELESTIQ wait') && cadillacText.includes('Neither the car nor the wait appears on the official event page'), 'Cadillac CELESTIQ wait must remain a clearly unconfirmed field report');
+      const cadillacUrls = cadillac.sources.map((source) => source.url);
+      for (const url of [
+        'https://www.pebblebeachconcours.net/event/cadillac-v-series-drive-experience/',
+        'https://www.pebblebeachconcours.net/plan-your-visit/automotive-week-experiences/ride-drives/',
+        'https://www.cadillac.com/electric/celestiq'
+      ]) check(cadillacUrls.includes(url), `Cadillac sources missing: ${url}`);
+    }
+
+    const bmw = (brandGuide.cards || []).find((card) => card.id === 'bmw-villa');
+    check(Boolean(bmw), 'BMW Villa card is required');
+    if (bmw) {
+      const bmwText = JSON.stringify(bmw);
+      check(bmw.accessStatus === 'unpublished', 'BMW 2026 access must remain unpublished');
+      for (const fact of ['Poppy Lane area', 'does not publish a residential house number', 'August 12–15', '2026 daily hours are not published', 'No published price does not mean', '2026 valet terms are unpublished', 'not self-parking']) {
+        check(bmwText.includes(fact), `BMW access / parking boundary drifted: ${fact}`);
+      }
+      check(bmwText.includes('A friend reported daytime walk-ins') && bmwText.includes('do not establish those as general 2026 policy'), 'BMW walk-in / fee / valet must remain a field report, not policy');
+      const bmwUrls = bmw.sources.map((source) => source.url);
+      for (const url of [
+        'https://www.countyofmonterey.gov/home/showpublisheddocument/146630/639168767873630000',
+        'https://www.bmwgroup-classic.com/en/clubs-community/events/kalender-events/monterey-car-week-pebble-beach.html',
+        'https://www.countyofmonterey.gov/home/showpublisheddocument/133427/638887756447700000'
+      ]) check(bmwUrls.includes(url), `BMW sources missing: ${url}`);
+    }
+
+    const aston = (brandGuide.cards || []).find((card) => card.id === 'aston-martin-house');
+    check(Boolean(aston), 'Aston Martin House card is required');
+    if (aston) {
+      const astonText = JSON.stringify(aston);
+      check(aston.accessStatus === 'invitation-only', 'Aston Martin House must remain invitation-only');
+      for (const fact of ['official 2025 House was alongside Spyglass Hill', '2026 location and hours are unpublished', 'invitation-only', 'No public ticket does not mean free public admission', 'do not go without an invitation', 'No public 2026 House walk-in or drive rules', 'Bernardus Lodge', 'No public 2026 valet']) {
+        check(astonText.includes(fact), `Aston Martin invitation boundary drifted: ${fact}`);
+      }
+      const astonUrls = aston.sources.map((source) => source.url);
+      for (const url of [
+        'https://media.astonmartin.com/vanquish-25-a-celebration-of-an-automotive-flagship/?lang=eng',
+        'https://media.astonmartin.com/aston-martin-celebrates-75-years-in-the-americas-at-2025-monterey-car-week/?lang=eng',
+        'https://www.countyofmonterey.gov/home/showpublisheddocument/141493/638899014930270000'
+      ]) check(astonUrls.includes(url), `Aston Martin sources missing: ${url}`);
+    }
   }
 
   const parkingMap = data.parkingTrafficMap;
@@ -363,7 +444,7 @@ if (data) {
     const rootStops = item.route.stops || [];
     const branches = item.route.branches || [];
     if (mode === 'single') {
-      check(rootStops.length === 1, `quickPlan[${index}] single route needs exactly one root stop`);
+      check(rootStops.length >= 1, `quickPlan[${index}] single route needs at least one root stop`);
       check(branches.length === 0, `quickPlan[${index}] single route cannot have branches`);
     } else if (mode === 'choice') {
       check(rootStops.length === 0, `quickPlan[${index}] choice route cannot have shared root stops`);
@@ -454,6 +535,10 @@ if (data) {
     check(!serializedTourPlan.includes('Legends of the Autobahn'), 'qp-0813 must stay focused on the revised Tour morning');
     for (const wave of expectedTourWaves) check(serializedTourPlan.includes(wave), `qp-0813 is missing departure wave ${wave}`);
     check(serializedTourPlan.includes('11:40'), 'qp-0813 must preserve the return-viewing walk-back time');
+    check(serializedTourPlan.includes('实际归来后–14:00') && serializedTourPlan.includes('Go only after the Tour has actually returned') && serializedTourPlan.includes('Cadillac V-Series'), 'qp-0813 must connect the actual Tour return to the verified public Cadillac experience without promising a fixed handoff time');
+    check(tourQuickPlan.route.stops.some((stop) => stop.marker === '2' && stop.place === 'hay-hill' && stop.optional), 'qp-0813 Cadillac add-on must use its own optional Hay Hill map marker');
+    check(tourQuickPlan.schedule.at(-1).routeMarkers.length === 1 && tourQuickPlan.schedule.at(-1).routeMarkers[0] === '2', 'qp-0813 Cadillac timeline row must point to Hay Hill marker 2');
+    check(serializedTourPlan.includes('BMW access is unpublished') && serializedTourPlan.includes('Aston Martin is invitation-only'), 'qp-0813 must not promote private brand houses as guaranteed public stops');
     check(!/^\$0\b/.test(tourQuickPlan.cost.en), 'qp-0813 cost must not imply that parking is free');
     check(tourQuickPlan.cost.en.includes('Viewing free'), 'qp-0813 must label free viewing explicitly');
   }
@@ -695,6 +780,7 @@ if (data) {
     checkBilingual(place.name, `${label}.name`);
   }
   check(mapPlaceIds.size >= 10, `expected at least 10 map places, found ${mapPlaceIds.size}`);
+  check(data.mapPlaces?.['hay-hill']?.lat === 36.57150 && data.mapPlaces?.['hay-hill']?.lng === -121.94883, 'Hay Hill guide anchor drifted from the verified Cadillac experience area');
 }
 
 if (errors.length) {
