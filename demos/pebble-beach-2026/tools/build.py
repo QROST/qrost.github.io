@@ -35,9 +35,11 @@ class PageParser(HTMLParser):
         self.scripts: list[dict[str, str]] = []
         self.styles: list[dict[str, str]] = []
         self.metas: list[dict[str, str]] = []
+        self.elements: list[tuple[str, dict[str, str]]] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         data = {key: value or "" for key, value in attrs}
+        self.elements.append((tag, data))
         if tag == "a":
             self.links.append(data)
         elif tag == "script":
@@ -181,7 +183,7 @@ def validate() -> list[str]:
     if "demos/pebble-beach-2026/index.html" not in home:
         errors.append("homepage card for pebble-beach-2026 is missing")
     tour_contract = {
-        'class="tour-nav-link" href="#tour-0813"': "Tour navigation anchor",
+        'class="archive-nav-link" href="#tour-0813"': "archive navigation anchor",
         'id="tour-0813"': "Tour section",
         'id="tour-route"': "Tour route renderer root",
         'id="tour-wave-list"': "Tour wave renderer root",
@@ -207,7 +209,7 @@ def validate() -> list[str]:
                 f"expected Tour renderer to bind {root_id} exactly once, "
                 f"found {app_js.count(renderer_lookup)}"
             )
-    if not re.search(r"function\s+renderDynamicContent\(\)\s*\{\s*renderTourMorning\(\);", app_js):
+    if not re.search(r"function\s+renderDynamicContent\(\)\s*\{\s*renderQuickPlan\(\);\s*renderScheduleFilters\(\);\s*renderSchedule\(\);\s*renderTourMorning\(\);", app_js):
         errors.append("renderDynamicContent must invoke renderTourMorning")
     parking_map_contract = {
         'href="#parking-traffic"': "parking-map navigation anchor",
@@ -263,6 +265,7 @@ def validate() -> list[str]:
         "renderParkingTrafficList",
         "ensureParkingTrafficMap",
         "syncParkingTrafficMap",
+        "clearParkingGeographicTileError",
     ):
         if len(re.findall(rf"function\s+{function_name}\(\)", app_js)) != 1:
             errors.append(f"expected exactly one {function_name} implementation")
@@ -319,6 +322,10 @@ def validate() -> list[str]:
                 errors.append(f"geographic-guide renderer must not use {forbidden}")
     if html.count('role="tab"') < 2 or html.count('role="tabpanel"') < 2:
         errors.append("parking views must expose two accessible tabs and two tab panels")
+    if html.count('class="parking-map-list-item kind-') != 5:
+        errors.append("no-JavaScript geographic fallback must preserve all five orientation anchors")
+    if re.search(r'id="parking-panel-official"[^>]*\shidden(?:\s|>)', html):
+        errors.append("no-JavaScript fallback must keep the official diagram panel visible")
     for tab_id, panel_id in (
         ("parking-tab-geographic", "parking-panel-geographic"),
         ("parking-tab-official", "parking-panel-official"),
@@ -362,8 +369,61 @@ def validate() -> list[str]:
         errors.append("brand-house renderer must bind brand-house-grid exactly once")
     if len(re.findall(r"function\s+renderBrandHouses\(\)", app_js)) != 1:
         errors.append("expected exactly one renderBrandHouses implementation")
-    if not re.search(r"renderParkingTraffic\(\);\s*renderBrandHouses\(\);\s*renderQuickPlan\(\);", app_js):
-        errors.append("renderDynamicContent must render brand houses between the parking map and quick plan")
+    if not re.search(r"renderTourMorning\(\);\s*renderParkingTraffic\(\);\s*renderBrandHouses\(\);", app_js):
+        errors.append("renderDynamicContent must render Tour, parking and brand content after current plans")
+
+    section_order = (
+        "quick-plan",
+        "schedule",
+        "tour-0813",
+        "parking-traffic",
+        "brand-houses",
+        "nearby",
+        "stay",
+        "commute",
+        "sources",
+    )
+    section_positions = [html.find(f'id="{section_id}"') for section_id in section_order]
+    if any(position < 0 for position in section_positions) or section_positions != sorted(section_positions):
+        errors.append("page sections must keep the audited current-first order")
+
+    id_counts: dict[str, int] = {}
+    for _, attrs in parser.elements:
+        element_id = attrs.get("id")
+        if element_id:
+            id_counts[element_id] = id_counts.get(element_id, 0) + 1
+    for link in parser.links:
+        href = link.get("href", "")
+        if href.startswith("#") and len(href) > 1:
+            target = href[1:]
+            if id_counts.get(target, 0) != 1:
+                errors.append(f"internal navigation target #{target} must resolve exactly once")
+    if html.count('id="back-to-top"') != 1 or html.count('href="#page-top"') != 1 or html.count('<body id="page-top">') != 1:
+        errors.append("back-to-top control must resolve to the unique page-top target")
+    for section_id, through_date, label_key in (
+        ("tour-0813", "2026-08-13", "temporalTourLabel"),
+        ("parking-traffic", "2026-08-16", "temporalParkingLabel"),
+        ("brand-houses", "2026-08-15", "temporalBrandLabel"),
+        ("nearby", "2026-08-02", "temporalNearbyLabel"),
+        ("stay", "2026-08-17", "temporalStayLabel"),
+    ):
+        pattern = rf'<section[^>]*id="{re.escape(section_id)}"[^>]*data-temporal-section[^>]*data-through-date="{through_date}"[^>]*data-temporal-label-key="{label_key}"'
+        if not re.search(pattern, html):
+            errors.append(f"temporal section contract is missing for {section_id}")
+    if html.count('data-temporal-details open') != 5:
+        errors.append("all five temporal sections must remain open in the no-JavaScript fallback")
+    if html.count('data-temporal-summary') != 5:
+        errors.append("all five temporal sections must expose a summary label")
+    for function_name in ("applyTemporalSections", "updateHeroPrimaryCta", "revealHashTarget"):
+        if len(re.findall(rf"function\s+{function_name}\([^)]*\)", app_js)) != 1:
+            errors.append(f"expected exactly one {function_name} implementation")
+    if "target.scrollIntoView" not in app_js:
+        errors.append("explicit archive hashes must reveal and scroll to their rendered target")
+    if ".temporal-section.is-past > .section-heading" not in demo_css:
+        errors.append("expired feature headings must compact so they do not distract from current plans")
+    clock_match = re.search(r"function\s+getClock\(\)(.*?)function\s+inCarWeekWindow", app_js, re.DOTALL)
+    if not clock_match or "-07:00" in clock_match.group(1):
+        errors.append("demo clock must interpret Los Angeles wall-clock dates without a fixed UTC offset")
     for date in range(13, 18):
         if f"2026-08-{date:02d}" not in data_js:
             errors.append(f"data is missing 2026-08-{date:02d}")
@@ -378,7 +438,10 @@ def validate() -> list[str]:
         errors.append("event cards must render the per-event verification marker")
 
     forbidden = ("/users/",)
-    private_address_pattern = re.compile(r"(?:poppy.{0,80}\b(?:28|32)\b|\b(?:28|32)\b.{0,80}poppy)", re.IGNORECASE | re.DOTALL)
+    private_address_pattern = re.compile(
+        r"(?:\b\d{1,5}\s+poppy(?:\s+lane)?\b|\bpoppy(?:\s+lane)?\s*(?:#|no\.?|number|号)?\s*\d{1,5}\b)",
+        re.IGNORECASE,
+    )
     for path in DEMO_DIR.rglob("*"):
         if path.suffix.lower() not in {".html", ".js", ".css", ".svg"}:
             continue

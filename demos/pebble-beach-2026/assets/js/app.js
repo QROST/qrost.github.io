@@ -54,6 +54,9 @@
   let planMapObserver = null;
   let planMapGeneration = 0;
   let clockTimer = null;
+  let lastClockDateIso = null;
+  let hasHandledInitialHash = false;
+  const temporalUserOpen = new Map();
 
   function localized(value) {
     if (value && typeof value === 'object' && (value.zh || value.en)) return value[state.lang] || value.zh || value.en;
@@ -81,15 +84,25 @@
     const params = new URLSearchParams(window.location.search);
     const demoDate = params.get('demoDate');
     const demoTime = params.get('demoTime');
-    let instant;
-    if (demoDate && /^\d{4}-\d{2}-\d{2}$/.test(demoDate)) {
-      const hm = demoTime && /^\d{1,2}:\d{2}$/.test(demoTime) ? demoTime : '12:00';
-      const hmParts = hm.split(':');
-      const padded = `${String(hmParts[0]).padStart(2, '0')}:${hmParts[1]}`;
-      instant = new Date(`${demoDate}T${padded}:00-07:00`);
-    } else {
-      instant = new Date();
+    const dateMatch = String(demoDate || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (dateMatch) {
+      const year = Number(dateMatch[1]);
+      const month = Number(dateMatch[2]);
+      const day = Number(dateMatch[3]);
+      const probe = new Date(Date.UTC(year, month - 1, day));
+      const validDate = probe.getUTCFullYear() === year
+        && probe.getUTCMonth() === month - 1
+        && probe.getUTCDate() === day;
+      if (validDate) {
+        const timeMatch = String(demoTime || '').match(/^(\d{1,2}):(\d{2})$/);
+        const validTime = timeMatch && Number(timeMatch[1]) <= 23 && Number(timeMatch[2]) <= 59;
+        const hm = validTime
+          ? `${String(Number(timeMatch[1])).padStart(2, '0')}:${timeMatch[2]}`
+          : '12:00';
+        return { instant: null, dateIso: demoDate, hm, minutes: parseHm(hm), demo: true };
+      }
     }
+    const instant = new Date();
     const formatter = new Intl.DateTimeFormat('en-US', {
       timeZone: TIMEZONE,
       year: 'numeric',
@@ -209,6 +222,83 @@
     return template.replace('{count}', String(count));
   }
 
+  function planningGroupSummary(dayCount, eventCount, archived) {
+    return text(archived ? 'archiveSummary' : 'pastGroupSummary')
+      .replace('{days}', String(dayCount))
+      .replace('{count}', String(eventCount));
+  }
+
+  function hashTargetElement() {
+    if (!window.location.hash || window.location.hash === '#') return null;
+    try { return document.getElementById(decodeURIComponent(window.location.hash.slice(1))); } catch (_) { return null; }
+  }
+
+  function setTemporalOpen(details, open) {
+    if (details.open === open) return;
+    details.dataset.temporalSync = 'true';
+    details.open = open;
+    window.setTimeout(() => { delete details.dataset.temporalSync; }, 100);
+  }
+
+  function invalidateVisibleMaps() {
+    if (mapState.map) window.setTimeout(() => mapState.map.invalidateSize(), 40);
+    if (parkingTrafficState.map) window.setTimeout(() => parkingTrafficState.map.invalidateSize(), 40);
+    if (parkingGeographicState.map) window.setTimeout(() => parkingGeographicState.map.invalidateSize(), 40);
+    invalidatePlanMaps();
+  }
+
+  function applyTemporalSections() {
+    const clock = getClock();
+    const target = hashTargetElement();
+    document.querySelectorAll('[data-temporal-section]').forEach((section) => {
+      const details = section.querySelector(':scope > [data-temporal-details]');
+      const summary = section.querySelector('[data-temporal-summary]');
+      const through = section.getAttribute('data-through-date') || '';
+      const labelKey = section.getAttribute('data-temporal-label-key');
+      const past = Boolean(through && clock.dateIso > through);
+      section.classList.toggle('is-past', past);
+      if (summary && labelKey) summary.textContent = text(labelKey);
+      if (!details) return;
+      const targetInside = Boolean(target && (target === section || section.contains(target)));
+      if (!past) setTemporalOpen(details, true);
+      else if (targetInside) setTemporalOpen(details, true);
+      else if (temporalUserOpen.has(section.id)) setTemporalOpen(details, temporalUserOpen.get(section.id));
+      else setTemporalOpen(details, false);
+    });
+  }
+
+  function updateHeroPrimaryCta() {
+    const link = document.getElementById('hero-primary-cta');
+    if (!link) return;
+    const tourPast = getClock().dateIso > '2026-08-13';
+    const label = link.querySelector('[data-i18n]');
+    const key = tourPast ? 'tourHeroCtaPast' : 'tourHeroCta';
+    link.setAttribute('href', tourPast ? '#quick-plan' : '#tour-0813');
+    if (label) {
+      label.setAttribute('data-i18n', key);
+      label.textContent = text(key);
+    }
+  }
+
+  function revealHashTarget(shouldScroll) {
+    const target = hashTargetElement();
+    if (!target) return;
+    let parent = target.parentElement;
+    while (parent) {
+      if (parent instanceof HTMLDetailsElement) parent.open = true;
+      parent = parent.parentElement;
+    }
+    if (target.matches('[data-temporal-section]')) {
+      const details = target.querySelector(':scope > [data-temporal-details]');
+      if (details) details.open = true;
+    }
+    invalidateVisibleMaps();
+    if (shouldScroll) {
+      const reduceMotion = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.setTimeout(() => target.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' }), 60);
+    }
+  }
+
   function isDark() {
     return document.documentElement.classList.contains('dark');
   }
@@ -260,6 +350,11 @@
 
     const wordmark = document.querySelector('.wordmark');
     if (wordmark) wordmark.setAttribute('aria-label', state.lang === 'zh' ? '返回 QROST 首页' : 'Back to QROST home');
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+      backToTop.setAttribute('aria-label', text('navBackTop'));
+      backToTop.setAttribute('title', text('navBackTop'));
+    }
     const filterPanel = document.querySelector('.filter-panel');
     if (filterPanel) filterPanel.setAttribute('aria-label', state.lang === 'zh' ? '日程筛选' : 'Schedule filters');
     const kpis = document.querySelector('.kpi-strip');
@@ -744,7 +839,6 @@
     const root = document.getElementById('quick-plan-track');
     if (!root) return;
     const clock = getClock();
-    const inWindow = inCarWeekWindow(clock.dateIso);
 
     function buildPlanCard(item) {
       const dateIso = quickPlanDateIso(item);
@@ -772,24 +866,18 @@
       </article>`;
     }
 
-    let html = '';
-    let pastBuffer = [];
+    const current = [];
+    const past = [];
     DATA.quickPlan.forEach((item) => {
-      const dateIso = quickPlanDateIso(item);
-      const relation = dayRelation(dateIso, clock.dateIso);
-      const card = buildPlanCard(item);
-      if (relation === 'past' && !state.showPast && inWindow) {
-        pastBuffer.push(card);
-      } else {
-        if (pastBuffer.length) {
-          html += `<details class="plan-day-past"><summary>${escapeHtml(text('livePastFolded'))}</summary>${pastBuffer.join('')}</details>`;
-          pastBuffer = [];
-        }
-        html += card;
-      }
+      const entry = { item, html: buildPlanCard(item), dateIso: quickPlanDateIso(item) };
+      if (dayRelation(entry.dateIso, clock.dateIso) === 'past') past.push(entry);
+      else current.push(entry);
     });
-    if (pastBuffer.length) {
-      html += `<details class="plan-day-past"><summary>${escapeHtml(text('livePastFolded'))}</summary>${pastBuffer.join('')}</details>`;
+    let html = current.map((entry) => entry.html).join('');
+    if (past.length) {
+      const dayCount = new Set(past.map((entry) => entry.dateIso)).size;
+      const summary = planningGroupSummary(dayCount, past.length, clock.dateIso > WINDOW_END);
+      html += `<details class="plan-day-past" data-past-group="quick"${state.showPast ? ' open' : ''}><summary>${escapeHtml(summary)}</summary>${past.map((entry) => entry.html).join('')}</details>`;
     }
     root.innerHTML = html;
   }
@@ -812,7 +900,7 @@
     if (windowNote) {
       if (!inWindow) {
         windowNote.hidden = false;
-        windowNote.textContent = text('liveOutsideWindow');
+        windowNote.textContent = text(clock.dateIso < WINDOW_START ? 'liveOutsideWindowBefore' : 'liveOutsideWindowAfter');
       } else {
         windowNote.hidden = true;
         windowNote.textContent = '';
@@ -973,7 +1061,6 @@
     if (!root) return;
 
     const clock = getClock();
-    const inWindow = inCarWeekWindow(clock.dateIso);
     const filtered = DATA.events.filter((event) => matchesLiveFilters(event, clock));
 
     if (status) {
@@ -999,24 +1086,32 @@
             <em>${events.length} ${escapeHtml(ui(events.length === 1 ? 'dayLabelSingular' : 'dayLabel'))}</em>
           </header>
           <div class="event-list">${events.map(renderEvent).join('')}</div>`;
-      if (relation === 'past' && state.liveMode === 'browse' && !state.showPast && inWindow) {
-        return `
-        <details class="day-group-past">
-          <summary class="day-heading day-heading-past">${escapeHtml(localized(day.short))} · ${escapeHtml(text('livePastFolded'))}</summary>
-          <section class="${classes.join(' ')}" aria-labelledby="day-${escapeHtml(day.id)}">${heading}</section>
-        </details>`;
-      }
       return `
         <section class="${classes.join(' ')}" aria-labelledby="day-${escapeHtml(day.id)}">
           ${heading}
         </section>`;
     }
 
-    root.innerHTML = DATA.days.map((day) => {
+    const groups = DATA.days.map((day) => {
       const events = filtered.filter((event) => event.date === day.id);
-      if (!events.length) return '';
-      return buildDayGroup(day, events);
-    }).join('');
+      if (!events.length) return null;
+      return { day, events, html: buildDayGroup(day, events), relation: dayRelation(day.id, clock.dateIso) };
+    }).filter(Boolean);
+
+    const aggregatePast = state.liveMode === 'browse' && state.day === 'all';
+    if (!aggregatePast) {
+      root.innerHTML = groups.map((group) => group.html).join('');
+      return;
+    }
+    const current = groups.filter((group) => group.relation !== 'past');
+    const past = groups.filter((group) => group.relation === 'past');
+    let html = current.map((group) => group.html).join('');
+    if (past.length) {
+      const count = past.reduce((total, group) => total + group.events.length, 0);
+      const summary = planningGroupSummary(past.length, count, clock.dateIso > WINDOW_END);
+      html += `<details class="day-group-past" data-past-group="schedule"${state.showPast ? ' open' : ''}><summary class="day-heading day-heading-past">${escapeHtml(summary)}</summary>${past.map((group) => group.html).join('')}</details>`;
+    }
+    root.innerHTML = html;
   }
 
   function renderStays() {
@@ -1571,6 +1666,15 @@
     updateParkingGeographicStatus();
   }
 
+  function clearParkingGeographicTileError() {
+    if (!parkingGeographicState.tileError) return;
+    parkingGeographicState.tileError = false;
+    const root = document.getElementById('parking-geographic-map');
+    const notice = root && root.querySelector('.parking-geographic-tile-error');
+    if (notice) notice.remove();
+    updateParkingGeographicStatus();
+  }
+
   function updateParkingGeographicTouchToggle() {
     const button = document.getElementById('parking-geographic-touch-toggle');
     if (!button) return;
@@ -1608,6 +1712,7 @@
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>'
     });
     tileLayer.on('tileerror', showParkingGeographicTileError);
+    tileLayer.on('tileload', clearParkingGeographicTileError);
     tileLayer.addTo(map);
     parkingGeographicState.tileLayer = tileLayer;
     parkingGeographicState.anchorLayer = window.L.layerGroup().addTo(map);
@@ -1627,6 +1732,10 @@
     if (!config || !map || !layer || !window.L) return;
     layer.clearLayers();
     parkingGeographicState.anchors.clear();
+    if (parkingGeographicState.tileError) {
+      const notice = document.querySelector('#parking-geographic-map .parking-geographic-tile-error');
+      if (notice) notice.textContent = text('parkingGeoTileError');
+    }
 
     (config.anchors || []).forEach((anchor) => {
       const position = [anchor.lat, anchor.lng];
@@ -1989,24 +2098,38 @@
   }
 
   function renderDynamicContent() {
+    renderQuickPlan();
+    renderScheduleFilters();
+    renderSchedule();
     renderTourMorning();
     renderParkingTraffic();
     renderBrandHouses();
-    renderQuickPlan();
     renderNearby();
-    renderScheduleFilters();
-    renderSchedule();
     renderStays();
     renderCommuteOptions();
     renderTransportTips();
     renderSources();
     ensureHubMap();
+    applyTemporalSections();
+    updateHeroPrimaryCta();
     schedulePlanMaps();
   }
 
   function startClockTimer() {
     if (clockTimer) clearInterval(clockTimer);
+    lastClockDateIso = getClock().dateIso;
     clockTimer = window.setInterval(() => {
+      const clock = getClock();
+      if (clock.dateIso !== lastClockDateIso) {
+        lastClockDateIso = clock.dateIso;
+        renderQuickPlan();
+        renderScheduleFilters();
+        renderSchedule();
+        applyTemporalSections();
+        updateHeroPrimaryCta();
+        schedulePlanMaps();
+        return;
+      }
       renderScheduleFilters();
       if (state.liveMode === 'now' || state.liveMode === 'today') renderSchedule();
     }, 30000);
@@ -2016,6 +2139,8 @@
     applyStaticTranslations();
     updateToggleUi();
     renderDynamicContent();
+    revealHashTarget(!hasHandledInitialHash);
+    hasHandledInitialHash = true;
   }
 
   function setLanguage(next) {
@@ -2048,6 +2173,30 @@
     if (themeButton) themeButton.addEventListener('click', () => setTheme(!isDark(), true));
     if (from) from.addEventListener('change', () => { state.from = from.value; renderCommuteResult(); });
     if (to) to.addEventListener('change', () => { state.to = to.value; renderCommuteResult(); });
+
+    document.addEventListener('toggle', (event) => {
+      const details = event.target;
+      if (!(details instanceof HTMLDetailsElement)) return;
+      if (details.hasAttribute('data-past-group')) {
+        state.showPast = details.open;
+        document.querySelectorAll('[data-past-group]').forEach((other) => {
+          if (other !== details && other.open !== details.open) other.open = details.open;
+        });
+        const pastToggle = document.getElementById('live-past-toggle');
+        if (pastToggle) {
+          pastToggle.textContent = state.showPast ? text('livePastHide') : text('livePastShow');
+          pastToggle.setAttribute('aria-pressed', state.showPast ? 'true' : 'false');
+        }
+      }
+      if (!details.hasAttribute('data-temporal-details') || details.dataset.temporalSync === 'true') return;
+      const section = details.closest('[data-temporal-section]');
+      if (section && section.id) temporalUserOpen.set(section.id, details.open);
+      if (details.open) invalidateVisibleMaps();
+    }, true);
+    window.addEventListener('hashchange', () => {
+      applyTemporalSections();
+      revealHashTarget(true);
+    });
 
     if (parkingPanel) {
       parkingPanel.addEventListener('click', (event) => {

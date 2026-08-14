@@ -103,6 +103,16 @@ if (data) {
   check(!JSON.stringify(data).includes('chatgpt.com/'), 'private ChatGPT conversation URLs must never be published as evidence');
   for (const [key, value] of Object.entries(data.labels || {})) checkBilingual(value, `labels.${key}`);
   for (const [key, value] of Object.entries(data.ui || {})) checkBilingual(value, `ui.${key}`);
+  for (const key of [
+    'navPlan', 'navArchive', 'navBackTop', 'tourHeroCtaPast',
+    'liveOutsideWindowBefore', 'liveOutsideWindowAfter', 'pastGroupSummary', 'archiveSummary',
+    'temporalPastBadge', 'temporalTourLabel', 'temporalParkingLabel', 'temporalBrandLabel',
+    'temporalNearbyLabel', 'temporalStayLabel', 'quickNoScript'
+  ]) {
+    checkBilingual(data.labels?.[key], `labels.${key}`);
+  }
+  const expectedDays = Array.from({ length: 11 }, (_, index) => `2026-08-${String(index + 7).padStart(2, '0')}`);
+  check(JSON.stringify((data.days || []).map((day) => day.id)) === JSON.stringify(expectedDays), 'days must remain consecutive and chronological from 2026-08-07 through 2026-08-17');
 
   const tourMorning = data.tourMorning;
   check(tourMorning && typeof tourMorning === 'object', 'tourMorning is required');
@@ -244,8 +254,7 @@ if (data) {
     }
 
     const brandText = JSON.stringify(brandGuide);
-    const privateHouseNumbers = [String(14 * 2), String(16 * 2)];
-    const privatePoppyHousePattern = new RegExp(`(?:poppy.{0,80}\\b(?:${privateHouseNumbers.join('|')})\\b|\\b(?:${privateHouseNumbers.join('|')})\\b.{0,80}poppy)`, 'i');
+    const privatePoppyHousePattern = /(?:\b\d{1,5}\s+poppy(?:\s+lane)?\b|\bpoppy(?:\s+lane)?\s*(?:#|no\.?|number|号)?\s*\d{1,5}\b)/i;
     check(!privatePoppyHousePattern.test(brandText), 'residential house numbers near Poppy Lane must not be published or made inferable');
     check(!brandText.includes('Cadillac House'), 'Cadillac public experience must not be misnamed Cadillac House');
 
@@ -436,6 +445,7 @@ if (data) {
     check(JSON.stringify(geographicGuide.defaultBounds) === JSON.stringify([[36.5685, -121.961], [36.591, -121.9125]]), 'geographic guide default bounds drifted');
     check(geographicGuide.maxZoom === 16, 'geographic guide maxZoom must remain 16');
     checkBilingual(geographicGuide.boundary, 'parkingGeographicGuide.boundary');
+    check(/不按比例/.test(data.labels?.parkingGeoCaveat?.zh || '') && /not to scale/i.test(data.labels?.parkingGeoCaveat?.en || ''), 'geographic guide must explain that point symbols are not to scale');
 
     const sourceById = new Map();
     for (const [index, source] of (geographicGuide.sources || []).entries()) {
