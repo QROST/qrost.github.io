@@ -212,6 +212,16 @@ def validate() -> list[str]:
     parking_map_contract = {
         'href="#parking-traffic"': "parking-map navigation anchor",
         'id="parking-traffic"': "parking-map section",
+        'id="parking-tab-geographic"': "geographic-guide tab",
+        'id="parking-tab-official"': "official-diagram tab",
+        'id="parking-panel-geographic"': "geographic-guide panel",
+        'id="parking-panel-official"': "official-diagram panel",
+        'id="parking-geographic-map"': "geographic-guide Leaflet root",
+        'id="parking-geographic-list"': "geographic-guide accessible list",
+        'id="parking-geographic-status"': "geographic-guide live status",
+        'id="parking-geographic-touch-toggle"': "geographic-guide touch control",
+        'id="parking-geographic-reset"': "geographic-guide reset control",
+        'id="parking-geographic-caveat"': "geographic-guide caveat",
         'id="parking-map-day-filter"': "parking-map day filter",
         'id="parking-map-layer-filter"': "parking-map layer filter",
         'id="parking-traffic-map"': "parking-map Leaflet root",
@@ -224,6 +234,10 @@ def validate() -> list[str]:
         if html.count(snippet) != 1:
             errors.append(f"expected exactly one {label}, found {html.count(snippet)}")
     for root_id in (
+        "parking-geographic-map",
+        "parking-geographic-list",
+        "parking-geographic-status",
+        "parking-geographic-touch-toggle",
         "parking-map-day-filter",
         "parking-map-layer-filter",
         "parking-traffic-map",
@@ -241,6 +255,10 @@ def validate() -> list[str]:
     if not re.search(r"renderTourMorning\(\);\s*renderParkingTraffic\(\);", app_js):
         errors.append("renderDynamicContent must invoke renderParkingTraffic after renderTourMorning")
     for function_name in (
+        "renderParkingViewTabs",
+        "renderParkingGeographicList",
+        "ensureParkingGeographicMap",
+        "syncParkingGeographicMap",
         "renderParkingTrafficControls",
         "renderParkingTrafficList",
         "ensureParkingTrafficMap",
@@ -268,6 +286,47 @@ def validate() -> list[str]:
         for forbidden in ("window.L.tileLayer", "window.L.polyline", "point.lat", "point.lng"):
             if forbidden in parking_renderer:
                 errors.append(f"parking-map diagram renderer must not use {forbidden}")
+    geographic_renderer_match = re.search(
+        r"function\s+parkingGeographicOsmUrl\(anchor\)(.*?)function\s+stopPopupHtml\(stop, place\)",
+        app_js,
+        re.DOTALL,
+    )
+    if not geographic_renderer_match:
+        errors.append("geographic-guide renderer block is missing")
+    else:
+        geographic_renderer = geographic_renderer_match.group(1)
+        for required in (
+            "window.L.tileLayer",
+            "attributionControl: true",
+            "window.L.circle(",
+            "window.L.circleMarker(",
+            "parkingViewState.active !== 'geographic'",
+        ):
+            if required not in geographic_renderer:
+                errors.append(f"geographic-guide renderer must use {required}")
+        for forbidden in (
+            "window.L.CRS.Simple",
+            "window.L.imageOverlay",
+            "parkingDiagramLatLng",
+            "mapX",
+            "mapY",
+            "window.L.polyline",
+            "OSRM",
+            "mlat=",
+            "mlon=",
+        ):
+            if forbidden in geographic_renderer:
+                errors.append(f"geographic-guide renderer must not use {forbidden}")
+    if html.count('role="tab"') < 2 or html.count('role="tabpanel"') < 2:
+        errors.append("parking views must expose two accessible tabs and two tab panels")
+    for tab_id, panel_id in (
+        ("parking-tab-geographic", "parking-panel-geographic"),
+        ("parking-tab-official", "parking-panel-official"),
+    ):
+        if f'id="{tab_id}"' not in html or f'aria-controls="{panel_id}"' not in html:
+            errors.append(f"parking tab {tab_id} must control {panel_id}")
+        if f'id="{panel_id}"' not in html or f'aria-labelledby="{tab_id}"' not in html:
+            errors.append(f"parking panel {panel_id} must be labelled by {tab_id}")
     official_parking_svg = DEMO_DIR / "assets/img/parking-traffic-map-2026.svg"
     if not official_parking_svg.exists():
         errors.append("vendored official parking SVG is missing")
@@ -275,12 +334,12 @@ def validate() -> list[str]:
         errors.append("vendored official parking SVG has the wrong viewBox")
     if html.count('src="assets/img/parking-traffic-map-2026.svg"') != 1:
         errors.append("static parking-map fallback must use the vendored official SVG exactly once")
-    for stale_copy in ("georeferenced", "公开地理资料配准", "OpenStreetMap 地理底图"):
+    for stale_copy in ("georeferenced", "公开地理资料配准"):
         if stale_copy in html or stale_copy in data_js:
             errors.append(f"parking-map copy must not claim false geographic alignment: {stale_copy}")
     official_parking_pdf = "https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf"
-    if html.count(official_parking_pdf) != 2:
-        errors.append("parking-map static fallback and source bar must both link the official PDF")
+    if html.count(official_parking_pdf) != 3:
+        errors.append("geographic boundary, diagram fallback and source bar must all link the official PDF")
     brand_house_contract = {
         'href="#brand-houses"': "brand-house navigation anchor",
         'id="brand-houses"': "brand-house section",

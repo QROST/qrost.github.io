@@ -690,6 +690,103 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 
 .parking-traffic-section { padding-top: 96px; }
 .parking-map-heading .section-kicker { color: var(--blue); }
+.parking-view-tabs {
+  display: inline-flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-small);
+}
+.parking-view-tabs [role="tab"] {
+  min-height: 44px;
+  padding: 9px 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: .76rem;
+  font-weight: 800;
+}
+.parking-view-tabs [role="tab"]:hover { color: var(--green); }
+.parking-view-tabs [role="tab"][aria-selected="true"] {
+  border-color: var(--green);
+  background: var(--green);
+  color: var(--surface);
+}
+.parking-view-panel[hidden] { display: none !important; }
+.parking-geographic-intro {
+  display: grid;
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+  gap: clamp(22px, 5vw, 68px);
+  align-items: end;
+  padding: clamp(22px, 4vw, 34px);
+  border: 1px solid color-mix(in srgb, var(--green) 30%, var(--line));
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--green-soft) 38%, var(--surface));
+  box-shadow: var(--shadow-small);
+}
+.parking-geographic-intro h3 { margin: 7px 0 0; font-family: var(--serif); font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.2; }
+.parking-geographic-intro p { margin: 0; color: var(--ink-soft); font-size: .79rem; line-height: 1.68; }
+.parking-geographic-map { background: color-mix(in srgb, var(--green-soft) 45%, var(--bg-soft)); }
+.parking-geographic-fallback { display: grid; height: 100%; place-content: center; gap: 9px; padding: 28px; text-align: center; }
+.parking-geographic-fallback strong { font-family: var(--serif); font-size: 1.2rem; }
+.parking-geographic-fallback p { max-width: 520px; margin: 0; color: var(--muted); font-size: .74rem; }
+.parking-geographic-map-actions { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 8px; }
+.parking-geographic-map-actions .parking-map-touch-toggle { margin-top: 0; }
+.parking-geographic-map-actions .parking-map-touch-toggle[hidden] + .parking-geographic-reset { grid-column: 1 / -1; }
+.parking-geographic-reset {
+  min-height: 44px;
+  padding: 8px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--green);
+  cursor: pointer;
+  font-size: .7rem;
+  font-weight: 800;
+}
+.parking-geographic-reset:hover { border-color: var(--green); background: var(--green-soft); }
+.parking-geographic-tile-error {
+  position: absolute;
+  z-index: 700;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  margin: 0;
+  padding: 9px 11px;
+  border: 1px solid color-mix(in srgb, var(--orange) 52%, var(--line));
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--surface) 92%, var(--orange-soft));
+  color: var(--orange);
+  font-size: .68rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+.parking-geographic-popup > p { margin: 8px 0 0; color: #33433f; font-size: .69rem; line-height: 1.5; }
+.parking-geographic-popup a { color: #174f43; text-underline-offset: 2px; }
+.parking-geographic-osm-link { display: inline-flex; margin-top: 10px; font-size: .68rem; font-weight: 800; }
+.parking-geographic-no-navigation { display: block; margin-top: 7px; color: #ad3c1d; font-size: .62rem; }
+.parking-geographic-boundary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 14px;
+  padding: 20px 22px;
+  border: 1px solid color-mix(in srgb, var(--orange) 42%, var(--line));
+  border-radius: var(--radius-small);
+  background: color-mix(in srgb, var(--orange-soft) 44%, var(--surface));
+}
+.parking-geographic-boundary strong { color: var(--orange); font-size: .78rem; }
+.parking-geographic-boundary p { max-width: 760px; margin: 6px 0 0; color: var(--muted); font-size: .7rem; line-height: 1.6; }
+.parking-geographic-map .leaflet-control-zoom a { width: 44px; height: 44px; font-size: 1.25rem; line-height: 44px; }
+.dark .parking-geographic-map .leaflet-tile-pane { filter: brightness(.78) contrast(1.05) saturate(.9); }
+.dark .parking-geographic-map .leaflet-control-attribution { background: rgba(16, 23, 25, .82); color: #b7c2bc; }
+.dark .parking-geographic-map .leaflet-control-attribution a { color: #d7e4dc; }
 .parking-map-evidence {
   display: grid;
   grid-template-columns: minmax(240px, .62fr) minmax(0, 1.38fr);
@@ -1583,11 +1680,13 @@ html[lang="en"] .only-zh { display: none; }
   .tour-arrival-time { width: min(100%, 360px); }
   .tour-source-bar { flex-direction: column; gap: 8px; }
   .tour-source-bar > strong { padding-top: 0; }
-  .parking-map-evidence, .parking-map-toolbar { grid-template-columns: 1fr; }
+  .parking-view-tabs { display: flex; width: 100%; }
+  .parking-view-tabs [role="tab"] { flex: 1 1 50%; }
+  .parking-geographic-intro, .parking-map-evidence, .parking-map-toolbar { grid-template-columns: 1fr; }
   .parking-map-layout { gap: 10px; }
   .parking-traffic-map { height: 410px; min-height: 320px; }
   .parking-map-list { grid-template-columns: 1fr; }
-  .parking-map-warning { flex-direction: column; }
+  .parking-map-warning, .parking-geographic-boundary { flex-direction: column; }
   .parking-map-source-links { width: 100%; justify-content: flex-start; }
   .day-group { grid-template-columns: 1fr; gap: 12px; }
   .day-heading { position: static; display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 12px; }
@@ -1625,6 +1724,8 @@ html[lang="en"] .only-zh { display: none; }
   .parking-traffic-map { height: 340px; min-height: 280px; }
   .parking-map-source-links, .parking-map-source-links a { width: 100%; }
   .parking-map-source-links a { justify-content: center; }
+  .parking-geographic-map-actions { grid-template-columns: 1fr; }
+  .parking-geographic-map-actions .parking-geographic-reset { grid-column: 1; }
   .brand-house-facts > div { grid-template-columns: 1fr; gap: 4px; }
   .brand-house-source-links, .brand-house-source-links a { width: 100%; }
   .brand-house-source-links a { justify-content: center; }

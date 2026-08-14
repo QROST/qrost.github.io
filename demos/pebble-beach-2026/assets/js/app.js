@@ -39,6 +39,16 @@
     coarsePointer: false,
     baseError: false
   };
+  const parkingViewState = { active: 'geographic' };
+  const parkingGeographicState = {
+    map: null,
+    tileLayer: null,
+    anchorLayer: null,
+    anchors: new Map(),
+    touchActive: false,
+    coarsePointer: false,
+    tileError: false
+  };
   const routeCache = new Map();
   const planMaps = new Map();
   let planMapObserver = null;
@@ -363,6 +373,78 @@
     return DATA.parkingTrafficMap || null;
   }
 
+  function parkingGeographicConfig() {
+    return DATA.parkingGeographicGuide || null;
+  }
+
+  function parkingGeographicSource(sourceId) {
+    const config = parkingGeographicConfig();
+    return config ? (config.sources || []).find((source) => source.id === sourceId) : null;
+  }
+
+  function parkingGeographicKindLabel(anchor) {
+    const labels = {
+      'road-area': 'parkingGeoKindRoad',
+      'venue-area': 'parkingGeoKindVenue',
+      landmark: 'parkingGeoKindLandmark',
+      'gate-reference': 'parkingGeoKindGate'
+    };
+    return text(labels[anchor.kind] || 'parkingGeoKindLandmark');
+  }
+
+  function parkingGeographicAccuracy(anchor) {
+    return text('parkingGeoAccuracy').replace('{meters}', String(anchor.accuracyM));
+  }
+
+  function parkingGeographicListItem(anchor, index) {
+    const code = ['P', 'F', 'H', 'G', 'E'][index] || String(index + 1);
+    const tone = anchor.kind === 'road-area'
+      ? 'guide'
+      : (anchor.kind === 'venue-area' ? 'ada' : (anchor.kind === 'gate-reference' ? 'transit' : 'general'));
+    return `<li class="parking-map-list-item parking-geographic-list-item kind-${escapeHtml(tone)}">
+      <button type="button" data-parking-geographic-focus="${escapeHtml(anchor.id)}" aria-label="${escapeHtml(`${text('parkingMapLocate')}: ${localized(anchor.name)}`)}">
+        <span class="parking-map-list-code">${escapeHtml(code)}</span>
+        <span class="parking-map-list-copy">
+          <span class="parking-map-list-meta"><strong>${escapeHtml(localized(anchor.name))}</strong><em>${escapeHtml(parkingGeographicKindLabel(anchor))}</em></span>
+          <span>${escapeHtml(localized(anchor.use))}</span>
+          <small>${escapeHtml(parkingGeographicAccuracy(anchor))} · ${escapeHtml(text('parkingGeoNoNavigation'))}</small>
+        </span>
+      </button>
+    </li>`;
+  }
+
+  function updateParkingGeographicStatus(selectedName) {
+    const status = document.getElementById('parking-geographic-status');
+    const config = parkingGeographicConfig();
+    if (!status || !config) return;
+    const countText = statusWithCount('parkingGeoStatus', (config.anchors || []).length);
+    const selected = selectedName ? ` · ${text('parkingGeoSelected').replace('{name}', selectedName)}` : '';
+    const failure = parkingGeographicState.tileError ? ` · ${text('parkingGeoTileError')}` : '';
+    status.textContent = `${countText}${selected}${failure}`;
+  }
+
+  function renderParkingGeographicList() {
+    const config = parkingGeographicConfig();
+    const root = document.getElementById('parking-geographic-list');
+    if (!config || !root) return;
+    root.innerHTML = (config.anchors || []).map(parkingGeographicListItem).join('');
+    updateParkingGeographicStatus();
+  }
+
+  function renderParkingViewTabs() {
+    const validMode = parkingViewState.active === 'official' ? 'official' : 'geographic';
+    parkingViewState.active = validMode;
+    document.querySelectorAll('[data-parking-view]').forEach((tab) => {
+      const selected = tab.getAttribute('data-parking-view') === validMode;
+      tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+      tab.setAttribute('tabindex', selected ? '0' : '-1');
+    });
+    for (const mode of ['geographic', 'official']) {
+      const panel = document.getElementById(`parking-panel-${mode}`);
+      if (panel) panel.hidden = mode !== validMode;
+    }
+  }
+
   function parkingPointVisible(point) {
     const day = parkingTrafficState.day;
     const layer = parkingTrafficState.layer;
@@ -509,10 +591,17 @@
 
   function renderParkingTraffic() {
     if (!parkingTrafficConfig()) return;
+    renderParkingViewTabs();
     renderParkingTrafficControls();
     renderParkingTrafficList();
-    ensureParkingTrafficMap();
-    syncParkingTrafficMap();
+    renderParkingGeographicList();
+    if (parkingViewState.active === 'official') {
+      ensureParkingTrafficMap();
+      syncParkingTrafficMap();
+    } else {
+      ensureParkingGeographicMap();
+      syncParkingGeographicMap();
+    }
   }
 
   function renderBrandHouses() {
@@ -1415,6 +1504,195 @@
     return DATA.mapPlaces && DATA.mapPlaces[placeId];
   }
 
+  function parkingGeographicOsmUrl(anchor) {
+    const zoom = anchor.accuracyM >= 700 ? 12 : (anchor.accuracyM >= 150 ? 13 : 15);
+    return `https://www.openstreetmap.org/#map=${zoom}/${encodeURIComponent(anchor.lat)}/${encodeURIComponent(anchor.lng)}`;
+  }
+
+  function parkingGeographicPopupHtml(anchor) {
+    const coordinateSource = parkingGeographicSource(anchor.coordinateSourceRef);
+    const semanticSources = (anchor.semanticSourceRefs || []).map(parkingGeographicSource).filter(Boolean);
+    return `<div class="parking-map-popup parking-geographic-popup">
+      <div class="parking-map-popup-title"><span aria-hidden="true">◎</span><div><strong>${escapeHtml(localized(anchor.name))}</strong><em>${escapeHtml(parkingGeographicKindLabel(anchor))}</em></div></div>
+      <p>${escapeHtml(localized(anchor.use))}</p>
+      <p>${escapeHtml(localized(anchor.boundary))}</p>
+      <dl>
+        <div><dt>${escapeHtml(text('parkingMapPrecisionLabel'))}</dt><dd>${escapeHtml(parkingGeographicAccuracy(anchor))}</dd></div>
+        <div><dt>${escapeHtml(text('parkingGeoSemanticLabel'))}</dt><dd>${semanticSources.map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(source.label))}</a>`).join(' · ')}</dd></div>
+        <div><dt>${escapeHtml(text('parkingGeoSourceLabel'))}</dt><dd>${coordinateSource ? `<a href="${escapeHtml(coordinateSource.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(coordinateSource.label))}</a>` : '—'}</dd></div>
+      </dl>
+      <a class="parking-geographic-osm-link" href="${escapeHtml(parkingGeographicOsmUrl(anchor))}" target="_blank" rel="noopener noreferrer">${escapeHtml(text('parkingGeoOpenOsm'))}</a>
+      <strong class="parking-geographic-no-navigation">${escapeHtml(text('parkingGeoNoNavigation'))}</strong>
+    </div>`;
+  }
+
+  function parkingGeographicShapeOptions(anchor) {
+    const palette = {
+      'road-area': { color: '#285d78', fillColor: '#91c6dc' },
+      'venue-area': { color: '#174f43', fillColor: '#8cc8b9' },
+      landmark: { color: '#825b18', fillColor: '#e0ba66' },
+      'gate-reference': { color: '#ad3c1d', fillColor: '#f08a62' }
+    };
+    const colors = palette[anchor.kind] || palette.landmark;
+    return {
+      color: colors.color,
+      fillColor: colors.fillColor,
+      weight: 2,
+      opacity: 0.9,
+      fillOpacity: anchor.kind === 'road-area' ? 0.12 : 0.2,
+      className: `parking-geographic-shape kind-${anchor.kind}`
+    };
+  }
+
+  function parkingGeographicBounds() {
+    const config = parkingGeographicConfig();
+    return config && Array.isArray(config.defaultBounds)
+      ? window.L.latLngBounds(config.defaultBounds)
+      : null;
+  }
+
+  function fitParkingGeographicBounds() {
+    if (!parkingGeographicState.map) return;
+    const bounds = parkingGeographicBounds();
+    if (bounds) parkingGeographicState.map.fitBounds(bounds, { padding: [24, 24], maxZoom: 14, animate: false });
+  }
+
+  function showParkingGeographicTileError() {
+    if (parkingGeographicState.tileError) return;
+    parkingGeographicState.tileError = true;
+    const root = document.getElementById('parking-geographic-map');
+    if (root && !root.querySelector('.parking-geographic-tile-error')) {
+      const notice = document.createElement('p');
+      notice.className = 'parking-geographic-tile-error';
+      notice.setAttribute('role', 'status');
+      notice.textContent = text('parkingGeoTileError');
+      root.appendChild(notice);
+    }
+    updateParkingGeographicStatus();
+  }
+
+  function updateParkingGeographicTouchToggle() {
+    const button = document.getElementById('parking-geographic-touch-toggle');
+    if (!button) return;
+    button.hidden = !parkingGeographicState.coarsePointer;
+    button.setAttribute('aria-pressed', parkingGeographicState.touchActive ? 'true' : 'false');
+    button.textContent = text(parkingGeographicState.touchActive ? 'parkingGeoTouchDisable' : 'parkingGeoTouchEnable');
+  }
+
+  function ensureParkingGeographicMap() {
+    const root = document.getElementById('parking-geographic-map');
+    const config = parkingGeographicConfig();
+    if (!root || parkingGeographicState.map || parkingViewState.active !== 'geographic') return;
+    if (!window.L || !config || config.coordinateSpace !== 'EPSG:4326') {
+      showParkingGeographicTileError();
+      return;
+    }
+
+    parkingGeographicState.coarsePointer = (typeof window.matchMedia === 'function' && window.matchMedia('(any-pointer: coarse)').matches)
+      || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
+    root.innerHTML = '';
+    const map = window.L.map(root, {
+      minZoom: 11,
+      maxZoom: config.maxZoom,
+      scrollWheelZoom: false,
+      zoomControl: true,
+      attributionControl: true,
+      dragging: !parkingGeographicState.coarsePointer,
+      touchZoom: !parkingGeographicState.coarsePointer,
+      maxBounds: config.maxBounds,
+      maxBoundsViscosity: 0.72
+    });
+    parkingGeographicState.map = map;
+    const tileLayer = window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: config.maxZoom,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>'
+    });
+    tileLayer.on('tileerror', showParkingGeographicTileError);
+    tileLayer.addTo(map);
+    parkingGeographicState.tileLayer = tileLayer;
+    parkingGeographicState.anchorLayer = window.L.layerGroup().addTo(map);
+    root.addEventListener('wheel', (event) => {
+      if (event.metaKey || event.ctrlKey) map.scrollWheelZoom.enable();
+      else map.scrollWheelZoom.disable();
+    }, { passive: true });
+    fitParkingGeographicBounds();
+    updateParkingGeographicTouchToggle();
+    window.setTimeout(() => map.invalidateSize(), 40);
+  }
+
+  function syncParkingGeographicMap() {
+    const config = parkingGeographicConfig();
+    const map = parkingGeographicState.map;
+    const layer = parkingGeographicState.anchorLayer;
+    if (!config || !map || !layer || !window.L) return;
+    layer.clearLayers();
+    parkingGeographicState.anchors.clear();
+
+    (config.anchors || []).forEach((anchor) => {
+      const position = [anchor.lat, anchor.lng];
+      const options = parkingGeographicShapeOptions(anchor);
+      const shape = anchor.kind === 'road-area' || anchor.kind === 'venue-area'
+        ? window.L.circle(position, { ...options, radius: anchor.accuracyM })
+        : window.L.circleMarker(position, { ...options, radius: anchor.kind === 'gate-reference' ? 8 : 9 });
+      shape.addTo(layer);
+      shape.bindPopup(parkingGeographicPopupHtml(anchor), { maxWidth: 360, className: 'hub-leaflet-popup parking-leaflet-popup' });
+      shape.bindTooltip(`${localized(anchor.name)} · ${parkingGeographicAccuracy(anchor)}`, { direction: 'top', opacity: 0.96, className: 'hub-tooltip' });
+      parkingGeographicState.anchors.set(anchor.id, { anchor, shape });
+    });
+    updateParkingGeographicStatus();
+    updateParkingGeographicTouchToggle();
+    window.setTimeout(() => map.invalidateSize(), 40);
+  }
+
+  function focusParkingGeographicAnchor(id) {
+    const item = parkingGeographicState.anchors.get(id);
+    const map = parkingGeographicState.map;
+    if (!item || !map) return;
+    if (typeof item.shape.getBounds === 'function') {
+      map.fitBounds(item.shape.getBounds(), { padding: [42, 42], maxZoom: 15, animate: false });
+    } else {
+      map.setView(item.shape.getLatLng(), Math.min(15, Math.max(map.getZoom(), 14)), { animate: false });
+    }
+    item.shape.openPopup();
+    updateParkingGeographicStatus(localized(item.anchor.name));
+    if (typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 760px)').matches) {
+      const root = document.getElementById('parking-geographic-map');
+      if (root) root.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  }
+
+  function toggleParkingGeographicTouch() {
+    if (!parkingGeographicState.map || !parkingGeographicState.coarsePointer) return;
+    parkingGeographicState.touchActive = !parkingGeographicState.touchActive;
+    if (parkingGeographicState.touchActive) {
+      parkingGeographicState.map.dragging.enable();
+      parkingGeographicState.map.touchZoom.enable();
+    } else {
+      parkingGeographicState.map.dragging.disable();
+      parkingGeographicState.map.touchZoom.disable();
+    }
+    updateParkingGeographicTouchToggle();
+  }
+
+  function setParkingView(nextMode, focusTab) {
+    const mode = nextMode === 'official' ? 'official' : 'geographic';
+    if (parkingViewState.active !== mode) parkingViewState.active = mode;
+    renderParkingViewTabs();
+    if (mode === 'official') {
+      ensureParkingTrafficMap();
+      syncParkingTrafficMap();
+      window.setTimeout(() => parkingTrafficState.map && parkingTrafficState.map.invalidateSize(), 40);
+    } else {
+      ensureParkingGeographicMap();
+      syncParkingGeographicMap();
+      window.setTimeout(() => parkingGeographicState.map && parkingGeographicState.map.invalidateSize(), 40);
+    }
+    if (focusTab) {
+      const tab = document.querySelector(`[data-parking-view="${mode}"]`);
+      if (tab) tab.focus();
+    }
+  }
+
   function stopPopupHtml(stop, place) {
     const lat = Number(place.lat).toFixed(5);
     const lng = Number(place.lng).toFixed(5);
@@ -1754,6 +2032,7 @@
     updateToggleUi();
     if (mapState.map) window.setTimeout(() => mapState.map.invalidateSize(), 40);
     if (parkingTrafficState.map) window.setTimeout(() => parkingTrafficState.map.invalidateSize(), 40);
+    if (parkingGeographicState.map) window.setTimeout(() => parkingGeographicState.map.invalidateSize(), 40);
     invalidatePlanMaps();
   }
 
@@ -1772,6 +2051,24 @@
 
     if (parkingPanel) {
       parkingPanel.addEventListener('click', (event) => {
+        const viewTab = event.target.closest('[data-parking-view]');
+        if (viewTab) {
+          setParkingView(viewTab.getAttribute('data-parking-view'), true);
+          return;
+        }
+        const geographicButton = event.target.closest('[data-parking-geographic-focus]');
+        if (geographicButton) {
+          focusParkingGeographicAnchor(geographicButton.getAttribute('data-parking-geographic-focus'));
+          return;
+        }
+        if (event.target.id === 'parking-geographic-touch-toggle' || event.target.closest('#parking-geographic-touch-toggle')) {
+          toggleParkingGeographicTouch();
+          return;
+        }
+        if (event.target.id === 'parking-geographic-reset' || event.target.closest('#parking-geographic-reset')) {
+          fitParkingGeographicBounds();
+          return;
+        }
         const dayButton = event.target.closest('[data-parking-day]');
         if (dayButton) {
           const nextDay = dayButton.getAttribute('data-parking-day');
@@ -1807,6 +2104,20 @@
         if (event.target.id === 'parking-map-touch-toggle' || event.target.closest('#parking-map-touch-toggle')) {
           toggleParkingMapTouch();
         }
+      });
+      parkingPanel.addEventListener('keydown', (event) => {
+        const currentTab = event.target.closest('[role="tab"][data-parking-view]');
+        if (!currentTab || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        const tabs = Array.from(parkingPanel.querySelectorAll('[role="tab"][data-parking-view]'));
+        const currentIndex = tabs.indexOf(currentTab);
+        if (currentIndex < 0) return;
+        event.preventDefault();
+        let nextIndex = currentIndex;
+        if (event.key === 'Home') nextIndex = 0;
+        else if (event.key === 'End') nextIndex = tabs.length - 1;
+        else if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabs.length;
+        else nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        setParkingView(tabs[nextIndex].getAttribute('data-parking-view'), true);
       });
     }
 

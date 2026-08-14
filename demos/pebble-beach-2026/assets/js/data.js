@@ -179,6 +179,7 @@ window.PEBBLE_DATA = {
     },
     skip: { zh: '跳到正文', en: 'Skip to content' },
     navTour: { zh: '8.13 Tour', en: 'Aug 13 Tour' },
+    navPlan: { zh: '方案', en: 'Plan' },
     navParkingMap: { zh: '停车图', en: 'Parking map' },
     navBrandHouses: { zh: '品牌体验', en: 'Brand access' },
     navSchedule: { zh: '日程', en: 'Schedule' },
@@ -282,12 +283,48 @@ window.PEBBLE_DATA = {
       en: 'The revised route does not pass through Carmel or Big Sur. The Portola start/finish plan and the Monterey route-side alternatives are mutually exclusive: choose before departure, leave the car there and do not drive between viewing points after the Tour starts. Watch only from public pedestrian space that remains open onsite.'
     },
     tourSourcesLabel: { zh: '四个官方复核入口', en: 'Four official checks' },
-    parkingMapKicker: { zh: '官方场内图 · 精确图面交互', en: 'Official onsite map · diagram-locked interaction' },
-    parkingMapTitle: { zh: '停车区、接驳点与交通管制，一张图查清', en: 'Onsite lots, transfer points and traffic controls in one map' },
+    parkingMapKicker: { zh: '地图与停车 · 坐标空间分离', en: 'Maps & parking · separate coordinate spaces' },
+    parkingMapTitle: { zh: '真实方位与官方场内图，分开看清', en: 'Real-world orientation and the official onsite diagram—kept separate' },
     parkingMapIntro: {
-      zh: '直接使用官网 7/20/26 Parking & Traffic Flow 矢量图，默认显示 8 月 13 日。缩放时热点始终锁定官方图面；它帮助辨认现场编号，不替代入口分配、临时路牌或工作人员指挥。',
-      en: 'Built directly on the official July 20 Parking & Traffic Flow vector diagram, with Aug 13 shown by default. Hotspots stay locked to the source as you zoom. Use it to identify onsite codes—not to override gate assignments, temporary signs or staff.'
+      zh: '“真实地图”只显示有独立坐标来源的公共道路、场地区域与地标；“官方示意图”保留 7/20/26 PDF 的全部编号和交通符号。两者不会叠加，也不能据此绕过入口分配、临时路牌或工作人员指挥。',
+      en: 'The Geographic Guide shows only public roads, venue areas and landmarks with independent coordinate sources. The Official Diagram preserves every code and traffic symbol from the July 20 PDF. The two spaces never overlap and neither overrides gate assignments, temporary signs or staff.'
     },
+    parkingTabsLabel: { zh: '停车地图视图', en: 'Parking map views' },
+    parkingTabGeographic: { zh: '真实地图', en: 'Geographic Guide' },
+    parkingTabOfficial: { zh: '官方示意图', en: 'Official Diagram' },
+    parkingGeoKicker: { zh: '真实经纬度 · 方位指南', en: 'Real coordinates · orientation guide' },
+    parkingGeoTitle: { zh: '用误差范围理解道路与场地，不猜停车入口', en: 'Understand roads and venues with uncertainty—not guessed parking entrances' },
+    parkingGeoIntro: {
+      zh: '下图使用 OpenStreetMap 地理底图与独立核验的 WGS84 锚点。道路与活动区域用误差圆表达；它只帮助理解相对方位，不提供停车场入口、场内路线或逐点导航。',
+      en: 'This view uses an OpenStreetMap basemap and independently checked WGS84 anchors. Roads and event areas are shown as uncertainty circles. It is for relative orientation only—not lot entrances, onsite routes or turn-by-turn navigation.'
+    },
+    parkingGeoBoundaryTitle: { zh: '刻意不翻译到真实地图的内容', en: 'Intentionally kept off the geographic map' },
+    parkingGeoBoundaryBody: {
+      zh: '所有编号停车区（包括 Thu–Sat ADA Lot 9 与 Sunday Lot 18）及单行、封路、交通环线、许可路段、试驾流线，都只在官方示意图中查看。普通停车仍由入口和现场人员分配。',
+      en: 'Every numbered lot—including Thu–Sat ADA Lot 9 and Sunday Lot 18—and all one-way, closure, traffic-loop, permit-only and test-drive markings remain in the Official Diagram. General parking is still assigned at the gate and onsite.'
+    },
+    parkingGeoMapAria: { zh: 'Pebble Beach 停车与活动方位真实地图', en: 'Geographic orientation map for Pebble Beach parking and event areas' },
+    parkingGeoCaveat: { zh: '圆圈表示位置精度或道路范围，不表示可停车范围；所有锚点均禁止直接导航。', en: 'Circles show positional precision or road extent—not parking availability. Direct navigation is disabled for every anchor.' },
+    parkingGeoListKicker: { zh: '核实锚点', en: 'Checked anchors' },
+    parkingGeoListTitle: { zh: '点击条目只缩放到方位范围', en: 'Select an item to frame its orientation area' },
+    parkingGeoStatus: { zh: '显示 {count} 个方位锚点', en: 'Showing {count} orientation anchors' },
+    parkingGeoSelected: { zh: '已查看：{name}', en: 'Viewing: {name}' },
+    parkingGeoKindRoad: { zh: '道路范围', en: 'Road area' },
+    parkingGeoKindVenue: { zh: '场地区域', en: 'Venue area' },
+    parkingGeoKindLandmark: { zh: '公共地标', en: 'Public landmark' },
+    parkingGeoKindGate: { zh: '入口参照', en: 'Gate reference' },
+    parkingGeoAccuracy: { zh: '约 ±{meters} 米', en: 'Approx. ±{meters} m' },
+    parkingGeoNoNavigation: { zh: '非停车点 · 不提供导航', en: 'Not a parking point · no navigation' },
+    parkingGeoOpenOsm: { zh: '在 OpenStreetMap 查看区域 ↗', en: 'View area in OpenStreetMap ↗' },
+    parkingGeoSourceLabel: { zh: '坐标来源', en: 'Coordinate source' },
+    parkingGeoSemanticLabel: { zh: '活动语义', en: 'Event meaning' },
+    parkingGeoTileError: { zh: '地图瓦片暂不可用；核实锚点、边界说明与来源仍可使用。', en: 'Map tiles are unavailable; the checked anchors, boundaries and sources remain usable.' },
+    parkingGeoTouchEnable: { zh: '启用真实地图拖动', en: 'Enable geographic-map dragging' },
+    parkingGeoTouchDisable: { zh: '停用真实地图拖动', en: 'Disable geographic-map dragging' },
+    parkingGeoReset: { zh: '重置方位范围', en: 'Reset orientation view' },
+    parkingGeoOfficialDirections: { zh: '官方停车与入口说明 ↗', en: 'Official parking and entry guidance ↗' },
+    parkingGeoOfficialEventMap: { zh: '官方活动区域图 PDF ↗', en: 'Official event-area map PDF ↗' },
+    parkingGeoOsmAttribution: { zh: 'OpenStreetMap 坐标与底图 ↗', en: 'OpenStreetMap coordinates and basemap ↗' },
     parkingMapOfficialBadge: { zh: '官方 Automotive Week 交通图', en: 'Official Automotive Week traffic map' },
     parkingMapHoursThuSat: { zh: '8 月 13–15 日 · 6:00–18:00', en: 'Aug 13–15 · 6:00am–6:00pm' },
     parkingMapHoursSunday: { zh: '8 月 16 日 · 4:00–16:00', en: 'Aug 16 · 4:00am–4:00pm' },
@@ -960,6 +997,108 @@ window.PEBBLE_DATA = {
       {
         id: 'directions', label: { zh: '官方 Tour 起终点停车指引', en: 'Official Tour start/finish parking directions' },
         url: 'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/'
+      }
+    ]
+  },
+
+  parkingGeographicGuide: {
+    checked: '2026-08-14',
+    coordinateSpace: 'EPSG:4326',
+    coordinateAuthority: 'OpenStreetMap',
+    coordinateLicense: 'ODbL',
+    defaultBounds: [[36.5685, -121.9610], [36.5910, -121.9125]],
+    maxBounds: [[36.5520, -121.9820], [36.6000, -121.8880]],
+    maxZoom: 16,
+    boundary: {
+      zh: '所有编号停车区（包括 Thu–Sat ADA Lot 9 与 Sunday Lot 18）及五类交通管制都只在官方示意图中查看；普通停车仍由入口和现场人员分配。',
+      en: 'Every numbered lot—including Thu–Sat ADA Lot 9 and Sunday Lot 18—and all five traffic-control types remain in the Official Diagram; general parking is still assigned at the gate and onsite.'
+    },
+    anchors: [
+      {
+        id: 'portola-road-area', kind: 'road-area', lat: 36.5732440, lng: -121.9544633, accuracyM: 250,
+        navigationAllowed: false,
+        name: { zh: 'Portola Road 起终点范围', en: 'Portola Road start / finish area' },
+        use: { zh: '官方确认 Tour 起终点在 Portola Road；附近普通停车仍按入口标志与工作人员分配。', en: 'The organizer confirms the Tour start / finish on Portola Road. Nearby general parking still follows gate signs and staff assignment.' },
+        boundary: { zh: '道路中心参考与约 250 米方位范围；不是起跑线、停车入口或可停车圆圈。', en: 'Road-center reference with an approximate 250 m orientation area—not the start line, a lot entrance or a parkable circle.' },
+        semanticSourceRefs: ['official-directions'],
+        coordinateSourceRef: 'osm-way-686748528'
+      },
+      {
+        id: 'forest-lake-road-reference', kind: 'road-area', lat: 36.5822980, lng: -121.9498689, accuracyM: 900,
+        navigationAllowed: false,
+        name: { zh: 'Forest Lake Road 方位参照', en: 'Forest Lake Road orientation reference' },
+        use: { zh: '官方资料以 Forest Lake Road / Stevenson Drive 描述 Concours Village 方位；真实入口仍看现场标识。', en: 'Official material describes Concours Village around Forest Lake Road / Stevenson Drive; use onsite signs for the actual entrance.' },
+        boundary: { zh: '这是整条道路要素的宽泛中心，不是 Village、RetroAuto 或停车场入口。', en: 'This is the broad center of a road feature—not a Village, RetroAuto or parking entrance.' },
+        semanticSourceRefs: ['official-directions', 'official-event-map'],
+        coordinateSourceRef: 'osm-way-10468660'
+      },
+      {
+        id: 'the-hay-area', kind: 'venue-area', lat: 36.5718657, lng: -121.9496646, accuracyM: 160,
+        navigationAllowed: false,
+        name: { zh: 'The Hay 场地区域', en: 'The Hay venue area' },
+        use: { zh: '帮助理解 Concours Village 与 Cadillac 公众体验的大致相对方位；从 Village 按活动标识步行。', en: 'Helps orient the Concours Village and public Cadillac experience; follow event signs on foot from the Village.' },
+        boundary: { zh: '场地面要素中心与约 160 米范围；不是 Cadillac 摊位、上下客点或停车场。', en: 'Venue-feature center with an approximate 160 m area—not the Cadillac booth, a drop-off point or parking.' },
+        semanticSourceRefs: ['official-event-map'],
+        coordinateSourceRef: 'osm-way-1065983050'
+      },
+      {
+        id: 'pebble-links-landmark', kind: 'landmark', lat: 36.5696646, lng: -121.9497413, accuracyM: 35,
+        navigationAllowed: false,
+        name: { zh: 'Pebble Beach Golf Links 地标', en: 'Pebble Beach Golf Links landmark' },
+        use: { zh: '只用于辨认 The Lodge / Golf Links 与周边活动区的相对位置。', en: 'A public landmark for understanding the relative position of The Lodge / Golf Links and nearby event areas.' },
+        boundary: { zh: '公共地标中心，不是观众停车或活动入口。', en: 'Public-landmark center—not spectator parking or an event entrance.' },
+        semanticSourceRefs: ['official-event-map'],
+        coordinateSourceRef: 'osm-way-686560759'
+      },
+      {
+        id: 'highway-1-gate-reference', kind: 'gate-reference', lat: 36.5748806, lng: -121.9135393, accuracyM: 20,
+        navigationAllowed: false,
+        name: { zh: 'Hwy 1 Gate 方位参照', en: 'Hwy 1 Gate orientation reference' },
+        use: { zh: '官方活动图标注 Hwy 1 Gate；活动周实际入口与分流必须服从交通人员。', en: 'The official event map labels a Hwy 1 Gate; actual Car Week entry and routing remain subject to traffic staff.' },
+        boundary: { zh: '入口地标参考，不保证这是你的分配入口，也不是停车或观赛点。', en: 'Gate landmark reference—not a guaranteed assigned entrance, parking point or spectator area.' },
+        semanticSourceRefs: ['official-event-map', 'official-directions'],
+        coordinateSourceRef: 'osm-node-2805500918'
+      }
+    ],
+    sources: [
+      {
+        id: 'official-directions', kind: 'semantic',
+        label: { zh: 'Pebble Beach Concours · 停车与入口说明', en: 'Pebble Beach Concours · parking and entry guidance' },
+        url: 'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/'
+      },
+      {
+        id: 'official-event-map', kind: 'semantic',
+        label: { zh: 'Pebble Beach Concours · 2026 官方活动区域图', en: 'Pebble Beach Concours · official 2026 event-area map' },
+        url: 'https://www.pebblebeachconcours.net/wp-content/uploads/2026/05/PBC_2026_Event_Map_Web_Final2.pdf'
+      },
+      {
+        id: 'official-parking-pdf', kind: 'diagram-only',
+        label: { zh: 'Pebble Beach Concours · 官方停车与交通示意图', en: 'Pebble Beach Concours · official parking and traffic diagram' },
+        url: 'https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf'
+      },
+      {
+        id: 'osm-way-686748528', kind: 'coordinate', label: { zh: 'OSM · Portola Road way 686748528', en: 'OSM · Portola Road way 686748528' },
+        url: 'https://www.openstreetmap.org/way/686748528'
+      },
+      {
+        id: 'osm-way-10468660', kind: 'coordinate', label: { zh: 'OSM · Forest Lake Road way 10468660', en: 'OSM · Forest Lake Road way 10468660' },
+        url: 'https://www.openstreetmap.org/way/10468660'
+      },
+      {
+        id: 'osm-way-1065983050', kind: 'coordinate', label: { zh: 'OSM · The Hay way 1065983050', en: 'OSM · The Hay way 1065983050' },
+        url: 'https://www.openstreetmap.org/way/1065983050'
+      },
+      {
+        id: 'osm-way-686560759', kind: 'coordinate', label: { zh: 'OSM · Golf Links way 686560759', en: 'OSM · Golf Links way 686560759' },
+        url: 'https://www.openstreetmap.org/way/686560759'
+      },
+      {
+        id: 'osm-node-2805500918', kind: 'coordinate', label: { zh: 'OSM · Hwy 1 Gate node 2805500918', en: 'OSM · Hwy 1 Gate node 2805500918' },
+        url: 'https://www.openstreetmap.org/node/2805500918'
+      },
+      {
+        id: 'osm-attribution', kind: 'license', label: { zh: 'OpenStreetMap 版权与 ODbL', en: 'OpenStreetMap copyright and ODbL' },
+        url: 'https://www.openstreetmap.org/copyright'
       }
     ]
   },

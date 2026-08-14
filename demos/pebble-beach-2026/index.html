@@ -35,7 +35,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=1f32b7618a">
+  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=0ffa601ead">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳到正文</a>
@@ -190,11 +190,72 @@
     <section id="parking-traffic" class="section-block parking-traffic-section" aria-labelledby="parking-map-title">
       <div class="section-heading parking-map-heading">
         <div>
-          <span class="section-kicker" data-i18n="parkingMapKicker">官方场内图 · 精确图面交互</span>
-          <h2 id="parking-map-title" data-i18n="parkingMapTitle">停车区、接驳点与交通管制，一张图查清</h2>
+          <span class="section-kicker" data-i18n="parkingMapKicker">地图与停车 · 坐标空间分离</span>
+          <h2 id="parking-map-title" data-i18n="parkingMapTitle">真实方位与官方场内图，分开看清</h2>
         </div>
-        <p data-i18n="parkingMapIntro">直接使用官网 7/20/26 Parking &amp; Traffic Flow 矢量图，默认显示 8 月 13 日。缩放时热点始终锁定官方图面；它帮助辨认现场编号，不替代入口分配、临时路牌或工作人员指挥。</p>
+        <p data-i18n="parkingMapIntro">“真实地图”只显示有独立坐标来源的公共道路、场地区域与地标；“官方示意图”保留 7/20/26 PDF 的全部编号和交通符号。两者不会叠加，也不能据此绕过入口分配、临时路牌或工作人员指挥。</p>
       </div>
+
+      <div class="parking-view-tabs" role="tablist" aria-label="停车地图视图" data-i18n-aria-label="parkingTabsLabel">
+        <button type="button" id="parking-tab-geographic" role="tab" aria-selected="true" aria-controls="parking-panel-geographic" tabindex="0" data-parking-view="geographic" data-i18n="parkingTabGeographic">真实地图</button>
+        <button type="button" id="parking-tab-official" role="tab" aria-selected="false" aria-controls="parking-panel-official" tabindex="-1" data-parking-view="official" data-i18n="parkingTabOfficial">官方示意图</button>
+      </div>
+
+      <div id="parking-panel-geographic" class="parking-view-panel" role="tabpanel" aria-labelledby="parking-tab-geographic" tabindex="0">
+        <div class="parking-geographic-intro">
+          <div>
+            <span class="section-kicker" data-i18n="parkingGeoKicker">真实经纬度 · 方位指南</span>
+            <h3 data-i18n="parkingGeoTitle">用误差范围理解道路与场地，不猜停车入口</h3>
+          </div>
+          <p data-i18n="parkingGeoIntro">下图使用 OpenStreetMap 地理底图与独立核验的 WGS84 锚点。道路与活动区域用误差圆表达；它只帮助理解相对方位，不提供停车场入口、场内路线或逐点导航。</p>
+        </div>
+        <p id="parking-geographic-caveat" class="parking-map-caveat" data-i18n="parkingGeoCaveat">圆圈表示位置精度或道路范围，不表示可停车范围；所有锚点均禁止直接导航。</p>
+
+        <div class="parking-map-layout parking-geographic-layout">
+          <div class="parking-map-shell">
+            <div id="parking-geographic-map" class="parking-traffic-map parking-geographic-map" role="region" aria-label="Pebble Beach 停车与活动方位真实地图" data-i18n-aria-label="parkingGeoMapAria" aria-describedby="parking-geographic-caveat">
+              <div class="parking-geographic-fallback">
+                <strong data-i18n="parkingGeoTitle">用误差范围理解道路与场地，不猜停车入口</strong>
+                <p data-i18n="parkingGeoIntro">下图使用 OpenStreetMap 地理底图与独立核验的 WGS84 锚点。道路与活动区域用误差圆表达；它只帮助理解相对方位，不提供停车场入口、场内路线或逐点导航。</p>
+              </div>
+            </div>
+            <div class="parking-geographic-map-actions">
+              <button type="button" id="parking-geographic-touch-toggle" class="parking-map-touch-toggle" aria-pressed="false" hidden data-i18n="parkingGeoTouchEnable">启用真实地图拖动</button>
+              <button type="button" id="parking-geographic-reset" class="parking-geographic-reset" data-i18n="parkingGeoReset">重置方位范围</button>
+            </div>
+          </div>
+
+          <aside class="parking-map-panel" aria-labelledby="parking-geographic-list-title">
+            <div class="parking-map-panel-heading">
+              <div>
+                <span class="section-kicker" data-i18n="parkingGeoListKicker">核实锚点</span>
+                <h3 id="parking-geographic-list-title" data-i18n="parkingGeoListTitle">点击条目只缩放到方位范围</h3>
+              </div>
+              <p id="parking-geographic-status" role="status" aria-live="polite">—</p>
+            </div>
+            <ol id="parking-geographic-list" class="parking-map-list parking-geographic-list">
+              <li class="parking-map-list-item kind-guide"><button type="button" disabled><span class="parking-map-list-code">P</span><span class="parking-map-list-copy"><strong>Portola Road</strong><small data-i18n="parkingGeoNoNavigation">非停车点 · 不提供导航</small></span></button></li>
+              <li class="parking-map-list-item kind-general"><button type="button" disabled><span class="parking-map-list-code">F</span><span class="parking-map-list-copy"><strong>Forest Lake Road</strong><small data-i18n="parkingGeoNoNavigation">非停车点 · 不提供导航</small></span></button></li>
+              <li class="parking-map-list-item kind-ada"><button type="button" disabled><span class="parking-map-list-code">H</span><span class="parking-map-list-copy"><strong>The Hay</strong><small data-i18n="parkingGeoNoNavigation">非停车点 · 不提供导航</small></span></button></li>
+            </ol>
+          </aside>
+        </div>
+
+        <aside class="parking-geographic-boundary">
+          <div>
+            <strong data-i18n="parkingGeoBoundaryTitle">刻意不翻译到真实地图的内容</strong>
+            <p data-i18n="parkingGeoBoundaryBody">所有编号停车区（包括 Thu–Sat ADA Lot 9 与 Sunday Lot 18）及单行、封路、交通环线、许可路段、试驾流线，都只在官方示意图中查看。普通停车仍由入口和现场人员分配。</p>
+          </div>
+          <div class="parking-map-source-links">
+            <a href="https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/" target="_blank" rel="noopener noreferrer" data-i18n="parkingGeoOfficialDirections">官方停车与入口说明 ↗</a>
+            <a href="https://www.pebblebeachconcours.net/wp-content/uploads/2026/05/PBC_2026_Event_Map_Web_Final2.pdf" target="_blank" rel="noopener noreferrer" data-i18n="parkingGeoOfficialEventMap">官方活动区域图 PDF ↗</a>
+            <a href="https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf" target="_blank" rel="noopener noreferrer" data-i18n="parkingMapOfficialPdf">查看官方 PDF ↗</a>
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" data-i18n="parkingGeoOsmAttribution">OpenStreetMap 坐标与底图 ↗</a>
+          </div>
+        </aside>
+      </div>
+
+      <div id="parking-panel-official" class="parking-view-panel" role="tabpanel" aria-labelledby="parking-tab-official" tabindex="0" hidden>
 
       <div class="parking-map-evidence">
         <div>
@@ -259,6 +320,7 @@
           <a href="https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/" target="_blank" rel="noopener noreferrer" data-i18n="parkingMapDirections">Tour 停车指引 ↗</a>
         </div>
       </aside>
+      </div>
     </section>
 
     <section id="brand-houses" class="section-block brand-house-section" aria-labelledby="brand-house-title">
@@ -443,7 +505,7 @@
   </footer>
 
   <script src="assets/vendor/leaflet/leaflet.js"></script>
-  <script src="assets/js/data.js?v=4f6f9a230e"></script>
-  <script src="assets/js/app.js?v=06af1f9423"></script>
+  <script src="assets/js/data.js?v=3dba2dc40c"></script>
+  <script src="assets/js/app.js?v=d71865c36d"></script>
 </body>
 </html>

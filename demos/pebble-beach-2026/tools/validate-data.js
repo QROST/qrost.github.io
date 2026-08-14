@@ -33,6 +33,13 @@ const expectedParkingDiagramPoints = [
   ['20', 317.33, 75.95], ['RS', 308, 267.69], ['BD', 315.08, 435.87], ['PO', 277.39, 459.81], ['CC', 295.03, 478.66]
 ];
 const expectedParkingTrafficIds = ['traffic-loop', 'one-way', 'road-closed', 'permit-only', 'test-drives'];
+const expectedParkingGeographicAnchors = [
+  ['portola-road-area', 'road-area', 36.5732440, -121.9544633, 250, 'osm-way-686748528'],
+  ['forest-lake-road-reference', 'road-area', 36.5822980, -121.9498689, 900, 'osm-way-10468660'],
+  ['the-hay-area', 'venue-area', 36.5718657, -121.9496646, 160, 'osm-way-1065983050'],
+  ['pebble-links-landmark', 'landmark', 36.5696646, -121.9497413, 35, 'osm-way-686560759'],
+  ['highway-1-gate-reference', 'gate-reference', 36.5748806, -121.9135393, 20, 'osm-node-2805500918']
+];
 const expectedRouteSignatures = {
   'qp-0807': 'single::1:alvarado@area::-',
   'qp-0808': 'choice::-::A:choice:A:asilomar@area|B:choice:B:laguna@venue',
@@ -417,6 +424,83 @@ if (data) {
       mapSourceUrls.push(source.url);
     }
     check(JSON.stringify(mapSourceUrls) === JSON.stringify(parkingTrafficOfficialUrls), 'parking map must preserve the three official sources in order');
+  }
+
+  const geographicGuide = data.parkingGeographicGuide;
+  check(geographicGuide && typeof geographicGuide === 'object', 'parkingGeographicGuide is required');
+  if (geographicGuide) {
+    check(geographicGuide.checked === '2026-08-14', 'parkingGeographicGuide.checked must remain 2026-08-14');
+    check(geographicGuide.coordinateSpace === 'EPSG:4326', 'geographic guide must use EPSG:4326');
+    check(geographicGuide.coordinateAuthority === 'OpenStreetMap', 'geographic guide coordinate authority must be OpenStreetMap');
+    check(geographicGuide.coordinateLicense === 'ODbL', 'geographic guide must preserve ODbL attribution');
+    check(JSON.stringify(geographicGuide.defaultBounds) === JSON.stringify([[36.5685, -121.961], [36.591, -121.9125]]), 'geographic guide default bounds drifted');
+    check(geographicGuide.maxZoom === 16, 'geographic guide maxZoom must remain 16');
+    checkBilingual(geographicGuide.boundary, 'parkingGeographicGuide.boundary');
+
+    const sourceById = new Map();
+    for (const [index, source] of (geographicGuide.sources || []).entries()) {
+      const label = `parkingGeographicGuide.sources[${index}]`;
+      check(typeof source.id === 'string' && /^[a-z0-9-]+$/.test(source.id), `${label}.id is invalid`);
+      check(!sourceById.has(source.id), `${label}.id is duplicated`);
+      sourceById.set(source.id, source);
+      check(['semantic', 'diagram-only', 'coordinate', 'license'].includes(source.kind), `${label}.kind is invalid`);
+      checkBilingual(source.label, `${label}.label`);
+      checkUrl(source.url, `${label}.url`);
+    }
+    for (const sourceId of ['official-directions', 'official-event-map', 'official-parking-pdf', 'osm-attribution']) {
+      check(sourceById.has(sourceId), `geographic guide source missing: ${sourceId}`);
+    }
+    check(sourceById.get('official-directions')?.kind === 'semantic', 'official directions must be a semantic source');
+    check(sourceById.get('official-event-map')?.kind === 'semantic', 'official event map must be a semantic source');
+    check(sourceById.get('official-parking-pdf')?.kind === 'diagram-only', 'official parking PDF must remain diagram-only');
+    check(sourceById.get('osm-attribution')?.url === 'https://www.openstreetmap.org/copyright', 'OSM attribution URL drifted');
+
+    const anchors = geographicGuide.anchors || [];
+    check(Array.isArray(anchors) && anchors.length === 5, 'geographic guide must contain exactly five safe orientation anchors');
+    check(
+      JSON.stringify(anchors.map((anchor) => [anchor.id, anchor.kind, anchor.lat, anchor.lng, anchor.accuracyM, anchor.coordinateSourceRef])) === JSON.stringify(expectedParkingGeographicAnchors),
+      'geographic guide anchor coordinates, precision or source fixtures drifted'
+    );
+    const diagramIds = new Set((parkingMap?.points || []).map((point) => point.id));
+    const allowedKinds = new Set(['road-area', 'venue-area', 'landmark', 'gate-reference']);
+    const anchorIds = new Set();
+    for (const [index, anchor] of anchors.entries()) {
+      const label = `parkingGeographicGuide.anchors[${index}]`;
+      check(typeof anchor.id === 'string' && /^[a-z0-9-]+$/.test(anchor.id), `${label}.id is invalid`);
+      check(!anchorIds.has(anchor.id), `${label}.id is duplicated`);
+      check(!diagramIds.has(anchor.id) && !/^lot-/.test(anchor.id), `${label}.id must not reuse an official-diagram lot id`);
+      anchorIds.add(anchor.id);
+      check(allowedKinds.has(anchor.kind), `${label}.kind is invalid`);
+      check(Number.isFinite(anchor.lat) && anchor.lat > 36.55 && anchor.lat < 36.61, `${label}.lat is outside the checked Pebble Beach area`);
+      check(Number.isFinite(anchor.lng) && anchor.lng > -121.99 && anchor.lng < -121.88, `${label}.lng is outside the checked Pebble Beach area`);
+      check(Number.isFinite(anchor.accuracyM) && anchor.accuracyM >= 20 && anchor.accuracyM <= 1000, `${label}.accuracyM is invalid`);
+      if (anchor.kind === 'road-area' || anchor.kind === 'venue-area') {
+        check(anchor.accuracyM >= 100, `${label} area precision must be at least 100 m`);
+        const latDelta = anchor.accuracyM / 111320;
+        const lngDelta = anchor.accuracyM / (111320 * Math.cos(anchor.lat * Math.PI / 180));
+        check(geographicGuide.defaultBounds[0][0] <= anchor.lat - latDelta && geographicGuide.defaultBounds[1][0] >= anchor.lat + latDelta, `${label} uncertainty circle must fit inside default latitude bounds`);
+        check(geographicGuide.defaultBounds[0][1] <= anchor.lng - lngDelta && geographicGuide.defaultBounds[1][1] >= anchor.lng + lngDelta, `${label} uncertainty circle must fit inside default longitude bounds`);
+      }
+      check(anchor.navigationAllowed === false, `${label} must prohibit direct navigation`);
+      checkBilingual(anchor.name, `${label}.name`);
+      checkBilingual(anchor.use, `${label}.use`);
+      checkBilingual(anchor.boundary, `${label}.boundary`);
+      check(Array.isArray(anchor.semanticSourceRefs) && anchor.semanticSourceRefs.length >= 1, `${label}.semanticSourceRefs is required`);
+      for (const ref of anchor.semanticSourceRefs || []) {
+        check(sourceById.get(ref)?.kind === 'semantic', `${label}.semanticSourceRefs must reference an official semantic source: ${ref}`);
+      }
+      const coordinateSource = sourceById.get(anchor.coordinateSourceRef);
+      check(coordinateSource?.kind === 'coordinate', `${label}.coordinateSourceRef must reference an element-specific coordinate source`);
+      check(/^https:\/\/www\.openstreetmap\.org\/(?:way|node)\/\d+$/.test(coordinateSource?.url || ''), `${label}.coordinate source must be an element-specific OSM URL`);
+      for (const forbiddenKey of ['mapX', 'mapY', 'focusBounds', 'trafficControls', 'paths']) {
+        check(!Object.hasOwn(anchor, forbiddenKey), `${label} must not contain official-diagram field ${forbiddenKey}`);
+      }
+    }
+    const geographicText = JSON.stringify(geographicGuide);
+    check(!/"id":"lot-|"code":"(?:[0-9]|RS|BD|PO|CC)/.test(geographicText), 'geographic guide must not encode numbered diagram lots');
+    check(!/mlat=|mlon=|google\.com\/maps\/dir/i.test(geographicText), 'geographic guide must not publish point-marker or directions URLs');
+    check(geographicText.includes('Lot 9') && geographicText.includes('Lot 18'), 'geographic guide boundary copy must keep ADA lots text-only');
+    check(geographicText.includes('not the start line') && geographicText.includes('not a Village'), 'geographic guide must preserve road-centroid uncertainty boundaries');
   }
 
   const dayIds = new Set();
