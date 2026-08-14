@@ -106,7 +106,7 @@ if (data) {
   for (const key of [
     'navPlan', 'navArchive', 'navBackTop', 'tourHeroCtaPast',
     'liveOutsideWindowBefore', 'liveOutsideWindowAfter', 'pastGroupSummary', 'archiveSummary',
-    'temporalPastBadge', 'temporalTourLabel', 'temporalParkingLabel', 'temporalBrandLabel',
+    'temporalPastBadge', 'temporalActiveFoldHint', 'temporalTourLabel', 'temporalParkingLabel', 'temporalBrandLabel',
     'temporalNearbyLabel', 'temporalStayLabel', 'quickNoScript'
   ]) {
     checkBilingual(data.labels?.[key], `labels.${key}`);
@@ -247,6 +247,14 @@ if (data) {
     check(new Set(cardIds).size === cardIds.length, 'brand-house card ids must be unique');
     check(expectedBrandIds.every((id) => cardIds.includes(id)) && cardIds.length === expectedBrandIds.length, 'brand-house researched set drifted');
     for (const lane of lanes) {
+      check(typeof lane.titleKey === 'string' && lane.titleKey in data.labels, `brand lane ${lane.id}.titleKey is invalid`);
+      check(typeof lane.introKey === 'string' && lane.introKey in data.labels, `brand lane ${lane.id}.introKey is invalid`);
+      for (const [date, key] of Object.entries(lane.titleKeyByDate || {})) {
+        check(/^2026-08-\d{2}$/.test(date) && key in data.labels, `brand lane ${lane.id}.titleKeyByDate is invalid`);
+      }
+      for (const [date, key] of Object.entries(lane.introKeyByDate || {})) {
+        check(/^2026-08-\d{2}$/.test(date) && key in data.labels, `brand lane ${lane.id}.introKeyByDate is invalid`);
+      }
       for (const id of lane.cardIds || []) {
         check((brandGuide.cards || []).find((card) => card.id === id)?.lane === lane.id, `brand card ${id} must agree with its ${lane.id} lane`);
       }
@@ -265,11 +273,30 @@ if (data) {
       } else {
         check(card.dateStatus !== 'confirmed', `${label} confirmed dates require a startDate and endDate`);
       }
-      for (const key of ['badge', 'title', 'location', 'schedule', 'access', 'drive', 'parking']) {
+      for (const key of ['badge', 'title', 'summary', 'location', 'schedule', 'access', 'drive', 'parking']) {
         checkBilingual(card[key], `${label}.${key}`);
+      }
+      check(card.summary.zh.length <= 70 && card.summary.en.length <= 90, `${label}.summary must stay scan-friendly`);
+      for (const [date, value] of Object.entries(card.badgeByDate || {})) {
+        check(/^2026-08-\d{2}$/.test(date), `${label}.badgeByDate date is invalid`);
+        checkBilingual(value, `${label}.badgeByDate.${date}`);
+      }
+      for (const [date, value] of Object.entries(card.summaryByDate || {})) {
+        check(/^2026-08-\d{2}$/.test(date), `${label}.summaryByDate date is invalid`);
+        checkBilingual(value, `${label}.summaryByDate.${date}`);
+        check(value.zh.length <= 70 && value.en.length <= 90, `${label}.summaryByDate.${date} must stay scan-friendly`);
       }
       if (card.lane === 'public-drive') {
         check(card.accessStatus === 'public-free', `${label} public drive must remain explicitly free and public`);
+        check(/^2026-08-\d{2}$/.test(card.driveEndDate || ''), `${label}.driveEndDate must be an ISO August 2026 date`);
+        check(card.driveEndDate <= card.endDate, `${label}.driveEndDate cannot exceed endDate`);
+        check(['none', 'house', 'display'].includes(card.continuationType), `${label}.continuationType is invalid`);
+        if (card.continuationType === 'none') check(card.driveEndDate === card.endDate, `${label} without a continuation must end with its drive`);
+        else {
+          check(card.driveEndDate < card.endDate, `${label} continuation must outlast the drive`);
+          checkBilingual(card.badgeByDate?.[card.endDate], `${label}.badgeByDate.${card.endDate}`);
+          checkBilingual(card.summaryByDate?.[card.endDate], `${label}.summaryByDate.${card.endDate}`);
+        }
       } else {
         checkBilingual(card.publicAction, `${label}.publicAction`);
       }
@@ -287,8 +314,10 @@ if (data) {
     const brandText = JSON.stringify(brandGuide);
     const numberedStreetPattern = /(?:\b\d{1,5}\s+(?:[a-z0-9.'-]+\s+){0,4}(?:street|st\.?|road|rd\.?|lane|ln\.?|drive|dr\.?|avenue|ave\.?|boulevard|blvd\.?|court|ct\.?|way)\b|\b(?:[a-z0-9.'-]+\s+){0,4}(?:street|st\.?|road|rd\.?|lane|ln\.?|drive|dr\.?|avenue|ave\.?|boulevard|blvd\.?|court|ct\.?|way)\s*(?:#|no\.?|number)\s*\d{1,5}\b|\d{1,5}\s*号)/i;
     for (const card of (brandGuide.cards || []).filter((item) => item.lane === 'house-hospitality')) {
-      const displayCopy = ['badge', 'title', 'location', 'schedule', 'access', 'drive', 'parking', 'publicAction']
+      const displayCopy = ['badge', 'title', 'summary', 'location', 'schedule', 'access', 'drive', 'parking', 'publicAction']
         .flatMap((key) => [card[key]?.zh, card[key]?.en])
+        .concat(Object.values(card.badgeByDate || {}).flatMap((value) => [value.zh, value.en]))
+        .concat(Object.values(card.summaryByDate || {}).flatMap((value) => [value.zh, value.en]))
         .concat([card.fieldReport?.body?.zh, card.fieldReport?.body?.en])
         .filter(Boolean)
         .map((value) => value.replace(/\b20(?:24|25|26)\b/g, 'YEAR'));

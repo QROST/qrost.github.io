@@ -260,10 +260,10 @@
       if (summary && labelKey) summary.textContent = text(labelKey);
       if (!details) return;
       const targetInside = Boolean(target && (target === section || section.contains(target)));
-      if (!past) setTemporalOpen(details, true);
-      else if (targetInside) setTemporalOpen(details, true);
-      else if (temporalUserOpen.has(section.id)) setTemporalOpen(details, temporalUserOpen.get(section.id));
-      else setTemporalOpen(details, false);
+      const activeCollapsible = section.hasAttribute('data-active-collapsible');
+      if (targetInside && !temporalUserOpen.has(section.id)) setTemporalOpen(details, true);
+      else if ((past || activeCollapsible) && temporalUserOpen.has(section.id)) setTemporalOpen(details, temporalUserOpen.get(section.id));
+      else setTemporalOpen(details, !past);
     });
   }
 
@@ -705,8 +705,11 @@
     const root = document.getElementById('brand-house-grid');
     if (!guide || !root) return;
 
-    const openHouseIds = new Set(Array.from(root.querySelectorAll('details[data-brand-house-id][open]')).map((item) => item.dataset.brandHouseId));
+    const openDetailIds = new Set(Array.from(root.querySelectorAll('details[data-brand-detail-id][open]')).map((item) => item.dataset.brandDetailId));
+    const openEvidenceIds = new Set(Array.from(root.querySelectorAll('details[data-brand-evidence-id][open]')).map((item) => item.dataset.brandEvidenceId));
+    const openLaneIds = new Set(Array.from(root.querySelectorAll('details[data-brand-lane-fold][open]')).map((item) => item.dataset.brandLaneFold));
     const openPastGroupIds = new Set(Array.from(root.querySelectorAll('details[data-brand-past-group][open]')).map((item) => item.dataset.brandPastGroup));
+    const guideNotesOpen = Boolean(root.querySelector('details[data-brand-guide-notes][open]'));
     const today = getClock().dateIso;
     const cardsById = new Map((guide.cards || []).map((card) => [card.id, card]));
     const sourceLinks = (card) => `<div class="brand-house-source-block">
@@ -719,43 +722,51 @@
       <strong>${escapeHtml(text('brandHouseFieldReportLabel'))} · ${escapeHtml(card.fieldReport.date)}</strong>
       <p>${escapeHtml(localized(card.fieldReport.body))}</p>
     </aside>` : '';
+    const evidenceDetails = (card) => {
+      const open = openEvidenceIds.has(card.id) ? ' open' : '';
+      return `<details class="brand-house-evidence" data-brand-evidence-id="${escapeHtml(card.id)}"${open}>
+        <summary>${escapeHtml(text('brandHouseEvidenceLabel'))}<span aria-hidden="true">${(card.sources || []).length + (card.fieldReport ? 1 : 0)}</span></summary>
+        <div class="brand-house-evidence-content">${fieldReport(card)}${sourceLinks(card)}</div>
+      </details>`;
+    };
+    const disclosureAction = () => `<span class="brand-house-row-action" aria-hidden="true"><span class="brand-house-action-closed">${escapeHtml(text('brandHouseExpandLabel'))}</span><span class="brand-house-action-open">${escapeHtml(text('brandHouseCollapseLabel'))}</span></span>`;
+    const cardBadge = (card) => localized(card.badgeByDate?.[today] || card.badge);
+    const cardSummary = (card) => localized(card.summaryByDate?.[today] || card.summary);
+    const disclosureSummary = (card) => `<span class="brand-house-row-main"><span class="brand-house-badge">${escapeHtml(cardBadge(card))}</span><strong>${escapeHtml(localized(card.title))}</strong></span>
+      <span class="brand-house-row-date">${escapeHtml(cardSummary(card))}</span>
+      ${disclosureAction()}`;
     const publicCard = (card) => {
       const tone = ['public', 'conditional', 'invite'].includes(card.tone) ? card.tone : 'conditional';
-      return `<article id="brand-${escapeHtml(card.id)}" class="brand-house-card tone-${escapeHtml(tone)}" data-brand-entry="${escapeHtml(card.id)}">
-        <header class="brand-house-card-header">
-          <span class="brand-house-badge">${escapeHtml(localized(card.badge))}</span>
-          <h4>${escapeHtml(localized(card.title))}</h4>
-          <p>${escapeHtml(localized(card.location))}</p>
-        </header>
-        <dl class="brand-house-facts">
-          <div><dt>${escapeHtml(text('brandHouseScheduleLabel'))}</dt><dd>${escapeHtml(localized(card.schedule))}</dd></div>
-          <div><dt>${escapeHtml(text('brandHouseAccessLabel'))}</dt><dd>${escapeHtml(localized(card.access))}</dd></div>
-          <div><dt>${escapeHtml(text('brandHouseDriveLabel'))}</dt><dd>${escapeHtml(localized(card.drive))}</dd></div>
-          <div><dt>${escapeHtml(text('brandHouseParkingLabel'))}</dt><dd>${escapeHtml(localized(card.parking))}</dd></div>
-        </dl>
-        ${fieldReport(card)}
-        ${sourceLinks(card)}
-      </article>`;
-    };
-    const houseRow = (card) => {
-      const tone = ['public', 'conditional', 'invite'].includes(card.tone) ? card.tone : 'conditional';
-      const open = openHouseIds.has(card.id) ? ' open' : '';
-      return `<details id="brand-${escapeHtml(card.id)}" class="brand-house-row tone-${escapeHtml(tone)}" data-brand-house-id="${escapeHtml(card.id)}" data-brand-entry="${escapeHtml(card.id)}"${open}>
-        <summary>
-          <span class="brand-house-row-main"><span class="brand-house-badge">${escapeHtml(localized(card.badge))}</span><strong>${escapeHtml(localized(card.title))}</strong></span>
-          <span class="brand-house-row-date">${escapeHtml(localized(card.schedule))}</span>
-          <span class="brand-house-row-action" aria-hidden="true">${escapeHtml(text('brandHouseExpandLabel'))}</span>
-        </summary>
-        <div class="brand-house-row-content">
+      const open = openDetailIds.has(card.id) ? ' open' : '';
+      return `<details id="brand-${escapeHtml(card.id)}" class="brand-house-card tone-${escapeHtml(tone)}" data-brand-detail-id="${escapeHtml(card.id)}" data-brand-entry="${escapeHtml(card.id)}"${open}>
+        <summary>${disclosureSummary(card)}</summary>
+        <div class="brand-house-card-content">
           <p class="brand-house-row-location">${escapeHtml(localized(card.location))}</p>
           <dl class="brand-house-facts">
+            <div><dt>${escapeHtml(text('brandHouseScheduleLabel'))}</dt><dd>${escapeHtml(localized(card.schedule))}</dd></div>
             <div><dt>${escapeHtml(text('brandHouseAccessLabel'))}</dt><dd>${escapeHtml(localized(card.access))}</dd></div>
             <div><dt>${escapeHtml(text('brandHouseDriveLabel'))}</dt><dd>${escapeHtml(localized(card.drive))}</dd></div>
             <div><dt>${escapeHtml(text('brandHouseParkingLabel'))}</dt><dd>${escapeHtml(localized(card.parking))}</dd></div>
-            <div><dt>${escapeHtml(text('brandHouseActionLabel'))}</dt><dd>${escapeHtml(localized(card.publicAction))}</dd></div>
           </dl>
-          ${fieldReport(card)}
-          ${sourceLinks(card)}
+          ${evidenceDetails(card)}
+        </div>
+      </details>`;
+    };
+    const houseRow = (card) => {
+      const tone = ['public', 'conditional', 'invite'].includes(card.tone) ? card.tone : 'conditional';
+      const open = openDetailIds.has(card.id) ? ' open' : '';
+      return `<details id="brand-${escapeHtml(card.id)}" class="brand-house-row tone-${escapeHtml(tone)}" data-brand-detail-id="${escapeHtml(card.id)}" data-brand-entry="${escapeHtml(card.id)}"${open}>
+        <summary>${disclosureSummary(card)}</summary>
+        <div class="brand-house-row-content">
+          <p class="brand-house-row-location">${escapeHtml(localized(card.location))}</p>
+          <dl class="brand-house-facts">
+            <div><dt>${escapeHtml(text('brandHouseActionLabel'))}</dt><dd>${escapeHtml(localized(card.publicAction))}</dd></div>
+            <div><dt>${escapeHtml(text('brandHouseScheduleLabel'))}</dt><dd>${escapeHtml(localized(card.schedule))}</dd></div>
+            <div><dt>${escapeHtml(text('brandHouseAccessLabel'))}</dt><dd>${escapeHtml(localized(card.access))}</dd></div>
+            <div><dt>${escapeHtml(text('brandHouseParkingLabel'))}</dt><dd>${escapeHtml(localized(card.parking))}</dd></div>
+            <div><dt>${escapeHtml(text('brandHouseDriveLabel'))}</dt><dd>${escapeHtml(localized(card.drive))}</dd></div>
+          </dl>
+          ${evidenceDetails(card)}
         </div>
       </details>`;
     };
@@ -775,15 +786,27 @@
         <summary>${escapeHtml(statusWithCount('brandHousePastSummary', pastCards.length))}</summary>
         <div class="${listClass}">${pastCards.map(renderCard).join('')}</div>
       </details>` : '';
+      const laneContent = `${activeMarkup}${pastMarkup}`;
+      const foldedLaneContent = isPublic ? laneContent : `<details class="brand-house-lane-fold" data-brand-lane-fold="${escapeHtml(lane.id)}"${openLaneIds.has(lane.id) ? ' open' : ''}>
+        <summary><span>${escapeHtml(statusWithCount('brandHousePrivateFoldSummary', cards.length))}</span>${disclosureAction()}</summary>
+        <div class="brand-house-lane-fold-content">${laneContent}</div>
+      </details>`;
+      const laneTitleKey = lane.titleKeyByDate?.[today] || lane.titleKey;
+      const laneIntroKey = lane.introKeyByDate?.[today] || lane.introKey;
       return `<section class="brand-house-lane brand-house-lane-${escapeHtml(lane.id)}" aria-labelledby="brand-house-lane-${escapeHtml(lane.id)}">
         <header class="brand-house-lane-heading">
-          <h3 id="brand-house-lane-${escapeHtml(lane.id)}">${escapeHtml(text(lane.titleKey))}</h3>
-          <p>${escapeHtml(text(lane.introKey))}</p>
+          <h3 id="brand-house-lane-${escapeHtml(lane.id)}">${escapeHtml(text(laneTitleKey))}</h3>
+          <p>${escapeHtml(text(laneIntroKey))}</p>
         </header>
-        ${activeMarkup}
-        ${pastMarkup}
+        ${foldedLaneContent}
       </section>`;
-    }).join('') + `<p class="brand-house-directory-note">${escapeHtml(text('brandHouseDirectoryNote'))} <a href="${escapeHtml(guide.directorySource)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text('brandHouseDirectoryLink'))}<span aria-hidden="true">↗</span></a> <a href="${escapeHtml(guide.permitProcessSource)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text('brandHousePermitProcessLink'))}<span aria-hidden="true">↗</span></a></p>`;
+    }).join('') + `<details class="brand-house-guide-notes" data-brand-guide-notes${guideNotesOpen ? ' open' : ''}>
+      <summary><strong>${escapeHtml(text('brandHouseGuideNotesTitle'))}</strong><span>${escapeHtml(text('brandHouseGuideNotesHint'))}</span></summary>
+      <div class="brand-house-guide-notes-content">
+        <aside class="brand-house-safety"><span aria-hidden="true">!</span><div><strong>${escapeHtml(text('brandHouseSafetyTitle'))}</strong><p>${escapeHtml(text('brandHouseSafetyBody'))}</p></div></aside>
+        <p class="brand-house-directory-note">${escapeHtml(text('brandHouseDirectoryNote'))} <a href="${escapeHtml(guide.directorySource)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text('brandHouseDirectoryLink'))}<span aria-hidden="true">↗</span></a> <a href="${escapeHtml(guide.permitProcessSource)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text('brandHousePermitProcessLink'))}<span aria-hidden="true">↗</span></a></p>
+      </div>
+    </details>`;
   }
 
   function renderPlanStops(item) {
@@ -2194,8 +2217,10 @@
     applyStaticTranslations();
     updateToggleUi();
     renderDynamicContent();
-    revealHashTarget(!hasHandledInitialHash);
-    hasHandledInitialHash = true;
+    if (!hasHandledInitialHash) {
+      revealHashTarget(true);
+      hasHandledInitialHash = true;
+    }
   }
 
   function setLanguage(next) {

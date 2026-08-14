@@ -358,8 +358,16 @@ def validate() -> list[str]:
             errors.append(f"expected exactly one {label}, found {html.count(snippet)}")
     if html.count('data-brand-entry=') != 13:
         errors.append("static brand chapter must preserve four public drives and nine hospitality entries")
+    if html.count('data-brand-detail-id=') != 13:
+        errors.append("every static brand entry must be a compact details disclosure")
     if html.count('class="brand-house-lane ') != 2:
         errors.append("static brand chapter must preserve separate public-drive and hospitality lanes")
+    if html.count('data-brand-lane-fold="house-hospitality"') != 1:
+        errors.append("static hospitality lane must be a single second-level disclosure")
+    if html.count('data-brand-guide-notes') != 1:
+        errors.append("static parking, safety and evidence guidance must be folded once")
+    if html.count('data-active-collapsible') != 1:
+        errors.append("active brand chapter must expose one user-controlled chapter fold")
     brand_entry_ids = (
         "cadillac-v-series", "mercedes-benz-drive", "lexus-drive", "lucid-drive",
         "bentley-home", "lamborghini-villa", "range-rover-residence", "bmw-villa",
@@ -391,12 +399,22 @@ def validate() -> list[str]:
     for snippet, label in (
         ("data-brand-past-group", "per-lane ended-program disclosure"),
         ("statusWithCount('brandHousePastSummary'", "localized ended-program count"),
+        ("data-brand-detail-id", "per-program compact disclosure"),
+        ("data-brand-evidence-id", "nested evidence disclosure"),
+        ("data-brand-lane-fold", "second-level hospitality disclosure"),
+        ("data-brand-guide-notes", "folded parking and evidence guidance"),
         ("brand-house-directory-note", "official display-directory note"),
         ("guide.directorySource", "official display-directory source"),
         ("guide.permitProcessSource", "county agenda-versus-permit boundary source"),
     ):
         if snippet not in app_js:
             errors.append(f"brand-house renderer is missing {label}")
+    if not re.search(r"const\s+publicCard\s*=\s*\(card\)[\s\S]{0,1200}return\s+`<details", app_js):
+        errors.append("brand-house renderer must use compact details for public programs")
+    if not re.search(r"targetInside\s*&&\s*!temporalUserOpen\.has\(section\.id\)[\s\S]{0,260}activeCollapsible[\s\S]{0,260}temporalUserOpen", app_js):
+        errors.append("active chapter fold must preserve explicit deep links and remembered user state")
+    if not re.search(r"if\s*\(!hasHandledInitialHash\)[\s\S]{0,160}revealHashTarget\(true\)", app_js):
+        errors.append("language rerenders must not reopen a chapter that the user explicitly folded")
     if not re.search(r"renderTourMorning\(\);\s*renderParkingTraffic\(\);\s*renderBrandHouses\(\);", app_js):
         errors.append("renderDynamicContent must render Tour, parking and brand content after current plans")
     if not re.search(r"clock\.dateIso\s*!==\s*lastClockDateIso[\s\S]{0,500}renderBrandHouses\(\);", app_js):
