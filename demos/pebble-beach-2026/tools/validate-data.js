@@ -91,6 +91,8 @@ if (data) {
   check(data.checked === '2026-08-06', 'full catalog baseline date must remain 2026-08-06');
   check(data.dynamicUpdatesChecked === '2026-08-10', 'non-Tour dynamic facts must remain scoped through 2026-08-10');
   check(data.tourUpdatesChecked === '2026-08-13', 'Tour guidance recheck date must remain 2026-08-13');
+  check(data.saturdaySpotlightsChecked === '2026-08-13', 'Saturday spotlight recheck date must remain 2026-08-13');
+  check(!JSON.stringify(data).includes('chatgpt.com/'), 'private ChatGPT conversation URLs must never be published as evidence');
   for (const [key, value] of Object.entries(data.labels || {})) checkBilingual(value, `labels.${key}`);
   for (const [key, value] of Object.entries(data.ui || {})) checkBilingual(value, `ui.${key}`);
 
@@ -455,6 +457,14 @@ if (data) {
     check(!/^\$0\b/.test(tourQuickPlan.cost.en), 'qp-0813 cost must not imply that parking is free');
     check(tourQuickPlan.cost.en.includes('Viewing free'), 'qp-0813 must label free viewing explicitly');
   }
+  const saturdayQuickPlan = (data.quickPlan || []).find((item) => item.id === 'qp-0815');
+  check(Boolean(saturdayQuickPlan), 'qp-0815 is required');
+  if (saturdayQuickPlan) {
+    const saturdayPlanText = JSON.stringify(saturdayQuickPlan);
+    check(saturdayPlanText.includes('Broadway') && saturdayPlanText.includes('Del Monte'), 'qp-0815 must distinguish Exotics free and paid zones');
+    check(saturdayPlanText.includes('$40'), 'qp-0815 must preserve the Exotics paid-zone base price');
+    check(saturdayPlanText.includes('Gooding') && saturdayPlanText.includes('RM'), 'qp-0815 must point readers to the verified auction alternatives');
+  }
 
   const liveAreaIds = new Set();
   for (const [index, area] of (data.liveAreas || []).entries()) {
@@ -502,6 +512,7 @@ if (data) {
     for (const category of event.categories || []) check(allowedCategories.has(category), `${label} has unknown category: ${category}`);
     const score = Number(event.score);
     check(Number.isFinite(score) && score >= 0 && score <= 5, `${label}.score must be 0–5`);
+    if (event.verifiedOn != null) check(/^\d{4}-\d{2}-\d{2}$/.test(event.verifiedOn), `${label}.verifiedOn must be an ISO date`);
 
     const sources = event.sources || (event.source ? [{ url: event.source }] : []);
     check(sources.length > 0, `${label} needs at least one source`);
@@ -515,6 +526,65 @@ if (data) {
     }
   }
   check(eventIds.size === 58, `expected exactly 58 events, found ${eventIds.size}`);
+  const saturdaySpotlightIds = (data.events || []).filter((event) => event.verifiedOn === data.saturdaySpotlightsChecked).map((event) => event.id);
+  check(
+    JSON.stringify(saturdaySpotlightIds) === JSON.stringify(['exotics', 'gooding-sat', 'rm-sat']),
+    `Saturday spotlight verification set drifted: ${saturdaySpotlightIds.join(', ')}`
+  );
+
+  const exoticsEvent = (data.events || []).find((event) => event.id === 'exotics');
+  check(Boolean(exoticsEvent), 'Exotics on Broadway event is required');
+  if (exoticsEvent) {
+    const exoticsText = JSON.stringify(exoticsEvent);
+    check(exoticsEvent.date === '2026-08-15' && exoticsEvent.time === '11:00–16:00', 'Exotics Saturday date or hours drifted');
+    for (const fact of ['Broadway Ave', 'Del Monte Blvd', '$40', '$44.52', 'under 12']) {
+      check(exoticsText.includes(fact), `Exotics fact boundary drifted: ${fact}`);
+    }
+    check(exoticsText.includes('free') && exoticsText.includes('requires separate GA'), 'Exotics must distinguish the free public zone from paid GA');
+    check(exoticsEvent.summary.zh.includes('公共车展区免费') && exoticsEvent.summary.zh.includes('需另购 GA'), 'Exotics Chinese summary must distinguish the free and paid zones');
+    check(exoticsEvent.price.zh.includes('$40') && exoticsEvent.price.zh.includes('$44.52'), 'Exotics Chinese price must preserve base and current purchase-page prices');
+    check(!exoticsEvent.tags.includes('soldOutTag'), 'Exotics must not look sold out while GA remains on sale');
+    const exoticsUrls = (exoticsEvent.sources || []).map((source) => source.url);
+    for (const url of [
+      'https://exoticsonbroadway.com/',
+      'https://exoticsonbroadway.com/tickets/',
+      'https://www.eventbrite.com/e/exotics-on-broadway-tickets-1976498937528'
+    ]) check(exoticsUrls.includes(url), `Exotics must preserve source: ${url}`);
+  }
+
+  const goodingSaturdayEvent = (data.events || []).find((event) => event.id === 'gooding-sat');
+  check(Boolean(goodingSaturdayEvent), 'Gooding Saturday event is required');
+  if (goodingSaturdayEvent) {
+    const goodingText = JSON.stringify(goodingSaturdayEvent);
+    check(goodingSaturdayEvent.date === '2026-08-15' && goodingSaturdayEvent.time === '09:00–17:00', 'Gooding Saturday date or viewing hours drifted');
+    for (const fact of ['11:00', '$50', 'viewing and auction', 'does not confer bidding privileges', 'reserved seating']) {
+      check(goodingText.includes(fact), `Gooding admission boundary drifted: ${fact}`);
+    }
+    check(goodingSaturdayEvent.summary.zh.includes('可进入预展和拍卖场次'), 'Gooding Chinese summary must preserve spectator access');
+    check(goodingSaturdayEvent.why.zh.includes('不等于竞买资格或保留座位'), 'Gooding Chinese note must exclude bidding privileges and reserved seating');
+    const goodingUrls = (goodingSaturdayEvent.sources || []).map((source) => source.url);
+    for (const url of [
+      'https://www.goodingco.com/auction/pebble-beach-auctions-2026/',
+      'https://www.goodingco.com/register/'
+    ]) check(goodingUrls.includes(url), `Gooding must preserve source: ${url}`);
+  }
+
+  const rmSaturdayEvent = (data.events || []).find((event) => event.id === 'rm-sat');
+  check(Boolean(rmSaturdayEvent), 'RM Sotheby’s Saturday event is required');
+  if (rmSaturdayEvent) {
+    const rmText = JSON.stringify(rmSaturdayEvent);
+    check(rmSaturdayEvent.date === '2026-08-15' && rmSaturdayEvent.time === '10:00–16:00 / 17:30', 'RM Saturday date or public schedule drifted');
+    for (const fact of ['15:00–16:00', '$60', 'does not include the live automobile auction', 'registered bidders', 'qualified media', 'consignors']) {
+      check(rmText.includes(fact), `RM preview / auction boundary drifted: ${fact}`);
+    }
+    check(rmSaturdayEvent.access.zh.includes('只在广场入口现场购买') && rmSaturdayEvent.access.zh.includes('不含现场汽车拍卖'), 'RM Chinese access must preserve onsite purchase and preview-only admission');
+    check(rmSaturdayEvent.access.zh.includes('仅限注册竞拍人、合格媒体与委托方'), 'RM Chinese access must preserve restricted auction-floor audiences');
+    const rmUrls = (rmSaturdayEvent.sources || []).map((source) => source.url);
+    for (const url of [
+      'https://www.rmsothebys.com/auctions/mo26/',
+      'https://www.conciergeauctions.com/collection/monterey-car-week-rm-sothebys-1'
+    ]) check(rmUrls.includes(url), `RM must preserve source: ${url}`);
+  }
   const tourEvent = (data.events || []).find((event) => event.id === 'tour');
   check(Boolean(tourEvent), 'Tour event is required');
   if (tourEvent) {
@@ -582,6 +652,14 @@ if (data) {
   }
   const globalSourceUrls = new Set((data.sources || []).map((source) => source.url));
   for (const url of tourOfficialUrls) check(globalSourceUrls.has(url), `global sources missing official Tour URL: ${url}`);
+  for (const url of [
+    'https://exoticsonbroadway.com/',
+    'https://exoticsonbroadway.com/tickets/',
+    'https://www.goodingco.com/auction/pebble-beach-auctions-2026/',
+    'https://www.goodingco.com/register/',
+    'https://www.rmsothebys.com/auctions/mo26/',
+    'https://www.conciergeauctions.com/collection/monterey-car-week-rm-sothebys-1'
+  ]) check(globalSourceUrls.has(url), `global sources missing Saturday spotlight URL: ${url}`);
 
   for (const [index, item] of (data.nearby || []).entries()) {
     const label = `nearby[${index}]`;

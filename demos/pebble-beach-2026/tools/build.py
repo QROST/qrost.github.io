@@ -116,6 +116,16 @@ def validate() -> list[str]:
     home = HOME_HTML.read_text(encoding="utf-8")
     data_js = (DEMO_DIR / "assets/js/data.js").read_text(encoding="utf-8")
     app_js = (DEMO_DIR / "assets/js/app.js").read_text(encoding="utf-8")
+    demo_css = (DEMO_DIR / "assets/css/pebble-beach.css").read_text(encoding="utf-8")
+
+    for public_name, public_text in (
+        ("index.html", html),
+        ("assets/js/data.js", data_js),
+        ("assets/js/app.js", app_js),
+        ("assets/css/pebble-beach.css", demo_css),
+    ):
+        if "chatgpt.com/c/" in public_text:
+            errors.append(f"private ChatGPT conversation URL leaked into {public_name}")
 
     check_tokens(errors, html, DEMO_DIR, DEMO_ASSETS)
     check_tokens(errors, home, REPO_ROOT, (HOME_ASSET,))
@@ -277,6 +287,10 @@ def validate() -> list[str]:
     event_count = len(re.findall(r"area:\s*'[a-z0-9]+'\s*,\s*date:\s*'2026-08-", data_js))
     if event_count < 18:
         errors.append(f"expected at least 18 event records, found {event_count}")
+    if "saturdaySpotlightsChecked: '2026-08-13'" not in data_js:
+        errors.append("Saturday spotlight recheck marker is missing")
+    if "event.verifiedOn" not in app_js or "ui('verified')" not in app_js:
+        errors.append("event cards must render the per-event verification marker")
 
     forbidden = ("/users/",)
     for path in DEMO_DIR.rglob("*"):

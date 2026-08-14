@@ -811,6 +811,9 @@
     const thumbCreditHtml = thumb
       ? `<p class="event-thumb-credit">${escapeHtml(text('thumbCredit'))}: <a href="${escapeHtml(thumb.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(thumb.credit))}</a></p>`
       : '';
+    const verifiedHtml = event.verifiedOn
+      ? `<span class="tag checked">${escapeHtml(ui('verified'))} ${escapeHtml(event.verifiedOn)}</span>`
+      : '';
     return `
       <article class="event-card" id="event-${escapeHtml(event.id)}">
         <div class="event-main${thumb ? ' has-thumb' : ''}">
@@ -822,6 +825,7 @@
             <p class="event-summary">${escapeHtml(localized(event.summary))}</p>
             <div class="event-meta">
               <span class="tag ${priceClass}">${escapeHtml(localized(event.price))}</span>
+              ${verifiedHtml}
               ${event.tags.filter((tag) => tag !== 'free' && tag !== 'paid').map((tag) => `<span class="tag ${tagClass(tag)}">${escapeHtml(tagLabel(tag))}</span>`).join('')}
             </div>
           </div>

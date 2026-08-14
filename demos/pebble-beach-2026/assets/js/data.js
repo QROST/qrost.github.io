@@ -1,8 +1,9 @@
 /* Public, bilingual planning data for Monterey Car Week 2026.
  * The full catalog baseline was checked on 2026-08-06. Tour routing, timing and
- * parking guidance were rechecked on 2026-08-13; other selected dynamic facts
- * remain current through 2026-08-10. Editorial scores and commute bands are
- * QROST planning judgments, not organizer guarantees.
+ * parking guidance plus the featured Saturday Exotics / RM / Gooding facts were
+ * rechecked on 2026-08-13; other selected dynamic facts remain current through
+ * 2026-08-10. Editorial scores and commute bands are QROST planning judgments,
+ * not organizer guarantees.
  */
 const planText = (zh, en) => ({ zh, en });
 const planStop = (marker, place, zh, en, optional = false, precision = 'area') => ({
@@ -152,6 +153,7 @@ window.PEBBLE_DATA = {
   checked: '2026-08-06',
   dynamicUpdatesChecked: '2026-08-10',
   tourUpdatesChecked: '2026-08-13',
+  saturdaySpotlightsChecked: '2026-08-13',
 
   labels: {
     pageTitle: {
@@ -178,7 +180,7 @@ window.PEBBLE_DATA = {
     navStay: { zh: '住宿', en: 'Stay' },
     navCommute: { zh: '通勤', en: 'Travel' },
     heroEyebrow: { zh: '公众行程指南 · 2026', en: 'Public trip guide · 2026' },
-    checkedChip: { zh: '全量核对 8 月 6 日 · Tour 复核至 8 月 13 日', en: 'Full audit Aug 6 · Tour rechecked Aug 13' },
+    checkedChip: { zh: '全量核对 8 月 6 日 · Tour 与周六三项复核至 8 月 13 日', en: 'Full audit Aug 6 · Tour + 3 Saturday picks rechecked Aug 13' },
     heroTitleTop: { zh: '圆石滩，不只一场车展', en: 'Pebble Beach is not one show' },
     heroTitleBottom: { zh: '早到一周，再迎旗舰主展', en: 'Arrive early, then hit the flagship' },
     heroLead: {
@@ -440,8 +442,8 @@ window.PEBBLE_DATA = {
     sourcePrimary: { zh: '主要来源与复核入口', en: 'Primary sources and live checks' },
     boundaryTitle: { zh: '发布口径', en: 'Publication standard' },
     boundaryBody: {
-      zh: '全量目录基线核对至 2026-08-06；Tour 路线、时刻与停车口径于 2026-08-13 复核，其余部分动态事实更新至 8 月 10 日。酒店价格是单次库存快照；通勤为有意放宽的活动周计划值。任何“值得去”都是编辑判断，不是主办方背书。',
-      en: 'The full catalog baseline was checked Aug 6, 2026; Tour routing, timing and parking guidance were rechecked Aug 13, while other selected dynamic facts remain current through Aug 10. Hotel prices are a one-time inventory snapshot, and travel bands are deliberately padded planning values. Every “worth it” score is editorial, not an organizer endorsement.'
+      zh: '全量目录基线核对至 2026-08-06；Tour 路线、时刻与停车口径，以及周六 Exotics、RM Sotheby’s、Gooding Christie’s 三项，于 2026-08-13 逐项复核；其余部分动态事实更新至 8 月 10 日。酒店价格是单次库存快照；通勤为有意放宽的活动周计划值。任何“值得去”都是编辑判断，不是主办方背书。',
+      en: 'The full catalog baseline was checked Aug 6, 2026. Tour routing, timing and parking guidance plus Saturday’s Exotics, RM Sotheby’s and Gooding Christie’s entries were individually rechecked Aug 13; other selected dynamic facts remain current through Aug 10. Hotel prices are a one-time inventory snapshot, and travel bands are deliberately padded planning values. Every “worth it” score is editorial, not an organizer endorsement.'
     },
     boundaryUpdate: {
       zh: '临行前 24 小时请重查：官方活动页、票务页、停车图、天气和道路状态。',
@@ -452,8 +454,8 @@ window.PEBBLE_DATA = {
     footerWeChat: { zh: '微信', en: 'WeChat' },
     footerInstagram: { zh: 'Instagram', en: 'Instagram' },
     footerDisclaimer: {
-      zh: '全量目录核对于 2026-08-06；Tour 口径于 2026-08-13 复核，其余部分动态事实更新至 8 月 10 日。非官方、非主办方关联；不构成票务、住宿或交通保证。',
-      en: 'Full catalog audited Aug 6; Tour guidance rechecked Aug 13, with other selected dynamic facts current through Aug 10, 2026. Independent and unaffiliated; no ticket, lodging or transportation guarantee.'
+      zh: '全量目录核对于 2026-08-06；Tour 与周六 Exotics / RM / Gooding 于 2026-08-13 复核，其余部分动态事实更新至 8 月 10 日。非官方、非主办方关联；不构成票务、住宿或交通保证。',
+      en: 'Full catalog audited Aug 6; Tour and Saturday Exotics / RM / Gooding facts rechecked Aug 13, with other selected dynamic facts current through Aug 10, 2026. Independent and unaffiliated; no ticket, lodging or transportation guarantee.'
     },
     nearbyKicker: { zh: '车展前 · 半岛周边', en: 'Before Car Week · peninsula nearby' },
     nearbyTitle: { zh: '若能更早抵达，这些也值得顺路', en: 'Worth a detour if you land even earlier' },
@@ -1022,14 +1024,14 @@ window.PEBBLE_DATA = {
       id: 'qp-0815',
       date: { zh: '8 月 15 日', en: 'Aug 15' }, day: { zh: '周六', en: 'Sat' },
       title: { zh: 'Lemons → Exotics，或赛道', en: 'Lemons → Exotics, or track' },
-      body: { zh: '预算路线两站都免费；赛车迷则不要中途离开 Laguna Seca。', en: 'The two-stop street-show route is free; committed race fans should stay at Laguna Seca instead.' },
-      cost: { zh: '$0 / $181.07', en: '$0 / $181.07' },
+      body: { zh: '预算路线可只逛两个免费街展；Exotics 的 Broadway 公共区免费，Del Monte 围合区另售 $40 基础价 GA。赛车迷则不要中途离开 Laguna Seca；Gooding 拍卖旁听与 RM 公众预展的已核实备选见下方周六活动卡。', en: 'The value route can stay entirely within two free street shows: Exotics is free on Broadway, while the enclosed Del Monte zone separately sells $40-base-price GA. Committed race fans should stay at Laguna Seca; see the Saturday event cards below for the verified Gooding spectator and RM public-preview alternatives.' },
+      cost: { zh: '免费街展 $0 · Exotics 付费区 $40 基础价 / 赛道 $181.07', en: 'Free shows $0 · Exotics paid zone $40 base / track $181.07' },
       route: routeFor('qp-0815'),
       schedule: scheduleFor('qp-0815', [
         { time: "07:00–09:30", title: { zh: "可选 Peninsula Cars & Coffee", en: "Optional Peninsula Cars & Coffee" }, note: { zh: "Seaside 清晨车友聚会，时段可能漂移。", en: "Informal Seaside morning meet; hours may shift." }, tone: "optional" },
         { time: "07:30", title: { zh: "转场 · 周六路线分流", en: "Transit · Saturday route fork" }, note: { zh: "街展路线与赛道不可兼得。", en: "Street-show route and track day are mutually exclusive." }, tone: "transit" },
         { time: "08:00–13:30", title: { zh: "Concours d’Lemons", en: "Concours d’Lemons" }, note: { zh: "免费幽默车展，最亲民周六早晨。", en: "Free comic car show—most accessible Saturday morning." }, tone: "core" },
-        { time: "11:00–16:00", title: { zh: "Exotics on Broadway", en: "Exotics on Broadway" }, note: { zh: "接 Lemons 后转 Broadway，免费区无需买票。", en: "Follow Lemons onto Broadway; free zone needs no ticket." }, tone: "core" },
+        { time: "11:00–16:00", title: { zh: "Exotics on Broadway", en: "Exotics on Broadway" }, note: { zh: "Broadway 公共区免费；Del Monte 围合区需另购 GA。", en: "Broadway’s public zone is free; the enclosed Del Monte zone requires separate GA." }, tone: "core" },
         { time: "08:00–18:30", title: { zh: "或 Reunion 周六全天", en: "or Reunion full Saturday" }, note: { zh: "07:00 入场；赛车迷主日，勿中途离开赛道。", en: "Gates open 07:00; race fans should stay at the track for the full day." }, tone: "alt" },
         { time: "13:45", title: { zh: "街展路线 · Seaside 接驳缓冲", en: "Street route · Seaside shuttle buffer" }, note: { zh: "远端停车 + 接驳 9:00–17:00。", en: "Remote parking plus shuttle 9:00–17:00." }, tone: "transit" },
       ]),
@@ -1734,12 +1736,12 @@ window.PEBBLE_DATA = {
       source: 'https://theconcoursstore.com/collections/forums'
     },
     {
-      id: 'rm-thu', thumbId: 'rm-thu', area: 'monterey', date: '2026-08-13', time: '18:00–', timeNote: { zh: '夜场拍卖', en: 'evening auction' },
+      id: 'rm-thu', thumbId: 'rm-thu', area: 'monterey', date: '2026-08-13', time: '10:00–16:00 / 18:00', timeNote: { zh: '公众预展 / 拍卖', en: 'public preview / auction' },
       title: { zh: 'RM Sotheby’s · The Monterey Auction', en: 'RM Sotheby’s · The Monterey Auction' }, location: { zh: 'Monterey Conference Center · 1 Portola Plaza', en: 'Monterey Conference Center · 1 Portola Plaza' },
-      summary: { zh: '周四 18:00 夜场开拍；拍卖厅对普通观众受限。', en: 'Thursday evening session from 18:00; the auction floor is restricted for general visitors.' },
-      why: { zh: '分数偏低是因为拍卖席门槛高——未注册竞拍人多半只能在线观看；若只为看车，周三预展或 Mecum 白天场更划算。', en: 'Score is lower because floor access is limited—unregistered visitors mostly watch online; for viewing cars, Wednesday preview or Mecum daytime is better value.' },
-      access: { zh: '拍卖厅：注册竞拍人、委托方、合格媒体；公众预展见周三场次。', en: 'Auction floor: registered bidders, consignors, qualified media; public preview is Wednesday’s session.' },
-      price: { zh: '预展 $60 周末通票 · 拍卖席受限', en: 'Preview $60 weekend pass · floor restricted' }, tags: ['paid'], categories: ['paid'], score: '3.5',
+      summary: { zh: '周四公众预展 10:00–16:00，18:00 开拍；$60 周末公众预展入场不包含拍卖席。', en: 'Thursday public preview runs 10:00–16:00, with the auction at 18:00; $60 weekend public-preview admission does not include the auction floor.' },
+      why: { zh: '普通观众应把白天预展作为主体验；未注册竞拍人可在线观看夜场。', en: 'General visitors should treat the daytime preview as the main experience; unregistered visitors can watch the evening sale online.' },
+      access: { zh: '预展入场 $60/人，在广场入口现场购买。拍卖厅仅限注册竞拍人、委托方与合格媒体。', en: 'Public-preview admission is $60 per person, sold onsite at the plaza entrance. The auction floor is limited to registered bidders, consignors and qualified media.' },
+      price: { zh: '周末公众预展 $60（现场）· 不含拍卖席', en: '$60 weekend public preview (onsite) · auction floor excluded' }, tags: ['paid'], categories: ['paid'], score: '3.5',
       source: 'https://www.rmsothebys.com/auctions/mo26/'
     },
     {
@@ -1847,12 +1849,12 @@ window.PEBBLE_DATA = {
       source: 'https://pgrotary.org/annual-pacific-grove-concours-auto-rally/event-registration-schedule/'
     },
     {
-      id: 'rm-fri', thumbId: 'rm-fri', area: 'monterey', date: '2026-08-14', time: '17:30–', timeNote: { zh: '夜场拍卖', en: 'evening auction' },
+      id: 'rm-fri', thumbId: 'rm-fri', area: 'monterey', date: '2026-08-14', time: '10:00–16:00 / 17:30', timeNote: { zh: '公众预展 / 拍卖', en: 'public preview / auction' },
       title: { zh: 'RM Sotheby’s · The Monterey Auction', en: 'RM Sotheby’s · The Monterey Auction' }, location: { zh: 'Monterey Conference Center · 1 Portola Plaza', en: 'Monterey Conference Center · 1 Portola Plaza' },
-      summary: { zh: '周五 17:30 夜场；与 Werks、Quail、RMMR 高峰重叠，拍卖席对公众受限。', en: 'Friday evening from 17:30; overlaps peak Werks/Quail/RMMR hours, and the auction floor is restricted.' },
-      why: { zh: '周五白天已被赛道或街展占满时，夜场只适合已注册竞拍人或在线观看；看车优先周三预展。', en: 'When Friday daytime is already booked with track or street shows, this evening is mainly for registered bidders or online viewing—preview Wednesday for car access.' },
-      access: { zh: '拍卖厅：注册竞拍人、委托方、合格媒体。', en: 'Auction floor: registered bidders, consignors, qualified media.' },
-      price: { zh: '预展 $60 周末通票 · 拍卖席受限', en: 'Preview $60 weekend pass · floor restricted' }, tags: ['paid'], categories: ['paid'], score: '3.5',
+      summary: { zh: '周五公众预展 10:00–16:00，17:30 开拍；$60 周末公众预展入场不包含拍卖席。', en: 'Friday public preview runs 10:00–16:00, with the auction at 17:30; $60 weekend public-preview admission does not include the auction floor.' },
+      why: { zh: '若白天已选 Werks、Quail 或赛道，不必为受限夜场折返；普通观众可另日看预展或在线观看。', en: 'If daytime is committed to Werks, The Quail or the track, do not double back for a restricted floor; general visitors can preview another day or watch online.' },
+      access: { zh: '预展入场 $60/人，在广场入口现场购买。拍卖厅仅限注册竞拍人、委托方与合格媒体。', en: 'Public-preview admission is $60 per person, sold onsite at the plaza entrance. The auction floor is limited to registered bidders, consignors and qualified media.' },
+      price: { zh: '周末公众预展 $60（现场）· 不含拍卖席', en: '$60 weekend public preview (onsite) · auction floor excluded' }, tags: ['paid'], categories: ['paid'], score: '3.5',
       source: 'https://www.rmsothebys.com/auctions/mo26/'
     },
     {
@@ -1889,15 +1891,17 @@ window.PEBBLE_DATA = {
       ]
     },
     {
-      id: 'exotics', thumbId: 'exotics', area: 'seaside', date: '2026-08-15', time: '11:00–16:00', timeNote: { zh: '接驳 9:00–17:00', en: 'shuttle 9:00–17:00' },
+      id: 'exotics', thumbId: 'exotics', area: 'seaside', date: '2026-08-15', time: '11:00–16:00', timeNote: { zh: '周六 · 总活动时段', en: 'Saturday · overall event hours' },
       title: { zh: 'Exotics on Broadway', en: 'Exotics on Broadway' }, location: { zh: 'Broadway Ave / Del Monte Blvd · Seaside', en: 'Broadway Ave / Del Monte Blvd · Seaside' },
-      summary: { zh: 'Broadway 四街区免费；封闭 hypercar / vendor 区 GA $40 仍可购，$375 VIP Lounge 与 $925 VIP Package 已售罄。', en: 'Four blocks of Broadway are free; $40 GA for the enclosed hypercar/vendor zone remains on sale, while the $375 VIP Lounge and $925 VIP Package are sold out.' },
-      why: { zh: '免费区 5/5，付费区 3/5；预算路线无需买票，就能与 Lemons 拼成完整一天。', en: 'The free zone is 5/5 and paid enclosure 3/5. The budget route needs no ticket and pairs cleanly with Lemons.' },
-      access: { zh: 'General Jim Moore Blvd × Eucalyptus Rd 设免费远端停车与接驳，9:00–17:00。停车 FAQ 与 2026 票务页的场地用语尚未完全同步，临行前复核。', en: 'Free remote parking and shuttle at General Jim Moore Blvd/Eucalyptus Rd, 9:00–17:00. The parking FAQ is not fully synchronized with the 2026 ticket page’s venue wording, so recheck before departure.' },
-      price: { zh: 'Broadway 免费 · GA $40 可购 · VIP 已售罄', en: 'Broadway free · GA $40 on sale · VIP sold out' }, tags: ['mixedTag', 'soldOutTag'], categories: ['essential', 'free', 'paid'], score: '5.0',
+      summary: { zh: 'Broadway Ave 公共车展区免费；Del Monte Blvd 的围合 Vendor & Hypercar Showcase 需另购 GA。$40 不是整个活动的门票。', en: 'The public car show on Broadway Ave is free; the enclosed Vendor & Hypercar Showcase on Del Monte Blvd requires separate GA. The $40 price is not admission to the whole event.' },
+      why: { zh: '免费区 5/5，付费区 3/5；预算路线可不购票。主办方标示 GA 早鸟基础价 $40，Eventbrite 当前购买页显示起价 $44.52。', en: 'The free zone is 5/5 and the paid enclosure 3/5; the value route needs no paid-zone ticket. The organizer advertises $40 early-bird base GA, while Eventbrite currently displays purchase prices from $44.52.' },
+      access: { zh: '活动页面定位 1601 Broadway Ave。General Jim Moore Blvd × Eucalyptus Rd 设免费远端停车与接驳，9:00–17:00。12 岁以下儿童由持票成人陪同可免费进入收费区；票不退款、现场票有限。同一出行页下方 FAQ 仍残留 Fremont 字样；分区以票务页和出行页顶部的 Del Monte 新版说明为准。', en: 'The listing address is 1601 Broadway Ave. Free remote parking and shuttle run at General Jim Moore Blvd/Eucalyptus Rd, 9:00–17:00. Children under 12 enter the paid zone free with a ticketed adult; tickets are nonrefundable and onsite inventory is limited. A lower FAQ on the same visitor page still says Fremont; use the newer Del Monte wording on the ticket page and at the top of the visitor page.' },
+      price: { zh: 'Broadway 免费 · Del Monte GA 基础价 $40（购买页起 $44.52）', en: 'Broadway free · Del Monte GA $40 base (purchase page from $44.52)' }, tags: ['mixedTag'], categories: ['essential', 'free', 'paid'], score: '5.0', verifiedOn: '2026-08-13',
       sources: [
-        { url: 'https://exoticsonbroadway.com/tickets/', label: { zh: '官方票务：2026 价格与 Del Monte 付费区 ↗', en: 'Official tickets: 2026 prices and Del Monte paid zone ↗' } },
-        { url: 'https://exoticsonbroadway.com/knowbeforeyougo/', label: { zh: '官方出行页：停车与接驳 ↗', en: 'Official visitor page: parking and shuttle ↗' } }
+        { url: 'https://exoticsonbroadway.com/', label: { zh: '活动主页：周六 11:00–16:00 ↗', en: 'Event home: Saturday 11:00–16:00 ↗' } },
+        { url: 'https://exoticsonbroadway.com/tickets/', label: { zh: '官方票务：免费 Broadway 与 Del Monte 付费区 ↗', en: 'Official tickets: free Broadway and paid Del Monte zones ↗' } },
+        { url: 'https://www.eventbrite.com/e/exotics-on-broadway-tickets-1976498937528', label: { zh: '主办方链接售票页：当前购买价 ↗', en: 'Organizer-linked ticketing: current purchase price ↗' } },
+        { url: 'https://exoticsonbroadway.com/knowbeforeyougo/', label: { zh: '官方出行页：停车与接驳（场地旧文案）↗', en: 'Official visitor page: parking and shuttle (stale venue copy) ↗' } }
       ]
     },
     {
@@ -1930,11 +1934,14 @@ window.PEBBLE_DATA = {
     {
       id: 'gooding-sat', thumbId: 'gooding-sat', area: 'pebble', date: '2026-08-15', time: '09:00–17:00', timeNote: { zh: '11:00 拍卖', en: '11:00 auction' },
       title: { zh: 'Gooding Christie’s Pebble Beach Auctions', en: 'Gooding Christie’s Pebble Beach Auctions' }, location: { zh: 'Parc du Concours · Pebble Beach', en: 'Parc du Concours · Pebble Beach' },
-      summary: { zh: '09:00 开放预展、11:00 开拍；同一张 $50 通票覆盖全部三天。', en: 'Viewing opens at 09:00 and the auction begins at 11:00; the same $50 pass covers all three days.' },
-      why: { zh: '若周六主场在 Pebble Beach，这是比再买一张大型活动票更划算的附加项。', en: 'If Saturday’s anchor is Pebble Beach, this is a better-value add-on than another major show ticket.' },
-      access: { zh: '信用卡购票；12 岁以下免费。访客从 Forest Lake Road 进入 Lot 12 停车；满位后启用 Alva Lane 的 Lot 8。', en: 'Credit-card admission; under 12 free. Visitor parking is in Lot 12 via Forest Lake Road; Lot 8 on Alva Lane opens if it fills.' },
-      price: { zh: '$50 全活动入场', en: '$50 all-events admission' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.5',
-      source: 'https://www.goodingco.com/auction/pebble-beach-auctions-2026/'
+      summary: { zh: '周六预展 09:00–17:00，现场拍卖 11:00 开始。普通入场标价 $50/人，可进入预展和拍卖场次。', en: 'Saturday viewing runs 09:00–17:00 and the live auction begins at 11:00. General admission is listed at $50 per person and includes access to the viewing and auction.' },
+      why: { zh: '适合想近看收藏车并旁听拍卖的普通观众；$50 是参观入场，不等于竞买资格或保留座位。', en: 'A strong spectator option for viewing cars and observing the sale; the $50 admission does not confer bidding privileges or reserved seating.' },
+      access: { zh: '只收信用卡；12 岁以下免费。竞买需另行注册（$200，含双人入场与两个保留座位，座位视供应）。访客从 Forest Lake Road 进入 Lot 12；满位后启用 Alva Lane 的 Lot 8。', en: 'Credit card only; children under 12 are free. Bidding requires separate $200 registration, including admission for two and two reserved seats subject to availability. Visitor parking is in Lot 12 via Forest Lake Road; Lot 8 on Alva Lane opens if it fills.' },
+      price: { zh: 'GA $50 / 人 · 预展 + 拍卖旁听', en: '$50 GA / person · viewing + auction access' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.5', verifiedOn: '2026-08-13',
+      sources: [
+        { url: 'https://www.goodingco.com/auction/pebble-beach-auctions-2026/', label: { zh: '官方活动页：日程、入场与停车 ↗', en: 'Official event page: schedule, admission and parking ↗' } },
+        { url: 'https://www.goodingco.com/register/', label: { zh: '官方竞买注册说明 ↗', en: 'Official bidder-registration details ↗' } }
+      ]
     },
     {
       id: 'mecum-sat', thumbId: 'mecum-sat', area: 'monterey', date: '2026-08-15', time: '08:00–', timeNote: { zh: '08:00 入场 · 09:00 艺术品 · 10:00 整车拍卖', en: 'gates 08:00 · Road Art 09:00 · cars 10:00' },
@@ -1972,13 +1979,16 @@ window.PEBBLE_DATA = {
       ]
     },
     {
-      id: 'rm-sat', thumbId: 'rm-sat', area: 'monterey', date: '2026-08-15', time: '17:30–', timeNote: { zh: '夜场拍卖；15:00 Concierge', en: 'evening auction; 15:00 Concierge' },
+      id: 'rm-sat', thumbId: 'rm-sat', area: 'monterey', date: '2026-08-15', time: '10:00–16:00 / 17:30', timeNote: { zh: '公众预展 / 汽车拍卖', en: 'public preview / automobile auction' },
       title: { zh: 'RM Sotheby’s · The Monterey Auction', en: 'RM Sotheby’s · The Monterey Auction' }, location: { zh: 'Monterey Conference Center · 1 Portola Plaza', en: 'Monterey Conference Center · 1 Portola Plaza' },
-      summary: { zh: '周六 17:30 收官夜场；15:00 另有 Concierge 场次。拍卖席对公众受限。', en: 'Saturday finale from 17:30, plus a 15:00 Concierge session. Auction floor is restricted.' },
-      why: { zh: '与 MMF、Exotics 晚间时段冲突；未注册竞拍人更适合在线观看或改看白天 Mecum/Gooding。', en: 'Conflicts with MMF and Exotics evening windows; unregistered visitors are better served online or at daytime Mecum/Gooding.' },
-      access: { zh: '拍卖厅：注册竞拍人、委托方、合格媒体；Concierge 场次规则见官方页。', en: 'Auction floor: registered bidders, consignors, qualified media; see official page for Concierge rules.' },
-      price: { zh: '预展 $60 周末通票 · 拍卖席受限', en: 'Preview $60 weekend pass · floor restricted' }, tags: ['paid'], categories: ['paid'], score: '3.5',
-      source: 'https://www.rmsothebys.com/auctions/mo26/'
+      summary: { zh: '周六公众预展 10:00–16:00；另有需单独 RSVP 的 Concierge 房地产拍卖 15:00–16:00；RM 汽车拍卖 17:30 开始。', en: 'Saturday public preview runs 10:00–16:00; a separate RSVP-only Concierge real-estate auction runs 15:00–16:00; the RM automobile auction begins at 17:30.' },
+      why: { zh: '普通观众最适合白天预展；不要把 $60 误当作 17:30 汽车拍卖入场票。未注册竞拍人可在线观看晚场。', en: 'The daytime preview is the useful public option. Do not mistake the $60 admission for a ticket to the 17:30 automobile auction; unregistered visitors can watch the evening sale online.' },
+      access: { zh: '周末公众预展入场 $60/人，只在广场入口现场购买；不含现场汽车拍卖。拍卖厅仅限注册竞拍人、合格媒体与委托方。Concierge 场次另行 RSVP。', en: 'Weekend public-preview admission is $60 per person, sold onsite at the plaza entrance; it does not include the live automobile auction. The auction floor is limited to registered bidders, qualified media and consignors. The Concierge sale requires a separate RSVP.' },
+      price: { zh: '周末公众预展 $60（现场）· 不含拍卖席', en: '$60 weekend public preview (onsite) · auction floor excluded' }, tags: ['paid'], categories: ['paid'], score: '3.5', verifiedOn: '2026-08-13',
+      sources: [
+        { url: 'https://www.rmsothebys.com/auctions/mo26/', label: { zh: 'RM 官方日程与入场规则 ↗', en: 'Official RM schedule and admission rules ↗' } },
+        { url: 'https://www.conciergeauctions.com/collection/monterey-car-week-rm-sothebys-1', label: { zh: 'Concierge 官方场次与 RSVP ↗', en: 'Official Concierge session and RSVP ↗' } }
+      ]
     },
     {
       id: 'concours', thumbId: 'concours', area: 'pebble', date: '2026-08-16', time: '05:30–17:00', timeNote: { zh: '8:00 评审', en: '8:00 judging' },
@@ -2251,10 +2261,13 @@ window.PEBBLE_DATA = {
     { label: { zh: '17-Mile Drive 活动周关闭', en: '17-Mile Drive Car Week closure' }, url: 'https://www.pebblebeach.com/17-mile-drive/' },
     { label: { zh: 'Rolex Reunion · Laguna Seca', en: 'Rolex Reunion · Laguna Seca' }, url: 'https://weathertechraceway.com/pages/rolex-monterey-motorsports-reunion' },
     { label: { zh: 'Werks Reunion · Monterey', en: 'Werks Reunion · Monterey' }, url: 'https://www.werksreunion.com/monterey.cfm' },
-    { label: { zh: 'Exotics on Broadway · 到场须知', en: 'Exotics on Broadway · know before you go' }, url: 'https://exoticsonbroadway.com/knowbeforeyougo/' },
+    { label: { zh: 'Exotics on Broadway · 2026 主页', en: 'Exotics on Broadway · 2026 event home' }, url: 'https://exoticsonbroadway.com/' },
+    { label: { zh: 'Exotics on Broadway · 免费/付费分区与票价', en: 'Exotics on Broadway · free/paid zones and tickets' }, url: 'https://exoticsonbroadway.com/tickets/' },
     { label: { zh: 'Gooding Christie’s · Pebble Beach', en: 'Gooding Christie’s · Pebble Beach' }, url: 'https://www.goodingco.com/auction/pebble-beach-auctions-2026/' },
+    { label: { zh: 'Gooding Christie’s · 竞买注册', en: 'Gooding Christie’s · bidder registration' }, url: 'https://www.goodingco.com/register/' },
     { label: { zh: 'Mecum Monterey 2026', en: 'Mecum Monterey 2026' }, url: 'https://www.mecum.com/auctions/monterey-2026/' },
     { label: { zh: 'RM Sotheby’s Monterey 2026', en: 'RM Sotheby’s Monterey 2026' }, url: 'https://www.rmsothebys.com/auctions/mo26/' },
+    { label: { zh: 'Sotheby’s Concierge Auctions · Monterey 场次', en: 'Sotheby’s Concierge Auctions · Monterey session' }, url: 'https://www.conciergeauctions.com/collection/monterey-car-week-rm-sothebys-1' },
     { label: { zh: 'Bonhams Laguna Seca Auction 2026', en: 'Bonhams Laguna Seca Auction 2026' }, url: 'https://cars.bonhams.com/auction/31959/the-laguna-seca-auction' },
     { label: { zh: 'What’s Up Monterey · Mecum', en: 'What’s Up Monterey · Mecum' }, url: 'https://whatsupmonterey.com/events/monterey-car-week/mecum-auto-auctions-muscle-cars-more/447' },
     { label: { zh: 'Monterey Car Week 交通提醒', en: 'Monterey Car Week travel alerts' }, url: 'https://www.seemonterey.com/events/monterey-car-week/monterey-car-week-travel-alerts/' },

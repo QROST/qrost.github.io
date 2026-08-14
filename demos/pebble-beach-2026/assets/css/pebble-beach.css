@@ -1376,6 +1376,7 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .tag.free { background: var(--green-soft); color: var(--green); }
 .tag.paid { background: var(--gold-soft); color: var(--gold); }
 .tag.alert { background: var(--orange-soft); color: var(--orange); }
+.tag.checked { border: 1px solid var(--line-strong); background: var(--surface-tint); color: var(--ink-soft); }
 .event-score { min-width: 86px; text-align: right; }
 .event-score strong { display: block; color: var(--orange); font-family: var(--serif); font-size: 1.05rem; }
 .event-score span { color: var(--faint); font-size: .62rem; }
