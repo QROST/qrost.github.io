@@ -28,16 +28,16 @@
   const mapState = { map: null, layer: null, markers: [] };
   const parkingTrafficState = {
     map: null,
-    tile: null,
+    baseLayer: null,
+    imageBounds: null,
     markerLayer: null,
-    trafficLayer: null,
     markers: new Map(),
     traffic: new Map(),
     day: DATA.parkingTrafficMap ? DATA.parkingTrafficMap.defaultDay : 'thu-sat',
     layer: DATA.parkingTrafficMap ? DATA.parkingTrafficMap.defaultLayer : 'guide',
     touchActive: false,
     coarsePointer: false,
-    tileError: false
+    baseError: false
   };
   const routeCache = new Map();
   const planMaps = new Map();
@@ -223,6 +223,14 @@
     document.querySelectorAll('[data-i18n]').forEach((element) => {
       const key = element.getAttribute('data-i18n');
       if (DATA.labels[key]) element.textContent = text(key);
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach((element) => {
+      const key = element.getAttribute('data-i18n-alt');
+      if (DATA.labels[key]) element.setAttribute('alt', text(key));
+    });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+      const key = element.getAttribute('data-i18n-aria-label');
+      if (DATA.labels[key]) element.setAttribute('aria-label', text(key));
     });
 
     const nav = document.querySelector('.site-nav');
@@ -478,7 +486,7 @@
     const status = document.getElementById('parking-map-status');
     if (!status) return;
     const countText = count ? statusWithCount('parkingMapStatus', count) : text('parkingMapEmpty');
-    status.textContent = parkingTrafficState.tileError
+    status.textContent = parkingTrafficState.baseError
       ? `${countText} · ${text('parkingMapTileError')}`
       : countText;
   }
@@ -1158,10 +1166,10 @@
     const kind = parkingPointKind(point);
     return window.L.divIcon({
       className: 'parking-map-marker-wrap',
-      html: `<span class="parking-map-marker kind-${escapeHtml(kind)}" aria-hidden="true"><span>${escapeHtml(point.code)}</span></span>`,
-      iconSize: [34, 34],
-      iconAnchor: [17, 17],
-      popupAnchor: [0, -18]
+      html: `<span class="parking-map-marker kind-${escapeHtml(kind)}" aria-hidden="true"></span>`,
+      iconSize: [26, 26],
+      iconAnchor: [13, 13],
+      popupAnchor: [0, -15]
     });
   }
 
@@ -1175,17 +1183,6 @@
         <div><dt>${escapeHtml(text('parkingMapPrecisionLabel'))}</dt><dd>${escapeHtml(text('parkingMapPrecisionValue'))}</dd></div>
       </dl>
     </div>`;
-  }
-
-  function parkingTrafficStyle(kind) {
-    const styles = {
-      loop: { color: '#d5a900', weight: 5, opacity: 0.86 },
-      oneway: { color: '#e86018', weight: 5, opacity: 0.9, dashArray: '3 8' },
-      closed: { color: '#c73333', weight: 5, opacity: 0.9, dashArray: '2 9' },
-      permit: { color: '#df6ea6', weight: 5, opacity: 0.88, dashArray: '14 10' },
-      test: { color: '#22292b', weight: 5, opacity: 0.88, dashArray: '5 7' }
-    };
-    return styles[kind] || styles.loop;
   }
 
   function parkingTrafficPopupHtml(control) {
@@ -1204,33 +1201,102 @@
     button.textContent = text(parkingTrafficState.touchActive ? 'parkingMapTouchDisable' : 'parkingMapTouchEnable');
   }
 
+  function parkingDiagramLatLng(mapX, mapY) {
+    const config = parkingTrafficConfig();
+    const height = config && config.diagramSize ? config.diagramSize.height : 0;
+    return window.L.latLng(height - mapY, mapX);
+  }
+
+  function parkingDiagramBounds(focusBounds) {
+    if (!Array.isArray(focusBounds) || focusBounds.length !== 4) return null;
+    const [minX, minY, maxX, maxY] = focusBounds;
+    return window.L.latLngBounds(
+      parkingDiagramLatLng(minX, maxY),
+      parkingDiagramLatLng(maxX, minY)
+    );
+  }
+
+  function parkingMapFallbackHtml() {
+    const config = parkingTrafficConfig();
+    const pdf = config ? config.sourcePdf : '#';
+    return `<div class="parking-map-fallback">
+      <strong>${escapeHtml(text('parkingMapFallbackTitle'))}</strong>
+      <p>${escapeHtml(text('parkingMapFallbackBody'))}</p>
+      <a href="${escapeHtml(pdf)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text('parkingMapOfficialPdf'))}</a>
+    </div>`;
+  }
+
+  function announceParkingMapSelection(name) {
+    const status = document.getElementById('parking-map-status');
+    if (!status) return;
+    const count = visibleParkingPoints().length + visibleParkingTraffic().length;
+    const countText = count ? statusWithCount('parkingMapStatus', count) : text('parkingMapEmpty');
+    const focused = text('parkingMapSelected').replace('{name}', name);
+    status.textContent = `${countText} · ${focused}`;
+  }
+
+  function revealParkingMapOnSmallScreen() {
+    if (typeof window.matchMedia !== 'function' || !window.matchMedia('(max-width: 760px)').matches) return;
+    const root = document.getElementById('parking-traffic-map');
+    if (root) root.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }
+
+  function handleParkingDiagramError(root) {
+    if (parkingTrafficState.baseError) return;
+    parkingTrafficState.baseError = true;
+    if (parkingTrafficState.map) parkingTrafficState.map.remove();
+    parkingTrafficState.map = null;
+    parkingTrafficState.baseLayer = null;
+    parkingTrafficState.imageBounds = null;
+    parkingTrafficState.markerLayer = null;
+    parkingTrafficState.markers.clear();
+    parkingTrafficState.traffic.clear();
+    root.classList.add('is-diagram-error');
+    root.innerHTML = parkingMapFallbackHtml();
+    updateParkingMapStatus(visibleParkingPoints().length + visibleParkingTraffic().length);
+  }
+
   function ensureParkingTrafficMap() {
     const root = document.getElementById('parking-traffic-map');
-    if (!root || parkingTrafficState.map) return;
-    if (!window.L) return;
+    const config = parkingTrafficConfig();
+    if (!root || parkingTrafficState.map || parkingTrafficState.baseError) return;
+    if (!window.L || !config || config.coordinateSpace !== 'official-diagram') {
+      root.innerHTML = parkingMapFallbackHtml();
+      return;
+    }
 
     parkingTrafficState.coarsePointer = (typeof window.matchMedia === 'function' && window.matchMedia('(any-pointer: coarse)').matches)
       || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
     root.innerHTML = '';
     const map = window.L.map(root, {
+      crs: window.L.CRS.Simple,
+      minZoom: -2,
+      maxZoom: 3,
+      zoomSnap: 0.25,
+      zoomDelta: 0.5,
       scrollWheelZoom: false,
       zoomControl: true,
-      attributionControl: true,
+      attributionControl: false,
       dragging: !parkingTrafficState.coarsePointer,
-      touchZoom: !parkingTrafficState.coarsePointer
+      touchZoom: !parkingTrafficState.coarsePointer,
+      maxBoundsViscosity: 0.88
     });
     parkingTrafficState.map = map;
-    parkingTrafficState.tile = window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>'
-    }).addTo(map);
-    parkingTrafficState.tile.on('tileerror', () => {
-      if (parkingTrafficState.tileError) return;
-      parkingTrafficState.tileError = true;
-      updateParkingMapStatus(visibleParkingPoints().length + visibleParkingTraffic().length);
+    const width = config.diagramSize.width;
+    const height = config.diagramSize.height;
+    const imageBounds = window.L.latLngBounds([0, 0], [height, width]);
+    parkingTrafficState.imageBounds = imageBounds;
+    const baseLayer = window.L.imageOverlay(config.diagramAsset, imageBounds, {
+      alt: text('parkingMapImageAlt'),
+      className: 'parking-diagram-image',
+      interactive: false
     });
-    parkingTrafficState.trafficLayer = window.L.layerGroup().addTo(map);
+    baseLayer.on('error', () => handleParkingDiagramError(root));
+    baseLayer.addTo(map);
+    parkingTrafficState.baseLayer = baseLayer;
     parkingTrafficState.markerLayer = window.L.layerGroup().addTo(map);
+    map.fitBounds(imageBounds, { padding: [8, 8], animate: false });
+    map.setMaxBounds(imageBounds.pad(0.08));
     root.addEventListener('wheel', (event) => {
       if (event.metaKey || event.ctrlKey) map.scrollWheelZoom.enable();
       else map.scrollWheelZoom.disable();
@@ -1241,46 +1307,37 @@
 
   function syncParkingTrafficMap() {
     const map = parkingTrafficState.map;
-    if (!map || !window.L || !parkingTrafficState.markerLayer || !parkingTrafficState.trafficLayer) return;
+    if (!map || !window.L || !parkingTrafficState.markerLayer) return;
+    const baseImage = parkingTrafficState.baseLayer && parkingTrafficState.baseLayer.getElement();
+    if (baseImage) baseImage.alt = text('parkingMapImageAlt');
 
     parkingTrafficState.markerLayer.clearLayers();
-    parkingTrafficState.trafficLayer.clearLayers();
     parkingTrafficState.markers.clear();
     parkingTrafficState.traffic.clear();
-    const pointBounds = [];
-    const trafficBounds = [];
 
     visibleParkingTraffic().forEach((control) => {
-      const lines = [];
-      (control.paths || []).forEach((path) => {
-        const line = window.L.polyline(path, {
-          ...parkingTrafficStyle(control.kind),
-          className: `parking-traffic-line kind-${control.kind}`
-        }).addTo(parkingTrafficState.trafficLayer);
-        line.bindPopup(parkingTrafficPopupHtml(control), { maxWidth: 280, className: 'hub-leaflet-popup' });
-        line.bindTooltip(text(control.labelKey), { sticky: true, opacity: 0.95, className: 'hub-tooltip' });
-        lines.push(line);
-        path.forEach((coord) => trafficBounds.push(coord));
-      });
-      parkingTrafficState.traffic.set(control.id, lines);
+      const bounds = parkingDiagramBounds(control.focusBounds);
+      if (!bounds) return;
+      const popup = window.L.popup({ maxWidth: 280, className: 'hub-leaflet-popup' })
+        .setLatLng(bounds.getCenter())
+        .setContent(parkingTrafficPopupHtml(control));
+      parkingTrafficState.traffic.set(control.id, { bounds, popup, control });
     });
 
     visibleParkingPoints().forEach((point) => {
       const title = `${point.code} · ${localized(point.name)} · ${parkingPointKindLabel(point)}`;
-      const marker = window.L.marker([point.lat, point.lng], {
+      const marker = window.L.marker(parkingDiagramLatLng(point.mapX, point.mapY), {
         icon: makeParkingTrafficIcon(point),
         title,
+        alt: title,
         keyboard: true,
         riseOnHover: true
       }).addTo(parkingTrafficState.markerLayer);
       marker.bindPopup(parkingPointPopupHtml(point), { maxWidth: 320, className: 'hub-leaflet-popup parking-leaflet-popup' });
-      marker.bindTooltip(title, { direction: 'top', offset: [0, -18], opacity: 0.96, className: 'hub-tooltip' });
+      marker.bindTooltip(title, { direction: 'top', offset: [0, -14], opacity: 0.96, className: 'hub-tooltip' });
       parkingTrafficState.markers.set(point.id, marker);
-      pointBounds.push([point.lat, point.lng]);
     });
 
-    const fit = pointBounds.length ? pointBounds : trafficBounds;
-    if (fit.length) map.fitBounds(fit, { padding: [44, 44], maxZoom: 14 });
     window.setTimeout(() => map.invalidateSize(), 40);
   }
 
@@ -1288,16 +1345,20 @@
     const marker = parkingTrafficState.markers.get(id);
     if (!marker || !parkingTrafficState.map) return;
     const currentZoom = parkingTrafficState.map.getZoom();
-    parkingTrafficState.map.setView(marker.getLatLng(), Math.max(currentZoom, 15), { animate: false });
+    parkingTrafficState.map.setView(marker.getLatLng(), Math.max(currentZoom, 1), { animate: false });
     marker.openPopup();
+    const point = visibleParkingPoints().find((item) => item.id === id);
+    announceParkingMapSelection(point ? `${point.code} · ${localized(point.name)}` : id);
+    revealParkingMapOnSmallScreen();
   }
 
   function focusParkingTraffic(id) {
-    const lines = parkingTrafficState.traffic.get(id);
-    if (!lines || !lines.length || !parkingTrafficState.map) return;
-    const group = window.L.featureGroup(lines);
-    parkingTrafficState.map.fitBounds(group.getBounds(), { padding: [44, 44], maxZoom: 14 });
-    lines[0].openPopup();
+    const item = parkingTrafficState.traffic.get(id);
+    if (!item || !parkingTrafficState.map) return;
+    parkingTrafficState.map.fitBounds(item.bounds, { padding: [42, 42], maxZoom: 1.5, animate: false });
+    item.popup.openOn(parkingTrafficState.map);
+    announceParkingMapSelection(text(item.control.labelKey));
+    revealParkingMapOnSmallScreen();
   }
 
   function toggleParkingMapTouch() {

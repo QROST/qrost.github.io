@@ -274,19 +274,20 @@ window.PEBBLE_DATA = {
       en: 'The revised route does not pass through Carmel or Big Sur. The Portola start/finish plan and the Monterey route-side alternatives are mutually exclusive: choose before departure, leave the car there and do not drive between viewing points after the Tour starts. Watch only from public pedestrian space that remains open onsite.'
     },
     tourSourcesLabel: { zh: '四个官方复核入口', en: 'Four official checks' },
-    parkingMapKicker: { zh: '官方场内图 · 互动转译', en: 'Official onsite map · interactive translation' },
+    parkingMapKicker: { zh: '官方场内图 · 精确图面交互', en: 'Official onsite map · diagram-locked interaction' },
     parkingMapTitle: { zh: '停车区、接驳点与交通管制，一张图查清', en: 'Onsite lots, transfer points and traffic controls in one map' },
     parkingMapIntro: {
-      zh: '依据官网 7/20/26 Parking & Traffic Flow 图重绘，默认显示 8 月 13 日。它帮助辨认现场编号，不替代入口分配、临时路牌或工作人员指挥。',
-      en: 'Redrawn from the official July 20 Parking & Traffic Flow map, with Aug 13 shown by default. Use it to identify onsite codes—not to override gate assignments, temporary signs or staff.'
+      zh: '直接使用官网 7/20/26 Parking & Traffic Flow 矢量图，默认显示 8 月 13 日。缩放时热点始终锁定官方图面；它帮助辨认现场编号，不替代入口分配、临时路牌或工作人员指挥。',
+      en: 'Built directly on the official July 20 Parking & Traffic Flow vector diagram, with Aug 13 shown by default. Hotspots stay locked to the source as you zoom. Use it to identify onsite codes—not to override gate assignments, temporary signs or staff.'
     },
     parkingMapOfficialBadge: { zh: '官方 Automotive Week 交通图', en: 'Official Automotive Week traffic map' },
     parkingMapHoursThuSat: { zh: '8 月 13–15 日 · 6:00–18:00', en: 'Aug 13–15 · 6:00am–6:00pm' },
     parkingMapHoursSunday: { zh: '8 月 16 日 · 4:00–16:00', en: 'Aug 16 · 4:00am–4:00pm' },
     parkingMapEvidenceBoundary: {
-      zh: '官网 PDF 验证停车区名称、位置和交通线型；朋友拍摄版本补充了适用人群。人群注记用于识别，不等于可自行驶入或保证 8.13 Tour 普通停车。',
-      en: 'The official PDF verifies lot names, locations and traffic patterns; the friend-shot version adds audience annotations. Those annotations aid identification but do not authorize self-routing or guarantee Aug 13 Tour parking.'
+      zh: '官网 PDF 是本图的唯一空间底图，包含停车编号、适用人群与交通线；上传照片与官网版本一致，用于交叉核验现场印刷图。人群注记用于识别，不等于可自行驶入或保证 8.13 Tour 普通停车。',
+      en: 'The official PDF is the sole spatial base and contains the lot codes, assigned audiences and traffic lines. The uploaded photo matches it and corroborates the printed onsite copy. Audience labels aid identification but do not authorize self-routing or guarantee Aug 13 Tour parking.'
     },
+    parkingMapToolbarLabel: { zh: '停车交通图筛选', en: 'Parking and traffic map filters' },
     parkingMapDayLegend: { zh: '适用日', en: 'Day scope' },
     parkingMapLayerLegend: { zh: '显示内容', en: 'Show' },
     parkingMapDayThuSat: { zh: '8.13 Tour · 周四至周六', en: 'Aug 13 Tour · Thu–Sat' },
@@ -298,10 +299,10 @@ window.PEBBLE_DATA = {
     parkingMapLayerTraffic: { zh: '交通管制', en: 'Traffic controls' },
     parkingMapLayerAll: { zh: '全部', en: 'All' },
     parkingMapCaveat: {
-      zh: '规划图，不是实时交通或逐车位导航。点位是按官方示意图和公开地理资料配准的区域中心；入口、开放状态与行驶方向以当天现场为准。',
-      en: 'This is a planning map, not live traffic or stall-by-stall navigation. Pins are area centers georeferenced from the official schematic and public map data; day-of entrances, availability and directions control.'
+      zh: '这是官方示意图坐标，不是经纬度地图、实时交通或逐车位导航。缩放只放大原图，不表示真实距离或精确入口；开放状态与行驶方向以当天现场为准。',
+      en: 'This uses official-diagram coordinates—not latitude/longitude, live traffic or stall-by-stall navigation. Zoom enlarges the source artwork; it does not imply real-world distance or an exact entrance. Day-of availability and directions control.'
     },
-    parkingMapFallbackTitle: { zh: '交互底图不可用时', en: 'If the interactive basemap is unavailable' },
+    parkingMapFallbackTitle: { zh: '交互图不可用时', en: 'If the interactive diagram is unavailable' },
     parkingMapFallbackBody: {
       zh: '8.13 仍按 Portola Road 附近现场指引停车；Lot 9 仅供持 DMV placard 的 ADA 车辆。其余编号只作识别，不要直接导航驶入。',
       en: 'For Aug 13, still follow onsite directions to parking near Portola Road. Lot 9 is for ADA vehicles with a DMV placard. Use other codes for identification only; do not navigate straight into them.'
@@ -315,24 +316,26 @@ window.PEBBLE_DATA = {
     parkingMapListTitle: { zh: '点击条目在地图中定位', en: 'Select an item to locate it on the map' },
     parkingMapStaticPortola: { zh: '按现场指引进入附近指定停车区', en: 'Follow onsite directions to nearby assigned parking' },
     parkingMapStaticAda: { zh: '8.13–15 仅作 ADA 停车标记，须持 DMV placard', en: 'ADA parking Aug 13–15; DMV placard required' },
-    parkingMapStaticGeneral: { zh: '照片注记为 General Spectators；到场询问，不视作 Tour 保证', en: 'Friend-photo note says General Spectators; ask onsite, not a Tour guarantee' },
+    parkingMapStaticGeneral: { zh: '官方图注记为 General Spectators；到场询问，不视作 Tour 保证', en: 'Official legend says General Spectators; ask onsite, not a Tour guarantee' },
     parkingMapWarningTitle: { zh: '先看状态，再看编号', en: 'Read the status before the code' },
     parkingMapWarningBody: {
-      zh: '“General Spectators”是照片版图例中的人群标签，不代表从任一入口都能直达。8.13 Tour 的负责做法仍是先到 Portola 起终点区域，再听从现场分配；不要为了某个编号穿越封路、许可路段或追逐车队。',
-      en: '“General Spectators” is an audience label on the photographed legend, not proof of direct access from any gate. For the Aug 13 Tour, go first to the Portola start/finish area and accept onsite assignment; never cross closures or permit-only roads—or chase the convoy—for a code.'
+      zh: '“General Spectators”是官方图例中的人群标签，不代表从任一入口都能直达。8.13 Tour 的负责做法仍是先到 Portola 起终点区域，再听从现场分配；不要为了某个编号穿越封路、许可路段或追逐车队。',
+      en: '“General Spectators” is an audience label on the official legend, not proof of direct access from any gate. For the Aug 13 Tour, go first to the Portola start/finish area and accept onsite assignment; never cross closures or permit-only roads—or chase the convoy—for a code.'
     },
     parkingMapStatus: { zh: '显示 {count} 项', en: 'Showing {count} items' },
+    parkingMapSelected: { zh: '已定位：{name}', en: 'Focused: {name}' },
     parkingMapEmpty: { zh: '此筛选没有可显示项目。', en: 'Nothing matches this filter.' },
     parkingMapAudienceLabel: { zh: '图例人群', en: 'Legend audience' },
     parkingMapAccessLabel: { zh: '怎么用', en: 'How to use it' },
     parkingMapEvidenceLabel: { zh: '证据', en: 'Evidence' },
     parkingMapPrecisionLabel: { zh: '位置精度', en: 'Location precision' },
-    parkingMapPrecisionValue: { zh: '官方示意图配准的区域中心，非停车入口', en: 'Area center georeferenced from the official schematic—not a parking entrance' },
+    parkingMapPrecisionValue: { zh: '官方 PDF 图面位置；不声称真实经纬度或停车入口精度', en: 'Official-PDF diagram position; no claim of latitude/longitude or entrance precision' },
     parkingMapLocate: { zh: '在图中定位', en: 'Locate on map' },
     parkingMapOfficialEvidence: { zh: '官网 PDF / 官方指引', en: 'Official PDF / directions' },
-    parkingMapPhotoEvidence: { zh: '官网名称 + 朋友照片人群注记', en: 'Official name + friend-photo audience note' },
-    parkingMapTileError: { zh: '底图暂不可用；标记与文字清单仍可使用。', en: 'Basemap unavailable; markers and the text list still work.' },
-    parkingMapTrafficSchematic: { zh: '线位按官方图近似转绘；不是实时封控边界。', en: 'Lines are approximate traces from the official map—not live closure boundaries.' },
+    parkingMapPhotoEvidence: { zh: '官网 PDF + 上传照片印刷版交叉核验', en: 'Official PDF + uploaded-print corroboration' },
+    parkingMapImageAlt: { zh: '2026 Pebble Beach Concours d’Elegance 官方停车与交通流示意图', en: 'Official 2026 Pebble Beach Concours d’Elegance parking and traffic-flow diagram' },
+    parkingMapTileError: { zh: '官方矢量图暂不可用；请使用文字清单或打开官方 PDF。', en: 'The official vector diagram is unavailable; use the text list or open the official PDF.' },
+    parkingMapTrafficSchematic: { zh: '定位框只帮助放大查看；交通线本身来自官方原图，不是实时封控边界。', en: 'The focus box only helps with zooming. Traffic linework comes from the official artwork and is not a live closure boundary.' },
     parkingMapKindGuide: { zh: '8.13 指引', en: 'Aug 13 guidance' },
     parkingMapKindGeneral: { zh: '普通观众注记', en: 'General note' },
     parkingMapKindAda: { zh: 'ADA', en: 'ADA' },
@@ -642,6 +645,10 @@ window.PEBBLE_DATA = {
   parkingTrafficMap: {
     checked: '2026-08-13',
     mapVersion: '2026-07-20',
+    coordinateSpace: 'official-diagram',
+    diagramSize: { width: 792, height: 612 },
+    diagramAsset: 'assets/img/parking-traffic-map-2026.svg',
+    sourcePdf: 'https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf',
     defaultDay: 'thu-sat',
     defaultLayer: 'guide',
     dayScopes: [
@@ -658,190 +665,176 @@ window.PEBBLE_DATA = {
     ],
     points: [
       {
-        id: 'portola-start', code: 'T', kind: 'guide', layers: ['guide'], dayScopes: ['thu-sat'], guideScopes: ['thu-sat'], evidence: 'official',
-        lat: 36.57324, lng: -121.95446,
-        name: { zh: 'Portola Road · Tour 起终点', en: 'Portola Road · Tour start / finish' },
-        audience: { zh: '8.13 Tour 观众', en: 'Aug 13 Tour spectators' },
-        access: { zh: '先到起终点区域，再按入口路牌与工作人员分配附近停车；这里不是一个固定停车入口。', en: 'Go to the start/finish area first, then follow gate signs and staff to nearby assigned parking. This pin is not a fixed parking entrance.' }
-      },
-      {
-        id: 'concours-village', code: 'V', kind: 'guide', layers: ['guide'], dayScopes: ['thu-sat', 'sunday'], guideScopes: ['thu-sat', 'sunday'], evidence: 'official',
-        lat: 36.58230, lng: -121.94987,
-        name: { zh: 'Concours Village / RetroAuto', en: 'Concours Village / RetroAuto' },
-        audience: { zh: '公开活动区，不等于停车场', en: 'Public event area—not a parking lot' },
-        access: { zh: '作为步行目的地和方位参照；车辆仍按现场分配停放，不要把 Village 地点当作车位。', en: 'Use as a walking destination and orientation anchor. Park only where assigned; the Village location itself is not parking.' }
-      },
-      {
         id: 'lot-1', code: '1', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.56910, lng: -121.94515,
+        mapX: 455.36, mapY: 449.94,
         name: { zh: '第三球道', en: '3rd Fairway' },
         audience: { zh: 'Lexus、PBC', en: 'Lexus, PBC' },
         access: { zh: '指定单位使用；普通观众不要自行驶入。', en: 'Assigned use; general spectators should not self-route here.' }
       },
       {
         id: 'lot-2', code: '2', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.56980, lng: -121.94657,
+        mapX: 420.21, mapY: 429.80,
         name: { zh: 'Casa Palmero 车库', en: 'Casa Palmero Garage' },
         audience: { zh: 'Lodge 住客、Chairman’s、Patron’s', en: 'Lodge Guests, Chairman’s, Patron’s' },
         access: { zh: '住客 / 贵宾指定；无相应资格不要驶入。', en: 'Guest / patron assignment; do not enter without the matching eligibility.' }
       },
       {
         id: 'lot-3', code: '3', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.56930, lng: -121.94945,
+        mapX: 350.37, mapY: 440.61,
         name: { zh: 'The Lodge', en: 'The Lodge' },
         audience: { zh: 'Lodge 住客', en: 'Lodge Guests' },
         access: { zh: '酒店住客指定，不是 Tour 普通停车。', en: 'Reserved for hotel guests; not general Tour parking.' }
       },
       {
         id: 'lot-4', code: '4', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.56965, lng: -121.95110,
+        mapX: 303.30, mapY: 426.00,
         name: { zh: 'Visitor Center Lot', en: 'Visitor Center Lot' },
         audience: { zh: '评委、媒体', en: 'Judges, Media' },
         access: { zh: '证件人群指定；普通观众不要占用。', en: 'Credentialed assignment; not for general spectators.' }
       },
       {
         id: 'lot-5', code: '5', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57005, lng: -121.95055,
+        mapX: 320.01, mapY: 418.96,
         name: { zh: 'Golf Lot', en: 'Golf Lot' },
         audience: { zh: 'Brabus', en: 'Brabus' },
         access: { zh: '品牌指定；不是普通观众停车。', en: 'Brand-assigned; not general spectator parking.' }
       },
       {
         id: 'lot-6', code: '6', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57170, lng: -121.95005,
+        mapX: 338.00, mapY: 383.00,
         name: { zh: 'The Hay Hill', en: 'The Hay Hill' },
         audience: { zh: 'Ferrari、CDE 工作人员', en: 'Ferrari & CDE Staff' },
         access: { zh: '品牌 / 工作人员指定；不要自行驶入。', en: 'Brand / staff assignment; do not self-route here.' }
       },
       {
         id: 'lot-7', code: '7', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57105, lng: -121.94935,
+        mapX: 356.79, mapY: 400.90,
         name: { zh: 'Fairway One', en: 'Fairway One' },
         audience: { zh: 'Ferrari', en: 'Ferrari' },
         access: { zh: '品牌指定；不是普通观众停车。', en: 'Brand-assigned; not general spectator parking.' }
       },
       {
         id: 'lot-8', code: '8', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57265, lng: -121.95620,
+        mapX: 192.16, mapY: 359.63,
         name: { zh: 'Collins Lot', en: 'Collins Lot' },
         audience: { zh: 'Venue、Entrants、Patron’s、Chairman’s', en: 'Venue, Entrants, Patron’s, Chairman’s' },
         access: { zh: '参展 / 贵宾指定；只有持相应资格或被现场分配时使用。', en: 'Entrant / patron assignment; use only with matching eligibility or an onsite assignment.' }
       },
       {
         id: 'lot-8a', code: '8A', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57305, lng: -121.95375,
+        mapX: 237.91, mapY: 337.62,
         name: { zh: 'PB Driving Range', en: 'PB Driving Range' },
         audience: { zh: 'Club d’Elegance、Gallery', en: 'Club d’Elegance, Gallery' },
         access: { zh: '指定票种 / 贵宾使用；普通观众不要自行驶入。', en: 'Assigned ticket / hospitality use; general spectators should not self-route here.' }
       },
       {
-        id: 'lot-9', code: '9', kind: 'ada', layers: ['general', 'ada'], dayScopes: ['thu-sat', 'sunday'], guideScopes: ['thu-sat'], adaScopes: ['thu-sat'], evidence: 'photo',
-        lat: 36.57345, lng: -121.95583,
+        id: 'lot-9', code: '9', kind: 'ada', layers: ['general', 'ada'], dayScopes: ['thu-sat'], guideScopes: ['thu-sat'], adaScopes: ['thu-sat'], evidence: 'photo',
+        mapX: 157.10, mapY: 328.93,
         name: { zh: '原马术中心', en: 'Formerly the Equestrian Center' },
-        audience: { zh: '照片注记：ADA、Sponsors、General Spectators、Torque Media', en: 'Photo note: ADA, Sponsors, General Spectators, Torque Media' },
-        access: { zh: '官网明确 8.13–15 为 ADA Lot 9，须持 DMV placard。照片虽另列普通观众，也不要把它当作可自行驶入的 Tour 普通停车场。', en: 'The official site specifically assigns ADA parking here Aug 13–15 and requires a DMV placard. Although the photo also lists General Spectators, do not treat it as self-directed general Tour parking.' }
+        audience: { zh: '官方图注记：ADA、Sponsors、General Spectators、Torque Media', en: 'Official legend: ADA, Sponsors, General Spectators, Torque Media' },
+        access: { zh: '官网明确 8.13–15 为 ADA Lot 9，须持 DMV placard。图例虽另列普通观众，也不要把它当作可自行驶入的 Tour 普通停车场。', en: 'The official site specifically assigns ADA parking here Aug 13–15 and requires a DMV placard. Although the legend also lists General Spectators, do not treat it as self-directed general Tour parking.' }
       },
       {
         id: 'lot-10', code: '10', kind: 'transit', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57510, lng: -121.95460,
+        mapX: 221.43, mapY: 294.85,
         name: { zh: 'Special Events Field', en: 'Special Events Field' },
         audience: { zh: '运输 / 支援车辆、International Tent', en: 'Transport and Support Vehicles & International Tent' },
         access: { zh: '后勤与运营使用，不是普通停车。', en: 'Logistics / operations use; not general parking.' }
       },
       {
         id: 'lot-11', code: '11', kind: 'transit', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57410, lng: -121.95070,
+        mapX: 316.17, mapY: 293.09,
         name: { zh: 'Grand Junction', en: 'Grand Junction' },
         audience: { zh: '媒体、RetroAuto、持证商户', en: 'Media & RetroAuto, Vendors w/Pass' },
         access: { zh: '证件 / 运营使用，不是普通观众停车。', en: 'Credentialed / operational use; not general spectator parking.' }
       },
       {
         id: 'lot-12', code: '12', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57620, lng: -121.95150,
+        mapX: 290.17, mapY: 252.86,
         name: { zh: 'Old Driving Range', en: 'Old Driving Range' },
         audience: { zh: 'Sponsors、Media、VIP’s、Vol Chairs', en: 'Sponsors, Media, VIP’s, Vol Chairs' },
         access: { zh: '赞助商 / 媒体 / VIP / 志愿者负责人指定。', en: 'Assigned to sponsors, media, VIPs and volunteer chairs.' }
       },
       {
-        id: 'lot-13', code: '13', kind: 'general', layers: ['general'], dayScopes: ['thu-sat', 'sunday'], guideScopes: ['thu-sat'], evidence: 'photo',
-        lat: 36.57980, lng: -121.95420,
+        id: 'lot-13', code: '13', kind: 'general', layers: ['general'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
+        mapX: 203.44, mapY: 136.25,
         name: { zh: 'Bristol Woods', en: 'Bristol Woods' },
-        audience: { zh: '照片注记：Parc du Concours 工作人员、General Spectators', en: 'Photo note: Parc du Concours Staff, General Spectators' },
+        audience: { zh: '官方图注记：Parc du Concours 工作人员、General Spectators', en: 'Official legend: Parc du Concours Staff, General Spectators' },
         access: { zh: '可作为到场识别编号；没有 Tour 官方文件保证 8.13 可自行进入，只有工作人员分配时才使用。', en: 'Useful as an onsite code. No Tour source guarantees self-directed Aug 13 access; use only when assigned by staff.' }
       },
       {
         id: 'lot-14', code: '14', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57600, lng: -121.95630,
+        mapX: 225.05, mapY: 234.68,
         name: { zh: 'Stevenson Lot', en: 'Stevenson Lot' },
         audience: { zh: 'Gooding、持 14A Pass 的 Sponsors', en: 'Gooding & Sponsors w/14A Pass' },
         access: { zh: '明确需要相应通行证；不是普通观众停车。', en: 'Matching pass required; not general spectator parking.' }
       },
       {
         id: 'lot-15', code: '15', kind: 'transit', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57500, lng: -121.96100,
+        mapX: 132.04, mapY: 307.65,
         name: { zh: '101 Drake', en: '101 Drake' },
         audience: { zh: 'PBC 运营、合同安保', en: 'PBC Operations, Contract Security' },
         access: { zh: '运营 / 安保使用，不是观众停车。', en: 'Operations / security use; not spectator parking.' }
       },
       {
-        id: 'lot-16', code: '16', kind: 'general', layers: ['general'], dayScopes: ['thu-sat', 'sunday'], guideScopes: ['thu-sat'], evidence: 'photo',
-        lat: 36.58700, lng: -121.96200,
+        id: 'lot-16', code: '16', kind: 'general', layers: ['general'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
+        mapX: 120.41, mapY: 74.39,
         name: { zh: 'Spyglass Pit', en: 'Spyglass Pit' },
-        audience: { zh: '照片注记：General Spectators', en: 'Photo note: General Spectators' },
+        audience: { zh: '官方图注记：General Spectators', en: 'Official legend: General Spectators' },
         access: { zh: '仅作为现场编号参考；官方 Tour 指引没有把它指定为 8.13 固定普通停车场，须听从入口分配。', en: 'Onsite code reference only. Tour guidance does not designate it as a fixed Aug 13 general lot; follow gate assignment.' }
       },
       {
         id: 'lot-17', code: '17', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.58820, lng: -121.95980,
+        mapX: 164.59, mapY: 66.31,
         name: { zh: 'Spyglass Lot', en: 'Spyglass Lot' },
         audience: { zh: '球手', en: 'Golfers' },
         access: { zh: '球手指定，不是普通观众停车。', en: 'Golfer-assigned; not general spectator parking.' }
       },
       {
-        id: 'lot-18', code: '18', kind: 'ada', layers: ['general', 'ada'], dayScopes: ['thu-sat', 'sunday'], guideScopes: ['sunday'], adaScopes: ['sunday'], evidence: 'photo',
-        lat: 36.59133, lng: -121.96430,
+        id: 'lot-18', code: '18', kind: 'ada', layers: ['general', 'ada'], dayScopes: ['sunday'], guideScopes: ['sunday'], adaScopes: ['sunday'], evidence: 'photo',
+        mapX: 76.89, mapY: 37.11,
         name: { zh: 'Coastline / Bird Rock', en: 'Coastline / Bird Rock' },
-        audience: { zh: '照片注记：General Spectators / ADA Parking', en: 'Photo note: General Spectators / ADA Parking' },
+        audience: { zh: '官方图注记：General Spectators / ADA Parking', en: 'Official legend: General Spectators / ADA Parking' },
         access: { zh: '官网明确这里只是 8.16 周日 ADA 停车；不是 8.13 ADA 或 Tour 普通停车建议。', en: 'The official site assigns ADA parking here on Sunday Aug 16 only. It is not Aug 13 ADA or a Tour parking recommendation.' }
       },
       {
-        id: 'lot-19', code: '19', kind: 'general', layers: ['general'], dayScopes: ['thu-sat', 'sunday'], guideScopes: ['thu-sat'], evidence: 'photo',
-        lat: 36.58800, lng: -121.95680,
+        id: 'lot-19', code: '19', kind: 'general', layers: ['general'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
+        mapX: 186.61, mapY: 65.93,
         name: { zh: 'Spyglass Driving Range', en: 'Spyglass Driving Range' },
-        audience: { zh: '照片注记：General Spectators', en: 'Photo note: General Spectators' },
+        audience: { zh: '官方图注记：General Spectators', en: 'Official legend: General Spectators' },
         access: { zh: '仅作现场识别；8.13 是否开放及如何进入须由入口人员确认。', en: 'Identification only; gate staff must confirm Aug 13 availability and access.' }
       },
       {
         id: 'lot-20', code: '20', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.58132, lng: -121.95108,
+        mapX: 317.33, mapY: 75.95,
         name: { zh: 'Wilson Field', en: 'Wilson Field' },
         audience: { zh: '俱乐部会员', en: 'Club Members' },
         access: { zh: '会员指定，不是普通观众停车。', en: 'Club-member assignment; not general spectator parking.' }
       },
       {
         id: 'ride-share', code: 'RS', kind: 'transit', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.57540, lng: -121.95040,
+        mapX: 308.00, mapY: 267.69,
         name: { zh: 'Ride Share', en: 'Ride Share' },
         audience: { zh: '网约车 / 拼车运营节点', en: 'Rideshare operations point' },
         access: { zh: '上下客 / 运营参照，不是停车授权。', en: 'Drop-off / operations reference, not parking authorization.' }
       },
       {
         id: 'bus-depot', code: 'BD', kind: 'transit', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.56955, lng: -121.95100,
+        mapX: 315.08, mapY: 435.87,
         name: { zh: 'The Merchandise Pavilion', en: 'The Merchandise Pavilion' },
         audience: { zh: 'VC Bus Depot', en: 'VC Bus Depot' },
         access: { zh: '巴士 / 运营节点，不是普通停车。', en: 'Bus / operations point, not general parking.' }
       },
       {
         id: 'post-office', code: 'PO', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.56875, lng: -121.95188,
+        mapX: 277.39, mapY: 459.81,
         name: { zh: 'Post Office', en: 'Post Office' },
         audience: { zh: 'Residents、PBC', en: 'Residents, PBC' },
         access: { zh: '居民 / PBC 指定，不是观众停车。', en: 'Resident / PBC assignment; not spectator parking.' }
       },
       {
         id: 'canary-cottage', code: 'CC', kind: 'assigned', layers: ['assigned'], dayScopes: ['thu-sat', 'sunday'], guideScopes: [], evidence: 'photo',
-        lat: 36.56845, lng: -121.95110,
+        mapX: 295.03, mapY: 478.66,
         name: { zh: 'Canary Cottage Lot', en: 'Canary Cottage Lot' },
         audience: { zh: 'PBC Valet、SW/Chairman’s、Patron’s', en: 'PBC Valet, SW/Chairman’s, Patron’s' },
         access: { zh: '代客 / 贵宾指定；SW 在照片中未展开，不作猜测。', en: 'Valet / patron assignment. “SW” is not expanded in the photo and is left uninterpreted.' }
@@ -850,39 +843,27 @@ window.PEBBLE_DATA = {
     trafficControls: [
       {
         id: 'traffic-loop', kind: 'loop', dayScopes: ['thu-sat', 'sunday'], guideScopes: ['thu-sat'], labelKey: 'parkingMapTrafficLoop',
-        paths: [
-          [[36.56833, -121.91976], [36.57028, -121.94050], [36.56920, -121.95100], [36.57190, -121.95600], [36.57389, -121.96312], [36.57508, -121.95794], [36.57997, -121.95377], [36.58201, -121.94844], [36.57410, -121.95070], [36.57220, -121.94930], [36.56833, -121.91976]]
-        ],
-        note: { zh: '黄色交通环线按官网图近似转绘。不要据此选择入口或逆现场指挥。', en: 'Approximate trace of the official yellow traffic loop. Do not use it to choose a gate or override onsite direction.' }
+        focusBounds: [42, 42, 720, 548],
+        note: { zh: '黄色交通环线直接来自官方图。点此只放大查看图面；不要据此选择入口或逆现场指挥。', en: 'The yellow traffic loop comes directly from the official artwork. Select this only to enlarge the diagram; do not use it to choose a gate or override onsite direction.' }
       },
       {
         id: 'one-way', kind: 'oneway', dayScopes: ['thu-sat', 'sunday'], guideScopes: ['thu-sat'], labelKey: 'parkingMapTrafficOneWay',
-        paths: [
-          [[36.57349, -121.96209], [36.57330, -121.95450], [36.57347, -121.95048]],
-          [[36.57347, -121.95048], [36.57620, -121.95150], [36.57936, -121.95301]]
-        ],
-        note: { zh: '橙色单向段为示意线；箭头与临时路牌以现场为准。', en: 'Schematic trace of orange one-way segments; follow day-of arrows and temporary signs.' }
+        focusBounds: [176, 174, 380, 505],
+        note: { zh: '橙色单向箭头保留官方图原始线位；临时路牌与工作人员指挥优先。', en: 'The orange one-way arrows retain their original positions on the official diagram; temporary signs and staff directions take priority.' }
       },
       {
         id: 'road-closed', kind: 'closed', dayScopes: ['thu-sat', 'sunday'], guideScopes: [], labelKey: 'parkingMapTrafficClosed',
-        paths: [
-          [[36.57410, -121.95070], [36.57310, -121.94970], [36.57235, -121.94885]],
-          [[36.57300, -121.95375], [36.57225, -121.95190]]
-        ],
-        note: { zh: '红色封路段为官网图的近似空间转译，不是实时封控边界。', en: 'Approximate spatial translation of red closures—not live closure limits.' }
+        focusBounds: [245, 235, 430, 380],
+        note: { zh: '红色 X 封路标记直接来自官方图；它不是实时封控边界，现场临时管制优先。', en: 'The red-X closures come directly from the official artwork. They are not live closure limits; temporary onsite controls take priority.' }
       },
       {
         id: 'permit-only', kind: 'permit', dayScopes: ['thu-sat', 'sunday'], guideScopes: [], labelKey: 'parkingMapTrafficPermit',
-        paths: [
-          [[36.56845, -121.95110], [36.56930, -121.94945], [36.56980, -121.94657], [36.56920, -121.94470]]
-        ],
+        focusBounds: [255, 395, 600, 500],
         note: { zh: '粉色许可路段仅供具备相应资格 / 通行证者，普通观众不要尝试穿行。', en: 'Pink permit-only segments require the matching eligibility / pass; general spectators should not attempt to pass through.' }
       },
       {
         id: 'test-drives', kind: 'test', dayScopes: ['thu-sat', 'sunday'], guideScopes: [], labelKey: 'parkingMapTrafficTest',
-        paths: [
-          [[36.57040, -121.95055], [36.57170, -121.95005], [36.57310, -121.94945]]
-        ],
+        focusBounds: [305, 315, 390, 445],
         note: { zh: '黑色试驾流线是活动运营路线，不是观众步行或驾车捷径。', en: 'The black test-drive flow is an event operations route, not a spectator driving or walking shortcut.' }
       }
     ],
@@ -898,10 +879,6 @@ window.PEBBLE_DATA = {
       {
         id: 'directions', label: { zh: '官方 Tour 起终点停车指引', en: 'Official Tour start/finish parking directions' },
         url: 'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/'
-      },
-      {
-        id: 'osm', label: { zh: 'OpenStreetMap 地理底图', en: 'OpenStreetMap basemap' },
-        url: 'https://www.openstreetmap.org/copyright'
       }
     ]
   },

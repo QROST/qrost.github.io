@@ -223,9 +223,9 @@ def validate() -> list[str]:
         "parking-map-line-legend",
     ):
         renderer_lookup = f"getElementById('{root_id}')"
-        if app_js.count(renderer_lookup) != 1:
+        if app_js.count(renderer_lookup) < 1:
             errors.append(
-                f"expected parking-map renderer to bind {root_id} exactly once, "
+                f"expected parking-map renderer to bind {root_id} at least once, "
                 f"found {app_js.count(renderer_lookup)}"
             )
     if not re.search(r"renderTourMorning\(\);\s*renderParkingTraffic\(\);", app_js):
@@ -238,6 +238,36 @@ def validate() -> list[str]:
     ):
         if len(re.findall(rf"function\s+{function_name}\(\)", app_js)) != 1:
             errors.append(f"expected exactly one {function_name} implementation")
+    parking_renderer_match = re.search(
+        r"function\s+makeParkingTrafficIcon\(point\)(.*?)function\s+getMapPlace\(placeId\)",
+        app_js,
+        re.DOTALL,
+    )
+    if not parking_renderer_match:
+        errors.append("parking-map renderer block is missing")
+    else:
+        parking_renderer = parking_renderer_match.group(1)
+        for required in (
+            "window.L.CRS.Simple",
+            "window.L.imageOverlay",
+            "parkingDiagramLatLng",
+            "parkingDiagramBounds",
+        ):
+            if required not in parking_renderer:
+                errors.append(f"parking-map renderer must use {required}")
+        for forbidden in ("window.L.tileLayer", "window.L.polyline", "point.lat", "point.lng"):
+            if forbidden in parking_renderer:
+                errors.append(f"parking-map diagram renderer must not use {forbidden}")
+    official_parking_svg = DEMO_DIR / "assets/img/parking-traffic-map-2026.svg"
+    if not official_parking_svg.exists():
+        errors.append("vendored official parking SVG is missing")
+    elif 'viewBox="0 0 792 612"' not in official_parking_svg.read_text(encoding="utf-8"):
+        errors.append("vendored official parking SVG has the wrong viewBox")
+    if html.count('src="assets/img/parking-traffic-map-2026.svg"') != 1:
+        errors.append("static parking-map fallback must use the vendored official SVG exactly once")
+    for stale_copy in ("georeferenced", "公开地理资料配准", "OpenStreetMap 地理底图"):
+        if stale_copy in html or stale_copy in data_js:
+            errors.append(f"parking-map copy must not claim false geographic alignment: {stale_copy}")
     official_parking_pdf = "https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf"
     if html.count(official_parking_pdf) != 2:
         errors.append("parking-map static fallback and source bar must both link the official PDF")

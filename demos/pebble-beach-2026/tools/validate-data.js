@@ -20,11 +20,17 @@ const expectedTourWaves = ['09:30', '09:45', '10:00'];
 const parkingTrafficOfficialUrls = [
   'https://www.pebblebeachconcours.net/entrants-guide/sponsor-maps-directions/',
   'https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf',
-  'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/',
-  'https://www.openstreetmap.org/copyright'
+  'https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/'
 ];
 const expectedParkingTrafficCodes = [
-  'T', 'V', '1', '2', '3', '4', '5', '6', '7', '8', '8A', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', 'RS', 'BD', 'PO', 'CC'
+  '1', '2', '3', '4', '5', '6', '7', '8', '8A', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', 'RS', 'BD', 'PO', 'CC'
+];
+const expectedParkingDiagramPoints = [
+  ['1', 455.36, 449.94], ['2', 420.21, 429.8], ['3', 350.37, 440.61], ['4', 303.3, 426], ['5', 320.01, 418.96],
+  ['6', 338, 383], ['7', 356.79, 400.9], ['8', 192.16, 359.63], ['8A', 237.91, 337.62], ['9', 157.1, 328.93],
+  ['10', 221.43, 294.85], ['11', 316.17, 293.09], ['12', 290.17, 252.86], ['13', 203.44, 136.25], ['14', 225.05, 234.68],
+  ['15', 132.04, 307.65], ['16', 120.41, 74.39], ['17', 164.59, 66.31], ['18', 76.89, 37.11], ['19', 186.61, 65.93],
+  ['20', 317.33, 75.95], ['RS', 308, 267.69], ['BD', 315.08, 435.87], ['PO', 277.39, 459.81], ['CC', 295.03, 478.66]
 ];
 const expectedParkingTrafficIds = ['traffic-loop', 'one-way', 'road-closed', 'permit-only', 'test-drives'];
 const expectedRouteSignatures = {
@@ -208,6 +214,10 @@ if (data) {
   if (parkingMap) {
     check(parkingMap.checked === '2026-08-13', 'parkingTrafficMap.checked must remain 2026-08-13');
     check(parkingMap.mapVersion === '2026-07-20', 'parking traffic-map version must remain 2026-07-20');
+    check(parkingMap.coordinateSpace === 'official-diagram', 'parking map must use the official-diagram coordinate space');
+    check(JSON.stringify(parkingMap.diagramSize) === JSON.stringify({ width: 792, height: 612 }), 'parking map diagram size must match the official PDF viewBox');
+    check(parkingMap.diagramAsset === 'assets/img/parking-traffic-map-2026.svg', 'parking map must use the vendored official SVG');
+    check(parkingMap.sourcePdf === parkingTrafficOfficialUrls[1], 'parking map sourcePdf must remain the official July 20 PDF');
     check(parkingMap.defaultDay === 'thu-sat', 'parking map must default to the Aug 13 Thu–Sat scope');
     check(parkingMap.defaultLayer === 'guide', 'parking map must default to the guide layer');
 
@@ -235,7 +245,7 @@ if (data) {
     const allowedPointKinds = new Set(['guide', 'general', 'ada', 'assigned', 'transit']);
     const allowedPointLayers = new Set(['guide', 'general', 'ada', 'assigned']);
     const allowedDayScopes = new Set(['thu-sat', 'sunday']);
-    check(Array.isArray(parkingMap.points) && parkingMap.points.length === 27, 'parking map must contain 25 official codes plus two guide anchors');
+    check(Array.isArray(parkingMap.points) && parkingMap.points.length === 25, 'parking map must contain the 25 official diagram codes');
     for (const [index, point] of (parkingMap.points || []).entries()) {
       const label = `parkingTrafficMap.points[${index}]`;
       check(typeof point.id === 'string' && /^[a-z0-9-]+$/.test(point.id), `${label}.id is invalid`);
@@ -255,21 +265,35 @@ if (data) {
         for (const scope of point.adaScopes || []) check(allowedDayScopes.has(scope), `${label}.adaScopes contains invalid scope ${scope}`);
       }
       check(['official', 'photo'].includes(point.evidence), `${label}.evidence is invalid`);
-      check(Number.isFinite(point.lat) && point.lat >= 36.56 && point.lat <= 36.60, `${label}.lat is outside the mapped Pebble Beach area`);
-      check(Number.isFinite(point.lng) && point.lng >= -121.98 && point.lng <= -121.94, `${label}.lng is outside the mapped Pebble Beach area`);
+      check(Number.isFinite(point.mapX) && point.mapX >= 0 && point.mapX <= parkingMap.diagramSize.width, `${label}.mapX is outside the official diagram`);
+      check(Number.isFinite(point.mapY) && point.mapY >= 0 && point.mapY <= parkingMap.diagramSize.height, `${label}.mapY is outside the official diagram`);
+      check(!Object.hasOwn(point, 'lat') && !Object.hasOwn(point, 'lng'), `${label} must not mix WGS84 coordinates into the official diagram`);
       checkBilingual(point.name, `${label}.name`);
       checkBilingual(point.audience, `${label}.audience`);
       checkBilingual(point.access, `${label}.access`);
     }
     check(JSON.stringify(pointCodes) === JSON.stringify(expectedParkingTrafficCodes), 'parking traffic-map codes or order drifted');
+    check(
+      JSON.stringify((parkingMap.points || []).map((point) => [point.code, point.mapX, point.mapY])) === JSON.stringify(expectedParkingDiagramPoints),
+      'parking diagram hotspot coordinates drifted from the official PDF'
+    );
     check(new Set(pointCodes).size === pointCodes.length, 'parking traffic-map codes must be unique');
+    check(JSON.stringify(parkingMap.points.find((point) => point.id === 'lot-9').dayScopes) === JSON.stringify(['thu-sat']), 'Lot 9 must not appear in the Sunday scope');
     check(JSON.stringify(parkingMap.points.find((point) => point.id === 'lot-9').adaScopes) === JSON.stringify(['thu-sat']), 'Lot 9 must remain Thu–Sat ADA only');
+    check(JSON.stringify(parkingMap.points.find((point) => point.id === 'lot-18').dayScopes) === JSON.stringify(['sunday']), 'Lot 18 must not appear in the Thu–Sat scope');
     check(JSON.stringify(parkingMap.points.find((point) => point.id === 'lot-18').adaScopes) === JSON.stringify(['sunday']), 'Lot 18 must remain Sunday ADA only');
+    check(
+      JSON.stringify((parkingMap.points || []).filter((point) => point.guideScopes.includes('thu-sat')).map((point) => point.code)) === JSON.stringify(['9']),
+      'the Thu–Sat guide layer must highlight only official ADA Lot 9 among diagram codes'
+    );
+    check(
+      JSON.stringify((parkingMap.points || []).filter((point) => point.guideScopes.includes('sunday')).map((point) => point.code)) === JSON.stringify(['18']),
+      'the Sunday guide layer must highlight only official ADA Lot 18 among diagram codes'
+    );
     const generalCodes = (parkingMap.points || []).filter((point) => point.layers.includes('general')).map((point) => point.code);
-    check(JSON.stringify(generalCodes) === JSON.stringify(['9', '13', '16', '18', '19']), 'friend-photo General Spectators codes drifted');
+    check(JSON.stringify(generalCodes) === JSON.stringify(['9', '13', '16', '18', '19']), 'official-diagram General Spectators codes drifted');
     const mapPointText = JSON.stringify(parkingMap.points || []);
     check(mapPointText.includes('do not self-route') && mapPointText.includes('follow gate assignment'), 'parking-map points must preserve the no-self-routing boundary');
-    check(mapPointText.includes('not a fixed parking entrance'), 'Portola pin must remain an area anchor, not a parking entrance');
     check(!mapPointText.includes('Open in OpenStreetMap'), 'approximate parking points must not offer direct navigation');
 
     const controls = parkingMap.trafficControls || [];
@@ -280,16 +304,23 @@ if (data) {
       check(typeof control.labelKey === 'string' && control.labelKey in data.labels, `${label}.labelKey is invalid`);
       check(Array.isArray(control.dayScopes) && control.dayScopes.length >= 1, `${label}.dayScopes is required`);
       check(Array.isArray(control.guideScopes), `${label}.guideScopes must be an array`);
-      check(Array.isArray(control.paths) && control.paths.length >= 1, `${label}.paths is required`);
-      for (const [pathIndex, segment] of (control.paths || []).entries()) {
-        check(Array.isArray(segment) && segment.length >= 2, `${label}.paths[${pathIndex}] needs at least two coordinates`);
-        for (const coord of segment || []) {
-          check(Array.isArray(coord) && coord.length === 2 && coord.every(Number.isFinite), `${label}.paths[${pathIndex}] has an invalid coordinate`);
-        }
-      }
+      check(Array.isArray(control.focusBounds) && control.focusBounds.length === 4 && control.focusBounds.every(Number.isFinite), `${label}.focusBounds must contain four diagram coordinates`);
+      const [minX, minY, maxX, maxY] = control.focusBounds || [];
+      check(minX >= 0 && minY >= 0 && maxX <= parkingMap.diagramSize.width && maxY <= parkingMap.diagramSize.height, `${label}.focusBounds is outside the official diagram`);
+      check(minX < maxX && minY < maxY, `${label}.focusBounds must have positive area`);
+      check(!Object.hasOwn(control, 'paths'), `${label} must not contain synthetic geographic paths`);
       checkBilingual(control.note, `${label}.note`);
     }
-    check(JSON.stringify(controls).includes('not live closure'), 'traffic lines must preserve the schematic, non-live boundary');
+    check(JSON.stringify(controls).includes('not live closure'), 'traffic controls must preserve the non-live boundary');
+
+    const diagramPath = path.join(__dirname, '..', parkingMap.diagramAsset);
+    check(fs.existsSync(diagramPath), 'vendored official parking SVG is missing');
+    if (fs.existsSync(diagramPath)) {
+      const diagramSvg = fs.readFileSync(diagramPath, 'utf8');
+      check(diagramSvg.includes('<svg') && diagramSvg.includes('viewBox="0 0 792 612"'), 'parking SVG must preserve the official 792×612 viewBox');
+      check(!/<script\b/i.test(diagramSvg), 'parking SVG must not contain scripts');
+      check(!/(?:href|xlink:href)="https?:\/\//i.test(diagramSvg), 'parking SVG must not load external resources');
+    }
 
     const mapSourceIds = new Set();
     const mapSourceUrls = [];
@@ -302,7 +333,7 @@ if (data) {
       checkUrl(source.url, `${label}.url`);
       mapSourceUrls.push(source.url);
     }
-    check(JSON.stringify(mapSourceUrls) === JSON.stringify(parkingTrafficOfficialUrls), 'parking map must preserve official/PDF/OSM sources in order');
+    check(JSON.stringify(mapSourceUrls) === JSON.stringify(parkingTrafficOfficialUrls), 'parking map must preserve the three official sources in order');
   }
 
   const dayIds = new Set();

@@ -35,7 +35,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=893230eb0f">
+  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=eaa7051834">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳到正文</a>
@@ -189,10 +189,10 @@
     <section id="parking-traffic" class="section-block parking-traffic-section" aria-labelledby="parking-map-title">
       <div class="section-heading parking-map-heading">
         <div>
-          <span class="section-kicker" data-i18n="parkingMapKicker">官方场内图 · 互动转译</span>
+          <span class="section-kicker" data-i18n="parkingMapKicker">官方场内图 · 精确图面交互</span>
           <h2 id="parking-map-title" data-i18n="parkingMapTitle">停车区、接驳点与交通管制，一张图查清</h2>
         </div>
-        <p data-i18n="parkingMapIntro">依据官网 7/20/26 Parking &amp; Traffic Flow 图重绘，默认显示 8 月 13 日。它帮助辨认现场编号，不替代入口分配、临时路牌或工作人员指挥。</p>
+        <p data-i18n="parkingMapIntro">直接使用官网 7/20/26 Parking &amp; Traffic Flow 矢量图，默认显示 8 月 13 日。缩放时热点始终锁定官方图面；它帮助辨认现场编号，不替代入口分配、临时路牌或工作人员指挥。</p>
       </div>
 
       <div class="parking-map-evidence">
@@ -201,10 +201,10 @@
           <strong data-i18n="parkingMapHoursThuSat">8 月 13–15 日 · 6:00–18:00</strong>
           <small data-i18n="parkingMapHoursSunday">8 月 16 日 · 4:00–16:00</small>
         </div>
-        <p data-i18n="parkingMapEvidenceBoundary">官网 PDF 验证停车区名称、位置和交通线型；朋友拍摄版本补充了适用人群。人群注记用于识别，不等于可自行驶入或保证 8.13 Tour 普通停车。</p>
+        <p data-i18n="parkingMapEvidenceBoundary">官网 PDF 是本图的唯一空间底图，包含停车编号、适用人群与交通线；上传照片与官网版本一致，用于交叉核验现场印刷图。人群注记用于识别，不等于可自行驶入或保证 8.13 Tour 普通停车。</p>
       </div>
 
-      <div class="parking-map-toolbar" aria-label="停车交通图筛选">
+      <div class="parking-map-toolbar" aria-label="停车交通图筛选" data-i18n-aria-label="parkingMapToolbarLabel">
         <fieldset>
           <legend data-i18n="parkingMapDayLegend">适用日</legend>
           <div id="parking-map-day-filter" class="parking-map-filter-row" role="group" aria-label="适用日"></div>
@@ -215,13 +215,14 @@
         </fieldset>
       </div>
 
-      <p id="parking-map-caveat" class="parking-map-caveat" data-i18n="parkingMapCaveat">规划图，不是实时交通或逐车位导航。点位是按官方示意图和公开地理资料配准的区域中心；入口、开放状态与行驶方向以当天现场为准。</p>
+      <p id="parking-map-caveat" class="parking-map-caveat" data-i18n="parkingMapCaveat">这是官方示意图坐标，不是经纬度地图、实时交通或逐车位导航。缩放只放大原图，不表示真实距离或精确入口；开放状态与行驶方向以当天现场为准。</p>
 
       <div class="parking-map-layout">
         <div class="parking-map-shell">
           <div id="parking-traffic-map" class="parking-traffic-map" role="region" aria-labelledby="parking-map-title" aria-describedby="parking-map-caveat">
             <div class="parking-map-fallback">
-              <strong data-i18n="parkingMapFallbackTitle">交互底图不可用时</strong>
+              <img src="assets/img/parking-traffic-map-2026.svg" width="792" height="612" loading="lazy" alt="2026 Pebble Beach Concours d’Elegance 官方停车与交通流示意图" data-i18n-alt="parkingMapImageAlt">
+              <strong data-i18n="parkingMapFallbackTitle">交互图不可用时</strong>
               <p data-i18n="parkingMapFallbackBody">8.13 仍按 Portola Road 附近现场指引停车；Lot 9 仅供持 DMV placard 的 ADA 车辆。其余编号只作识别，不要直接导航驶入。</p>
               <a href="https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf" target="_blank" rel="noopener noreferrer" data-i18n="parkingMapOfficialPdf">查看官方 PDF ↗</a>
             </div>
@@ -241,7 +242,7 @@
           <ol id="parking-map-list" class="parking-map-list">
             <li><strong>Portola Road</strong><span data-i18n="parkingMapStaticPortola">按现场指引进入附近指定停车区</span></li>
             <li><strong>Lot 9</strong><span data-i18n="parkingMapStaticAda">8.13–15 仅作 ADA 停车标记，须持 DMV placard</span></li>
-            <li><strong>13 / 16 / 19</strong><span data-i18n="parkingMapStaticGeneral">照片注记为 General Spectators；到场询问，不视作 Tour 保证</span></li>
+            <li><strong>13 / 16 / 19</strong><span data-i18n="parkingMapStaticGeneral">官方图注记为 General Spectators；到场询问，不视作 Tour 保证</span></li>
           </ol>
         </aside>
       </div>
@@ -249,7 +250,7 @@
       <aside class="parking-map-warning">
         <div>
           <strong data-i18n="parkingMapWarningTitle">先看状态，再看编号</strong>
-          <p data-i18n="parkingMapWarningBody">“General Spectators”是照片版图例中的人群标签，不代表从任一入口都能直达。8.13 Tour 的负责做法仍是先到 Portola 起终点区域，再听从现场分配；不要为了某个编号穿越封路、许可路段或追逐车队。</p>
+          <p data-i18n="parkingMapWarningBody">“General Spectators”是官方图例中的人群标签，不代表从任一入口都能直达。8.13 Tour 的负责做法仍是先到 Portola 起终点区域，再听从现场分配；不要为了某个编号穿越封路、许可路段或追逐车队。</p>
         </div>
         <div class="parking-map-source-links">
           <a href="https://www.pebblebeachconcours.net/entrants-guide/sponsor-maps-directions/" target="_blank" rel="noopener noreferrer" data-i18n="parkingMapHostPage">官方承载页 ↗</a>
@@ -390,7 +391,7 @@
   </footer>
 
   <script src="assets/vendor/leaflet/leaflet.js"></script>
-  <script src="assets/js/data.js?v=16c17d7b27"></script>
-  <script src="assets/js/app.js?v=3084afa514"></script>
+  <script src="assets/js/data.js?v=c2271d3071"></script>
+  <script src="assets/js/app.js?v=1af1a6abec"></script>
 </body>
 </html>

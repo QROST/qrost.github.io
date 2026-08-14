@@ -769,9 +769,25 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: color-mix(in srgb, var(--blue-soft) 48%, var(--bg-soft));
+  background: #fff;
 }
-.parking-map-fallback { display: grid; height: 100%; place-content: center; gap: 8px; padding: 30px; text-align: center; }
+.parking-map-fallback {
+  display: grid;
+  height: 100%;
+  grid-template-rows: minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  text-align: center;
+}
+.parking-map-fallback img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  background: #fff;
+}
+.parking-traffic-map.is-diagram-error .parking-map-fallback { grid-template-rows: auto auto auto; place-content: center; padding: 30px; }
 .parking-map-fallback strong { font-family: var(--serif); font-size: 1.22rem; }
 .parking-map-fallback p { max-width: 510px; margin: 0; color: var(--muted); font-size: .73rem; line-height: 1.6; }
 .parking-map-fallback a { color: var(--green); font-size: .71rem; font-weight: 750; }
@@ -851,26 +867,18 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 
 .parking-map-marker-wrap { border: 0; background: transparent; }
 .parking-map-marker {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  place-items: center;
-  border: 3px solid var(--surface-strong);
-  border-radius: 50% 50% 50% 9px;
-  background: #174f43;
-  color: #fff;
-  font-size: .67rem;
-  font-weight: 900;
-  line-height: 1;
-  box-shadow: 0 2px 10px rgba(14, 25, 22, .28);
-  transform: rotate(-45deg);
+  display: block;
+  width: 26px;
+  height: 26px;
+  border: 3px solid #174f43;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .18);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, .9), 0 2px 9px rgba(14, 25, 22, .34);
 }
-.parking-map-marker > span { display: block; transform: rotate(45deg); }
-.parking-map-marker.kind-general { background: #8b651a; }
-.parking-map-marker.kind-ada { border-radius: 9px; background: #285d78; transform: none; }
-.parking-map-marker.kind-ada > span { transform: none; }
-.parking-map-marker.kind-assigned { background: #66716e; }
-.parking-map-marker.kind-transit { background: #ad3c1d; }
+.parking-map-marker.kind-general { border-color: #8b651a; }
+.parking-map-marker.kind-ada { border-color: #285d78; border-radius: 7px; }
+.parking-map-marker.kind-assigned { border-color: #66716e; }
+.parking-map-marker.kind-transit { border-color: #ad3c1d; }
 .parking-map-popup { color: #17201e; font-family: var(--sans); }
 .parking-map-popup-title { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 9px; align-items: center; }
 .parking-map-popup-title > span { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 9px; background: #17201e; color: #fff; font-weight: 900; }
@@ -905,9 +913,8 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
   font-size: 1.25rem;
   line-height: 44px;
 }
-.dark .parking-traffic-map .leaflet-tile-pane { filter: brightness(.78) contrast(1.05) saturate(.9); }
-.dark .parking-traffic-map .leaflet-control-attribution { background: rgba(16, 23, 25, .78); color: #b7c2bc; }
-.dark .parking-traffic-map .leaflet-control-attribution a { color: #d7e4dc; }
+.parking-traffic-map .leaflet-image-layer { background: #fff; }
+.parking-traffic-map.leaflet-container { background: #fff; }
 
 .plan-track { display: grid; grid-template-columns: 1fr; gap: 14px; }
 .plan-track::before { display: none; }
