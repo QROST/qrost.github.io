@@ -8,21 +8,22 @@ The project is intentionally a **curated pilot**, not a claim to have completed
 global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
-The current catalog contains 1063 works, 853 people, 57 practices, 42
-country-place records, 577 relationship edges, and 11654 source claims. Exact
-direct-P31 mapping currently classifies 784 works, while 255 remain unmapped and
-24 remain ambiguous. Wikidata is the primary structured source; a refreshed
-24-anchor Getty ULAN P245 crosswalk is committed, but the reciprocal Getty
-identity overlay is blocked as of 2026-08-07 because `vocab.getty.edu` returns
-HTTP 499 (`Service temporarily degraded`) for JSON-LD and RDF downloads. Public
-people therefore still carry zero `ulan` external ids. Agentic verification
-(`reviewer-agentic-cursor`, 2026-08-09) currently covers all 42 country places,
-all 57 practices, 205 people, and 137 no-credit works with `period=unknown`
-(441 verified entities and relations). Known-period works stay candidate because
-`field_period` is only indirectly evidenced from P571/P1619. All 577 relations
-remain `candidate` by design — Wikidata's relationship dimension is
-`candidate`-authority, so verified lineage requires a stronger source (Getty
-ULAN relationships, academic literature) than Wikidata alone provides.
+The current catalog contains 1090 works, 888 people, 57 practices, 48
+country-place records, 591 relationship edges, and 11901 source claims. Exact
+direct-P31 mapping currently classifies 859 works, while 198 remain unmapped and
+33 remain ambiguous. Wikidata is the primary structured source; a refreshed
+24-anchor Getty ULAN P245 crosswalk is regenerated locally per re-hydrate
+(gitignored infra), but the reciprocal Getty identity overlay is blocked as of
+2026-08-07 because `vocab.getty.edu` returns HTTP 499 (`Service temporarily
+degraded`) for JSON-LD and RDF downloads. Public people therefore still carry
+zero `ulan` external ids. Agentic verification (`reviewer-agentic-cursor`,
+2026-08-14) currently covers all 48 country places, all 57 practices, 168
+people, and 104 works (377 verified entities and relations). Known-period works
+stay candidate because `field_period` is only indirectly evidenced from
+P571/P1619. All 591 relations remain `candidate` by design — Wikidata's
+relationship dimension is `candidate`-authority, so verified lineage requires a
+stronger source (Getty ULAN relationships, academic literature) than Wikidata
+alone provides.
 
 ## Data authority
 
