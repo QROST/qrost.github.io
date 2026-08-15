@@ -104,13 +104,32 @@ if (data) {
   for (const [key, value] of Object.entries(data.labels || {})) checkBilingual(value, `labels.${key}`);
   for (const [key, value] of Object.entries(data.ui || {})) checkBilingual(value, `ui.${key}`);
   for (const key of [
-    'navPlan', 'navTour', 'navTourArchive', 'navArchive', 'navMenuShort', 'navMenuOpen', 'navMenuClose', 'navBackTop', 'tourHeroCtaPast',
+    'navPlan', 'navTour', 'navTourArchive', 'navArchive', 'navMenuShort', 'navMenuOpen', 'navMenuClose', 'navBackTop',
+    'tourHeroCta', 'heroScheduleCta', 'heroCurrentScheduleCta', 'heroArchiveScheduleCta', 'seeQuickPlan', 'reviewQuickPlan',
     'liveMoreFilters', 'liveStatusBrowseFolded', 'liveOutsideWindowBefore', 'liveOutsideWindowAfter', 'pastGroupSummary', 'archiveSummary',
     'temporalPastBadge', 'temporalActiveFoldHint', 'temporalTourLabel', 'temporalParkingLabel', 'temporalBrandLabel',
     'temporalNearbyLabel', 'temporalStayLabel', 'quickNoScript'
   ]) {
     checkBilingual(data.labels?.[key], `labels.${key}`);
   }
+  const expectedHeroActionIds = ['tour', 'current', 'archive'];
+  check(JSON.stringify((data.heroActions || []).map((action) => action.id)) === JSON.stringify(expectedHeroActionIds), 'heroActions must preserve tour → current → archive order');
+  check(data.heroActions?.[0]?.throughDate === '2026-08-13' && data.heroActions?.[0]?.throughTime === '12:30', 'Tour hero action must retire after the approximate-return buffer at 12:30 on Aug 13');
+  check(data.heroActions?.[1]?.throughDate === '2026-08-17' && data.heroActions?.[1]?.throughTime === null, 'current hero action must remain through Aug 17');
+  check(data.heroActions?.[2]?.throughDate === null && data.heroActions?.[2]?.throughTime === null, 'archive hero action must be the terminal fallback');
+  for (const [index, action] of (data.heroActions || []).entries()) {
+    const label = `heroActions[${index}]`;
+    check(action.primary && action.secondary, `${label} must define two actions`);
+    check(action.primary?.href !== action.secondary?.href, `${label} actions must not share a destination`);
+    for (const [role, item] of Object.entries({ primary: action.primary, secondary: action.secondary })) {
+      check(['#tour-0813', '#schedule', '#quick-plan'].includes(item?.href), `${label}.${role}.href must target a supported chapter`);
+      check(typeof item?.intent === 'string' && item.intent.length > 0, `${label}.${role}.intent is required`);
+      checkBilingual(data.labels?.[item?.labelKey], `${label}.${role}.labelKey`);
+    }
+  }
+  check(data.heroActions?.[1]?.primary?.intent === 'schedule-current', 'current primary CTA must reset and open the schedule');
+  check(data.heroActions?.[2]?.primary?.intent === 'schedule-archive', 'archive primary CTA must intentionally open the schedule archive');
+  check(data.heroActions?.[2]?.secondary?.intent === 'quick-archive', 'archive secondary CTA must intentionally open the quick-plan archive');
   for (const key of ['pastGroupSummary', 'archiveSummary']) {
     check(data.labels?.[key]?.zh.includes('{range}') && data.labels?.[key]?.en.includes('{range}'), `labels.${key} must expose the chronological date range`);
     check(data.labels?.[key]?.zh.includes('{count}') && data.labels?.[key]?.en.includes('{count}'), `labels.${key} must retain the result count`);

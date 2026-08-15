@@ -493,6 +493,21 @@ def validate() -> list[str]:
                 errors.append(f"internal navigation target #{target} must resolve exactly once")
     if html.count('id="back-to-top"') != 1 or html.count('href="#page-top"') != 1 or html.count('<body id="page-top">') != 1:
         errors.append("back-to-top control must resolve to the unique page-top target")
+    hero_primary = re.search(r'<a[^>]*id="hero-primary-cta"[^>]*href="([^"]+)"[^>]*>', html)
+    hero_secondary = re.search(r'<a[^>]*id="hero-secondary-cta"[^>]*href="([^"]+)"[^>]*>', html)
+    if not hero_primary or not hero_secondary or hero_primary.group(1) == hero_secondary.group(1):
+        errors.append("hero fallback CTAs must have stable IDs and distinct chapter destinations")
+    if not all(token in app_js for token in (
+        "heroActionForClock(clock)", "DATA.heroActions || []", "action.primary.href !== action.secondary.href",
+        "setHeroAction(primary, action.primary)", "setHeroAction(secondary, action.secondary)",
+        "activateHeroIntent(link.getAttribute('data-hero-intent'))", "focusFragmentTarget(link.hash)",
+    )):
+        errors.append("hero CTAs must use distinct data-driven phases, explicit intents and destination focus")
+    if not all(token in app_js for token in (
+        "state.liveMode = 'browse'", "state.day = 'all'", "state.area = 'all'", "state.type = 'all'",
+        "state.schedulePastOpen = intent === 'schedule-archive'", "state.quickPastOpen = true",
+    )):
+        errors.append("hero schedule/archive intents must deliberately reset filters and reveal requested archives")
     for section_id, through_date, label_key in (
         ("tour-0813", "2026-08-13", "temporalTourLabel"),
         ("parking-traffic", "2026-08-16", "temporalParkingLabel"),
@@ -507,9 +522,17 @@ def validate() -> list[str]:
         errors.append("all five temporal sections must remain open in the no-JavaScript fallback")
     if html.count('data-temporal-summary') != 5:
         errors.append("all five temporal sections must expose a summary label")
-    for function_name in ("applyTemporalSections", "updateHeroPrimaryCta", "revealHashTarget"):
+    for function_name in ("applyTemporalSections", "updateHeroCtas", "revealHashTarget"):
         if len(re.findall(rf"function\s+{function_name}\([^)]*\)", app_js)) != 1:
             errors.append(f"expected exactly one {function_name} implementation")
+    if "const modeOptions = inWindow ?" not in app_js or "if (!inWindow && state.liveMode !== 'browse') state.liveMode = 'browse'" not in app_js:
+        errors.append("Now and Today controls must disappear outside the Car Week window")
+    if "dayButton.getAttribute('aria-disabled')" in app_js or "aria-disabled=\"true\"" in app_js:
+        errors.append("specific date buttons must remain actionable from Now and Today modes")
+    if not all(token in demo_css for token in (
+        "html:not(.nav-ready) .parking-view-tabs", "html:not(.nav-ready) .parking-geographic-map-actions", "html:not(.nav-ready) .parking-map-toolbar",
+    )):
+        errors.append("map-only controls must be hidden when JavaScript is unavailable")
     if "target.scrollIntoView" not in app_js:
         errors.append("explicit archive hashes must reveal and scroll to their rendered target")
     if "target instanceof HTMLDetailsElement" not in app_js:
