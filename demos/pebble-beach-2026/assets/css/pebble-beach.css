@@ -711,6 +711,12 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
   background: var(--surface);
   box-shadow: var(--shadow-small);
 }
+
+html:not(.nav-ready) .parking-view-tabs,
+html:not(.nav-ready) .parking-geographic-map-actions,
+html:not(.nav-ready) .parking-map-toolbar {
+  display: none;
+}
 .parking-view-tabs [role="tab"] {
   min-height: 44px;
   padding: 9px 16px;
@@ -1506,8 +1512,6 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .filter-button:hover { color: var(--ink); background: var(--bg-soft); }
 .filter-button[aria-pressed="true"] { border-color: var(--green); background: var(--green-soft); color: var(--green); }
 .filter-row-secondary .filter-button[aria-pressed="true"] { border-color: var(--orange); background: var(--orange-soft); color: var(--orange); }
-.filter-button-muted { opacity: .45; cursor: not-allowed; }
-.filter-button-muted:hover { color: var(--muted); background: transparent; }
 .filter-note { margin: 8px 0 0; color: var(--faint); font-size: .7rem; line-height: 1.45; }
 
 .filter-panel .live-clock-row { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }

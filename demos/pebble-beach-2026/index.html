@@ -35,7 +35,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=79546524eb">
+  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=1259f9b96f">
 </head>
 <body id="page-top">
   <a class="skip-link" href="#main" data-i18n="skip">跳到正文</a>
@@ -79,8 +79,8 @@
         <h1><span data-i18n="heroTitleTop">圆石滩，不只一场车展</span><em data-i18n="heroTitleBottom">早到一周，再迎旗舰主展</em></h1>
         <p class="hero-lead" data-i18n="heroLead">官方 Monterey Car Week 自 8 月 7 日开场，高峰仍在 13–16 日。这份指南覆盖从免费早场街展到周一返程的完整 11 天：何时、去哪里、值不值得、住哪里、路上多久。</p>
         <div class="hero-actions">
-          <a class="button button-primary" id="hero-primary-cta" href="#tour-0813"><span data-i18n="tourHeroCta">看 8.13 Tour 早晨计划</span><span aria-hidden="true">↓</span></a>
-          <a class="button button-ghost" href="#quick-plan" data-i18n="seeQuickPlan">先看推荐方案</a>
+          <a class="button button-primary" id="hero-primary-cta" href="#schedule" data-hero-intent="schedule-current"><span data-i18n="heroScheduleCta">浏览完整日程</span><span aria-hidden="true">↓</span></a>
+          <a class="button button-ghost" id="hero-secondary-cta" href="#quick-plan" data-hero-intent="quick" data-i18n="seeQuickPlan">先看推荐方案</a>
         </div>
         <p class="hero-fineprint" data-i18n="heroFineprint">Kickoff · ACE 藏品 · 慈善街展 · 微型车展 · Tour · 品牌/赛道 · Concours · 返程</p>
       </div>
@@ -292,7 +292,7 @@
             <div class="parking-map-panel-heading">
               <div>
                 <span class="section-kicker" data-i18n="parkingGeoListKicker">核实锚点</span>
-                <h3 id="parking-geographic-list-title" data-i18n="parkingGeoListTitle">点击条目只缩放到方位范围</h3>
+                <h3 id="parking-geographic-list-title" data-i18n="parkingGeoListTitle">方位锚点与误差范围</h3>
               </div>
               <p id="parking-geographic-status" role="status" aria-live="polite">—</p>
             </div>
@@ -312,7 +312,7 @@
             <p data-i18n="parkingGeoBoundaryBody">所有编号停车区（包括 Thu–Sat ADA Lot 9 与 Sunday Lot 18）及单行、封路、交通环线、许可路段、试驾流线，都只在官方示意图中查看。普通停车仍由入口和现场人员分配。</p>
           </div>
           <div class="parking-map-source-links">
-            <a href="https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/" target="_blank" rel="noopener noreferrer" data-i18n="parkingGeoOfficialDirections">官方停车与入口说明 ↗</a>
+            <a href="https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/" target="_blank" rel="noopener noreferrer" data-i18n="parkingGeoOfficialDirections">官方停车、入口与接驳说明 ↗</a>
             <a href="https://www.pebblebeachconcours.net/wp-content/uploads/2026/05/PBC_2026_Event_Map_Web_Final2.pdf" target="_blank" rel="noopener noreferrer" data-i18n="parkingGeoOfficialEventMap">官方活动区域图 PDF ↗</a>
             <a href="https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf" target="_blank" rel="noopener noreferrer" data-i18n="parkingMapOfficialPdf">查看官方 PDF ↗</a>
             <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" data-i18n="parkingGeoOsmAttribution">OpenStreetMap 坐标与底图 ↗</a>
@@ -382,7 +382,7 @@
         <div class="parking-map-source-links">
           <a href="https://www.pebblebeachconcours.net/entrants-guide/sponsor-maps-directions/" target="_blank" rel="noopener noreferrer" data-i18n="parkingMapHostPage">官方承载页 ↗</a>
           <a href="https://www.pebblebeachconcours.net/wp-content/uploads/2026/07/01a_Parking-and-Traffic-Flow-THUR-SUN_LotsOnly.pdf" target="_blank" rel="noopener noreferrer" data-i18n="parkingMapOfficialPdf">查看官方 PDF ↗</a>
-          <a href="https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/" target="_blank" rel="noopener noreferrer" data-i18n="parkingMapDirections">Tour 停车指引 ↗</a>
+          <a href="https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/" target="_blank" rel="noopener noreferrer" data-i18n="parkingMapDirections">官方停车、入口与接驳说明 ↗</a>
         </div>
       </aside>
       </div>
@@ -491,7 +491,7 @@
           <div class="road-card-top"><span class="road-sign">17</span><div><span data-i18n="roadKicker">最重要的道路提醒</span><h3>17‑Mile Drive</h3></div></div>
           <p data-i18n="roadBody">8 月 13–16 日对非 Concours 相关交通关闭；持相关活动凭证、餐厅或酒店预订者按现场规则进入。周日普通票车辆听从引导停车，再搭免费接驳到展场。</p>
           <div class="road-links">
-            <a href="https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/" target="_blank" rel="noopener noreferrer" data-i18n="officialParking">官方停车与接驳 ↗</a>
+            <a href="https://www.pebblebeachconcours.net/plan-your-visit/directions-parking-event-maps/" target="_blank" rel="noopener noreferrer" data-i18n="officialParking">官方停车、入口与接驳说明 ↗</a>
             <a href="https://roads.dot.ca.gov/" target="_blank" rel="noopener noreferrer">Caltrans ↗</a>
           </div>
         </div>
@@ -540,7 +540,7 @@
   </footer>
 
   <script src="assets/vendor/leaflet/leaflet.js"></script>
-  <script src="assets/js/data.js?v=fefdb127d3"></script>
-  <script src="assets/js/app.js?v=9ad03f1acf"></script>
+  <script src="assets/js/data.js?v=a4d6ba5dc0"></script>
+  <script src="assets/js/app.js?v=da7fae8574"></script>
 </body>
 </html>

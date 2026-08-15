@@ -202,8 +202,11 @@ window.PEBBLE_DATA = {
       en: 'Official Monterey Car Week opens August 7, with peak days still August 13–16. This guide spans all eleven days from free early street shows through Monday departure: when, where, value, lodging and travel time in one plan.'
     },
     tourHeroCta: { zh: '看 8.13 Tour 早晨计划', en: 'See the Aug 13 Tour plan' },
-    tourHeroCtaPast: { zh: '查看今天与后续计划', en: 'See today and upcoming plans' },
+    heroScheduleCta: { zh: '浏览完整日程', en: 'Browse the full schedule' },
+    heroCurrentScheduleCta: { zh: '查看今日及后续活动', en: 'View today’s and upcoming events' },
+    heroArchiveScheduleCta: { zh: '浏览 2026 活动周日程存档', en: 'Browse the 2026 Car Week schedule archive' },
     seeQuickPlan: { zh: '先看推荐方案', en: 'See the quick plan' },
+    reviewQuickPlan: { zh: '回顾推荐方案', en: 'Review the recommended plan' },
     heroFineprint: {
       zh: 'Kickoff · ACE 藏品 · 慈善街展 · 微型车展 · Tour · 品牌/赛道 · Concours · 返程',
       en: 'Kickoff · ACE automobilia · charity shows · micro-car day · Tour · marques/track · Concours · depart'
@@ -314,7 +317,7 @@ window.PEBBLE_DATA = {
     parkingGeoMapAria: { zh: 'Pebble Beach 停车与活动方位真实地图', en: 'Geographic orientation map for Pebble Beach parking and event areas' },
     parkingGeoCaveat: { zh: '圆圈表示位置精度或道路范围，不表示可停车范围；地标与入口的点状符号不按比例。所有锚点均禁止直接导航。', en: 'Circles show positional precision or road extent—not parking availability; point symbols for landmarks and gates are not to scale. Direct navigation is disabled for every anchor.' },
     parkingGeoListKicker: { zh: '核实锚点', en: 'Checked anchors' },
-    parkingGeoListTitle: { zh: '点击条目只缩放到方位范围', en: 'Select an item to frame its orientation area' },
+    parkingGeoListTitle: { zh: '方位锚点与误差范围', en: 'Orientation anchors and uncertainty ranges' },
     parkingGeoStatus: { zh: '显示 {count} 个方位锚点', en: 'Showing {count} orientation anchors' },
     parkingGeoSelected: { zh: '已查看：{name}', en: 'Viewing: {name}' },
     parkingGeoKindRoad: { zh: '道路范围', en: 'Road area' },
@@ -330,7 +333,7 @@ window.PEBBLE_DATA = {
     parkingGeoTouchEnable: { zh: '启用真实地图拖动', en: 'Enable geographic-map dragging' },
     parkingGeoTouchDisable: { zh: '停用真实地图拖动', en: 'Disable geographic-map dragging' },
     parkingGeoReset: { zh: '重置方位范围', en: 'Reset orientation view' },
-    parkingGeoOfficialDirections: { zh: '官方停车与入口说明 ↗', en: 'Official parking and entry guidance ↗' },
+    parkingGeoOfficialDirections: { zh: '官方停车、入口与接驳说明 ↗', en: 'Official parking, entry & shuttle guidance ↗' },
     parkingGeoOfficialEventMap: { zh: '官方活动区域图 PDF ↗', en: 'Official event-area map PDF ↗' },
     parkingGeoOsmAttribution: { zh: 'OpenStreetMap 坐标与底图 ↗', en: 'OpenStreetMap coordinates and basemap ↗' },
     parkingMapOfficialBadge: { zh: '官方 Automotive Week 交通图', en: 'Official Automotive Week traffic map' },
@@ -362,11 +365,11 @@ window.PEBBLE_DATA = {
     },
     parkingMapOfficialPdf: { zh: '查看官方 PDF ↗', en: 'Open official PDF ↗' },
     parkingMapHostPage: { zh: '官方承载页 ↗', en: 'Official host page ↗' },
-    parkingMapDirections: { zh: 'Tour 停车指引 ↗', en: 'Tour parking directions ↗' },
+    parkingMapDirections: { zh: '官方停车、入口与接驳说明 ↗', en: 'Official parking, entry & shuttle guidance ↗' },
     parkingMapTouchEnable: { zh: '启用地图拖动', en: 'Enable map dragging' },
     parkingMapTouchDisable: { zh: '停用地图拖动', en: 'Disable map dragging' },
     parkingMapListKicker: { zh: '同步清单', en: 'Synchronized list' },
-    parkingMapListTitle: { zh: '点击条目在地图中定位', en: 'Select an item to locate it on the map' },
+    parkingMapListTitle: { zh: '编号与状态清单', en: 'Codes and status list' },
     parkingMapStaticPortola: { zh: '按现场指引进入附近指定停车区', en: 'Follow onsite directions to nearby assigned parking' },
     parkingMapStaticAda: { zh: '8.13–15 仅作 ADA 停车标记，须持 DMV placard', en: 'ADA parking Aug 13–15; DMV placard required' },
     parkingMapStaticGeneral: { zh: '官方图注记为 General Spectators；到场询问，不视作 Tour 保证', en: 'Official legend says General Spectators; ask onsite, not a Tour guarantee' },
@@ -497,10 +500,10 @@ window.PEBBLE_DATA = {
     liveStatusNow: { zh: '此刻 {count} 个进行中', en: '{count} happening now' },
     liveStatusToday: { zh: '今日 {count} 个活动', en: '{count} events today' },
     liveStatusBrowse: { zh: '显示 {count} 个活动', en: 'Showing {count} events' },
-    liveStatusBrowseFolded: { zh: '{current} 项当前及后续 · {past} 项历史已折叠', en: '{current} current/upcoming · {past} past events folded' },
+    liveStatusBrowseFolded: { zh: '{current} 项今日及后续日期 · {past} 项历史已折叠', en: '{current} today and later dates · {past} past events folded' },
     liveDayFilterNote: {
-      zh: '“此刻/今日”模式下日期按钮暂不可用；点选日期会回到“浏览全部”。',
-      en: 'Day buttons are disabled in Now/Today mode; picking a day returns to Browse all.'
+      zh: '“此刻/今日”模式下，点选具体日期会自动切回“浏览全部”。',
+      en: 'In Now/Today mode, choosing a specific day automatically switches back to Browse all.'
     },
     liveParsedHint: { zh: '“此刻”依赖公开时段字符串的近似解析；多场次与开放式结束时间会放宽匹配。', en: '“Now” uses approximate parsing of public time strings; multi-session and open-ended times are matched loosely.' },
     scheduleKicker: { zh: '8.7–8.17 · 筛选日程', en: 'Aug 7–17 · filter the schedule' },
@@ -535,7 +538,7 @@ window.PEBBLE_DATA = {
       zh: '8 月 13–16 日对非 Concours 相关交通关闭；持相关活动凭证、餐厅或酒店预订者按现场规则进入。周日普通票车辆听从引导停车，再搭免费接驳到展场。',
       en: 'Closed Aug 13–16 to traffic unrelated to Concours events. Event attendees and guests with dining or lodging reservations enter under onsite rules. On Sunday, GA drivers follow staff to assigned parking and take the included shuttle.'
     },
-    officialParking: { zh: '官方停车与接驳 ↗', en: 'Official parking & shuttles ↗' },
+    officialParking: { zh: '官方停车、入口与接驳说明 ↗', en: 'Official parking, entry & shuttle guidance ↗' },
     sourcesKicker: { zh: '来源与边界', en: 'Sources & limits' },
     sourcesTitle: { zh: '公开计划，事实可以回查', en: 'A public plan with traceable facts' },
     sourcePrimary: { zh: '主要来源与复核入口', en: 'Primary sources and live checks' },
@@ -563,6 +566,30 @@ window.PEBBLE_DATA = {
       en: 'Jul 31–Aug 2 in Big Sur and Watsonville—not Car Week core, but roughly 40–90 minutes by car and useful as a pre-arrival buffer.'
     }
   },
+
+  heroActions: [
+    {
+      id: 'tour',
+      throughDate: '2026-08-13',
+      throughTime: '12:30',
+      primary: { href: '#tour-0813', labelKey: 'tourHeroCta', intent: 'tour' },
+      secondary: { href: '#quick-plan', labelKey: 'seeQuickPlan', intent: 'quick' }
+    },
+    {
+      id: 'current',
+      throughDate: '2026-08-17',
+      throughTime: null,
+      primary: { href: '#schedule', labelKey: 'heroCurrentScheduleCta', intent: 'schedule-current' },
+      secondary: { href: '#quick-plan', labelKey: 'seeQuickPlan', intent: 'quick' }
+    },
+    {
+      id: 'archive',
+      throughDate: null,
+      throughTime: null,
+      primary: { href: '#schedule', labelKey: 'heroArchiveScheduleCta', intent: 'schedule-archive' },
+      secondary: { href: '#quick-plan', labelKey: 'reviewQuickPlan', intent: 'quick-archive' }
+    }
+  ],
 
   ui: {
     allDays: { zh: '全部日期', en: 'All days' },

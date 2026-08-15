@@ -327,24 +327,60 @@
     });
   }
 
-  function updateHeroPrimaryCta() {
-    const link = document.getElementById('hero-primary-cta');
-    const tourPast = getClock().dateIso > '2026-08-13';
-    if (link) {
-      const label = link.querySelector('[data-i18n]');
-      const key = tourPast ? 'tourHeroCtaPast' : 'tourHeroCta';
-      link.setAttribute('href', tourPast ? '#quick-plan' : '#tour-0813');
-      if (label) {
-        label.setAttribute('data-i18n', key);
-        label.textContent = text(key);
-      }
+  function heroActionForClock(clock) {
+    return (DATA.heroActions || []).find((action) => {
+      if (!action.throughDate) return true;
+      if (clock.dateIso < action.throughDate) return true;
+      if (clock.dateIso > action.throughDate) return false;
+      return !action.throughTime || clock.minutes <= parseHm(action.throughTime);
+    }) || null;
+  }
+
+  function setHeroAction(link, action) {
+    if (!link || !action) return;
+    const label = link.matches('[data-i18n]') ? link : link.querySelector('[data-i18n]');
+    link.setAttribute('href', action.href);
+    link.setAttribute('data-hero-intent', action.intent);
+    if (label) {
+      label.setAttribute('data-i18n', action.labelKey);
+      label.textContent = text(action.labelKey);
     }
+  }
+
+  function updateHeroCtas() {
+    const clock = getClock();
+    const action = heroActionForClock(clock);
+    const primary = document.getElementById('hero-primary-cta');
+    const secondary = document.getElementById('hero-secondary-cta');
+    if (action && action.primary.href !== action.secondary.href) {
+      setHeroAction(primary, action.primary);
+      setHeroAction(secondary, action.secondary);
+    }
+    const tourPast = clock.dateIso > '2026-08-13';
     const tourNav = document.getElementById('tour-nav-link');
     if (tourNav) {
       const navKey = tourPast ? 'navTourArchive' : 'navTour';
       tourNav.setAttribute('data-i18n', navKey);
       tourNav.textContent = text(navKey);
       tourNav.classList.toggle('archive-nav-link', tourPast);
+    }
+  }
+
+  function activateHeroIntent(intent) {
+    if (intent === 'schedule-current' || intent === 'schedule-archive') {
+      state.liveMode = 'browse';
+      state.day = 'all';
+      state.area = 'all';
+      state.type = 'all';
+      state.schedulePastOpen = intent === 'schedule-archive';
+      renderScheduleFilters();
+      renderSchedule();
+      return;
+    }
+    if (intent === 'quick-archive') {
+      state.quickPastOpen = true;
+      renderQuickPlan();
+      schedulePlanMaps();
     }
   }
 
@@ -1076,12 +1112,16 @@
       }
     }
 
-    modeRoot.setAttribute('aria-label', state.lang === 'zh' ? '时间筛选模式' : 'Time filter mode');
-    modeRoot.innerHTML = [
+    if (!inWindow && state.liveMode !== 'browse') state.liveMode = 'browse';
+    const modeOptions = inWindow ? [
       { id: 'browse', label: text('liveModeBrowse') },
       { id: 'now', label: text('liveModeNow') },
       { id: 'today', label: text('liveModeToday') }
-    ].map((item) => `
+    ] : [
+      { id: 'browse', label: text('liveModeBrowse') }
+    ];
+    modeRoot.setAttribute('aria-label', state.lang === 'zh' ? '时间筛选模式' : 'Time filter mode');
+    modeRoot.innerHTML = modeOptions.map((item) => `
       <button type="button" class="filter-button" data-live-mode="${escapeHtml(item.id)}" aria-pressed="${state.liveMode === item.id}">
         ${escapeHtml(item.label)}
       </button>`).join('');
@@ -1092,7 +1132,7 @@
     );
     dayRoot.setAttribute('aria-label', state.lang === 'zh' ? '按日期筛选' : 'Filter by day');
     dayRoot.innerHTML = dayButtons.map((item) => `
-      <button type="button" class="filter-button${liveOverridesDay && item.id !== 'all' ? ' filter-button-muted' : ''}" data-day="${escapeHtml(item.id)}" aria-pressed="${state.day === item.id}"${liveOverridesDay && item.id !== 'all' ? ' aria-disabled="true"' : ''}>
+      <button type="button" class="filter-button" data-day="${escapeHtml(item.id)}" aria-pressed="${state.day === item.id}">
         ${escapeHtml(localized(item.label))}
       </button>`).join('');
     if (liveOverridesDay) {
@@ -2294,7 +2334,7 @@
     renderSources();
     ensureHubMap();
     applyTemporalSections();
-    updateHeroPrimaryCta();
+    updateHeroCtas();
     schedulePlanMaps();
   }
 
@@ -2310,12 +2350,13 @@
         renderSchedule();
         renderBrandHouses();
         applyTemporalSections();
-        updateHeroPrimaryCta();
+        updateHeroCtas();
         schedulePlanMaps();
         revealHashTarget(false);
         return;
       }
       renderScheduleFilters();
+      updateHeroCtas();
       if (state.liveMode === 'now' || state.liveMode === 'today') renderSchedule();
     }, 30000);
   }
@@ -2353,6 +2394,7 @@
     const themeButton = document.getElementById('theme-toggle');
     const sectionNavToggle = document.getElementById('section-nav-toggle');
     const sectionNavLinks = document.getElementById('primary-nav-links');
+    const heroActions = document.querySelector('.hero-actions');
     const backToTop = document.getElementById('back-to-top');
     const from = document.getElementById('commute-from');
     const to = document.getElementById('commute-to');
@@ -2378,6 +2420,16 @@
     if (backToTop) backToTop.addEventListener('click', () => {
       state.navMenuOpen = false;
       updateSectionNavUi();
+    });
+    if (heroActions) heroActions.addEventListener('click', (event) => {
+      const link = event.target.closest('a[data-hero-intent]');
+      if (!link) return;
+      activateHeroIntent(link.getAttribute('data-hero-intent'));
+      window.setTimeout(() => {
+        applyTemporalSections();
+        revealHashTarget(false);
+        focusFragmentTarget(link.hash);
+      }, 0);
     });
     if (from) from.addEventListener('change', () => { state.from = from.value; renderCommuteResult(); });
     if (to) to.addEventListener('change', () => { state.to = to.value; renderCommuteResult(); });
@@ -2486,7 +2538,6 @@
       filterPanel.addEventListener('click', (event) => {
         const dayButton = event.target.closest('[data-day]');
         if (dayButton) {
-          if (dayButton.getAttribute('aria-disabled') === 'true') return;
           const nextDay = dayButton.getAttribute('data-day');
           if (nextDay && nextDay !== state.day) {
             state.day = nextDay;
