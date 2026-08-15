@@ -188,6 +188,10 @@ window.PEBBLE_DATA = {
     navStay: { zh: '住宿', en: 'Stay' },
     navCommute: { zh: '通勤', en: 'Travel' },
     navArchive: { zh: '存档', en: 'Archive' },
+    navTourArchive: { zh: '8.13 Tour · 存档', en: 'Aug 13 Tour · archive' },
+    navMenuShort: { zh: '章节', en: 'Menu' },
+    navMenuOpen: { zh: '打开章节菜单', en: 'Open section menu' },
+    navMenuClose: { zh: '关闭章节菜单', en: 'Close section menu' },
     navBackTop: { zh: '回到顶部', en: 'Back to top' },
     heroEyebrow: { zh: '公众行程指南 · 2026', en: 'Public trip guide · 2026' },
     checkedChip: { zh: '全量核对 8 月 6 日 · Tour 与周六精选复核至 8 月 13 日 · 品牌专题复核至 8 月 14 日', en: 'Full audit Aug 6 · Tour + Saturday picks rechecked Aug 13 · brand chapter rechecked Aug 14' },
@@ -454,7 +458,7 @@ window.PEBBLE_DATA = {
     planRouteLoading: { zh: '路线加载中…', en: 'Loading route…' },
     planRouteUnavailable: { zh: '路线暂不可用，仍显示地点。', en: 'Route unavailable; stops still shown.' },
     planTimeline: { zh: '展开每日时间规划', en: 'Expand day timeline' },
-    planTimelineHint: { zh: '规划缓冲，非官方时刻表；临行前以各活动官方页为准。', en: 'Planning buffers, not an official timetable—recheck each event page before travel.' },
+    planTimelineHint: { zh: '按最早开始时间排列；完整开放时段不等于建议抵达时刻，A/B 分支不可叠加。规划缓冲并非官方时刻表，临行前请重查活动页。', en: 'Ordered by earliest start. Full opening windows are not arrival times, and A/B branches cannot be stacked. Buffers are guide planning—not an official timetable; recheck event pages before travel.' },
     planToneCore: { zh: '主场', en: 'Core' },
     planToneOptional: { zh: '可选', en: 'Optional' },
     planToneAlt: { zh: '互斥备选', en: 'Exclusive alternative' },
@@ -463,6 +467,7 @@ window.PEBBLE_DATA = {
     liveModeBrowse: { zh: '浏览全部', en: 'Browse all' },
     liveModeNow: { zh: '此刻进行中', en: 'Happening now' },
     liveModeToday: { zh: '今日活动', en: 'Today’s events' },
+    liveMoreFilters: { zh: '更多筛选：日期、地点与价格', en: 'More filters: day, place & price' },
     liveAreaAll: { zh: '全部地点', en: 'All places' },
     livePastFolded: { zh: '已过 · 点击展开', en: 'Past · tap to expand' },
     livePastBadge: { zh: '已过', en: 'Past' },
@@ -475,10 +480,10 @@ window.PEBBLE_DATA = {
     liveNoToday: { zh: '今天没有匹配活动。', en: 'No matching events today.' },
     liveShowPast: { zh: '显示已过日期', en: 'Show past days' },
     liveHidePast: { zh: '折叠已过日期', en: 'Fold past days' },
-    livePastShow: { zh: '展开所有历史日期', en: 'Expand all past days' },
-    livePastHide: { zh: '折叠历史日期', en: 'Fold past days' },
-    pastGroupSummary: { zh: '较早日程 · {days} 天 / {count} 项（点击展开）', en: 'Earlier days · {days} days / {count} events (expand)' },
-    archiveSummary: { zh: '2026 活动周存档 · 8.7–8.17 · {count} 项（点击展开）', en: '2026 Car Week archive · Aug 7–17 · {count} events (expand)' },
+    livePastShow: { zh: '展开历史日程', en: 'Expand past schedule' },
+    livePastHide: { zh: '折叠历史日程', en: 'Fold past schedule' },
+    pastGroupSummary: { zh: '{range} · 较早日程 · {days} 天 / {count} 项（点击展开）', en: '{range} · Earlier days · {days} days / {count} events (expand)' },
+    archiveSummary: { zh: '2026 活动周存档 · {range} · {count} 项（点击展开）', en: '2026 Car Week archive · {range} · {count} events (expand)' },
     temporalPastBadge: { zh: '已结束 · 保留作参考', en: 'Past · kept for reference' },
     temporalActiveFoldHint: { zh: '可收起本章', en: 'Fold this chapter' },
     temporalTourLabel: { zh: '8.13 Tour 早晨计划', en: 'Aug 13 Tour morning plan' },
@@ -492,6 +497,7 @@ window.PEBBLE_DATA = {
     liveStatusNow: { zh: '此刻 {count} 个进行中', en: '{count} happening now' },
     liveStatusToday: { zh: '今日 {count} 个活动', en: '{count} events today' },
     liveStatusBrowse: { zh: '显示 {count} 个活动', en: 'Showing {count} events' },
+    liveStatusBrowseFolded: { zh: '{current} 项当前及后续 · {past} 项历史已折叠', en: '{current} current/upcoming · {past} past events folded' },
     liveDayFilterNote: {
       zh: '“此刻/今日”模式下日期按钮暂不可用；点选日期会回到“浏览全部”。',
       en: 'Day buttons are disabled in Now/Today mode; picking a day returns to Browse all.'
@@ -500,8 +506,8 @@ window.PEBBLE_DATA = {
     scheduleKicker: { zh: '8.7–8.17 · 筛选日程', en: 'Aug 7–17 · filter the schedule' },
     scheduleTitle: { zh: '什么时候去哪里，哪些真正值得', en: 'Where to go, when—and what is worth it' },
     scheduleIntro: {
-      zh: '时钟按 America/Los_Angeles（太平洋时间）。用下方筛选浏览全部、此刻进行中、今日活动，或按日期、地点、推荐与价格缩小列表；过期日期默认折叠。票价和余票会变，购买前请打开每张卡片里的官方来源复核。演示可用 ?demoDate=2026-08-08&demoTime=14:30。',
-      en: 'Clock uses America/Los_Angeles (Pacific Time). Filter below: browse all, happening now, today’s events, or narrow by day, place, picks and price; past days fold by default. Tickets change—reopen each card’s official source before buying. Demo: ?demoDate=2026-08-08&demoTime=14:30.'
+      zh: '时钟按 America/Los_Angeles（太平洋时间）。用下方筛选浏览全部、此刻进行中、今日活动，或按日期、地点、推荐与价格缩小列表；过期日期在原时间位置折叠，同一天按最早开始时间排列。票价和余票会变，购买前请打开每张卡片里的官方来源复核。演示可用 ?demoDate=2026-08-08&demoTime=14:30。',
+      en: 'Clock uses America/Los_Angeles (Pacific Time). Filter below: browse all, happening now, today’s events, or narrow by day, place, picks and price; past days fold in their original chronological position, and each day is ordered by earliest start. Tickets change—reopen each card’s official source before buying. Demo: ?demoDate=2026-08-08&demoTime=14:30.'
     },
     stayKicker: { zh: '住宿 · 当前库存快照', en: 'Lodging · inventory snapshot' },
     stayTitle: { zh: '用房价换时间，还是用通勤换房价', en: 'Trade room price for time—or time for price' },
@@ -1332,6 +1338,7 @@ window.PEBBLE_DATA = {
   quickPlan: [
     {
       id: 'qp-0807',
+      dateIso: '2026-08-07',
       date: { zh: '8 月 7 日', en: 'Aug 7' }, day: { zh: '周五', en: 'Fri' },
       title: { zh: 'Kickoff on Alvarado → 早到落地', en: 'Kickoff on Alvarado → arrive early' },
       body: { zh: '17:00 前到 Monterey 市中心 Alvarado St，看历史赛车集结与开幕式；零成本感受车周氛围并摸清停车节奏。', en: 'Reach downtown Alvarado St before 17:00 for historic race cars and the opening ceremony—a zero-cost way to feel Car Week energy and test parking.' },
@@ -1346,6 +1353,7 @@ window.PEBBLE_DATA = {
     },
     {
       id: 'qp-0808',
+      dateIso: '2026-08-08',
       date: { zh: '8 月 8 日', en: 'Aug 8' }, day: { zh: '周六', en: 'Sat' },
       title: { zh: 'Asilomar Day 或 Pre-Reunion', en: 'Asilomar Day or Pre-Reunion' },
       body: { zh: '免费选 Asilomar 州立公园庆典（老爷车、摇摆舞）；赛车迷则买 Pre-Reunion 单日票，含 Corkscrew Hillclimb。', en: 'Free Asilomar state-parks birthday with vintage rides and swing dance—or buy a Pre-Reunion single-day pass including Corkscrew Hillclimb for race fans.' },
@@ -1360,6 +1368,7 @@ window.PEBBLE_DATA = {
     },
     {
       id: 'qp-0809',
+      dateIso: '2026-08-09',
       date: { zh: '8 月 9 日', en: 'Aug 9' }, day: { zh: '周日', en: 'Sun' },
       title: { zh: 'Pre-Reunion 次日，或轻量休整', en: 'Pre-Reunion day 2, or rest light' },
       body: { zh: '若周六买了 2 日票或想补赛道，周日继续 Laguna Seca；否则休息、补票与核对周一 ACE / 街展计划。', en: 'Continue at Laguna Seca with a two-day pass or a Sunday catch-up; otherwise rest, buy tickets and lock Monday ACE / street-show plans.' },
@@ -1374,6 +1383,7 @@ window.PEBBLE_DATA = {
     },
     {
       id: 'qp-0810',
+      dateIso: '2026-08-10',
       date: { zh: '8 月 10 日', en: 'Aug 10' }, day: { zh: '周一', en: 'Mon' },
       title: { zh: 'ACE 藏品展 → 英系 / EV / 保时捷', en: 'ACE automobilia → British / EV / Porsche' },
       body: { zh: '上午 Embassy Suites 的 Automobilia Collectors Expo（车周最完整藏品展）；下午按兴趣选 Monterey British、Electric Coast 或 Porsche Seaside。', en: 'Morning Automobilia Collectors Expo at Embassy Suites—the week’s best memorabilia hall; afternoon pick Monterey British, Electric Coast or Porsche Seaside.' },
@@ -1389,6 +1399,7 @@ window.PEBBLE_DATA = {
     },
     {
       id: 'qp-0811',
+      dateIso: '2026-08-11',
       date: { zh: '8 月 11 日', en: 'Aug 11' }, day: { zh: '周二', en: 'Tue' },
       title: { zh: 'Concours for a Cause · 可选 Night Rider', en: 'Concours for a Cause · optional Night Rider' },
       body: { zh: 'Carmel Ocean Ave 免费慈善街展；傍晚可加 Asilomar Night Rider（低底盘文化夜场）。藏品迷可改去 ACE 拍卖日。', en: 'Free charity show on Carmel’s Ocean Ave; optionally add Asilomar Night Rider (lowrider evening). Collectors can pivot to ACE auction day instead.' },
@@ -1398,12 +1409,13 @@ window.PEBBLE_DATA = {
         { time: "09:30", title: { zh: "转场至 Carmel Ocean Ave", en: "Transit to Carmel Ocean Ave" }, note: { zh: "慈善街展步行区，车位紧张。", en: "Charity show in a walkable zone; parking is tight." }, tone: "transit" },
         { time: "10:00–16:00", title: { zh: "Concours for a Cause", en: "Concours for a Cause" }, note: { zh: "免费慈善街展，早场性价比最高。", en: "Free charity street show—best early value." }, tone: "core" },
         { time: "16:15", title: { zh: "转场 · 傍晚二选一", en: "Transit · evening fork" }, note: { zh: "藏品迷可改去 Seaside ACE。", en: "Collectors can pivot to ACE in Seaside." }, tone: "transit" },
-        { time: "16:00–20:00", title: { zh: "或 ACE Automobilia Live Auction", en: "or ACE Automobilia Live Auction" }, note: { zh: "替代夜场，适合藏品爱好者。", en: "Evening alternative for automobilia fans." }, tone: "alt" },
+        { time: "16:45–20:00", title: { zh: "或 ACE Automobilia Live Auction · 建议到场", en: "or ACE Automobilia Live Auction · suggested visit" }, note: { zh: "官方活动 16:00 开始；本站按 16:15 转场后到达排列。", en: "The official event starts at 16:00; this guide places arrival after the 16:15 transfer." }, tone: "alt" },
         { time: "18:00–21:00", title: { zh: "可选 Night Rider", en: "Optional Night Rider" }, note: { zh: "Asilomar 地下车库低底盘文化夜场。", en: "Lowrider culture evening in Asilomar's underground garage." }, tone: "optional" },
       ]),
     },
     {
       id: 'qp-0812',
+      dateIso: '2026-08-12',
       date: { zh: '8 月 12 日', en: 'Aug 12' }, day: { zh: '周三', en: 'Wed' },
       title: { zh: 'Little Car + Astons · 晚场三选一', en: 'Little Car + Astons · pick one evening' },
       body: { zh: '白天免费串 Pacific Grove 微型车展与 Carmel Astons；傍晚在 Asilomar Luau（$70）与 Jet Center Motorlux（$845）之间只选一个，或看 Motoring Classic 抵达。', en: 'Free daytime link: Pacific Grove Little Car Show and Carmel Astons; evenings pick only one of Asilomar Luau ($70) or Jet Center Motorlux ($845), or watch Motoring Classic arrivals.' },
@@ -1420,6 +1432,7 @@ window.PEBBLE_DATA = {
     },
     {
       id: 'qp-0813',
+      dateIso: '2026-08-13',
       date: { zh: '8 月 13 日', en: 'Aug 13' }, day: { zh: '周四', en: 'Thu' },
       title: { zh: 'Tour 早晨 · 停一次，全程步行', en: 'Tour morning · park once, stay on foot' },
       body: { zh: '6:15–6:30 进入 Pebble Beach 后按指示停车；看完集结、三批发车与约中午归来，再步行去 Hay Hill 的免费 Cadillac V-Series 公众试驾。BMW 与 Aston Martin 的 2026 准入规则均未公开；Aston 往年政策与 8 月 13 日现场回报均指向仅限受邀，因此两者都不是这条公众路线的保证点。', en: 'Enter Pebble Beach at 6:15–6:30 and park as directed; see the lineup, all three waves and the approximate noon return, then walk to the free public Cadillac V-Series drive at Hay Hill. BMW and Aston Martin 2026 access are unpublished; prior Aston policy and an August 13 field report point to invitation-only access, so neither is a guaranteed public stop on this route.' },
@@ -1437,6 +1450,7 @@ window.PEBBLE_DATA = {
     },
     {
       id: 'qp-0814',
+      dateIso: '2026-08-14',
       date: { zh: '8 月 14 日', en: 'Aug 14' }, day: { zh: '周五', en: 'Fri' },
       title: { zh: 'Werks 或 Laguna Seca · 可选 Paddock', en: 'Werks or Laguna Seca · optional Paddock' },
       body: { zh: '保时捷聚会是最佳免费主场；更想听引擎就买周五 Reunion。下午若还有精力，Seaside 的 The Paddock 是杂糅车展收尾（与 Quail 冲突）。', en: 'Werks is the free-value anchor; buy Friday Reunion if engines matter more. If energy remains, The Paddock in Seaside is an eclectic late show—conflicts with The Quail.' },
@@ -1448,11 +1462,12 @@ window.PEBBLE_DATA = {
         { time: "08:00–18:35", title: { zh: "或 Reunion 周五全天", en: "or Reunion full Friday" }, note: { zh: "正赛至约 17:25，含 paddock 与展示。", en: "Racing to ~17:25 with paddock and exhibitions." }, tone: "alt" },
         { time: "09:00–15:00", title: { zh: "或 Werks Reunion（+$40 现金停车）", en: "or Werks Reunion (+$40 cash parking)" }, note: { zh: "最佳免费主场。", en: "Best free-value Friday anchor." }, tone: "alt" },
         { time: "15:15", title: { zh: "转场至 Seaside", en: "Transit to Seaside" }, note: { zh: "与 The Quail 冲突，勿叠加。", en: "Conflicts with The Quail—do not stack both." }, tone: "transit" },
-        { time: "15:00–20:00", title: { zh: "可选 The Paddock Monterey", en: "Optional The Paddock Monterey" }, note: { zh: "杂糅车展收尾，需有余力再选。", en: "Eclectic show finale—only if energy remains." }, tone: "optional" },
+        { time: "15:45–20:00", title: { zh: "可选 The Paddock Monterey · 建议到场", en: "Optional The Paddock Monterey · suggested visit" }, note: { zh: "官方活动 15:00 开始；本站按 15:15 转场后的到达时间排列。", en: "The official event starts at 15:00; this guide orders the stop by arrival after the 15:15 transfer." }, tone: "optional" },
       ]),
     },
     {
       id: 'qp-0815',
+      dateIso: '2026-08-15',
       date: { zh: '8 月 15 日', en: 'Aug 15' }, day: { zh: '周六', en: 'Sat' },
       title: { zh: 'Lemons → Exotics，或赛道', en: 'Lemons → Exotics, or track' },
       body: { zh: '预算路线可只逛两个免费街展；Exotics 的 Broadway 公共区免费，Del Monte 围合区另售 $40 基础价 GA。赛车迷则不要中途离开 Laguna Seca；Gooding 拍卖旁听与 RM 公众预展的已核实备选见下方周六活动卡。', en: 'The value route can stay entirely within two free street shows: Exotics is free on Broadway, while the enclosed Del Monte zone separately sells $40-base-price GA. Committed race fans should stay at Laguna Seca; see the Saturday event cards below for the verified Gooding spectator and RM public-preview alternatives.' },
@@ -1462,13 +1477,14 @@ window.PEBBLE_DATA = {
         { time: "07:00–09:30", title: { zh: "可选 Peninsula Cars & Coffee", en: "Optional Peninsula Cars & Coffee" }, note: { zh: "Seaside 清晨车友聚会，时段可能漂移。", en: "Informal Seaside morning meet; hours may shift." }, tone: "optional" },
         { time: "07:30", title: { zh: "转场 · 周六路线分流", en: "Transit · Saturday route fork" }, note: { zh: "街展路线与赛道不可兼得。", en: "Street-show route and track day are mutually exclusive." }, tone: "transit" },
         { time: "08:00–13:30", title: { zh: "Concours d’Lemons", en: "Concours d’Lemons" }, note: { zh: "免费幽默车展，最亲民周六早晨。", en: "Free comic car show—most accessible Saturday morning." }, tone: "core" },
-        { time: "11:00–16:00", title: { zh: "Exotics on Broadway", en: "Exotics on Broadway" }, note: { zh: "Broadway 公共区免费；Del Monte 围合区需另购 GA。", en: "Broadway’s public zone is free; the enclosed Del Monte zone requires separate GA." }, tone: "core" },
+        { time: "14:15–16:00", title: { zh: "Exotics on Broadway · 建议到场", en: "Exotics on Broadway · suggested visit" }, note: { zh: "官方活动 11:00 开始；本站按 Lemons 后的接驳到达时间排列。Broadway 公共区免费，Del Monte 围合区需另购 GA。", en: "The official event starts at 11:00; this guide orders it by arrival after the post-Lemons shuttle. Broadway’s public zone is free; the enclosed Del Monte zone requires separate GA." }, tone: "core" },
         { time: "08:00–18:30", title: { zh: "或 Reunion 周六全天", en: "or Reunion full Saturday" }, note: { zh: "07:00 入场；赛车迷主日，勿中途离开赛道。", en: "Gates open 07:00; race fans should stay at the track for the full day." }, tone: "alt" },
         { time: "13:45", title: { zh: "街展路线 · Seaside 接驳缓冲", en: "Street route · Seaside shuttle buffer" }, note: { zh: "远端停车 + 接驳 9:00–17:00。", en: "Remote parking plus shuttle 9:00–17:00." }, tone: "transit" },
       ]),
     },
     {
       id: 'qp-0816',
+      dateIso: '2026-08-16',
       date: { zh: '8 月 16 日', en: 'Aug 16' }, day: { zh: '周日', en: 'Sun' }, flagship: true,
       title: { zh: 'Concours 主展，或免费 Village', en: 'Concours, or free Village' },
       body: { zh: '想看评审与 Dawn Patrol 就为主展买单；预算优先仍可逛 Village 与 RetroAuto。', en: 'Pay for judging and Dawn Patrol; value-first visitors can still use Village and RetroAuto.' },
@@ -1484,6 +1500,7 @@ window.PEBBLE_DATA = {
     },
     {
       id: 'qp-0817',
+      dateIso: '2026-08-17',
       date: { zh: '8 月 17 日', en: 'Aug 17' }, day: { zh: '周一', en: 'Mon' },
       title: { zh: 'Stanton Center → 返程', en: 'Stanton Center → depart' },
       body: { zh: '户外大活动已经结束；先退房并寄存行李，中午看历史展，再返程。', en: 'The marquee outdoor events are over; check out and store bags first, see the history exhibit at noon, then depart.' },

@@ -183,7 +183,7 @@ def validate() -> list[str]:
     if "demos/pebble-beach-2026/index.html" not in home:
         errors.append("homepage card for pebble-beach-2026 is missing")
     tour_contract = {
-        'class="archive-nav-link" href="#tour-0813"': "archive navigation anchor",
+        'id="tour-nav-link" href="#tour-0813"': "date-aware Tour navigation anchor",
         'id="tour-0813"': "Tour section",
         'id="tour-route"': "Tour route renderer root",
         'id="tour-wave-list"': "Tour wave renderer root",
@@ -211,6 +211,8 @@ def validate() -> list[str]:
             )
     if not re.search(r"function\s+renderDynamicContent\(\)\s*\{\s*renderQuickPlan\(\);\s*renderScheduleFilters\(\);\s*renderSchedule\(\);\s*renderTourMorning\(\);", app_js):
         errors.append("renderDynamicContent must invoke renderTourMorning")
+    if "tourNav.classList.toggle('archive-nav-link', tourPast)" not in app_js or "navTourArchive" not in app_js:
+        errors.append("Tour navigation must retain its chronological position and switch to an archive label only after Aug 13")
     parking_map_contract = {
         'href="#parking-traffic"': "parking-map navigation anchor",
         'id="parking-traffic"': "parking-map section",
@@ -411,8 +413,8 @@ def validate() -> list[str]:
             errors.append(f"brand-house renderer is missing {label}")
     if not re.search(r"const\s+publicCard\s*=\s*\(card\)[\s\S]{0,1200}return\s+`<details", app_js):
         errors.append("brand-house renderer must use compact details for public programs")
-    if not re.search(r"targetInside\s*&&\s*!temporalUserOpen\.has\(section\.id\)[\s\S]{0,260}activeCollapsible[\s\S]{0,260}temporalUserOpen", app_js):
-        errors.append("active chapter fold must preserve explicit deep links and remembered user state")
+    if not re.search(r"if\s*\(targetInside\)\s*setTemporalOpen\(details,\s*true\);\s*else if\s*\(temporalUserOpen\.has\(section\.id\)\)", app_js):
+        errors.append("active chapter fold must prioritize explicit deep links, then preserve the user's open or closed state")
     if not re.search(r"if\s*\(!hasHandledInitialHash\)[\s\S]{0,160}revealHashTarget\(true\)", app_js):
         errors.append("language rerenders must not reopen a chapter that the user explicitly folded")
     if not re.search(r"renderTourMorning\(\);\s*renderParkingTraffic\(\);\s*renderBrandHouses\(\);", app_js):
@@ -435,6 +437,49 @@ def validate() -> list[str]:
     if any(position < 0 for position in section_positions) or section_positions != sorted(section_positions):
         errors.append("page sections must keep the audited current-first order")
 
+    nav_match = re.search(r'<div[^>]*\bclass="nav-links"[^>]*>(.*?)</div>', html, re.DOTALL)
+    expected_nav_targets = ["quick-plan", "schedule", "tour-0813", "parking-traffic", "brand-houses", "stay", "commute"]
+    nav_targets = re.findall(r'href="#([^"]+)"', nav_match.group(1)) if nav_match else []
+    if nav_targets != expected_nav_targets:
+        errors.append(f"navigation targets must follow page order, found {nav_targets}")
+    if 'id="section-nav-toggle"' not in html or 'aria-controls="primary-nav-links"' not in html or 'id="primary-nav-links"' not in html:
+        errors.append("mobile section navigation must expose one labelled menu button and controlled link panel")
+    if not all(token in app_js for token in ("state.navMenuOpen", "updateSectionNavUi()", "focusFragmentTarget(link.hash)", "event.key !== 'Escape'", "classList.add('nav-ready')")):
+        errors.append("mobile section navigation must retain state, manage focus, close on Escape, and update its accessible label")
+    if not all(token in demo_css for token in (".icon-button.section-nav-toggle { display: none; }", ".nav-ready .nav-links { display: none; }", ".nav-ready .nav-links.is-open { display: grid; }")):
+        errors.append("mobile section navigation must remain usable without JavaScript and compact after initialization")
+
+    if html.count('class="filter-more"') != 1 or html.count('data-i18n="liveMoreFilters"') != 1:
+        errors.append("secondary day/place/price filters must use one compact disclosure")
+    if "moreSummary.dataset.activeFilters" not in app_js or ".filter-more > summary.has-active-filters" not in demo_css:
+        errors.append("the compact filter disclosure must expose active hidden filters")
+    if not re.search(r"\.filter-button\s*\{[^}]*min-height:\s*44px", demo_css, re.DOTALL):
+        errors.append("schedule filter buttons must retain a 44px touch target")
+    if html.count('id="live-status"') != 1 or 'id="schedule-status"' in html:
+        errors.append("schedule filtering must expose exactly one live status region")
+    if len(re.findall(r"function\s+splitChronologicalEntries\(", app_js)) != 1:
+        errors.append("chronological split helper must be defined exactly once")
+    if app_js.count("chronologicalFoldMarkup(pastMarkup, current.map") != 2:
+        errors.append("quick plan and schedule must both render the folded past prefix before current/upcoming dates")
+    if app_js.count('data-date-start=') != 2 or app_js.count('data-date-end=') != 2:
+        errors.append("both past-date disclosures must expose their chronological range")
+    if "sortEventsChronologically(filtered.filter" not in app_js:
+        errors.append("same-day event cards must be sorted by their earliest parsed start time")
+    if "sortEventsChronologically(item.schedule)" not in app_js:
+        errors.append("quick-plan detail timelines must keep the same chronological reading direction")
+    if 'data-date="${escapeHtml(dateIso)}"' not in app_js or 'data-date="${escapeHtml(day.id)}"' not in app_js:
+        errors.append("rendered quick-plan cards and schedule day groups must expose semantic ISO dates")
+    if "pastToggle.hidden = !pastControlRelevant" not in app_js:
+        errors.append("the past-schedule toggle must hide when no aggregate past group is actionable")
+    if not all(token in app_js for token in ("state.quickPastOpen", "state.schedulePastOpen", "data-past-group")):
+        errors.append("quick-plan and schedule past disclosures must preserve independent user state")
+    for stale_focus in ("dayButton.focus()", "typeButton.focus()", "modeButton.focus()", "areaButton.focus()"):
+        if stale_focus in app_js:
+            errors.append(f"filter rerender must not focus a detached control: {stale_focus}")
+    if app_js.count("focusRenderedFilter(") != 5:
+        errors.append("all four regenerated filter groups must restore focus through the shared helper")
+    if not re.search(r"clock\.dateIso\s*!==\s*lastClockDateIso[\s\S]{0,700}revealHashTarget\(false\)", app_js):
+        errors.append("date-boundary rerenders must reopen an existing deep link without scrolling")
     id_counts: dict[str, int] = {}
     for _, attrs in parser.elements:
         element_id = attrs.get("id")

@@ -35,7 +35,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=f75adfc35a">
+  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=79546524eb">
 </head>
 <body id="page-top">
   <a class="skip-link" href="#main" data-i18n="skip">跳到正文</a>
@@ -43,16 +43,20 @@
   <nav class="site-nav" aria-label="主要导航">
     <div class="nav-inner">
       <a class="wordmark" href="../../index.html" aria-label="返回 QROST 首页">QROST</a>
-      <div class="nav-links" aria-label="页面章节">
+      <div id="primary-nav-links" class="nav-links" aria-label="页面章节">
         <a href="#quick-plan" data-i18n="navPlan">方案</a>
         <a href="#schedule" data-i18n="navSchedule">日程</a>
+        <a id="tour-nav-link" href="#tour-0813" data-i18n="navTour">8.13 Tour</a>
         <a href="#parking-traffic" data-i18n="navParkingMap">停车图</a>
         <a href="#brand-houses" data-i18n="navBrandHouses">品牌 House</a>
         <a href="#stay" data-i18n="navStay">住宿</a>
         <a href="#commute" data-i18n="navCommute">通勤</a>
-        <a class="archive-nav-link" href="#tour-0813" data-i18n="navArchive">存档</a>
       </div>
       <div class="nav-actions">
+        <button id="section-nav-toggle" class="icon-button section-nav-toggle" type="button" aria-controls="primary-nav-links" aria-expanded="false" aria-label="打开章节菜单" title="打开章节菜单">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span data-i18n="navMenuShort">章节</span>
+        </button>
         <a id="back-to-top" class="icon-button back-to-top" href="#page-top" aria-label="回到顶部" title="回到顶部">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 10 6-6 6 6M12 4v16"/></svg>
         </a>
@@ -117,7 +121,7 @@
     <section id="schedule" class="section-block schedule-section">
       <div class="section-heading">
         <div><span class="section-kicker" data-i18n="scheduleKicker">8.7–8.17 · 筛选日程</span><h2 data-i18n="scheduleTitle">什么时候去哪里，哪些真正值得</h2></div>
-        <p data-i18n="scheduleIntro">时钟按 America/Los_Angeles（太平洋时间）。用下方筛选浏览全部、此刻进行中、今日活动，或按日期、地点、推荐与价格缩小列表；过期日期默认折叠。票价和余票会变，购买前请打开每张卡片里的官方来源复核。演示可用 ?demoDate=2026-08-08&amp;demoTime=14:30。</p>
+        <p data-i18n="scheduleIntro">时钟按 America/Los_Angeles（太平洋时间）。用下方筛选浏览全部、此刻进行中、今日活动，或按日期、地点、推荐与价格缩小列表；过期日期在原时间位置折叠，同一天按最早开始时间排列。票价和余票会变，购买前请打开每张卡片里的官方来源复核。演示可用 ?demoDate=2026-08-08&amp;demoTime=14:30。</p>
       </div>
 
       <div class="filter-panel" aria-label="Schedule filters">
@@ -129,16 +133,20 @@
           <p id="live-window-note" class="live-window-note" hidden></p>
         </div>
         <div class="filter-row" id="live" role="group" aria-label="Live mode"></div>
-        <div class="filter-row" id="day-filter" role="group" aria-label="Filter by day"></div>
-        <div class="filter-row filter-row-secondary" id="live-area-filter" role="group" aria-label="Place filter"></div>
-        <div class="filter-row filter-row-secondary" id="type-filter" role="group" aria-label="Filter by recommendation or price"></div>
+        <details class="filter-more">
+          <summary data-i18n="liveMoreFilters">更多筛选：日期、地点与价格</summary>
+          <div class="filter-more-content">
+            <div class="filter-row" id="day-filter" role="group" aria-label="Filter by day"></div>
+            <div class="filter-row filter-row-secondary" id="live-area-filter" role="group" aria-label="Place filter"></div>
+            <div class="filter-row filter-row-secondary" id="type-filter" role="group" aria-label="Filter by recommendation or price"></div>
+          </div>
+        </details>
         <div class="live-actions">
           <button type="button" class="filter-button" id="live-past-toggle" aria-pressed="false"></button>
         </div>
         <p id="live-status" class="live-status" role="status" aria-live="polite"></p>
         <p class="live-hint" data-i18n="liveParsedHint">“此刻”依赖公开时段字符串的近似解析；多场次与开放式结束时间会放宽匹配。</p>
       </div>
-      <p id="schedule-status" class="sr-only" role="status" aria-live="polite"></p>
       <div id="schedule-results" class="schedule-results"></div>
       <noscript><p class="noscript">请启用 JavaScript 查看可筛选日程。 / Enable JavaScript to view the filterable schedule.</p></noscript>
     </section>
@@ -532,7 +540,7 @@
   </footer>
 
   <script src="assets/vendor/leaflet/leaflet.js"></script>
-  <script src="assets/js/data.js?v=63a44ea3d8"></script>
-  <script src="assets/js/app.js?v=9f4f1d4756"></script>
+  <script src="assets/js/data.js?v=fefdb127d3"></script>
+  <script src="assets/js/app.js?v=9ad03f1acf"></script>
 </body>
 </html>

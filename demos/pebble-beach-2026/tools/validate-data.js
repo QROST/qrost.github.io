@@ -104,12 +104,16 @@ if (data) {
   for (const [key, value] of Object.entries(data.labels || {})) checkBilingual(value, `labels.${key}`);
   for (const [key, value] of Object.entries(data.ui || {})) checkBilingual(value, `ui.${key}`);
   for (const key of [
-    'navPlan', 'navArchive', 'navBackTop', 'tourHeroCtaPast',
-    'liveOutsideWindowBefore', 'liveOutsideWindowAfter', 'pastGroupSummary', 'archiveSummary',
+    'navPlan', 'navTour', 'navTourArchive', 'navArchive', 'navMenuShort', 'navMenuOpen', 'navMenuClose', 'navBackTop', 'tourHeroCtaPast',
+    'liveMoreFilters', 'liveStatusBrowseFolded', 'liveOutsideWindowBefore', 'liveOutsideWindowAfter', 'pastGroupSummary', 'archiveSummary',
     'temporalPastBadge', 'temporalActiveFoldHint', 'temporalTourLabel', 'temporalParkingLabel', 'temporalBrandLabel',
     'temporalNearbyLabel', 'temporalStayLabel', 'quickNoScript'
   ]) {
     checkBilingual(data.labels?.[key], `labels.${key}`);
+  }
+  for (const key of ['pastGroupSummary', 'archiveSummary']) {
+    check(data.labels?.[key]?.zh.includes('{range}') && data.labels?.[key]?.en.includes('{range}'), `labels.${key} must expose the chronological date range`);
+    check(data.labels?.[key]?.zh.includes('{count}') && data.labels?.[key]?.en.includes('{count}'), `labels.${key} must retain the result count`);
   }
   const expectedDays = Array.from({ length: 11 }, (_, index) => `2026-08-${String(index + 7).padStart(2, '0')}`);
   check(JSON.stringify((data.days || []).map((day) => day.id)) === JSON.stringify(expectedDays), 'days must remain consecutive and chronological from 2026-08-07 through 2026-08-17');
@@ -647,6 +651,8 @@ if (data) {
   for (const [index, item] of (data.quickPlan || []).entries()) {
     for (const key of ['date', 'day', 'title', 'body', 'cost']) checkBilingual(item[key], `quickPlan[${index}].${key}`);
     check(typeof item.id === 'string' && /^qp-[a-z0-9-]+$/.test(item.id), `quickPlan[${index}].id is invalid`);
+    check(item.dateIso === expectedDays[index], `quickPlan[${index}].dateIso must preserve the chronological ${expectedDays[index]} slot`);
+    check(item.id === `qp-${expectedDays[index].slice(5).replace('-', '')}`, `quickPlan[${index}].id must match its explicit dateIso`);
     check(item.route && typeof item.route === 'object', `quickPlan[${index}].route is required`);
     const mode = item.route && item.route.mode;
     check(['single', 'choice', 'branching'].includes(mode), `quickPlan[${index}].route.mode is invalid`);
@@ -736,6 +742,7 @@ if (data) {
     quickPlanIds.add(item.id);
   }
   check((data.quickPlan || []).length === 11, `quickPlan must contain exactly 11 items, found ${(data.quickPlan || []).length}`);
+  check(JSON.stringify((data.quickPlan || []).map((item) => item.dateIso)) === JSON.stringify(expectedDays), 'quickPlan dateIso values must remain consecutive and chronological');
   check(Object.keys(expectedRouteSignatures).every((id) => quickPlanIds.has(id)), 'quickPlan ids do not match golden route fixtures');
   check(routeModeCounts.single === 3, `expected 3 single routes, found ${routeModeCounts.single}`);
   check(routeModeCounts.choice === 5, `expected 5 choice routes, found ${routeModeCounts.choice}`);

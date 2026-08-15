@@ -21,7 +21,9 @@
     type: 'all',
     area: 'all',
     liveMode: 'browse',
-    showPast: false,
+    quickPastOpen: false,
+    schedulePastOpen: false,
+    navMenuOpen: false,
     from: 'monterey',
     to: 'pebble'
   };
@@ -186,10 +188,7 @@
   }
 
   function quickPlanDateIso(item) {
-    const match = String(item && item.id || '').match(/^qp-(\d{4})$/);
-    if (!match) return '';
-    const mmdd = match[1];
-    return `2026-${mmdd.slice(0, 2)}-${mmdd.slice(2, 4)}`;
+    return item && typeof item.dateIso === 'string' ? item.dateIso : '';
   }
 
   function areaName(areaId) {
@@ -203,8 +202,7 @@
     if (state.liveMode === 'now') return eventHappeningNow(event, clock);
     if (state.liveMode === 'today') return event.date === clock.dateIso;
     if (state.day !== 'all' && event.date !== state.day) return false;
-    // Past days stay in the result set so browse mode can fold them in the UI
-    // (quick plan + day-group details). showPast only controls fold vs expand.
+    // Past days stay in the result set so browse mode can fold them in place.
     return true;
   }
 
@@ -222,10 +220,73 @@
     return template.replace('{count}', String(count));
   }
 
-  function planningGroupSummary(dayCount, eventCount, archived) {
+  function formatPlanningDateRange(dateIds) {
+    const ordered = Array.from(new Set((dateIds || []).filter(Boolean))).sort();
+    if (!ordered.length) return '';
+    const parse = (dateIso) => {
+      const match = String(dateIso).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      return match ? { year: Number(match[1]), month: Number(match[2]), day: Number(match[3]) } : null;
+    };
+    const first = parse(ordered[0]);
+    const last = parse(ordered.at(-1));
+    if (!first || !last) return `${ordered[0]}–${ordered.at(-1)}`;
+    if (state.lang === 'zh') {
+      if (first.year === last.year && first.month === last.month) {
+        return first.day === last.day ? `${first.month}.${first.day}` : `${first.month}.${first.day}–${last.day}`;
+      }
+      return `${first.month}.${first.day}–${last.month}.${last.day}`;
+    }
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    if (first.year === last.year && first.month === last.month) {
+      return first.day === last.day
+        ? `${months[first.month - 1]} ${first.day}`
+        : `${months[first.month - 1]} ${first.day}–${last.day}`;
+    }
+    return `${months[first.month - 1]} ${first.day}–${months[last.month - 1]} ${last.day}`;
+  }
+
+  function planningGroupSummary(dateIds, eventCount, archived) {
+    const uniqueDates = Array.from(new Set((dateIds || []).filter(Boolean))).sort();
     return text(archived ? 'archiveSummary' : 'pastGroupSummary')
-      .replace('{days}', String(dayCount))
+      .replace('{range}', formatPlanningDateRange(uniqueDates))
+      .replace('{days}', String(uniqueDates.length))
       .replace('{count}', String(eventCount));
+  }
+
+  function splitChronologicalEntries(entries, dateOf, todayIso) {
+    const ordered = [...entries].sort((left, right) => dateOf(left).localeCompare(dateOf(right)));
+    return {
+      past: ordered.filter((entry) => dayRelation(dateOf(entry), todayIso) === 'past'),
+      current: ordered.filter((entry) => dayRelation(dateOf(entry), todayIso) !== 'past')
+    };
+  }
+
+  function chronologicalFoldMarkup(pastMarkup, currentMarkup) {
+    return `${pastMarkup}${currentMarkup}`;
+  }
+
+  function eventStartMinutes(event) {
+    const starts = parseTimeWindows(event && event.time).map((window) => window.start).filter(Number.isFinite);
+    if (starts.length) return Math.min(...starts);
+    const firstClock = String(event && event.time || '').match(/\b(\d{1,2}:\d{2})\b/);
+    const fallback = firstClock ? parseHm(firstClock[1]) : null;
+    return Number.isFinite(fallback) ? fallback : Number.POSITIVE_INFINITY;
+  }
+
+  function sortEventsChronologically(events) {
+    return events
+      .map((event, sourceIndex) => ({ event, sourceIndex, start: eventStartMinutes(event) }))
+      .sort((left, right) => {
+        if (left.start !== right.start) return left.start < right.start ? -1 : 1;
+        return left.sourceIndex - right.sourceIndex;
+      })
+      .map((entry) => entry.event);
+  }
+
+  function focusRenderedFilter(attribute, value) {
+    const replacement = Array.from(document.querySelectorAll(`[${attribute}]`))
+      .find((element) => element.getAttribute(attribute) === value);
+    if (replacement) replacement.focus();
   }
 
   function hashTargetElement() {
@@ -260,23 +321,55 @@
       if (summary && labelKey) summary.textContent = text(labelKey);
       if (!details) return;
       const targetInside = Boolean(target && (target === section || section.contains(target)));
-      const activeCollapsible = section.hasAttribute('data-active-collapsible');
-      if (targetInside && !temporalUserOpen.has(section.id)) setTemporalOpen(details, true);
-      else if ((past || activeCollapsible) && temporalUserOpen.has(section.id)) setTemporalOpen(details, temporalUserOpen.get(section.id));
+      if (targetInside) setTemporalOpen(details, true);
+      else if (temporalUserOpen.has(section.id)) setTemporalOpen(details, temporalUserOpen.get(section.id));
       else setTemporalOpen(details, !past);
     });
   }
 
   function updateHeroPrimaryCta() {
     const link = document.getElementById('hero-primary-cta');
-    if (!link) return;
     const tourPast = getClock().dateIso > '2026-08-13';
-    const label = link.querySelector('[data-i18n]');
-    const key = tourPast ? 'tourHeroCtaPast' : 'tourHeroCta';
-    link.setAttribute('href', tourPast ? '#quick-plan' : '#tour-0813');
-    if (label) {
-      label.setAttribute('data-i18n', key);
-      label.textContent = text(key);
+    if (link) {
+      const label = link.querySelector('[data-i18n]');
+      const key = tourPast ? 'tourHeroCtaPast' : 'tourHeroCta';
+      link.setAttribute('href', tourPast ? '#quick-plan' : '#tour-0813');
+      if (label) {
+        label.setAttribute('data-i18n', key);
+        label.textContent = text(key);
+      }
+    }
+    const tourNav = document.getElementById('tour-nav-link');
+    if (tourNav) {
+      const navKey = tourPast ? 'navTourArchive' : 'navTour';
+      tourNav.setAttribute('data-i18n', navKey);
+      tourNav.textContent = text(navKey);
+      tourNav.classList.toggle('archive-nav-link', tourPast);
+    }
+  }
+
+  function updateSectionNavUi() {
+    const toggle = document.getElementById('section-nav-toggle');
+    const links = document.getElementById('primary-nav-links');
+    if (!toggle || !links) return;
+    const key = state.navMenuOpen ? 'navMenuClose' : 'navMenuOpen';
+    toggle.setAttribute('aria-expanded', state.navMenuOpen ? 'true' : 'false');
+    toggle.setAttribute('aria-label', text(key));
+    toggle.setAttribute('title', text(key));
+    links.classList.toggle('is-open', state.navMenuOpen);
+  }
+
+  function focusFragmentTarget(hash) {
+    if (!hash || hash === '#') return;
+    let id;
+    try { id = decodeURIComponent(hash.slice(1)); } catch (_) { return; }
+    const target = document.getElementById(id);
+    if (!target) return;
+    const hadTabIndex = target.hasAttribute('tabindex');
+    if (!hadTabIndex) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    if (!hadTabIndex) {
+      target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true });
     }
   }
 
@@ -356,6 +449,7 @@
       backToTop.setAttribute('aria-label', text('navBackTop'));
       backToTop.setAttribute('title', text('navBackTop'));
     }
+    updateSectionNavUi();
     const filterPanel = document.querySelector('.filter-panel');
     if (filterPanel) filterPanel.setAttribute('aria-label', state.lang === 'zh' ? '日程筛选' : 'Schedule filters');
     const kpis = document.querySelector('.kpi-strip');
@@ -869,9 +963,9 @@
     return text(map[tone] || 'planToneCore');
   }
 
-  function renderPlanTimeline(item) {
-    const slots = item.schedule;
-    if (!Array.isArray(slots) || !slots.length) return '';
+  function renderPlanTimeline(item, open) {
+    const slots = Array.isArray(item.schedule) ? sortEventsChronologically(item.schedule) : [];
+    if (!slots.length) return '';
     const rows = slots.map((slot) => {
       const tone = slot.tone || 'core';
       const note = slot.note ? `<p class="plan-timeline-note">${escapeHtml(localized(slot.note))}</p>` : '';
@@ -894,7 +988,7 @@
         </li>`;
     }).join('');
     return `
-      <details class="plan-timeline">
+      <details class="plan-timeline" data-plan-timeline-id="${escapeHtml(item.id)}"${open ? ' open' : ''}>
         <summary>${escapeHtml(text('planTimeline'))}</summary>
         <ol class="plan-timeline-list">${rows}</ol>
         <p class="plan-timeline-hint">${escapeHtml(text('planTimelineHint'))}</p>
@@ -912,9 +1006,11 @@
   }
 
   function renderQuickPlan() {
-    destroyPlanMaps();
     const root = document.getElementById('quick-plan-track');
     if (!root) return;
+    const openTimelineIds = new Set(Array.from(root.querySelectorAll('details[data-plan-timeline-id][open]'))
+      .map((details) => details.getAttribute('data-plan-timeline-id')));
+    destroyPlanMaps();
     const clock = getClock();
 
     function buildPlanCard(item) {
@@ -925,7 +1021,7 @@
       if (relation === 'past') classes.push('is-past');
       if (relation === 'today') classes.push('is-today');
       return `
-      <article class="${classes.join(' ')}">
+      <article class="${classes.join(' ')}" data-date="${escapeHtml(dateIso)}">
         <div class="plan-day-copy">
           <div class="plan-date">
             <strong>${escapeHtml(localized(item.date))}</strong>
@@ -937,26 +1033,22 @@
           <p>${escapeHtml(localized(item.body))}</p>
           <span class="plan-cost">${escapeHtml(localized(item.cost))}</span>
           ${renderPlanStops(item)}
-          ${renderPlanTimeline(item)}
+          ${renderPlanTimeline(item, openTimelineIds.has(item.id))}
         </div>
         ${item.id && item.route ? `<div class="plan-day-map" data-plan-map="${escapeHtml(item.id)}" role="region" aria-label="${escapeHtml(text('planMapLabel'))}: ${escapeHtml(localized(item.title))}"></div>` : ''}
       </article>`;
     }
 
-    const current = [];
-    const past = [];
-    DATA.quickPlan.forEach((item) => {
+    const entries = DATA.quickPlan.map((item) => {
       const entry = { item, html: buildPlanCard(item), dateIso: quickPlanDateIso(item) };
-      if (dayRelation(entry.dateIso, clock.dateIso) === 'past') past.push(entry);
-      else current.push(entry);
+      return entry;
     });
-    let html = current.map((entry) => entry.html).join('');
-    if (past.length) {
-      const dayCount = new Set(past.map((entry) => entry.dateIso)).size;
-      const summary = planningGroupSummary(dayCount, past.length, clock.dateIso > WINDOW_END);
-      html += `<details class="plan-day-past" data-past-group="quick"${state.showPast ? ' open' : ''}><summary>${escapeHtml(summary)}</summary>${past.map((entry) => entry.html).join('')}</details>`;
-    }
-    root.innerHTML = html;
+    const { past, current } = splitChronologicalEntries(entries, (entry) => entry.dateIso, clock.dateIso);
+    const pastDates = past.map((entry) => entry.dateIso);
+    const pastMarkup = past.length
+      ? `<details class="plan-day-past" data-past-group="quick" data-date-start="${escapeHtml(pastDates[0])}" data-date-end="${escapeHtml(pastDates.at(-1))}"${state.quickPastOpen ? ' open' : ''}><summary>${escapeHtml(planningGroupSummary(pastDates, past.length, clock.dateIso > WINDOW_END))}</summary>${past.map((entry) => entry.html).join('')}</details>`
+      : '';
+    root.innerHTML = chronologicalFoldMarkup(pastMarkup, current.map((entry) => entry.html).join(''));
   }
 
   function renderScheduleFilters() {
@@ -1038,12 +1130,30 @@
         ${escapeHtml(localized(item.label))}
       </button>`).join('');
 
-    if (pastToggle) {
-      pastToggle.textContent = state.showPast ? text('livePastHide') : text('livePastShow');
-      pastToggle.setAttribute('aria-pressed', state.showPast ? 'true' : 'false');
+    const moreSummary = document.querySelector('.filter-more > summary');
+    if (moreSummary) {
+      const activeFilters = [];
+      if (state.day !== 'all') activeFilters.push(localized(dayButtons.find((item) => item.id === state.day)?.label));
+      if (state.area !== 'all') activeFilters.push(areaButtons.find((item) => item.id === state.area)?.label || state.area);
+      if (state.type !== 'all') activeFilters.push(localized(typeButtons.find((item) => item.id === state.type)?.label));
+      const visibleFilters = activeFilters.filter(Boolean);
+      moreSummary.textContent = visibleFilters.length
+        ? `${text('liveMoreFilters')} · ${visibleFilters.join(' · ')}`
+        : text('liveMoreFilters');
+      moreSummary.classList.toggle('has-active-filters', visibleFilters.length > 0);
+      moreSummary.dataset.activeFilters = String(visibleFilters.length);
     }
 
     const filtered = DATA.events.filter((event) => matchesLiveFilters(event, clock));
+    if (pastToggle) {
+      const pastControlRelevant = state.liveMode === 'browse'
+        && state.day === 'all'
+        && filtered.some((event) => event.date < clock.dateIso);
+      pastToggle.hidden = !pastControlRelevant;
+      pastToggle.textContent = state.schedulePastOpen ? text('livePastHide') : text('livePastShow');
+      pastToggle.setAttribute('aria-pressed', state.schedulePastOpen ? 'true' : 'false');
+    }
+
     if (statusEl) {
       let statusText;
       if (state.liveMode === 'now') {
@@ -1055,12 +1165,15 @@
           ? statusWithCount('liveStatusToday', filtered.length)
           : text('liveNoToday');
       } else {
-        statusText = statusWithCount('liveStatusBrowse', filtered.length);
+        const pastCount = filtered.filter((event) => event.date < clock.dateIso).length;
+        const currentCount = filtered.length - pastCount;
+        const pastIsFolded = state.day === 'all' && pastCount > 0 && !state.schedulePastOpen;
+        statusText = pastIsFolded
+          ? text('liveStatusBrowseFolded').replace('{current}', String(currentCount)).replace('{past}', String(pastCount))
+          : statusWithCount('liveStatusBrowse', filtered.length);
       }
       statusEl.textContent = statusText;
     }
-    const scheduleStatus = document.getElementById('schedule-status');
-    if (scheduleStatus && statusEl) scheduleStatus.textContent = statusEl.textContent;
   }
 
   function tagLabel(tag) {
@@ -1083,7 +1196,7 @@
     return '';
   }
 
-  function renderEvent(event) {
+  function renderEvent(event, open) {
     const eventSources = event.sources || [{ url: event.source, label: DATA.ui.officialSource }];
     const priceClass = event.categories.includes('free') ? 'free' : (event.categories.includes('paid') ? 'paid' : 'alert');
     const areaTag = event.area
@@ -1118,7 +1231,7 @@
           </div>
           <div class="event-score"><strong>${escapeHtml(event.score)}/5</strong><span>${escapeHtml(ui('worth'))}</span></div>
         </div>
-        <details class="event-more">
+        <details class="event-more" data-event-detail-id="${escapeHtml(event.id)}"${open ? ' open' : ''}>
           <summary>${escapeHtml(ui('details'))}</summary>
           <div class="event-detail">
             <p><strong>${escapeHtml(ui('why'))}</strong>${escapeHtml(localized(event.why))}</p>
@@ -1134,17 +1247,12 @@
 
   function renderSchedule() {
     const root = document.getElementById('schedule-results');
-    const status = document.getElementById('schedule-status');
     if (!root) return;
+    const openEventIds = new Set(Array.from(root.querySelectorAll('details[data-event-detail-id][open]'))
+      .map((details) => details.getAttribute('data-event-detail-id')));
 
     const clock = getClock();
     const filtered = DATA.events.filter((event) => matchesLiveFilters(event, clock));
-
-    if (status) {
-      status.textContent = state.lang === 'zh'
-        ? `显示 ${filtered.length} 个活动`
-        : `Showing ${filtered.length} ${filtered.length === 1 ? 'event' : 'events'}`;
-    }
 
     if (!filtered.length) {
       root.innerHTML = `<p class="empty-state">${escapeHtml(ui('noResults'))}</p>`;
@@ -1162,15 +1270,15 @@
             <span>${escapeHtml(localized(day.label))}</span>
             <em>${events.length} ${escapeHtml(ui(events.length === 1 ? 'dayLabelSingular' : 'dayLabel'))}</em>
           </header>
-          <div class="event-list">${events.map(renderEvent).join('')}</div>`;
+          <div class="event-list">${events.map((event) => renderEvent(event, openEventIds.has(event.id))).join('')}</div>`;
       return `
-        <section class="${classes.join(' ')}" aria-labelledby="day-${escapeHtml(day.id)}">
+        <section class="${classes.join(' ')}" data-date="${escapeHtml(day.id)}" aria-labelledby="day-${escapeHtml(day.id)}">
           ${heading}
         </section>`;
     }
 
     const groups = DATA.days.map((day) => {
-      const events = filtered.filter((event) => event.date === day.id);
+      const events = sortEventsChronologically(filtered.filter((event) => event.date === day.id));
       if (!events.length) return null;
       return { day, events, html: buildDayGroup(day, events), relation: dayRelation(day.id, clock.dateIso) };
     }).filter(Boolean);
@@ -1180,15 +1288,13 @@
       root.innerHTML = groups.map((group) => group.html).join('');
       return;
     }
-    const current = groups.filter((group) => group.relation !== 'past');
-    const past = groups.filter((group) => group.relation === 'past');
-    let html = current.map((group) => group.html).join('');
-    if (past.length) {
-      const count = past.reduce((total, group) => total + group.events.length, 0);
-      const summary = planningGroupSummary(past.length, count, clock.dateIso > WINDOW_END);
-      html += `<details class="day-group-past" data-past-group="schedule"${state.showPast ? ' open' : ''}><summary class="day-heading day-heading-past">${escapeHtml(summary)}</summary>${past.map((group) => group.html).join('')}</details>`;
-    }
-    root.innerHTML = html;
+    const { past, current } = splitChronologicalEntries(groups, (group) => group.day.id, clock.dateIso);
+    const pastDates = past.map((group) => group.day.id);
+    const count = past.reduce((total, group) => total + group.events.length, 0);
+    const pastMarkup = past.length
+      ? `<details class="day-group-past" data-past-group="schedule" data-date-start="${escapeHtml(pastDates[0])}" data-date-end="${escapeHtml(pastDates.at(-1))}"${state.schedulePastOpen ? ' open' : ''}><summary class="day-heading day-heading-past">${escapeHtml(planningGroupSummary(pastDates, count, clock.dateIso > WINDOW_END))}</summary>${past.map((group) => group.html).join('')}</details>`
+      : '';
+    root.innerHTML = chronologicalFoldMarkup(pastMarkup, current.map((group) => group.html).join(''));
   }
 
   function renderStays() {
@@ -2206,6 +2312,7 @@
         applyTemporalSections();
         updateHeroPrimaryCta();
         schedulePlanMaps();
+        revealHashTarget(false);
         return;
       }
       renderScheduleFilters();
@@ -2244,6 +2351,9 @@
   function wireInteractions() {
     const langButton = document.getElementById('lang-toggle');
     const themeButton = document.getElementById('theme-toggle');
+    const sectionNavToggle = document.getElementById('section-nav-toggle');
+    const sectionNavLinks = document.getElementById('primary-nav-links');
+    const backToTop = document.getElementById('back-to-top');
     const from = document.getElementById('commute-from');
     const to = document.getElementById('commute-to');
     const filterPanel = document.querySelector('.filter-panel');
@@ -2251,6 +2361,24 @@
 
     if (langButton) langButton.addEventListener('click', () => setLanguage(state.lang === 'zh' ? 'en' : 'zh'));
     if (themeButton) themeButton.addEventListener('click', () => setTheme(!isDark(), true));
+    if (sectionNavToggle) sectionNavToggle.addEventListener('click', () => {
+      state.navMenuOpen = !state.navMenuOpen;
+      updateSectionNavUi();
+      if (state.navMenuOpen && sectionNavLinks) {
+        window.requestAnimationFrame(() => sectionNavLinks.querySelector('a')?.focus());
+      }
+    });
+    if (sectionNavLinks) sectionNavLinks.addEventListener('click', (event) => {
+      const link = event.target.closest('a');
+      if (!link || !window.matchMedia('(max-width: 760px)').matches) return;
+      state.navMenuOpen = false;
+      updateSectionNavUi();
+      window.setTimeout(() => focusFragmentTarget(link.hash), 0);
+    });
+    if (backToTop) backToTop.addEventListener('click', () => {
+      state.navMenuOpen = false;
+      updateSectionNavUi();
+    });
     if (from) from.addEventListener('change', () => { state.from = from.value; renderCommuteResult(); });
     if (to) to.addEventListener('change', () => { state.to = to.value; renderCommuteResult(); });
 
@@ -2258,14 +2386,11 @@
       const details = event.target;
       if (!(details instanceof HTMLDetailsElement)) return;
       if (details.hasAttribute('data-past-group')) {
-        state.showPast = details.open;
-        document.querySelectorAll('[data-past-group]').forEach((other) => {
-          if (other !== details && other.open !== details.open) other.open = details.open;
-        });
-        const pastToggle = document.getElementById('live-past-toggle');
-        if (pastToggle) {
-          pastToggle.textContent = state.showPast ? text('livePastHide') : text('livePastShow');
-          pastToggle.setAttribute('aria-pressed', state.showPast ? 'true' : 'false');
+        const group = details.getAttribute('data-past-group');
+        if (group === 'quick') state.quickPastOpen = details.open;
+        if (group === 'schedule') {
+          state.schedulePastOpen = details.open;
+          renderScheduleFilters();
         }
       }
       if (!details.hasAttribute('data-temporal-details') || details.dataset.temporalSync === 'true') return;
@@ -2276,6 +2401,13 @@
     window.addEventListener('hashchange', () => {
       applyTemporalSections();
       revealHashTarget(true);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !state.navMenuOpen) return;
+      state.navMenuOpen = false;
+      updateSectionNavUi();
+      if (sectionNavToggle) sectionNavToggle.focus();
     });
 
     if (parkingPanel) {
@@ -2361,7 +2493,7 @@
             state.liveMode = 'browse';
             renderScheduleFilters();
             renderSchedule();
-            dayButton.focus();
+            focusRenderedFilter('data-day', nextDay);
           }
           return;
         }
@@ -2372,7 +2504,7 @@
             state.type = nextType;
             renderScheduleFilters();
             renderSchedule();
-            typeButton.focus();
+            focusRenderedFilter('data-type', nextType);
           }
           return;
         }
@@ -2386,7 +2518,7 @@
             renderQuickPlan();
             renderSchedule();
             schedulePlanMaps();
-            modeButton.focus();
+            focusRenderedFilter('data-live-mode', nextMode);
           }
           return;
         }
@@ -2397,16 +2529,14 @@
             state.area = nextArea;
             renderScheduleFilters();
             renderSchedule();
-            areaButton.focus();
+            focusRenderedFilter('data-live-area', nextArea);
           }
           return;
         }
         if (event.target.id === 'live-past-toggle' || event.target.closest('#live-past-toggle')) {
-          state.showPast = !state.showPast;
+          state.schedulePastOpen = !state.schedulePastOpen;
           renderScheduleFilters();
-          renderQuickPlan();
           renderSchedule();
-          schedulePlanMaps();
         }
       });
     }
@@ -2426,6 +2556,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     applyLanguage();
     wireInteractions();
+    document.documentElement.classList.add('nav-ready');
+    updateSectionNavUi();
     startClockTimer();
   });
 })();
