@@ -43,6 +43,39 @@ git diff --stat assets/data/ index.html assets/js/data-loader.js
 git commit
 ```
 
+### Proven re-hydrate sequence (2026-08-14)
+
+The `preserve_verification_state()` path mixes old-snapshot evidence into a
+fresh snapshot and breaks provenance gates; use a **fresh import** instead:
+
+1. Edit seeds (`tools/wikidata-hydration-seeds.json`) and the country authority
+   in the coverage config; commit the intake change.
+2. `python3 tools/fetch_wikidata_pilot.py --accessed YYYY-MM-DD`
+3. Rebind `tools/wikidata-work-type-authority-seeds.json`
+   (`base_work_snapshot_id` -> the new snapshot id), run
+   `fetch_wikidata_type_authorities.py --accessed YYYY-MM-DD`, and point the
+   coverage config `work_type_derivation.authority_bindings[0].snapshot_id`
+   at the new sidecar.
+4. Move the old catalog shard away, then
+   `import_wikidata_pilot.py <new snapshot>` (fresh, no preserve).
+5. Run the editorial scripts on the shard (they edit the shard, not SQLite):
+   `promote_place_verification.py` → `agentic_review_person.py` →
+   `agentic_review_practice.py` → `agentic_review_work.py`.
+   `promote_place_verification.py` needs a ULAN crosswalk on disk — regenerate
+   with `fetch_wikidata_ulan_crosswalk.py` if it was cleaned up.
+6. `python3 tools/db.py import` (absorbs the editorial state into SQLite).
+7. Re-apply the region backfill from `data/region-snapshot.json` via
+   `apply_region_backfill.py`, then **align verified entities to their
+   verified `field_region`/`field_country_codes` claims** — a backfill that
+   overwrites a region already covered by a verified claim breaks the
+   "verified field lacks an exact verified claim" gate. Claims win over
+   backfill; backfill only fills fields without claims. Also restore
+   `last_verified` to a date string on any entity demoted by the backfill.
+8. `python3 tools/db.py export` (full validate + test gates), update pinned
+   counts/sha256s in `test_wikidata_pilot.py`, refresh
+   `data/region-snapshot.json` from the store for the next cycle, delete stale
+   crosswalk snapshots, and commit.
+
 ### Wikidata re-hydrate (non-daily, only when pulling fresh Wikidata data)
 
 The fetch→import pipeline below produces a new shard from Wikidata; afterwards
