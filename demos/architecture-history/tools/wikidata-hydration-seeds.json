@@ -586,6 +586,16 @@
       ]
     },
     {
+      "expected_country_code": "MA",
+      "expected_country_qid": "Q1028",
+      "label_hint_en": "Hassan II Mosque",
+      "qid": "Q41346",
+      "region": "africa",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "ID",
       "expected_country_qid": "Q252",
       "label_hint_en": "Borobudur",
@@ -4355,6 +4365,16 @@
       ]
     },
     {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "Independence Palace",
+      "qid": "Q933384",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
       "expected_country_code": "GB",
       "expected_country_qid": "Q145",
       "label_hint_en": "Highpoint I",
@@ -5051,6 +5071,16 @@
       "region": "europe",
       "risk_tags": [
         "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "ZW",
+      "expected_country_qid": "Q954",
+      "label_hint_en": "Eastgate Centre, Harare",
+      "qid": "Q1278256",
+      "region": "africa",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -5973,6 +6003,16 @@
       ]
     },
     {
+      "expected_country_code": "ZA",
+      "expected_country_qid": "Q258",
+      "label_hint_en": "Union Buildings",
+      "qid": "Q2264091",
+      "region": "africa",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
       "expected_country_code": "NL",
       "expected_country_qid": "Q55",
       "label_hint_en": "Ito-toren",
@@ -6282,6 +6322,16 @@
       "region": "central_west_asia",
       "risk_tags": [
         "achaemenid"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Alamo Mission",
+      "qid": "Q2636724",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -6645,6 +6695,16 @@
       "label_hint_en": "21st Century Museum of Contemporary Art",
       "qid": "Q3242206",
       "region": "east_asia",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "expected_country_code": "KE",
+      "expected_country_qid": "Q114",
+      "label_hint_en": "Kenyatta International Convention Centre",
+      "qid": "Q3272625",
+      "region": "africa",
       "risk_tags": [
         "single_phase"
       ]
