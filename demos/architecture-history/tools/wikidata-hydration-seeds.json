@@ -1054,6 +1054,16 @@
     {
       "expected_country_code": "DE",
       "expected_country_qid": "Q183",
+      "label_hint_en": "Munich Olympic Stadium",
+      "qid": "Q131610",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
       "label_hint_en": "Nymphenburg Palace",
       "qid": "Q131631",
       "region": "europe",
@@ -2245,6 +2255,16 @@
       ]
     },
     {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Neue Staatsgalerie",
+      "qid": "Q316242",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "EG",
       "expected_country_qid": "Q79",
       "label_hint_en": "Luxor Temple",
@@ -3355,6 +3375,16 @@
       ]
     },
     {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "James Simon Gallery",
+      "qid": "Q664484",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "ES",
       "expected_country_qid": "Q29",
       "label_hint_en": "Centro Internacional de Ferias y Congresos de Tenerife",
@@ -4042,6 +4072,16 @@
       "region": "europe",
       "risk_tags": [
         "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "PT",
+      "expected_country_qid": "Q45",
+      "label_hint_en": "Estádio Municipal de Braga",
+      "qid": "Q849239",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -4906,6 +4946,16 @@
       ]
     },
     {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Hiroshima Peace Memorial Museum",
+      "qid": "Q1200076",
+      "region": "east_asia",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "MM",
       "expected_country_qid": "Q836",
       "label_hint_en": "Dhammayangyi Temple",
@@ -5322,6 +5372,16 @@
       "risk_tags": [
         "ottoman",
         "palace"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Glass House",
+      "qid": "Q1506237",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -7742,6 +7802,16 @@
       ]
     },
     {
+      "expected_country_code": "BD",
+      "expected_country_qid": "Q902",
+      "label_hint_en": "METI Handmade School",
+      "qid": "Q6715478",
+      "region": "south_asia",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
       "label_hint_en": "MIT Chapel",
@@ -8180,6 +8250,26 @@
       "risk_tags": [
         "multi_phase",
         "site_vs_single_work"
+      ]
+    },
+    {
+      "expected_country_code": "PT",
+      "expected_country_qid": "Q45",
+      "label_hint_en": "São Bento metro station (Porto)",
+      "qid": "Q10276156",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "expected_country_code": "SE",
+      "expected_country_qid": "Q34",
+      "label_hint_en": "Villa Norrköping",
+      "qid": "Q10715507",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -10233,6 +10323,16 @@
       ]
     },
     {
+      "expected_country_code": "CL",
+      "expected_country_qid": "Q298",
+      "label_hint_en": "Center of Innovation Anacleto Angelini",
+      "qid": "Q88667534",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "JP",
       "expected_country_qid": "Q17",
       "label_hint_en": "Kamitaki Power Station",
@@ -10331,6 +10431,16 @@
       "region": "latin_america_caribbean",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "UTEC campus",
+      "qid": "Q99769226",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -10714,6 +10824,16 @@
       ]
     },
     {
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "label_hint_en": "Kerzengeschäft Retti",
+      "qid": "Q111494533",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "IN",
       "expected_country_qid": "Q668",
       "label_hint_en": "Q111696061",
@@ -10741,6 +10861,16 @@
       "region": "central_west_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Kolumba",
+      "qid": "Q112033459",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -11200,6 +11330,16 @@
       "region": "africa",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "PT",
+      "expected_country_qid": "Q45",
+      "label_hint_en": "Carlos Ramos Pavilion",
+      "qid": "Q123135369",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
