@@ -246,6 +246,11 @@
       "country_qid": "Q717",
       "iso2": "VE",
       "region": "latin_america_caribbean"
+    },
+    {
+      "country_qid": "Q35",
+      "iso2": "DK",
+      "region": "europe"
     }
   ],
   "coverage_grid": {
@@ -700,7 +705,7 @@
           "Q19844914",
           "Q25550691"
         ],
-        "snapshot_id": "wikidata-work-type-authority-2026-08-14-2069fb671bd6"
+        "snapshot_id": "wikidata-work-type-authority-2026-08-15-ee537e2fd518"
       }
     ],
     "authority_policy": "new_mappings_require_revision_pinned_snapshot",
