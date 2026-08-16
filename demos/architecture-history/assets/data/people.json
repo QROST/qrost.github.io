@@ -2540,6 +2540,48 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Smiljan Radic Clarke"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1965,
+        "latest": 1965,
+        "precision": "day",
+        "value": "1965-06-21"
+      },
+      "claim_ids": [
+        "claim-wd-q12220731-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "CL"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q12220731"
+      },
+      "id": "person-wd-q12220731",
+      "last_verified": "2026-08-16",
+      "name_en": "Smiljan Radic",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "latin_america_caribbean",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Chilean architect (born 1965)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [
         "卡洛·瑪德爾諾"

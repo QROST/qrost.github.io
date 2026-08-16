@@ -218,7 +218,7 @@ def minimal_lineage_snapshot(entities: dict[str, dict]) -> dict:
             "seed": "fixture",
             "seed_sha256": "fixture",
         },
-        "snapshot_id": "wikidata-hydration-2026-08-16-ee3e2b66a496",
+        "snapshot_id": "wikidata-hydration-2026-08-16-2fbdde30257d",
         "source_id": "wikidata",
     }
 
@@ -904,7 +904,7 @@ class WikidataPilotTests(unittest.TestCase):
         }
         self.assertEqual(
             statuses,
-            {"mapped_exact": 878, "unmapped": 217, "ambiguous": 34},
+            {"mapped_exact": 879, "unmapped": 217, "ambiguous": 34},
         )
 
     def test_automatic_records_remain_candidates(self):
@@ -1084,7 +1084,7 @@ class WikidataPilotTests(unittest.TestCase):
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
-            198,
+            199,
         )
         self.assertEqual(
             sum(

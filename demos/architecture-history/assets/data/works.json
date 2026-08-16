@@ -8878,6 +8878,76 @@
       "aliases_zh": [],
       "attribution_mode": "unknown",
       "claim_ids": [
+        "claim-wd-q117048808-name-en",
+        "claim-wd-q117048808-work-type",
+        "claim-wd-q117048808-coordinates",
+        "claim-wd-q117048808-p84-q12220731-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q117048808-coordinates",
+        "lat": 51.50479,
+        "lng": -0.174983,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q117048808-p84-q12220731-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q12220731",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q117048808"
+      },
+      "id": "work-wd-q117048808",
+      "last_verified": "2026-08-16",
+      "name_en": "Serpentine Gallery Pavilion 2014",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
         "claim-wd-q117048850-name-en",
         "claim-wd-q117048850-work-type",
         "claim-wd-q117048850-coordinates",
