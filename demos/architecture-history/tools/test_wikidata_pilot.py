@@ -96,7 +96,7 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q917274": "2000_present",
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
-    "45c23088ff2e1a12eabd42e54418d02092a4392d4832bf8d8da496b0d9e6a00d"
+    "7f8f8302c0ff2d7dcb5a33364abc31148e2a163f7007bb9eaac1a41c47099539"
 )
 NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q2977",
@@ -218,7 +218,7 @@ def minimal_lineage_snapshot(entities: dict[str, dict]) -> dict:
             "seed": "fixture",
             "seed_sha256": "fixture",
         },
-        "snapshot_id": "wikidata-hydration-2026-08-16-2fbdde30257d",
+        "snapshot_id": "wikidata-hydration-2026-08-17-dd14ac017b3e",
         "source_id": "wikidata",
     }
 
@@ -904,7 +904,7 @@ class WikidataPilotTests(unittest.TestCase):
         }
         self.assertEqual(
             statuses,
-            {"mapped_exact": 879, "unmapped": 217, "ambiguous": 34},
+            {"mapped_exact": 881, "unmapped": 221, "ambiguous": 34},
         )
 
     def test_automatic_records_remain_candidates(self):
@@ -1073,14 +1073,14 @@ class WikidataPilotTests(unittest.TestCase):
             sort_keys=True,
             separators=(",", ":"),
         ).encode("utf-8")
-        self.assertEqual(len(prior_assignments), 870)
+        self.assertEqual(len(prior_assignments), 876)
         self.assertEqual(
             hashlib.sha256(prior_payload).hexdigest(),
             PRIOR_PERIOD_ASSIGNMENT_SHA256,
         )
         self.assertEqual(
             sum(period != "unknown" for period in assignments.values()),
-            931,
+            937,
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
@@ -1091,7 +1091,7 @@ class WikidataPilotTests(unittest.TestCase):
                 claim["predicate"] == "field_period"
                 for claim in self.catalog["claims"]
             ),
-            931,
+            937,
         )
 
     def test_raw_lineage_edges_never_become_mentorship(self):

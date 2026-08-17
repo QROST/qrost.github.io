@@ -8,19 +8,19 @@ The project is intentionally a **curated pilot**, not a claim to have completed
 global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
-The current catalog contains 1130 works, 923 people, 62 practices, 50
-country-place records, 597 relationship edges, and 12403 source claims. Exact
-direct-P31 mapping currently classifies 879 works, while 217 remain unmapped and
+The current catalog contains 1136 works, 973 people, 62 practices, 54
+country-place records, 701 relationship edges, and 12625 source claims. Exact
+direct-P31 mapping currently classifies 881 works, while 221 remain unmapped and
 34 remain ambiguous. Wikidata is the primary structured source; a refreshed
 24-anchor Getty ULAN P245 crosswalk is regenerated locally per re-hydrate
 (gitignored infra), but the reciprocal Getty identity overlay is blocked as of
 2026-08-07 because `vocab.getty.edu` returns HTTP 499 (`Service temporarily
 degraded`) for JSON-LD and RDF downloads. Public people therefore still carry
 zero `ulan` external ids. Agentic verification (`reviewer-agentic-cursor`,
-2026-08-16) currently covers all 50 country places, all 62 practices, 186
-people, and 104 works (402 verified entities and relations). Known-period works
+2026-08-17) currently covers all 54 country places, all 62 practices, 187
+people, and 104 works (407 verified entities and relations). Known-period works
 stay candidate because `field_period` is only indirectly evidenced from
-P571/P1619. All 597 relations remain `candidate` by design — Wikidata's
+P571/P1619. All 701 relations remain `candidate` by design — Wikidata's
 relationship dimension is `candidate`-authority, so verified lineage requires a
 stronger source (Getty ULAN relationships, academic literature) than Wikidata
 alone provides.
