@@ -23155,6 +23155,80 @@
     },
     {
       "aliases_en": [],
+      "aliases_zh": [
+        "船博物馆"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1616115-name-en",
+        "claim-wd-q1616115-name-zh",
+        "claim-wd-q1616115-coordinates",
+        "claim-wd-q1616115-p84-q920277-1",
+        "claim-wd-q1616115-p571-1",
+        "claim-wd-q1616115-p571-2"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1616115-coordinates",
+        "lat": 52.390514,
+        "lng": 4.873233,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q1616115-p84-q920277-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q920277",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1616115"
+      },
+      "id": "work-wd-q1616115",
+      "last_verified": "2026-08-17",
+      "name_en": "Het Schip",
+      "name_native": null,
+      "name_zh": "船博物馆",
+      "period": "unknown",
+      "place_id": "place-wd-q55",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
       "aliases_zh": [],
       "attribution_mode": "unknown",
       "claim_ids": [
@@ -48725,6 +48799,80 @@
       "work_type_mapping_status": "mapped_exact"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q3330685-name-en",
+        "claim-wd-q3330685-name-zh",
+        "claim-wd-q3330685-work-type",
+        "claim-wd-q3330685-coordinates",
+        "claim-wd-q3330685-p84-q311692-1",
+        "claim-wd-q3330685-period",
+        "claim-wd-q3330685-p571-1",
+        "claim-wd-q3330685-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q3330685-coordinates",
+        "lat": 38.917306,
+        "lng": -6.339861,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q3330685-p84-q311692-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q311692",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q3330685"
+      },
+      "id": "work-wd-q3330685",
+      "last_verified": "2026-08-17",
+      "name_en": "National Museum of Roman Art",
+      "name_native": null,
+      "name_zh": "国家罗马艺术博物馆",
+      "period": "1980_1999",
+      "place_id": "place-wd-q29",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
       "aliases_en": [
         "Cahokia Mounds State Historic Site",
         "Cahokia Mounds State Park"
@@ -49629,6 +49777,81 @@
       "verification_status": "verified",
       "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "洛杉磯國際機場主體建築物"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q3523620-name-en",
+        "claim-wd-q3523620-name-zh",
+        "claim-wd-q3523620-coordinates",
+        "claim-wd-q3523620-p84-q1859204-1",
+        "claim-wd-q3523620-period",
+        "claim-wd-q3523620-p571-1",
+        "claim-wd-q3523620-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q3523620-coordinates",
+        "lat": 33.9441,
+        "lng": -118.402,
+        "precision": 0.0001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q3523620-p84-q1859204-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1859204",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q3523620"
+      },
+      "id": "work-wd-q3523620",
+      "last_verified": "2026-08-17",
+      "name_en": "Theme Building",
+      "name_native": null,
+      "name_zh": "主題館",
+      "period": "1946_1979",
+      "place_id": "place-wd-q30",
+      "region": "north_america",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
     },
     {
       "aliases_en": [],
@@ -50610,6 +50833,80 @@
       "verification_status": "candidate",
       "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "The Westin Bonaventure Hotel and Suites, Los Angeles"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q371058-name-en",
+        "claim-wd-q371058-coordinates",
+        "claim-wd-q371058-p84-q764692-1",
+        "claim-wd-q371058-period",
+        "claim-wd-q371058-p571-1",
+        "claim-wd-q371058-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q371058-coordinates",
+        "lat": 34.05279,
+        "lng": -118.25646,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q371058-p84-q764692-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q764692",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q371058"
+      },
+      "id": "work-wd-q371058",
+      "last_verified": "2026-08-17",
+      "name_en": "Westin Bonaventure Hotel",
+      "name_native": null,
+      "name_zh": null,
+      "period": "1946_1979",
+      "place_id": "place-wd-q30",
+      "region": "north_america",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
     },
     {
       "aliases_en": [
@@ -53242,6 +53539,147 @@
       "aliases_zh": [],
       "attribution_mode": "unknown",
       "claim_ids": [
+        "claim-wd-q4176574-name-en",
+        "claim-wd-q4176574-name-zh",
+        "claim-wd-q4176574-work-type",
+        "claim-wd-q4176574-coordinates",
+        "claim-wd-q4176574-p84-q1277977-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q4176574-coordinates",
+        "lat": 41.3123,
+        "lng": -72.924,
+        "precision": 0.0001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q4176574-p84-q1277977-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1277977",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q4176574"
+      },
+      "id": "work-wd-q4176574",
+      "last_verified": "2026-08-17",
+      "name_en": "Yale Art and Architecture Building",
+      "name_native": null,
+      "name_zh": "耶鲁大学艺术与建筑大厦",
+      "period": "unknown",
+      "place_id": "place-wd-q30",
+      "region": "north_america",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q4233-name-en",
+        "claim-wd-q4233-work-type",
+        "claim-wd-q4233-coordinates",
+        "claim-wd-q4233-p84-q1544-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q4233-coordinates",
+        "lat": 45.72984,
+        "lng": 4.82493,
+        "precision": 2.7777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q4233-p84-q1544-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1544",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q4233"
+      },
+      "id": "work-wd-q4233",
+      "last_verified": "2026-08-17",
+      "name_en": "Halle Tony Garnier",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
         "claim-wd-q4235753-name-en",
         "claim-wd-q4235753-work-type",
         "claim-wd-q4235753-coordinates",
@@ -54023,6 +54461,79 @@
       "period": "1919_1945",
       "place_id": "place-wd-q17",
       "region": "east_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q441668-name-en",
+        "claim-wd-q441668-name-zh",
+        "claim-wd-q441668-work-type",
+        "claim-wd-q441668-coordinates",
+        "claim-wd-q441668-p84-q84287-1",
+        "claim-wd-q441668-period",
+        "claim-wd-q441668-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q441668-coordinates",
+        "lat": 48.210627,
+        "lng": 16.27879,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q441668-p84-q84287-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q84287",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q441668"
+      },
+      "id": "work-wd-q441668",
+      "last_verified": "2026-08-17",
+      "name_en": "Kirche am Steinhof",
+      "name_native": null,
+      "name_zh": "施泰因霍夫教堂",
+      "period": "1800_1918",
+      "place_id": "place-wd-q40",
+      "region": "europe",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -69929,6 +70440,90 @@
       "verification_status": "candidate",
       "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Poelzig Building",
+        "Farben Building"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q663140-name-en",
+        "claim-wd-q663140-name-zh",
+        "claim-wd-q663140-coordinates",
+        "claim-wd-q663140-p84-q76734-1",
+        "claim-wd-q663140-p84-q1416466-2",
+        "claim-wd-q663140-period",
+        "claim-wd-q663140-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q663140-coordinates",
+        "lat": 50.12555555555556,
+        "lng": 8.6675,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q663140-p84-q76734-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q76734",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q663140-p84-q1416466-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1416466",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q663140"
+      },
+      "id": "work-wd-q663140",
+      "last_verified": "2026-08-17",
+      "name_en": "IG Farben Building",
+      "name_native": null,
+      "name_zh": "法本公司大楼",
+      "period": "1919_1945",
+      "place_id": "place-wd-q183",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
     },
     {
       "aliases_en": [],

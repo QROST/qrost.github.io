@@ -771,6 +771,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-documented-influence-q214564-q45055",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded influence edge: Ferdinand Hodler → Koloman Moser. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
+        "note_zh": "待审影响边：费迪南德·霍德勒 → 科罗曼·莫塞尔。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q214564",
+      "id": "relation-wd-documented-influence-q214564-q45055",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "documented_influence",
+      "to_id": "person-wd-q45055",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-documented-influence-q22962434-q1374668",
       "confidence": 0.45,
       "context": {
@@ -1365,6 +1387,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q103780-q76734",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1869,
+        "institution_id": null,
+        "note_en": "Recorded edge: Hugo Hartung → Hans Poelzig. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Hugo Hartung → 汉斯·珀尔齐希。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q103780",
+      "id": "relation-wd-student-recorded-q103780-q76734",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q76734",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q1038985-q6206800",
       "confidence": 0.45,
       "context": {
@@ -1472,6 +1516,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q465917",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q113229-q1351990",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1896,
+        "institution_id": null,
+        "note_en": "Recorded edge: Siegfried Theiss → Erich Boltenstern. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Siegfried Theiss → Erich Boltenstern。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q113229",
+      "id": "relation-wd-student-recorded-q113229-q1351990",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1351990",
       "verification_status": "candidate"
     },
     {
@@ -1585,6 +1651,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q121091803-q29422184",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1912,
+        "institution_id": null,
+        "note_en": "Recorded edge: Eugen Mayer → Gustav Beran. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Eugen Mayer → Gustav Beran。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q121091803",
+      "id": "relation-wd-student-recorded-q121091803-q29422184",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q29422184",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q121739-q1351990",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1896,
+        "institution_id": null,
+        "note_en": "Recorded edge: Bruno Ahrends → Erich Boltenstern. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Bruno Ahrends → Erich Boltenstern。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q121739",
+      "id": "relation-wd-student-recorded-q121739-q1351990",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1351990",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q122328-q123150",
       "confidence": 0.45,
       "context": {
@@ -1626,6 +1736,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q2343132",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1257631-q1351990",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1896,
+        "institution_id": null,
+        "note_en": "Recorded edge: Max von Ferstel → Erich Boltenstern. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Max von Ferstel → Erich Boltenstern。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1257631",
+      "id": "relation-wd-student-recorded-q1257631-q1351990",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1351990",
       "verification_status": "candidate"
     },
     {
@@ -1717,6 +1849,72 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q1351990-q94694228",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1928,
+        "institution_id": null,
+        "note_en": "Recorded edge: Erich Boltenstern → Peter Koban. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Erich Boltenstern → Peter Koban。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1351990",
+      "id": "relation-wd-student-recorded-q1351990-q94694228",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q94694228",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1351990-q94970913",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1909,
+        "institution_id": null,
+        "note_en": "Recorded edge: Erich Boltenstern → Ernst Lederer-Ponzer. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Erich Boltenstern → Ernst Lederer-Ponzer。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1351990",
+      "id": "relation-wd-student-recorded-q1351990-q94970913",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q94970913",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1351990-q94999675",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1940,
+        "institution_id": null,
+        "note_en": "Recorded edge: Erich Boltenstern → Friedrich Fischer II. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Erich Boltenstern → Friedrich Fischer II。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1351990",
+      "id": "relation-wd-student-recorded-q1351990-q94999675",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q94999675",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q1351990-q95047885",
       "confidence": 0.45,
       "context": {
@@ -1736,6 +1934,94 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q95047885",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1351990-q95715747",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1940,
+        "institution_id": null,
+        "note_en": "Recorded edge: Erich Boltenstern → Eva Weil. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Erich Boltenstern → Eva Weil。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1351990",
+      "id": "relation-wd-student-recorded-q1351990-q95715747",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q95715747",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1351990-q95798985",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1922,
+        "institution_id": null,
+        "note_en": "Recorded edge: Erich Boltenstern → Walter Olensky. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Erich Boltenstern → Walter Olensky。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1351990",
+      "id": "relation-wd-student-recorded-q1351990-q95798985",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q95798985",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1351990-q96035871",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1944,
+        "institution_id": null,
+        "note_en": "Recorded edge: Erich Boltenstern → Hans Wolfgang Jäger. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Erich Boltenstern → Hans Wolfgang Jäger。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1351990",
+      "id": "relation-wd-student-recorded-q1351990-q96035871",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q96035871",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1351990-q96035897",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1944,
+        "institution_id": null,
+        "note_en": "Recorded edge: Erich Boltenstern → Werner Havlicek. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Erich Boltenstern → Werner Havlicek。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1351990",
+      "id": "relation-wd-student-recorded-q1351990-q96035897",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q96035897",
       "verification_status": "candidate"
     },
     {
@@ -1827,6 +2113,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q151759-q66481",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1814,
+        "institution_id": null,
+        "note_en": "Recorded edge: Karl Friedrich Schinkel → Ferdinand von Arnim. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：卡尔·弗里德里希·申克尔 → Ferdinand von Arnim。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q151759",
+      "id": "relation-wd-student-recorded-q151759-q66481",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q66481",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q151759-q69207",
       "confidence": 0.45,
       "context": {
@@ -1868,6 +2176,50 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q700033",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1544-q26879633",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1906,
+        "institution_id": null,
+        "note_en": "Recorded edge: Tony Garnier → Jean Cateland. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：托尼 加尼耶 → Jean Cateland。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1544",
+      "id": "relation-wd-student-recorded-q1544-q26879633",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q26879633",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1544-q50805176",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1891,
+        "institution_id": null,
+        "note_en": "Recorded edge: Tony Garnier → Alfred Audoul. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：托尼 加尼耶 → Alfred Audoul。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1544",
+      "id": "relation-wd-student-recorded-q1544-q50805176",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q50805176",
       "verification_status": "candidate"
     },
     {
@@ -2022,6 +2374,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q63248583",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1640621-q1912493",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1889,
+        "institution_id": null,
+        "note_en": "Recorded edge: Carl König → Max Fellerer. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Carl König → Max Fellerer。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1640621",
+      "id": "relation-wd-student-recorded-q1640621-q1912493",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1912493",
       "verification_status": "candidate"
     },
     {
@@ -6161,6 +6535,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q311692-q106843430",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1947,
+        "institution_id": null,
+        "note_en": "Recorded edge: Rafael Moneo → José Manuel Pérez Latorre. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：拉斐尔·莫内欧 → José Manuel Pérez Latorre。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q311692",
+      "id": "relation-wd-student-recorded-q311692-q106843430",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q106843430",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q312028-q167073",
       "confidence": 0.45,
       "context": {
@@ -6356,6 +6752,116 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q8053",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q314886-q124347977",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1926,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jože Plečnik → Milica Detoni. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约热·普列赤涅克 → Milica Detoni。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q314886",
+      "id": "relation-wd-student-recorded-q314886-q124347977",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q124347977",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q314886-q18529542",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1899,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jože Plečnik → France Tomažič. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约热·普列赤涅克 → France Tomažič。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q314886",
+      "id": "relation-wd-student-recorded-q314886-q18529542",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q18529542",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q314886-q50223896",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1894,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jože Plečnik → Josef Fuchs. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约热·普列赤涅克 → Josef Fuchs。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q314886",
+      "id": "relation-wd-student-recorded-q314886-q50223896",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q50223896",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q314886-q51316631",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1915,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jože Plečnik → Zdenko Sila. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约热·普列赤涅克 → Zdenko Sila。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q314886",
+      "id": "relation-wd-student-recorded-q314886-q51316631",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q51316631",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q314886-q927356",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1891,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jože Plečnik → František Lydie Gahura. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约热·普列赤涅克 → František Lydie Gahura。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q314886",
+      "id": "relation-wd-student-recorded-q314886-q927356",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q927356",
       "verification_status": "candidate"
     },
     {
@@ -7437,6 +7943,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q3262157-q1544",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1869,
+        "institution_id": null,
+        "note_en": "Recorded edge: Louis Henri Georges Scellier de Gisors → Tony Garnier. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Louis Henri Georges Scellier de Gisors → 托尼 加尼耶。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3262157",
+      "id": "relation-wd-student-recorded-q3262157-q1544",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1544",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3262157-q16220832",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1872,
+        "institution_id": null,
+        "note_en": "Recorded edge: Louis Henri Georges Scellier de Gisors → Henri Jacquelin. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Louis Henri Georges Scellier de Gisors → Henri Jacquelin。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3262157",
+      "id": "relation-wd-student-recorded-q3262157-q16220832",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q16220832",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q3262581-q110740937",
       "confidence": 0.45,
       "context": {
@@ -8050,6 +8600,50 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q1418631",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3370660-q1544",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1869,
+        "institution_id": null,
+        "note_en": "Recorded edge: Paul Blondel → Tony Garnier. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Paul Blondel → 托尼 加尼耶。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3370660",
+      "id": "relation-wd-student-recorded-q3370660-q1544",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1544",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3370660-q16220832",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1872,
+        "institution_id": null,
+        "note_en": "Recorded edge: Paul Blondel → Henri Jacquelin. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Paul Blondel → Henri Jacquelin。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3370660",
+      "id": "relation-wd-student-recorded-q3370660-q16220832",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q16220832",
       "verification_status": "candidate"
     },
     {
@@ -11067,6 +11661,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q61256-q66113",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1827,
+        "institution_id": null,
+        "note_en": "Recorded edge: Friedrich August Stüler → Friedrich Adler. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：弗里德里希·奥古斯特·施蒂勒 → Friedrich Adler。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q61256",
+      "id": "relation-wd-student-recorded-q61256-q66113",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q66113",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q61342-q362055",
       "confidence": 0.45,
       "context": {
@@ -11174,6 +11790,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q151759",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q63191-q105214",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1905,
+        "institution_id": null,
+        "note_en": "Recorded edge: Heinrich Tessenow → Helmut Hentrich. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：海因里希·特塞诺 → Helmut Hentrich。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q63191",
+      "id": "relation-wd-student-recorded-q63191-q105214",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q105214",
       "verification_status": "candidate"
     },
     {
@@ -11441,6 +12079,72 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q66113-q2060908",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1848,
+        "institution_id": null,
+        "note_en": "Recorded edge: Friedrich Adler → Paul Lehfeldt. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Friedrich Adler → Paul Lehfeldt。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q66113",
+      "id": "relation-wd-student-recorded-q66113-q2060908",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q2060908",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q66113-q76734",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1869,
+        "institution_id": null,
+        "note_en": "Recorded edge: Friedrich Adler → Hans Poelzig. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Friedrich Adler → 汉斯·珀尔齐希。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q66113",
+      "id": "relation-wd-student-recorded-q66113-q76734",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q76734",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q66481-q66113",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1827,
+        "institution_id": null,
+        "note_en": "Recorded edge: Ferdinand von Arnim → Friedrich Adler. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Ferdinand von Arnim → Friedrich Adler。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q66481",
+      "id": "relation-wd-student-recorded-q66481-q66113",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q66113",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q674624-q3439949",
       "confidence": 0.45,
       "context": {
@@ -11592,6 +12296,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q466064",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q700033-q66481",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1814,
+        "institution_id": null,
+        "note_en": "Recorded edge: Friedrich Ludwig Persius → Ferdinand von Arnim. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：路德维希·佩尔修斯 → Ferdinand von Arnim。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q700033",
+      "id": "relation-wd-student-recorded-q700033-q66481",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q66481",
       "verification_status": "candidate"
     },
     {
@@ -11925,6 +12651,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q72120-q66113",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1827,
+        "institution_id": null,
+        "note_en": "Recorded edge: Heinrich Strack → Friedrich Adler. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：海因里希·斯特拉克 → Friedrich Adler。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q72120",
+      "id": "relation-wd-student-recorded-q72120-q66113",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q66113",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q725816-q313701",
       "confidence": 0.45,
       "context": {
@@ -12101,6 +12849,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q75191-q105214",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1905,
+        "institution_id": null,
+        "note_en": "Recorded edge: Hermann Jansen → Helmut Hentrich. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Hermann Jansen → Helmut Hentrich。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q75191",
+      "id": "relation-wd-student-recorded-q75191-q105214",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q105214",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q7527118-q3938437",
       "confidence": 0.45,
       "context": {
@@ -12142,6 +12912,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q190148",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q75964-q76734",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1869,
+        "institution_id": null,
+        "note_en": "Recorded edge: Carl Schäfer → Hans Poelzig. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Carl Schäfer → 汉斯·珀尔齐希。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q75964",
+      "id": "relation-wd-student-recorded-q75964-q76734",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q76734",
       "verification_status": "candidate"
     },
     {
@@ -12362,6 +13154,72 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q95900021",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q76734-q105214",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1905,
+        "institution_id": null,
+        "note_en": "Recorded edge: Hans Poelzig → Helmut Hentrich. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：汉斯·珀尔齐希 → Helmut Hentrich。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q76734",
+      "id": "relation-wd-student-recorded-q76734-q105214",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q105214",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q76734-q1351990",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1896,
+        "institution_id": null,
+        "note_en": "Recorded edge: Hans Poelzig → Erich Boltenstern. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：汉斯·珀尔齐希 → Erich Boltenstern。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q76734",
+      "id": "relation-wd-student-recorded-q76734-q1351990",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1351990",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q76734-q89360",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1911,
+        "institution_id": null,
+        "note_en": "Recorded edge: Hans Poelzig → Dieter Oesterlen. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：汉斯·珀尔齐希 → Dieter Oesterlen。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q76734",
+      "id": "relation-wd-student-recorded-q76734-q89360",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q89360",
       "verification_status": "candidate"
     },
     {
@@ -13355,6 +14213,72 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q84250-q1041164",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1883,
+        "institution_id": null,
+        "note_en": "Recorded edge: Josef Hoffmann → Carl Witzmann. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：約瑟夫·霍夫曼 → Carl Witzmann。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84250",
+      "id": "relation-wd-student-recorded-q84250-q1041164",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1041164",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84250-q110955666",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1896,
+        "institution_id": null,
+        "note_en": "Recorded edge: Josef Hoffmann → Marianne Leisching. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：約瑟夫·霍夫曼 → Marianne Leisching。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84250",
+      "id": "relation-wd-student-recorded-q84250-q110955666",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q110955666",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84250-q121091803",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1890,
+        "institution_id": null,
+        "note_en": "Recorded edge: Josef Hoffmann → Eugen Mayer. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：約瑟夫·霍夫曼 → Eugen Mayer。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84250",
+      "id": "relation-wd-student-recorded-q84250-q121091803",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q121091803",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q84250-q1605748",
       "confidence": 0.45,
       "context": {
@@ -13377,6 +14301,72 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q84250-q29422184",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1912,
+        "institution_id": null,
+        "note_en": "Recorded edge: Josef Hoffmann → Gustav Beran. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：約瑟夫·霍夫曼 → Gustav Beran。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84250",
+      "id": "relation-wd-student-recorded-q84250-q29422184",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q29422184",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84250-q829849",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1894,
+        "institution_id": null,
+        "note_en": "Recorded edge: Josef Hoffmann → Naum Slutzky. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：約瑟夫·霍夫曼 → Naum Slutzky。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84250",
+      "id": "relation-wd-student-recorded-q84250-q829849",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q829849",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84250-q84655",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1880,
+        "institution_id": null,
+        "note_en": "Recorded edge: Josef Hoffmann → Otto Prutscher. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：約瑟夫·霍夫曼 → Otto Prutscher。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84250",
+      "id": "relation-wd-student-recorded-q84250-q84655",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q84655",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q84250-q94970211",
       "confidence": 0.45,
       "context": {
@@ -13396,6 +14386,402 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q94970211",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84250-q95716565",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1902,
+        "institution_id": null,
+        "note_en": "Recorded edge: Josef Hoffmann → Hans Steindl. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：約瑟夫·霍夫曼 → Hans Steindl。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84250",
+      "id": "relation-wd-student-recorded-q84250-q95716565",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q95716565",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84250-q96097987",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1902,
+        "institution_id": null,
+        "note_en": "Recorded edge: Josef Hoffmann → Karl Vodak. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：約瑟夫·霍夫曼 → Karl Vodak。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84250",
+      "id": "relation-wd-student-recorded-q84250-q96097987",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q96097987",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q1029366",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1884,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Camillo Fritz Discher. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Camillo Fritz Discher。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q1029366",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1029366",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q12286231",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1878,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Marcel Kammerer. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Marcel Kammerer。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q12286231",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q12286231",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q1336246",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1876,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Emil Hoppe. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Emil Hoppe。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q1336246",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1336246",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q1341942",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1883,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Engelbert Mang. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Engelbert Mang。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q1341942",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1341942",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q1359250",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1883,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Ernst Lichtblau. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Ernst Lichtblau。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q1359250",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1359250",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q1419747",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1887,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Konstantin Peller. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Konstantin Peller。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q1419747",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1419747",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q1598813",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1881,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Heinrich Schopper. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Heinrich Schopper。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q1598813",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1598813",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q1912493",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1889,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Max Fellerer. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Max Fellerer。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q1912493",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1912493",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q2040590",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1878,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Otto Schönthal. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Otto Schönthal。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q2040590",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q2040590",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q2644805",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1883,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Alfred Chalousch. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Alfred Chalousch。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q2644805",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q2644805",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q314886",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1872,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Jože Plečnik. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → 约热·普列赤涅克。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q314886",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q314886",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q45055",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1868,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Koloman Moser. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → 科罗曼·莫塞尔。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q45055",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q45055",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q84250",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1870,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Josef Hoffmann. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → 約瑟夫·霍夫曼。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q84250",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q84250",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q87071",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1872,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Leopold Bauer. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Leopold Bauer。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q87071",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q87071",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q94834402",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1886,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Gottlieb Michal. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Gottlieb Michal。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q94834402",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q94834402",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q84287-q95469563",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1890,
+        "institution_id": null,
+        "note_en": "Recorded edge: Otto Wagner → Carl Reinhardt. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥托·瓦格纳 → Carl Reinhardt。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-student-recorded-q84287-q95469563",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q95469563",
       "verification_status": "candidate"
     },
     {
@@ -13839,6 +15225,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q87321-q1351990",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1896,
+        "institution_id": null,
+        "note_en": "Recorded edge: Karl Mayreder → Erich Boltenstern. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Karl Mayreder → Erich Boltenstern。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q87321",
+      "id": "relation-wd-student-recorded-q87321-q1351990",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1351990",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q87355-q1351990",
       "confidence": 0.45,
       "context": {
@@ -13924,6 +15332,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q1704305",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q87902-q66113",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1827,
+        "institution_id": null,
+        "note_en": "Recorded edge: Karl Bötticher → Friedrich Adler. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Karl Bötticher → Friedrich Adler。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q87902",
+      "id": "relation-wd-student-recorded-q87902-q66113",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q66113",
       "verification_status": "candidate"
     },
     {
@@ -14474,6 +15904,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q15453206",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q93847-q95716565",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1902,
+        "institution_id": null,
+        "note_en": "Recorded edge: Josef Frank → Hans Steindl. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约瑟夫·弗兰克 → Hans Steindl。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q93847",
+      "id": "relation-wd-student-recorded-q93847-q95716565",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q95716565",
       "verification_status": "candidate"
     },
     {
