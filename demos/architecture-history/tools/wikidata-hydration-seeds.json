@@ -2417,6 +2417,16 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Hearst Castle",
+      "qid": "Q378143",
+      "region": "north_america",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
       "expected_country_code": "KR",
       "expected_country_qid": "Q884",
       "label_hint_en": "Gyeongju National Museum",
@@ -3230,6 +3240,16 @@
       "region": "central_west_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Villa E-1027",
+      "qid": "Q627266",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -4462,6 +4482,16 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Palace of Fine Arts",
+      "qid": "Q966263",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "IT",
       "expected_country_qid": "Q38",
       "label_hint_en": "Pinacoteca Giovanni e Marella Agnelli",
@@ -5253,6 +5283,16 @@
       "risk_tags": [
         "architect_expansion",
         "architect_nouvel"
+      ]
+    },
+    {
+      "expected_country_code": "ER",
+      "expected_country_qid": "Q986",
+      "label_hint_en": "Fiat Tagliero Building",
+      "qid": "Q1410651",
+      "region": "africa",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -9741,6 +9781,16 @@
       "risk_tags": [
         "architect_expansion",
         "architect_hadid"
+      ]
+    },
+    {
+      "expected_country_code": "SG",
+      "expected_country_qid": "Q334",
+      "label_hint_en": "Parkroyal on Pickering",
+      "qid": "Q30535579",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
