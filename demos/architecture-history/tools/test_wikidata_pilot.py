@@ -218,7 +218,7 @@ def minimal_lineage_snapshot(entities: dict[str, dict]) -> dict:
             "seed": "fixture",
             "seed_sha256": "fixture",
         },
-        "snapshot_id": "wikidata-hydration-2026-08-17-331304a6ac30",
+        "snapshot_id": "wikidata-hydration-2026-08-18-209a9d097bee",
         "source_id": "wikidata",
     }
 

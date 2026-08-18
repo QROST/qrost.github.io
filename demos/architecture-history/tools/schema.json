@@ -52,24 +52,50 @@
       ]
     },
     "verificationStatus": {
-      "enum": ["candidate", "verified", "contested", "declined"]
+      "enum": [
+        "candidate",
+        "verified",
+        "contested",
+        "declined"
+      ]
     },
     "dateValue": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["value", "earliest", "latest", "precision"],
+      "required": [
+        "value",
+        "earliest",
+        "latest",
+        "precision"
+      ],
       "properties": {
         "value": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "earliest": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "latest": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "precision": {
-          "enum": ["day", "month", "year", "circa", "range", "unknown"]
+          "enum": [
+            "day",
+            "month",
+            "year",
+            "circa",
+            "range",
+            "unknown"
+          ]
         }
       }
     },
@@ -86,7 +112,12 @@
     "verificationFields": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["verification_status", "confidence", "last_verified", "claim_ids"],
+      "required": [
+        "verification_status",
+        "confidence",
+        "last_verified",
+        "claim_ids"
+      ],
       "properties": {
         "verification_status": {
           "$ref": "#/$defs/verificationStatus"
@@ -120,12 +151,24 @@
         "redistribute_media"
       ],
       "properties": {
-        "download": {"type": "boolean"},
-        "retain_snapshot": {"type": "boolean"},
-        "derive_facts": {"type": "boolean"},
-        "redistribute_metadata": {"type": "boolean"},
-        "redistribute_text": {"type": "boolean"},
-        "redistribute_media": {"type": "boolean"}
+        "download": {
+          "type": "boolean"
+        },
+        "retain_snapshot": {
+          "type": "boolean"
+        },
+        "derive_facts": {
+          "type": "boolean"
+        },
+        "redistribute_metadata": {
+          "type": "boolean"
+        },
+        "redistribute_text": {
+          "type": "boolean"
+        },
+        "redistribute_media": {
+          "type": "boolean"
+        }
       }
     },
     "authorityProfile": {
@@ -141,22 +184,58 @@
       ],
       "properties": {
         "names": {
-          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+          "enum": [
+            "none",
+            "coverage_only",
+            "candidate",
+            "strong_candidate",
+            "claim_evidence"
+          ]
         },
         "identity": {
-          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+          "enum": [
+            "none",
+            "coverage_only",
+            "candidate",
+            "strong_candidate",
+            "claim_evidence"
+          ]
         },
         "dates": {
-          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+          "enum": [
+            "none",
+            "coverage_only",
+            "candidate",
+            "strong_candidate",
+            "claim_evidence"
+          ]
         },
         "relationships": {
-          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+          "enum": [
+            "none",
+            "coverage_only",
+            "candidate",
+            "strong_candidate",
+            "claim_evidence"
+          ]
         },
         "work_credits": {
-          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+          "enum": [
+            "none",
+            "coverage_only",
+            "candidate",
+            "strong_candidate",
+            "claim_evidence"
+          ]
         },
         "coverage": {
-          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+          "enum": [
+            "none",
+            "coverage_only",
+            "candidate",
+            "strong_candidate",
+            "claim_evidence"
+          ]
         }
       }
     },
@@ -183,11 +262,22 @@
           ]
         },
         "credential_env_name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
-        "docs_url": {"$ref": "#/$defs/url"},
-        "rate_policy_zh": {"type": "string", "minLength": 1},
-        "rate_policy_en": {"type": "string", "minLength": 1}
+        "docs_url": {
+          "$ref": "#/$defs/url"
+        },
+        "rate_policy_zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rate_policy_en": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "source": {
@@ -222,17 +312,35 @@
         "known_biases_en"
       ],
       "properties": {
-        "id": {"$ref": "#/$defs/id"},
-        "title_zh": {"type": "string", "minLength": 1},
-        "title_en": {"type": "string", "minLength": 1},
-        "publisher": {"type": "string", "minLength": 1},
-        "landing_url": {"$ref": "#/$defs/url"},
-        "source_family": {"$ref": "#/$defs/id"},
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title_zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1
+        },
+        "landing_url": {
+          "$ref": "#/$defs/url"
+        },
+        "source_family": {
+          "$ref": "#/$defs/id"
+        },
         "scope": {
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "delivery_kind": {
           "enum": [
@@ -247,7 +355,10 @@
           ]
         },
         "native_id_namespace": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "reuse_class": {
           "enum": [
@@ -268,49 +379,111 @@
             "discovery_only"
           ]
         },
-        "adapter_id": {"type": ["string", "null"]},
-        "adapter_version": {"type": ["string", "null"]},
-        "access": {"$ref": "#/$defs/sourceAccess"},
-        "snapshot_strategy": {"type": "string", "minLength": 1},
+        "adapter_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "adapter_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "access": {
+          "$ref": "#/$defs/sourceAccess"
+        },
+        "snapshot_strategy": {
+          "type": "string",
+          "minLength": 1
+        },
         "provenance_passthrough_fields": {
           "type": "array",
           "uniqueItems": true,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
-        "metadata_license": {"type": "string", "minLength": 1},
+        "metadata_license": {
+          "type": "string",
+          "minLength": 1
+        },
         "license_url": {
           "anyOf": [
-            {"$ref": "#/$defs/url"},
-            {"type": "null"}
+            {
+              "$ref": "#/$defs/url"
+            },
+            {
+              "type": "null"
+            }
           ]
         },
-        "terms_url": {"$ref": "#/$defs/url"},
-        "accessed": {"$ref": "#/$defs/date"},
-        "allowed_operations": {"$ref": "#/$defs/allowedOperations"},
-        "authority_profile": {"$ref": "#/$defs/authorityProfile"},
-        "attribution_zh": {"type": "string", "minLength": 1},
-        "attribution_en": {"type": "string", "minLength": 1},
+        "terms_url": {
+          "$ref": "#/$defs/url"
+        },
+        "accessed": {
+          "$ref": "#/$defs/date"
+        },
+        "allowed_operations": {
+          "$ref": "#/$defs/allowedOperations"
+        },
+        "authority_profile": {
+          "$ref": "#/$defs/authorityProfile"
+        },
+        "attribution_zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attribution_en": {
+          "type": "string",
+          "minLength": 1
+        },
         "known_biases_zh": {
           "type": "array",
           "minItems": 1,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "known_biases_en": {
           "type": "array",
           "minItems": 1,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     },
     "reviewer": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "display_name", "reviewer_type", "active"],
+      "required": [
+        "id",
+        "display_name",
+        "reviewer_type",
+        "active"
+      ],
       "properties": {
-        "id": {"$ref": "#/$defs/id"},
-        "display_name": {"type": "string", "minLength": 1},
-        "reviewer_type": {"enum": ["human", "agentic"]},
-        "active": {"type": "boolean"}
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewer_type": {
+          "enum": [
+            "human",
+            "agentic"
+          ]
+        },
+        "active": {
+          "type": "boolean"
+        }
       }
     },
     "person": {
@@ -339,11 +512,28 @@
         "claim_ids"
       ],
       "properties": {
-        "id": {"$ref": "#/$defs/id"},
-        "entity_type": {"const": "person"},
-        "name_zh": {"type": ["string", "null"]},
-        "name_en": {"type": "string", "minLength": 1},
-        "name_native": {"type": ["string", "null"]},
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "const": "person"
+        },
+        "name_zh": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name_native": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "name_zh_status": {
           "enum": [
             "common_translation",
@@ -357,12 +547,18 @@
         "aliases_zh": {
           "type": "array",
           "uniqueItems": true,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "aliases_en": {
           "type": "array",
           "uniqueItems": true,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "roles": {
           "type": "array",
@@ -383,9 +579,15 @@
             ]
           }
         },
-        "birth": {"$ref": "#/$defs/dateValue"},
-        "death": {"$ref": "#/$defs/dateValue"},
-        "region": {"$ref": "#/$defs/region"},
+        "birth": {
+          "$ref": "#/$defs/dateValue"
+        },
+        "death": {
+          "$ref": "#/$defs/dateValue"
+        },
+        "region": {
+          "$ref": "#/$defs/region"
+        },
         "country_codes": {
           "type": "array",
           "uniqueItems": true,
@@ -394,15 +596,31 @@
             "pattern": "^[A-Z]{2}$"
           }
         },
-        "external_ids": {"$ref": "#/$defs/externalIds"},
-        "summary_zh": {"type": "string"},
-        "summary_en": {"type": "string"},
-        "verification_status": {"$ref": "#/$defs/verificationStatus"},
-        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-        "last_verified": {"$ref": "#/$defs/date"},
+        "external_ids": {
+          "$ref": "#/$defs/externalIds"
+        },
+        "summary_zh": {
+          "type": "string"
+        },
+        "summary_en": {
+          "type": "string"
+        },
+        "verification_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "last_verified": {
+          "$ref": "#/$defs/date"
+        },
         "claim_ids": {
           "type": "array",
-          "items": {"$ref": "#/$defs/id"},
+          "items": {
+            "$ref": "#/$defs/id"
+          },
           "uniqueItems": true
         }
       }
@@ -430,11 +648,28 @@
         "claim_ids"
       ],
       "properties": {
-        "id": {"$ref": "#/$defs/id"},
-        "entity_type": {"const": "practice"},
-        "name_zh": {"type": ["string", "null"]},
-        "name_en": {"type": "string", "minLength": 1},
-        "name_native": {"type": ["string", "null"]},
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "const": "practice"
+        },
+        "name_zh": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name_native": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "practice_type": {
           "enum": [
             "architecture_firm",
@@ -445,23 +680,48 @@
             "institutional_office"
           ]
         },
-        "founded": {"$ref": "#/$defs/dateValue"},
-        "dissolved": {"$ref": "#/$defs/dateValue"},
-        "region": {"$ref": "#/$defs/region"},
+        "founded": {
+          "$ref": "#/$defs/dateValue"
+        },
+        "dissolved": {
+          "$ref": "#/$defs/dateValue"
+        },
+        "region": {
+          "$ref": "#/$defs/region"
+        },
         "country_codes": {
           "type": "array",
           "uniqueItems": true,
-          "items": {"type": "string", "pattern": "^[A-Z]{2}$"}
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          }
         },
-        "external_ids": {"$ref": "#/$defs/externalIds"},
-        "summary_zh": {"type": "string"},
-        "summary_en": {"type": "string"},
-        "verification_status": {"$ref": "#/$defs/verificationStatus"},
-        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-        "last_verified": {"$ref": "#/$defs/date"},
+        "external_ids": {
+          "$ref": "#/$defs/externalIds"
+        },
+        "summary_zh": {
+          "type": "string"
+        },
+        "summary_en": {
+          "type": "string"
+        },
+        "verification_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "last_verified": {
+          "$ref": "#/$defs/date"
+        },
         "claim_ids": {
           "type": "array",
-          "items": {"$ref": "#/$defs/id"},
+          "items": {
+            "$ref": "#/$defs/id"
+          },
           "uniqueItems": true
         }
       }
@@ -486,25 +746,73 @@
         "claim_ids"
       ],
       "properties": {
-        "id": {"$ref": "#/$defs/id"},
-        "entity_type": {"const": "place"},
-        "name_zh": {"type": ["string", "null"]},
-        "name_en": {"type": "string", "minLength": 1},
-        "name_native": {"type": ["string", "null"]},
-        "region": {"$ref": "#/$defs/region"},
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "const": "place"
+        },
+        "name_zh": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name_native": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "region": {
+          "$ref": "#/$defs/region"
+        },
         "country_code": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "pattern": "^[A-Z]{2}$"
         },
-        "lat": {"type": ["number", "null"], "minimum": -90, "maximum": 90},
-        "lng": {"type": ["number", "null"], "minimum": -180, "maximum": 180},
-        "external_ids": {"$ref": "#/$defs/externalIds"},
-        "verification_status": {"$ref": "#/$defs/verificationStatus"},
-        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-        "last_verified": {"$ref": "#/$defs/date"},
+        "lat": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": -90,
+          "maximum": 90
+        },
+        "lng": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": -180,
+          "maximum": 180
+        },
+        "external_ids": {
+          "$ref": "#/$defs/externalIds"
+        },
+        "verification_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "last_verified": {
+          "$ref": "#/$defs/date"
+        },
         "claim_ids": {
           "type": "array",
-          "items": {"$ref": "#/$defs/id"},
+          "items": {
+            "$ref": "#/$defs/id"
+          },
           "uniqueItems": true
         }
       }
@@ -521,8 +829,15 @@
         "claim_id"
       ],
       "properties": {
-        "entity_id": {"$ref": "#/$defs/id"},
-        "entity_type": {"enum": ["person", "practice"]},
+        "entity_id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "enum": [
+            "person",
+            "practice"
+          ]
+        },
         "role": {
           "enum": [
             "architect",
@@ -550,8 +865,12 @@
             "unknown"
           ]
         },
-        "credit_status": {"$ref": "#/$defs/verificationStatus"},
-        "claim_id": {"$ref": "#/$defs/id"}
+        "credit_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "claim_id": {
+          "$ref": "#/$defs/id"
+        }
       }
     },
     "unresolvedWorkCredit": {
@@ -567,12 +886,27 @@
       ],
       "properties": {
         "source_entity_qid": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "pattern": "^Q[1-9][0-9]*$"
         },
-        "source_property": {"const": "P84"},
-        "source_label_zh": {"type": ["string", "null"]},
-        "source_label_en": {"type": ["string", "null"]},
+        "source_property": {
+          "const": "P84"
+        },
+        "source_label_zh": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_label_en": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "rejection_reason": {
           "enum": [
             "missing_english_label",
@@ -580,7 +914,9 @@
             "invalid_source_snak"
           ]
         },
-        "claim_id": {"$ref": "#/$defs/id"}
+        "claim_id": {
+          "$ref": "#/$defs/id"
+        }
       }
     },
     "work": {
@@ -617,20 +953,43 @@
         "claim_ids"
       ],
       "properties": {
-        "id": {"$ref": "#/$defs/id"},
-        "entity_type": {"const": "work"},
-        "name_zh": {"type": ["string", "null"]},
-        "name_en": {"type": "string", "minLength": 1},
-        "name_native": {"type": ["string", "null"]},
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "const": "work"
+        },
+        "name_zh": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name_native": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "aliases_zh": {
           "type": "array",
           "uniqueItems": true,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "aliases_en": {
           "type": "array",
           "uniqueItems": true,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "work_type": {
           "enum": [
@@ -663,31 +1022,76 @@
             "unknown"
           ]
         },
-        "period": {"$ref": "#/$defs/period"},
+        "period": {
+          "$ref": "#/$defs/period"
+        },
         "dates": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["design", "construction_start", "completion"],
+          "required": [
+            "design",
+            "construction_start",
+            "completion"
+          ],
           "properties": {
-            "design": {"$ref": "#/$defs/dateValue"},
-            "construction_start": {"$ref": "#/$defs/dateValue"},
-            "completion": {"$ref": "#/$defs/dateValue"}
+            "design": {
+              "$ref": "#/$defs/dateValue"
+            },
+            "construction_start": {
+              "$ref": "#/$defs/dateValue"
+            },
+            "completion": {
+              "$ref": "#/$defs/dateValue"
+            }
           }
         },
-        "place_id": {"$ref": "#/$defs/id"},
-        "region": {"$ref": "#/$defs/region"},
+        "place_id": {
+          "$ref": "#/$defs/id"
+        },
+        "region": {
+          "$ref": "#/$defs/region"
+        },
         "coordinates": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["lat", "lng", "precision", "claim_id"],
+          "required": [
+            "lat",
+            "lng",
+            "precision",
+            "claim_id"
+          ],
           "properties": {
-            "lat": {"type": ["number", "null"], "minimum": -90, "maximum": 90},
-            "lng": {"type": ["number", "null"], "minimum": -180, "maximum": 180},
-            "precision": {"type": ["number", "null"], "minimum": 0},
+            "lat": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -90,
+              "maximum": 90
+            },
+            "lng": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -180,
+              "maximum": 180
+            },
+            "precision": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
             "claim_id": {
               "anyOf": [
-                {"$ref": "#/$defs/id"},
-                {"type": "null"}
+                {
+                  "$ref": "#/$defs/id"
+                },
+                {
+                  "type": "null"
+                }
               ]
             }
           }
@@ -713,23 +1117,53 @@
         },
         "credits": {
           "type": "array",
-          "items": {"$ref": "#/$defs/workCredit"}
+          "items": {
+            "$ref": "#/$defs/workCredit"
+          }
         },
         "unresolved_credits": {
           "type": "array",
-          "items": {"$ref": "#/$defs/unresolvedWorkCredit"}
+          "items": {
+            "$ref": "#/$defs/unresolvedWorkCredit"
+          }
         },
-        "external_ids": {"$ref": "#/$defs/externalIds"},
-        "summary_zh": {"type": "string"},
-        "summary_en": {"type": "string"},
-        "significance_zh": {"type": "array", "items": {"type": "string"}},
-        "significance_en": {"type": "array", "items": {"type": "string"}},
-        "verification_status": {"$ref": "#/$defs/verificationStatus"},
-        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-        "last_verified": {"$ref": "#/$defs/date"},
+        "external_ids": {
+          "$ref": "#/$defs/externalIds"
+        },
+        "summary_zh": {
+          "type": "string"
+        },
+        "summary_en": {
+          "type": "string"
+        },
+        "significance_zh": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "significance_en": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "verification_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "last_verified": {
+          "$ref": "#/$defs/date"
+        },
         "claim_ids": {
           "type": "array",
-          "items": {"$ref": "#/$defs/id"},
+          "items": {
+            "$ref": "#/$defs/id"
+          },
           "uniqueItems": true
         }
       }
@@ -738,15 +1172,34 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "entity_id": {"$ref": "#/$defs/id"},
+        "entity_id": {
+          "$ref": "#/$defs/id"
+        },
         "value": {},
-        "value_zh": {"type": "string"},
-        "value_en": {"type": "string"}
+        "value_zh": {
+          "type": "string"
+        },
+        "value_en": {
+          "type": "string"
+        }
       },
       "anyOf": [
-        {"required": ["entity_id"]},
-        {"required": ["value"]},
-        {"required": ["value_zh", "value_en"]}
+        {
+          "required": [
+            "entity_id"
+          ]
+        },
+        {
+          "required": [
+            "value"
+          ]
+        },
+        {
+          "required": [
+            "value_zh",
+            "value_en"
+          ]
+        }
       ]
     },
     "claimEvidence": {
@@ -771,15 +1224,45 @@
         "source_record_sha256"
       ],
       "properties": {
-        "source_id": {"$ref": "#/$defs/id"},
-        "snapshot_id": {"$ref": "#/$defs/id"},
-        "native_record_id": {"type": ["string", "null"]},
-        "native_field_path": {"type": "string", "minLength": 1},
-        "native_predicate": {"type": ["string", "null"]},
-        "url": {"$ref": "#/$defs/url"},
-        "locator": {"type": "string", "minLength": 1},
-        "accessed": {"$ref": "#/$defs/date"},
-        "support": {"enum": ["explicit", "indirect", "conflicting"]},
+        "source_id": {
+          "$ref": "#/$defs/id"
+        },
+        "snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "native_record_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "native_field_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "native_predicate": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "$ref": "#/$defs/url"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accessed": {
+          "$ref": "#/$defs/date"
+        },
+        "support": {
+          "enum": [
+            "explicit",
+            "indirect",
+            "conflicting"
+          ]
+        },
         "extraction_method": {
           "enum": [
             "structured_mapping",
@@ -789,11 +1272,27 @@
             "llm_candidate"
           ]
         },
-        "language": {"type": ["string", "null"]},
-        "rank": {"type": ["string", "null"]},
-        "qualifiers": {"type": "array"},
-        "references": {"type": "array"},
-        "contributors": {"type": "array"},
+        "language": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rank": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifiers": {
+          "type": "array"
+        },
+        "references": {
+          "type": "array"
+        },
+        "contributors": {
+          "type": "array"
+        },
         "source_record_sha256": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
@@ -816,27 +1315,50 @@
         "reviewed_at"
       ],
       "properties": {
-        "id": {"$ref": "#/$defs/id"},
-        "subject_id": {"$ref": "#/$defs/id"},
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "subject_id": {
+          "$ref": "#/$defs/id"
+        },
         "predicate": {
           "type": "string",
           "pattern": "^[a-z][a-z0-9_]*$"
         },
-        "object": {"$ref": "#/$defs/claimObject"},
+        "object": {
+          "$ref": "#/$defs/claimObject"
+        },
         "qualifiers": {
           "type": "object"
         },
         "evidence": {
           "type": "array",
-          "items": {"$ref": "#/$defs/claimEvidence"}
+          "items": {
+            "$ref": "#/$defs/claimEvidence"
+          }
         },
-        "verification_status": {"$ref": "#/$defs/verificationStatus"},
-        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-        "reviewed_by": {"type": ["string", "null"]},
+        "verification_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reviewed_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "reviewed_at": {
           "anyOf": [
-            {"$ref": "#/$defs/date"},
-            {"type": "null"}
+            {
+              "$ref": "#/$defs/date"
+            },
+            {
+              "type": "null"
+            }
           ]
         }
       }
@@ -858,37 +1380,58 @@
         "relations"
       ],
       "properties": {
-        "source_id": {"$ref": "#/$defs/id"},
-        "generated_from": {"$ref": "#/$defs/id"},
-        "generator": {"type": "string", "minLength": 1},
-        "transformer_id": {"$ref": "#/$defs/id"},
+        "source_id": {
+          "$ref": "#/$defs/id"
+        },
+        "generated_from": {
+          "$ref": "#/$defs/id"
+        },
+        "generator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transformer_id": {
+          "$ref": "#/$defs/id"
+        },
         "transformer_version": {
           "type": "string",
           "pattern": "^\\d+\\.\\d+\\.\\d+$"
         },
         "people": {
           "type": "array",
-          "items": {"$ref": "#/$defs/person"}
+          "items": {
+            "$ref": "#/$defs/person"
+          }
         },
         "practices": {
           "type": "array",
-          "items": {"$ref": "#/$defs/practice"}
+          "items": {
+            "$ref": "#/$defs/practice"
+          }
         },
         "places": {
           "type": "array",
-          "items": {"$ref": "#/$defs/place"}
+          "items": {
+            "$ref": "#/$defs/place"
+          }
         },
         "works": {
           "type": "array",
-          "items": {"$ref": "#/$defs/work"}
+          "items": {
+            "$ref": "#/$defs/work"
+          }
         },
         "claims": {
           "type": "array",
-          "items": {"$ref": "#/$defs/claim"}
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
         },
         "relations": {
           "type": "array",
-          "items": {"$ref": "#/$defs/relation"}
+          "items": {
+            "$ref": "#/$defs/relation"
+          }
         }
       }
     },
@@ -903,15 +1446,28 @@
         "add_claim_ids"
       ],
       "properties": {
-        "entity_id": {"$ref": "#/$defs/id"},
-        "entity_type": {"enum": ["person", "practice"]},
-        "assert_external_ids": {"$ref": "#/$defs/externalIds"},
-        "add_external_ids": {"$ref": "#/$defs/externalIds"},
+        "entity_id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "enum": [
+            "person",
+            "practice"
+          ]
+        },
+        "assert_external_ids": {
+          "$ref": "#/$defs/externalIds"
+        },
+        "add_external_ids": {
+          "$ref": "#/$defs/externalIds"
+        },
         "add_claim_ids": {
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": {"$ref": "#/$defs/id"}
+          "items": {
+            "$ref": "#/$defs/id"
+          }
         }
       }
     },
@@ -932,13 +1488,28 @@
         "claims"
       ],
       "properties": {
-        "kind": {"const": "catalog_overlay_v1"},
-        "overlay_id": {"$ref": "#/$defs/id"},
-        "source_id": {"$ref": "#/$defs/id"},
-        "generated_from": {"$ref": "#/$defs/id"},
-        "crosswalk_snapshot_id": {"$ref": "#/$defs/id"},
-        "generator": {"type": "string", "minLength": 1},
-        "transformer_id": {"$ref": "#/$defs/id"},
+        "kind": {
+          "const": "catalog_overlay_v1"
+        },
+        "overlay_id": {
+          "$ref": "#/$defs/id"
+        },
+        "source_id": {
+          "$ref": "#/$defs/id"
+        },
+        "generated_from": {
+          "$ref": "#/$defs/id"
+        },
+        "crosswalk_snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "generator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transformer_id": {
+          "$ref": "#/$defs/id"
+        },
         "transformer_version": {
           "type": "string",
           "pattern": "^\\d+\\.\\d+\\.\\d+$"
@@ -951,23 +1522,38 @@
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": {"$ref": "#/$defs/catalogOverlayPatch"}
+          "items": {
+            "$ref": "#/$defs/catalogOverlayPatch"
+          }
         },
         "claims": {
           "type": "array",
           "minItems": 1,
-          "items": {"$ref": "#/$defs/claim"}
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
         }
       }
     },
     "wikidataUlanWorkWitness": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["period", "region", "work_id", "work_qid"],
+      "required": [
+        "period",
+        "region",
+        "work_id",
+        "work_qid"
+      ],
       "properties": {
-        "period": {"$ref": "#/$defs/period"},
-        "region": {"$ref": "#/$defs/region"},
-        "work_id": {"$ref": "#/$defs/id"},
+        "period": {
+          "$ref": "#/$defs/period"
+        },
+        "region": {
+          "$ref": "#/$defs/region"
+        },
+        "work_id": {
+          "$ref": "#/$defs/id"
+        },
         "work_qid": {
           "type": "string",
           "pattern": "^Q[1-9][0-9]*$"
@@ -977,10 +1563,22 @@
     "wikidataUlanSeedRow": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["entity_id", "entity_type", "qid", "work_witnesses"],
+      "required": [
+        "entity_id",
+        "entity_type",
+        "qid",
+        "work_witnesses"
+      ],
       "properties": {
-        "entity_id": {"$ref": "#/$defs/id"},
-        "entity_type": {"enum": ["person", "practice"]},
+        "entity_id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "enum": [
+            "person",
+            "practice"
+          ]
+        },
         "qid": {
           "type": "string",
           "pattern": "^Q[1-9][0-9]*$"
@@ -988,7 +1586,9 @@
         "work_witnesses": {
           "type": "array",
           "uniqueItems": true,
-          "items": {"$ref": "#/$defs/wikidataUlanWorkWitness"}
+          "items": {
+            "$ref": "#/$defs/wikidataUlanWorkWitness"
+          }
         }
       }
     },
@@ -1006,17 +1606,50 @@
         "value"
       ],
       "properties": {
-        "datatype": {"type": ["string", "null"]},
-        "datavalue_type": {"type": ["string", "null"]},
+        "datatype": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "datavalue_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "native_field_path": {
           "type": "string",
           "pattern": "^/claims/P245/[0-9]+$"
         },
-        "rank": {"type": ["string", "null"]},
-        "snaktype": {"type": ["string", "null"]},
-        "statement_id": {"type": ["string", "null"]},
-        "statement_index": {"type": "integer", "minimum": 0},
-        "value": {"type": ["string", "null"]}
+        "rank": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "snaktype": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "statement_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "statement_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "wikidataUlanDiscoveryRow": {
@@ -1036,12 +1669,31 @@
         "statements"
       ],
       "properties": {
-        "content_type": {"type": "string", "minLength": 1},
-        "eligible": {"type": "boolean"},
-        "eligible_statement_id": {"type": ["string", "null"]},
-        "eligible_statement_index": {"type": ["integer", "null"], "minimum": 0},
+        "content_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "eligible": {
+          "type": "boolean"
+        },
+        "eligible_statement_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eligible_statement_index": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
         "eligible_ulan_id": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "pattern": "^500\\d{6}$"
         },
         "qid": {
@@ -1056,15 +1708,21 @@
             "pattern": "^[a-z][a-z0-9_]*$"
           }
         },
-        "request_url": {"$ref": "#/$defs/url"},
+        "request_url": {
+          "$ref": "#/$defs/url"
+        },
         "response_sha256": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "retrieved_at": {"$ref": "#/$defs/dateTime"},
+        "retrieved_at": {
+          "$ref": "#/$defs/dateTime"
+        },
         "statements": {
           "type": "array",
-          "items": {"$ref": "#/$defs/wikidataUlanDiscoveryStatement"}
+          "items": {
+            "$ref": "#/$defs/wikidataUlanDiscoveryStatement"
+          }
         }
       }
     },
@@ -1083,21 +1741,42 @@
         "work_witness"
       ],
       "properties": {
-        "entity_id": {"$ref": "#/$defs/id"},
-        "entity_type": {"enum": ["person", "practice"]},
+        "entity_id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "enum": [
+            "person",
+            "practice"
+          ]
+        },
         "qid": {
           "type": "string",
           "pattern": "^Q[1-9][0-9]*$"
         },
-        "selection_order": {"type": "integer", "minimum": 0},
-        "selection_priority": {"type": "string", "minLength": 1},
-        "statement_id": {"type": "string", "minLength": 1},
-        "statement_index": {"type": "integer", "minimum": 0},
+        "selection_order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selection_priority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement_index": {
+          "type": "integer",
+          "minimum": 0
+        },
         "ulan_id": {
           "type": "string",
           "pattern": "^500\\d{6}$"
         },
-        "work_witness": {"$ref": "#/$defs/wikidataUlanWorkWitness"}
+        "work_witness": {
+          "$ref": "#/$defs/wikidataUlanWorkWitness"
+        }
       }
     },
     "wikidataUlanCrosswalkRecord": {
@@ -1110,8 +1789,15 @@
         "ulan_subject_id"
       ],
       "properties": {
-        "entity_id": {"$ref": "#/$defs/id"},
-        "entity_type": {"enum": ["person", "practice"]},
+        "entity_id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "enum": [
+            "person",
+            "practice"
+          ]
+        },
         "wikidata_qid": {
           "type": "string",
           "pattern": "^Q[1-9][0-9]*$"
@@ -1141,27 +1827,47 @@
         "source_id"
       ],
       "properties": {
-        "accessed": {"$ref": "#/$defs/date"},
-        "adapter_id": {"const": "wikidata-hydration-pilot"},
-        "adapter_version": {"const": "0.1.0"},
+        "accessed": {
+          "$ref": "#/$defs/date"
+        },
+        "adapter_id": {
+          "const": "wikidata-hydration-pilot"
+        },
+        "adapter_version": {
+          "const": "0.1.0"
+        },
         "base_catalog_sha256": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "base_work_snapshot_id": {"$ref": "#/$defs/id"},
-        "claim_evidence_allowed": {"const": false},
-        "endpoint": {"$ref": "#/$defs/url"},
+        "base_work_snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "claim_evidence_allowed": {
+          "const": false
+        },
+        "endpoint": {
+          "$ref": "#/$defs/url"
+        },
         "entities": {
           "type": "object",
-          "propertyNames": {"pattern": "^Q[1-9][0-9]*$"},
-          "additionalProperties": {"$ref": "#/$defs/wikidataSnapshotEntity"}
+          "propertyNames": {
+            "pattern": "^Q[1-9][0-9]*$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/wikidataSnapshotEntity"
+          }
         },
-        "license": {"const": "CC0-1.0"},
+        "license": {
+          "const": "CC0-1.0"
+        },
         "records": {
           "type": "array",
           "minItems": 24,
           "uniqueItems": true,
-          "items": {"$ref": "#/$defs/wikidataUlanCrosswalkRecord"}
+          "items": {
+            "$ref": "#/$defs/wikidataUlanCrosswalkRecord"
+          }
         },
         "selection": {
           "type": "object",
@@ -1183,24 +1889,38 @@
             "discovery": {
               "type": "array",
               "minItems": 1,
-              "items": {"$ref": "#/$defs/wikidataUlanDiscoveryRow"}
+              "items": {
+                "$ref": "#/$defs/wikidataUlanDiscoveryRow"
+              }
             },
-            "eligible_count": {"type": "integer", "minimum": 24},
-            "method": {"const": "bounded_p245_crosswalk_stable_hash"},
+            "eligible_count": {
+              "type": "integer",
+              "minimum": 24
+            },
+            "method": {
+              "const": "bounded_p245_crosswalk_stable_hash"
+            },
             "priorities": {
               "type": "array",
               "minItems": 1,
               "uniqueItems": true,
-              "items": {"type": "string", "minLength": 1}
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
             },
-            "property_id": {"const": "P245"},
+            "property_id": {
+              "const": "P245"
+            },
             "rank_policy": {
               "const": "exactly_one_non_deprecated_external_id"
             },
             "seed": {
               "type": "array",
               "minItems": 1,
-              "items": {"$ref": "#/$defs/wikidataUlanSeedRow"}
+              "items": {
+                "$ref": "#/$defs/wikidataUlanSeedRow"
+              }
             },
             "seed_sha256": {
               "type": "string",
@@ -1210,14 +1930,24 @@
               "type": "array",
               "minItems": 24,
               "uniqueItems": true,
-              "items": {"$ref": "#/$defs/wikidataUlanSelectedRow"}
+              "items": {
+                "$ref": "#/$defs/wikidataUlanSelectedRow"
+              }
             },
-            "selected_order": {"const": "priority_then_stable_hash"},
-            "selection_limit": {"const": 24}
+            "selected_order": {
+              "const": "priority_then_stable_hash"
+            },
+            "selection_limit": {
+              "const": 24
+            }
           }
         },
-        "snapshot_id": {"$ref": "#/$defs/id"},
-        "source_id": {"const": "wikidata"}
+        "snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "source_id": {
+          "const": "wikidata"
+        }
       }
     },
     "gettyUlanIdentityProjection": {
@@ -1246,7 +1976,10 @@
           "pattern": "^http://vocab\\.getty\\.edu/ulan/500\\d{6}$"
         },
         "content_type": {
-          "enum": ["application/json", "application/ld+json"]
+          "enum": [
+            "application/json",
+            "application/ld+json"
+          ]
         },
         "contributor_uris": {
           "type": "array",
@@ -1256,8 +1989,15 @@
             "pattern": "^http://vocab\\.getty\\.edu/ulan/contrib/[1-9]\\d*$"
           }
         },
-        "entity_id": {"$ref": "#/$defs/id"},
-        "entity_type": {"enum": ["person", "practice"]},
+        "entity_id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "enum": [
+            "person",
+            "practice"
+          ]
+        },
         "equivalent_qids": {
           "type": "array",
           "minItems": 1,
@@ -1275,12 +2015,16 @@
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "raw_retained": {"const": false},
+        "raw_retained": {
+          "const": false
+        },
         "representation_url": {
           "type": "string",
           "pattern": "^https://vocab\\.getty\\.edu/ulan/500\\d{6}$"
         },
-        "retrieved_at": {"$ref": "#/$defs/dateTime"},
+        "retrieved_at": {
+          "$ref": "#/$defs/dateTime"
+        },
         "source_uris": {
           "type": "array",
           "uniqueItems": true,
@@ -1293,7 +2037,12 @@
           "type": "string",
           "pattern": "^500\\d{6}$"
         },
-        "type": {"enum": ["Person", "Group"]},
+        "type": {
+          "enum": [
+            "Person",
+            "Group"
+          ]
+        },
         "wikidata_qid": {
           "type": "string",
           "pattern": "^Q[1-9][0-9]*$"
@@ -1303,9 +2052,14 @@
     "gettyUlanIdentityRecord": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["projection", "projection_sha256"],
+      "required": [
+        "projection",
+        "projection_sha256"
+      ],
       "properties": {
-        "projection": {"$ref": "#/$defs/gettyUlanIdentityProjection"},
+        "projection": {
+          "$ref": "#/$defs/gettyUlanIdentityProjection"
+        },
         "projection_sha256": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
@@ -1336,10 +2090,20 @@
           "pattern": "^http://vocab\\.getty\\.edu/ulan/500\\d{6}$"
         },
         "content_type": {
-          "enum": ["application/json", "application/ld+json"]
+          "enum": [
+            "application/json",
+            "application/ld+json"
+          ]
         },
-        "entity_id": {"$ref": "#/$defs/id"},
-        "entity_type": {"enum": ["person", "practice"]},
+        "entity_id": {
+          "$ref": "#/$defs/id"
+        },
+        "entity_type": {
+          "enum": [
+            "person",
+            "practice"
+          ]
+        },
         "expected_wikidata_qid": {
           "type": "string",
           "pattern": "^Q[1-9][0-9]*$"
@@ -1370,12 +2134,19 @@
           "type": "string",
           "pattern": "^https://vocab\\.getty\\.edu/ulan/500\\d{6}$"
         },
-        "retrieved_at": {"$ref": "#/$defs/dateTime"},
+        "retrieved_at": {
+          "$ref": "#/$defs/dateTime"
+        },
         "subject_id": {
           "type": "string",
           "pattern": "^500\\d{6}$"
         },
-        "type": {"enum": ["Person", "Group"]}
+        "type": {
+          "enum": [
+            "Person",
+            "Group"
+          ]
+        }
       }
     },
     "gettyUlanIdentitySnapshot": {
@@ -1399,17 +2170,32 @@
         "source_id"
       ],
       "properties": {
-        "accessed": {"$ref": "#/$defs/date"},
-        "adapter_id": {"const": "getty-ulan-identity-pilot"},
-        "adapter_version": {"const": "0.1.0"},
-        "attribution": {"type": "string", "minLength": 1},
+        "accessed": {
+          "$ref": "#/$defs/date"
+        },
+        "adapter_id": {
+          "const": "getty-ulan-identity-pilot"
+        },
+        "adapter_version": {
+          "const": "0.1.0"
+        },
+        "attribution": {
+          "type": "string",
+          "minLength": 1
+        },
         "base_catalog_sha256": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "claim_evidence_allowed": {"const": true},
-        "crosswalk_snapshot_id": {"$ref": "#/$defs/id"},
-        "license": {"const": "ODC-By-1.0"},
+        "claim_evidence_allowed": {
+          "const": true
+        },
+        "crosswalk_snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "license": {
+          "const": "ODC-By-1.0"
+        },
         "license_url": {
           "const": "https://opendatacommons.org/licenses/by/1-0/"
         },
@@ -1417,11 +2203,17 @@
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "raw_retained": {"const": false},
+        "raw_retained": {
+          "const": false
+        },
         "records": {
           "type": "object",
-          "propertyNames": {"pattern": "^500\\d{6}$"},
-          "additionalProperties": {"$ref": "#/$defs/gettyUlanIdentityRecord"}
+          "propertyNames": {
+            "pattern": "^500\\d{6}$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/gettyUlanIdentityRecord"
+          }
         },
         "selection": {
           "type": "object",
@@ -1444,7 +2236,9 @@
                 "pattern": "^500\\d{6}$"
               }
             },
-            "method": {"const": "wikidata_p245_exact_getty_identity"},
+            "method": {
+              "const": "wikidata_p245_exact_getty_identity"
+            },
             "record_count": {
               "type": "integer",
               "minimum": 1,
@@ -1453,17 +2247,25 @@
             "rejections": {
               "type": "array",
               "uniqueItems": true,
-              "items": {"$ref": "#/$defs/gettyUlanScreeningRejection"}
+              "items": {
+                "$ref": "#/$defs/gettyUlanScreeningRejection"
+              }
             },
-            "seed_count": {"const": 24},
+            "seed_count": {
+              "const": 24
+            },
             "seed_sha256": {
               "type": "string",
               "pattern": "^[0-9a-f]{64}$"
             }
           }
         },
-        "snapshot_id": {"$ref": "#/$defs/id"},
-        "source_id": {"const": "getty-ulan"}
+        "snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "source_id": {
+          "const": "getty-ulan"
+        }
       }
     },
     "wikidataSnapshotQuery": {
@@ -1481,11 +2283,24 @@
         "eligible_credits"
       ],
       "properties": {
-        "cell_id": {"$ref": "#/$defs/coverageCellId"},
-        "region": {"$ref": "#/$defs/region"},
-        "country_code": {"type": "string", "pattern": "^[A-Z]{2}$"},
-        "country_qid": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
-        "query": {"type": "string", "minLength": 1},
+        "cell_id": {
+          "$ref": "#/$defs/coverageCellId"
+        },
+        "region": {
+          "$ref": "#/$defs/region"
+        },
+        "country_code": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "country_qid": {
+          "type": "string",
+          "pattern": "^Q[1-9][0-9]*$"
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1
+        },
         "query_sha256": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
@@ -1493,23 +2308,44 @@
         "candidate_work_qids": {
           "type": "array",
           "uniqueItems": true,
-          "items": {"type": "string", "pattern": "^Q[1-9][0-9]*$"}
+          "items": {
+            "type": "string",
+            "pattern": "^Q[1-9][0-9]*$"
+          }
         },
         "selected_work_qids": {
           "type": "array",
           "uniqueItems": true,
-          "items": {"type": "string", "pattern": "^Q[1-9][0-9]*$"}
+          "items": {
+            "type": "string",
+            "pattern": "^Q[1-9][0-9]*$"
+          }
         },
         "eligible_credits": {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["work_qid", "creator_qid", "creator_kind"],
+            "required": [
+              "work_qid",
+              "creator_qid",
+              "creator_kind"
+            ],
             "properties": {
-              "work_qid": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
-              "creator_qid": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
-              "creator_kind": {"enum": ["person", "practice"]}
+              "work_qid": {
+                "type": "string",
+                "pattern": "^Q[1-9][0-9]*$"
+              },
+              "creator_qid": {
+                "type": "string",
+                "pattern": "^Q[1-9][0-9]*$"
+              },
+              "creator_kind": {
+                "enum": [
+                  "person",
+                  "practice"
+                ]
+              }
             }
           }
         }
@@ -1527,15 +2363,27 @@
         "record"
       ],
       "properties": {
-        "lastrevid": {"type": "integer", "minimum": 1},
+        "lastrevid": {
+          "type": "integer",
+          "minimum": 1
+        },
         "record_sha256": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "pinned_url": {"$ref": "#/$defs/url"},
-        "retrieved_at": {"$ref": "#/$defs/dateTime"},
-        "content_type": {"type": "string", "minLength": 1},
-        "record": {"type": "object"}
+        "pinned_url": {
+          "$ref": "#/$defs/url"
+        },
+        "retrieved_at": {
+          "$ref": "#/$defs/dateTime"
+        },
+        "content_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "record": {
+          "type": "object"
+        }
       }
     },
     "wikidataAuthoritySeed": {
@@ -1561,8 +2409,14 @@
               "work_type"
             ],
             "properties": {
-              "label_hint_en": {"type": "string", "minLength": 1},
-              "qid": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+              "label_hint_en": {
+                "type": "string",
+                "minLength": 1
+              },
+              "qid": {
+                "type": "string",
+                "pattern": "^Q[1-9][0-9]*$"
+              },
               "risk_tags": {
                 "type": "array",
                 "minItems": 1,
@@ -1584,7 +2438,9 @@
             }
           }
         },
-        "base_work_snapshot_id": {"$ref": "#/$defs/id"},
+        "base_work_snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
         "seed_version": {
           "type": "string",
           "pattern": "^\\d+\\.\\d+\\.\\d+$"
@@ -1597,46 +2453,94 @@
         {
           "type": "object",
           "properties": {
-            "base_work_snapshot_id": {"const": "__forbidden__"},
+            "base_work_snapshot_id": {
+              "const": "__forbidden__"
+            },
             "selection": {
               "type": "object",
-              "required": ["method", "per_cell", "query_limit"],
+              "required": [
+                "method",
+                "per_cell",
+                "query_limit"
+              ],
               "properties": {
-                "method": {"const": "coverage_cell_stable_hash"},
-                "per_cell": {"type": "integer", "minimum": 1},
-                "query_limit": {"type": "integer", "minimum": 1},
-                "authority_qids": {"const": "__forbidden__"},
-                "authority_seed": {"const": "__forbidden__"}
+                "method": {
+                  "const": "coverage_cell_stable_hash"
+                },
+                "per_cell": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "query_limit": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "authority_qids": {
+                  "const": "__forbidden__"
+                },
+                "authority_seed": {
+                  "const": "__forbidden__"
+                }
               }
             },
-            "queries": {"type": "array", "minItems": 1},
-            "seeds": {"const": []}
+            "queries": {
+              "type": "array",
+              "minItems": 1
+            },
+            "seeds": {
+              "const": []
+            }
           }
         },
         {
           "type": "object",
           "properties": {
-            "base_work_snapshot_id": {"const": "__forbidden__"},
+            "base_work_snapshot_id": {
+              "const": "__forbidden__"
+            },
             "selection": {
               "type": "object",
-              "required": ["method", "per_cell", "query_limit"],
+              "required": [
+                "method",
+                "per_cell",
+                "query_limit"
+              ],
               "properties": {
-                "method": {"const": "pinned_hydration_fixtures"},
-                "per_cell": {"const": null},
-                "query_limit": {"const": null},
-                "authority_qids": {"const": "__forbidden__"},
-                "authority_seed": {"const": "__forbidden__"}
+                "method": {
+                  "const": "pinned_hydration_fixtures"
+                },
+                "per_cell": {
+                  "const": null
+                },
+                "query_limit": {
+                  "const": null
+                },
+                "authority_qids": {
+                  "const": "__forbidden__"
+                },
+                "authority_seed": {
+                  "const": "__forbidden__"
+                }
               }
             },
-            "queries": {"const": []},
-            "seeds": {"type": "array", "minItems": 1}
+            "queries": {
+              "const": []
+            },
+            "seeds": {
+              "type": "array",
+              "minItems": 1
+            }
           }
         },
         {
           "type": "object",
-          "required": ["base_work_snapshot_id"],
+          "required": [
+            "base_work_snapshot_id"
+          ],
           "properties": {
-            "base_work_snapshot_id": {"$ref": "#/$defs/id"},
+            "base_work_snapshot_id": {
+              "$ref": "#/$defs/id"
+            },
             "selection": {
               "type": "object",
               "required": [
@@ -1650,8 +2554,12 @@
                 "method": {
                   "const": "exact_instance_allowlist_authority"
                 },
-                "per_cell": {"const": null},
-                "query_limit": {"const": null},
+                "per_cell": {
+                  "const": null
+                },
+                "query_limit": {
+                  "const": null
+                },
                 "authority_qids": {
                   "type": "array",
                   "minItems": 1
@@ -1661,8 +2569,12 @@
                 }
               }
             },
-            "queries": {"const": []},
-            "seeds": {"const": []}
+            "queries": {
+              "const": []
+            },
+            "seeds": {
+              "const": []
+            }
           }
         }
       ],
@@ -1681,17 +2593,32 @@
         "entities"
       ],
       "properties": {
-        "snapshot_id": {"$ref": "#/$defs/id"},
-        "source_id": {"$ref": "#/$defs/id"},
-        "adapter_id": {"$ref": "#/$defs/id"},
+        "snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "source_id": {
+          "$ref": "#/$defs/id"
+        },
+        "adapter_id": {
+          "$ref": "#/$defs/id"
+        },
         "adapter_version": {
           "type": "string",
           "pattern": "^\\d+\\.\\d+\\.\\d+$"
         },
-        "accessed": {"$ref": "#/$defs/date"},
-        "license": {"type": "string", "minLength": 1},
-        "endpoint": {"$ref": "#/$defs/url"},
-        "base_work_snapshot_id": {"$ref": "#/$defs/id"},
+        "accessed": {
+          "$ref": "#/$defs/date"
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1
+        },
+        "endpoint": {
+          "$ref": "#/$defs/url"
+        },
+        "base_work_snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
         "selection": {
           "type": "object",
           "additionalProperties": false,
@@ -1712,8 +2639,20 @@
                 "exact_instance_allowlist_authority"
               ]
             },
-            "per_cell": {"type": ["integer", "null"], "minimum": 1},
-            "query_limit": {"type": ["integer", "null"], "minimum": 1},
+            "per_cell": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "query_limit": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
             "authority_qids": {
               "type": "array",
               "minItems": 1,
@@ -1726,18 +2665,29 @@
             "authority_seed": {
               "$ref": "#/$defs/wikidataAuthoritySeed"
             },
-            "seed": {"type": "string", "minLength": 1},
+            "seed": {
+              "type": "string",
+              "minLength": 1
+            },
             "seed_sha256": {
               "type": "string",
               "pattern": "^[0-9a-f]{64}$"
             },
-            "notes_zh": {"type": "string", "minLength": 1},
-            "notes_en": {"type": "string", "minLength": 1}
+            "notes_zh": {
+              "type": "string",
+              "minLength": 1
+            },
+            "notes_en": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         },
         "queries": {
           "type": "array",
-          "items": {"$ref": "#/$defs/wikidataSnapshotQuery"}
+          "items": {
+            "$ref": "#/$defs/wikidataSnapshotQuery"
+          }
         },
         "seeds": {
           "type": "array",
@@ -1762,9 +2712,17 @@
                 "type": "string",
                 "pattern": "^Q[1-9][0-9]*$"
               },
-              "label_hint_en": {"type": "string", "minLength": 1},
-              "qid": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
-              "region": {"$ref": "#/$defs/region"},
+              "label_hint_en": {
+                "type": "string",
+                "minLength": 1
+              },
+              "qid": {
+                "type": "string",
+                "pattern": "^Q[1-9][0-9]*$"
+              },
+              "region": {
+                "$ref": "#/$defs/region"
+              },
               "risk_tags": {
                 "type": "array",
                 "uniqueItems": true,
@@ -1778,8 +2736,33 @@
         },
         "entities": {
           "type": "object",
-          "propertyNames": {"pattern": "^Q[1-9][0-9]*$"},
-          "additionalProperties": {"$ref": "#/$defs/wikidataSnapshotEntity"}
+          "propertyNames": {
+            "pattern": "^Q[1-9][0-9]*$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/wikidataSnapshotEntity"
+          }
+        },
+        "person_seeds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "qid": {
+                "type": "string",
+                "pattern": "^Q[1-9][0-9]*$"
+              },
+              "label_hint_en": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "qid",
+              "label_hint_en"
+            ],
+            "additionalProperties": false
+          }
         }
       }
     },
@@ -1799,9 +2782,15 @@
         "rejection_reasons"
       ],
       "properties": {
-        "id": {"$ref": "#/$defs/id"},
-        "from_id": {"$ref": "#/$defs/id"},
-        "to_id": {"$ref": "#/$defs/id"},
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "from_id": {
+          "$ref": "#/$defs/id"
+        },
+        "to_id": {
+          "$ref": "#/$defs/id"
+        },
         "relation_type": {
           "enum": [
             "direct_mentor",
@@ -1828,22 +2817,64 @@
             "note_en"
           ],
           "properties": {
-            "institution_id": {"type": ["string", "null"]},
-            "practice_id": {"type": ["string", "null"]},
-            "work_id": {"type": ["string", "null"]},
-            "date_start": {"type": ["integer", "null"]},
-            "date_end": {"type": ["integer", "null"]},
-            "note_zh": {"type": "string"},
-            "note_en": {"type": "string"}
+            "institution_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "practice_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "work_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "date_start": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "date_end": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "note_zh": {
+              "type": "string"
+            },
+            "note_en": {
+              "type": "string"
+            }
           }
         },
-        "verification_status": {"$ref": "#/$defs/verificationStatus"},
-        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-        "last_verified": {"$ref": "#/$defs/date"},
-        "claim_id": {"$ref": "#/$defs/id"},
+        "verification_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "last_verified": {
+          "$ref": "#/$defs/date"
+        },
+        "claim_id": {
+          "$ref": "#/$defs/id"
+        },
         "rejection_reasons": {
           "type": "array",
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     }
@@ -1852,89 +2883,124 @@
     "source-registry.json": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["data_as_of", "sources"],
+      "required": [
+        "data_as_of",
+        "sources"
+      ],
       "properties": {
-        "data_as_of": {"$ref": "#/$defs/date"},
+        "data_as_of": {
+          "$ref": "#/$defs/date"
+        },
         "sources": {
           "type": "array",
-          "items": {"$ref": "#/$defs/source"}
+          "items": {
+            "$ref": "#/$defs/source"
+          }
         }
       }
     },
     "people.json": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["people"],
+      "required": [
+        "people"
+      ],
       "properties": {
         "people": {
           "type": "array",
-          "items": {"$ref": "#/$defs/person"}
+          "items": {
+            "$ref": "#/$defs/person"
+          }
         }
       }
     },
     "reviewers.json": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["reviewers"],
+      "required": [
+        "reviewers"
+      ],
       "properties": {
         "reviewers": {
           "type": "array",
-          "items": {"$ref": "#/$defs/reviewer"}
+          "items": {
+            "$ref": "#/$defs/reviewer"
+          }
         }
       }
     },
     "practices.json": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["practices"],
+      "required": [
+        "practices"
+      ],
       "properties": {
         "practices": {
           "type": "array",
-          "items": {"$ref": "#/$defs/practice"}
+          "items": {
+            "$ref": "#/$defs/practice"
+          }
         }
       }
     },
     "places.json": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["places"],
+      "required": [
+        "places"
+      ],
       "properties": {
         "places": {
           "type": "array",
-          "items": {"$ref": "#/$defs/place"}
+          "items": {
+            "$ref": "#/$defs/place"
+          }
         }
       }
     },
     "works.json": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["works"],
+      "required": [
+        "works"
+      ],
       "properties": {
         "works": {
           "type": "array",
-          "items": {"$ref": "#/$defs/work"}
+          "items": {
+            "$ref": "#/$defs/work"
+          }
         }
       }
     },
     "claims.json": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["claims"],
+      "required": [
+        "claims"
+      ],
       "properties": {
         "claims": {
           "type": "array",
-          "items": {"$ref": "#/$defs/claim"}
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
         }
       }
     },
     "relations.json": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["relations"],
+      "required": [
+        "relations"
+      ],
       "properties": {
         "relations": {
           "type": "array",
-          "items": {"$ref": "#/$defs/relation"}
+          "items": {
+            "$ref": "#/$defs/relation"
+          }
         }
       }
     }
