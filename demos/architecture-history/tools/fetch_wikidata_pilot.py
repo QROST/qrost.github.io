@@ -319,6 +319,32 @@ def ordered_qids(values: Iterable[str]) -> list[str]:
     return sorted(set(values), key=qid_number)
 
 
+def validate_person_seeds(seeds_payload: dict) -> list[dict]:
+    """Validate the optional person-seed list.
+
+    Person seeds admit canonical architects whose works carry no usable
+    Wikidata P84 anchor: the fetcher pins the person record directly and the
+    importer's lineage machinery (architecture-occupation anchors) admits
+    them as people without work credits. Each seed needs only a QID and an
+    English label hint; the record itself must be a human instance.
+    """
+    person_seeds = seeds_payload.get("person_seeds", [])
+    if not isinstance(person_seeds, list):
+        raise RuntimeError("person_seeds must be a list when present")
+    qids = [seed.get("qid") for seed in person_seeds]
+    for qid in qids:
+        qid_number(qid)
+    if len(qids) != len(set(qids)):
+        raise RuntimeError("person seed QIDs must be unique")
+    work_qids = {seed.get("qid") for seed in seeds_payload.get("seeds", [])}
+    overlap = sorted(set(qids) & work_qids)
+    if overlap:
+        raise RuntimeError(
+            f"person seeds must not duplicate work seeds: {overlap!r}"
+        )
+    return person_seeds
+
+
 def lineage_target_qids(record: dict) -> set[str]:
     targets: set[str] = set()
     for property_id in LINEAGE_REVIEW_PROPERTIES:
@@ -418,6 +444,22 @@ def hydrate_snapshot(
                 f"is absent; observed {sorted(countries)!r}"
             )
 
+    person_seeds = validate_person_seeds(seeds_payload)
+    person_seed_qids = [seed["qid"] for seed in person_seeds]
+    fetch_many(person_seed_qids, "seed people")
+
+    for seed in person_seeds:
+        record = entities[seed["qid"]]["record"]
+        english_label = record.get("labels", {}).get("en", {}).get("value")
+        if not english_label:
+            raise RuntimeError(f"{seed['qid']}: seed person lacks an English label")
+        instances = set(item_values(record, "P31"))
+        if PERSON_QID not in instances:
+            raise RuntimeError(
+                f"{seed['qid']}: seed person is not an instance of {PERSON_QID}; "
+                f"observed {sorted(instances)!r}"
+            )
+
     related_qids: set[str] = set()
     creator_qids: set[str] = set()
     for qid in seed_qids:
@@ -472,6 +514,7 @@ def hydrate_snapshot(
         "license": "CC0-1.0",
         "queries": [],
         "seeds": seeds,
+        "person_seeds": person_seeds,
         "selection": {
             "method": "pinned_hydration_fixtures",
             "notes_en": (

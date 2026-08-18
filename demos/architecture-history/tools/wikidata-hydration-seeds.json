@@ -12038,5 +12038,112 @@
         "coverage_promotion"
       ]
     }
-  ]
+  ],
+  "person_seeds": [
+    {
+      "qid": "Q64094",
+      "label_hint_en": "Hugo Häring"
+    },
+    {
+      "qid": "Q64487",
+      "label_hint_en": "Mathias Goeritz"
+    },
+    {
+      "qid": "Q333509",
+      "label_hint_en": "Glenn Murcutt"
+    },
+    {
+      "qid": "Q388272",
+      "label_hint_en": "Junzo Sakakura"
+    },
+    {
+      "qid": "Q466400",
+      "label_hint_en": "Denys Lasdun"
+    },
+    {
+      "qid": "Q549968",
+      "label_hint_en": "Sedad Hakkı Eldem"
+    },
+    {
+      "qid": "Q550245",
+      "label_hint_en": "Sigurd Lewerentz"
+    },
+    {
+      "qid": "Q959698",
+      "label_hint_en": "Ralph Erskine"
+    },
+    {
+      "qid": "Q1380014",
+      "label_hint_en": "Laurie Baker"
+    },
+    {
+      "qid": "Q2395533",
+      "label_hint_en": "Tatiana Bilbao"
+    },
+    {
+      "qid": "Q5255093",
+      "label_hint_en": "Demas Nwoko"
+    },
+    {
+      "qid": "Q6263028",
+      "label_hint_en": "John Wardle"
+    },
+    {
+      "qid": "Q6394544",
+      "label_hint_en": "Kerry Hill"
+    },
+    {
+      "qid": "Q7154390",
+      "label_hint_en": "Paul R. Williams"
+    },
+    {
+      "qid": "Q7283604",
+      "label_hint_en": "Rahul Mehrotra"
+    },
+    {
+      "qid": "Q7294755",
+      "label_hint_en": "Rasem Badran"
+    },
+    {
+      "qid": "Q7352265",
+      "label_hint_en": "Robin Boyd"
+    },
+    {
+      "qid": "Q7441037",
+      "label_hint_en": "Sean Godsell"
+    },
+    {
+      "qid": "Q8049815",
+      "label_hint_en": "Yasmeen Lari"
+    },
+    {
+      "qid": "Q8061253",
+      "label_hint_en": "Yung Ho Chang"
+    },
+    {
+      "qid": "Q16885931",
+      "label_hint_en": "Peter Stutchbury"
+    },
+    {
+      "qid": "Q18285074",
+      "label_hint_en": "Anne Lacaton"
+    },
+    {
+      "qid": "Q18285075",
+      "label_hint_en": "Jean-Philippe Vassal"
+    },
+    {
+      "qid": "Q20687524",
+      "label_hint_en": "Vo Trong Nghia"
+    },
+    {
+      "qid": "Q27451427",
+      "label_hint_en": "Marina Tabassum"
+    },
+    {
+      "qid": "Q132988850",
+      "label_hint_en": "Liu Jiakun"
+    }
+  ],
+  "person_seeds_basis": "canon blocked from work-seeding by missing Wikidata P84 anchors; admitted directly as architect-occupation humans"
 }
