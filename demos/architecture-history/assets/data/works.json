@@ -29759,6 +29759,81 @@
     },
     {
       "aliases_en": [
+        "Hotel Tassel"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1881679-name-en",
+        "claim-wd-q1881679-name-zh",
+        "claim-wd-q1881679-coordinates",
+        "claim-wd-q1881679-p84-q49744-1",
+        "claim-wd-q1881679-period",
+        "claim-wd-q1881679-p571-1",
+        "claim-wd-q1881679-p571-2"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1881679-coordinates",
+        "lat": 50.827778,
+        "lng": 4.362028,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q1881679-p84-q49744-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q49744",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1881679"
+      },
+      "id": "work-wd-q1881679",
+      "last_verified": "2026-08-17",
+      "name_en": "Hôtel Tassel",
+      "name_native": null,
+      "name_zh": "塔塞尔公馆",
+      "period": "1800_1918",
+      "place_id": "place-wd-q31",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
         "MoMA",
         "The Museum of Modern Art, New York",
         "Museum of Modern Art (New York, N.Y.)"
@@ -39907,6 +39982,80 @@
       "period": "1946_1979",
       "place_id": "place-wd-q30",
       "region": "north_america",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2525048-name-en",
+        "claim-wd-q2525048-name-zh",
+        "claim-wd-q2525048-work-type",
+        "claim-wd-q2525048-coordinates",
+        "claim-wd-q2525048-p84-q154083-1",
+        "claim-wd-q2525048-period",
+        "claim-wd-q2525048-p571-1",
+        "claim-wd-q2525048-p571-2"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2525048-coordinates",
+        "lat": 50.815,
+        "lng": 12.9011,
+        "precision": 0.001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q2525048-p84-q154083-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q154083",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2525048"
+      },
+      "id": "work-wd-q2525048",
+      "last_verified": "2026-08-17",
+      "name_en": "Villa Esche",
+      "name_native": null,
+      "name_zh": "埃舍别墅",
+      "period": "1800_1918",
+      "place_id": "place-wd-q183",
+      "region": "europe",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -70041,6 +70190,91 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Helensburgh, Upper Colquhoun Street, The Hill House",
+        "Helensburgh, Upper Colquhoun Street, The Hill House, Outbuilding",
+        "Helensburgh, Upper Colquhoun Street, The Hill House, Outbuildings",
+        "Hill House, Helensburgh",
+        "The Hill House"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q654780-name-en",
+        "claim-wd-q654780-work-type",
+        "claim-wd-q654780-coordinates",
+        "claim-wd-q654780-p84-q220703-1",
+        "claim-wd-q654780-p84-q508344-2"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q654780-coordinates",
+        "lat": 56.017,
+        "lng": -4.72797,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q654780-p84-q220703-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q220703",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q654780-p84-q508344-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q508344",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q654780"
+      },
+      "id": "work-wd-q654780",
+      "last_verified": "2026-08-17",
+      "name_en": "Hill House",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],

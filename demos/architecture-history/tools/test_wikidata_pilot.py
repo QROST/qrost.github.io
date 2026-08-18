@@ -96,7 +96,7 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q917274": "2000_present",
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
-    "56f1a26ecc02e444b8e600b78b9485a43e4e1d25a22f6c688099e96054626c1b"
+    "ded7e3810940beaca69c8a2bc2539fd9e0711e7867a75b5179f7d8fb856d9fe2"
 )
 NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q2977",
@@ -121,7 +121,7 @@ NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q11315",
 }
 NEW_WORK_TYPE_WORK_IDS_SHA256 = (
-    "ace15954e84b3d8b52b2a9229d30a49179c6f39f30bd26c9f403709a58473279"
+    "87b8c0c84641fab43a8bf95a1b36f927b55a4e3595f543995eb04d5f8dfe8499"
 )
 
 
@@ -218,7 +218,7 @@ def minimal_lineage_snapshot(entities: dict[str, dict]) -> dict:
             "seed": "fixture",
             "seed_sha256": "fixture",
         },
-        "snapshot_id": "wikidata-hydration-2026-08-17-d70418694da5",
+        "snapshot_id": "wikidata-hydration-2026-08-17-331304a6ac30",
         "source_id": "wikidata",
     }
 
@@ -884,7 +884,7 @@ class WikidataPilotTests(unittest.TestCase):
                     next(iter(self.authority_snapshots)),
                 )
         affected_ids.sort()
-        self.assertEqual(len(affected_ids), 175)
+        self.assertEqual(len(affected_ids), 177)
         self.assertEqual(
             hashlib.sha256(
                 json.dumps(
@@ -904,7 +904,7 @@ class WikidataPilotTests(unittest.TestCase):
         }
         self.assertEqual(
             statuses,
-            {"mapped_exact": 886, "unmapped": 229, "ambiguous": 34},
+            {"mapped_exact": 888, "unmapped": 230, "ambiguous": 34},
         )
 
     def test_automatic_records_remain_candidates(self):
@@ -1073,25 +1073,25 @@ class WikidataPilotTests(unittest.TestCase):
             sort_keys=True,
             separators=(",", ":"),
         ).encode("utf-8")
-        self.assertEqual(len(prior_assignments), 885)
+        self.assertEqual(len(prior_assignments), 887)
         self.assertEqual(
             hashlib.sha256(prior_payload).hexdigest(),
             PRIOR_PERIOD_ASSIGNMENT_SHA256,
         )
         self.assertEqual(
             sum(period != "unknown" for period in assignments.values()),
-            946,
+            948,
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
-            203,
+            204,
         )
         self.assertEqual(
             sum(
                 claim["predicate"] == "field_period"
                 for claim in self.catalog["claims"]
             ),
-            946,
+            948,
         )
 
     def test_raw_lineage_edges_never_become_mentorship(self):

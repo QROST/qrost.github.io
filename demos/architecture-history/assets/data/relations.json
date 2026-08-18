@@ -991,6 +991,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-documented-influence-q378157-q1801886",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded influence edge: Edwin Lutyens → Sigurd Frosterus. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
+        "note_zh": "待审影响边：埃德温·鲁琴斯 → Sigurd Frosterus。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q378157",
+      "id": "relation-wd-documented-influence-q378157-q1801886",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "documented_influence",
+      "to_id": "person-wd-q1801886",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-documented-influence-q38193-q9391",
       "confidence": 0.45,
       "context": {
@@ -1299,6 +1321,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-documented-influence-q84287-q1801886",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded influence edge: Otto Wagner → Sigurd Frosterus. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
+        "note_zh": "待审影响边：奥托·瓦格纳 → Sigurd Frosterus。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q84287",
+      "id": "relation-wd-documented-influence-q84287-q1801886",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "documented_influence",
+      "to_id": "person-wd-q1801886",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-documented-influence-q9391-q229646",
       "confidence": 0.45,
       "context": {
@@ -1362,6 +1406,28 @@
       ],
       "relation_type": "documented_influence",
       "to_id": "person-wd-q4725710",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-documented-influence-q944344-q1801886",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded influence edge: Ragnar Östberg → Sigurd Frosterus. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
+        "note_zh": "待审影响边：Ragnar Östberg → Sigurd Frosterus。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q944344",
+      "id": "relation-wd-documented-influence-q944344-q1801886",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "documented_influence",
+      "to_id": "person-wd-q1801886",
       "verification_status": "candidate"
     },
     {
@@ -2176,6 +2242,50 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q700033",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q154083-q1801886",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1876,
+        "institution_id": null,
+        "note_en": "Recorded edge: Henry van de Velde → Sigurd Frosterus. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：亨利·范·德费尔德 → Sigurd Frosterus。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q154083",
+      "id": "relation-wd-student-recorded-q154083-q1801886",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1801886",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q154083-q6254381",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1876,
+        "institution_id": null,
+        "note_en": "Recorded edge: Henry van de Velde → Jacob Ängman. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：亨利·范·德费尔德 → Jacob Ängman。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q154083",
+      "id": "relation-wd-student-recorded-q154083-q6254381",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q6254381",
       "verification_status": "candidate"
     },
     {
@@ -3056,6 +3166,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q94497995",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2074447-q49744",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1861,
+        "institution_id": null,
+        "note_en": "Recorded edge: Alphonse Balat → Victor Horta. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：阿方斯·巴拉 → 维克多·奥塔。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2074447",
+      "id": "relation-wd-student-recorded-q2074447-q49744",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q49744",
       "verification_status": "candidate"
     },
     {
@@ -5828,6 +5960,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q65560029",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3076598-q1801886",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1876,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustaf Nyström → Sigurd Frosterus. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：古斯塔夫·尼斯特倫 → Sigurd Frosterus。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3076598",
+      "id": "relation-wd-student-recorded-q3076598-q1801886",
+      "last_verified": "2026-08-17",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1801886",
       "verification_status": "candidate"
     },
     {

@@ -458,6 +458,30 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q31-name-en",
+        "claim-wd-q31-name-zh",
+        "claim-wd-q31-country-code",
+        "claim-wd-q31-region",
+        "claim-wd-q31-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "BE",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q31"
+      },
+      "id": "place-wd-q31",
+      "last_verified": "2026-08-17",
+      "lat": null,
+      "lng": null,
+      "name_en": "Belgium",
+      "name_native": null,
+      "name_zh": "比利时",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q33-name-en",
         "claim-wd-q33-name-zh",
         "claim-wd-q33-country-code",

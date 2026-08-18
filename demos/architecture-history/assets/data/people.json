@@ -6482,6 +6482,59 @@
     },
     {
       "aliases_en": [
+        "Henri Clemens van de Velde",
+        "Henry Van De Velde",
+        "Henry Clemens van de Velde",
+        "Henri van de Velde",
+        "Henry Van de Velde",
+        "H. v.d. Velde"
+      ],
+      "aliases_zh": [
+        "亨利·凡·德·费尔德"
+      ],
+      "birth": {
+        "earliest": 1863,
+        "latest": 1863,
+        "precision": "day",
+        "value": "1863-04-03"
+      },
+      "claim_ids": [
+        "claim-wd-q154083-name-en",
+        "claim-wd-q154083-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "BE",
+        "DE"
+      ],
+      "death": {
+        "earliest": 1957,
+        "latest": 1957,
+        "precision": "day",
+        "value": "1957-10-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q154083"
+      },
+      "id": "person-wd-q154083",
+      "last_verified": "2026-08-17",
+      "name_en": "Henry van de Velde",
+      "name_native": null,
+      "name_zh": "亨利·范·德费尔德",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "engineer",
+        "designer"
+      ],
+      "summary_en": "Belgian painter, architect and interior designer (1863-1957)",
+      "summary_zh": "比利時畫家，建築師和室內設計師",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Antoine Garnier"
       ],
       "aliases_zh": [],
@@ -9628,6 +9681,48 @@
     },
     {
       "aliases_en": [
+        "Sigurd Frostérus"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1876,
+        "latest": 1876,
+        "precision": "day",
+        "value": "1876-06-04"
+      },
+      "claim_ids": [
+        "claim-wd-q1801886-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FI"
+      ],
+      "death": {
+        "earliest": 1956,
+        "latest": 1956,
+        "precision": "day",
+        "value": "1956-03-02"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1801886"
+      },
+      "id": "person-wd-q1801886",
+      "last_verified": "2026-08-17",
+      "name_en": "Sigurd Frosterus",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Finnish architect (1876–1956)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Frank Owen Gehry",
         "Frank O. Gehry",
         "Ephraim Owen Goldberg",
@@ -11644,6 +11739,59 @@
     },
     {
       "aliases_en": [
+        "Alphonse Hubert François Balat",
+        "Alphonse-Hubert-François Balat"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1818,
+        "latest": 1818,
+        "precision": "day",
+        "value": "1818-05-15"
+      },
+      "claim_ids": [
+        "claim-wd-q2074447-aliases-en",
+        "claim-wd-q2074447-birth",
+        "claim-wd-q2074447-country-codes",
+        "claim-wd-q2074447-death",
+        "claim-wd-q2074447-external-ids",
+        "claim-wd-q2074447-name-en",
+        "claim-wd-q2074447-name-zh",
+        "claim-wd-q2074447-name-zh-status",
+        "claim-wd-q2074447-region",
+        "claim-wd-q2074447-roles",
+        "claim-wd-q2074447-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "BE"
+      ],
+      "death": {
+        "earliest": 1895,
+        "latest": 1895,
+        "precision": "day",
+        "value": "1895-09-16"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2074447"
+      },
+      "id": "person-wd-q2074447",
+      "last_verified": "2026-08-17",
+      "name_en": "Alphonse Balat",
+      "name_native": null,
+      "name_zh": "阿方斯·巴拉",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Belgian architect (1818–1895)",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
         "Lorentso Giberti",
         "Lorent︠s︡o Giberti",
         "Ghiberti",
@@ -13103,6 +13251,56 @@
         "architect"
       ],
       "summary_en": "Dutch architect (1868-1934)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Charles Rennie MacKintosh",
+        "Charles Mackintosh",
+        "Charles Rennie Machintosh"
+      ],
+      "aliases_zh": [
+        "查爾斯麥金塔",
+        "查尔斯·伦尼·麦金伦什"
+      ],
+      "birth": {
+        "earliest": 1868,
+        "latest": 1868,
+        "precision": "day",
+        "value": "1868-06-07"
+      },
+      "claim_ids": [
+        "claim-wd-q220703-name-en",
+        "claim-wd-q220703-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "GB"
+      ],
+      "death": {
+        "earliest": 1928,
+        "latest": 1928,
+        "precision": "day",
+        "value": "1928-12-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q220703"
+      },
+      "id": "person-wd-q220703",
+      "last_verified": "2026-08-17",
+      "name_en": "Charles Rennie Mackintosh",
+      "name_native": null,
+      "name_zh": "查尔斯·雷尼·麦金托什",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "craftsperson",
+        "designer"
+      ],
+      "summary_en": "Scottish architect, designer, water colourist and artist (1868-1928)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -32017,6 +32215,55 @@
     },
     {
       "aliases_en": [
+        "Victor, Baron Horta",
+        "Victor Horta baron",
+        "Victor, baron Horta",
+        "Victor Petrus Horta",
+        "Victor Petrus Horta Horta",
+        "Victor Pierre Horta"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1861,
+        "latest": 1861,
+        "precision": "day",
+        "value": "1861-01-06"
+      },
+      "claim_ids": [
+        "claim-wd-q49744-name-en",
+        "claim-wd-q49744-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "BE"
+      ],
+      "death": {
+        "earliest": 1947,
+        "latest": 1947,
+        "precision": "day",
+        "value": "1947-09-08"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q49744"
+      },
+      "id": "person-wd-q49744",
+      "last_verified": "2026-08-17",
+      "name_en": "Victor Horta",
+      "name_native": null,
+      "name_zh": "维克多·奥塔",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Belgian architect, designer, publicist, teacher and creator of Art Nouveau (1861–1947)",
+      "summary_zh": "比利时建筑师（Victor Horta，1861—1947）",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Cedric Bruce Dellit",
         "Charles Bruce Dellit"
       ],
@@ -32323,6 +32570,54 @@
         "architect"
       ],
       "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Margaret Mackintosh Macdonald",
+        "Margaret Macdonald",
+        "Mrs. Charles Rennie MacKintosh",
+        "Margaret MacKintosh MacDonald",
+        "Margaret Macdonald Mackintosh",
+        "Charles Rennie Mackintosh (Mrs.)",
+        "Margaret McDonald"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1864,
+        "latest": 1864,
+        "precision": "day",
+        "value": "1864-11-05"
+      },
+      "claim_ids": [
+        "claim-wd-q508344-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "GB"
+      ],
+      "death": {
+        "earliest": 1933,
+        "latest": 1933,
+        "precision": "day",
+        "value": "1933-01-07"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q508344"
+      },
+      "id": "person-wd-q508344",
+      "last_verified": "2026-08-17",
+      "name_en": "Margaret MacDonald",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "British artist (1865-1933)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -37353,6 +37648,47 @@
         "architect"
       ],
       "summary_en": "British architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1876,
+        "latest": 1876,
+        "precision": "day",
+        "value": "1876-01-29"
+      },
+      "claim_ids": [
+        "claim-wd-q6254381-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "SE"
+      ],
+      "death": {
+        "earliest": 1942,
+        "latest": 1942,
+        "precision": "day",
+        "value": "1942-02-24"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6254381"
+      },
+      "id": "person-wd-q6254381",
+      "last_verified": "2026-08-17",
+      "name_en": "Jacob Ängman",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Swedish architect (1876-1942)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
