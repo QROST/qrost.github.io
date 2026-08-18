@@ -3414,6 +3414,16 @@
       ]
     },
     {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Hill House",
+      "qid": "Q654780",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "EG",
       "expected_country_qid": "Q79",
       "label_hint_en": "Mortuary temple of Hatshepsut",
@@ -5875,6 +5885,16 @@
       ]
     },
     {
+      "expected_country_code": "BE",
+      "expected_country_qid": "Q31",
+      "label_hint_en": "Hôtel Tassel",
+      "qid": "Q1881679",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
       "expected_country_code": "NL",
       "expected_country_qid": "Q55",
       "label_hint_en": "Vredeskerk (Amsterdam)",
@@ -6310,6 +6330,16 @@
         "adobe",
         "timbuktu",
         "unesco"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Villa Esche",
+      "qid": "Q2525048",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
