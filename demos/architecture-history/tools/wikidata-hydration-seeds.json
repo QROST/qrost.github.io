@@ -65,6 +65,16 @@
       ]
     },
     {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Halle Tony Garnier",
+      "qid": "Q4233",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "IN",
       "expected_country_qid": "Q668",
       "label_hint_en": "Mahabodhi Temple",
@@ -2397,6 +2407,16 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Westin Bonaventure Hotel",
+      "qid": "Q371058",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "IT",
       "expected_country_qid": "Q38",
       "label_hint_en": "Basilica of Maxentius",
@@ -2499,6 +2519,16 @@
       "risk_tags": [
         "holiest_site_islam",
         "greatly_expanded_modern"
+      ]
+    },
+    {
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "label_hint_en": "Kirche am Steinhof",
+      "qid": "Q441668",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -3402,6 +3432,16 @@
       "risk_tags": [
         "hyperboloid",
         "engineering"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "IG Farben Building",
+      "qid": "Q663140",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -5564,6 +5604,16 @@
       ]
     },
     {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Het Schip",
+      "qid": "Q1616115",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
       "expected_country_code": "PE",
       "expected_country_qid": "Q419",
       "label_hint_en": "Huaca del Sol",
@@ -6803,6 +6853,16 @@
       ]
     },
     {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "National Museum of Roman Art",
+      "qid": "Q3330685",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
       "expected_country_code": "JP",
       "expected_country_qid": "Q17",
       "label_hint_en": "Nigatsu-do",
@@ -6901,6 +6961,16 @@
       "region": "europe",
       "risk_tags": [
         "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Theme Building",
+      "qid": "Q3523620",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
       ]
     },
     {
@@ -7133,6 +7203,16 @@
       "risk_tags": [
         "library",
         "louis_kahn"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Yale Art and Architecture Building",
+      "qid": "Q4176574",
+      "region": "north_america",
+      "risk_tags": [
+        "multi_phase"
       ]
     },
     {
