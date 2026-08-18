@@ -482,6 +482,30 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q334-name-en",
+        "claim-wd-q334-name-zh",
+        "claim-wd-q334-country-code",
+        "claim-wd-q334-region",
+        "claim-wd-q334-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "SG",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q334"
+      },
+      "id": "place-wd-q334",
+      "last_verified": "2026-08-17",
+      "lat": null,
+      "lng": null,
+      "name_en": "Singapore",
+      "name_native": null,
+      "name_zh": "新加坡",
+      "region": "southeast_asia",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q34-name-en",
         "claim-wd-q34-name-zh",
         "claim-wd-q34-country-code",
@@ -1294,6 +1318,30 @@
       "name_native": null,
       "name_zh": "墨西哥",
       "region": "latin_america_caribbean",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q986-name-en",
+        "claim-wd-q986-name-zh",
+        "claim-wd-q986-country-code",
+        "claim-wd-q986-region",
+        "claim-wd-q986-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "ER",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q986"
+      },
+      "id": "place-wd-q986",
+      "last_verified": "2026-08-17",
+      "lat": null,
+      "lng": null,
+      "name_en": "Eritrea",
+      "name_native": null,
+      "name_zh": "厄立特里亚",
+      "region": "africa",
       "verification_status": "verified"
     }
   ]

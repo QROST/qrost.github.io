@@ -15418,6 +15418,64 @@
       "verification_status": "verified"
     },
     {
+      "aliases_en": [
+        "Bernard Ralph Maybeck",
+        "Bernard-Ralph Maybeck",
+        "Bernard R. Maybeck",
+        "Ben Maybeck"
+      ],
+      "aliases_zh": [
+        "伯纳德·梅贝克"
+      ],
+      "birth": {
+        "earliest": 1862,
+        "latest": 1862,
+        "precision": "day",
+        "value": "1862-02-07"
+      },
+      "claim_ids": [
+        "claim-wd-q2758593-aliases-en",
+        "claim-wd-q2758593-aliases-zh",
+        "claim-wd-q2758593-birth",
+        "claim-wd-q2758593-country-codes",
+        "claim-wd-q2758593-death",
+        "claim-wd-q2758593-external-ids",
+        "claim-wd-q2758593-name-en",
+        "claim-wd-q2758593-name-zh",
+        "claim-wd-q2758593-name-zh-status",
+        "claim-wd-q2758593-region",
+        "claim-wd-q2758593-roles",
+        "claim-wd-q2758593-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "death": {
+        "earliest": 1957,
+        "latest": 1957,
+        "precision": "day",
+        "value": "1957-10-03"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2758593"
+      },
+      "id": "person-wd-q2758593",
+      "last_verified": "2026-08-17",
+      "name_en": "Bernard Maybeck",
+      "name_native": null,
+      "name_zh": "伯纳德·梅贝克",
+      "name_zh_status": "source_label_candidate",
+      "region": "north_america",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "architect (1862–1957)",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -28574,6 +28632,52 @@
     },
     {
       "aliases_en": [
+        "Kathleen Eileen Moray Gray",
+        "Eileen Kathleen Moray Gray",
+        "Kathleen Eileen Gray",
+        "Kathleen Eileen Moray Smith",
+        "Eileen Moray Smith"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1878,
+        "latest": 1878,
+        "precision": "day",
+        "value": "1878-08-08"
+      },
+      "claim_ids": [
+        "claim-wd-q438129-name-en",
+        "claim-wd-q438129-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1976,
+        "latest": 1976,
+        "precision": "day",
+        "value": "1976-10-31"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q438129"
+      },
+      "id": "person-wd-q438129",
+      "last_verified": "2026-08-17",
+      "name_en": "Eileen Gray",
+      "name_native": null,
+      "name_zh": "Eileen Gray",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Irish architect and designer (1878–1976)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Amanda Jane Levete"
       ],
       "aliases_zh": [],
@@ -32042,6 +32146,49 @@
     },
     {
       "aliases_en": [
+        "Fred Brown",
+        "F. Brown"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1851,
+        "latest": 1851,
+        "precision": "day",
+        "value": "1851-03-14"
+      },
+      "claim_ids": [
+        "claim-wd-q5497426-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "GB"
+      ],
+      "death": {
+        "earliest": 1941,
+        "latest": 1941,
+        "precision": "day",
+        "value": "1941-01-08"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5497426"
+      },
+      "id": "person-wd-q5497426",
+      "last_verified": "2026-08-17",
+      "name_en": "Frederick Brown",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "historian"
+      ],
+      "summary_en": "British artist (1851-1941)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Sir Frederick Gibberd",
         "Frederick Ernest Gibberd",
         "Sir Frederick Ernest Gibberd"
@@ -32148,6 +32295,86 @@
         "architect"
       ],
       "summary_en": "French architect (1713–1780)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1864,
+        "latest": 1864,
+        "precision": "day",
+        "value": "1864-06-04"
+      },
+      "claim_ids": [
+        "claim-wd-q550544-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1945,
+        "latest": 1945,
+        "precision": "day",
+        "value": "1945-12-13"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q550544"
+      },
+      "id": "person-wd-q550544",
+      "last_verified": "2026-08-17",
+      "name_en": "François-Benjamin Chaussemiche",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1864–1945)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1887,
+        "latest": 1887,
+        "precision": "day",
+        "value": "1887-03-19"
+      },
+      "claim_ids": [
+        "claim-wd-q55227524-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 1961,
+        "latest": 1961,
+        "precision": "day",
+        "value": "1961-02-01"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q55227524"
+      },
+      "id": "person-wd-q55227524",
+      "last_verified": "2026-08-17",
+      "name_en": "Guido Ferrazza",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Italian architect (1887-1961)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -34512,6 +34739,55 @@
       "summary_en": "Peruvian architect and politician (born 1940)",
       "summary_zh": "",
       "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1872,
+        "latest": 1872,
+        "precision": "day",
+        "value": "1872-01-20"
+      },
+      "claim_ids": [
+        "claim-wd-q601820-birth",
+        "claim-wd-q601820-country-codes",
+        "claim-wd-q601820-death",
+        "claim-wd-q601820-external-ids",
+        "claim-wd-q601820-name-en",
+        "claim-wd-q601820-name-zh",
+        "claim-wd-q601820-name-zh-status",
+        "claim-wd-q601820-region",
+        "claim-wd-q601820-roles",
+        "claim-wd-q601820-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "death": {
+        "earliest": 1957,
+        "latest": 1957,
+        "precision": "day",
+        "value": "1957-02-02"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q601820"
+      },
+      "id": "person-wd-q601820",
+      "last_verified": "2026-08-17",
+      "name_en": "Julia Morgan",
+      "name_native": null,
+      "name_zh": "朱莉亚·摩根",
+      "name_zh_status": "source_label_candidate",
+      "region": "north_america",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "American architect and engineer (1872-1957)",
+      "summary_zh": "",
+      "verification_status": "verified"
     },
     {
       "aliases_en": [

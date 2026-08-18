@@ -19303,6 +19303,77 @@
       "work_type_mapping_status": "mapped_exact"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1410651-name-en",
+        "claim-wd-q1410651-coordinates",
+        "claim-wd-q1410651-p84-q55227524-1",
+        "claim-wd-q1410651-period",
+        "claim-wd-q1410651-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1410651-coordinates",
+        "lat": 15.32833333,
+        "lng": 38.92583333,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q1410651-p84-q55227524-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q55227524",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1410651"
+      },
+      "id": "work-wd-q1410651",
+      "last_verified": "2026-08-17",
+      "name_en": "Fiat Tagliero Building",
+      "name_native": null,
+      "name_zh": null,
+      "period": "1919_1945",
+      "place_id": "place-wd-q986",
+      "region": "africa",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
       "aliases_en": [
         "Tower Praha"
       ],
@@ -46029,6 +46100,83 @@
     },
     {
       "aliases_en": [
+        "PARKROYAL COLLECTION Pickering, Singapore (SG Clean Certified)",
+        "PARKROYAL COLLECTION Pickering, Singapore",
+        "PARKROYAL COLLECTION Pickering",
+        "Parkroyal Collection Pickering, Singapore (Staycation Approved)",
+        "PARKROYAL COLLECTION Pickering,Singapore"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q30535579-name-en",
+        "claim-wd-q30535579-p84-q944660-1",
+        "claim-wd-q30535579-period",
+        "claim-wd-q30535579-p571-1",
+        "claim-wd-q30535579-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": null,
+        "lat": null,
+        "lng": null,
+        "precision": null
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q30535579-p84-q944660-1",
+          "credit_status": "candidate",
+          "entity_id": "practice-wd-q944660",
+          "entity_type": "practice",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q30535579"
+      },
+      "id": "work-wd-q30535579",
+      "last_verified": "2026-08-17",
+      "name_en": "Parkroyal on Pickering",
+      "name_native": null,
+      "name_zh": null,
+      "period": "2000_present",
+      "place_id": "place-wd-q334",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
         "Nueva Basílica de Guadalupe"
       ],
       "aliases_zh": [],
@@ -50760,6 +50908,78 @@
       "verification_status": "candidate",
       "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q378143-name-en",
+        "claim-wd-q378143-name-zh",
+        "claim-wd-q378143-coordinates",
+        "claim-wd-q378143-p84-q601820-1",
+        "claim-wd-q378143-period",
+        "claim-wd-q378143-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q378143-coordinates",
+        "lat": 35.68527777777778,
+        "lng": -121.16777777777777,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q378143-p84-q601820-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q601820",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q378143"
+      },
+      "id": "work-wd-q378143",
+      "last_verified": "2026-08-17",
+      "name_en": "Hearst Castle",
+      "name_native": null,
+      "name_zh": "赫斯特城堡",
+      "period": "1919_1945",
+      "place_id": "place-wd-q30",
+      "region": "north_america",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
     },
     {
       "aliases_en": [],
@@ -67010,6 +67230,78 @@
     },
     {
       "aliases_en": [
+        "E 1027"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q627266-name-en",
+        "claim-wd-q627266-work-type",
+        "claim-wd-q627266-coordinates",
+        "claim-wd-q627266-p84-q438129-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q627266-coordinates",
+        "lat": 43.759875,
+        "lng": 7.4631861111111,
+        "precision": 2.7777777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q627266-p84-q438129-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q438129",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q627266"
+      },
+      "id": "work-wd-q627266",
+      "last_verified": "2026-08-17",
+      "name_en": "Villa E-1027",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Burj Al Arab",
         "Burj al Arab",
         "Burj al-Arab Hotel",
@@ -82249,6 +82541,80 @@
       "verification_status": "candidate",
       "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Palace of Fine Arts Theatre"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q966263-name-en",
+        "claim-wd-q966263-name-zh",
+        "claim-wd-q966263-coordinates",
+        "claim-wd-q966263-p84-q2758593-1",
+        "claim-wd-q966263-period",
+        "claim-wd-q966263-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q966263-coordinates",
+        "lat": 37.802778,
+        "lng": -122.448333,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q966263-p84-q2758593-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q2758593",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q966263"
+      },
+      "id": "work-wd-q966263",
+      "last_verified": "2026-08-17",
+      "name_en": "Palace of Fine Arts",
+      "name_native": null,
+      "name_zh": "藝術宮",
+      "period": "1800_1918",
+      "place_id": "place-wd-q30",
+      "region": "north_america",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
     },
     {
       "aliases_en": [],

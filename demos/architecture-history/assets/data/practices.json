@@ -2443,6 +2443,42 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q944660-external-ids",
+        "claim-wd-q944660-name-en",
+        "claim-wd-q944660-practice-type",
+        "claim-wd-q944660-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q944660"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q944660",
+      "last_verified": "2026-08-17",
+      "name_en": "WOHA",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "architectural firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q97573278-external-ids",
         "claim-wd-q97573278-name-en",
         "claim-wd-q97573278-practice-type",
