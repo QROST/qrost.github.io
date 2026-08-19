@@ -45,6 +45,7 @@
 
   const PRACTICE_AFFILIATION_TYPES = new Set([
     'worked_at_practice',
+    'worked_for',
     'cofounded_with',
   ]);
 

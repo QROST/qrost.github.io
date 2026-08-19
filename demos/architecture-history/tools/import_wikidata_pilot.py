@@ -874,6 +874,16 @@ COFOUNDED_WITH_NOTE_EN_SUFFIX = (
     "Raw Wikidata P112 founding edge; it does not by itself establish "
     "cofounder status or founding partnership."
 )
+WORKED_FOR_NOTE_EN_SUFFIX = (
+    "Raw Wikidata P108 employment edge between two architects, recorded "
+    "directly against the employer or derived through the employer "
+    "practice's founder; it does not by itself establish tenure, role, "
+    "or deputy rank."
+)
+WORKED_FOR_NOTE_ZH_SUFFIX = (
+    "Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；"
+    "本身不能证明任期、职务或副手身份。"
+)
 COFOUNDED_WITH_NOTE_ZH_SUFFIX = (
     "Wikidata P112 原始创立边；本身不能证明联合创始人身份或创立合作关系。"
 )
@@ -882,6 +892,7 @@ LINEAGE_RELATION_ID_PREFIX = {
     "student_of_recorded": "student-recorded",
     "documented_influence": "documented-influence",
     "worked_at_practice": "worked-at-practice",
+    "worked_for": "worked-for",
     "cofounded_with": "cofounded-with",
 }
 
@@ -949,6 +960,11 @@ def lineage_review_context(
         note_zh_suffix = COFOUNDED_WITH_NOTE_ZH_SUFFIX
         recorded_label_en = "Recorded founding edge"
         recorded_label_zh = "待审创立边"
+    elif relation_type == "worked_for":
+        note_en_suffix = WORKED_FOR_NOTE_EN_SUFFIX
+        note_zh_suffix = WORKED_FOR_NOTE_ZH_SUFFIX
+        recorded_label_en = "Recorded employment-under edge"
+        recorded_label_zh = "待审任职边"
     else:
         raise ValueError(f"unsupported lineage relation type: {relation_type}")
     return {
@@ -2087,8 +2103,35 @@ class CatalogBuilder:
                 source_qid,
                 peer_qid=linked_qid,
             )
+            if employee_id is None:
+                return
+            if property_id == "P108":
+                # A worked in the office of architect B: Wikidata records the
+                # employer directly as a person. Only architect-occupation
+                # employers are admitted so both endpoints survive pruning.
+                if (
+                    linked_qid != source_qid
+                    and linked_qid in self.entities
+                    and HUMAN_QID
+                    in set(item_values(self.record(linked_qid), "P31"))
+                    and self.is_architecture_occupation(linked_qid)
+                ):
+                    boss_id = self.ensure_lineage_person(
+                        linked_qid,
+                        peer_qid=source_qid,
+                    )
+                    if boss_id is not None and boss_id != employee_id:
+                        self.append_lineage_edge(
+                            edges,
+                            relation_type="worked_for",
+                            from_id=employee_id,
+                            to_id=boss_id,
+                            evidence=evidence,
+                        )
             practice_id = self.ensure_practice(linked_qid)
-            if employee_id is None or practice_id is None:
+            if practice_id is None:
+                if self.should_expand_lineage_from(linked_qid):
+                    pending_qids.add(linked_qid)
                 return
             self.append_lineage_edge(
                 edges,
@@ -2097,6 +2140,63 @@ class CatalogBuilder:
                 to_id=practice_id,
                 evidence=evidence,
             )
+            if property_id == "P108":
+                # A worked at a practice founded by architect B: derive the
+                # person-to-person employment edge alongside the practice one.
+                for founder_index, founder_statement in enumerate(
+                    self.record(linked_qid)
+                    .get("claims", {})
+                    .get("P112", [])
+                ):
+                    if founder_statement.get("rank") == "deprecated":
+                        continue
+                    founder_values = item_values(
+                        {"claims": {"P112": [founder_statement]}},
+                        "P112",
+                    )
+                    if len(founder_values) != 1:
+                        continue
+                    founder_qid = founder_values[0]
+                    if (
+                        founder_qid == source_qid
+                        or founder_qid not in self.entities
+                        or HUMAN_QID
+                        not in set(
+                            item_values(self.record(founder_qid), "P31")
+                        )
+                        or not self.is_architecture_occupation(founder_qid)
+                    ):
+                        continue
+                    boss_id = self.ensure_lineage_person(
+                        founder_qid,
+                        peer_qid=source_qid,
+                    )
+                    if boss_id is None or boss_id == employee_id:
+                        continue
+                    founder_evidence = self.evidence(
+                        linked_qid,
+                        path=f"/claims/P112/{founder_index}",
+                        predicate="P112",
+                        locator=(
+                            f"{linked_qid}/P112/"
+                            f"{founder_statement.get('id', founder_index)}"
+                        ),
+                        statement=founder_statement,
+                    )
+                    self.append_lineage_edge(
+                        edges,
+                        relation_type="worked_for",
+                        from_id=employee_id,
+                        to_id=boss_id,
+                        evidence=evidence,
+                    )
+                    self.append_lineage_edge(
+                        edges,
+                        relation_type="worked_for",
+                        from_id=employee_id,
+                        to_id=boss_id,
+                        evidence=founder_evidence,
+                    )
             if self.should_expand_lineage_from(linked_qid):
                 pending_qids.add(linked_qid)
             return

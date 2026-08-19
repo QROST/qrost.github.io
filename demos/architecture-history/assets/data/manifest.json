@@ -1,7 +1,7 @@
 {
   "catalog_profile": {
     "evidence_by_source_family": {
-      "wikimedia": 13736
+      "wikimedia": 13765
     },
     "periods": {
       "1000_1499": {
@@ -99,7 +99,7 @@
       }
     },
     "verification": {
-      "candidate": 2691,
+      "candidate": 2716,
       "verified": 434
     },
     "work_type_mapping": {
@@ -109,14 +109,14 @@
     }
   },
   "counts": {
-    "candidate_entities_and_relations": 2691,
-    "claims": 13157,
+    "candidate_entities_and_relations": 2716,
+    "claims": 13182,
     "contested_entities_and_relations": 0,
     "declined_entities_and_relations": 0,
     "people": 1077,
     "places": 57,
     "practices": 63,
-    "relations": 776,
+    "relations": 801,
     "reviewers": 1,
     "sources": 12,
     "verified_entities_and_relations": 434,
@@ -735,15 +735,15 @@
     "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "603bc962e9f9514ef14e1736d7583eae0a312838409e25b271511771e45f412c",
+  "data_version": "2e405ddf4cda44f7689a56256cadbc22550dd22e03cef70a1710b52341fbd8ee",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "1a1cb401f09801c493de4f67066ae41aad0c6554c8cbe19ede726f9848ffc936"
+      "sha256": "c1759bd5a474ef446eeb7265cd94924d4297d705a45a95534552a46fbcd6ae21"
     },
     "claims.json": {
-      "count": 13157,
-      "sha256": "7ca4381f9fe82419a11e1ac9c52f28b81ea809a604d7cb194916b329e1afa24e"
+      "count": 13182,
+      "sha256": "6ff8a41600f0569122342cc1d0b53a7e1f9fdc6dbd71859509e34d176bb3ce8b"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
@@ -762,8 +762,8 @@
       "sha256": "cd1b2748ec89fc5d2d1f512a0b1cad790340d4baa74d2e31b82b7361f7994788"
     },
     "relations.json": {
-      "count": 776,
-      "sha256": "5b75fdc478413c77bf95617664302446c9ea5a8a383251195eb2a9f5644d8ed8"
+      "count": 801,
+      "sha256": "49118299a11b14152ec273f0f52a93f8f72d6512b1b7044c7d76e579a825505f"
     },
     "reviewers.json": {
       "count": 1,

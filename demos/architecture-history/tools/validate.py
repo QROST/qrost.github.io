@@ -132,6 +132,7 @@ RELATION_ENDPOINT_TYPES = {
     "formal_teacher": ({"person"}, {"person"}),
     "student_of_recorded": ({"person"}, {"person"}),
     "worked_at_practice": ({"person"}, {"practice"}),
+    "worked_for": ({"person"}, {"person"}),
     "practice_successor": ({"practice"}, {"practice"}),
     "collaborated_with": ({"person", "practice"}, {"person", "practice"}),
     "cofounded_with": ({"person", "practice"}, {"person", "practice"}),

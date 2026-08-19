@@ -1100,6 +1100,7 @@ class WikidataPilotTests(unittest.TestCase):
             "student_of_recorded",
             "documented_influence",
             "worked_at_practice",
+            "worked_for",
             "cofounded_with",
         }
         for relation in self.catalog["relations"]:
@@ -1239,10 +1240,28 @@ class WikidataPilotTests(unittest.TestCase):
                     self.assertEqual(targets, [from_qid])
                 elif property_id in {"P108", "P463"}:
                     self.assertEqual(source_qid, from_qid)
-                    self.assertEqual(targets, [to_qid])
+                    if (
+                        targets != [to_qid]
+                        and relation["relation_type"] == "worked_for"
+                    ):
+                        # Mediated employment: the P108 target must be the
+                        # practice whose P112 founding statement credits the
+                        # employer endpoint (carried as a second evidence row).
+                        practice_record = self.snapshot["entities"][
+                            targets[0]
+                        ]["record"]
+                        founders = importer.item_values(practice_record, "P112")
+                        self.assertIn(to_qid, founders)
+                    else:
+                        self.assertEqual(targets, [to_qid])
                 elif property_id == "P112":
-                    self.assertIn(source_qid, {from_qid, to_qid})
-                    self.assertIn(targets[0], {from_qid, to_qid})
+                    if relation["relation_type"] == "worked_for":
+                        # Practice-founded employment: the firm's P112 row
+                        # credits the employer endpoint directly.
+                        self.assertEqual(targets, [to_qid])
+                    else:
+                        self.assertIn(source_qid, {from_qid, to_qid})
+                        self.assertIn(targets[0], {from_qid, to_qid})
                 else:
                     self.fail(f"unexpected lineage predicate {property_id}")
 

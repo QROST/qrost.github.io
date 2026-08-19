@@ -17071,6 +17071,556 @@
       "relation_type": "worked_at_practice",
       "to_id": "practice-wd-q9026279",
       "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q1021574-q381978",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Louis-Raymond Fischer → Auguste Perret. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：路易-雷蒙·菲舍尔 → 奥古斯特·佩雷。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1021574",
+      "id": "relation-wd-worked-for-q1021574-q381978",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q381978",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q1041068-q78968",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Carl Wilhelm Christian von Doderer → August Sicard von Sicardsburg. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：卡尔·威廉·克里斯蒂安·冯·多德雷尔 → 奧古斯特·西卡德·馮·西卡德斯堡。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1041068",
+      "id": "relation-wd-worked-for-q1041068-q78968",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q78968",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q1041068-q78979",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Carl Wilhelm Christian von Doderer → Eduard van der Nüll. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：卡尔·威廉·克里斯蒂安·冯·多德雷尔 → 愛德華·范德努爾。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1041068",
+      "id": "relation-wd-worked-for-q1041068-q78979",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q78979",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q1172126-q378157",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Basil Spence → Edwin Lutyens. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：巴茲爾·斯賓思 → 埃德温·鲁琴斯。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1172126",
+      "id": "relation-wd-worked-for-q1172126-q378157",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q378157",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q117851407-q20882",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: François Rigolet → Gustave Eiffel. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：François Rigolet → 居斯塔夫·埃菲尔。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q117851407",
+      "id": "relation-wd-worked-for-q117851407-q20882",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q20882",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q1187770-q186265",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Josiah Conder → William Burges. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：喬賽亞·康德 → 威廉·伯吉斯。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1187770",
+      "id": "relation-wd-worked-for-q1187770-q186265",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q186265",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q1359250-q84250",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Ernst Lichtblau → Josef Hoffmann. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Ernst Lichtblau → 約瑟夫·霍夫曼。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1359250",
+      "id": "relation-wd-worked-for-q1359250-q84250",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q84250",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q1605748-q1000203",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Jean Welz → Robert Mallet-Stevens. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Jean Welz → 羅伯特·馬萊-斯蒂文斯。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1605748",
+      "id": "relation-wd-worked-for-q1605748-q1000203",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1000203",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q1605748-q1021574",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Jean Welz → Louis-Raymond Fischer. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Jean Welz → 路易-雷蒙·菲舍尔。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1605748",
+      "id": "relation-wd-worked-for-q1605748-q1021574",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1021574",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q1605748-q44323",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Jean Welz → Adolf Loos. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Jean Welz → 阿道夫·路斯。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1605748",
+      "id": "relation-wd-worked-for-q1605748-q44323",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q44323",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q16151248-q21132821",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Yvonne Farrell → Shelley McNamara. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：伊冯娜·法雷尔 → 谢莉·麦克纳马拉。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q16151248",
+      "id": "relation-wd-worked-for-q16151248-q21132821",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q21132821",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q1801886-q154083",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Sigurd Frosterus → Henry van de Velde. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Sigurd Frosterus → 亨利·范·德费尔德。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1801886",
+      "id": "relation-wd-worked-for-q1801886-q154083",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q154083",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q21132821-q16151248",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Shelley McNamara → Yvonne Farrell. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：谢莉·麦克纳马拉 → 伊冯娜·法雷尔。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q21132821",
+      "id": "relation-wd-worked-for-q21132821-q16151248",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q16151248",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q220944-q210134",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Moshe Safdie → Louis Kahn. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：摩西·萨夫迪 → 路易·卡恩。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q220944",
+      "id": "relation-wd-worked-for-q220944-q210134",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q210134",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q26224490-q681007",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Arthur Baker → George Gilbert Scott. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Arthur Baker → 乔治·吉尔伯特·斯科特。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q26224490",
+      "id": "relation-wd-worked-for-q26224490-q681007",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q681007",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q27131239-q331020",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Elsa Sundling → Marcel Lods. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Elsa Sundling → Marcel Lods。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q27131239",
+      "id": "relation-wd-worked-for-q27131239-q331020",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q331020",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q2851305-q210134",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Anne Tyng → Louis Kahn. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Anne Tyng → 路易·卡恩。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2851305",
+      "id": "relation-wd-worked-for-q2851305-q210134",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q210134",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q3340563-q352451",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Nicolas Marie Potain → Ange-Jacques Gabriel. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Nicolas Marie Potain → 安热-雅克·加布里埃尔。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3340563",
+      "id": "relation-wd-worked-for-q3340563-q352451",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q352451",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q37562-q208125",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Donatello → Lorenzo Ghiberti. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：多那太羅 → 洛伦佐·吉贝尔蒂。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q37562",
+      "id": "relation-wd-worked-for-q37562-q208125",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q208125",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q388272-q4724",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Junzo Sakakura → Le Corbusier. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：坂倉準三 → 勒·柯布西耶。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q388272",
+      "id": "relation-wd-worked-for-q388272-q4724",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q4724",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q5590225-q183528",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: John Burgee → Philip Johnson. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：约翰·伯奇 → 菲利普·约翰逊。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q5590225",
+      "id": "relation-wd-worked-for-q5590225-q183528",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q183528",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q61342-q643621",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Gottfried Semper → Jacques Ignace Hittorff. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：戈特弗里德·森佩尔 → 雅克·伊尼阿斯·伊托尔夫。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q61342",
+      "id": "relation-wd-worked-for-q61342-q643621",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q643621",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q61342-q76247",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Gottfried Semper → Franz Christian Gau. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：戈特弗里德·森佩尔 → Franz Christian Gau。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q61342",
+      "id": "relation-wd-worked-for-q61342-q76247",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q76247",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q700033-q151759",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Friedrich Ludwig Persius → Karl Friedrich Schinkel. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：路德维希·佩尔修斯 → 卡尔·弗里德里希·申克尔。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q700033",
+      "id": "relation-wd-worked-for-q700033-q151759",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q151759",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q725462-q6273796",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Kengo Kuma → Takekuni Ikeda. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：隈研吾 → Takekuni Ikeda。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q725462",
+      "id": "relation-wd-worked-for-q725462-q6273796",
+      "last_verified": "2026-08-18",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q6273796",
+      "verification_status": "candidate"
     }
   ]
 }

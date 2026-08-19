@@ -401,10 +401,12 @@
       student_of_recorded: { zh: '来源记录的学习关系候选', en: 'Source-recorded student relation candidate' },
       documented_influence: { zh: '来源记录的影响关系候选', en: 'Source-recorded influence candidate' },
       worked_at_practice: { zh: '来源记录的任职关系候选', en: 'Source-recorded practice employment candidate' },
+      worked_for: { zh: '来源记录的门下任职候选', en: 'Source-recorded employment-under candidate' },
       cofounded_with: { zh: '来源记录的共同创立候选', en: 'Source-recorded co-founded candidate' },
     },
     predicate: {
       student_of_recorded: { zh: '来源记录的学习关系', en: 'Source-recorded student relation' },
+      worked_for: { zh: '来源记录的门下任职', en: 'Source-recorded employment-under' },
       credited_contributor: { zh: '来源署名贡献者', en: 'Source-credited contributor' },
       unresolved_credited_contributor: { zh: '未解析来源署名', en: 'Unresolved source credit' },
       field_coordinates: { zh: '来源坐标', en: 'Source coordinates' },
