@@ -28,7 +28,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/css/tailwind-built.css?v=cabadb5821">
-  <link rel="stylesheet" href="assets/css/architecture-history.css?v=8362d1a177">
+  <link rel="stylesheet" href="assets/css/architecture-history.css?v=6d95be333d">
 </head>
 <body>
   <a class="skip-link" href="#main-content" data-i18n="skipToContent">跳到主要内容</a>
@@ -280,6 +280,12 @@
         <strong data-i18n="lineageEmptyTitle">没有符合条件的关系</strong>
         <p data-i18n="lineageEmptyCopy">请放宽搜索或关系类型筛选，或重置后重新浏览。</p>
       </div>
+      <div id="lineage-edgeless" class="lineage-edgeless hidden">
+        <h3 data-i18n="lineageEdgelessTitle">在册建筑师 · 暂无待审边</h3>
+        <p data-i18n="lineageEdgelessCopy">以下人物已在目录中，但尚无人物↔人物待审关系边，因此不出现在关系图中；点击姓名可查看人物详情。</p>
+        <ol id="lineage-edgeless-list" class="lineage-list"></ol>
+        <p id="lineage-edgeless-more" class="lineage-edgeless-more hidden"></p>
+      </div>
       <div class="lineage-layout">
         <div class="lineage-graph-card">
           <div id="lineage-graph" class="lineage-graph" role="img" aria-label="候选知识传递关系图" data-i18n-aria-label="lineageGraphAria"></div>
@@ -400,9 +406,9 @@
     src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
     integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
     crossorigin="anonymous"></script>
-  <script src="assets/js/i18n.js?v=09652d149f"></script>
+  <script src="assets/js/i18n.js?v=f9f99d8c07"></script>
   <script src="assets/js/data-loader.js?v=0df44d357e"></script>
   <script src="assets/js/maps.js?v=d6fe1f36f1"></script>
-  <script src="assets/js/app.js?v=8dd75c2928"></script>
+  <script src="assets/js/app.js?v=04c2e0e9ff"></script>
 </body>
 </html>

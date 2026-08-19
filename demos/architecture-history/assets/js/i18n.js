@@ -122,7 +122,7 @@
       en: 'These dashed edges come from raw Wikidata P1066/P802 records. They are review clues from predecessor → successor person and cannot automatically be interpreted as teacher, mentor, or apprenticeship. Practice employment and founding appear in person details, not in this graph.',
     },
     lineageCountLabel: { zh: '条候选待审边', en: 'candidate review edges' },
-    lineageSearchLabel: { zh: '搜索关系端点人物', en: 'Search relation endpoints' },
+    lineageSearchLabel: { zh: '搜索建筑师（含暂无关系边者）', en: 'Search architects (including those without relation edges)' },
     lineageSearchPlaceholder: {
       zh: '搜索中文名、英文名、别名或 Wikidata ID…',
       en: 'Search Chinese, English, aliases, or Wikidata ID…',
@@ -136,6 +136,14 @@
       zh: '请放宽搜索或关系类型筛选，或重置后重新浏览。',
       en: 'Broaden the search or relation-type filters, or reset and browse again.',
     },
+    lineageEdgelessTitle: { zh: '在册建筑师 · 未在当前图中', en: 'In catalog · not in this graph' },
+    lineageEdgelessCopy: {
+      zh: '以下人物匹配搜索，但未出现在当前筛选的关系图中——通常因为尚无人物↔人物待审关系边（多数为近年收录的建筑师）。点击姓名可查看人物详情。',
+      en: 'These architects match the search but do not appear in the filtered relation graph — usually because they have no person-to-person review edges yet (many were added recently). Click a name to open their record.',
+    },
+    lineageEdgelessNote: { zh: '暂无待审边', en: 'no review edges yet' },
+    lineageEdgelessMore: { zh: '另有', en: 'plus' },
+    lineageEdgelessMoreSuffix: { zh: '位未列出', en: 'more not shown' },
     lineageWarningTitle: { zh: '关系线索不等于已确认师承。', en: 'Relation clues are not verified lineage.' },
     lineageWarningCopy: {
       zh: '本图仅展示人物↔人物知识传递线索；任职与创立关系见人物详情。任何来源记录都不能自动等同于教师、导师或学徒关系，需逐条人工核验。',

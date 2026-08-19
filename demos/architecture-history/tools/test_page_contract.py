@@ -201,6 +201,25 @@ class PageContractTests(unittest.TestCase):
         self.assertIn("if (!event.persisted) dispose();", self.maps)
         self.assertIn("window.addEventListener('pagehide', handlePageHide)", self.maps)
 
+    def test_lineage_search_covers_edgeless_catalog_people(self) -> None:
+        """The lineage search must find every catalog architect.
+
+        Searching edges alone hides the ~40% of people with no
+        person-to-person review edges; the edgeless fallback group keeps
+        them reachable and links to their records.
+        """
+        for phrase in (
+            "lineageEdgelessPersonMatches",
+            "state.data.people.filter",
+            "renderLineageEdgeless",
+            "data-open-entity",
+            "lineage-edgeless",
+        ):
+            self.assertIn(phrase, self.app)
+        self.assertIn('id="lineage-edgeless-list"', self.html)
+        for label in ("lineageEdgelessTitle", "lineageEdgelessNote"):
+            self.assertIn(label, self.i18n)
+
     def test_hash_restore_is_fail_closed(self) -> None:
         self.assertIn("const SECTION_IDS = new Set(", self.app)
         self.assertIn("try {\n      const id = decodeURIComponent(", self.app)

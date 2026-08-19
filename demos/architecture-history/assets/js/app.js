@@ -443,12 +443,56 @@
     });
   }
 
+  const LINEAGE_EDGELESS_LIMIT = 30;
+
+  function lineageEdgelessPersonMatches(relations, query) {
+    if (!query) return [];
+    const endpoints = new Set();
+    relations.forEach(function (relation) {
+      endpoints.add(relation.from_id);
+      endpoints.add(relation.to_id);
+    });
+    return state.data.people.filter(function (person) {
+      if (endpoints.has(person.id)) return false;
+      return entitySearchText(person).includes(query);
+    });
+  }
+
+  function renderLineageEdgeless(edgeless) {
+    const group = $('#lineage-edgeless');
+    const list = $('#lineage-edgeless-list');
+    const more = $('#lineage-edgeless-more');
+    if (!group || !list) return;
+    const shown = edgeless.slice(0, LINEAGE_EDGELESS_LIMIT);
+    list.innerHTML = shown.map(function (person) {
+      return '<li><div class="lineage-edge">' +
+        '<button type="button" data-open-entity="' + escapeHtml(person.id) + '">' +
+          escapeHtml(i18n.name(person)) + '</button>' +
+        '<span class="lineage-edgeless-note">' +
+          escapeHtml(i18n.t('lineageEdgelessNote')) + '</span>' +
+        '</div></li>';
+    }).join('');
+    if (more) {
+      const rest = edgeless.length - shown.length;
+      more.textContent = rest > 0
+        ? i18n.t('lineageEdgelessMore') + ' ' + rest + ' ' + i18n.t('lineageEdgelessMoreSuffix')
+        : '';
+      more.classList.toggle('hidden', rest <= 0);
+    }
+    group.classList.toggle('hidden', edgeless.length === 0);
+  }
+
   function renderLineage() {
     const total = personLineageReviewRelations().length;
     const relations = filteredLineageRelations();
     putText('#lineage-count', relations.length + ' / ' + total);
+    const edgeless = lineageEdgelessPersonMatches(
+      relations,
+      normalize(state.lineageFilters.query)
+    );
+    renderLineageEdgeless(edgeless);
     const empty = $('#lineage-empty');
-    if (empty) empty.classList.toggle('hidden', relations.length > 0);
+    if (empty) empty.classList.toggle('hidden', relations.length > 0 || edgeless.length > 0);
     const list = $('#lineage-list');
     list.innerHTML = relations.map(function (relation) {
       const from = state.entitiesById[relation.from_id] || { name_en: relation.from_id };

@@ -2236,3 +2236,38 @@ html.dark .primary-button {
     animation-iteration-count: 1 !important;
   }
 }
+
+.lineage-edgeless {
+  margin: 1rem 0;
+  padding: 0.9rem 1rem;
+  border: 1px dashed var(--line);
+  border-radius: 0.65rem;
+  background: var(--surface);
+}
+
+.lineage-edgeless h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.lineage-edgeless p {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.lineage-edgeless .lineage-list {
+  max-height: 300px;
+}
+
+.lineage-edgeless-note {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+.lineage-edgeless-more {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
