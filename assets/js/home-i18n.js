@@ -39,8 +39,8 @@
       zh: '建筑谱系 · 全球建筑史证据图谱',
     },
     cardArchitectureDesc: {
-      en: 'A source-first bilingual browser for 1,152 revision-pinned works, 1,077 people, 63 practices and 57 places — searchable map, field-level evidence, raw relation review and a 9 × 8 coverage ledger, with 434 verified records.',
-      zh: '来源优先的双语浏览器：1,152 件固定修订作品、1,077 位人物、63 家事务所与 57 个地点；可搜索地图、字段级证据、原始关系复核及 9 × 8 覆盖账本，已核验 434 条记录。',
+      en: 'A source-first bilingual browser for 1,152 revision-pinned works, 1,094 people, 63 practices and 57 places — searchable map, field-level evidence, raw relation review and a 9 × 8 coverage ledger, with 444 verified records.',
+      zh: '来源优先的双语浏览器：1,152 件固定修订作品、1,094 位人物、63 家事务所与 57 个地点；可搜索地图、字段级证据、原始关系复核及 9 × 8 覆盖账本，已核验 444 条记录。',
     },
     cardHousingTitle: {
       en: 'Where to live well — and cheap · China small-city housing',
@@ -55,8 +55,8 @@
       zh: '中国汽车城市图谱 · 总部不等于产量',
     },
     cardAutoDesc: {
-      en: '28 Chinese auto cities (17 core + 11 specialist) and 131 companies/brands — HQ, plants, batteries, software, media and universities as separate roles. Every org records a headquarters city. Pinyin / initials search, China map, cluster graph, sourced 2025 local output. Dark mode · EN/中文.',
-      zh: '28 座汽车城市（17 核心 + 11 专业）与 131 家企业/品牌，用角色标签分开总部、工厂、电池、软件、媒体和院校。每家企业均收录总部城市。支持拼音/首字母/简写搜索，中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
+      en: '28 Chinese auto cities (17 core + 11 specialist) and 154 companies/brands — HQ, plants, batteries, software, media and universities as separate roles. National auto media are grouped by beat (portals, desks, NEV, CV, trade). Every org records a headquarters city. Pinyin / initials search, China map, cluster graph, sourced 2025 local output. Dark mode · EN/中文.',
+      zh: '28 座汽车城市（17 核心 + 11 专业）与 154 家企业/品牌，用角色标签分开总部、工厂、电池、软件、媒体和院校。全国汽车媒体按赛道分组（门户、频道、新能源、商用车、行业报）。每家企业均收录总部城市。支持拼音/首字母/简写搜索，中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
     },
     cardPebbleTitle: {
       en: 'Pebble Beach 2026 · Monterey Car Week public guide',
