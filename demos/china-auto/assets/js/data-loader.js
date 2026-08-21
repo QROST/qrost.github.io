@@ -12,6 +12,7 @@
   var cityMap = {}, orgMap = {}, facilityMap = {}, clusterMap = {}, sourceMap = {};
   var rolesByCity = {}, orgsByCity = {}, facilitiesByCity = {}, statsByCity = {};
   var mediaByCity = {}, institutionsByCity = {};
+  var instByOrg = {}, mediaByOrg = {}, childrenByParent = {};
 
   async function fetchJson(path) {
     var sep = path.indexOf('?') === -1 ? '?' : '&';
@@ -29,6 +30,7 @@
     cityMap = {}; orgMap = {}; facilityMap = {}; clusterMap = {}; sourceMap = {};
     rolesByCity = {}; orgsByCity = {}; facilitiesByCity = {}; statsByCity = {};
     mediaByCity = {}; institutionsByCity = {};
+    instByOrg = {}; mediaByOrg = {}; childrenByParent = {};
 
     store.cities.forEach(function (c) { cityMap[c.id] = c; });
     store.organizations.forEach(function (o) { orgMap[o.id] = o; });
@@ -59,9 +61,15 @@
     store.media.forEach(function (m) {
       var cid = m.editorial_city_id || m.registered_city_id;
       if (cid) (mediaByCity[cid] = mediaByCity[cid] || []).push(m);
+      if (m.organization_id) mediaByOrg[m.organization_id] = m;
     });
     store.institutions.forEach(function (i) {
       if (i.city_id) (institutionsByCity[i.city_id] = institutionsByCity[i.city_id] || []).push(i);
+      if (i.organization_id) instByOrg[i.organization_id] = i;
+    });
+    store.organizations.forEach(function (o) {
+      if (!o.parent_id) return;
+      (childrenByParent[o.parent_id] = childrenByParent[o.parent_id] || []).push(o);
     });
   }
 
@@ -118,6 +126,9 @@
     stat2025: stat2025,
     mediaForCity: function (id) { return mediaByCity[id] || []; },
     institutionsForCity: function (id) { return institutionsByCity[id] || []; },
+    institutionForOrg: function (id) { return instByOrg[id] || null; },
+    mediaForOrg: function (id) { return mediaByOrg[id] || null; },
+    childrenOf: function (id) { return childrenByParent[id] || []; },
     relationsFor: relationsFor,
     get manifest() { return store.manifest; },
     get cities() { return store.cities; },

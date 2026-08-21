@@ -8,13 +8,16 @@
   var state = {
     map: { dim: 'output', role: '', cluster: '', tier: '', layer: 'cities' },
     cat: { search: '', tier: '', role: '', cluster: '', sort: 'output', dir: -1 },
-    org: { search: '', type: '' }
+    org: { search: '', type: '', sort: 'type', dir: 1 }
   };
   var cityModalTab = 'tabOverview';
   var openCityId = null;
 
   function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[m]; }); }
   function uniq(a) { var o = {}; a.forEach(function (x) { if (x) o[x] = 1; }); return Object.keys(o); }
+  var ORG_TYPE_ORDER = ['automaker', 'brand', 'battery_company', 'supplier', 'software_company', 'chip_company', 'university', 'media_company', 'research_institute', 'testing_body', 'industry_association'];
+  function typeRank(t) { var i = ORG_TYPE_ORDER.indexOf(t); return i < 0 ? 99 : i; }
+  function localeName(a, b) { return I18N.name(a).localeCompare(I18N.name(b), I18N.isEn() ? 'en' : 'zh'); }
   function opt(v, label) { return '<option value="' + esc(v) + '">' + esc(label) + '</option>'; }
 
   function fmtWan(val) {
@@ -162,54 +165,74 @@
     CH.renderClusterGraph(D.cities, D.relations, D.clusters, D.getCluster);
   }
 
+  function parentName(o) {
+    if (!o || !o.parent_id) return '';
+    var p = D.getOrg(o.parent_id);
+    return p ? I18N.name(p) : o.parent_id;
+  }
+  function hqName(o) {
+    if (!o || !o.headquarters_city_id) return '';
+    var c = D.getCity(o.headquarters_city_id);
+    return c ? I18N.name(c) : '';
+  }
+
   function filteredOrgs() {
-    var f = state.org, q = f.search.toLowerCase();
-    return D.organizations.filter(function (o) {
+    var f = state.org, q = f.search;
+    var list = D.organizations.filter(function (o) {
       if (f.type && o.organization_type !== f.type) return false;
       if (q && !S.match(o, q)) return false;
       return true;
     });
+    var k = f.sort, dir = f.dir;
+    list.sort(function (a, b) {
+      var d;
+      if (k === 'type') {
+        d = typeRank(a.organization_type) - typeRank(b.organization_type);
+        if (d) return d * dir;
+        return localeName(a, b) * dir;
+      }
+      if (k === 'parent') return parentName(a).localeCompare(parentName(b), I18N.isEn() ? 'en' : 'zh') * dir;
+      if (k === 'hq') return hqName(a).localeCompare(hqName(b), I18N.isEn() ? 'en' : 'zh') * dir;
+      return localeName(a, b) * dir;
+    });
+    return list;
+  }
+
+  function renderOrgChips() {
+    var counts = {};
+    D.organizations.forEach(function (o) {
+      counts[o.organization_type] = (counts[o.organization_type] || 0) + 1;
+    });
+    var types = ORG_TYPE_ORDER.filter(function (t) { return counts[t]; });
+    var html = '<button type="button" class="type-chip' + (!state.org.type ? ' active' : '') + '" data-org-type="" aria-pressed="' + (!state.org.type ? 'true' : 'false') + '">' +
+      I18N.t('allTypes') + ' · ' + D.organizations.length + '</button>';
+    html += types.map(function (t) {
+      var on = state.org.type === t;
+      return '<button type="button" class="type-chip' + (on ? ' active' : '') + '" data-org-type="' + esc(t) + '" aria-pressed="' + (on ? 'true' : 'false') + '">' +
+        esc(I18N.enumLabel('organization_type', t)) + ' · ' + counts[t] + '</button>';
+    }).join('');
+    $('org-type-chips').innerHTML = html;
   }
 
   function renderOrgs() {
-    var types = uniq(D.organizations.map(function (o) { return o.organization_type; }));
-    $('org-filter-type').innerHTML = opt('', I18N.t('allTypes')) + types.map(function (t) { return opt(t, I18N.enumLabel('organization_type', t)); }).join('');
+    renderOrgChips();
+    var cols = [['name', 'thName'], ['type', 'thType'], ['parent', 'thParent'], ['hq', 'thHq']];
+    $('orgs-head').innerHTML = cols.map(function (c) {
+      var arrow = state.org.sort === c[0] ? (state.org.dir > 0 ? ' ▲' : ' ▼') : '';
+      return '<th data-sort="' + c[0] + '">' + I18N.t(c[1]) + arrow + '</th>';
+    }).join('');
     var list = filteredOrgs();
     $('org-count').textContent = list.length + ' / ' + D.organizations.length;
-    $('orgs-list').innerHTML = list.map(function (o) {
+    $('orgs-body').innerHTML = list.map(function (o) {
       var hq = o.headquarters_city_id ? D.getCity(o.headquarters_city_id) : null;
-      return '<div class="list-card" data-org="' + esc(o.id) + '">' +
-        '<div class="font-medium">' + esc(I18N.name(o)) + '</div>' +
-        '<div class="text-faint text-xs mt-1">' +
-        '<span class="badge" style="background:var(--bg-elev)">' + esc(I18N.enumLabel('organization_type', o.organization_type)) + '</span>' +
-        (hq ? ' · ' + I18N.t('hqCity') + ': <button type="button" class="chip-link" data-city-link="' + esc(hq.id) + '">' + esc(I18N.name(hq)) + '</button>' : '') +
-        '</div></div>';
-    }).join('') || '<p class="loading">' + I18N.t('noData') + '</p>';
-  }
-
-  function renderInstitutions() {
-    $('inst-list').innerHTML = D.institutions.map(function (i) {
-      var city = D.getCity(i.city_id);
-      return '<div class="list-card" data-inst="' + esc(i.id) + '">' +
-        '<div class="font-medium">' + esc(I18N.name(i)) + '</div>' +
-        '<div class="text-muted text-xs mt-1">' + esc(I18N.pick(i.college_zh, i.college_en)) + '</div>' +
-        '<div class="text-faint text-xs mt-1">' + esc(I18N.pick(i.strengths_zh, i.strengths_en)) +
-        (city ? ' · <button type="button" class="chip-link" data-city-link="' + esc(city.id) + '">' + esc(I18N.name(city)) + '</button>' : '') +
-        '</div></div>';
-    }).join('') || '<p class="loading">' + I18N.t('noData') + '</p>';
-  }
-
-  function renderMedia() {
-    $('media-list').innerHTML = D.media.map(function (m) {
-      var ed = m.editorial_city_id ? D.getCity(m.editorial_city_id) : null;
-      return '<div class="list-card" data-media="' + esc(m.id) + '">' +
-        '<div class="font-medium">' + esc(I18N.name(m)) + '</div>' +
-        '<div class="text-faint text-xs mt-1">' +
-        '<span class="badge" style="background:var(--bg-elev)">' + esc(I18N.enumLabel('media_type', m.media_type)) + '</span>' +
-        (m.national_platform ? ' <span class="badge badge-tier-core">' + I18N.t('nationalPlatform') + '</span>' : '') +
-        (ed ? ' · ' + I18N.t('editorialCity') + ': <button type="button" class="chip-link" data-city-link="' + esc(ed.id) + '">' + esc(I18N.name(ed)) + '</button>' : '') +
-        '</div></div>';
-    }).join('') || '<p class="loading">' + I18N.t('noData') + '</p>';
+      var parent = o.parent_id ? D.getOrg(o.parent_id) : null;
+      return '<tr data-org="' + esc(o.id) + '">' +
+        '<td>' + esc(I18N.name(o)) + '</td>' +
+        '<td><span class="badge" style="background:var(--bg-elev)">' + esc(I18N.enumLabel('organization_type', o.organization_type)) + '</span></td>' +
+        '<td>' + (parent ? '<button type="button" class="chip-link" data-org-link="' + esc(parent.id) + '">' + esc(I18N.name(parent)) + '</button>' : '<span class="text-faint">—</span>') + '</td>' +
+        '<td>' + (hq ? '<button type="button" class="chip-link" data-city-link="' + esc(hq.id) + '">' + esc(I18N.name(hq)) + '</button>' : '<span class="text-faint">—</span>') + '</td>' +
+        '</tr>';
+    }).join('') || '<tr><td colspan="4" class="loading">' + I18N.t('noData') + '</td></tr>';
   }
 
   function renderMethodology() {
@@ -233,8 +256,6 @@
     renderCatalog();
     renderClusters();
     renderOrgs();
-    renderInstitutions();
-    renderMedia();
     renderMethodology();
     MAP.resize();
     CH.resizeAll();
@@ -249,7 +270,8 @@
       '<div class="mt-1 flex flex-wrap items-center gap-2 text-sm">' + tierBadge(city.tier) +
       '<span class="text-muted">' + esc(I18N.pick(city.province_zh, city.province_en)) + '</span>' +
       confBadge(city.confidence) + '</div>';
-    var tabs = ['tabOverview', 'tabOrgs', 'tabFacilities', 'tabInstMedia', 'tabRelations', 'tabStats'];
+    var tabs = ['tabOverview', 'tabOrgs', 'tabFacilities', 'tabRelations', 'tabStats'];
+    if (tabs.indexOf(cityModalTab) === -1) cityModalTab = 'tabOverview';
     $('city-modal-tabs').innerHTML = tabs.map(function (t) {
       return '<button type="button" class="modal-tab-btn ' + (t === cityModalTab ? 'active' : '') + '" data-tab="' + t + '">' + I18N.t(t) + '</button>';
     }).join('');
@@ -269,32 +291,32 @@
       var dist = I18N.pick((city.districts_zh || []).join('、'), (city.districts_en || []).join(', '));
       if (dist) body += '<h4>' + I18N.t('districts') + '</h4><p>' + esc(dist) + '</p>';
     } else if (cityModalTab === 'tabOrgs') {
-      var roles = D.rolesForCity(city.id);
-      body = roles.length ? '<ul>' + roles.map(function (r) {
-        var ent = D.getOrg(r.entity_id);
-        var label = ent ? I18N.name(ent) : r.entity_id;
-        var link = ent ? ' <button type="button" class="chip-link" data-org-link="' + esc(ent.id) + '">' + esc(label) + '</button>' : esc(label);
-        return '<li>' + link + ' — <span class="text-faint">' + esc(I18N.enumLabel('role_type', r.role_type)) + '</span>' +
-          (r.description_zh || r.description_en ? '<br/><span class="text-muted">' + esc(I18N.pick(r.description_zh, r.description_en)) + '</span>' : '') + '</li>';
+      var seen = {};
+      var rows = [];
+      D.rolesForCity(city.id).forEach(function (r) {
+        if (seen[r.entity_id]) return;
+        seen[r.entity_id] = 1;
+        rows.push({ org: D.getOrg(r.entity_id), role: r });
+      });
+      D.orgsForCity(city.id).forEach(function (o) {
+        if (seen[o.id]) return;
+        seen[o.id] = 1;
+        rows.push({ org: o, role: null });
+      });
+      body = rows.length ? '<ul>' + rows.map(function (row) {
+        var ent = row.org;
+        if (!ent) return '';
+        var roleLabel = row.role ? I18N.enumLabel('role_type', row.role.role_type) : I18N.t('hqCity');
+        return '<li><button type="button" class="chip-link" data-org-link="' + esc(ent.id) + '">' + esc(I18N.name(ent)) + '</button>' +
+          ' <span class="badge" style="background:var(--bg-elev)">' + esc(I18N.enumLabel('organization_type', ent.organization_type)) + '</span>' +
+          ' — <span class="text-faint">' + esc(roleLabel) + '</span></li>';
       }).join('') + '</ul>' : '<p class="text-faint">' + I18N.t('noData') + '</p>';
-      var hqOrgs = D.orgsForCity(city.id);
-      if (hqOrgs.length) {
-        body += '<h4>' + I18N.t('hqCity') + '</h4><p>' + hqOrgs.map(function (o) {
-          return '<button type="button" class="chip-link" data-org-link="' + esc(o.id) + '">' + esc(I18N.name(o)) + '</button>';
-        }).join(' ') + '</p>';
-      }
     } else if (cityModalTab === 'tabFacilities') {
       var facs = D.facilitiesForCity(city.id);
       body = facs.length ? '<ul>' + facs.map(function (f) {
         return '<li><b>' + esc(I18N.pick(f.name_zh, f.name_en)) + '</b> — ' + esc(I18N.enumLabel('facility_type', f.facility_type)) +
           ' <span class="text-faint">(' + esc(I18N.enumLabel('facility_status', f.status)) + ')</span></li>';
       }).join('') + '</ul>' : '<p class="text-faint">' + I18N.t('noData') + '</p>';
-    } else if (cityModalTab === 'tabInstMedia') {
-      var inst = D.institutionsForCity(city.id), med = D.mediaForCity(city.id);
-      body += '<h4>' + I18N.t('institutions') + '</h4>';
-      body += inst.length ? '<ul>' + inst.map(function (i) { return '<li>' + esc(I18N.name(i)) + '</li>'; }).join('') + '</ul>' : '<p class="text-faint">' + I18N.t('noData') + '</p>';
-      body += '<h4>' + I18N.t('media') + '</h4>';
-      body += med.length ? '<ul>' + med.map(function (m) { return '<li>' + esc(I18N.name(m)) + ' — ' + esc(I18N.enumLabel('media_type', m.media_type)) + '</li>'; }).join('') + '</ul>' : '<p class="text-faint">' + I18N.t('noData') + '</p>';
     } else if (cityModalTab === 'tabRelations') {
       var rels = D.relationsFor(city.id);
       body = rels.length ? '<ul>' + rels.map(function (r) {
@@ -328,12 +350,35 @@
     $('org-modal-head').innerHTML = '<h3 class="text-lg font-semibold">' + esc(I18N.name(o)) + '</h3>' +
       '<div class="text-sm text-muted mt-1">' + esc(I18N.enumLabel('organization_type', o.organization_type)) + '</div>';
     var hq = o.headquarters_city_id ? D.getCity(o.headquarters_city_id) : null;
+    var parent = o.parent_id ? D.getOrg(o.parent_id) : null;
+    var kids = D.childrenOf(o.id);
+    var inst = D.institutionForOrg(o.id);
+    var media = D.mediaForOrg(o.id);
     var body = '<dl class="kv">' +
       (o.founded_year ? '<dt>' + I18N.t('founded') + '</dt><dd>' + o.founded_year + '</dd>' : '') +
       (hq ? '<dt>' + I18N.t('hqCity') + '</dt><dd><button type="button" class="chip-link" data-city-link="' + esc(hq.id) + '">' + esc(I18N.name(hq)) + '</button></dd>' : '<dt>' + I18N.t('hqCity') + '</dt><dd class="text-faint">' + I18N.t('hqUnknown') + '</dd>') +
+      (parent ? '<dt>' + I18N.t('parentBrand') + '</dt><dd><button type="button" class="chip-link" data-org-link="' + esc(parent.id) + '">' + esc(I18N.name(parent)) + '</button></dd>' : '') +
+      (kids.length ? '<dt>' + I18N.t('childBrands') + '</dt><dd>' + kids.map(function (k) {
+        return '<button type="button" class="chip-link" data-org-link="' + esc(k.id) + '">' + esc(I18N.name(k)) + '</button>';
+      }).join(' ') + '</dd>' : '') +
       (o.website ? '<dt>' + I18N.t('website') + '</dt><dd><a href="' + esc(o.website) + '" target="_blank" rel="noopener">' + esc(o.website) + '</a></dd>' : '') +
       (o.status ? '<dt>' + I18N.t('status') + '</dt><dd>' + esc(o.status) + '</dd>' : '') +
-      '</dl>' + sourcesHtml(o.source_ids);
+      '</dl>';
+    if (inst) {
+      body += '<h4>' + I18N.t('college') + '</h4><p>' + esc(I18N.pick(inst.college_zh, inst.college_en) || '—') + '</p>';
+      if (inst.strengths_zh || inst.strengths_en) {
+        body += '<h4>' + I18N.t('strengths') + '</h4><p>' + esc(I18N.pick(inst.strengths_zh, inst.strengths_en)) + '</p>';
+      }
+    }
+    if (media) {
+      var ed = media.editorial_city_id ? D.getCity(media.editorial_city_id) : null;
+      body += '<dl class="kv mt-2">' +
+        '<dt>' + I18N.t('thType') + '</dt><dd>' + esc(I18N.enumLabel('media_type', media.media_type)) +
+        (media.national_platform ? ' · ' + I18N.t('nationalPlatform') : '') + '</dd>' +
+        (ed ? '<dt>' + I18N.t('editorialCity') + '</dt><dd><button type="button" class="chip-link" data-city-link="' + esc(ed.id) + '">' + esc(I18N.name(ed)) + '</button></dd>' : '') +
+        '</dl>';
+    }
+    body += sourcesHtml(o.source_ids);
     $('org-modal-body').innerHTML = body;
     $('org-modal').classList.remove('hidden');
   }
@@ -363,7 +408,6 @@
     $('cat-filter-cluster').value = state.cat.cluster;
     $('cat-search').value = state.cat.search;
     $('org-search').value = state.org.search;
-    $('org-filter-type').value = state.org.type;
   }
 
   var searchHits = [];
@@ -379,17 +423,18 @@
       if (S.match(o, q)) {
         var hq = o.headquarters_city_id ? D.getCity(o.headquarters_city_id) : null;
         hits.push({
-          kind: 'org', id: o.id, score: S.score(o, q), label: I18N.name(o),
+          kind: 'org', id: o.id, orgType: o.organization_type, score: S.score(o, q), label: I18N.name(o),
           sub: I18N.enumLabel('organization_type', o.organization_type) + (hq ? ' · ' + I18N.name(hq) : '')
         });
       }
     });
-    hits.sort(function (a, b) {
-      if (b.score !== a.score) return b.score - a.score;
-      return a.label.localeCompare(b.label, I18N.isEn() ? 'en' : 'zh');
+    function byScore(a, b) { return b.score !== a.score ? b.score - a.score : a.label.localeCompare(b.label, I18N.isEn() ? 'en' : 'zh'); }
+    var cities = hits.filter(function (h) { return h.kind === 'city'; }).sort(byScore);
+    var orgs = hits.filter(function (h) { return h.kind === 'org'; }).sort(function (a, b) {
+      var d = typeRank(a.orgType) - typeRank(b.orgType);
+      if (d) return d;
+      return byScore(a, b);
     });
-    var cities = hits.filter(function (h) { return h.kind === 'city'; });
-    var orgs = hits.filter(function (h) { return h.kind === 'org'; });
     return cities.concat(orgs).slice(0, 12);
   }
 
@@ -416,7 +461,11 @@
     if (searchSel < 0 || searchSel >= searchHits.length) searchSel = 0;
     var html = '', last = '';
     searchHits.forEach(function (h, i) {
-      var group = h.kind === 'city' ? I18N.t('searchCities') : I18N.t('searchOrgs');
+      var group = h.kind === 'city' ? I18N.t('searchCities')
+        : h.orgType === 'brand' ? I18N.t('searchBrands')
+        : h.orgType === 'university' ? I18N.t('searchUnis')
+        : h.orgType === 'media_company' ? I18N.t('searchMedia')
+        : I18N.t('searchOrgs');
       if (group !== last) { html += '<div class="search-pop-group">' + esc(group) + '</div>'; last = group; }
       html += '<button type="button" class="search-pop-item" role="option" data-i="' + i + '" aria-selected="' + (i === searchSel) + '">' +
         esc(h.label) + (h.sub ? ' <span class="text-faint text-xs">' + esc(h.sub) + '</span>' : '') + '</button>';
@@ -531,19 +580,25 @@
     });
 
     $('org-search').addEventListener('input', function (e) { state.org.search = e.target.value; renderOrgs(); });
-    $('org-filter-type').addEventListener('change', function (e) { state.org.type = e.target.value; renderOrgs(); });
-    $('orgs-list').addEventListener('click', function (e) {
-      var cl = e.target.closest('[data-city-link]'); if (cl) { openCityModal(cl.getAttribute('data-city-link')); return; }
-      var card = e.target.closest('[data-org]'); if (card) openOrgModal(card.getAttribute('data-org'));
+    $('org-type-chips').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-org-type]'); if (!b) return;
+      state.org.type = b.getAttribute('data-org-type') || '';
+      renderOrgs();
+    });
+    $('orgs-head').addEventListener('click', function (e) {
+      var th = e.target.closest('th[data-sort]'); if (!th) return;
+      var k = th.getAttribute('data-sort');
+      if (state.org.sort === k) state.org.dir *= -1; else { state.org.sort = k; state.org.dir = 1; }
+      renderOrgs();
+    });
+    $('orgs-body').addEventListener('click', function (e) {
+      var ol = e.target.closest('[data-org-link]'); if (ol) { e.stopPropagation(); openOrgModal(ol.getAttribute('data-org-link')); return; }
+      var cl = e.target.closest('[data-city-link]'); if (cl) { e.stopPropagation(); openCityModal(cl.getAttribute('data-city-link')); return; }
+      var tr = e.target.closest('tr[data-org]'); if (tr) openOrgModal(tr.getAttribute('data-org'));
     });
     $('org-modal-body').addEventListener('click', function (e) {
+      var ol = e.target.closest('[data-org-link]'); if (ol) { openOrgModal(ol.getAttribute('data-org-link')); return; }
       var cl = e.target.closest('[data-city-link]'); if (cl) { closeModals(); openCityModal(cl.getAttribute('data-city-link')); }
-    });
-    $('inst-list').addEventListener('click', function (e) {
-      var cl = e.target.closest('[data-city-link]'); if (cl) openCityModal(cl.getAttribute('data-city-link'));
-    });
-    $('media-list').addEventListener('click', function (e) {
-      var cl = e.target.closest('[data-city-link]'); if (cl) openCityModal(cl.getAttribute('data-city-link'));
     });
     $('cluster-cards').addEventListener('click', function (e) {
       var card = e.target.closest('[data-cluster]'); if (!card) return;
@@ -576,6 +631,16 @@
     });
   }
 
+  function applyLegacyHash() {
+    var h = (location.hash || '').replace(/^#/, '');
+    if (h === 'institutions') state.org.type = 'university';
+    else if (h === 'media') state.org.type = 'media_company';
+    else return;
+    renderOrgs();
+    var el = $('orgs');
+    if (el) el.scrollIntoView({ block: 'start' });
+  }
+
   async function init() {
     I18N.applyLangToUI();
     try {
@@ -583,6 +648,8 @@
       fillMapSelects();
       bind();
       renderAll();
+      applyLegacyHash();
+      window.addEventListener('hashchange', applyLegacyHash);
     } catch (e) {
       console.error('[china-auto]', e);
       $('init-error').classList.remove('hidden');
