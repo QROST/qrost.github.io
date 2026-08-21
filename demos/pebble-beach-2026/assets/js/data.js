@@ -3,7 +3,7 @@
  * parking guidance and the featured Saturday Exotics / RM / Gooding facts were
  * rechecked on 2026-08-13. Multi-day brand drives and private-hospitality access
  * notes were rechecked on 2026-08-14;
- * other selected dynamic facts remain current through 2026-08-10. Editorial
+ * other selected dynamic facts were checked through 2026-08-10. Editorial
  * scores, field reports and commute bands are QROST planning judgments, not
  * organizer guarantees.
  */
@@ -163,20 +163,20 @@ window.PEBBLE_DATA = {
 
   labels: {
     pageTitle: {
-      zh: '2026 圆石滩车展公众指南 · Monterey Car Week 8.7–8.17 | QROST',
-      en: '2026 Pebble Beach Public Guide · Monterey Car Week Aug 7–17 | QROST'
+      zh: '2026 圆石滩车展公众指南 · 历史存档 | QROST',
+      en: '2026 Pebble Beach Public Guide · Historical Archive | QROST'
     },
     metaDescription: {
-      zh: '2026 Monterey Car Week 与 Pebble Beach Concours 公众行程指南：8 月 7–17 日逐日活动、是否值得去、票价、住宿价格快照、停车接驳与活动周通勤时间。中英双语。',
-      en: 'A public guide to Monterey Car Week and the 2026 Pebble Beach Concours: Aug 7–17 events, value picks, tickets, lodging snapshots, shuttles and event-week travel times. Bilingual EN/中文.'
+      zh: '2026 Monterey Car Week 与 Pebble Beach Concours 公众指南历史存档：保留当届逐日活动、票价快照、Tour 路线、停车图、品牌活动、住宿和通勤判断，不作为 2027 出行建议。',
+      en: 'Historical archive of the 2026 Monterey Car Week and Pebble Beach public guide, preserving that edition’s schedule, price snapshots, Tour route, parking diagrams, brand programs, stays, and travel judgments; not advice for 2027.'
     },
     ogTitle: {
-      zh: '2026 圆石滩车展公众指南 · 8.7–8.17',
-      en: '2026 Pebble Beach Public Guide · Aug 7–17'
+      zh: '2026 圆石滩车展公众指南 · 历史存档',
+      en: '2026 Pebble Beach Public Guide · Historical Archive'
     },
     ogDescription: {
-      zh: '何时去哪里、哪些值得去、住哪里、活动周要留多少通勤时间。官方日程与当期价格快照整理。',
-      en: 'Where to go, what is worth it, where to stay and how much travel time to reserve during Monterey Car Week.'
+      zh: '保留 2026 当届日程、Tour、停车、票价与旅行判断；内容可能已经变化，不适用于 2027 出行。',
+      en: 'Preserves the 2026 schedule, Tour, parking, prices, and travel judgments; details may have changed and do not apply to 2027.'
     },
     skip: { zh: '跳到正文', en: 'Skip to content' },
     navTour: { zh: '8.13 Tour', en: 'Aug 13 Tour' },
@@ -193,17 +193,20 @@ window.PEBBLE_DATA = {
     navMenuOpen: { zh: '打开章节菜单', en: 'Open section menu' },
     navMenuClose: { zh: '关闭章节菜单', en: 'Close section menu' },
     navBackTop: { zh: '回到顶部', en: 'Back to top' },
-    heroEyebrow: { zh: '公众行程指南 · 2026', en: 'Public trip guide · 2026' },
+    archiveBannerLabel: { zh: '2026 历史存档', en: '2026 historical archive' },
+    archiveBannerAria: { zh: '2026 历史存档：内容不适用于 2027 出行', en: '2026 historical archive: content is not guidance for 2027 travel' },
+    archiveBannerBody: { zh: '价格、准入、道路与外链可能已经变化；本页不适用于 2027 出行。', en: 'Prices, access, roads, and links may have changed; this page is not guidance for 2027.' },
+    archiveBannerCta: { zh: '前往 2027 规划页 →', en: 'Go to the 2027 planning shell →' },
+    heroEyebrow: { zh: '历史存档 · 2026', en: 'Historical archive · 2026' },
     checkedChip: { zh: '全量核对 8 月 6 日 · Tour 与周六精选复核至 8 月 13 日 · 品牌专题复核至 8 月 14 日', en: 'Full audit Aug 6 · Tour + Saturday picks rechecked Aug 13 · brand chapter rechecked Aug 14' },
     heroTitleTop: { zh: '圆石滩，不只一场车展', en: 'Pebble Beach is not one show' },
-    heroTitleBottom: { zh: '早到一周，再迎旗舰主展', en: 'Arrive early, then hit the flagship' },
+    heroTitleBottom: { zh: '2026 全程规划 · 历史存档', en: 'The full 2026 plan · historical archive' },
     heroLead: {
-      zh: '官方 Monterey Car Week 自 8 月 7 日开场，高峰仍在 13–16 日。这份指南覆盖从免费早场街展到周一返程的完整 11 天：何时、去哪里、值不值得、住哪里、路上多久。',
-      en: 'Official Monterey Car Week opens August 7, with peak days still August 13–16. This guide spans all eleven days from free early street shows through Monday departure: when, where, value, lodging and travel time in one plan.'
+      zh: '2026 Monterey Car Week 当届活动从 8 月 7 日延续至周一返程，高峰集中在 13–16 日。这个历史版本原样保留完整 11 天规划：何时、去哪里、值不值得、住哪里、路上多久。',
+      en: 'The 2026 edition ran from August 7 through Monday departure, with peak days August 13–16. This historical snapshot preserves the complete eleven-day plan: when, where, value, lodging, and travel time.'
     },
     tourHeroCta: { zh: '看 8.13 Tour 早晨计划', en: 'See the Aug 13 Tour plan' },
     heroScheduleCta: { zh: '浏览完整日程', en: 'Browse the full schedule' },
-    heroCurrentScheduleCta: { zh: '查看今日及后续活动', en: 'View today’s and upcoming events' },
     heroArchiveScheduleCta: { zh: '浏览 2026 活动周日程存档', en: 'Browse the 2026 Car Week schedule archive' },
     seeQuickPlan: { zh: '先看推荐方案', en: 'See the quick plan' },
     reviewQuickPlan: { zh: '回顾推荐方案', en: 'Review the recommended plan' },
@@ -214,7 +217,7 @@ window.PEBBLE_DATA = {
     routeRule: { zh: '活动周法则', en: 'Car Week rule' },
     routeRuleValue: { zh: '一天只选一个主场', en: 'Choose one anchor per day' },
     routeBuffer: { zh: '转场多留 30–60 分钟', en: 'Add 30–60 min between hubs' },
-    mapAria: { zh: '蒙特雷半岛真实活动地图', en: 'Live Monterey Peninsula event map' },
+    mapAria: { zh: '蒙特雷半岛真实地理活动地图', en: 'Geographic Monterey Peninsula event map' },
     mapFallback: { zh: '地图未能加载。请确认网络后刷新。', en: 'Map failed to load. Check your network and refresh.' },
     mapCoords: { zh: '坐标', en: 'Coords' },
     thumbCredit: { zh: '图片来源', en: 'Photo credit' },
@@ -230,7 +233,7 @@ window.PEBBLE_DATA = {
       en: 'The official Aug 12 update changes the traditional route because of the Big Sur Timber Fire and related evacuations. Official times and this guide’s viewing plan are labeled separately below.'
     },
     tourOfficialBadge: { zh: '官方更新 · 8 月 12 日', en: 'Official update · Aug 12' },
-    tourUpdateTitle: { zh: '路线只留在 Pebble Beach 与 Monterey', en: 'The route now stays in Pebble Beach and Monterey' },
+    tourUpdateTitle: { zh: '修订路线只留在 Pebble Beach 与 Monterey', en: 'The revised route stayed in Pebble Beach and Monterey' },
     tourUpdateBody: {
       zh: '8 月 11 日官方新版地图显示环线经 17-Mile Drive、Hwy 1、Hwy 68、Olmsted Road 与 Aguajito Road；不再进入 Carmel 或 Big Sur。',
       en: 'The official Aug 11 map shows a loop via 17-Mile Drive, Hwy 1, Hwy 68, Olmsted Road and Aguajito Road; it no longer enters Carmel or Big Sur.'
@@ -355,8 +358,8 @@ window.PEBBLE_DATA = {
     parkingMapLayerTraffic: { zh: '交通管制', en: 'Traffic controls' },
     parkingMapLayerAll: { zh: '全部', en: 'All' },
     parkingMapCaveat: {
-      zh: '这是官方示意图坐标，不是经纬度地图、实时交通或逐车位导航。缩放只放大原图，不表示真实距离或精确入口；开放状态与行驶方向以当天现场为准。',
-      en: 'This uses official-diagram coordinates—not latitude/longitude, live traffic or stall-by-stall navigation. Zoom enlarges the source artwork; it does not imply real-world distance or an exact entrance. Day-of availability and directions control.'
+      zh: '这是当届官方示意图坐标，不是经纬度地图、交通状态图或逐车位导航。缩放只放大原图，不表示真实距离或精确入口；当届开放状态与行驶方向以现场管制为准。',
+      en: 'This uses that edition’s official-diagram coordinates—not latitude/longitude, a traffic-status map, or stall-by-stall navigation. Zoom enlarges the source artwork; it does not imply real-world distance or an exact entrance. Onsite controls governed availability and direction of travel.'
     },
     parkingMapFallbackTitle: { zh: '交互图不可用时', en: 'If the interactive diagram is unavailable' },
     parkingMapFallbackBody: {
@@ -391,7 +394,7 @@ window.PEBBLE_DATA = {
     parkingMapPhotoEvidence: { zh: '官网 PDF + 上传照片印刷版交叉核验', en: 'Official PDF + uploaded-print corroboration' },
     parkingMapImageAlt: { zh: '2026 Pebble Beach Concours d’Elegance 官方停车与交通流示意图', en: 'Official 2026 Pebble Beach Concours d’Elegance parking and traffic-flow diagram' },
     parkingMapTileError: { zh: '官方矢量图暂不可用；请使用文字清单或打开官方 PDF。', en: 'The official vector diagram is unavailable; use the text list or open the official PDF.' },
-    parkingMapTrafficSchematic: { zh: '定位框只帮助放大查看；交通线本身来自官方原图，不是实时封控边界。', en: 'The focus box only helps with zooming. Traffic linework comes from the official artwork and is not a live closure boundary.' },
+    parkingMapTrafficSchematic: { zh: '定位框只帮助放大查看；交通线来自当届官方原图，不表示其他时点的封控边界。', en: 'The focus box only helps with zooming. Traffic linework comes from that edition’s official artwork and does not represent closures at another time.' },
     parkingMapKindGuide: { zh: '8.13 指引', en: 'Aug 13 guidance' },
     parkingMapKindGeneral: { zh: '普通观众注记', en: 'General note' },
     parkingMapKindAda: { zh: 'ADA', en: 'ADA' },
@@ -411,7 +414,7 @@ window.PEBBLE_DATA = {
     brandHousePublicTitle: { zh: '官方公众体验与试驾', en: 'Official public experiences & drives' },
     brandHousePublicIntro: { zh: '可直接考虑；点开后再核对资格、容量与时段冲突。', en: 'Actionable options; expand one to check eligibility, capacity and timing conflicts.' },
     brandHousePublicSundayTitle: { zh: '周日公众展示与 House', en: 'Sunday public displays & House' },
-    brandHousePublicSundayIntro: { zh: '今日不再提供下列试驾；Mercedes 仅 House，Lexus 与 Lucid 仅展示。', en: 'No listed drives today: Mercedes continues as a House, while Lexus and Lucid are display-only.' },
+    brandHousePublicSundayIntro: { zh: '8 月 16 日不再提供下列试驾；Mercedes 仅 House，Lexus 与 Lucid 仅展示。', en: 'No listed drives remained on Aug 16: Mercedes continued as a House, while Lexus and Lucid were display-only.' },
     brandHousePrivateTitle: { zh: 'House / 私人 hospitality 观察表', en: 'House / private-hospitality watchlist' },
     brandHousePrivateIntro: { zh: '先确认准入；无邀请、凭证或品牌确认时不前往。', en: 'Confirm access first; do not go without an invitation, credential or brand confirmation.' },
     brandHousePrivateFoldSummary: { zh: '{count} 个项目 · 登记、凭证、邀请或准入未公开', en: '{count} programs · request, credential, invitation or unpublished access' },
@@ -447,7 +450,7 @@ window.PEBBLE_DATA = {
       zh: '周六 Asilomar Day 与 Pre-Reunion 赛道二选一；周一 ACE 藏品展值得专程；周二 Concours for a Cause 与周三 Little Car Show 是早场高性价比免费主场。高峰周五、周六的好活动大量重叠——不要把 Werks、The Quail、Paddock、Laguna Seca、Concorso 和 Exotics 全塞进同一天；半岛不是一个会场。',
       en: 'Pick Asilomar Day or Pre-Reunion on Saturday—not both. Monday’s ACE automobilia expo is worth a dedicated stop. Tuesday’s Concours for a Cause and Wednesday’s Little Car Show are the strongest free early anchors. Peak Friday and Saturday overlap heavily: do not cram Werks, The Quail, Paddock, Laguna Seca, Concorso and Exotics into one day; the peninsula is not a single venue.'
     },
-    planStops: { zh: '当日地点', en: 'Stops today' },
+    planStops: { zh: '当日地点', en: 'Stops that day' },
     planRouteHint: { zh: '编号与时间线一致；绿色实线为共同/单一路线，橙色虚线为互斥分支，可选点不强制连线。相邻编号会散开，灰色细虚线与圆点标明真实规划坐标。', en: 'Numbers match the timeline; green solid lines are shared/single routes, orange dashed lines are exclusive branches, and optional stops are not forced into a route. Nearby pins spread apart; fine gray dashed legs and dots mark their exact planning coordinates.' },
     planRouteOr: { zh: '或', en: 'or' },
     planRouteShared: { zh: '共同路线', en: 'Shared route' },
@@ -466,25 +469,8 @@ window.PEBBLE_DATA = {
     planToneOptional: { zh: '可选', en: 'Optional' },
     planToneAlt: { zh: '互斥备选', en: 'Exclusive alternative' },
     planToneTransit: { zh: '转场', en: 'Transit' },
-    liveClockLabel: { zh: '当前时间', en: 'Local time' },
-    liveModeBrowse: { zh: '浏览全部', en: 'Browse all' },
-    liveModeNow: { zh: '此刻进行中', en: 'Happening now' },
-    liveModeToday: { zh: '今日活动', en: 'Today’s events' },
-    liveMoreFilters: { zh: '更多筛选：日期、地点与价格', en: 'More filters: day, place & price' },
-    liveAreaAll: { zh: '全部地点', en: 'All places' },
-    livePastFolded: { zh: '已过 · 点击展开', en: 'Past · tap to expand' },
-    livePastBadge: { zh: '已过', en: 'Past' },
-    liveTodayBadge: { zh: '今天', en: 'Today' },
-    liveUpcomingBadge: { zh: '未到', en: 'Upcoming' },
-    liveOutsideWindow: { zh: '当前不在 8.7–8.17 窗口内。', en: 'Outside the Aug 7–17 window.' },
-    liveOutsideWindowBefore: { zh: '尚未进入 8.7–8.17 活动窗口，显示完整未来计划。', en: 'Before the Aug 7–17 window—showing the full upcoming plan.' },
-    liveOutsideWindowAfter: { zh: '活动窗口已结束，历史日程默认折叠，仍可展开查看。', en: 'The event window has ended; past plans are folded but remain available.' },
-    liveNoNow: { zh: '此刻没有匹配的进行中活动（或时段无法解析）。试试“今日”或换地点。', en: 'Nothing matched as happening now (or times could not be parsed). Try Today or another place.' },
-    liveNoToday: { zh: '今天没有匹配活动。', en: 'No matching events today.' },
-    liveShowPast: { zh: '显示已过日期', en: 'Show past days' },
-    liveHidePast: { zh: '折叠已过日期', en: 'Fold past days' },
-    livePastShow: { zh: '展开历史日程', en: 'Expand past schedule' },
-    livePastHide: { zh: '折叠历史日程', en: 'Fold past schedule' },
+    archiveFilters: { zh: '筛选历史日程：日期、地点与价格', en: 'Filter the archive: day, place & price' },
+    archivePastBadge: { zh: '已存档', en: 'Archived' },
     pastGroupSummary: { zh: '{range} · 较早日程 · {days} 天 / {count} 项（点击展开）', en: '{range} · Earlier days · {days} days / {count} events (expand)' },
     archiveSummary: { zh: '2026 活动周存档 · {range} · {count} 项（点击展开）', en: '2026 Car Week archive · {range} · {count} events (expand)' },
     temporalPastBadge: { zh: '已结束 · 保留作参考', en: 'Past · kept for reference' },
@@ -497,22 +483,14 @@ window.PEBBLE_DATA = {
     quickNoScript: { zh: 'JavaScript 不可用时无法自动整理推荐方案；请查看下方官方来源。', en: 'Automatic plan sorting requires JavaScript; use the official sources below.' },
     liveAllAreas: { zh: '全部地点', en: 'All places' },
     liveAreaLabel: { zh: '按地点筛选', en: 'Filter by place' },
-    liveStatusNow: { zh: '此刻 {count} 个进行中', en: '{count} happening now' },
-    liveStatusToday: { zh: '今日 {count} 个活动', en: '{count} events today' },
-    liveStatusBrowse: { zh: '显示 {count} 个活动', en: 'Showing {count} events' },
-    liveStatusBrowseFolded: { zh: '{current} 项今日及后续日期 · {past} 项历史已折叠', en: '{current} today and later dates · {past} past events folded' },
-    liveDayFilterNote: {
-      zh: '“此刻/今日”模式下，点选具体日期会自动切回“浏览全部”。',
-      en: 'In Now/Today mode, choosing a specific day automatically switches back to Browse all.'
-    },
-    liveParsedHint: { zh: '“此刻”依赖公开时段字符串的近似解析；多场次与开放式结束时间会放宽匹配。', en: '“Now” uses approximate parsing of public time strings; multi-session and open-ended times are matched loosely.' },
+    archiveFilterStatus: { zh: '筛选结果：{count} 项 2026 历史活动', en: 'Filter result: {count} archived 2026 events' },
     scheduleKicker: { zh: '8.7–8.17 · 筛选日程', en: 'Aug 7–17 · filter the schedule' },
     scheduleTitle: { zh: '什么时候去哪里，哪些真正值得', en: 'Where to go, when—and what is worth it' },
     scheduleIntro: {
-      zh: '时钟按 America/Los_Angeles（太平洋时间）。用下方筛选浏览全部、此刻进行中、今日活动，或按日期、地点、推荐与价格缩小列表；过期日期在原时间位置折叠，同一天按最早开始时间排列。票价和余票会变，购买前请打开每张卡片里的官方来源复核。演示可用 ?demoDate=2026-08-08&demoTime=14:30。',
-      en: 'Clock uses America/Los_Angeles (Pacific Time). Filter below: browse all, happening now, today’s events, or narrow by day, place, picks and price; past days fold in their original chronological position, and each day is ordered by earliest start. Tickets change—reopen each card’s official source before buying. Demo: ?demoDate=2026-08-08&demoTime=14:30.'
+      zh: '2026 活动窗口已经结束，全部日期按原始连续时间顺序折叠保留；可按日期、地点、推荐与价格回看。同一天仍按最早开始时间排列。价格、余票、道路与外链可能已经变化，本页只作历史参考。',
+      en: 'The 2026 event window has ended. Every date remains folded in its original chronological position and can be reviewed by day, place, pick, or price; events within a day remain ordered by earliest start. Prices, availability, roads, and links may have changed, so this page is historical reference only.'
     },
-    stayKicker: { zh: '住宿 · 当前库存快照', en: 'Lodging · inventory snapshot' },
+    stayKicker: { zh: '住宿 · 2026-08-06 快照', en: 'Lodging · Aug 6, 2026 snapshot' },
     stayTitle: { zh: '用房价换时间，还是用通勤换房价', en: 'Trade room price for time—or time for price' },
     stayIntro: {
       zh: '下列区间不是全年均价，而是同一查询口径下仍可见房源的规划带：2026-08-13 至 08-17、1 间房 / 2 位成人、美元每晚页面标价，查询于 2026-08-06。8 月 7–12 日早场夜房价通常低于高峰四晚，若可早到请单独比价。若可住 San Jose 自家/朋友家，把零房费与每日往返路程、时间并列比较。税费、停车、度假村费与取消条款另算。',
@@ -521,15 +499,15 @@ window.PEBBLE_DATA = {
     priceMethodLabel: { zh: '如何读价格', en: 'How to read prices' },
     priceMethodValue: { zh: '先看四晚总价，再看“每晚”或往返成本', en: 'Check the four-night total—or the commute cost' },
     priceMethodBody: {
-      zh: '动态平台会混合剩余房型、广告位与不同取消条件。页面将价格作为“现在还剩什么”的快照，不承诺未来可订，也不把最低价当作典型价。San Jose 零房费卡用 OSRM 无拥堵路由 + 活动周缓冲估算往返；油费/电费、停车与疲劳另算。',
+      zh: '动态平台会混合剩余房型、广告位与不同取消条件。页面保留 2026-08-06 核对时可见房源的快照，不代表后续可订性，也不把最低价当作典型价。San Jose 零房费卡用 OSRM 无拥堵路由 + 活动周缓冲估算往返；油费/电费、停车与疲劳另算。',
       en: 'Dynamic platforms mix remaining room types, promoted placements and cancellation terms. Treat this as a snapshot of what was visible, not future availability or a typical rate. The San Jose zero-lodging card uses uncongested OSRM routing plus Car Week buffers for round trips; fuel/charging, parking and fatigue are extra.'
     },
-    rerunSearch: { zh: '重新查询当前库存 ↗', en: 'Rerun the current search ↗' },
+    rerunSearch: { zh: '打开原查询口径（历史日期）↗', en: 'Open the original search (historical dates) ↗' },
     commuteKicker: { zh: '通勤 · 规划器', en: 'Travel · planner' },
     commuteTitle: { zh: '平时十几分钟，活动周可能翻倍', en: 'A short drive can double during Car Week' },
     commuteIntro: {
-      zh: '选择住宿区与主会场，查看普通时段和活动周驾车规划区间。这里是出发预算，不是实时导航；当天仍需查看官方停车说明与 Caltrans 路况。',
-      en: 'Choose a lodging area and event hub to compare ordinary driving with an event-week planning band. This is a departure budget, not live navigation; check official parking and Caltrans on the day.'
+      zh: '选择住宿区与主会场，回看当届普通时段和活动周驾车规划区间。这是 2026 出发预算的存档，不是导航或后续年份建议。',
+      en: 'Choose a lodging area and event hub to review that edition’s ordinary-drive and event-week planning bands. This archives a 2026 departure budget; it is neither navigation nor advice for later years.'
     },
     fromLabel: { zh: '住在', en: 'Stay in' },
     toLabel: { zh: '去往', en: 'Travel to' },
@@ -541,11 +519,11 @@ window.PEBBLE_DATA = {
     officialParking: { zh: '官方停车、入口与接驳说明 ↗', en: 'Official parking, entry & shuttle guidance ↗' },
     sourcesKicker: { zh: '来源与边界', en: 'Sources & limits' },
     sourcesTitle: { zh: '公开计划，事实可以回查', en: 'A public plan with traceable facts' },
-    sourcePrimary: { zh: '主要来源与复核入口', en: 'Primary sources and live checks' },
+    sourcePrimary: { zh: '主要来源与复核记录', en: 'Primary sources and verification record' },
     boundaryTitle: { zh: '发布口径', en: 'Publication standard' },
     boundaryBody: {
       zh: '全量目录基线核对至 2026-08-06；Tour 路线、停车口径与周六 Exotics、RM Sotheby’s、Gooding Christie’s 三项于 8 月 13 日复核；跨日品牌 House、公众试驾与私人 hospitality 边界于 8 月 14 日复核。现场回报与官方事实分栏呈现，不构成准入、车型、候位或停车保证；其余动态事实更新至 8 月 10 日。',
-      en: 'The full catalog baseline was checked Aug 6, 2026. Tour routing, parking, and Saturday’s Exotics, RM Sotheby’s and Gooding Christie’s entries were rechecked Aug 13; multi-day brand houses, public drives and private-hospitality boundaries were rechecked Aug 14. Field reports remain separate from official facts and do not guarantee admission, vehicles, waits or parking; other selected dynamic facts remain current through Aug 10.'
+      en: 'The full catalog baseline was checked Aug 6, 2026. Tour routing, parking, and Saturday’s Exotics, RM Sotheby’s and Gooding Christie’s entries were rechecked Aug 13; multi-day brand houses, public drives and private-hospitality boundaries were rechecked Aug 14. Field reports remain separate from official facts and do not guarantee admission, vehicles, waits or parking; other selected dynamic facts were checked through Aug 10.'
     },
     boundaryUpdate: {
       zh: '临行前 24 小时请重查：官方活动页、票务页、停车图、天气和道路状态。',
@@ -557,7 +535,7 @@ window.PEBBLE_DATA = {
     footerInstagram: { zh: 'Instagram', en: 'Instagram' },
     footerDisclaimer: {
       zh: '全量目录核对于 2026-08-06；Tour 与周六精选于 8 月 13 日复核，品牌专题于 8 月 14 日复核，其余动态事实更新至 8 月 10 日。非官方、非主办方关联；现场回报不构成准入、车型、候位、停车或交通保证。',
-      en: 'Full catalog audited Aug 6; Tour and Saturday picks rechecked Aug 13, and the brand chapter rechecked Aug 14, with other dynamic facts current through Aug 10, 2026. Independent and unaffiliated; field reports do not guarantee admission, vehicles, waits, parking or transportation.'
+      en: 'Full catalog audited Aug 6; Tour and Saturday picks rechecked Aug 13, and the brand chapter rechecked Aug 14, with other dynamic facts checked through Aug 10, 2026. Independent and unaffiliated; field reports do not guarantee admission, vehicles, waits, parking or transportation.'
     },
     nearbyKicker: { zh: '车展前 · 半岛周边', en: 'Before Car Week · peninsula nearby' },
     nearbyTitle: { zh: '若能更早抵达，这些也值得顺路', en: 'Worth a detour if you land even earlier' },
@@ -568,20 +546,6 @@ window.PEBBLE_DATA = {
   },
 
   heroActions: [
-    {
-      id: 'tour',
-      throughDate: '2026-08-13',
-      throughTime: '12:30',
-      primary: { href: '#tour-0813', labelKey: 'tourHeroCta', intent: 'tour' },
-      secondary: { href: '#quick-plan', labelKey: 'seeQuickPlan', intent: 'quick' }
-    },
-    {
-      id: 'current',
-      throughDate: '2026-08-17',
-      throughTime: null,
-      primary: { href: '#schedule', labelKey: 'heroCurrentScheduleCta', intent: 'schedule-current' },
-      secondary: { href: '#quick-plan', labelKey: 'seeQuickPlan', intent: 'quick' }
-    },
     {
       id: 'archive',
       throughDate: null,
@@ -722,7 +686,7 @@ window.PEBBLE_DATA = {
       {
         id: 'freeway',
         title: { zh: 'Hwy 1 主线 / 匝道，Hwy 68 高速路段与路肩', en: 'Hwy 1 mainline / ramps and Hwy 68 freeway sections / shoulders' },
-        body: { zh: '除紧急或明确许可情形外，加州法禁止在全控制出入高速公路停车；现场标志也可限制行人。这些法条不授权在 Hwy 68、Olmsted 或 Aguajito 其他路段停车；当地路缘、标志、物业与临时交通管制均优先，且目前没有官方指定的 Tour 停车或观看区。', en: 'California law bars parking on fully access-controlled freeways except narrow exceptions, and posted controls may restrict pedestrians. These statutes do not authorize parking elsewhere on Hwy 68, Olmsted or Aguajito; local curbs, signs, property rights and temporary traffic controls apply, and no official Tour parking or spectator area has been designated there.' },
+        body: { zh: '除紧急或明确许可情形外，加州法禁止在全控制出入高速公路停车；现场标志也可限制行人。这些法条不授权在 Hwy 68、Olmsted 或 Aguajito 其他路段停车；当地路缘、标志、物业与临时交通管制均优先，且截至当届核对日没有官方指定的 Tour 停车或观看区。', en: 'California law bars parking on fully access-controlled freeways except narrow exceptions, and posted controls may restrict pedestrians. These statutes do not authorize parking elsewhere on Hwy 68, Olmsted or Aguajito; local curbs, signs, property rights and temporary traffic controls apply, and no official Tour parking or spectator area had been designated as of that edition’s review date.' },
         links: [
           { type: 'source', label: { zh: '加州车辆法 § 21718', en: 'California Vehicle Code § 21718' }, url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21718.' },
           { type: 'source', label: { zh: '加州车辆法 § 21960', en: 'California Vehicle Code § 21960' }, url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=VEH&sectionNum=21960.' }
@@ -731,9 +695,9 @@ window.PEBBLE_DATA = {
       {
         id: 'airport',
         title: { zh: 'Monterey Regional Airport 停车场', en: 'Monterey Regional Airport parking' },
-        body: { zh: '机场当前公开提醒车位接近满载，并请附近居民把位置留给旅客。即使付费，本页也不把它列为 Tour 观看停车点。', en: 'The airport currently says its lots are nearing capacity and asks nearby residents to preserve spaces for travelers. This guide does not treat paid airport parking as Tour spectator parking.' },
+        body: { zh: '当届核对时，机场公开提醒车位接近满载，并请附近居民把位置留给旅客。即使付费，本页也不把它列为 Tour 观看停车点。', en: 'When this edition was checked, the airport warned that its lots were nearing capacity and asked nearby residents to preserve spaces for travelers. This guide did not treat paid airport parking as Tour spectator parking.' },
         links: [
-          { type: 'source', label: { zh: '机场当前停车通知', en: 'Current airport parking notice' }, url: 'https://www.montereyairport.com/parking' }
+          { type: 'source', label: { zh: '机场停车通知（当届核对）', en: 'Airport parking notice checked for this edition' }, url: 'https://www.montereyairport.com/parking' }
         ]
       },
       {
@@ -873,7 +837,7 @@ window.PEBBLE_DATA = {
         location: { zh: 'Pebble Beach Golf Links 一带；本页不复述私人场址，仅按个人凭证导航', en: 'Near Pebble Beach Golf Links; this guide does not republish the private venue address—use personal credential directions' },
         schedule: { zh: '8 月 14 日的同一官方 FAQ 同时列出 09:00 与 11:00 开始，均至 17:00；以本人凭证或经销商确认为准，未确认时按 11:00 规划。15 日 09:00–17:00；16 日 08:00–16:00；晚间仅限凭证指定场次', en: 'For August 14, the same official FAQ lists both 9:00am and 11:00am starts, each ending at 5:00pm. Follow your credential or dealer confirmation; without it, plan around 11:00am. August 15 is 9:00am–5:00pm and August 16 is 8:00am–4:00pm; evening access is limited to the session on the credential' },
         access: { zh: '每位来宾须持本人不可转让的品牌 QR 凭证；没有 badge 的同行者不得进入。截至 8 月 14 日，活动票务门户列出 Argento $2,500（1 人）、Oro $6,560（2 人）、Platino $10,000（2 人）与 Diamante $11,000（2 人），价格与库存会变化；不是免费 walk-in House。', en: 'Every guest needs a named, non-transferable brand QR credential; companions without a badge are not admitted. As of August 14, the event ticket portal lists Argento at $2,500 for one, Oro at $6,560 for two, Platino at $10,000 for two and Diamante at $11,000 for two; prices and inventory can change. This is not a free walk-in house.' },
-        drive: { zh: '品牌门户写明完整现款车型与 hospitality；没有公开 walk-in 试驾承诺。8 月 16 日 Miura 展示的 Concours 入场边界另算。', en: 'The brand portal describes the current lineup and hospitality, but gives no public walk-in drive promise. The August 16 Miura display remains subject to separate Concours admission.' },
+        drive: { zh: '品牌门户当时写明完整车型阵容与 hospitality；没有公开 walk-in 试驾承诺。8 月 16 日 Miura 展示的 Concours 入场边界另算。', en: 'The brand portal described the lineup and hospitality at the time but gave no public walk-in drive promise. The August 16 Miura display remained subject to separate Concours admission.' },
         parking: { zh: 'Villa 严禁停车。持凭证者按官方说明前往 Poppy Hills 的指定 valet / 接驳点，约每 15 分钟发车；网约车也应在该处上下客。', en: 'Parking at the Villa is prohibited. Credentialed guests must use the designated valet/shuttle at Poppy Hills, running roughly every 15 minutes; rideshare uses the same transfer point.' },
         publicAction: { zh: '可在活动票务门户购买仍可用的套案，或向经销商核实；取得本人 QR 凭证前不要前往 Villa。', en: 'Purchase an available package through the event ticket portal or confirm with a dealer; do not go to the Villa before receiving your named QR credential.' },
         sources: [
@@ -944,13 +908,13 @@ window.PEBBLE_DATA = {
         summary: { zh: '8.12 入住–8.17 退房 · 两人套案 $23,500 起', en: 'Check-in Aug 12–checkout Aug 17 · two-person packages from $23,500' },
         location: { zh: 'Carmel-by-the-Sea 精品酒店包场；仅按预订指示到达', en: 'Boutique-hotel takeover in Carmel-by-the-Sea; arrive only via reservation instructions' },
         schedule: { zh: 'Car Week 项目 8 月 12–16 日；8 月 12 日入住、17 日退房，共五晚', en: 'Car Week programming August 12–16; check in August 12 and check out August 17 for a five-night stay' },
-        access: { zh: '品牌新闻稿称 invitation only；当前官方套案页允许车主与爱好者提交购买请求，且按先到先得、确认付款后生效。两人套案按房型为 $23,500、$25,500、$29,500 或 $31,500；截至 8 月 14 日，最高档售罄、$29,500 档余量有限，价格与库存实时变化。', en: 'The brand release describes invitation-only access; the current official package page lets owners and enthusiasts request purchase on a first-come basis, final only after confirmation and payment. Two-person packages are $23,500, $25,500, $29,500 or $31,500. As of August 14, the top tier is sold out and the $29,500 tier has limited availability; prices and inventory can change.' },
+        access: { zh: '品牌新闻稿称 invitation only；当届官方套案页允许车主与爱好者提交购买请求，且按先到先得、确认付款后生效。两人套案按房型为 $23,500、$25,500、$29,500 或 $31,500；截至 8 月 14 日，最高档售罄、$29,500 档余量有限。这些是当时库存，不代表后续状态。', en: 'The brand release described invitation-only access; that edition’s official package page let owners and enthusiasts request purchase on a first-come basis, final only after confirmation and payment. Two-person packages were $23,500, $25,500, $29,500 or $31,500. As of August 14, the top tier was sold out and the $29,500 tier had limited availability. This records inventory at that time, not a later status.' },
         drive: { zh: '包含住宿、餐饮、定制咨询、机场与活动周专车，以及 The Quail 与 Concours 权益。', en: 'Includes lodging, dining, bespoke appointments, airport and event-week chauffeur transport, plus access to The Quail and Concours.' },
         parking: { zh: '套案含一个 Residence 车位、机场接送与活动周接驳；不要把酒店当作公众参观点。', en: 'The package includes one Residence parking space, airport transfers and Car Week shuttles; do not treat the hotel as a public viewing stop.' },
         publicAction: { zh: '只能先走官方预订请求；收到 concierge 确认并完成付款后再纳入行程，临时到访者跳过。', en: 'Use the official reservation request first; add it only after concierge confirmation and payment. Walk-up visitors should skip it.' },
         sources: [
           { url: 'https://media.landrover.com/en-us/news/2026/05/residence-range-rover-house-new-expression-luxury-hospitality-monterey-car-week', label: { zh: 'Range Rover · 2026 Residence 官方公告', en: 'Range Rover · official 2026 Residence announcement' } },
-          { url: 'https://www.rsvprangerover.com/residence/packagedetails.aspx', label: { zh: 'Range Rover · 官方套案与实时价格', en: 'Range Rover · official packages and current prices' } },
+          { url: 'https://www.rsvprangerover.com/residence/packagedetails.aspx', label: { zh: 'Range Rover · 当届官方套案', en: 'Range Rover · official package page for that edition' } },
           { url: 'https://www.rsvprangerover.com/residence/faqs.aspx', label: { zh: 'Range Rover · 官方交通与停车 FAQ', en: 'Range Rover · official transport and parking FAQ' } }
         ]
       },
@@ -1217,7 +1181,7 @@ window.PEBBLE_DATA = {
       {
         id: 'road-closed', kind: 'closed', dayScopes: ['thu-sat', 'sunday'], guideScopes: [], labelKey: 'parkingMapTrafficClosed',
         focusBounds: [245, 235, 430, 380],
-        note: { zh: '红色 X 封路标记直接来自官方图；它不是实时封控边界，现场临时管制优先。', en: 'The red-X closures come directly from the official artwork. They are not live closure limits; temporary onsite controls take priority.' }
+        note: { zh: '红色 X 封路标记直接来自当届官方图；不表示其他时点的封控边界。', en: 'The red-X closures come directly from that edition’s official artwork and do not represent closure limits at another time.' }
       },
       {
         id: 'permit-only', kind: 'permit', dayScopes: ['thu-sat', 'sunday'], guideScopes: [], labelKey: 'parkingMapTrafficPermit',
@@ -2072,7 +2036,7 @@ window.PEBBLE_DATA = {
     {
       id: 'rmmr-wed', thumbId: 'rmmr-wed', area: 'laguna', date: '2026-08-12', time: '07:00–17:10', timeNote: { zh: '07:00 入场 · 08:00–17:10 赛程', en: 'gates 07:00 · on-track 08:00–17:10' },
       title: { zh: 'Rolex Monterey Motorsports Reunion · 周三', en: 'Rolex Monterey Motorsports Reunion · Wednesday' }, location: { zh: 'WeatherTech Raceway Laguna Seca', en: 'WeatherTech Raceway Laguna Seca' },
-      summary: { zh: 'Rolex Reunion 开幕日；当前 Tier 2 成人票 $93.10 含费用，15 岁及以下免费。', en: 'Opening day of Rolex Reunion; the current Tier 2 adult ticket is $93.10 all-in, and ages 15 and under are free.' },
+      summary: { zh: 'Rolex Reunion 开幕日；核对时 Tier 2 成人票 $93.10 含费用，15 岁及以下免费。', en: 'Opening day of Rolex Reunion; the Tier 2 adult ticket was $93.10 all-in when checked, and ages 15 and under were free.' },
       why: { zh: '赛道迷可提前一天进场；若只能去一天，周四至周六票价与内容组合需对比后再买。', en: 'Track fans can enter a day early; if buying only one day, compare Wednesday through Saturday pricing and programming first.' },
       access: { zh: '大型活动走 South Boundary Road；成人票含普通停车、paddock 和指定看台。', en: 'Major-event access via South Boundary Road; adult admission includes general parking, paddock and designated grandstands.' },
       price: { zh: 'Tier 2 成人 $93.10 含费用', en: 'Tier 2 adult $93.10 all-in' }, tags: ['paid', 'subjectTag'], categories: ['paid'], score: '4.0',
@@ -2292,9 +2256,9 @@ window.PEBBLE_DATA = {
     {
       id: 'quail', thumbId: 'quail', area: 'carmelvalley', date: '2026-08-14', time: '09:00–16:00', timeNote: { zh: '官方时段', en: 'official hours' },
       title: { zh: 'The Quail, A Motorsports Gathering', en: 'The Quail, A Motorsports Gathering' }, location: { zh: 'The Quail Golf Club · Carmel Valley', en: 'The Quail Golf Club · Carmel Valley' },
-      summary: { zh: '高端发布与款待型聚会；授权票务页目前显示 Coming Soon，未公布 2026 公共价格。', en: 'A premium launch-and-hospitality gathering. The authorized ticket page currently says Coming Soon with no 2026 public price.' },
+      summary: { zh: '高端发布与款待型聚会；当届核对时授权票务页显示 Coming Soon，未公布 2026 公共价格。', en: 'A premium launch-and-hospitality gathering. When that edition was checked, the authorized ticket page said Coming Soon and gave no 2026 public price.' },
       why: { zh: '只适合把豪华品牌发布与餐饮体验放在首位的人；在价格和库存公布前不能当作确定行程。', en: 'Only prioritize if luxury launches and hospitality are central; it cannot be treated as a confirmed plan before price and inventory appear.' },
-      access: { zh: '当前官方页面尚未给出公众停车规则，授权票务页也未公布价格；不要使用历史票价推断。', en: 'Current official pages do not give public parking rules, and the authorized seller has not posted a price. Do not infer from historical prices.' },
+      access: { zh: '当届核对时，官方页面尚未给出公众停车规则，授权票务页也未公布价格；不使用更早票价推断。', en: 'When that edition was checked, the official pages gave no public parking rules and the authorized seller had not posted a price; this archive did not infer one from earlier years.' },
       price: { zh: '价格与公开库存待公布', en: 'Price and public inventory pending' }, tags: ['unknownTag'], categories: ['paid'], score: '3.0',
       sources: [
         { url: 'https://www.peninsula.com/en/signature-events/events/motorsports', label: { zh: '主办方：时段与活动信息 ↗', en: 'Organizer: hours and event details ↗' } },
@@ -2358,7 +2322,7 @@ window.PEBBLE_DATA = {
       title: { zh: 'Ferrari Event at The Barnyard', en: 'Ferrari Event at The Barnyard' }, location: { zh: 'The Barnyard · Carmel', en: 'The Barnyard · Carmel' },
       summary: { zh: '第 28 届 Barnyard 法拉利慈善展，受益 Big Sur Food & Wine Foundation。', en: '28th annual Barnyard Ferrari charity exhibition benefiting the Big Sur Food & Wine Foundation.' },
       why: { zh: '周六下午意式车氛围、票价低于 Concorso；与 Exotics / Concorso / MMF 冲突，只适合法拉利主题专程。', en: 'Italian-car Saturday afternoon below Concorso pricing—but it conflicts with Exotics/Concorso/MMF, so only if Ferrari is the draw.' },
-      access: { zh: 'The Barnyard Shopping Village（3663 The Barnyard）；16+ GA，≤15 免费；品酒 21+。预售票当前可购，现场票更贵。', en: 'The Barnyard Shopping Village (3663 The Barnyard); GA ages 16+, ≤15 free; wine tastings 21+. Advance tickets are currently in stock; day-of gate admission costs more.' },
+      access: { zh: 'The Barnyard Shopping Village（3663 The Barnyard）；16+ GA，≤15 免费；品酒 21+。当届核对时预售票可购，现场票更贵。', en: 'The Barnyard Shopping Village (3663 The Barnyard); GA ages 16+, ≤15 free; wine tastings 21+. Advance tickets were in stock when checked, and day-of gate admission cost more.' },
       price: { zh: '预售 GA $85.81 含费用 · 现场 $107.01 含费用', en: 'Advance GA $85.81 all-in · day-of $107.01 all-in' }, tags: ['paid'], categories: ['paid'], score: '3.5',
       sources: [
         { url: 'https://www.bigsurfoodandwine.org/popup-events/28th-annual-ferrari-event-at-the-barnyard', label: { zh: '主办方活动页 ↗', en: 'Organizer event page ↗' } },
@@ -2369,13 +2333,13 @@ window.PEBBLE_DATA = {
       id: 'exotics', thumbId: 'exotics', area: 'seaside', date: '2026-08-15', time: '11:00–16:00', timeNote: { zh: '周六 · 总活动时段', en: 'Saturday · overall event hours' },
       title: { zh: 'Exotics on Broadway', en: 'Exotics on Broadway' }, location: { zh: 'Broadway Ave / Del Monte Blvd · Seaside', en: 'Broadway Ave / Del Monte Blvd · Seaside' },
       summary: { zh: 'Broadway Ave 公共车展区免费；Del Monte Blvd 的围合 Vendor & Hypercar Showcase 需另购 GA。$40 不是整个活动的门票。', en: 'The public car show on Broadway Ave is free; the enclosed Vendor & Hypercar Showcase on Del Monte Blvd requires separate GA. The $40 price is not admission to the whole event.' },
-      why: { zh: '免费区 5/5，付费区 3/5；预算路线可不购票。主办方标示 GA 早鸟基础价 $40，Eventbrite 当前购买页显示起价 $44.52。', en: 'The free zone is 5/5 and the paid enclosure 3/5; the value route needs no paid-zone ticket. The organizer advertises $40 early-bird base GA, while Eventbrite currently displays purchase prices from $44.52.' },
+      why: { zh: '免费区 5/5，付费区 3/5；预算路线可不购票。主办方标示 GA 早鸟基础价 $40，当届核对时 Eventbrite 购买页显示起价 $44.52。', en: 'The free zone is 5/5 and the paid enclosure 3/5; the value route needs no paid-zone ticket. The organizer advertised a $40 early-bird base GA, while Eventbrite showed purchase prices from $44.52 when that edition was checked.' },
       access: { zh: '活动页面定位 1601 Broadway Ave。General Jim Moore Blvd × Eucalyptus Rd 设免费远端停车与接驳，9:00–17:00。12 岁以下儿童由持票成人陪同可免费进入收费区；票不退款、现场票有限。同一出行页下方 FAQ 仍残留 Fremont 字样；分区以票务页和出行页顶部的 Del Monte 新版说明为准。', en: 'The listing address is 1601 Broadway Ave. Free remote parking and shuttle run at General Jim Moore Blvd/Eucalyptus Rd, 9:00–17:00. Children under 12 enter the paid zone free with a ticketed adult; tickets are nonrefundable and onsite inventory is limited. A lower FAQ on the same visitor page still says Fremont; use the newer Del Monte wording on the ticket page and at the top of the visitor page.' },
       price: { zh: 'Broadway 免费 · Del Monte GA 基础价 $40（购买页起 $44.52）', en: 'Broadway free · Del Monte GA $40 base (purchase page from $44.52)' }, tags: ['mixedTag'], categories: ['essential', 'free', 'paid'], score: '5.0', verifiedOn: '2026-08-13',
       sources: [
         { url: 'https://exoticsonbroadway.com/', label: { zh: '活动主页：周六 11:00–16:00 ↗', en: 'Event home: Saturday 11:00–16:00 ↗' } },
         { url: 'https://exoticsonbroadway.com/tickets/', label: { zh: '官方票务：免费 Broadway 与 Del Monte 付费区 ↗', en: 'Official tickets: free Broadway and paid Del Monte zones ↗' } },
-        { url: 'https://www.eventbrite.com/e/exotics-on-broadway-tickets-1976498937528', label: { zh: '主办方链接售票页：当前购买价 ↗', en: 'Organizer-linked ticketing: current purchase price ↗' } },
+        { url: 'https://www.eventbrite.com/e/exotics-on-broadway-tickets-1976498937528', label: { zh: '主办方链接售票页：当届核对价 ↗', en: 'Organizer-linked ticketing: price checked for that edition ↗' } },
         { url: 'https://exoticsonbroadway.com/knowbeforeyougo/', label: { zh: '官方出行页：停车与接驳（场地旧文案）↗', en: 'Official visitor page: parking and shuttle (stale venue copy) ↗' } }
       ]
     },
@@ -2443,9 +2407,9 @@ window.PEBBLE_DATA = {
     {
       id: 'mmf', thumbId: 'mmf', area: 'monterey', date: '2026-08-15', time: '17:00–23:00', timeNote: { zh: '停车信息有冲突', en: 'parking conflict' },
       title: { zh: 'Monterey Motorsports Festival', en: 'Monterey Motorsports Festival' }, location: { zh: 'Monterey County Fairgrounds', en: 'Monterey County Fairgrounds' },
-      summary: { zh: '晚间展演型活动；主办方与授权票务当前均列 GA $175，主办方另注明 $5 结账费。', en: 'An evening festival; both the organizer and authorized seller currently list GA at $175, with the organizer noting a $5 checkout fee.' },
+      summary: { zh: '晚间展演型活动；当届核对时主办方与授权票务均列 GA $175，主办方另注明 $5 结账费。', en: 'An evening festival; when that edition was checked, both the organizer and authorized seller listed GA at $175, with the organizer noting a $5 checkout fee.' },
       why: { zh: '2.5/5 的可选夜场；除非演出内容特别对口，不优先于免费 Seaside 路线。', en: 'An optional 2.5/5 evening. Do not prioritize it over the free Seaside route unless the program is a specific draw.' },
-      access: { zh: '当前官方停车页写 Gate 8 免费先到先得，Monterey Pines 为 overflow；价格与停车都应在购买和出发前复核。', en: 'The current organizer page says free first-come parking at Gate 8, with Monterey Pines as overflow. Recheck both price and parking before purchase and arrival.' },
+      access: { zh: '当届核对时官方停车页写 Gate 8 免费先到先得，Monterey Pines 为 overflow；价格与停车信息仅代表当时页面。', en: 'When that edition was checked, the organizer page said free first-come parking at Gate 8, with Monterey Pines as overflow. The price and parking details record that page at the time.' },
       price: { zh: 'GA $175 + 结账费用', en: 'GA $175 + checkout fees' }, tags: ['paid', 'subjectTag'], categories: ['paid'], score: '2.5',
       sources: [
         { url: 'https://montereymotorsportsfestival.com/get-tickets/', label: { zh: '主办方票页：$175 + $5 ↗', en: 'Organizer tickets: $175 + $5 ↗' } },
@@ -2764,7 +2728,7 @@ window.PEBBLE_DATA = {
     { label: { zh: 'Monterey Car Week 交通提醒', en: 'Monterey Car Week travel alerts' }, url: 'https://www.seemonterey.com/events/monterey-car-week/monterey-car-week-travel-alerts/' },
     { label: { zh: 'Carmel → Concours 周日接驳', en: 'Carmel → Concours Sunday shuttle' }, url: 'https://members.carmelchamber.org/events/details/carmel-shuttles-to-pebble-beach-concours-d-elegance-2026-63225' },
     { label: { zh: 'Stanton Center · 历史展', en: 'Stanton Center · history exhibit' }, url: 'https://www.montereyhistory.org/stanton-center/exhibits/' },
-    { label: { zh: 'Caltrans 实时道路状态', en: 'Caltrans live road conditions' }, url: 'https://roads.dot.ca.gov/' },
+    { label: { zh: 'Caltrans 道路状态入口', en: 'Caltrans road-conditions portal' }, url: 'https://roads.dot.ca.gov/' },
     { label: { zh: 'Pebble Beach · 从 SJC 约 90 分钟', en: 'Pebble Beach · ~90 min from SJC' }, url: 'https://www.pebblebeach.com/insidepebblebeach/how-to-get-to-pebble-beach-resorts/' },
     { label: { zh: 'OpenStreetMap · 地图底图与坐标', en: 'OpenStreetMap · basemap & coordinates' }, url: 'https://www.openstreetmap.org/#map=12/36.58/-121.86' },
     { label: { zh: '住宿库存查询口径', en: 'Lodging inventory search' }, url: 'https://www.hotels.com/Hotel-Search?destination=Monterey%2C%20California%2C%20United%20States%20of%20America&startDate=2026-08-13&endDate=2026-08-17&adults=2&rooms=1' }

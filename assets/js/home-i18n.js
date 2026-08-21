@@ -59,12 +59,12 @@
       zh: '28 座汽车城市（17 核心 + 11 专业）与 154 家企业/品牌，用角色标签分开总部、工厂、电池、软件、媒体和院校。全国汽车媒体按赛道分组（门户、频道、新能源、商用车、行业报）。每家企业均收录总部城市。支持拼音/首字母/简写搜索，中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
     },
     cardPebbleTitle: {
-      en: 'Pebble Beach 2026 · Monterey Car Week public guide',
-      zh: 'Pebble Beach 2026 · 蒙特雷汽车周公众指南',
+      en: 'Pebble Beach 2027 · Monterey Car Week planning guide',
+      zh: 'Pebble Beach 2027 · 蒙特雷汽车周规划页',
     },
     cardPebbleDesc: {
-      en: 'A public Aug 7–17 itinerary for Monterey Car Week and Pebble Beach — early free street shows, peak-week picks, tickets, lodging snapshot, and commute planning. Dark mode · EN/中文.',
-      zh: '面向公众的 8 月 7–17 日蒙特雷汽车周与 Pebble Beach 行程——早场免费街展、高峰日推荐、票价、住宿快照与半岛通勤规划。深色模式 · 中英切换。',
+      en: 'Seven official 2027 signature-event date ranges are recorded, including Concours Sunday on Aug 15. Detailed schedules, prices, routes, maps, brand programs, stays and travel guidance remain visibly partial or pending; the complete 2026 guide is preserved as an archive.',
+      zh: '已录入 7 项 2027 官方标志性活动日期，包括 8 月 15 日 Concours Sunday；详细时段、票价、路线、地图、品牌活动、住宿与通勤仍明确标为部分确认或待补，并保留完整的 2026 历史存档。',
     },
     cardIndustrialTitle: {
       en: 'China industrial software survey',

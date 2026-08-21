@@ -12,15 +12,14 @@
 
   const LANG_KEY = 'qrost-pebble-2026-lang';
   const THEME_KEY = 'qrost-pebble-2026-theme';
-  const TIMEZONE = 'America/Los_Angeles';
-  const WINDOW_START = '2026-08-07';
-  const WINDOW_END = '2026-08-17';
+  // Keep every date-dependent archive decision deterministic. The historical
+  // page never reads the visitor's clock or query-string simulation values.
+  const ARCHIVE_REFERENCE_DATE = '2026-08-18';
   const state = {
     lang: 'zh',
     day: 'all',
     type: 'all',
     area: 'all',
-    liveMode: 'browse',
     quickPastOpen: false,
     schedulePastOpen: false,
     navMenuOpen: false,
@@ -55,8 +54,6 @@
   const planMaps = new Map();
   let planMapObserver = null;
   let planMapGeneration = 0;
-  let clockTimer = null;
-  let lastClockDateIso = null;
   let hasHandledInitialHash = false;
   const temporalUserOpen = new Map();
 
@@ -82,57 +79,8 @@
       .replace(/'/g, '&#039;');
   }
 
-  function getClock() {
-    const params = new URLSearchParams(window.location.search);
-    const demoDate = params.get('demoDate');
-    const demoTime = params.get('demoTime');
-    const dateMatch = String(demoDate || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (dateMatch) {
-      const year = Number(dateMatch[1]);
-      const month = Number(dateMatch[2]);
-      const day = Number(dateMatch[3]);
-      const probe = new Date(Date.UTC(year, month - 1, day));
-      const validDate = probe.getUTCFullYear() === year
-        && probe.getUTCMonth() === month - 1
-        && probe.getUTCDate() === day;
-      if (validDate) {
-        const timeMatch = String(demoTime || '').match(/^(\d{1,2}):(\d{2})$/);
-        const validTime = timeMatch && Number(timeMatch[1]) <= 23 && Number(timeMatch[2]) <= 59;
-        const hm = validTime
-          ? `${String(Number(timeMatch[1])).padStart(2, '0')}:${timeMatch[2]}`
-          : '12:00';
-        return { instant: null, dateIso: demoDate, hm, minutes: parseHm(hm), demo: true };
-      }
-    }
-    const instant = new Date();
-    const formatter = new Intl.DateTimeFormat('en-US', {
-      timeZone: TIMEZONE,
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
-    });
-    const parts = formatter.formatToParts(instant);
-    const pick = (type) => {
-      const part = parts.find((entry) => entry.type === type);
-      return part ? part.value : '';
-    };
-    const dateIso = `${pick('year')}-${pick('month')}-${pick('day')}`;
-    let hour = pick('hour');
-    if (hour === '24') hour = '00';
-    const hm = `${hour}:${pick('minute')}`;
-    return { instant, dateIso, hm, minutes: parseHm(hm), demo: Boolean(demoDate) };
-  }
-
-  function inCarWeekWindow(dateIso) {
-    return dateIso >= WINDOW_START && dateIso <= WINDOW_END;
-  }
-
-  function dayRelation(dateIso, todayIso) {
-    if (dateIso < todayIso) return 'past';
-    if (dateIso === todayIso) return 'today';
+  function dayRelation(dateIso) {
+    if (dateIso < ARCHIVE_REFERENCE_DATE) return 'past';
     return 'upcoming';
   }
 
@@ -178,15 +126,6 @@
     return windows;
   }
 
-  function eventHappeningNow(event, clock) {
-    if (event.date !== clock.dateIso) return false;
-    const windows = parseTimeWindows(event.time);
-    if (!windows.length) return false;
-    const now = clock.minutes;
-    if (now == null) return false;
-    return windows.some((window) => now >= window.start && now <= window.end);
-  }
-
   function quickPlanDateIso(item) {
     return item && typeof item.dateIso === 'string' ? item.dateIso : '';
   }
@@ -196,23 +135,11 @@
     return area ? localized(area.name) : areaId;
   }
 
-  function matchesLiveFilters(event, clock) {
+  function matchesArchiveFilters(event) {
     if (state.type !== 'all' && !event.categories.includes(state.type)) return false;
     if (state.area !== 'all' && event.area !== state.area) return false;
-    if (state.liveMode === 'now') return eventHappeningNow(event, clock);
-    if (state.liveMode === 'today') return event.date === clock.dateIso;
     if (state.day !== 'all' && event.date !== state.day) return false;
-    // Past days stay in the result set so browse mode can fold them in place.
     return true;
-  }
-
-  function formatClockDisplay(clock) {
-    const dayMeta = DATA.days.find((day) => day.id === clock.dateIso);
-    const dayLabel = dayMeta ? localized(dayMeta.short) : clock.dateIso;
-    const demoNote = clock.demo
-      ? (state.lang === 'zh' ? '（演示）' : ' (demo)')
-      : '';
-    return `${dayLabel} ${clock.hm} PT${demoNote}`;
   }
 
   function statusWithCount(key, count) {
@@ -253,16 +180,16 @@
       .replace('{count}', String(eventCount));
   }
 
-  function splitChronologicalEntries(entries, dateOf, todayIso) {
+  function splitChronologicalEntries(entries, dateOf) {
     const ordered = [...entries].sort((left, right) => dateOf(left).localeCompare(dateOf(right)));
     return {
-      past: ordered.filter((entry) => dayRelation(dateOf(entry), todayIso) === 'past'),
-      current: ordered.filter((entry) => dayRelation(dateOf(entry), todayIso) !== 'past')
+      archived: ordered.filter((entry) => dayRelation(dateOf(entry)) === 'past'),
+      later: ordered.filter((entry) => dayRelation(dateOf(entry)) !== 'past')
     };
   }
 
-  function chronologicalFoldMarkup(pastMarkup, currentMarkup) {
-    return `${pastMarkup}${currentMarkup}`;
+  function chronologicalFoldMarkup(archiveMarkup, laterMarkup) {
+    return `${archiveMarkup}${laterMarkup}`;
   }
 
   function eventStartMinutes(event) {
@@ -309,31 +236,21 @@
   }
 
   function applyTemporalSections() {
-    const clock = getClock();
     const target = hashTargetElement();
     document.querySelectorAll('[data-temporal-section]').forEach((section) => {
       const details = section.querySelector(':scope > [data-temporal-details]');
       const summary = section.querySelector('[data-temporal-summary]');
       const through = section.getAttribute('data-through-date') || '';
       const labelKey = section.getAttribute('data-temporal-label-key');
-      const past = Boolean(through && clock.dateIso > through);
-      section.classList.toggle('is-past', past);
+      const archived = Boolean(through && ARCHIVE_REFERENCE_DATE > through);
+      section.classList.toggle('is-past', archived);
       if (summary && labelKey) summary.textContent = text(labelKey);
       if (!details) return;
       const targetInside = Boolean(target && (target === section || section.contains(target)));
       if (targetInside) setTemporalOpen(details, true);
       else if (temporalUserOpen.has(section.id)) setTemporalOpen(details, temporalUserOpen.get(section.id));
-      else setTemporalOpen(details, !past);
+      else setTemporalOpen(details, !archived);
     });
-  }
-
-  function heroActionForClock(clock) {
-    return (DATA.heroActions || []).find((action) => {
-      if (!action.throughDate) return true;
-      if (clock.dateIso < action.throughDate) return true;
-      if (clock.dateIso > action.throughDate) return false;
-      return !action.throughTime || clock.minutes <= parseHm(action.throughTime);
-    }) || null;
   }
 
   function setHeroAction(link, action) {
@@ -348,27 +265,24 @@
   }
 
   function updateHeroCtas() {
-    const clock = getClock();
-    const action = heroActionForClock(clock);
+    const action = (DATA.heroActions || []).find((item) => item.id === 'archive') || null;
     const primary = document.getElementById('hero-primary-cta');
     const secondary = document.getElementById('hero-secondary-cta');
     if (action && action.primary.href !== action.secondary.href) {
       setHeroAction(primary, action.primary);
       setHeroAction(secondary, action.secondary);
     }
-    const tourPast = clock.dateIso > '2026-08-13';
     const tourNav = document.getElementById('tour-nav-link');
     if (tourNav) {
-      const navKey = tourPast ? 'navTourArchive' : 'navTour';
+      const navKey = 'navTourArchive';
       tourNav.setAttribute('data-i18n', navKey);
       tourNav.textContent = text(navKey);
-      tourNav.classList.toggle('archive-nav-link', tourPast);
+      tourNav.classList.add('archive-nav-link');
     }
   }
 
   function activateHeroIntent(intent) {
-    if (intent === 'schedule-current' || intent === 'schedule-archive') {
-      state.liveMode = 'browse';
+    if (intent === 'schedule-archive') {
       state.day = 'all';
       state.area = 'all';
       state.type = 'all';
@@ -445,8 +359,8 @@
     setMeta('meta[property="og:title"]', text('ogTitle'));
     setMeta('meta[property="og:description"]', text('ogDescription'));
     setMeta('meta[property="og:image:alt"]', state.lang === 'zh'
-      ? '2026 Monterey Car Week 圆石滩车展公众指南路线图'
-      : 'Route map for the 2026 Pebble Beach and Monterey Car Week public guide');
+      ? '2026 Monterey Car Week 圆石滩车展公众指南历史存档'
+      : 'Historical archive of the 2026 Pebble Beach and Monterey Car Week public guide');
     setMeta('meta[name="twitter:title"]', text('ogTitle'));
     setMeta('meta[name="twitter:description"]', text('ogDescription'));
 
@@ -840,7 +754,7 @@
     const openLaneIds = new Set(Array.from(root.querySelectorAll('details[data-brand-lane-fold][open]')).map((item) => item.dataset.brandLaneFold));
     const openPastGroupIds = new Set(Array.from(root.querySelectorAll('details[data-brand-past-group][open]')).map((item) => item.dataset.brandPastGroup));
     const guideNotesOpen = Boolean(root.querySelector('details[data-brand-guide-notes][open]'));
-    const today = getClock().dateIso;
+    const archiveDate = ARCHIVE_REFERENCE_DATE;
     const cardsById = new Map((guide.cards || []).map((card) => [card.id, card]));
     const sourceLinks = (card) => `<div class="brand-house-source-block">
       <strong>${escapeHtml(text('brandHouseSourcesLabel'))}</strong>
@@ -860,8 +774,8 @@
       </details>`;
     };
     const disclosureAction = () => `<span class="brand-house-row-action" aria-hidden="true"><span class="brand-house-action-closed">${escapeHtml(text('brandHouseExpandLabel'))}</span><span class="brand-house-action-open">${escapeHtml(text('brandHouseCollapseLabel'))}</span></span>`;
-    const cardBadge = (card) => localized(card.badgeByDate?.[today] || card.badge);
-    const cardSummary = (card) => localized(card.summaryByDate?.[today] || card.summary);
+    const cardBadge = (card) => localized(card.badgeByDate?.[archiveDate] || card.badge);
+    const cardSummary = (card) => localized(card.summaryByDate?.[archiveDate] || card.summary);
     const disclosureSummary = (card) => `<span class="brand-house-row-main"><span class="brand-house-badge">${escapeHtml(cardBadge(card))}</span><strong>${escapeHtml(localized(card.title))}</strong></span>
       <span class="brand-house-row-date">${escapeHtml(cardSummary(card))}</span>
       ${disclosureAction()}`;
@@ -904,25 +818,25 @@
     root.innerHTML = (guide.lanes || []).map((lane) => {
       const cards = (lane.cardIds || []).map((id) => cardsById.get(id)).filter(Boolean);
       const isPublic = lane.id === 'public-drive';
-      const activeCards = cards.filter((card) => !card.endDate || today <= card.endDate);
-      const pastCards = cards.filter((card) => card.endDate && today > card.endDate);
+      const undatedCards = cards.filter((card) => !card.endDate);
+      const archivedCards = cards.filter((card) => card.endDate && archiveDate > card.endDate);
       const listClass = isPublic ? 'brand-house-card-grid' : 'brand-house-row-list';
       const renderCard = isPublic ? publicCard : houseRow;
-      const activeMarkup = activeCards.length
-        ? `<div class="${listClass}">${activeCards.map(renderCard).join('')}</div>`
+      const undatedMarkup = undatedCards.length
+        ? `<div class="${listClass}">${undatedCards.map(renderCard).join('')}</div>`
         : '';
       const pastOpen = openPastGroupIds.has(lane.id) ? ' open' : '';
-      const pastMarkup = pastCards.length ? `<details class="brand-house-past-group" data-brand-past-group="${escapeHtml(lane.id)}"${pastOpen}>
-        <summary>${escapeHtml(statusWithCount('brandHousePastSummary', pastCards.length))}</summary>
-        <div class="${listClass}">${pastCards.map(renderCard).join('')}</div>
+      const archiveMarkup = archivedCards.length ? `<details class="brand-house-past-group" data-brand-past-group="${escapeHtml(lane.id)}"${pastOpen}>
+        <summary>${escapeHtml(statusWithCount('brandHousePastSummary', archivedCards.length))}</summary>
+        <div class="${listClass}">${archivedCards.map(renderCard).join('')}</div>
       </details>` : '';
-      const laneContent = `${activeMarkup}${pastMarkup}`;
+      const laneContent = `${undatedMarkup}${archiveMarkup}`;
       const foldedLaneContent = isPublic ? laneContent : `<details class="brand-house-lane-fold" data-brand-lane-fold="${escapeHtml(lane.id)}"${openLaneIds.has(lane.id) ? ' open' : ''}>
         <summary><span>${escapeHtml(statusWithCount('brandHousePrivateFoldSummary', cards.length))}</span>${disclosureAction()}</summary>
         <div class="brand-house-lane-fold-content">${laneContent}</div>
       </details>`;
-      const laneTitleKey = lane.titleKeyByDate?.[today] || lane.titleKey;
-      const laneIntroKey = lane.introKeyByDate?.[today] || lane.introKey;
+      const laneTitleKey = lane.titleKeyByDate?.[archiveDate] || lane.titleKey;
+      const laneIntroKey = lane.introKeyByDate?.[archiveDate] || lane.introKey;
       return `<section class="brand-house-lane brand-house-lane-${escapeHtml(lane.id)}" aria-labelledby="brand-house-lane-${escapeHtml(lane.id)}">
         <header class="brand-house-lane-heading">
           <h3 id="brand-house-lane-${escapeHtml(lane.id)}">${escapeHtml(text(laneTitleKey))}</h3>
@@ -1047,23 +961,19 @@
     const openTimelineIds = new Set(Array.from(root.querySelectorAll('details[data-plan-timeline-id][open]'))
       .map((details) => details.getAttribute('data-plan-timeline-id')));
     destroyPlanMaps();
-    const clock = getClock();
-
     function buildPlanCard(item) {
       const dateIso = quickPlanDateIso(item);
-      const relation = dayRelation(dateIso, clock.dateIso);
+      const relation = dayRelation(dateIso);
       const classes = ['plan-day'];
       if (item.flagship) classes.push('flagship');
       if (relation === 'past') classes.push('is-past');
-      if (relation === 'today') classes.push('is-today');
       return `
       <article class="${classes.join(' ')}" data-date="${escapeHtml(dateIso)}">
         <div class="plan-day-copy">
           <div class="plan-date">
             <strong>${escapeHtml(localized(item.date))}</strong>
             <span>${escapeHtml(localized(item.day))}</span>
-            ${relation === 'today' ? `<span class="plan-day-badge">${escapeHtml(text('liveTodayBadge'))}</span>` : ''}
-            ${relation === 'past' ? `<span class="plan-day-badge is-past">${escapeHtml(text('livePastBadge'))}</span>` : ''}
+            ${relation === 'past' ? `<span class="plan-day-badge is-past">${escapeHtml(text('archivePastBadge'))}</span>` : ''}
           </div>
           <h3>${escapeHtml(localized(item.title))}</h3>
           <p>${escapeHtml(localized(item.body))}</p>
@@ -1079,54 +989,21 @@
       const entry = { item, html: buildPlanCard(item), dateIso: quickPlanDateIso(item) };
       return entry;
     });
-    const { past, current } = splitChronologicalEntries(entries, (entry) => entry.dateIso, clock.dateIso);
-    const pastDates = past.map((entry) => entry.dateIso);
-    const pastMarkup = past.length
-      ? `<details class="plan-day-past" data-past-group="quick" data-date-start="${escapeHtml(pastDates[0])}" data-date-end="${escapeHtml(pastDates.at(-1))}"${state.quickPastOpen ? ' open' : ''}><summary>${escapeHtml(planningGroupSummary(pastDates, past.length, clock.dateIso > WINDOW_END))}</summary>${past.map((entry) => entry.html).join('')}</details>`
+    const { archived, later } = splitChronologicalEntries(entries, (entry) => entry.dateIso);
+    const archivedDates = archived.map((entry) => entry.dateIso);
+    const archiveMarkup = archived.length
+      ? `<details class="plan-day-past" data-past-group="quick" data-date-start="${escapeHtml(archivedDates[0])}" data-date-end="${escapeHtml(archivedDates.at(-1))}"${state.quickPastOpen ? ' open' : ''}><summary>${escapeHtml(planningGroupSummary(archivedDates, archived.length, true))}</summary>${archived.map((entry) => entry.html).join('')}</details>`
       : '';
-    root.innerHTML = chronologicalFoldMarkup(pastMarkup, current.map((entry) => entry.html).join(''));
+    root.innerHTML = chronologicalFoldMarkup(archiveMarkup, later.map((entry) => entry.html).join(''));
   }
 
   function renderScheduleFilters() {
-    const clockEl = document.getElementById('live-clock-value');
-    const windowNote = document.getElementById('live-window-note');
-    const modeRoot = document.getElementById('live');
     const dayRoot = document.getElementById('day-filter');
     const areaRoot = document.getElementById('live-area-filter');
     const typeRoot = document.getElementById('type-filter');
-    const pastToggle = document.getElementById('live-past-toggle');
     const statusEl = document.getElementById('live-status');
-    if (!modeRoot || !dayRoot || !areaRoot || !typeRoot) return;
+    if (!dayRoot || !areaRoot || !typeRoot) return;
 
-    const clock = getClock();
-    const inWindow = inCarWeekWindow(clock.dateIso);
-    if (clockEl) clockEl.textContent = formatClockDisplay(clock);
-
-    if (windowNote) {
-      if (!inWindow) {
-        windowNote.hidden = false;
-        windowNote.textContent = text(clock.dateIso < WINDOW_START ? 'liveOutsideWindowBefore' : 'liveOutsideWindowAfter');
-      } else {
-        windowNote.hidden = true;
-        windowNote.textContent = '';
-      }
-    }
-
-    if (!inWindow && state.liveMode !== 'browse') state.liveMode = 'browse';
-    const modeOptions = inWindow ? [
-      { id: 'browse', label: text('liveModeBrowse') },
-      { id: 'now', label: text('liveModeNow') },
-      { id: 'today', label: text('liveModeToday') }
-    ] : [
-      { id: 'browse', label: text('liveModeBrowse') }
-    ];
-    modeRoot.setAttribute('aria-label', state.lang === 'zh' ? '时间筛选模式' : 'Time filter mode');
-    modeRoot.innerHTML = modeOptions.map((item) => `
-      <button type="button" class="filter-button" data-live-mode="${escapeHtml(item.id)}" aria-pressed="${state.liveMode === item.id}">
-        ${escapeHtml(item.label)}
-      </button>`).join('');
-
-    const liveOverridesDay = state.liveMode === 'now' || state.liveMode === 'today';
     const dayButtons = [{ id: 'all', label: DATA.ui.allDays }].concat(
       DATA.days.map((day) => ({ id: day.id, label: day.short }))
     );
@@ -1135,19 +1012,6 @@
       <button type="button" class="filter-button" data-day="${escapeHtml(item.id)}" aria-pressed="${state.day === item.id}">
         ${escapeHtml(localized(item.label))}
       </button>`).join('');
-    if (liveOverridesDay) {
-      let note = document.getElementById('day-filter-note');
-      if (!note) {
-        note = document.createElement('p');
-        note.id = 'day-filter-note';
-        note.className = 'filter-note';
-        dayRoot.insertAdjacentElement('afterend', note);
-      }
-      note.textContent = text('liveDayFilterNote');
-    } else {
-      const note = document.getElementById('day-filter-note');
-      if (note) note.remove();
-    }
 
     areaRoot.setAttribute('aria-label', text('liveAreaLabel'));
     const areaButtons = [{ id: 'all', label: text('liveAllAreas') }].concat(
@@ -1178,41 +1042,15 @@
       if (state.type !== 'all') activeFilters.push(localized(typeButtons.find((item) => item.id === state.type)?.label));
       const visibleFilters = activeFilters.filter(Boolean);
       moreSummary.textContent = visibleFilters.length
-        ? `${text('liveMoreFilters')} · ${visibleFilters.join(' · ')}`
-        : text('liveMoreFilters');
+        ? `${text('archiveFilters')} · ${visibleFilters.join(' · ')}`
+        : text('archiveFilters');
       moreSummary.classList.toggle('has-active-filters', visibleFilters.length > 0);
       moreSummary.dataset.activeFilters = String(visibleFilters.length);
     }
 
-    const filtered = DATA.events.filter((event) => matchesLiveFilters(event, clock));
-    if (pastToggle) {
-      const pastControlRelevant = state.liveMode === 'browse'
-        && state.day === 'all'
-        && filtered.some((event) => event.date < clock.dateIso);
-      pastToggle.hidden = !pastControlRelevant;
-      pastToggle.textContent = state.schedulePastOpen ? text('livePastHide') : text('livePastShow');
-      pastToggle.setAttribute('aria-pressed', state.schedulePastOpen ? 'true' : 'false');
-    }
-
+    const filtered = DATA.events.filter(matchesArchiveFilters);
     if (statusEl) {
-      let statusText;
-      if (state.liveMode === 'now') {
-        statusText = filtered.length
-          ? statusWithCount('liveStatusNow', filtered.length)
-          : text('liveNoNow');
-      } else if (state.liveMode === 'today') {
-        statusText = filtered.length
-          ? statusWithCount('liveStatusToday', filtered.length)
-          : text('liveNoToday');
-      } else {
-        const pastCount = filtered.filter((event) => event.date < clock.dateIso).length;
-        const currentCount = filtered.length - pastCount;
-        const pastIsFolded = state.day === 'all' && pastCount > 0 && !state.schedulePastOpen;
-        statusText = pastIsFolded
-          ? text('liveStatusBrowseFolded').replace('{current}', String(currentCount)).replace('{past}', String(pastCount))
-          : statusWithCount('liveStatusBrowse', filtered.length);
-      }
-      statusEl.textContent = statusText;
+      statusEl.textContent = statusWithCount('archiveFilterStatus', filtered.length);
     }
   }
 
@@ -1291,8 +1129,7 @@
     const openEventIds = new Set(Array.from(root.querySelectorAll('details[data-event-detail-id][open]'))
       .map((details) => details.getAttribute('data-event-detail-id')));
 
-    const clock = getClock();
-    const filtered = DATA.events.filter((event) => matchesLiveFilters(event, clock));
+    const filtered = DATA.events.filter(matchesArchiveFilters);
 
     if (!filtered.length) {
       root.innerHTML = `<p class="empty-state">${escapeHtml(ui('noResults'))}</p>`;
@@ -1300,10 +1137,9 @@
     }
 
     function buildDayGroup(day, events) {
-      const relation = dayRelation(day.id, clock.dateIso);
+      const relation = dayRelation(day.id);
       const classes = ['day-group'];
       if (relation === 'past') classes.push('is-past');
-      if (relation === 'today') classes.push('is-today');
       const heading = `
           <header class="day-heading" id="day-${escapeHtml(day.id)}">
             <time datetime="${escapeHtml(day.id)}">${escapeHtml(localized(day.short))}</time>
@@ -1320,21 +1156,21 @@
     const groups = DATA.days.map((day) => {
       const events = sortEventsChronologically(filtered.filter((event) => event.date === day.id));
       if (!events.length) return null;
-      return { day, events, html: buildDayGroup(day, events), relation: dayRelation(day.id, clock.dateIso) };
+      return { day, events, html: buildDayGroup(day, events), relation: dayRelation(day.id) };
     }).filter(Boolean);
 
-    const aggregatePast = state.liveMode === 'browse' && state.day === 'all';
-    if (!aggregatePast) {
+    const aggregateArchive = state.day === 'all';
+    if (!aggregateArchive) {
       root.innerHTML = groups.map((group) => group.html).join('');
       return;
     }
-    const { past, current } = splitChronologicalEntries(groups, (group) => group.day.id, clock.dateIso);
-    const pastDates = past.map((group) => group.day.id);
-    const count = past.reduce((total, group) => total + group.events.length, 0);
-    const pastMarkup = past.length
-      ? `<details class="day-group-past" data-past-group="schedule" data-date-start="${escapeHtml(pastDates[0])}" data-date-end="${escapeHtml(pastDates.at(-1))}"${state.schedulePastOpen ? ' open' : ''}><summary class="day-heading day-heading-past">${escapeHtml(planningGroupSummary(pastDates, count, clock.dateIso > WINDOW_END))}</summary>${past.map((group) => group.html).join('')}</details>`
+    const { archived, later } = splitChronologicalEntries(groups, (group) => group.day.id);
+    const archivedDates = archived.map((group) => group.day.id);
+    const count = archived.reduce((total, group) => total + group.events.length, 0);
+    const archiveMarkup = archived.length
+      ? `<details class="day-group-past" data-past-group="schedule" data-date-start="${escapeHtml(archivedDates[0])}" data-date-end="${escapeHtml(archivedDates.at(-1))}"${state.schedulePastOpen ? ' open' : ''}><summary class="day-heading day-heading-past">${escapeHtml(planningGroupSummary(archivedDates, count, true))}</summary>${archived.map((group) => group.html).join('')}</details>`
       : '';
-    root.innerHTML = chronologicalFoldMarkup(pastMarkup, current.map((group) => group.html).join(''));
+    root.innerHTML = chronologicalFoldMarkup(archiveMarkup, later.map((group) => group.html).join(''));
   }
 
   function renderStays() {
@@ -2338,29 +2174,6 @@
     schedulePlanMaps();
   }
 
-  function startClockTimer() {
-    if (clockTimer) clearInterval(clockTimer);
-    lastClockDateIso = getClock().dateIso;
-    clockTimer = window.setInterval(() => {
-      const clock = getClock();
-      if (clock.dateIso !== lastClockDateIso) {
-        lastClockDateIso = clock.dateIso;
-        renderQuickPlan();
-        renderScheduleFilters();
-        renderSchedule();
-        renderBrandHouses();
-        applyTemporalSections();
-        updateHeroCtas();
-        schedulePlanMaps();
-        revealHashTarget(false);
-        return;
-      }
-      renderScheduleFilters();
-      updateHeroCtas();
-      if (state.liveMode === 'now' || state.liveMode === 'today') renderSchedule();
-    }, 30000);
-  }
-
   function applyLanguage() {
     applyStaticTranslations();
     updateToggleUi();
@@ -2442,7 +2255,6 @@
         if (group === 'quick') state.quickPastOpen = details.open;
         if (group === 'schedule') {
           state.schedulePastOpen = details.open;
-          renderScheduleFilters();
         }
       }
       if (!details.hasAttribute('data-temporal-details') || details.dataset.temporalSync === 'true') return;
@@ -2541,7 +2353,6 @@
           const nextDay = dayButton.getAttribute('data-day');
           if (nextDay && nextDay !== state.day) {
             state.day = nextDay;
-            state.liveMode = 'browse';
             renderScheduleFilters();
             renderSchedule();
             focusRenderedFilter('data-day', nextDay);
@@ -2559,20 +2370,6 @@
           }
           return;
         }
-        const modeButton = event.target.closest('[data-live-mode]');
-        if (modeButton) {
-          const nextMode = modeButton.getAttribute('data-live-mode');
-          if (nextMode && nextMode !== state.liveMode) {
-            state.liveMode = nextMode;
-            if (nextMode === 'now' || nextMode === 'today') state.day = 'all';
-            renderScheduleFilters();
-            renderQuickPlan();
-            renderSchedule();
-            schedulePlanMaps();
-            focusRenderedFilter('data-live-mode', nextMode);
-          }
-          return;
-        }
         const areaButton = event.target.closest('[data-live-area]');
         if (areaButton) {
           const nextArea = areaButton.getAttribute('data-live-area');
@@ -2583,11 +2380,6 @@
             focusRenderedFilter('data-live-area', nextArea);
           }
           return;
-        }
-        if (event.target.id === 'live-past-toggle' || event.target.closest('#live-past-toggle')) {
-          state.schedulePastOpen = !state.schedulePastOpen;
-          renderScheduleFilters();
-          renderSchedule();
         }
       });
     }
@@ -2609,6 +2401,5 @@
     wireInteractions();
     document.documentElement.classList.add('nav-ready');
     updateSectionNavUi();
-    startClockTimer();
   });
 })();

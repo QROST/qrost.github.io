@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026 圆石滩车展公众指南 · Monterey Car Week 8.7–8.17 | QROST</title>
-  <meta name="description" content="2026 Monterey Car Week 与 Pebble Beach Concours 公众行程指南：8 月 7–17 日逐日活动、是否值得去、票价、住宿价格快照、停车接驳与活动周通勤时间。中英双语。">
+  <title>2026 圆石滩车展公众指南 · 历史存档 | QROST</title>
+  <meta name="description" content="2026 Monterey Car Week 与 Pebble Beach Concours 公众指南历史存档：保留当届逐日活动、票价快照、Tour 路线、停车图、品牌活动、住宿和通勤判断，不作为 2027 出行建议。">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <link rel="apple-touch-icon" href="../../favicon.svg">
   <link rel="canonical" href="https://qrost.github.io/demos/pebble-beach-2026/">
@@ -12,15 +12,15 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://qrost.github.io/demos/pebble-beach-2026/">
   <meta property="og:site_name" content="QROST">
-  <meta property="og:title" content="2026 圆石滩车展公众指南 · 8.7–8.17">
-  <meta property="og:description" content="何时去哪里、哪些值得去、住哪里、活动周要留多少通勤时间。官方日程与当期价格快照整理。">
+  <meta property="og:title" content="2026 圆石滩车展公众指南 · 历史存档">
+  <meta property="og:description" content="保留 2026 当届日程、Tour、停车、票价与旅行判断；内容可能已经变化，不适用于 2027 出行。">
   <meta property="og:image" content="https://qrost.github.io/demos/pebble-beach-2026/assets/img/pebble-beach-2026-og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="2026 Monterey Car Week 圆石滩车展公众指南路线图">
+  <meta property="og:image:alt" content="2026 Monterey Car Week 圆石滩车展公众指南历史存档">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="2026 Pebble Beach · Monterey Car Week 公众指南">
-  <meta name="twitter:description" content="8.7–8.17 逐日活动、票价、住宿和活动周通勤时间。中英双语。">
+  <meta name="twitter:title" content="2026 Pebble Beach · Monterey Car Week 历史存档">
+  <meta name="twitter:description" content="2026 当届日程、票价、Tour、停车与旅行判断的历史快照。中英双语。">
   <meta name="twitter:image" content="https://qrost.github.io/demos/pebble-beach-2026/assets/img/pebble-beach-2026-og.png">
   <meta name="theme-color" content="#f4f0e7" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#101719" media="(prefers-color-scheme: dark)">
@@ -35,7 +35,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=1259f9b96f">
+  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=152d8d3985">
 </head>
 <body id="page-top">
   <a class="skip-link" href="#main" data-i18n="skip">跳到正文</a>
@@ -46,7 +46,7 @@
       <div id="primary-nav-links" class="nav-links" aria-label="页面章节">
         <a href="#quick-plan" data-i18n="navPlan">方案</a>
         <a href="#schedule" data-i18n="navSchedule">日程</a>
-        <a id="tour-nav-link" href="#tour-0813" data-i18n="navTour">8.13 Tour</a>
+        <a id="tour-nav-link" class="archive-nav-link" href="#tour-0813" data-i18n="navTourArchive">8.13 Tour 存档</a>
         <a href="#parking-traffic" data-i18n="navParkingMap">停车图</a>
         <a href="#brand-houses" data-i18n="navBrandHouses">品牌 House</a>
         <a href="#stay" data-i18n="navStay">住宿</a>
@@ -69,18 +69,28 @@
     </div>
   </nav>
 
+  <aside class="archive-edition-banner" aria-label="2026 历史存档：内容不适用于 2027 出行" data-i18n-aria-label="archiveBannerAria">
+    <div>
+      <div class="archive-edition-copy">
+        <strong data-i18n="archiveBannerLabel">2026 历史存档</strong>
+        <span data-i18n="archiveBannerBody">价格、准入、道路与外链可能已经变化；本页不适用于 2027 出行。</span>
+      </div>
+      <a href="../pebble-beach-2027/" data-i18n="archiveBannerCta">前往 2027 规划页 →</a>
+    </div>
+  </aside>
+
   <header class="hero">
     <div class="hero-grid">
       <div class="hero-copy">
         <div class="eyebrow-row">
-          <span class="eyebrow" data-i18n="heroEyebrow">公众行程指南 · 2026</span>
-          <span class="live-chip"><span class="live-dot" aria-hidden="true"></span><span data-i18n="checkedChip">全量核对 8 月 6 日 · Tour 与周六精选复核至 8 月 13 日 · 品牌专题复核至 8 月 14 日</span></span>
+          <span class="eyebrow" data-i18n="heroEyebrow">历史存档 · 2026</span>
+          <span class="audit-chip"><span class="audit-dot" aria-hidden="true"></span><span data-i18n="checkedChip">全量核对 8 月 6 日 · Tour 与周六精选复核至 8 月 13 日 · 品牌专题复核至 8 月 14 日</span></span>
         </div>
-        <h1><span data-i18n="heroTitleTop">圆石滩，不只一场车展</span><em data-i18n="heroTitleBottom">早到一周，再迎旗舰主展</em></h1>
-        <p class="hero-lead" data-i18n="heroLead">官方 Monterey Car Week 自 8 月 7 日开场，高峰仍在 13–16 日。这份指南覆盖从免费早场街展到周一返程的完整 11 天：何时、去哪里、值不值得、住哪里、路上多久。</p>
+        <h1><span data-i18n="heroTitleTop">圆石滩，不只一场车展</span><em data-i18n="heroTitleBottom">2026 全程规划，现已存档</em></h1>
+        <p class="hero-lead" data-i18n="heroLead">2026 Monterey Car Week 当届活动从 8 月 7 日延续至周一返程，高峰集中在 13–16 日。这个历史版本原样保留完整 11 天规划：何时、去哪里、值不值得、住哪里、路上多久。</p>
         <div class="hero-actions">
-          <a class="button button-primary" id="hero-primary-cta" href="#schedule" data-hero-intent="schedule-current"><span data-i18n="heroScheduleCta">浏览完整日程</span><span aria-hidden="true">↓</span></a>
-          <a class="button button-ghost" id="hero-secondary-cta" href="#quick-plan" data-hero-intent="quick" data-i18n="seeQuickPlan">先看推荐方案</a>
+          <a class="button button-primary" id="hero-primary-cta" href="#schedule" data-hero-intent="schedule-archive"><span data-i18n="heroArchiveScheduleCta">展开 2026 完整日程</span><span aria-hidden="true">↓</span></a>
+          <a class="button button-ghost" id="hero-secondary-cta" href="#quick-plan" data-hero-intent="quick-archive" data-i18n="reviewQuickPlan">回看 2026 推荐方案</a>
         </div>
         <p class="hero-fineprint" data-i18n="heroFineprint">Kickoff · ACE 藏品 · 慈善街展 · 微型车展 · Tour · 品牌/赛道 · Concours · 返程</p>
       </div>
@@ -121,31 +131,19 @@
     <section id="schedule" class="section-block schedule-section">
       <div class="section-heading">
         <div><span class="section-kicker" data-i18n="scheduleKicker">8.7–8.17 · 筛选日程</span><h2 data-i18n="scheduleTitle">什么时候去哪里，哪些真正值得</h2></div>
-        <p data-i18n="scheduleIntro">时钟按 America/Los_Angeles（太平洋时间）。用下方筛选浏览全部、此刻进行中、今日活动，或按日期、地点、推荐与价格缩小列表；过期日期在原时间位置折叠，同一天按最早开始时间排列。票价和余票会变，购买前请打开每张卡片里的官方来源复核。演示可用 ?demoDate=2026-08-08&amp;demoTime=14:30。</p>
+        <p data-i18n="scheduleIntro">2026 活动窗口已经结束，全部日期按原始连续时间顺序折叠保留；可按日期、地点、推荐与价格回看。同一天仍按最早开始时间排列。价格、余票、道路与外链可能已经变化，本页只作历史参考。</p>
       </div>
 
       <div class="filter-panel" aria-label="Schedule filters">
-        <div class="live-clock-row">
-          <div class="live-clock">
-            <span data-i18n="liveClockLabel">当前时间</span>
-            <strong id="live-clock-value">—</strong>
-          </div>
-          <p id="live-window-note" class="live-window-note" hidden></p>
-        </div>
-        <div class="filter-row" id="live" role="group" aria-label="Live mode"></div>
         <details class="filter-more">
-          <summary data-i18n="liveMoreFilters">更多筛选：日期、地点与价格</summary>
+          <summary data-i18n="archiveFilters">筛选历史日程：日期、地点与价格</summary>
           <div class="filter-more-content">
             <div class="filter-row" id="day-filter" role="group" aria-label="Filter by day"></div>
             <div class="filter-row filter-row-secondary" id="live-area-filter" role="group" aria-label="Place filter"></div>
             <div class="filter-row filter-row-secondary" id="type-filter" role="group" aria-label="Filter by recommendation or price"></div>
           </div>
         </details>
-        <div class="live-actions">
-          <button type="button" class="filter-button" id="live-past-toggle" aria-pressed="false"></button>
-        </div>
         <p id="live-status" class="live-status" role="status" aria-live="polite"></p>
-        <p class="live-hint" data-i18n="liveParsedHint">“此刻”依赖公开时段字符串的近似解析；多场次与开放式结束时间会放宽匹配。</p>
       </div>
       <div id="schedule-results" class="schedule-results"></div>
       <noscript><p class="noscript">请启用 JavaScript 查看可筛选日程。 / Enable JavaScript to view the filterable schedule.</p></noscript>
@@ -342,7 +340,7 @@
         </fieldset>
       </div>
 
-      <p id="parking-map-caveat" class="parking-map-caveat" data-i18n="parkingMapCaveat">这是官方示意图坐标，不是经纬度地图、实时交通或逐车位导航。缩放只放大原图，不表示真实距离或精确入口；开放状态与行驶方向以当天现场为准。</p>
+      <p id="parking-map-caveat" class="parking-map-caveat" data-i18n="parkingMapCaveat">这是当届官方示意图坐标，不是经纬度地图、交通状态图或逐车位导航。缩放只放大原图，不表示真实距离或精确入口；当届开放状态与行驶方向以现场管制为准。</p>
 
       <div class="parking-map-layout">
         <div class="parking-map-shell">
@@ -455,7 +453,7 @@
 
     <section id="stay" class="section-block stay-section temporal-section" data-temporal-section data-through-date="2026-08-17" data-temporal-label-key="temporalStayLabel">
       <div class="section-heading">
-        <div><span class="section-kicker" data-i18n="stayKicker">住宿 · 当前库存快照</span><h2 data-i18n="stayTitle">用房价换时间，还是用通勤换房价</h2></div>
+        <div><span class="section-kicker" data-i18n="stayKicker">住宿 · 2026-08-06 快照</span><h2 data-i18n="stayTitle">用房价换时间，还是用通勤换房价</h2></div>
         <p data-i18n="stayIntro">下列区间不是全年均价，而是同一查询口径下仍可见房源的规划带：2026-08-13 至 08-17、1 间房 / 2 位成人、美元每晚页面标价，查询于 2026-08-06。8 月 7–12 日早场夜房价通常低于高峰四晚，若可早到请单独比价。若可住 San Jose 自家/朋友家，把零房费与每日往返路程、时间并列比较。税费、停车、度假村费与取消条款另算。</p>
       </div>
       <details class="temporal-section-details" data-temporal-details open>
@@ -464,8 +462,8 @@
       <div id="stay-grid" class="stay-grid"></div>
       <div class="price-method">
         <div><span data-i18n="priceMethodLabel">如何读价格</span><strong data-i18n="priceMethodValue">先看四晚总价，再看“每晚”或往返成本</strong></div>
-        <p data-i18n="priceMethodBody">动态平台会混合剩余房型、广告位与不同取消条件。页面将价格作为“现在还剩什么”的快照，不承诺未来可订，也不把最低价当作典型价。San Jose 零房费卡用 OSRM 无拥堵路由 + 活动周缓冲估算往返；油费/电费、停车与疲劳另算。</p>
-        <a href="https://www.hotels.com/Hotel-Search?destination=Monterey%2C%20California%2C%20United%20States%20of%20America&amp;startDate=2026-08-13&amp;endDate=2026-08-17&amp;adults=2&amp;rooms=1" target="_blank" rel="noopener noreferrer" data-i18n="rerunSearch">重新查询当前库存 ↗</a>
+        <p data-i18n="priceMethodBody">动态平台会混合剩余房型、广告位与不同取消条件。页面保留 2026-08-06 核对时可见房源的快照，不代表后续可订性，也不把最低价当作典型价。San Jose 零房费卡用 OSRM 无拥堵路由 + 活动周缓冲估算往返；油费/电费、停车与疲劳另算。</p>
+        <a href="https://www.hotels.com/Hotel-Search?destination=Monterey%2C%20California%2C%20United%20States%20of%20America&amp;startDate=2026-08-13&amp;endDate=2026-08-17&amp;adults=2&amp;rooms=1" target="_blank" rel="noopener noreferrer" data-i18n="rerunSearch">打开原查询口径（历史日期）↗</a>
       </div>
         </div>
       </details>
@@ -474,7 +472,7 @@
     <section id="commute" class="section-block commute-section">
       <div class="section-heading">
         <div><span class="section-kicker" data-i18n="commuteKicker">通勤 · 规划器</span><h2 data-i18n="commuteTitle">平时十几分钟，活动周可能翻倍</h2></div>
-        <p data-i18n="commuteIntro">选择住宿区与主会场，查看普通时段和活动周规划区间。这里是出发预算，不是实时导航；当天仍需查看官方停车说明与 Caltrans 路况。</p>
+        <p data-i18n="commuteIntro">选择住宿区与主会场，回看当届普通时段和活动周驾车规划区间。这是 2026 出发预算的存档，不是导航或后续年份建议。</p>
       </div>
 
       <div class="commute-layout">
@@ -540,7 +538,7 @@
   </footer>
 
   <script src="assets/vendor/leaflet/leaflet.js"></script>
-  <script src="assets/js/data.js?v=a4d6ba5dc0"></script>
-  <script src="assets/js/app.js?v=da7fae8574"></script>
+  <script src="assets/js/data.js?v=aad3898e1d"></script>
+  <script src="assets/js/app.js?v=378c3b1da6"></script>
 </body>
 </html>

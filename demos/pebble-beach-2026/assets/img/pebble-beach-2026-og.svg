@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">2026 Pebble Beach and Monterey Car Week public guide</title>
-  <desc id="desc">A stylized Monterey Peninsula route with Pebble Beach, Monterey, Seaside and Laguna Seca event hubs.</desc>
+  <title id="title">2026 Pebble Beach and Monterey Car Week historical archive</title>
+  <desc id="desc">Historical archive cover for the complete eleven-day Aug 7–17, 2026 public guide, with a stylized Monterey Peninsula route.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#f7f3e9"/>
@@ -37,10 +37,10 @@
   </g>
 
   <g transform="translate(72 72)">
-    <text x="0" y="0" dominant-baseline="hanging" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="17" font-weight="800" letter-spacing="4" fill="#174f43">PUBLIC TRIP GUIDE · 2026</text>
+    <text x="0" y="0" dominant-baseline="hanging" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="17" font-weight="800" letter-spacing="4" fill="#174f43">HISTORICAL ARCHIVE · 2026</text>
     <text x="0" y="76" font-family="Georgia,'Times New Roman',serif" font-size="72" font-weight="500" letter-spacing="-3" fill="#17201e">Pebble Beach</text>
     <text x="0" y="148" font-family="Georgia,'Times New Roman',serif" font-size="54" font-style="italic" letter-spacing="-2" fill="#c5522d">Monterey Car Week</text>
-    <text x="0" y="207" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="24" font-weight="700" fill="#33433f">AUG 13–17</text>
+    <text x="0" y="207" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="24" font-weight="700" fill="#33433f">AUG 7–17 · 11 DAYS</text>
 
     <line x1="0" y1="252" x2="562" y2="252" stroke="#bcc6bf" stroke-width="2"/>
 
@@ -48,7 +48,7 @@
       <g>
         <rect x="0" y="0" width="162" height="92" rx="16" fill="#fffdf7" stroke="#d0d5ce"/>
         <text x="18" y="31" font-size="12" font-weight="800" letter-spacing="1.5" fill="#68756f">WHEN &amp; WHERE</text>
-        <text x="18" y="61" font-size="18" font-weight="700" fill="#17201e">5-day itinerary</text>
+        <text x="18" y="61" font-size="18" font-weight="700" fill="#17201e">11-day itinerary</text>
       </g>
       <g transform="translate(178 0)">
         <rect x="0" y="0" width="162" height="92" rx="16" fill="#fffdf7" stroke="#d0d5ce"/>
@@ -65,7 +65,7 @@
     <g transform="translate(0 448)">
       <rect x="0" y="0" width="322" height="48" rx="24" fill="#174f43"/>
       <circle cx="25" cy="24" r="5" fill="#9fd4c5"/>
-      <text x="42" y="30" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="700" fill="#fffdf7">Bilingual EN / 中文 · light / dark</text>
+      <text x="42" y="30" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="700" fill="#fffdf7">Archived snapshot · not 2027 guidance</text>
     </g>
     <text x="562" y="492" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="800" letter-spacing="4" fill="#174f43">QROST</text>
   </g>

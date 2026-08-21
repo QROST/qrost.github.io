@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_ORIGIN = "https://qrost.github.io/"
+ARCHIVE_ENTRIES = {"demos/pebble-beach-2026/index.html"}
 
 
 def one(pattern: str, html: str, label: str, path: Path) -> str:
@@ -45,21 +46,42 @@ def validate_page(path: Path, expected_url: str) -> None:
 def main() -> int:
     root_index = ROOT / "index.html"
     root_html = root_index.read_text(encoding="utf-8")
-    demo_entries = sorted(
-        set(re.findall(r'href=["\'](demos/[^"\']+/index\.html)["\']', root_html))
+    linked_entries = set(
+        re.findall(r'href=["\'](demos/[^"\']+/index\.html)["\']', root_html)
     )
-    if len(demo_entries) != 12:
-        raise ValueError(f"index.html: expected 12 linked public demos, found {len(demo_entries)}")
+    all_entries = {
+        str(path.relative_to(ROOT))
+        for path in (ROOT / "demos").glob("*/index.html")
+    }
+    current_entries = all_entries - ARCHIVE_ENTRIES
+    if len(current_entries) != 12:
+        raise ValueError(f"repository: expected 12 current public demos, found {len(current_entries)}")
+    if linked_entries != current_entries:
+        missing = sorted(current_entries - linked_entries)
+        unexpected = sorted(linked_entries - current_entries)
+        raise ValueError(
+            "index.html: current demo links drifted; "
+            f"missing={missing or 'none'}, unexpected={unexpected or 'none'}"
+        )
+    if not ARCHIVE_ENTRIES.issubset(all_entries):
+        raise ValueError("repository: expected Pebble Beach 2026 archive is missing")
+    if ARCHIVE_ENTRIES & linked_entries:
+        raise ValueError("index.html: historical archives must not be duplicated as current demo cards")
+    if "demos/pebble-beach-2027/index.html" not in linked_entries:
+        raise ValueError("index.html: current Pebble Beach 2027 planning page is missing")
 
     validate_page(root_index, PUBLIC_ORIGIN)
-    for entry in demo_entries:
+    for entry in sorted(all_entries):
         path = ROOT / entry
         if not path.is_file():
-            raise ValueError(f"index.html: linked public demo is missing: {entry}")
+            raise ValueError(f"public demo is missing: {entry}")
         expected = PUBLIC_ORIGIN + entry.removesuffix("index.html")
         validate_page(path, expected)
 
-    print(f"public metadata: OK ({len(demo_entries)} demos + root)")
+    print(
+        "public metadata: OK "
+        f"({len(current_entries)} current demos + {len(ARCHIVE_ENTRIES)} archive + root)"
+    )
     return 0
 
 

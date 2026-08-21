@@ -105,18 +105,16 @@ if (data) {
   for (const [key, value] of Object.entries(data.ui || {})) checkBilingual(value, `ui.${key}`);
   for (const key of [
     'navPlan', 'navTour', 'navTourArchive', 'navArchive', 'navMenuShort', 'navMenuOpen', 'navMenuClose', 'navBackTop',
-    'tourHeroCta', 'heroScheduleCta', 'heroCurrentScheduleCta', 'heroArchiveScheduleCta', 'seeQuickPlan', 'reviewQuickPlan',
-    'liveMoreFilters', 'liveStatusBrowseFolded', 'liveOutsideWindowBefore', 'liveOutsideWindowAfter', 'pastGroupSummary', 'archiveSummary',
+    'heroArchiveScheduleCta', 'reviewQuickPlan', 'archiveBannerAria', 'archiveFilters', 'archivePastBadge',
+    'archiveFilterStatus', 'pastGroupSummary', 'archiveSummary',
     'temporalPastBadge', 'temporalActiveFoldHint', 'temporalTourLabel', 'temporalParkingLabel', 'temporalBrandLabel',
     'temporalNearbyLabel', 'temporalStayLabel', 'quickNoScript'
   ]) {
     checkBilingual(data.labels?.[key], `labels.${key}`);
   }
-  const expectedHeroActionIds = ['tour', 'current', 'archive'];
-  check(JSON.stringify((data.heroActions || []).map((action) => action.id)) === JSON.stringify(expectedHeroActionIds), 'heroActions must preserve tour → current → archive order');
-  check(data.heroActions?.[0]?.throughDate === '2026-08-13' && data.heroActions?.[0]?.throughTime === '12:30', 'Tour hero action must retire after the approximate-return buffer at 12:30 on Aug 13');
-  check(data.heroActions?.[1]?.throughDate === '2026-08-17' && data.heroActions?.[1]?.throughTime === null, 'current hero action must remain through Aug 17');
-  check(data.heroActions?.[2]?.throughDate === null && data.heroActions?.[2]?.throughTime === null, 'archive hero action must be the terminal fallback');
+  const expectedHeroActionIds = ['archive'];
+  check(JSON.stringify((data.heroActions || []).map((action) => action.id)) === JSON.stringify(expectedHeroActionIds), 'the archived edition must expose only the archive hero action');
+  check(data.heroActions?.[0]?.throughDate === null && data.heroActions?.[0]?.throughTime === null, 'archive hero action must be unconditional');
   for (const [index, action] of (data.heroActions || []).entries()) {
     const label = `heroActions[${index}]`;
     check(action.primary && action.secondary, `${label} must define two actions`);
@@ -127,9 +125,8 @@ if (data) {
       checkBilingual(data.labels?.[item?.labelKey], `${label}.${role}.labelKey`);
     }
   }
-  check(data.heroActions?.[1]?.primary?.intent === 'schedule-current', 'current primary CTA must reset and open the schedule');
-  check(data.heroActions?.[2]?.primary?.intent === 'schedule-archive', 'archive primary CTA must intentionally open the schedule archive');
-  check(data.heroActions?.[2]?.secondary?.intent === 'quick-archive', 'archive secondary CTA must intentionally open the quick-plan archive');
+  check(data.heroActions?.[0]?.primary?.intent === 'schedule-archive', 'archive primary CTA must intentionally open the schedule archive');
+  check(data.heroActions?.[0]?.secondary?.intent === 'quick-archive', 'archive secondary CTA must intentionally open the quick-plan archive');
   for (const key of ['pastGroupSummary', 'archiveSummary']) {
     check(data.labels?.[key]?.zh.includes('{range}') && data.labels?.[key]?.en.includes('{range}'), `labels.${key} must expose the chronological date range`);
     check(data.labels?.[key]?.zh.includes('{count}') && data.labels?.[key]?.en.includes('{count}'), `labels.${key} must retain the result count`);
@@ -552,7 +549,7 @@ if (data) {
       check(!Object.hasOwn(control, 'paths'), `${label} must not contain synthetic geographic paths`);
       checkBilingual(control.note, `${label}.note`);
     }
-    check(JSON.stringify(controls).includes('not live closure'), 'traffic controls must preserve the non-live boundary');
+    check(JSON.stringify(controls).includes('do not represent closure limits at another time'), 'traffic controls must preserve the historical-time boundary');
 
     const diagramPath = path.join(__dirname, '..', parkingMap.diagramAsset);
     check(fs.existsSync(diagramPath), 'vendored official parking SVG is missing');

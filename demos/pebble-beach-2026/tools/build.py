@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh content hashes and validate the Pebble Beach 2026 public guide."""
+"""Refresh content hashes and validate the Pebble Beach 2026 historical archive."""
 
 from __future__ import annotations
 
@@ -75,14 +75,6 @@ def sync_hashes() -> list[str]:
         DEMO_HTML.write_text(demo_text, encoding="utf-8")
         changed.append(str(DEMO_HTML.relative_to(REPO_ROOT)))
 
-    home_text = HOME_HTML.read_text(encoding="utf-8")
-    home_path = REPO_ROOT / HOME_ASSET
-    home_text, count = replace_token(home_text, HOME_ASSET, short_hash(home_path))
-    if count != 1:
-        raise RuntimeError(f"expected one homepage cache token for {HOME_ASSET}, found {count}")
-    if home_text != HOME_HTML.read_text(encoding="utf-8"):
-        HOME_HTML.write_text(home_text, encoding="utf-8")
-        changed.append(str(HOME_HTML.relative_to(REPO_ROOT)))
     return changed
 
 
@@ -130,7 +122,6 @@ def validate() -> list[str]:
             errors.append(f"private ChatGPT conversation URL leaked into {public_name}")
 
     check_tokens(errors, html, DEMO_DIR, DEMO_ASSETS)
-    check_tokens(errors, home, REPO_ROOT, (HOME_ASSET,))
     if "?v=dev" in html:
         errors.append("development cache token remains in demo HTML")
 
@@ -180,10 +171,27 @@ def validate() -> list[str]:
     for item in sorted(required_meta - present_meta):
         errors.append(f"missing metadata: {item[1]}")
 
-    if "demos/pebble-beach-2026/index.html" not in home:
-        errors.append("homepage card for pebble-beach-2026 is missing")
+    if "demos/pebble-beach-2027/index.html" not in home:
+        errors.append("homepage current card for pebble-beach-2027 is missing")
+    if "demos/pebble-beach-2026/index.html" in home:
+        errors.append("homepage must not duplicate the 2026 archive as a current demo")
+    archive_contract = {
+        'class="archive-edition-banner"': "archive edition banner",
+        'data-i18n="archiveBannerLabel"': "archive label",
+        'data-i18n="archiveBannerBody"': "archive boundary",
+        'data-i18n-aria-label="archiveBannerAria"': "bilingual archive-banner accessible label",
+        'href="../pebble-beach-2027/"': "2027 planning-shell link",
+    }
+    for snippet, label in archive_contract.items():
+        if html.count(snippet) != 1:
+            errors.append(f"expected exactly one {label}, found {html.count(snippet)}")
+    if "const ARCHIVE_REFERENCE_DATE = '2026-08-18';" not in app_js:
+        errors.append("archive mode must use a fixed post-event reference date")
+    for forbidden_clock_token in ("demoDate", "demoTime", "URLSearchParams", "new Date(", "setInterval("):
+        if forbidden_clock_token in app_js:
+            errors.append(f"archive mode must not use visitor-time or simulation token: {forbidden_clock_token}")
     tour_contract = {
-        'id="tour-nav-link" href="#tour-0813"': "date-aware Tour navigation anchor",
+        'id="tour-nav-link" class="archive-nav-link" href="#tour-0813"': "archived Tour navigation anchor",
         'id="tour-0813"': "Tour section",
         'id="tour-route"': "Tour route renderer root",
         'id="tour-wave-list"': "Tour wave renderer root",
@@ -211,8 +219,8 @@ def validate() -> list[str]:
             )
     if not re.search(r"function\s+renderDynamicContent\(\)\s*\{\s*renderQuickPlan\(\);\s*renderScheduleFilters\(\);\s*renderSchedule\(\);\s*renderTourMorning\(\);", app_js):
         errors.append("renderDynamicContent must invoke renderTourMorning")
-    if "tourNav.classList.toggle('archive-nav-link', tourPast)" not in app_js or "navTourArchive" not in app_js:
-        errors.append("Tour navigation must retain its chronological position and switch to an archive label only after Aug 13")
+    if "tourNav.classList.add('archive-nav-link')" not in app_js or "const navKey = 'navTourArchive'" not in app_js:
+        errors.append("Tour navigation must retain its chronological position with a permanent archive label")
     parking_map_contract = {
         'href="#parking-traffic"': "parking-map navigation anchor",
         'id="parking-traffic"': "parking-map section",
@@ -418,9 +426,7 @@ def validate() -> list[str]:
     if not re.search(r"if\s*\(!hasHandledInitialHash\)[\s\S]{0,160}revealHashTarget\(true\)", app_js):
         errors.append("language rerenders must not reopen a chapter that the user explicitly folded")
     if not re.search(r"renderTourMorning\(\);\s*renderParkingTraffic\(\);\s*renderBrandHouses\(\);", app_js):
-        errors.append("renderDynamicContent must render Tour, parking and brand content after current plans")
-    if not re.search(r"clock\.dateIso\s*!==\s*lastClockDateIso[\s\S]{0,500}renderBrandHouses\(\);", app_js):
-        errors.append("date-boundary refresh must re-sort ended brand programs without a page reload")
+        errors.append("renderDynamicContent must render Tour, parking and brand content after the archived plans")
 
     section_order = (
         "quick-plan",
@@ -435,7 +441,7 @@ def validate() -> list[str]:
     )
     section_positions = [html.find(f'id="{section_id}"') for section_id in section_order]
     if any(position < 0 for position in section_positions) or section_positions != sorted(section_positions):
-        errors.append("page sections must keep the audited current-first order")
+        errors.append("page sections must keep the audited archive reading order")
 
     nav_match = re.search(r'<div[^>]*\bclass="nav-links"[^>]*>(.*?)</div>', html, re.DOTALL)
     expected_nav_targets = ["quick-plan", "schedule", "tour-0813", "parking-traffic", "brand-houses", "stay", "commute"]
@@ -449,18 +455,18 @@ def validate() -> list[str]:
     if not all(token in demo_css for token in (".icon-button.section-nav-toggle { display: none; }", ".nav-ready .nav-links { display: none; }", ".nav-ready .nav-links.is-open { display: grid; }")):
         errors.append("mobile section navigation must remain usable without JavaScript and compact after initialization")
 
-    if html.count('class="filter-more"') != 1 or html.count('data-i18n="liveMoreFilters"') != 1:
+    if html.count('class="filter-more"') != 1 or html.count('data-i18n="archiveFilters"') != 1:
         errors.append("secondary day/place/price filters must use one compact disclosure")
     if "moreSummary.dataset.activeFilters" not in app_js or ".filter-more > summary.has-active-filters" not in demo_css:
         errors.append("the compact filter disclosure must expose active hidden filters")
     if not re.search(r"\.filter-button\s*\{[^}]*min-height:\s*44px", demo_css, re.DOTALL):
         errors.append("schedule filter buttons must retain a 44px touch target")
     if html.count('id="live-status"') != 1 or 'id="schedule-status"' in html:
-        errors.append("schedule filtering must expose exactly one live status region")
+        errors.append("schedule filtering must expose exactly one accessible status region")
     if len(re.findall(r"function\s+splitChronologicalEntries\(", app_js)) != 1:
         errors.append("chronological split helper must be defined exactly once")
-    if app_js.count("chronologicalFoldMarkup(pastMarkup, current.map") != 2:
-        errors.append("quick plan and schedule must both render the folded past prefix before current/upcoming dates")
+    if app_js.count("chronologicalFoldMarkup(archiveMarkup, later.map") != 2:
+        errors.append("quick plan and schedule must both render the archived prefix before any later dates")
     if app_js.count('data-date-start=') != 2 or app_js.count('data-date-end=') != 2:
         errors.append("both past-date disclosures must expose their chronological range")
     if "sortEventsChronologically(filtered.filter" not in app_js:
@@ -469,17 +475,13 @@ def validate() -> list[str]:
         errors.append("quick-plan detail timelines must keep the same chronological reading direction")
     if 'data-date="${escapeHtml(dateIso)}"' not in app_js or 'data-date="${escapeHtml(day.id)}"' not in app_js:
         errors.append("rendered quick-plan cards and schedule day groups must expose semantic ISO dates")
-    if "pastToggle.hidden = !pastControlRelevant" not in app_js:
-        errors.append("the past-schedule toggle must hide when no aggregate past group is actionable")
     if not all(token in app_js for token in ("state.quickPastOpen", "state.schedulePastOpen", "data-past-group")):
         errors.append("quick-plan and schedule past disclosures must preserve independent user state")
     for stale_focus in ("dayButton.focus()", "typeButton.focus()", "modeButton.focus()", "areaButton.focus()"):
         if stale_focus in app_js:
             errors.append(f"filter rerender must not focus a detached control: {stale_focus}")
-    if app_js.count("focusRenderedFilter(") != 5:
-        errors.append("all four regenerated filter groups must restore focus through the shared helper")
-    if not re.search(r"clock\.dateIso\s*!==\s*lastClockDateIso[\s\S]{0,700}revealHashTarget\(false\)", app_js):
-        errors.append("date-boundary rerenders must reopen an existing deep link without scrolling")
+    if app_js.count("focusRenderedFilter(") != 4:
+        errors.append("all three regenerated archive filter groups must restore focus through the shared helper")
     id_counts: dict[str, int] = {}
     for _, attrs in parser.elements:
         element_id = attrs.get("id")
@@ -498,13 +500,13 @@ def validate() -> list[str]:
     if not hero_primary or not hero_secondary or hero_primary.group(1) == hero_secondary.group(1):
         errors.append("hero fallback CTAs must have stable IDs and distinct chapter destinations")
     if not all(token in app_js for token in (
-        "heroActionForClock(clock)", "DATA.heroActions || []", "action.primary.href !== action.secondary.href",
+        "item.id === 'archive'", "DATA.heroActions || []", "action.primary.href !== action.secondary.href",
         "setHeroAction(primary, action.primary)", "setHeroAction(secondary, action.secondary)",
         "activateHeroIntent(link.getAttribute('data-hero-intent'))", "focusFragmentTarget(link.hash)",
     )):
-        errors.append("hero CTAs must use distinct data-driven phases, explicit intents and destination focus")
+        errors.append("hero CTAs must use the archive action, explicit intents and destination focus")
     if not all(token in app_js for token in (
-        "state.liveMode = 'browse'", "state.day = 'all'", "state.area = 'all'", "state.type = 'all'",
+        "state.day = 'all'", "state.area = 'all'", "state.type = 'all'",
         "state.schedulePastOpen = intent === 'schedule-archive'", "state.quickPastOpen = true",
     )):
         errors.append("hero schedule/archive intents must deliberately reset filters and reveal requested archives")
@@ -525,10 +527,9 @@ def validate() -> list[str]:
     for function_name in ("applyTemporalSections", "updateHeroCtas", "revealHashTarget"):
         if len(re.findall(rf"function\s+{function_name}\([^)]*\)", app_js)) != 1:
             errors.append(f"expected exactly one {function_name} implementation")
-    if "const modeOptions = inWindow ?" not in app_js or "if (!inWindow && state.liveMode !== 'browse') state.liveMode = 'browse'" not in app_js:
-        errors.append("Now and Today controls must disappear outside the Car Week window")
-    if "dayButton.getAttribute('aria-disabled')" in app_js or "aria-disabled=\"true\"" in app_js:
-        errors.append("specific date buttons must remain actionable from Now and Today modes")
+    for forbidden_live_control in ('data-live-mode', 'live-clock-value', 'live-past-toggle'):
+        if forbidden_live_control in html or forbidden_live_control in app_js:
+            errors.append(f"archived schedule must not expose live control: {forbidden_live_control}")
     if not all(token in demo_css for token in (
         "html:not(.nav-ready) .parking-view-tabs", "html:not(.nav-ready) .parking-geographic-map-actions", "html:not(.nav-ready) .parking-map-toolbar",
     )):
@@ -538,10 +539,7 @@ def validate() -> list[str]:
     if "target instanceof HTMLDetailsElement" not in app_js:
         errors.append("deep links to a brand-house disclosure must open the target details element")
     if ".temporal-section.is-past > .section-heading" not in demo_css:
-        errors.append("expired feature headings must compact so they do not distract from current plans")
-    clock_match = re.search(r"function\s+getClock\(\)(.*?)function\s+inCarWeekWindow", app_js, re.DOTALL)
-    if not clock_match or "-07:00" in clock_match.group(1):
-        errors.append("demo clock must interpret Los Angeles wall-clock dates without a fixed UTC offset")
+        errors.append("expired feature headings must compact so they do not dominate the archive")
     for date in range(13, 18):
         if f"2026-08-{date:02d}" not in data_js:
             errors.append(f"data is missing 2026-08-{date:02d}")
@@ -630,7 +628,7 @@ def main() -> int:
         for error in errors:
             print(f"  - {error}", file=sys.stderr)
         return 1
-    print("Pebble Beach 2026 guide validation passed")
+    print("Pebble Beach 2026 historical archive validation passed")
     return 0
 
 
