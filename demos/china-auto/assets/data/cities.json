@@ -54,6 +54,20 @@
         "tsinghua",
         "bit",
         "autohome",
+        "yiche",
+        "dongchedi",
+        "xcar",
+        "youjia",
+        "cheshi",
+        "sohu-auto",
+        "sina-auto",
+        "ifeng-auto",
+        "d1ev",
+        "chedongxi",
+        "diandong",
+        "china-auto-news",
+        "auto-business-review",
+        "auto-fan",
         "arcfox",
         "beijing-hyundai",
         "baic-foton"
@@ -132,12 +146,14 @@
         "sjtu",
         "gasgoo",
         "garage42",
+        "yicai-auto",
         "saic-vw",
         "saic-gm",
         "im-motors",
         "rising-auto",
         "roewe",
-        "mg"
+        "mg",
+        "saic-maxus"
       ],
       "last_verified": "2026-08",
       "confidence": 0.72,
@@ -204,6 +220,7 @@
       "featured_entity_ids": [
         "byd",
         "xchuxing",
+        "tencent-auto",
         "denza",
         "yangwang",
         "fangchengbao",
@@ -937,7 +954,8 @@
         "faw-toyota",
         "volvo-cars-chengdu",
         "geely",
-        "lynk-co"
+        "lynk-co",
+        "nbd-auto"
       ],
       "last_verified": "2026-08",
       "confidence": 0.72,
@@ -959,6 +977,125 @@
         "四川省",
         "成都",
         "蓉"
+      ]
+    },
+    {
+      "id": "hangzhou",
+      "name_zh": "杭州",
+      "name_en": "Hangzhou",
+      "province_zh": "浙江省",
+      "province_en": "Zhejiang",
+      "admin_level": "prefecture",
+      "admin_code": "330100",
+      "lat": 30.2741,
+      "lng": 120.1551,
+      "tier": "core",
+      "summary_zh": "吉利控股、零跑、极氪/领克/银河等民营整车总部与网易汽车所在地。产量在宁波杭州湾等地，总部在杭州。",
+      "summary_en": "HQ city for Geely Holding, Leapmotor, Zeekr/Lynk/Galaxy and NetEase Auto. Plants sit around Ningbo Hangzhou Bay; headquarters are in Hangzhou.",
+      "history_summary_zh": "浙江民营车企把集团总部放在杭州，制造放在宁波、台州、金华等地。用杭州产量代表吉利会把总部和工厂混在一起。",
+      "history_summary_en": "Zhejiang private OEMs keep group HQ in Hangzhou and manufacturing in Ningbo, Taizhou and Jinhua. Booking that output to Hangzhou would mix HQ with plants.",
+      "role_tags": [
+        "headquarters",
+        "auto_software",
+        "auto_media",
+        "rd_design"
+      ],
+      "cluster_ids": [
+        "yangtze-river-delta"
+      ],
+      "districts_zh": [
+        "滨江",
+        "萧山",
+        "余杭"
+      ],
+      "districts_en": [
+        "Binjiang",
+        "Xiaoshan",
+        "Yuhang"
+      ],
+      "featured_entity_ids": [
+        "geely",
+        "leapmotor",
+        "lynk-co",
+        "zeekr",
+        "geely-galaxy",
+        "netease-auto"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72,
+      "aliases": [
+        "hgh",
+        "杭"
+      ],
+      "search_keys": [
+        "h",
+        "hang",
+        "hangzhou",
+        "hgh",
+        "hz",
+        "z",
+        "zhejiang",
+        "zhejiangsheng",
+        "zj",
+        "zjs",
+        "杭",
+        "杭州",
+        "浙江省"
+      ]
+    },
+    {
+      "id": "shenyang",
+      "name_zh": "沈阳",
+      "name_en": "Shenyang",
+      "province_zh": "辽宁省",
+      "province_en": "Liaoning",
+      "admin_level": "prefecture",
+      "admin_code": "210100",
+      "lat": 41.8057,
+      "lng": 123.4315,
+      "tier": "core",
+      "summary_zh": "华晨宝马总部与整车制造所在地，东北乘用车合资枢纽。",
+      "summary_en": "BMW Brilliance headquarters and vehicle manufacturing; the northeast's passenger-car JV hub.",
+      "history_summary_zh": "一汽在长春、华晨宝马在沈阳，是两条并列的东北乘用车主轴，不能把沈阳产量记到长春。",
+      "history_summary_en": "FAW in Changchun and BMW Brilliance in Shenyang are parallel northeast passenger-car axes; Shenyang output is not Changchun's.",
+      "role_tags": [
+        "headquarters",
+        "oem_manufacturing"
+      ],
+      "cluster_ids": [
+        "northeast"
+      ],
+      "districts_zh": [
+        "铁西",
+        "大东",
+        "浑南"
+      ],
+      "districts_en": [
+        "Tiexi",
+        "Dadong",
+        "Hunnan"
+      ],
+      "featured_entity_ids": [
+        "bmw-brilliance"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72,
+      "aliases": [
+        "syang",
+        "沈阳"
+      ],
+      "search_keys": [
+        "l",
+        "liaoning",
+        "liaoningsheng",
+        "ln",
+        "lns",
+        "s",
+        "shenyang",
+        "sy",
+        "syang",
+        "沈阳",
+        "辽宁省"
       ]
     },
     {
@@ -1521,6 +1658,61 @@
         "厦门",
         "福建省",
         "鹭"
+      ]
+    },
+    {
+      "id": "jiaxing",
+      "name_zh": "嘉兴",
+      "name_en": "Jiaxing",
+      "province_zh": "浙江省",
+      "province_en": "Zhejiang",
+      "admin_level": "prefecture",
+      "admin_code": "330400",
+      "lat": 30.7462,
+      "lng": 120.7555,
+      "tier": "specialist",
+      "summary_zh": "哪吒汽车（合众新能源）总部在桐乡。长三角整车总部节点，制造与上海、杭州联动。",
+      "summary_en": "Neta Auto (Hozon) is headquartered in Tongxiang. A Yangtze Delta OEM-HQ node linked to Shanghai and Hangzhou plants.",
+      "history_summary_zh": "合众把集团总部放在嘉兴桐乡，不等于嘉兴产量等于哪吒全国产量。",
+      "history_summary_en": "Hozon putting group HQ in Tongxiang, Jiaxing, does not mean Jiaxing output equals Neta's national volume.",
+      "role_tags": [
+        "headquarters",
+        "oem_manufacturing"
+      ],
+      "cluster_ids": [
+        "yangtze-river-delta"
+      ],
+      "districts_zh": [
+        "桐乡",
+        "秀洲"
+      ],
+      "districts_en": [
+        "Tongxiang",
+        "Xiuzhou"
+      ],
+      "featured_entity_ids": [
+        "neta"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.68,
+      "aliases": [
+        "jx",
+        "桐乡"
+      ],
+      "search_keys": [
+        "j",
+        "jiaxing",
+        "jx",
+        "tongxiang",
+        "tx",
+        "z",
+        "zhejiang",
+        "zhejiangsheng",
+        "zj",
+        "zjs",
+        "嘉兴",
+        "桐乡",
+        "浙江省"
       ]
     }
   ]

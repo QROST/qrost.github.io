@@ -65,6 +65,31 @@ def main() -> int:
     expect(leap, "leapmotor")
     expect(aito, "问界")
     expect(aito, "aito")
+    yiche = by_id(orgs, "yiche")
+    dongchedi = by_id(orgs, "dongchedi")
+    xcar = by_id(orgs, "xcar")
+    expect(yiche, "易车")
+    expect(yiche, "yiche")
+    expect(dongchedi, "懂车帝")
+    expect(dongchedi, "dcd")
+    expect(xcar, "爱卡")
+    hangzhou = by_id(cities, "hangzhou")
+    shenyang = by_id(cities, "shenyang")
+    jiaxing = by_id(cities, "jiaxing")
+    geely = by_id(orgs, "geely")
+    neta = by_id(orgs, "neta")
+    bmw = by_id(orgs, "bmw-brilliance")
+    expect(hangzhou, "杭州")
+    expect(hangzhou, "hangzhou")
+    expect(shenyang, "沈阳")
+    expect(jiaxing, "嘉兴")
+    expect(jiaxing, "桐乡")
+    if geely.get("headquarters_city_id") != "hangzhou":
+        raise AssertionError("geely HQ must be hangzhou")
+    if neta.get("headquarters_city_id") != "jiaxing":
+        raise AssertionError("neta HQ must be jiaxing")
+    if bmw.get("headquarters_city_id") != "shenyang":
+        raise AssertionError("bmw-brilliance HQ must be shenyang")
     print("test_search: OK")
     return 0
 

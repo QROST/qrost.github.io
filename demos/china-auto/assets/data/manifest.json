@@ -3,21 +3,21 @@
   "generated_at": "2026-08-19",
   "last_verified": "2026-08",
   "counts": {
-    "cities": 25,
-    "organizations": 113,
+    "cities": 28,
+    "organizations": 131,
     "facilities": 26,
-    "city_roles": 132,
-    "relations": 111,
+    "city_roles": 158,
+    "relations": 125,
     "clusters": 13,
     "statistics": 10,
-    "media": 5,
+    "media": 23,
     "institutions": 12,
     "sources": 5,
-    "core_cities": 15,
-    "specialist_cities": 10
+    "core_cities": 17,
+    "specialist_cities": 11
   },
-  "notes_zh": "V1：15座核心城 + 10座专业城。产量为地方统计拼合。",
-  "notes_en": "V1: 15 core + 10 specialist cities. Output figures are a local-statistics compilation.",
-  "cache_token": "7cc7f0970f",
-  "built_at": "2026-08-21T00:49:39Z"
+  "notes_zh": "V1：17座核心城 + 11座专业城。产量为地方统计拼合。每家企业必须有总部城市。",
+  "notes_en": "V1: 17 core + 11 specialist cities. Output figures are a local-statistics compilation. Every organization must have a headquarters city.",
+  "cache_token": "879cf4a34d",
+  "built_at": "2026-08-21T01:58:46Z"
 }

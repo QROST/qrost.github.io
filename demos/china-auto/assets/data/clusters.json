@@ -6,23 +6,26 @@
       "name_en": "Yangtze River Delta auto network",
       "city_ids": [
         "shanghai",
+        "hangzhou",
+        "jiaxing",
         "suzhou",
         "changzhou",
         "ningbo",
         "hefei",
         "wuhu"
       ],
-      "summary_zh": "上海承担总部、芯片、软件、国际合作和整车制造；常州具有电池与新能源整车；苏州和宁波拥有汽车电子与零部件；合肥和芜湖承担快速增长的整车生产。完整链还应包含杭州，将在二期补入。",
-      "summary_en": "Shanghai carries HQ, chips, software, international cooperation and vehicle plants; Changzhou batteries and NEVs; Suzhou and Ningbo electronics and parts; Hefei and Wuhu fast-growing vehicle output. Hangzhou joins in phase 2.",
+      "summary_zh": "上海总部与国际窗口；杭州民营整车总部（吉利/零跑/极氪）；嘉兴桐乡哪吒总部；常州电池与新能源整车；苏州宁波零部件；合肥芜湖整车。",
+      "summary_en": "Shanghai HQ and international window; Hangzhou private OEM HQs (Geely/Leapmotor/Zeekr); Jiaxing Tongxiang Neta HQ; Changzhou batteries and NEVs; Suzhou/Ningbo parts; Hefei and Wuhu vehicles.",
       "output_note_zh": "国家发展改革委区域资料将上海软件芯片、常州动力电池和宁波整车制造作为协作案例。",
       "output_note_en": "NDRC regional materials cite Shanghai software/chips, Changzhou batteries and Ningbo vehicle manufacturing as a collaboration case.",
       "search_keys": [
         "s",
         "sh",
-        "shanghaicarrieshqchipssoftwareinternationalcooperationandvehicleplantschangzhoubatteriesandnevssuzhouandningboelectronicsandpartshefeiandwuhufastgrowingvehicleoutputhangzhoujoinsinphase2",
-        "shanghaichengdanzongbuxinpianruanjianguojihezuohezhengchezhizaochangzhoujuyoudianchiyuxinnengyuanzhengchesuzhouheningboyongyouqichedianziyulingbujianhefeihewuhuchengdankuaisuzengzhangdezhengcheshengchanwanzhenglianhaiyingbaohanhangzhoujiangzaierqiburu",
-        "shc",
-        "shcdzbxprjgjhzhzczzczjydcyxnyzcszhnbyyqcdzylbjhfhwhcdkszzdzcscwzlhybhhzjzeqbr",
+        "shanghaihqandinternationalwindowhangzhouprivateoemhqsgeelyleapmotorzeekrjiaxingtongxiangnetahqchangzhoubatteriesandnevssuzhouningbopartshefeiandwuhuvehicles",
+        "shanghaizongbuyuguojichuangkouhangzhouminyingzhengchezongbujililingpaojikejiaxingtongxiangnezhazongbuchangzhoudianchiyuxinnengyuanzhengchesuzhouningbolingbujianhefeiwuhuzhengche",
+        "shz",
+        "shzbygjckhzmyzczbjllpjkjxtxnzzbczdcyxnyzcsznblbjhfwhzc",
+        "shzbygjckhzmyzczbjllpjkxtxnzzbzdcyxnyzcznblbjfwhzc",
         "y",
         "yangtzeriverdelta",
         "yangtzeriverdeltaautonetwork",
@@ -30,7 +33,7 @@
         "zs",
         "zsj",
         "zsjqcwl",
-        "上海承担总部芯片软件国际合作和整车制造常州具有电池与新能源整车苏州和宁波拥有汽车电子与零部件合肥和芜湖承担快速增长的整车生产完整链还应包含杭州将在二期补入",
+        "上海总部与国际窗口杭州民营整车总部吉利零跑极氪嘉兴桐乡哪吒总部常州电池与新能源整车苏州宁波零部件合肥芜湖整车",
         "长三角汽车网络"
       ]
     },
@@ -189,19 +192,20 @@
       "name_zh": "东北一汽枢纽",
       "name_en": "Northeast FAW hub",
       "city_ids": [
-        "changchun"
+        "changchun",
+        "shenyang"
       ],
-      "summary_zh": "长春作为一汽总部与历史核心独立呈现，后续连接沈阳华晨宝马供应网络。",
-      "summary_en": "Changchun is presented as FAW HQ and historical core; Shenyang BMW Brilliance supply joins later.",
+      "summary_zh": "长春一汽总部与历史核心；沈阳华晨宝马总部与整车。两条东北乘用车主轴分开记账。",
+      "summary_en": "Changchun is FAW HQ and historical core; Shenyang is BMW Brilliance HQ and plants. Two northeast passenger-car axes, booked separately.",
       "output_note_zh": null,
       "output_note_en": null,
       "search_keys": [
         "c",
         "cc",
-        "ccz",
-        "cczwyqzbylshxdlcxhxljsyhcbmgywl",
-        "changchunispresentedasfawhqandhistoricalcoreshenyangbmwbrilliancesupplyjoinslater",
-        "changchunzuoweiyiqizongbuyulishihexindulichengxianhouxulianjieshenyanghuachenbaomagongyingwangluo",
+        "ccy",
+        "ccyqzbylshxsyhcbmzbyzcltdbcyczzfkjz",
+        "changchunisfawhqandhistoricalcoreshenyangisbmwbrilliancehqandplantstwonortheastpassengercaraxesbookedseparately",
+        "changchunyiqizongbuyulishihexinshenyanghuachenbaomazongbuyuzhengcheliangtiaodongbeichengyongchezhuzhoufenkaijizhang",
         "db",
         "dby",
         "dbyqsn",
@@ -210,7 +214,7 @@
         "northeast",
         "northeastfawhub",
         "东北一汽枢纽",
-        "长春作为一汽总部与历史核心独立呈现后续连接沈阳华晨宝马供应网络"
+        "长春一汽总部与历史核心沈阳华晨宝马总部与整车两条东北乘用车主轴分开记账"
       ]
     },
     {

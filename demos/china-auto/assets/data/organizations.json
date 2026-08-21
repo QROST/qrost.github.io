@@ -1020,9 +1020,10 @@
     {
       "parent_id": null,
       "founded_year": null,
-      "website": null,
+      "website": "https://www.geely.com/",
       "status": "active",
       "focus_tags": [
+        "headquarters",
         "oem_manufacturing"
       ],
       "aliases": [
@@ -1041,7 +1042,7 @@
       "display_name_zh": "吉利",
       "display_name_en": "Geely",
       "organization_type": "automaker",
-      "headquarters_city_id": null,
+      "headquarters_city_id": "hangzhou",
       "search_keys": [
         "g",
         "geely",
@@ -2948,14 +2949,15 @@
     {
       "parent_id": null,
       "founded_year": null,
-      "website": null,
+      "website": "https://www.42how.com/",
       "status": "active",
       "focus_tags": [
         "auto_media"
       ],
       "aliases": [
         "42号车库",
-        "garage42"
+        "garage42",
+        "42how"
       ],
       "last_verified": "2026-08",
       "confidence": 0.7,
@@ -2971,10 +2973,12 @@
       "organization_type": "media_company",
       "headquarters_city_id": "shanghai",
       "search_keys": [
+        "4",
         "42",
         "42h",
         "42haocheku",
         "42hck",
+        "42how",
         "42号车库",
         "4h",
         "4hc",
@@ -2987,7 +2991,7 @@
     {
       "parent_id": null,
       "founded_year": null,
-      "website": null,
+      "website": "https://www.xchuxing.com/",
       "status": "active",
       "focus_tags": [
         "auto_media"
@@ -3028,7 +3032,8 @@
       ],
       "aliases": [
         "太平洋",
-        "pcauto"
+        "pcauto",
+        "太平洋汽车"
       ],
       "last_verified": "2026-08",
       "confidence": 0.7,
@@ -3053,6 +3058,713 @@
         "tpyqc",
         "太平洋",
         "太平洋汽车"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": 2000,
+      "website": "https://www.yiche.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "易车",
+        "yiche",
+        "bitauto",
+        "易车网"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "yiche",
+      "legal_name_zh": "北京易车信息科技有限公司",
+      "legal_name_en": "Bitauto / Yiche",
+      "display_name_zh": "易车",
+      "display_name_en": "Yiche",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "b",
+        "beijingyichexinxikejiyouxiangongsi",
+        "bitauto",
+        "bitautoyiche",
+        "bj",
+        "bjy",
+        "bjycxxkjyxgs",
+        "y",
+        "yc",
+        "ycw",
+        "yiche",
+        "yichewang",
+        "北京易车信息科技有限公司",
+        "易车",
+        "易车网"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.dongchedi.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "懂车帝",
+        "dongchedi",
+        "dcd"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "dongchedi",
+      "legal_name_zh": "懂车帝",
+      "legal_name_en": "Dongchedi",
+      "display_name_zh": "懂车帝",
+      "display_name_en": "Dongchedi",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "d",
+        "dc",
+        "dcd",
+        "dongchedi",
+        "懂车帝"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.xcar.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "爱卡",
+        "爱卡汽车",
+        "xcar"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "xcar",
+      "legal_name_zh": "爱卡汽车",
+      "legal_name_en": "Xcar",
+      "display_name_zh": "爱卡汽车",
+      "display_name_en": "Xcar",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "aika",
+        "aikaqiche",
+        "ak",
+        "akq",
+        "akqc",
+        "x",
+        "xcar",
+        "爱卡",
+        "爱卡汽车"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.youjia.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "有驾",
+        "youjia",
+        "百度有驾"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "youjia",
+      "legal_name_zh": "有驾",
+      "legal_name_en": "Youjia",
+      "display_name_zh": "有驾",
+      "display_name_en": "Youjia",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "baiduyoujia",
+        "bd",
+        "bdy",
+        "bdyj",
+        "y",
+        "yj",
+        "youjia",
+        "有驾",
+        "百度有驾"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.cheshi.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "网上车市",
+        "cheshi",
+        "车市"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "cheshi",
+      "legal_name_zh": "网上车市",
+      "legal_name_en": "Cheshi",
+      "display_name_zh": "网上车市",
+      "display_name_en": "Cheshi",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "c",
+        "cheshi",
+        "cs",
+        "wangshangcheshi",
+        "ws",
+        "wsc",
+        "wscs",
+        "网上车市",
+        "车市"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://auto.sohu.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "搜狐汽车",
+        "sohu",
+        "搜狐"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "sohu-auto",
+      "legal_name_zh": "搜狐汽车",
+      "legal_name_en": "Sohu Auto",
+      "display_name_zh": "搜狐汽车",
+      "display_name_en": "Sohu Auto",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "s",
+        "sh",
+        "shq",
+        "shqc",
+        "sohu",
+        "sohuauto",
+        "souhu",
+        "souhuqiche",
+        "搜狐",
+        "搜狐汽车"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://auto.sina.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "新浪汽车",
+        "sina",
+        "新浪"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "sina-auto",
+      "legal_name_zh": "新浪汽车",
+      "legal_name_en": "Sina Auto",
+      "display_name_zh": "新浪汽车",
+      "display_name_en": "Sina Auto",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "s",
+        "sina",
+        "sinaauto",
+        "xinlang",
+        "xinlangqiche",
+        "xl",
+        "xlq",
+        "xlqc",
+        "新浪",
+        "新浪汽车"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://auto.ifeng.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "凤凰汽车",
+        "ifeng",
+        "凤凰"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "ifeng-auto",
+      "legal_name_zh": "凤凰汽车",
+      "legal_name_en": "Ifeng Auto",
+      "display_name_zh": "凤凰汽车",
+      "display_name_en": "Ifeng Auto",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "fenghuang",
+        "fenghuangqiche",
+        "fh",
+        "fhq",
+        "fhqc",
+        "i",
+        "ifeng",
+        "ifengauto",
+        "凤凰",
+        "凤凰汽车"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://auto.qq.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "腾讯汽车",
+        "腾讯",
+        "qq汽车"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "tencent-auto",
+      "legal_name_zh": "腾讯汽车",
+      "legal_name_en": "Tencent Auto",
+      "display_name_zh": "腾讯汽车",
+      "display_name_en": "Tencent Auto",
+      "organization_type": "media_company",
+      "headquarters_city_id": "shenzhen",
+      "search_keys": [
+        "c",
+        "qq",
+        "qqc",
+        "qqq",
+        "qqqc",
+        "qqqiche",
+        "qq汽车",
+        "t",
+        "tencentauto",
+        "tengxun",
+        "tengxunqiche",
+        "tx",
+        "txq",
+        "txqc",
+        "腾讯",
+        "腾讯汽车"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://auto.163.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "网易汽车",
+        "网易",
+        "163汽车"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "netease-auto",
+      "legal_name_zh": "网易汽车",
+      "legal_name_en": "NetEase Auto",
+      "display_name_zh": "网易汽车",
+      "display_name_en": "NetEase Auto",
+      "organization_type": "media_company",
+      "headquarters_city_id": "hangzhou",
+      "search_keys": [
+        "16",
+        "163",
+        "163qc",
+        "163qiche",
+        "163汽车",
+        "1q",
+        "1qc",
+        "n",
+        "neteaseauto",
+        "wangyi",
+        "wangyiqiche",
+        "wy",
+        "wyq",
+        "wyqc",
+        "网易",
+        "网易汽车"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.d1ev.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "第一电动",
+        "d1ev",
+        "第一电动网"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "d1ev",
+      "legal_name_zh": "第一电动网",
+      "legal_name_en": "D1EV",
+      "display_name_zh": "第一电动网",
+      "display_name_en": "D1EV",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "d",
+        "d1ev",
+        "diyidiandong",
+        "diyidiandongwang",
+        "dy",
+        "dyd",
+        "dydd",
+        "dyddw",
+        "第一电动",
+        "第一电动网"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.chedongxi.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "车东西",
+        "chedongxi"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "chedongxi",
+      "legal_name_zh": "车东西",
+      "legal_name_en": "CheDongXi",
+      "display_name_zh": "车东西",
+      "display_name_en": "CheDongXi",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "c",
+        "cd",
+        "cdx",
+        "chedongxi",
+        "车东西"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.diandong.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "电动邦",
+        "diandong"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "diandong",
+      "legal_name_zh": "电动邦",
+      "legal_name_en": "Diandong",
+      "display_name_zh": "电动邦",
+      "display_name_en": "Diandong",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "d",
+        "dd",
+        "ddb",
+        "diandong",
+        "diandongbang",
+        "电动邦"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.cnautonews.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "中国汽车报",
+        "中汽报",
+        "cnautonews"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "china-auto-news",
+      "legal_name_zh": "中国汽车报",
+      "legal_name_en": "China Automotive News",
+      "display_name_zh": "中国汽车报",
+      "display_name_en": "China Automotive News",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "c",
+        "chinaautomotivenews",
+        "chinaautonews",
+        "cnautonews",
+        "zg",
+        "zgq",
+        "zgqcb",
+        "zhongguoqichebao",
+        "zhongqibao",
+        "zq",
+        "zqb",
+        "中国汽车报",
+        "中汽报"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "汽车商业评论",
+        "车评"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "auto-business-review",
+      "legal_name_zh": "汽车商业评论",
+      "legal_name_en": "Auto Business Review",
+      "display_name_zh": "汽车商业评论",
+      "display_name_en": "Auto Business Review",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "a",
+        "autobusinessreview",
+        "cheping",
+        "cp",
+        "qc",
+        "qcs",
+        "qcsypl",
+        "qicheshangyepinglun",
+        "汽车商业评论",
+        "车评"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "http://www.autofan.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "汽车之友",
+        "autofan"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "auto-fan",
+      "legal_name_zh": "汽车之友",
+      "legal_name_en": "Auto Fan",
+      "display_name_zh": "汽车之友",
+      "display_name_en": "Auto Fan",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing",
+      "search_keys": [
+        "a",
+        "autofan",
+        "qc",
+        "qcz",
+        "qczy",
+        "qichezhiyou",
+        "汽车之友"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.nbd.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "每经汽车",
+        "每日经济新闻",
+        "每经"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "nbd-auto",
+      "legal_name_zh": "每日经济新闻",
+      "legal_name_en": "National Business Daily",
+      "display_name_zh": "每经汽车",
+      "display_name_en": "NBD Auto",
+      "organization_type": "media_company",
+      "headquarters_city_id": "chengdu",
+      "search_keys": [
+        "meijing",
+        "meijingqiche",
+        "meirijingjixinwen",
+        "mj",
+        "mjq",
+        "mjqc",
+        "mr",
+        "mrj",
+        "mrjjxw",
+        "n",
+        "nationalbusinessdaily",
+        "nbdauto",
+        "每日经济新闻",
+        "每经",
+        "每经汽车"
+      ]
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.yicai.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "aliases": [
+        "第一财经",
+        "一财",
+        "yicai"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "yicai-auto",
+      "legal_name_zh": "第一财经",
+      "legal_name_en": "Yicai",
+      "display_name_zh": "第一财经汽车",
+      "display_name_en": "Yicai Auto",
+      "organization_type": "media_company",
+      "headquarters_city_id": "shanghai",
+      "search_keys": [
+        "diyicaijing",
+        "diyicaijingqiche",
+        "dy",
+        "dyc",
+        "dycj",
+        "dycjqc",
+        "y",
+        "yc",
+        "yicai",
+        "yicaiauto",
+        "一财",
+        "第一财经",
+        "第一财经汽车"
       ]
     },
     {
@@ -4006,7 +4718,7 @@
       "display_name_zh": "领克",
       "display_name_en": "Lynk & Co",
       "organization_type": "brand",
-      "headquarters_city_id": null,
+      "headquarters_city_id": "hangzhou",
       "search_keys": [
         "l",
         "lingke",
@@ -4044,7 +4756,7 @@
       "display_name_zh": "极氪",
       "display_name_en": "Zeekr",
       "organization_type": "brand",
-      "headquarters_city_id": null,
+      "headquarters_city_id": "hangzhou",
       "search_keys": [
         "0",
         "001",
@@ -4083,7 +4795,7 @@
       "display_name_zh": "吉利银河",
       "display_name_en": "Geely Galaxy",
       "organization_type": "brand",
-      "headquarters_city_id": null,
+      "headquarters_city_id": "hangzhou",
       "search_keys": [
         "g",
         "galaxy",
@@ -4411,9 +5123,10 @@
     {
       "parent_id": null,
       "founded_year": null,
-      "website": null,
+      "website": "https://www.leapmotor.com/",
       "status": "active",
       "focus_tags": [
+        "headquarters",
         "oem_manufacturing"
       ],
       "aliases": [
@@ -4433,7 +5146,7 @@
       "display_name_zh": "零跑汽车",
       "display_name_en": "Leapmotor",
       "organization_type": "automaker",
-      "headquarters_city_id": null,
+      "headquarters_city_id": "hangzhou",
       "search_keys": [
         "c",
         "c11",
@@ -4458,6 +5171,7 @@
       "website": null,
       "status": "active",
       "focus_tags": [
+        "headquarters",
         "oem_manufacturing"
       ],
       "aliases": [
@@ -4477,7 +5191,7 @@
       "display_name_zh": "哪吒汽车",
       "display_name_en": "Neta",
       "organization_type": "automaker",
-      "headquarters_city_id": null,
+      "headquarters_city_id": "jiaxing",
       "search_keys": [
         "h",
         "hezhong",
@@ -4503,9 +5217,10 @@
     {
       "parent_id": null,
       "founded_year": null,
-      "website": null,
+      "website": "https://www.bmw-brilliance.cn/",
       "status": "active",
       "focus_tags": [
+        "headquarters",
         "oem_manufacturing"
       ],
       "aliases": [
@@ -4526,7 +5241,7 @@
       "display_name_zh": "华晨宝马",
       "display_name_en": "BMW Brilliance",
       "organization_type": "automaker",
-      "headquarters_city_id": null,
+      "headquarters_city_id": "shenyang",
       "search_keys": [
         "b",
         "baoma",
@@ -4554,6 +5269,7 @@
       "website": null,
       "status": "active",
       "focus_tags": [
+        "headquarters",
         "oem_manufacturing"
       ],
       "aliases": [
@@ -4572,7 +5288,7 @@
       "display_name_zh": "上汽大通",
       "display_name_en": "SAIC Maxus",
       "organization_type": "automaker",
-      "headquarters_city_id": null,
+      "headquarters_city_id": "shanghai",
       "search_keys": [
         "datong",
         "dt",

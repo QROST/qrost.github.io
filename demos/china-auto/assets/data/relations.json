@@ -13,6 +13,30 @@
       ]
     },
     {
+      "id": "hangzhou__belongs_to_cluster__yangtze-river-delta__yangtze-river-delta",
+      "from_id": "hangzhou",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "yangtze-river-delta",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "jiaxing__belongs_to_cluster__yangtze-river-delta__yangtze-river-delta",
+      "from_id": "jiaxing",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "yangtze-river-delta",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
       "id": "suzhou__belongs_to_cluster__yangtze-river-delta__yangtze-river-delta",
       "from_id": "suzhou",
       "relation_type": "belongs_to_cluster",
@@ -219,6 +243,18 @@
     {
       "id": "changchun__belongs_to_cluster__northeast__northeast",
       "from_id": "changchun",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "northeast",
+      "cluster_id": "northeast",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shenyang__belongs_to_cluster__northeast__northeast",
+      "from_id": "shenyang",
       "relation_type": "belongs_to_cluster",
       "to_id": "northeast",
       "cluster_id": "northeast",
@@ -469,6 +505,102 @@
       ]
     },
     {
+      "id": "shanghai__cluster_adjacent__hangzhou__yangtze-river-delta",
+      "from_id": "shanghai",
+      "relation_type": "cluster_adjacent",
+      "to_id": "hangzhou",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "hangzhou__cluster_adjacent__shanghai__yangtze-river-delta",
+      "from_id": "hangzhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "shanghai",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "hangzhou__cluster_adjacent__ningbo__yangtze-river-delta",
+      "from_id": "hangzhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "ningbo",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "ningbo__cluster_adjacent__hangzhou__yangtze-river-delta",
+      "from_id": "ningbo",
+      "relation_type": "cluster_adjacent",
+      "to_id": "hangzhou",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "hangzhou__cluster_adjacent__jiaxing__yangtze-river-delta",
+      "from_id": "hangzhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "jiaxing",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "jiaxing__cluster_adjacent__hangzhou__yangtze-river-delta",
+      "from_id": "jiaxing",
+      "relation_type": "cluster_adjacent",
+      "to_id": "hangzhou",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "jiaxing__cluster_adjacent__shanghai__yangtze-river-delta",
+      "from_id": "jiaxing",
+      "relation_type": "cluster_adjacent",
+      "to_id": "shanghai",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shanghai__cluster_adjacent__jiaxing__yangtze-river-delta",
+      "from_id": "shanghai",
+      "relation_type": "cluster_adjacent",
+      "to_id": "jiaxing",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
       "id": "guangzhou__cluster_adjacent__shenzhen__greater-bay-area",
       "from_id": "guangzhou",
       "relation_type": "cluster_adjacent",
@@ -704,6 +836,42 @@
       "cluster_id": "hubei-axis",
       "description_zh": "产业集群相邻协作",
       "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "changchun__cluster_adjacent__shenyang__northeast",
+      "from_id": "changchun",
+      "relation_type": "cluster_adjacent",
+      "to_id": "shenyang",
+      "cluster_id": "northeast",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shenyang__cluster_adjacent__changchun__northeast",
+      "from_id": "shenyang",
+      "relation_type": "cluster_adjacent",
+      "to_id": "changchun",
+      "cluster_id": "northeast",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "geely__located_in__hangzhou__",
+      "from_id": "geely",
+      "relation_type": "located_in",
+      "to_id": "hangzhou",
+      "cluster_id": null,
+      "description_zh": "集团总部",
+      "description_en": "Group headquarters",
       "source_ids": [
         "src-research-brief-2026-08"
       ]

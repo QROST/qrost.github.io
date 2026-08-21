@@ -46,10 +46,10 @@ def main() -> int:
 
     core = [c for c in cities if c.get("tier") == "core"]
     specialist = [c for c in cities if c.get("tier") == "specialist"]
-    if len(core) != 15:
-        errors.append(f"expected 15 core cities, found {len(core)}")
-    if len(specialist) != 10:
-        errors.append(f"expected 10 specialist cities, found {len(specialist)}")
+    if len(core) != 17:
+        errors.append(f"expected 17 core cities, found {len(core)}")
+    if len(specialist) != 11:
+        errors.append(f"expected 11 specialist cities, found {len(specialist)}")
 
     for c in cities:
         if c.get("tier") not in ENUMS["city_tier"]:
@@ -72,8 +72,10 @@ def main() -> int:
         if o.get("organization_type") not in ENUMS["organization_type"]:
             errors.append(f"org {o['id']}: bad type")
         hq = o.get("headquarters_city_id")
-        if hq and hq not in city_ids:
-            errors.append(f"org {o['id']}: HQ city {hq} not in V1 cities")
+        if not hq:
+            errors.append(f"org {o['id']}: headquarters_city_id required")
+        elif hq not in city_ids:
+            errors.append(f"org {o['id']}: HQ city {hq} not in atlas cities")
         parent = o.get("parent_id")
         if parent and parent not in org_ids:
             errors.append(f"org {o['id']}: parent {parent} missing")
