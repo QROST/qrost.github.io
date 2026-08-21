@@ -123,6 +123,7 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
   .list-scroll { max-height: min(80vh, 52rem); }
 }
 .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 640px; }
+.list-scroll .data-table { min-width: 52rem; }
 .data-table th, .data-table td { padding: 0.5rem 0.7rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
 .list-scroll .data-table th {
   position: sticky; top: 0; z-index: 1;

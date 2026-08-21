@@ -108,6 +108,12 @@
       "compilation",
       "map_or_registry",
       "forum"
-    ]
+    ],
+    "ownership": ["soe", "private", "foreign", "jv", "public", "mixed", "unknown"],
+    "exchange": ["SSE", "SZSE", "HKEX", "NYSE", "NASDAQ", "none"],
+    "powertrain": ["ice", "hev", "phev", "bev", "reev", "fcev"],
+    "segment": ["mass", "premium", "luxury", "commercial", "bus", "truck", "parts", "battery", "software", "education", "media", "testing"],
+    "export_role": ["none", "some", "major", "unknown"],
+    "education_tag": ["985", "211", "double_first_class"]
   }
 }

@@ -7,12 +7,13 @@
   var store = {
     manifest: null,
     cities: [], organizations: [], facilities: [], cityRoles: [], relations: [],
-    clusters: [], statistics: [], media: [], institutions: [], sources: []
+    clusters: [], statistics: [], media: [], institutions: [], sources: [],
+    orgEnrichment: {}
   };
   var cityMap = {}, orgMap = {}, facilityMap = {}, clusterMap = {}, sourceMap = {};
   var rolesByCity = {}, orgsByCity = {}, facilitiesByCity = {}, statsByCity = {};
   var mediaByCity = {}, institutionsByCity = {};
-  var instByOrg = {}, mediaByOrg = {}, childrenByParent = {};
+  var instByOrg = {}, mediaByOrg = {}, childrenByParent = {}, plantCountByOrg = {};
 
   async function fetchJson(path) {
     var sep = path.indexOf('?') === -1 ? '?' : '&';
@@ -30,7 +31,7 @@
     cityMap = {}; orgMap = {}; facilityMap = {}; clusterMap = {}; sourceMap = {};
     rolesByCity = {}; orgsByCity = {}; facilitiesByCity = {}; statsByCity = {};
     mediaByCity = {}; institutionsByCity = {};
-    instByOrg = {}; mediaByOrg = {}; childrenByParent = {};
+    instByOrg = {}; mediaByOrg = {}; childrenByParent = {}; plantCountByOrg = {};
 
     store.cities.forEach(function (c) { cityMap[c.id] = c; });
     store.organizations.forEach(function (o) { orgMap[o.id] = o; });
@@ -54,6 +55,7 @@
     });
     store.facilities.forEach(function (f) {
       (facilitiesByCity[f.city_id] = facilitiesByCity[f.city_id] || []).push(f);
+      if (f.operator_id) plantCountByOrg[f.operator_id] = (plantCountByOrg[f.operator_id] || 0) + 1;
     });
     store.statistics.forEach(function (s) {
       (statsByCity[s.city_id] = statsByCity[s.city_id] || []).push(s);
@@ -68,6 +70,10 @@
       if (i.organization_id) instByOrg[i.organization_id] = i;
     });
     store.organizations.forEach(function (o) {
+      var en = store.orgEnrichment[o.id] || {};
+      o.enrich = en;
+      if (!o.founded_year && en.founded_year) o.founded_year = en.founded_year;
+      if (!o.website && en.website) o.website = en.website;
       if (!o.parent_id) return;
       (childrenByParent[o.parent_id] = childrenByParent[o.parent_id] || []).push(o);
     });
@@ -85,12 +91,16 @@
       ['statistics.json', 'statistics'],
       ['media.json', 'media'],
       ['institutions.json', 'institutions'],
-      ['sources.json', 'sources']
+      ['sources.json', 'sources'],
+      ['org-enrichment.json', 'orgEnrichment']
     ];
     var results = await Promise.all(files.map(function (f) { return fetchJson(BASE + f[0]); }));
     files.forEach(function (f, i) {
       var data = results[i];
       if (f[1] === 'manifest') store.manifest = data;
+      else if (f[1] === 'orgEnrichment') {
+        store.orgEnrichment = (data && data.enrichment) || {};
+      }
       else store[f[1]] = arr(data, f[2] || f[1].replace(/([A-Z])/g, function (m) { return '_' + m.toLowerCase(); }));
     });
     indexAll();
@@ -129,6 +139,7 @@
     institutionForOrg: function (id) { return instByOrg[id] || null; },
     mediaForOrg: function (id) { return mediaByOrg[id] || null; },
     childrenOf: function (id) { return childrenByParent[id] || []; },
+    plantCount: function (id) { return plantCountByOrg[id] || 0; },
     relationsFor: relationsFor,
     get manifest() { return store.manifest; },
     get cities() { return store.cities; },

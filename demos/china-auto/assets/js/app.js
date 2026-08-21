@@ -8,7 +8,7 @@
   var state = {
     map: { dim: 'output', role: '', cluster: '', tier: '', layer: 'cities' },
     cat: { search: '', tier: '', role: '', cluster: '', sort: 'output', dir: -1 },
-    org: { search: '', type: '', sort: 'type', dir: 1 }
+    org: { search: '', type: '', sort: 'type', dir: 1, groups: { identity: true, scale: true, product: true, network: false } }
   };
   var cityModalTab = 'tabOverview';
   var openCityId = null;
@@ -24,6 +24,20 @@
     if (val == null) return '—';
     return (val / 10000).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
   }
+  function fmtMetric(m, kind) {
+    if (!m || m.value == null) return '—';
+    var n = m.value, s;
+    if (kind === 'vehicles') s = I18N.isEn() ? n.toLocaleString() : (fmtWan(n) + '万辆');
+    else if (kind === 'people') s = I18N.isEn() ? n.toLocaleString() : (n >= 10000 ? fmtWan(n) + '万' : String(n));
+    else s = String(n);
+    return m.year ? s + ' <span class="text-faint">(' + m.year + ')</span>' : s;
+  }
+  function dash() { return '<span class="text-faint">—</span>'; }
+  function tinyBadges(vals, group) {
+    if (!vals || !vals.length) return dash();
+    return vals.map(function (v) { return '<span class="badge" style="background:var(--bg-elev)">' + esc(I18N.enumLabel(group, v)) + '</span>'; }).join(' ');
+  }
+  function enrichOf(o) { return (o && o.enrich) || {}; }
   function confBadge(c) {
     if (c == null) return '';
     var cls = c >= 0.8 ? 'badge-grade-A' : c >= 0.5 ? 'badge-grade-B' : 'badge-grade-C';
@@ -193,6 +207,18 @@
       }
       if (k === 'parent') return parentName(a).localeCompare(parentName(b), I18N.isEn() ? 'en' : 'zh') * dir;
       if (k === 'hq') return hqName(a).localeCompare(hqName(b), I18N.isEn() ? 'en' : 'zh') * dir;
+      if (k === 'founded') return ((a.founded_year || 0) - (b.founded_year || 0)) * dir;
+      if (k === 'ownership') return (enrichOf(a).ownership || '').localeCompare(enrichOf(b).ownership || '') * dir;
+      if (k === 'listing') {
+        var la = (enrichOf(a).listing && enrichOf(a).listing.listed) ? 1 : 0;
+        var lb = (enrichOf(b).listing && enrichOf(b).listing.listed) ? 1 : 0;
+        return (la - lb) * dir;
+      }
+      if (k === 'employees') return ((((enrichOf(a).employees || {}).value) || -1) - (((enrichOf(b).employees || {}).value) || -1)) * dir;
+      if (k === 'sales') return ((((enrichOf(a).vehicle_sales || {}).value) || -1) - (((enrichOf(b).vehicle_sales || {}).value) || -1)) * dir;
+      if (k === 'plants') return (D.plantCount(a.id) - D.plantCount(b.id)) * dir;
+      if (k === 'children') return (D.childrenOf(a.id).length - D.childrenOf(b.id).length) * dir;
+      if (k === 'export') return (enrichOf(a).export_role || '').localeCompare(enrichOf(b).export_role || '') * dir;
       return localeName(a, b) * dir;
     });
     return list;
@@ -214,25 +240,86 @@
     $('org-type-chips').innerHTML = html;
   }
 
+  function renderOrgGroupChips() {
+    var groups = [['identity', 'colGroupIdentity'], ['scale', 'colGroupScale'], ['product', 'colGroupProduct'], ['network', 'colGroupNetwork']];
+    $('org-col-groups').innerHTML = groups.map(function (g) {
+      var on = !!state.org.groups[g[0]];
+      return '<button type="button" class="type-chip' + (on ? ' active' : '') + '" data-org-group="' + g[0] + '" aria-pressed="' + (on ? 'true' : 'false') + '">' +
+        I18N.t(g[1]) + '</button>';
+    }).join('');
+  }
+
+  function orgCols() {
+    var g = state.org.groups;
+    var cols = [
+      { key: 'name', label: 'thName', group: 'core' },
+      { key: 'type', label: 'thType', group: 'core' },
+      { key: 'parent', label: 'thParent', group: 'identity' },
+      { key: 'hq', label: 'thHq', group: 'identity' },
+      { key: 'founded', label: 'thFounded', group: 'identity' },
+      { key: 'ownership', label: 'thOwnership', group: 'identity' },
+      { key: 'listing', label: 'thListing', group: 'identity' },
+      { key: 'employees', label: 'thEmployees', group: 'scale' },
+      { key: 'sales', label: 'thSales', group: 'scale' },
+      { key: 'plants', label: 'thPlants', group: 'scale' },
+      { key: 'powertrain', label: 'thPowertrain', group: 'product' },
+      { key: 'segment', label: 'thSegment', group: 'product' },
+      { key: 'export', label: 'thExport', group: 'product' },
+      { key: 'children', label: 'thChildren', group: 'network' }
+    ];
+    return cols.filter(function (c) { return c.group === 'core' || g[c.group]; });
+  }
+
+  function orgCell(o, key) {
+    var en = enrichOf(o);
+    if (key === 'name') return esc(I18N.name(o));
+    if (key === 'type') return '<span class="badge" style="background:var(--bg-elev)">' + esc(I18N.enumLabel('organization_type', o.organization_type)) + '</span>';
+    if (key === 'parent') {
+      var parent = o.parent_id ? D.getOrg(o.parent_id) : null;
+      return parent ? '<button type="button" class="chip-link" data-org-link="' + esc(parent.id) + '">' + esc(I18N.name(parent)) + '</button>' : dash();
+    }
+    if (key === 'hq') {
+      var hq = o.headquarters_city_id ? D.getCity(o.headquarters_city_id) : null;
+      return hq ? '<button type="button" class="chip-link" data-city-link="' + esc(hq.id) + '">' + esc(I18N.name(hq)) + '</button>' : dash();
+    }
+    if (key === 'founded') return o.founded_year || dash();
+    if (key === 'ownership') return en.ownership ? esc(I18N.enumLabel('ownership', en.ownership)) : dash();
+    if (key === 'listing') {
+      var L = en.listing;
+      if (!L || !L.listed) return dash();
+      return esc((L.ticker || '') + (L.exchange ? '.' + L.exchange : ''));
+    }
+    if (key === 'employees') return fmtMetric(en.employees, 'people');
+    if (key === 'sales') return fmtMetric(en.vehicle_sales, 'vehicles');
+    if (key === 'plants') {
+      var n = D.plantCount(o.id);
+      return n ? '<span class="num">' + n + '</span>' : dash();
+    }
+    if (key === 'powertrain') return tinyBadges(en.powertrain, 'powertrain');
+    if (key === 'segment') return tinyBadges(en.segment, 'segment');
+    if (key === 'export') return en.export_role ? esc(I18N.enumLabel('export_role', en.export_role)) : dash();
+    if (key === 'children') {
+      var kids = D.childrenOf(o.id);
+      return kids.length ? String(kids.length) : dash();
+    }
+    return dash();
+  }
+
   function renderOrgs() {
     renderOrgChips();
-    var cols = [['name', 'thName'], ['type', 'thType'], ['parent', 'thParent'], ['hq', 'thHq']];
+    renderOrgGroupChips();
+    var cols = orgCols();
     $('orgs-head').innerHTML = cols.map(function (c) {
-      var arrow = state.org.sort === c[0] ? (state.org.dir > 0 ? ' ▲' : ' ▼') : '';
-      return '<th data-sort="' + c[0] + '">' + I18N.t(c[1]) + arrow + '</th>';
+      var arrow = state.org.sort === c.key ? (state.org.dir > 0 ? ' ▲' : ' ▼') : '';
+      return '<th data-sort="' + c.key + '">' + I18N.t(c.label) + arrow + '</th>';
     }).join('');
     var list = filteredOrgs();
     $('org-count').textContent = list.length + ' / ' + D.organizations.length;
     $('orgs-body').innerHTML = list.map(function (o) {
-      var hq = o.headquarters_city_id ? D.getCity(o.headquarters_city_id) : null;
-      var parent = o.parent_id ? D.getOrg(o.parent_id) : null;
-      return '<tr data-org="' + esc(o.id) + '">' +
-        '<td>' + esc(I18N.name(o)) + '</td>' +
-        '<td><span class="badge" style="background:var(--bg-elev)">' + esc(I18N.enumLabel('organization_type', o.organization_type)) + '</span></td>' +
-        '<td>' + (parent ? '<button type="button" class="chip-link" data-org-link="' + esc(parent.id) + '">' + esc(I18N.name(parent)) + '</button>' : '<span class="text-faint">—</span>') + '</td>' +
-        '<td>' + (hq ? '<button type="button" class="chip-link" data-city-link="' + esc(hq.id) + '">' + esc(I18N.name(hq)) + '</button>' : '<span class="text-faint">—</span>') + '</td>' +
-        '</tr>';
-    }).join('') || '<tr><td colspan="4" class="loading">' + I18N.t('noData') + '</td></tr>';
+      return '<tr data-org="' + esc(o.id) + '">' + cols.map(function (c) {
+        return '<td' + (c.key === 'employees' || c.key === 'sales' || c.key === 'plants' || c.key === 'children' ? ' class="num"' : '') + '>' + orgCell(o, c.key) + '</td>';
+      }).join('') + '</tr>';
+    }).join('') || '<tr><td colspan="' + cols.length + '" class="loading">' + I18N.t('noData') + '</td></tr>';
   }
 
   function renderMethodology() {
@@ -354,6 +441,7 @@
     var kids = D.childrenOf(o.id);
     var inst = D.institutionForOrg(o.id);
     var media = D.mediaForOrg(o.id);
+    var en = enrichOf(o);
     var body = '<dl class="kv">' +
       (o.founded_year ? '<dt>' + I18N.t('founded') + '</dt><dd>' + o.founded_year + '</dd>' : '') +
       (hq ? '<dt>' + I18N.t('hqCity') + '</dt><dd><button type="button" class="chip-link" data-city-link="' + esc(hq.id) + '">' + esc(I18N.name(hq)) + '</button></dd>' : '<dt>' + I18N.t('hqCity') + '</dt><dd class="text-faint">' + I18N.t('hqUnknown') + '</dd>') +
@@ -363,7 +451,15 @@
       }).join(' ') + '</dd>' : '') +
       (o.website ? '<dt>' + I18N.t('website') + '</dt><dd><a href="' + esc(o.website) + '" target="_blank" rel="noopener">' + esc(o.website) + '</a></dd>' : '') +
       (o.status ? '<dt>' + I18N.t('status') + '</dt><dd>' + esc(o.status) + '</dd>' : '') +
+      (en.ownership ? '<dt>' + I18N.t('thOwnership') + '</dt><dd>' + esc(I18N.enumLabel('ownership', en.ownership)) + '</dd>' : '') +
+      (en.listing && en.listing.listed ? '<dt>' + I18N.t('thListing') + '</dt><dd>' + esc((en.listing.ticker || '') + (en.listing.exchange ? ' · ' + en.listing.exchange : '')) + '</dd>' : '') +
+      (en.employees ? '<dt>' + I18N.t('thEmployees') + '</dt><dd>' + fmtMetric(en.employees, 'people') + (en.employees.source_url ? ' <a href="' + esc(en.employees.source_url) + '" target="_blank" rel="noopener">↗</a>' : '') + '</dd>' : '') +
+      (en.vehicle_sales ? '<dt>' + I18N.t('thSales') + '</dt><dd>' + fmtMetric(en.vehicle_sales, 'vehicles') + (en.vehicle_sales.source_url ? ' <a href="' + esc(en.vehicle_sales.source_url) + '" target="_blank" rel="noopener">↗</a>' : '') + '</dd>' : '') +
+      (en.export_role ? '<dt>' + I18N.t('thExport') + '</dt><dd>' + esc(I18N.enumLabel('export_role', en.export_role)) + '</dd>' : '') +
       '</dl>';
+    if (en.powertrain && en.powertrain.length) body += '<h4>' + I18N.t('thPowertrain') + '</h4><p>' + tinyBadges(en.powertrain, 'powertrain') + '</p>';
+    if (en.segment && en.segment.length) body += '<h4>' + I18N.t('thSegment') + '</h4><p>' + tinyBadges(en.segment, 'segment') + '</p>';
+    if (en.education_tags && en.education_tags.length) body += '<h4>' + I18N.t('school') + '</h4><p>' + tinyBadges(en.education_tags, 'education_tag') + '</p>';
     if (inst) {
       body += '<h4>' + I18N.t('college') + '</h4><p>' + esc(I18N.pick(inst.college_zh, inst.college_en) || '—') + '</p>';
       if (inst.strengths_zh || inst.strengths_en) {
@@ -583,6 +679,12 @@
     $('org-type-chips').addEventListener('click', function (e) {
       var b = e.target.closest('[data-org-type]'); if (!b) return;
       state.org.type = b.getAttribute('data-org-type') || '';
+      renderOrgs();
+    });
+    $('org-col-groups').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-org-group]'); if (!b) return;
+      var g = b.getAttribute('data-org-group');
+      state.org.groups[g] = !state.org.groups[g];
       renderOrgs();
     });
     $('orgs-head').addEventListener('click', function (e) {

@@ -86,6 +86,49 @@ def main() -> int:
             if sid not in source_ids:
                 errors.append(f"org {o['id']}: unknown source {sid}")
 
+    enrich_path = DATA / "org-enrichment.json"
+    enrich = {}
+    if enrich_path.exists():
+        blob = json.loads(enrich_path.read_text(encoding="utf-8"))
+        enrich = blob.get("enrichment") if isinstance(blob.get("enrichment"), dict) else blob
+        if not isinstance(enrich, dict):
+            errors.append("org-enrichment.json: expected enrichment object")
+            enrich = {}
+    for eid, row in enrich.items():
+        if eid not in org_ids:
+            errors.append(f"enrich {eid}: unknown org")
+            continue
+        if not isinstance(row, dict):
+            errors.append(f"enrich {eid}: not an object")
+            continue
+        own = row.get("ownership")
+        if own and own not in ENUMS["ownership"]:
+            errors.append(f"enrich {eid}: bad ownership {own}")
+        listing = row.get("listing")
+        if listing:
+            if listing.get("exchange") and listing["exchange"] not in ENUMS["exchange"]:
+                errors.append(f"enrich {eid}: bad exchange")
+        for tag in row.get("powertrain") or []:
+            if tag not in ENUMS["powertrain"]:
+                errors.append(f"enrich {eid}: bad powertrain {tag}")
+        for tag in row.get("segment") or []:
+            if tag not in ENUMS["segment"]:
+                errors.append(f"enrich {eid}: bad segment {tag}")
+        er = row.get("export_role")
+        if er and er not in ENUMS["export_role"]:
+            errors.append(f"enrich {eid}: bad export_role {er}")
+        for tag in row.get("education_tags") or []:
+            if tag not in ENUMS["education_tag"]:
+                errors.append(f"enrich {eid}: bad education_tag {tag}")
+        for field in ("employees", "vehicle_sales"):
+            m = row.get(field)
+            if not m:
+                continue
+            if not isinstance(m, dict) or m.get("value") is None:
+                errors.append(f"enrich {eid}: {field} needs value")
+            elif not m.get("source_url"):
+                errors.append(f"enrich {eid}: {field} needs source_url")
+
     for f in facilities:
         if f.get("operator_id") not in org_ids:
             errors.append(f"facility {f['id']}: operator missing")

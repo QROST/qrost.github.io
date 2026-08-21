@@ -1,0 +1,2376 @@
+{
+  "enrichment": {
+    "baic": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev",
+        "phev"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 97000,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.baicgroup.com.cn/baicgroup/content_file/Social/SocailReport/2026/1/061d35939bab43e090145dcb71058bce.pdf",
+        "note_zh": "北汽集团2024可持续发展报告：员工总数9.7万人",
+        "note_en": "BAIC 2024 sustainability report: 97,000 total employees"
+      },
+      "vehicle_sales": {
+        "value": 1710000,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group",
+        "source_url": "https://www.baicgroup.com.cn/baicgroup/content_file/Social/SocailReport/2026/1/061d35939bab43e090145dcb71058bce.pdf",
+        "note_zh": "北汽集团2024整车销售171万辆",
+        "note_en": "BAIC Group 2024 vehicle sales 1.71 million units"
+      }
+    },
+    "beijing-benz": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "premium",
+        "luxury"
+      ],
+      "powertrain": [
+        "ice",
+        "phev",
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 563056,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "china_local_wholesale",
+        "source_url": "https://group.mercedes-benz.com/dokumente/investoren/berichte/geschaeftsberichte/mercedes-benz/mercedes-benz-factsheet-q4-2024.pdf",
+        "note_zh": "奔驰集团事实表：2024年中国市场本土化产量（批发口径，主要为北京奔驰合资产出；不含进口车零售）",
+        "note_en": "Mercedes-Benz Group factsheet: 2024 China locally produced vehicles (wholesale; primarily BBAC JV output; excludes imports)"
+      }
+    },
+    "xiaomi-auto": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "HKEX",
+        "ticker": "1810"
+      },
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "none",
+      "vehicle_sales": {
+        "value": 136854,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "su7_series_deliveries",
+        "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0318/2025031801045.pdf",
+        "note_zh": "小米集团2024年报：2024年交付136,854辆小米SU7系列。",
+        "note_en": "Xiaomi Group 2024 annual results: 136,854 Xiaomi SU7 Series vehicles delivered in 2024."
+      }
+    },
+    "li-auto": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "NASDAQ",
+        "ticker": "LI"
+      },
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "reev",
+        "bev"
+      ],
+      "export_role": "none",
+      "vehicle_sales": {
+        "value": 500508,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "vehicle_deliveries",
+        "source_url": "https://ir.lixiang.com/news-releases/news-release-details/li-auto-inc-announces-unaudited-fourth-quarter-and-full-year-3",
+        "note_zh": "2024年车辆交付500,508辆。",
+        "note_en": "Vehicle deliveries totaled 500,508 units in 2024."
+      },
+      "employees": {
+        "value": 32248,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://ir.lixiang.com/news-releases/news-release-details/li-auto-inc-announces-unaudited-fourth-quarter-and-full-year-3",
+        "note_zh": "理想汽车2024年报：截至2024-12-31员工32,248人。",
+        "note_en": "Li Auto 2024 results: 32,248 employees as of 31 Dec 2024."
+      }
+    },
+    "baidu": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "NASDAQ",
+        "ticker": "BIDU"
+      },
+      "segment": [
+        "software"
+      ],
+      "powertrain": [],
+      "export_role": "unknown",
+      "employees": {
+        "value": 35900,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312525066199/d853848d20f.htm",
+        "note_zh": "2024 Form 20-F/HKEX年报：截至2024年12月31日全职员工35,900人（集团口径，含Apollo等）。",
+        "note_en": "2024 Form 20-F / HKEX annual report: 35,900 full-time employees as of 31 Dec 2024 (group-wide)."
+      }
+    },
+    "horizon-robotics": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "HKEX",
+        "ticker": "9660"
+      },
+      "segment": [
+        "software"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 2078,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0421/2025042100203.pdf",
+        "note_zh": "2024年报：截至2024年12月31日全职员工2,078人。",
+        "note_en": "2024 annual report: 2,078 full-time employees as of 31 Dec 2024."
+      }
+    },
+    "saic": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "listing": {
+        "listed": true,
+        "exchange": "SSE",
+        "ticker": "600104"
+      },
+      "segment": [
+        "mass",
+        "premium",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev",
+        "phev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 4013023,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group_wholesale",
+        "source_url": "https://www.saicmotor.com/chinese/tzzgx/jbqk/xssj/60528.shtml",
+        "note_zh": "集团整车批发合计；终端交付另计463.9万",
+        "note_en": "Group wholesale; retail deliveries 4.639m separately"
+      },
+      "employees": {
+        "value": 187739,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.saicmotor.com/english/images/investor_relations/annual_report/2025/5/30/A82D5D04C86944B6A245ACFD8A90FB95.pdf",
+        "note_zh": "上汽集团2024年报：在职员工合计187,739人（含主要子公司）",
+        "note_en": "SAIC 2024 annual report: 187,739 employees on active duty (incl. major subsidiaries)"
+      }
+    },
+    "tesla-china": {
+      "last_verified": "2026-08",
+      "ownership": "foreign",
+      "listing": {
+        "listed": true,
+        "exchange": "NASDAQ",
+        "ticker": "TSLA"
+      },
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "major"
+    },
+    "byd": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "SZSE",
+        "ticker": "002594"
+      },
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "bev",
+        "phev",
+        "ice"
+      ],
+      "export_role": "major",
+      "employees": {
+        "value": 968872,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-03-24/8138c744-9637-4877-bf26-d973c51b8c50.PDF",
+        "note_zh": "比亚迪2024年报：报告期末在职员工合计968,872人",
+        "note_en": "BYD 2024 annual report: 968,872 employees on duty at year-end"
+      },
+      "vehicle_sales": {
+        "value": 4272145,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group",
+        "source_url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0324/2025032401124_c.pdf",
+        "note_zh": "集团全年汽车销量4,272,145辆（年报产销快报）",
+        "note_en": "Group vehicle sales 4,272,145 units (annual report production/sales bulletin)"
+      }
+    },
+    "gac": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "listing": {
+        "listed": true,
+        "exchange": "SSE",
+        "ticker": "601238"
+      },
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "bev",
+        "phev"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 86451,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10831478&stockid=601238",
+        "note_zh": "广汽集团2024年报：在职员工86,451人（含合营及联营企业）",
+        "note_en": "GAC 2024 annual report: 86,451 employees (incl. JVs and associates)"
+      },
+      "vehicle_sales": {
+        "value": 2003100,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group",
+        "source_url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10831482&stockid=601238",
+        "note_zh": "本集团全年汽车销量200.31万辆",
+        "note_en": "Group vehicle sales 2.0031 million units"
+      }
+    },
+    "gac-honda": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "hev",
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 470633,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "jv_wholesale",
+        "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0103/2025010301837_c.pdf",
+        "note_zh": "广汽集团2024年12月产销快报：广汽本田本年累计销量（批发）",
+        "note_en": "GAC Group Dec 2024 production/sales bulletin: GAC Honda full-year wholesale sales"
+      }
+    },
+    "gac-toyota": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "hev",
+        "phev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 738000,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "jv_wholesale",
+        "source_url": "https://finance.sina.com.cn/stock/relnews/cn/2025-01-03/doc-inectnsr6117804.shtml",
+        "note_zh": "广汽集团产销快报：广汽丰田2024年批发累计738,000辆（同稿终端零售77.01万辆未采用，与其他合资批发对齐）",
+        "note_en": "GAC bulletin: GAC Toyota 2024 wholesale 738,000 (retail 770,147 in same release not used, to align with other JV wholesale)"
+      }
+    },
+    "dongfeng-nissan": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 631155,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "jv_wholesale",
+        "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0107/2025010701341_c.pdf",
+        "note_zh": "东风汽车集团2024年12月产销快报：东风日产（含英菲尼迪、启辰）本年累计销量（批发）",
+        "note_en": "Dongfeng Motor Group Dec 2024 bulletin: Dongfeng Nissan full-year wholesale (incl. Infiniti & Venucia)"
+      }
+    },
+    "xpeng": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "NYSE",
+        "ticker": "XPEV"
+      },
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 190068,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "smart_ev_deliveries",
+        "source_url": "https://ir.xiaopeng.com/news-releases/news-release-details/xpeng-reports-fourth-quarter-and-fiscal-year-2024-unaudited",
+        "note_zh": "2024年智能电动车交付190,068辆。",
+        "note_en": "Smart EV deliveries reached 190,068 units in 2024."
+      },
+      "employees": {
+        "value": 15364,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312525082021/d859487dex994.pdf",
+        "note_zh": "小鹏汽车2024年报：截至2024-12-31员工15,364人。",
+        "note_en": "XPeng 2024 annual report: 15,364 employees as of 31 Dec 2024."
+      }
+    },
+    "weiride": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "NASDAQ",
+        "ticker": "WRD"
+      },
+      "segment": [
+        "software"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 3093,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1867729/000119312525062519/d921190d20f.htm",
+        "note_zh": "2024 Form 20-F：截至2024年12月31日全球员工3,093人（含180名实习生）。",
+        "note_en": "2024 Form 20-F: 3,093 employees globally as of 31 Dec 2024 (includes 180 interns)."
+      }
+    },
+    "pony-ai": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "NASDAQ",
+        "ticker": "PONY"
+      },
+      "segment": [
+        "software"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 1460,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1969302/000141057825000895/pony-20241231x20f.htm",
+        "note_zh": "2024 Form 20-F：截至2024年12月31日员工1,460人。",
+        "note_en": "2024 Form 20-F: 1,460 employees as of 31 Dec 2024."
+      }
+    },
+    "changan": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "listing": {
+        "listed": true,
+        "exchange": "SZSE",
+        "ticker": "000625"
+      },
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "bev",
+        "phev",
+        "reev"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 55119,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-10/7de33abd-868d-422b-a3bd-65b551e47aa1.PDF",
+        "note_zh": "长安汽车2024年报：报告期末在职员工55,119人",
+        "note_en": "Changan 2024 annual report: 55,119 employees on duty at year-end"
+      },
+      "vehicle_sales": {
+        "value": 2683798,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group",
+        "source_url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-10/7de33abd-868d-422b-a3bd-65b551e47aa1.PDF",
+        "note_zh": "公司2024年汽车销售量2,683,798辆（年报产销量表）",
+        "note_en": "Company 2024 vehicle sales 2,683,798 units (annual report sales table)"
+      }
+    },
+    "seres": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "SSE",
+        "ticker": "601127"
+      },
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev",
+        "reev"
+      ],
+      "export_role": "none",
+      "employees": {
+        "value": 18838,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://cdn-web.seres.cn/uploads/20250401/5cb4a1a9711d4df2daabb14d964625a0.pdf",
+        "note_zh": "赛力斯2024年报：在职员工合计18,838人。",
+        "note_en": "Seres 2024 annual report: 18,838 employees on payroll."
+      },
+      "vehicle_sales": {
+        "value": 426885,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "new_energy_vehicle_sales",
+        "source_url": "https://cdn-web.seres.cn/uploads/20250401/5cb4a1a9711d4df2daabb14d964625a0.pdf",
+        "note_zh": "2024年新能源汽车销量426,885辆（年报产销表）。",
+        "note_en": "New energy vehicle sales of 426,885 units in 2024 (annual report production/sales table)."
+      }
+    },
+    "qianli": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "software"
+      ],
+      "export_role": "unknown",
+      "employees": {
+        "value": 4927,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://notice.10jqka.com.cn/api/pdf/de596dd9c99828d.pdf",
+        "note_zh": "2024年报（千里科技/601777）：报告期末在职员工合计4,927人。",
+        "note_en": "2024 annual report (Qianli Technology, 601777): 4,927 employees at year-end."
+      }
+    },
+    "jac": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "listing": {
+        "listed": true,
+        "exchange": "SSE",
+        "ticker": "600418"
+      },
+      "segment": [
+        "mass",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 21408,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-03-29/1222952043.PDF",
+        "note_zh": "江淮汽车2024年报：在职员工合计21,408人",
+        "note_en": "JAC 2024 annual report: 21,408 employees on active duty"
+      },
+      "vehicle_sales": {
+        "value": 403100,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-03-29/1222952043.PDF",
+        "note_zh": "2024年销售各类整车及底盘40.31万辆",
+        "note_en": "2024 sales of vehicles and chassis 403,100 units"
+      }
+    },
+    "nio": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "NYSE",
+        "ticker": "NIO"
+      },
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 221970,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group_deliveries_nio_onvo",
+        "source_url": "https://ir.nio.com/news-releases/news-release-details/nio-inc-provides-december-fourth-quarter-and-full-year-2024",
+        "note_zh": "NIO+ONVO 2024全年交付221,970辆（公司交付口径）。",
+        "note_en": "NIO+ONVO group deliveries totaled 221,970 vehicles in 2024 (company delivery basis)."
+      },
+      "employees": {
+        "value": 45635,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://links.sgx.com/1.0.0/corporate-announcements/UF4G5TVMR9EB1XUS/883149_NIO%20Inc-Annual%20Report.pdf",
+        "note_zh": "NIO Inc. 2024 Form 20-F：截至2024-12-31全职员工45,635人。",
+        "note_en": "NIO Inc. 2024 Form 20-F: 45,635 full-time employees as of 31 Dec 2024."
+      }
+    },
+    "vw-anhui": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "unknown"
+    },
+    "gotion": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "SZSE",
+        "ticker": "002074"
+      },
+      "segment": [
+        "battery"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 25575,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-04-25/1223284129.PDF",
+        "note_zh": "2024年报：报告期末在职员工合计25,575人。",
+        "note_en": "2024 annual report: 25,575 employees at year-end."
+      }
+    },
+    "chery": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "bev",
+        "phev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 2603916,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group",
+        "source_url": "https://www.cheryholding.com/article/1062.html",
+        "note_zh": "奇瑞控股集团2024年度销量2,603,916辆（控股层面，非单一法人口径）",
+        "note_en": "Chery Holding Group 2024 sales 2,603,916 units (holding group scope, not single legal entity)"
+      }
+    },
+    "geely": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "HKEX",
+        "ticker": "0175"
+      },
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "hev",
+        "phev",
+        "bev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 2176567,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group",
+        "source_url": "https://news.qq.com/rain/a/20250102A037LT00",
+        "note_zh": "吉利汽车控股公布全年总销量（含领克/极氪口径以公司披露为准）",
+        "note_en": "Geely Auto Holdings total 2024 sales as disclosed"
+      }
+    },
+    "faw": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass",
+        "premium",
+        "luxury",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev",
+        "phev"
+      ],
+      "export_role": "some"
+    },
+    "hongqi": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "premium",
+        "luxury"
+      ],
+      "powertrain": [
+        "ice",
+        "bev",
+        "phev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 411777,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://www.cs.com.cn/xwzx/hg/202501/t20250101_6465421.html",
+        "note_zh": "一汽红旗2025-01-01公布：红旗品牌2024年全年销量411777辆。",
+        "note_en": "FAW Hongqi announced on 2025-01-01 that the Hongqi brand sold 411,777 vehicles in 2024."
+      }
+    },
+    "jiefang": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "listing": {
+        "listed": true,
+        "exchange": "SZSE",
+        "ticker": "000800"
+      },
+      "segment": [
+        "truck",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 251100,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-03-29/1222949683.PDF",
+        "note_zh": "一汽解放2024年年报：全年整车销售251100辆（公司披露口径）。",
+        "note_en": "FAW Jiefang 2024 annual report: 251,100 whole vehicles sold (company disclosure)."
+      }
+    },
+    "bestune": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "none",
+      "vehicle_sales": {
+        "value": 150777,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://jl.chinadaily.com.cn/a/202501/02/WS67760d37a310b59111dac099.html",
+        "note_zh": "一汽奔腾2025-01-01公布：2024年销量150777辆。",
+        "note_en": "Bestune announced on 2025-01-01 that it sold 150,777 vehicles in 2024."
+      }
+    },
+    "faw-vw": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "phev",
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 1659107,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "jv_terminal",
+        "source_url": "https://m.bjnews.com.cn/detail/1735726006168347.html",
+        "note_zh": "一汽-大众官方2024年终端整车销售（含奥迪进口车）",
+        "note_en": "FAW-VW official 2024 terminal vehicle sales (incl. imported Audi)"
+      }
+    },
+    "audi-faw-nev": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "premium",
+        "luxury"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "unknown"
+    },
+    "yutong": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "SSE",
+        "ticker": "600066"
+      },
+      "segment": [
+        "bus"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "major",
+      "employees": {
+        "value": 16707,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-04-01/1222974533.PDF",
+        "note_zh": "宇通客车2024年报：在职员工合计16,707人。",
+        "note_en": "Yutong 2024 annual report: 16,707 employees on payroll."
+      },
+      "vehicle_sales": {
+        "value": 46918,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "bus_sales",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-04-01/1222974533.PDF",
+        "note_zh": "2024年客车销售46,918辆。",
+        "note_en": "Bus sales totaled 46,918 units in 2024."
+      }
+    },
+    "zhengzhou-nissan": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "commercial"
+      ],
+      "powertrain": [
+        "ice"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 39902,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "jv_wholesale",
+        "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0107/2025010701341_c.pdf",
+        "note_zh": "东风汽车集团2024年12月产销快报：郑州日产本年累计销量（批发）",
+        "note_en": "Dongfeng Motor Group Dec 2024 bulletin: Zhengzhou Nissan full-year wholesale sales"
+      }
+    },
+    "sgmw": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 1340066,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group_wholesale",
+        "source_url": "https://www.saicmotor.com/chinese/tzzgx/jbqk/xssj/60528.shtml",
+        "note_zh": "上汽集团产销快报中的上汽通用五菱批发",
+        "note_en": "SGMW wholesale in SAIC monthly sales table"
+      }
+    },
+    "dongfeng-liuzhou": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "commercial",
+        "truck"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 118668,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "dongfeng_liuzhou_motor_sales",
+        "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0107/2025010701341_c.pdf",
+        "note_zh": "东风集团2024年12月产销快报：东风柳汽全年销量118,668辆。",
+        "note_en": "Dongfeng Group Dec 2024 bulletin: Dongfeng Liuzhou Motor sold 118,668 units in 2024."
+      }
+    },
+    "guangxi-auto": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "parts",
+        "commercial"
+      ],
+      "export_role": "unknown"
+    },
+    "dongfeng": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "listing": {
+        "listed": true,
+        "exchange": "HKEX",
+        "ticker": "0489"
+      },
+      "segment": [
+        "mass",
+        "premium",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev",
+        "phev"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 116719,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.dfmc.com.cn/pdf/%E4%B8%9C%E9%A3%8E%E9%9B%86%E5%9B%A22024%E5%8F%AF%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B1%95%E6%8A%A5%E5%91%8A.pdf",
+        "note_zh": "东风汽车集团2024可持续发展报告：从业人员总数116,719人",
+        "note_en": "Dongfeng Motor 2024 sustainability report: 116,719 total employees"
+      },
+      "vehicle_sales": {
+        "value": 2481000,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group",
+        "source_url": "https://www.dfmc.com.cn/pdf/%E4%B8%9C%E9%A3%8E%E9%9B%86%E5%9B%A22024%E5%8F%AF%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B1%95%E6%8A%A5%E5%91%8A.pdf",
+        "note_zh": "东风公司全年销售汽车248.1万辆",
+        "note_en": "Dongfeng company annual vehicle sales 2.481 million units"
+      }
+    },
+    "voyah": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev",
+        "phev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 85697,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://www.dfmc.com.cn/news/company/news_20250102_1518.html",
+        "note_zh": "岚图汽车2025-01-02公布：2024年全年累计交付85697辆。",
+        "note_en": "Voyah announced on 2025-01-02 that it delivered 85,697 vehicles in 2024."
+      }
+    },
+    "mengshi": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "luxury",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "none"
+    },
+    "aeolus": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "none"
+    },
+    "faw-toyota": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "hev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 800199,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "jv_sales",
+        "source_url": "https://finance.sina.com.cn/tech/shenji/2025-01-01/doc-inecmnky9793947.shtml",
+        "note_zh": "一汽丰田2025年1月1日发布：2024年新车销售800,199台",
+        "note_en": "FAW Toyota release Jan 1 2025: 2024 new vehicle sales 800,199 units"
+      }
+    },
+    "gwm": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "HKEX",
+        "ticker": "2333"
+      },
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "phev",
+        "hev",
+        "bev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 1233292,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group",
+        "source_url": "https://www.gwm.com.cn/news/3403600.html",
+        "note_zh": "长城汽车官方2024年12月销量新闻：全年销售新车1,233,292辆",
+        "note_en": "GWM official Dec 2024 sales release: 1,233,292 new vehicles sold in 2024"
+      },
+      "employees": {
+        "value": 84915,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://dataclouds.cninfo.com.cn/shgonggao/2025/2025-03-29/ccc506380be011f0ad59fa163e957f7a.pdf",
+        "note_zh": "长城汽车2024年报：截至2024-12-31雇用雇员84,915名",
+        "note_en": "GWM 2024 annual report: 84,915 employees as of 2024-12-31"
+      }
+    },
+    "volvo-cars-chengdu": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "premium",
+        "luxury"
+      ],
+      "powertrain": [
+        "ice",
+        "phev",
+        "bev"
+      ],
+      "export_role": "major"
+    },
+    "catl": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "SZSE",
+        "ticker": "300750"
+      },
+      "segment": [
+        "battery"
+      ],
+      "export_role": "major",
+      "employees": {
+        "value": 131988,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-03-14/60f3502e-72d6-4b20-9f9f-026c73a57c83.PDF",
+        "note_zh": "2024年报：报告期末在职员工合计131,988人。",
+        "note_en": "2024 annual report: 131,988 employees at year-end."
+      }
+    },
+    "svolt": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "battery"
+      ],
+      "export_role": "some"
+    },
+    "calb": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "HKEX",
+        "ticker": "3931"
+      },
+      "segment": [
+        "battery"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 10534,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0429/2025042905129_c.pdf",
+        "note_zh": "2024年报：截至2024年12月31日本集团员工10,534人。",
+        "note_en": "2024 annual report: 10,534 group employees as of 31 Dec 2024."
+      }
+    },
+    "desay-sv": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "SZSE",
+        "ticker": "002920"
+      },
+      "segment": [
+        "parts"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 9404,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-03-15/1222806371.PDF",
+        "note_zh": "2024年报：报告期末在职员工合计9,404人。",
+        "note_en": "2024 annual report: 9,404 employees at year-end."
+      }
+    },
+    "holosonics": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "SZSE",
+        "ticker": "002906"
+      },
+      "segment": [
+        "parts"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 7886,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-03-29/1222945028.PDF",
+        "note_zh": "2024年报（华阳集团/002906）：报告期末在职员工合计7,886人。",
+        "note_en": "2024 annual report (Foryou/HuaYang, 002906): 7,886 employees at year-end."
+      }
+    },
+    "eve-energy": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "SZSE",
+        "ticker": "300014"
+      },
+      "segment": [
+        "battery"
+      ],
+      "export_role": "major",
+      "employees": {
+        "value": 29994,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://pdf.dfcfw.com/pdf/H2_AN202504171657994689_1.pdf",
+        "note_zh": "2024年报：报告期末在职员工合计29,994人。",
+        "note_en": "2024 annual report: 29,994 employees at year-end."
+      }
+    },
+    "joyson": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "SSE",
+        "ticker": "600699"
+      },
+      "segment": [
+        "parts"
+      ],
+      "export_role": "major",
+      "employees": {
+        "value": 47789,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-03-28/1222927138.PDF",
+        "note_zh": "2024年报：报告期末在职员工合计47,789人（含香山股份并表）。",
+        "note_en": "2024 annual report: 47,789 employees at year-end (includes Xiangshan consolidation)."
+      }
+    },
+    "tuopu": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "SSE",
+        "ticker": "601689"
+      },
+      "segment": [
+        "parts"
+      ],
+      "export_role": "major",
+      "employees": {
+        "value": 22697,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://file.finance.qq.com/finance/hs/pdf/2025/04/24/1223245414.PDF",
+        "note_zh": "2024年报：报告期末在职员工合计22,697人。",
+        "note_en": "2024 annual report: 22,697 employees at year-end."
+      }
+    },
+    "minth": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "HKEX",
+        "ticker": "0425"
+      },
+      "segment": [
+        "parts"
+      ],
+      "export_role": "major",
+      "employees": {
+        "value": 25663,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://cre8ir.com/static/pdf/00425/5042/2025042800170_c.pdf",
+        "note_zh": "2024年报：截至2024年12月31日本集团共有25,663名雇员。",
+        "note_en": "2024 annual report: 25,663 group employees as of 31 Dec 2024."
+      }
+    },
+    "huaxiang": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "parts"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 21860,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-04-26/1223313818.PDF",
+        "note_zh": "2024年报（宁波华翔/002048）：报告期末在职员工合计21,860人。",
+        "note_en": "2024 annual report (Ningbo Huaxiang, 002048): 21,860 employees at year-end."
+      }
+    },
+    "sinotruk": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "listing": {
+        "listed": true,
+        "exchange": "HKEX",
+        "ticker": "3808"
+      },
+      "segment": [
+        "truck",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "major"
+    },
+    "king-long": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "listing": {
+        "listed": true,
+        "exchange": "SSE",
+        "ticker": "600686"
+      },
+      "segment": [
+        "bus"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "major"
+    },
+    "golden-dragon": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "bus"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "major"
+    },
+    "catarc": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "testing"
+      ],
+      "export_role": "none"
+    },
+    "caeri": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "listing": {
+        "listed": true,
+        "exchange": "SSE",
+        "ticker": "601965"
+      },
+      "segment": [
+        "testing"
+      ],
+      "export_role": "none",
+      "employees": {
+        "value": 3415,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-04-26/1223305545.PDF",
+        "note_zh": "2024年报（中国汽研/601965）：报告期末在职员工合计3,415人。",
+        "note_en": "2024 annual report (CAERI, 601965): 3,415 employees at year-end."
+      }
+    },
+    "tsinghua": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "985",
+        "211",
+        "double_first_class"
+      ],
+      "employees": {
+        "value": 17382,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.tsinghua.edu.cn/xxgk.htm",
+        "note_zh": "学校概况统计资料：教职工17382人；在学学生63132人（学生非雇员口径）",
+        "note_en": "Overview stats: 17,382 staff; 63,132 enrolled students (students excluded from headcount)"
+      }
+    },
+    "bit": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "985",
+        "211",
+        "double_first_class"
+      ],
+      "employees": {
+        "value": 6041,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.bit.edu.cn/gbxxgk/",
+        "note_zh": "校务公开数据发布：教职工6041人；全日制在校学生38002人",
+        "note_en": "Disclosure dashboard: 6,041 staff; 38,002 full-time enrolled students"
+      }
+    },
+    "tongji": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "985",
+        "211",
+        "double_first_class"
+      ],
+      "employees": {
+        "value": 5579,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.tongji.edu.cn/xxgk1/tjgl.htm",
+        "note_zh": "统计概览：教职员工5579人；全日制在校生41575人",
+        "note_en": "Statistics overview: 5,579 faculty and staff; 41,575 full-time enrolled students"
+      }
+    },
+    "sjtu": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "985",
+        "211",
+        "double_first_class"
+      ],
+      "employees": {
+        "value": 11620,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.sjtu.edu.cn/xxjj/",
+        "note_zh": "学校简介：教职工11620人（含专任教师4257人）；2024-09-30全日制在校生50494人",
+        "note_en": "About page: 11,620 employees (incl. 4,257 full-time faculty); 50,494 full-time students as of 2024-09-30"
+      }
+    },
+    "jlu": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "985",
+        "211",
+        "double_first_class"
+      ],
+      "employees": {
+        "value": 6323,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://gongkai.jlu.edu.cn/info/1059/9400.htm",
+        "note_zh": "2023-2024学年信息公开：教师6323人（校本部4650、附属医院1673）；在籍学生76253人",
+        "note_en": "2023-2024 disclosure: 6,323 teachers (4,650 main campus, 1,673 affiliated hospitals); 76,253 enrolled students"
+      }
+    },
+    "whut": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "211",
+        "double_first_class"
+      ],
+      "employees": {
+        "value": 5158,
+        "year": 2025,
+        "unit": "people",
+        "source_url": "http://xxgk.whut.edu.cn/jbxx/xxgk/tjsj/202512/t20251229_623740.shtml",
+        "note_zh": "学校基本信息统计（截至2025年9月）：教职工5158人；普通本科生37544、硕士20462、博士4671、留学生1075",
+        "note_en": "Basic stats as of Sep 2025: 5,158 employees; undergrad 37,544, master's 20,462, doctoral 4,671, intl 1,075"
+      }
+    },
+    "hfut": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "211",
+        "double_first_class"
+      ],
+      "employees": {
+        "value": 2420,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://xxgk.hfut.edu.cn/2014/1215/c4768a82687/page.htm",
+        "note_zh": "教师数量及结构（截至2024年9月）：专任教师2420人；官网概况称在校本科生3.3万余人、硕士1.4万余人、博士0.3万余人",
+        "note_en": "Faculty structure as of Sep 2024: 2,420 full-time faculty; overview cites ~33k undergrad, ~14k master's, ~3k doctoral students"
+      }
+    },
+    "changan-univ": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "211",
+        "double_first_class"
+      ],
+      "employees": {
+        "value": 2303,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://jpzx.chd.edu.cn/6482/list.htm",
+        "note_zh": "2023-2024学年本科教学质量报告：专任教师2303人；全日制在校生38564人（本科生25414）",
+        "note_en": "2023-2024 UG quality report: 2,303 full-time faculty; 38,564 full-time students (25,414 undergrad)"
+      }
+    },
+    "hnu": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "985",
+        "211",
+        "double_first_class"
+      ],
+      "employees": {
+        "value": 4265,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://xxgk.hnu.edu.cn/info/1079/4838.htm",
+        "note_zh": "教师数量及结构（截至2024年9月）：教职工4265人；2025-09-30全日制在校生41557人",
+        "note_en": "Faculty stats as of Sep 2024: 4,265 employees; 41,557 full-time students as of 2025-09-30"
+      }
+    },
+    "scut": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "985",
+        "211",
+        "double_first_class"
+      ],
+      "employees": {
+        "value": 4409,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://xxgk.scut.edu.cn/2025/0417/c132a48110/page.htm",
+        "note_zh": "2024年综合办学条件数据统计（截至2024年初）：教职工4409人；在校生合计56044人",
+        "note_en": "2024 comprehensive stats (early 2024): 4,409 employees; 56,044 total enrolled students"
+      }
+    },
+    "cqu": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [
+        "985",
+        "211",
+        "double_first_class"
+      ]
+    },
+    "cqut": {
+      "last_verified": "2026-08",
+      "ownership": "public",
+      "segment": [
+        "education"
+      ],
+      "education_tags": [],
+      "employees": {
+        "value": 2048,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://xxgk.cqut.edu.cn/info/1158/3835.htm",
+        "note_zh": "2023-2024学年本科教学质量报告（2024-12-06）：专任教师2048人；全日制在校生31974人",
+        "note_en": "2023-2024 UG quality report (2024-12-06): 2,048 full-time faculty; 31,974 full-time students"
+      }
+    },
+    "autohome": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "NYSE",
+        "ticker": "ATHM"
+      },
+      "segment": [
+        "media"
+      ],
+      "export_role": "none",
+      "employees": {
+        "value": 4415,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1527636/000119312525030030/d916532dex993.htm",
+        "note_zh": "2024 Form 20-F：截至2024-12-31雇员4415人（含TTP Car 1332人）",
+        "note_en": "2024 Form 20-F: 4,415 employees as of 2024-12-31 (incl. 1,332 from TTP Car)"
+      }
+    },
+    "gasgoo": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "media"
+      ],
+      "export_role": "none"
+    },
+    "garage42": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "media"
+      ],
+      "export_role": "none"
+    },
+    "xchuxing": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "media"
+      ],
+      "export_role": "none"
+    },
+    "pcauto": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": false,
+        "exchange": "none",
+        "ticker": null
+      },
+      "segment": [
+        "media"
+      ],
+      "export_role": "none",
+      "employees": {
+        "value": 733,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0331/2025033100486_c.pdf",
+        "note_zh": "太平洋网络2024年报：集团733名雇员（含太平洋汽车网、电脑网及其他门户，非汽车网单独口径）",
+        "note_en": "Pacific Network 2024 annual report: 733 group employees (PCauto plus other portals; not PCauto-only)"
+      }
+    },
+    "gac-aion": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 374884,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10693131&stockid=601238",
+        "note_zh": "广汽集团2024年12月产销快报：广汽埃安2024年累计销量374884辆。",
+        "note_en": "GAC Group Dec 2024 production/sales bulletin: GAC Aion cumulative sales of 374,884 in 2024."
+      }
+    },
+    "saic-vw": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "phev",
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 1148091,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "jv_wholesale",
+        "source_url": "https://www.saicmotor.com/chinese/tzzgx/jbqk/xssj/60528.shtml",
+        "note_zh": "上汽集团2024年整车销售数据：上汽大众本年累计批发",
+        "note_en": "SAIC Group 2024 sales table: SAIC Volkswagen full-year wholesale"
+      }
+    },
+    "baic-foton": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "listing": {
+        "listed": true,
+        "exchange": "SSE",
+        "ticker": "600166"
+      },
+      "segment": [
+        "truck",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 20119,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-04-26/1223327299.PDF",
+        "note_zh": "北汽福田2024年报：在职员工合计20,119人。",
+        "note_en": "BAIC Foton 2024 annual report: 20,119 employees on payroll."
+      },
+      "vehicle_sales": {
+        "value": 614113,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "group_sales_including_foton_daimler",
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-04-26/1223327299.PDF",
+        "note_zh": "2024年销量614,113辆（含福田戴姆勒）。",
+        "note_en": "2024 sales of 614,113 vehicles (including Foton Daimler)."
+      }
+    },
+    "dongfeng-cv": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "truck",
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 105786,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "dongfeng_commercial_vehicle_company_sales",
+        "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0107/2025010701341_c.pdf",
+        "note_zh": "东风集团2024年12月产销快报：东风商用车公司全年销量105,786辆。",
+        "note_en": "Dongfeng Group Dec 2024 production/sales bulletin: Dongfeng CV Co. sold 105,786 units in 2024."
+      }
+    },
+    "arcfox": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "none",
+      "vehicle_sales": {
+        "value": 81017,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://finance.sina.com.cn/jjxw/2025-01-03/doc-inecsrns9377589.shtml",
+        "note_zh": "北汽新能源2025-01-01公布：极狐品牌2024年累计销量81017辆。",
+        "note_en": "BAIC NEV announced on 2025-01-01 that the Arcfox brand sold 81,017 vehicles in 2024."
+      }
+    },
+    "beijing-hyundai": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "hev",
+        "bev"
+      ],
+      "export_role": "some"
+    },
+    "saic-gm": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass",
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "phev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 673007,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "jv_terminal",
+        "source_url": "https://finance.sina.com.cn/jjxw/2025-01-01/doc-inecnpwt0728295.shtml",
+        "note_zh": "上汽通用汽车2024年1月1日销量战报：全年累计终端销量（含出口）",
+        "note_en": "SAIC-GM Jan 1 2025 sales release: 2024 full-year terminal sales (incl. exports)"
+      }
+    },
+    "im-motors": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "none",
+      "vehicle_sales": {
+        "value": 65503,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://www.saicmotor.com/chinese/tzzgx/jbqk/xssj/60528.shtml",
+        "note_zh": "上汽集团2024年整车销售数据：智己汽车2024年累计销量65,503辆。",
+        "note_en": "SAIC Motor 2024 sales data: IM Motors cumulative sales of 65,503 in 2024."
+      }
+    },
+    "rising-auto": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "none"
+    },
+    "roewe": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "bev",
+        "phev"
+      ],
+      "export_role": "some"
+    },
+    "mg": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "bev",
+        "phev"
+      ],
+      "export_role": "major"
+    },
+    "denza": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev",
+        "phev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 126035,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://www.bitauto.com/news/100397345258.html",
+        "note_zh": "腾势品牌官方2025-01-02宣布：2024年累计销量126035辆。",
+        "note_en": "Denza brand officially announced on 2025-01-02 cumulative sales of 126,035 in 2024."
+      }
+    },
+    "yangwang": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "luxury"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "none"
+    },
+    "fangchengbao": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "phev",
+        "bev"
+      ],
+      "export_role": "none",
+      "vehicle_sales": {
+        "value": 56388,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://finance.sina.com.cn/stock/relnews/hk/2025-01-18/doc-inefmezw1568514.shtml",
+        "note_zh": "方程豹汽车2025-01-18宣布：2024年全年销量56388台。",
+        "note_en": "Fangchengbao announced on 2025-01-18 that it sold 56,388 vehicles in 2024."
+      }
+    },
+    "huawei-car": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": false,
+        "exchange": "none",
+        "ticker": null
+      },
+      "segment": [
+        "software"
+      ],
+      "export_role": "some"
+    },
+    "gac-trumpchi": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "phev",
+        "hev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 414591,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10693131&stockid=601238",
+        "note_zh": "广汽集团2024年12月产销快报：广汽传祺2024年累计销量414591辆。",
+        "note_en": "GAC Group Dec 2024 production/sales bulletin: GAC Trumpchi cumulative sales of 414,591 in 2024."
+      }
+    },
+    "hyptec": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "none"
+    },
+    "avatr": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "none",
+      "vehicle_sales": {
+        "value": 73606,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://finance.sina.com.cn/tech/roll/2025-01-02/doc-inecmstc1153237.shtml",
+        "note_zh": "阿维塔科技2025-01-01宣布：2024年销量73606辆。",
+        "note_en": "Avatr announced on 2025-01-01 that it sold 73,606 vehicles in 2024."
+      }
+    },
+    "deepal": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "bev",
+        "reev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 243894,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://news.qq.com/rain/a/20250101A058XQ00",
+        "note_zh": "深蓝汽车2025-01-01公布：2024年共计交付243894台。",
+        "note_en": "Deepal announced on 2025-01-01 that it delivered 243,894 vehicles in 2024."
+      }
+    },
+    "aito": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev",
+        "reev"
+      ],
+      "export_role": "none"
+    },
+    "dongfeng-honda": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "hev",
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 392032,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "jv_terminal",
+        "source_url": "https://auto.ifeng.com/c/8g0S2xVlXjp",
+        "note_zh": "东风本田官方2024年成绩单：国内终端销量392,032辆（另出口21,799辆未计入）",
+        "note_en": "Dongfeng Honda official 2024 results: China domestic terminal 392,032 (exports 21,799 excluded)"
+      }
+    },
+    "lotus": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "NASDAQ",
+        "ticker": "LOT"
+      },
+      "segment": [
+        "luxury"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 12134,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://ir.group-lotus.com/news-releases/news-release-details/lotus-technology-reports-unaudited-fourth-quarter-and-full-0",
+        "note_zh": "Lotus Technology 2024年报：全球交付12134辆（公司披露全球口径）。",
+        "note_en": "Lotus Technology 2024 results: 12,134 global deliveries (company global disclosure)."
+      }
+    },
+    "lynk-co": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "hev",
+        "phev",
+        "bev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 285441,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://newsroom.lynkco.com/en/2025/lynkco-honors-exceptional-global-achievements-in-2024",
+        "note_zh": "领克2025-01-01公布：2024年全球销量285441辆。",
+        "note_en": "Lynk & Co announced on 2025-01-01 worldwide sales of 285,441 in 2024."
+      }
+    },
+    "zeekr": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "NYSE",
+        "ticker": "ZK"
+      },
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 222123,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://auto.cri.cn/chinanews/20250102/72502c0c-e659-9235-d1f1-fc1069b01bb6.html",
+        "note_zh": "极氪智能科技2025-01-01公布：2024年全年交付222123台。",
+        "note_en": "Zeekr announced on 2025-01-01 that it delivered 222,123 vehicles in 2024."
+      }
+    },
+    "geely-galaxy": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "bev",
+        "phev"
+      ],
+      "export_role": "none",
+      "vehicle_sales": {
+        "value": 494440,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://auto.sina.cn/news/2025-01-01/detail-inecnuep1162070.d.html",
+        "note_zh": "吉利汽车集团2025-01-01销量通报：吉利银河2024全年总销量494440辆。",
+        "note_en": "Geely Auto Group sales release on 2025-01-01: Geely Galaxy sold 494,440 in 2024."
+      }
+    },
+    "wuling": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 1271380,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://www.rmlt.com.cn/2025/0109/721144.shtml",
+        "note_zh": "上汽通用五菱官方2024年销量通报：五菱红标590439辆+五菱银标680941辆，合计1271380辆。",
+        "note_en": "SGMW 2024 sales release: Wuling Red Badge 590,439 + Wuling Silver Badge 680,941 = 1,271,380."
+      }
+    },
+    "baojun": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "none",
+      "vehicle_sales": {
+        "value": 43647,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://www.rmlt.com.cn/2025/0109/721144.shtml",
+        "note_zh": "上汽通用五菱官方2024年销量通报：宝骏品牌2024年销售43647辆。",
+        "note_en": "SGMW 2024 sales release: Baojun brand sold 43,647 vehicles in 2024."
+      }
+    },
+    "haval": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "hev",
+        "phev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 706234,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://www.gwm.com.cn/news/3403600.html",
+        "note_zh": "长城汽车2025-01-01公布：哈弗2024年累计销售706234辆。",
+        "note_en": "Great Wall Motor announced on 2025-01-01 that Haval sold 706,234 vehicles in 2024."
+      }
+    },
+    "tank": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "phev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 231001,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://www.gwm.com.cn/news/3403600.html",
+        "note_zh": "长城汽车2025-01-01公布：坦克2024年累计销售231001辆。",
+        "note_en": "Great Wall Motor announced on 2025-01-01 that Tank sold 231,001 vehicles in 2024."
+      }
+    },
+    "ora": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 63272,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://www.gwm.com.cn/news/3403600.html",
+        "note_zh": "长城汽车2025-01-01公布：欧拉2024年累计销售63272辆。",
+        "note_en": "Great Wall Motor announced on 2025-01-01 that Ora sold 63,272 vehicles in 2024."
+      }
+    },
+    "wey": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "phev",
+        "hev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 54728,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://www.gwm.com.cn/news/3403600.html",
+        "note_zh": "长城汽车2025-01-01公布：魏牌新能源2024年累计销售54728辆。",
+        "note_en": "Great Wall Motor announced on 2025-01-01 that WEY NEV sold 54,728 vehicles in 2024."
+      }
+    },
+    "exeed": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "premium"
+      ],
+      "powertrain": [
+        "ice",
+        "phev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 140959,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://tzcjzx.wuhu.gov.cn/zsdt/gzdt/8676159.html",
+        "note_zh": "奇瑞控股集团2025-01-01销量年报：星途品牌2024年销量140959辆。",
+        "note_en": "Chery Holding 2025-01-01 sales report: Exeed (Xingtu) sold 140,959 in 2024."
+      }
+    },
+    "jetour": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "ice",
+        "phev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 568387,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://tzcjzx.wuhu.gov.cn/zsdt/gzdt/8676159.html",
+        "note_zh": "奇瑞控股集团2025-01-01销量年报：捷途品牌2024年销量568387辆。",
+        "note_en": "Chery Holding 2025-01-01 sales report: Jetour sold 568,387 in 2024."
+      }
+    },
+    "icar": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 65964,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "brand",
+        "source_url": "https://tzcjzx.wuhu.gov.cn/zsdt/gzdt/8676159.html",
+        "note_zh": "奇瑞控股集团2025-01-01销量年报：iCAR品牌2024年累计销量65964辆。",
+        "note_en": "Chery Holding 2025-01-01 sales report: iCAR sold 65,964 in 2024."
+      }
+    },
+    "leapmotor": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "listing": {
+        "listed": true,
+        "exchange": "HKEX",
+        "ticker": "9863"
+      },
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "some",
+      "employees": {
+        "value": 15551,
+        "year": 2024,
+        "unit": "people",
+        "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0310/2025031000296.pdf",
+        "note_zh": "零跑2024年报：截至2024-12-31全职员工15,551人。",
+        "note_en": "Leapmotor 2024 annual report: 15,551 full-time employees as of 31 Dec 2024."
+      },
+      "vehicle_sales": {
+        "value": 293724,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "vehicle_deliveries",
+        "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0310/2025031000296.pdf",
+        "note_zh": "2024年汽车总交付293,724辆。",
+        "note_en": "Total vehicle deliveries reached 293,724 units in 2024."
+      }
+    },
+    "neta": {
+      "last_verified": "2026-08",
+      "ownership": "private",
+      "segment": [
+        "mass"
+      ],
+      "powertrain": [
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 64549,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "china_retail_sales_cpca",
+        "source_url": "http://www.zqrb.cn/auto/qichedongtai/2025-01-20/A1737157030061.html",
+        "note_zh": "乘联分会2024年零售销量64,549辆（公司未发布全年交付公告时的行业统计口径）。",
+        "note_en": "CPCA 2024 China retail sales of 64,549 units (industry statistic; no full-year company delivery release)."
+      }
+    },
+    "bmw-brilliance": {
+      "last_verified": "2026-08",
+      "ownership": "jv",
+      "segment": [
+        "premium",
+        "luxury"
+      ],
+      "powertrain": [
+        "ice",
+        "phev",
+        "bev"
+      ],
+      "export_role": "some",
+      "vehicle_sales": {
+        "value": 603807,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "china_domestic_sales",
+        "source_url": "https://www.brillianceauto.com/pdf/investor/annual_reports/AR_HK/c_2024AR_20250428_chi.pdf",
+        "note_zh": "华晨中国2024年报：华晨宝马国内汽车销量603,807辆（同比-15.0%）",
+        "note_en": "Brilliance China 2024 annual report: BMW Brilliance domestic sales 603,807 (-15.0% YoY)"
+      }
+    },
+    "saic-maxus": {
+      "last_verified": "2026-08",
+      "ownership": "soe",
+      "segment": [
+        "commercial"
+      ],
+      "powertrain": [
+        "ice",
+        "bev"
+      ],
+      "export_role": "major",
+      "vehicle_sales": {
+        "value": 177629,
+        "year": 2024,
+        "unit": "vehicles",
+        "scope": "wholesale_sales_saic_group_report",
+        "source_url": "https://www.saicmotor.com/chinese/images/tzzgx/ggb/dqgg/2024ndqgg/2025/4/29/685D33923ABE4D109BBE39F92BFBF945.pdf",
+        "note_zh": "上汽集团2024年报：上汽大通全年批发销量177,629辆。",
+        "note_en": "SAIC Group 2024 annual report: SAIC Maxus wholesale sales of 177,629 units."
+      }
+    }
+  }
+}
