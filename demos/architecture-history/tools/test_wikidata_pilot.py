@@ -218,7 +218,7 @@ def minimal_lineage_snapshot(entities: dict[str, dict]) -> dict:
             "seed": "fixture",
             "seed_sha256": "fixture",
         },
-        "snapshot_id": "wikidata-hydration-2026-08-18-209a9d097bee",
+        "snapshot_id": "wikidata-hydration-2026-08-20-d7de2987bda7",
         "source_id": "wikidata",
     }
 
@@ -583,11 +583,16 @@ class WikidataPilotTests(unittest.TestCase):
             relation["id"]: relation
             for relation in imported["relations"]
         }
+        wd_catalog_relations = {
+            relation_id: relation
+            for relation_id, relation in catalog_relations.items()
+            if not relation_id.startswith("relation-res-")
+        }
         self.assertLessEqual(
-            set(catalog_relations),
+            set(wd_catalog_relations),
             set(imported_relations),
         )
-        for relation_id, relation in catalog_relations.items():
+        for relation_id, relation in wd_catalog_relations.items():
             self.assertEqual(imported_relations[relation_id], relation)
         self.assertLessEqual(
             {person["id"] for person in self.catalog["people"]},
@@ -1113,6 +1118,10 @@ class WikidataPilotTests(unittest.TestCase):
         for claim in self.catalog["claims"]:
             self.assertTrue(claim["evidence"])
             for evidence in claim["evidence"]:
+                if evidence["source_id"] != "wikidata":
+                    # Editorial research-pack citations resolve to their own
+                    # content-addressed snapshot, not the hydration one.
+                    continue
                 qid, revision_text = evidence["native_record_id"].split("@", 1)
                 wrapper = wrappers[qid]
                 self.assertEqual(int(revision_text), wrapper["lastrevid"])
@@ -1215,6 +1224,10 @@ class WikidataPilotTests(unittest.TestCase):
         }
         entity_qids = {**people, **practices}
         for relation in self.catalog["relations"]:
+            if relation["id"].startswith("relation-res-"):
+                # Research-pack edges cite biography pages, not Wikidata
+                # statements; their invariants are covered separately.
+                continue
             from_qid = entity_qids[relation["from_id"]]
             to_qid = entity_qids[relation["to_id"]]
             claim = claims[relation["claim_id"]]

@@ -314,6 +314,8 @@ def add_schema_errors(errors: list[str]) -> None:
             snapshot_schema = schema["$defs"]["wikidataUlanCrosswalkSnapshot"]
         elif path.name.startswith("wikidata-"):
             snapshot_schema = schema["$defs"]["wikidataSnapshot"]
+        elif path.name.startswith("editorial-research-"):
+            snapshot_schema = schema["$defs"]["editorialResearchSnapshot"]
         else:
             errors.append(
                 f"{path.relative_to(DATA).as_posix()}: no source-specific "
@@ -2775,6 +2777,61 @@ def main() -> int:
                         f"{snapshot_id}: snapshot id does not bind the "
                         "authority seed and pinned revisions"
                     )
+        elif method == "pinned_editorial_research":
+            if selection["per_cell"] is not None or selection["query_limit"] is not None:
+                errors.append(
+                    f"{snapshot_id}: editorial research requires null query limits"
+                )
+            if snapshot["queries"]:
+                errors.append(
+                    f"{snapshot_id}: editorial research cannot contain queries"
+                )
+            if snapshot.get("source_id") != "editorial-biographical-research":
+                errors.append(
+                    f"{snapshot_id}: editorial research source mismatch"
+                )
+            entries_canonical = json.dumps(
+                snapshot["entries"], ensure_ascii=False, sort_keys=True,
+                separators=(",", ":"),
+            ).encode("utf-8")
+            expected_id = (
+                f"editorial-research-{snapshot['accessed']}-"
+                f"{hashlib.sha256(entries_canonical).hexdigest()[:12]}"
+            )
+            if snapshot_id != expected_id:
+                errors.append(
+                    f"{snapshot_id}: snapshot id does not bind the entries hash"
+                )
+            seen_pairs = set()
+            for entry in snapshot["entries"]:
+                pair = (
+                    entry["employee_qid"],
+                    entry["employer_qid"],
+                    entry["relation_type"],
+                )
+                if pair in seen_pairs:
+                    errors.append(
+                        f"{snapshot_id}: duplicate research entry {pair!r}"
+                    )
+                seen_pairs.add(pair)
+                if entry["employee_qid"] == entry["employer_qid"]:
+                    errors.append(
+                        f"{snapshot_id}: self-employment entry {pair!r}"
+                    )
+                for citation in entry["citations"]:
+                    if not citation["url"].startswith("https://"):
+                        errors.append(
+                            f"{snapshot_id}: citation url must be https"
+                        )
+                record_id = (
+                    f"{entry['employee_qid']}/{entry['employer_qid']}"
+                )
+                snapshot_records[(snapshot_id, record_id)] = (
+                    "editorial-biographical-research",
+                    canonical_hash(entry),
+                    entry["citations"][0]["url"],
+                )
+            continue
         else:
             if selection["per_cell"] is None or selection["query_limit"] is None:
                 errors.append(
@@ -2799,13 +2856,14 @@ def main() -> int:
             expected_seed_hash = hashlib.sha256(
                 selection["seed"].encode("utf-8")
             ).hexdigest()
-        if selection["seed_sha256"] != expected_seed_hash:
-            errors.append(f"{snapshot_id}: selection seed_sha256 mismatch")
+        if method != "pinned_editorial_research":
+            if selection["seed_sha256"] != expected_seed_hash:
+                errors.append(f"{snapshot_id}: selection seed_sha256 mismatch")
 
-        seed_qids = [seed["qid"] for seed in snapshot["seeds"]]
-        for qid, count in Counter(seed_qids).items():
-            if count > 1:
-                errors.append(f"{snapshot_id}: duplicate hydration seed {qid!r}")
+            seed_qids = [seed["qid"] for seed in snapshot["seeds"]]
+            for qid, count in Counter(seed_qids).items():
+                if count > 1:
+                    errors.append(f"{snapshot_id}: duplicate hydration seed {qid!r}")
 
         cell_ids: set[str] = set()
         selected_across_cells: set[str] = set()
@@ -3226,13 +3284,33 @@ def main() -> int:
                         f"{path.name}: fixture-only adapters may emit candidates only"
                     )
 
+        cross_source_snapshots = {}
+        if SNAPSHOTS.exists():
+            for extra_path in sorted(SNAPSHOTS.glob("*.json")):
+                extra = load_json(extra_path)
+                cross_source_snapshots[extra.get("snapshot_id")] = extra.get(
+                    "source_id"
+                )
         for claim in shard.get("claims", []):
             for evidence in claim.get("evidence", []):
-                if evidence.get("source_id") != source_id:
-                    errors.append(
-                        f"{path.name}/{claim.get('id')}: evidence source escapes shard"
-                    )
-                if evidence.get("snapshot_id") != generated_from:
+                ev_source = evidence.get("source_id")
+                ev_snapshot = evidence.get("snapshot_id")
+                if ev_source != source_id:
+                    # Cross-source evidence is allowed only when the cited
+                    # source is registered for fact derivation and its
+                    # content-addressed snapshot is present on disk.
+                    cross_source = source_by_id.get(ev_source)
+                    snapshot_source = cross_source_snapshots.get(ev_snapshot)
+                    if not (
+                        cross_source
+                        and cross_source["allowed_operations"]["derive_facts"]
+                        and cross_source["allowed_operations"]["retain_snapshot"]
+                        and snapshot_source == ev_source
+                    ):
+                        errors.append(
+                            f"{path.name}/{claim.get('id')}: evidence source escapes shard"
+                        )
+                elif ev_snapshot != generated_from:
                     errors.append(
                         f"{path.name}/{claim.get('id')}: evidence snapshot escapes shard"
                     )

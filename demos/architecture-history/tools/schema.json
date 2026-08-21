@@ -2878,6 +2878,128 @@
           }
         }
       }
+    },
+    "editorialResearchSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot_id",
+        "source_id",
+        "adapter_id",
+        "adapter_version",
+        "accessed",
+        "license",
+        "selection",
+        "queries",
+        "entries"
+      ],
+      "properties": {
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^editorial-research-\\d{4}-\\d{2}-\\d{2}-[0-9a-f]{12}$"
+        },
+        "source_id": {
+          "const": "editorial-biographical-research"
+        },
+        "adapter_id": {
+          "const": "editorial-biographical-research-pack"
+        },
+        "adapter_version": {
+          "type": "string"
+        },
+        "accessed": {
+          "$ref": "#/$defs/date"
+        },
+        "license": {
+          "type": "string"
+        },
+        "selection": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "notes_en",
+            "notes_zh",
+            "per_cell",
+            "query_limit"
+          ],
+          "properties": {
+            "method": {
+              "const": "pinned_editorial_research"
+            },
+            "notes_en": {
+              "type": "string"
+            },
+            "notes_zh": {
+              "type": "string"
+            },
+            "per_cell": {
+              "type": "null"
+            },
+            "query_limit": {
+              "type": "null"
+            }
+          }
+        },
+        "queries": {
+          "const": []
+        },
+        "entries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "employee_qid",
+              "employer_qid",
+              "relation_type",
+              "citations"
+            ],
+            "properties": {
+              "employee_qid": {
+                "type": "string",
+                "pattern": "^Q[1-9][0-9]*$"
+              },
+              "employer_qid": {
+                "type": "string",
+                "pattern": "^Q[1-9][0-9]*$"
+              },
+              "relation_type": {
+                "enum": [
+                  "worked_for"
+                ]
+              },
+              "citations": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "url",
+                    "title",
+                    "quote_en"
+                  ],
+                  "properties": {
+                    "url": {
+                      "$ref": "#/$defs/url"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "quote_en": {
+                      "type": "string",
+                      "minLength": 8
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "file_schemas": {

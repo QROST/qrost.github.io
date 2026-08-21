@@ -1,7 +1,8 @@
 {
   "catalog_profile": {
     "evidence_by_source_family": {
-      "wikimedia": 13765
+      "editorial": 38,
+      "wikimedia": 13893
     },
     "periods": {
       "1000_1499": {
@@ -53,13 +54,13 @@
         "works": 87
       },
       "east_asia": {
-        "entities": 204,
-        "verified_entities": 59,
+        "entities": 205,
+        "verified_entities": 60,
         "works": 166
       },
       "europe": {
-        "entities": 1191,
-        "verified_entities": 154,
+        "entities": 1199,
+        "verified_entities": 159,
         "works": 375
       },
       "latin_america_caribbean": {
@@ -68,8 +69,8 @@
         "works": 91
       },
       "north_america": {
-        "entities": 272,
-        "verified_entities": 64,
+        "entities": 276,
+        "verified_entities": 66,
         "works": 161
       },
       "oceania": {
@@ -88,8 +89,8 @@
         "works": 75
       },
       "transregional": {
-        "entities": 33,
-        "verified_entities": 13,
+        "entities": 37,
+        "verified_entities": 15,
         "works": 0
       },
       "unknown": {
@@ -99,8 +100,8 @@
       }
     },
     "verification": {
-      "candidate": 2716,
-      "verified": 434
+      "candidate": 2765,
+      "verified": 444
     },
     "work_type_mapping": {
       "ambiguous": 34,
@@ -109,17 +110,17 @@
     }
   },
   "counts": {
-    "candidate_entities_and_relations": 2716,
-    "claims": 13182,
+    "candidate_entities_and_relations": 2765,
+    "claims": 13346,
     "contested_entities_and_relations": 0,
     "declined_entities_and_relations": 0,
-    "people": 1077,
+    "people": 1094,
     "places": 57,
     "practices": 63,
-    "relations": 801,
-    "reviewers": 1,
-    "sources": 12,
-    "verified_entities_and_relations": 434,
+    "relations": 843,
+    "reviewers": 2,
+    "sources": 13,
+    "verified_entities_and_relations": 444,
     "works": 1152
   },
   "coverage": {
@@ -730,48 +731,53 @@
     "selection_methods": [
       "coverage_cell_stable_hash",
       "exact_instance_allowlist_authority",
+      "pinned_editorial_research",
       "pinned_hydration_fixtures"
     ],
     "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "2e405ddf4cda44f7689a56256cadbc22550dd22e03cef70a1710b52341fbd8ee",
+  "data_version": "d955337ea1ef3c1504bbd48f3c6f63dada77113286c4a502b2042196d249944f",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "c1759bd5a474ef446eeb7265cd94924d4297d705a45a95534552a46fbcd6ae21"
+      "sha256": "a080f1dbddc1ade78a3bb973791ee0a68cb56d0a9bb741775d005c9540ba7676"
     },
     "claims.json": {
-      "count": 13182,
-      "sha256": "6ff8a41600f0569122342cc1d0b53a7e1f9fdc6dbd71859509e34d176bb3ce8b"
+      "count": 13346,
+      "sha256": "3136f79dbc218e504bcfc9fca2bbdaf1cb50acdbf8e7996052b75abc11166ef9"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
-      "sha256": "50f46038b79f0da0b603ed08b12dbdb44ed9be1a7dbfda039843061b65a1c510"
+      "sha256": "a4839c35872b6377a295cebc72f4f2709200c1e4e7ff91d315e9ca75642af930"
     },
     "people.json": {
-      "count": 1077,
-      "sha256": "b4d85dfeecd9505667bc94a040d611ceed015a572c7c38bb83e1ed87156e8413"
+      "count": 1094,
+      "sha256": "d589ceb43d7d2ca322e46b21d6fa8b093e40a316a646c48605b1e2759cde9e4a"
     },
     "places.json": {
       "count": 57,
-      "sha256": "3f2d371db6432f3a68fcd8652fe4001629b438a65e8de030d03bbdda74f3b11b"
+      "sha256": "6d19c000b1aefc00774ac5e698d39fb1eb90e0dc7626ee364f8332939ce6aa03"
     },
     "practices.json": {
       "count": 63,
-      "sha256": "cd1b2748ec89fc5d2d1f512a0b1cad790340d4baa74d2e31b82b7361f7994788"
+      "sha256": "4d7d8447667ecce24860250847cbed667d26921ad2e646f516cdf784962b8427"
     },
     "relations.json": {
-      "count": 801,
-      "sha256": "49118299a11b14152ec273f0f52a93f8f72d6512b1b7044c7d76e579a825505f"
+      "count": 843,
+      "sha256": "109fca8cb2b730f0df5390095f0f3f3c30c9fd4c611d3499406eae10f7aa96b5"
     },
     "reviewers.json": {
-      "count": 1,
-      "sha256": "5610834510ba3a8e711ecc662b680ba4942a56c2027d546cbeb2f2a547ce2f14"
+      "count": 2,
+      "sha256": "bf375af1956da666f506597d6c4f9764bd0a116b1bdaef8ef2f9eea379237682"
     },
     "source-registry.json": {
-      "count": 12,
-      "sha256": "e4dbdc1db467bdadefdd5216a915556fa88d18e109c4b4b39d87415c10772177"
+      "count": 13,
+      "sha256": "f63e4bea9c5dca017c1d00ee08d48eec84c7fe4539ba9777a582d5ece6fa2652"
+    },
+    "source-snapshots/editorial-research-2026-08-20-149f44acc3ed.json": {
+      "count": 1,
+      "sha256": "5246466404df05fce171ea5d64fd9be50cb771373cda105071f90db1f2910a53"
     },
     "source-snapshots/wikidata-coverage-2026-08-07-041c94fde1c9.json": {
       "count": 1,
@@ -817,13 +823,17 @@
       "count": 1,
       "sha256": "3e70749fd6cfe93802c5e8bf63628c2a21eaeedcce8c2e1b7da4b2a752b4cfec"
     },
-    "source-snapshots/wikidata-work-type-authority-2026-08-18-90f0aa133bea.json": {
+    "source-snapshots/wikidata-hydration-2026-08-20-d7de2987bda7.json": {
       "count": 1,
-      "sha256": "b5167a807f7c4c058947202c8fcbaf2caac8fe7949a923920b1cdd69bfdf6d37"
+      "sha256": "af02ab29a59d576b199fa39bc9840e4e0e894caeb4809af871c04653ec9d8d13"
+    },
+    "source-snapshots/wikidata-work-type-authority-2026-08-20-fe5bae9cc781.json": {
+      "count": 1,
+      "sha256": "63cc0ce681f25aa30c01b10ef91e9148af29f7b4072f92e2d7ac5c05748f150b"
     },
     "works.json": {
       "count": 1152,
-      "sha256": "7aa3706994a2c218a1cd652857ca97ae171a0b155cdb90e8098854bd3b8e513f"
+      "sha256": "0371e7b3b1ebb02b6bde71dfff7ac6b37eb6bc091590e2b0a644673949f17c99"
     }
   },
   "hash_algorithm": "sha256",

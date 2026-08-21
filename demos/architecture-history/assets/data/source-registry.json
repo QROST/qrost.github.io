@@ -789,6 +789,65 @@
         "Its focus on Islamic civilizations and Muslim societies does not represent all of Africa, Asia, or global architectural history.",
         "Content comes from multiple providers and copyright and Terms of Use vary by item; page access does not permit bulk download, retention, adaptation, or republication of metadata, text, or media."
       ]
+    },
+    {
+      "id": "editorial-biographical-research",
+      "title_zh": "履历文献研究（编辑部）",
+      "title_en": "Editorial biographical research",
+      "publisher": "Various biographical publishers (The Pritzker Architecture Prize, Encyclopaedia Britannica)",
+      "landing_url": "https://www.pritzkerprize.com/laureates",
+      "source_family": "editorial",
+      "scope": [
+        "relationships"
+      ],
+      "delivery_kind": "web_resources",
+      "native_id_namespace": "web",
+      "reuse_class": "discovery_and_citation_only",
+      "adapter_status": "tested",
+      "adapter_id": "editorial-biographical-research-pack",
+      "adapter_version": "0.1.0",
+      "access": {
+        "auth_kind": "none",
+        "credential_env_name": null,
+        "docs_url": "https://www.pritzkerprize.com/laureates",
+        "rate_policy_zh": "人工/代理逐页阅读官方传记与权威百科，逐条记录逐字引文与 URL；不做批量抓取。",
+        "rate_policy_en": "Biography pages are read one by one (human/agent) with verbatim quotes and URLs recorded per fact; no bulk scraping."
+      },
+      "snapshot_strategy": "Content-addressed research pack: snapshot_id binds sha256 of entries; every fact carries >=1 verbatim citation with URL.",
+      "provenance_passthrough_fields": [
+        "url",
+        "quote_en"
+      ],
+      "metadata_license": "CC0-1.0 (pack metadata)",
+      "license_url": "https://www.pritzkerprize.com/terms-use",
+      "terms_url": "https://www.pritzkerprize.com/terms-use",
+      "accessed": "2026-08-20",
+      "allowed_operations": {
+        "download": false,
+        "retain_snapshot": true,
+        "derive_facts": true,
+        "redistribute_metadata": true,
+        "redistribute_text": false,
+        "redistribute_media": false
+      },
+      "authority_profile": {
+        "names": "candidate",
+        "identity": "candidate",
+        "dates": "candidate",
+        "relationships": "candidate",
+        "work_credits": "candidate",
+        "coverage": "candidate"
+      },
+      "attribution_zh": "任职关系线索来自所引传记页面；引文逐字保留。",
+      "attribution_en": "Employment clues come from the cited biography pages; quotes are kept verbatim.",
+      "known_biases_zh": [
+        "覆盖偏向英语官方传记（尤其 Pritzker 得主）",
+        "非得主与全球南方人物覆盖较弱"
+      ],
+      "known_biases_en": [
+        "Coverage is biased toward English-language official biographies (especially Pritzker laureates)",
+        "Non-laureates and Global South coverage is weaker"
+      ]
     }
   ]
 }

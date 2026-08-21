@@ -5,6 +5,12 @@
       "display_name": "Cursor Agentic Reviewer",
       "reviewer_type": "agentic",
       "active": true
+    },
+    {
+      "id": "reviewer-agentic-zcode",
+      "display_name": "ZCode Agentic Researcher",
+      "reviewer_type": "agentic",
+      "active": true
     }
   ]
 }
