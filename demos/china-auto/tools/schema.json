@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrost.github.io/demos/china-auto/tools/schema.json",
+  "title": "China Auto City Atlas — entity schemas",
+  "description": "V1 knowledge-graph schemas. additionalProperties is locked. Bilingual fields use *_zh / *_en.",
+  "enums": {
+    "admin_level": ["municipality", "prefecture", "county", "cooperation_zone"],
+    "city_tier": ["core", "specialist"],
+    "role_tag": [
+      "oem_manufacturing",
+      "headquarters",
+      "rd_design",
+      "autonomous_driving",
+      "auto_software",
+      "chips",
+      "battery",
+      "auto_electronics",
+      "parts",
+      "testing",
+      "higher_education",
+      "auto_media",
+      "expo_culture",
+      "export_logistics",
+      "auto_history"
+    ],
+    "organization_type": [
+      "automaker",
+      "brand",
+      "supplier",
+      "battery_company",
+      "software_company",
+      "chip_company",
+      "research_institute",
+      "university",
+      "media_company",
+      "industry_association",
+      "testing_body"
+    ],
+    "org_status": ["active", "planned", "paused", "closed", "unknown"],
+    "facility_type": [
+      "headquarters_campus",
+      "vehicle_plant",
+      "engine_plant",
+      "battery_plant",
+      "parts_plant",
+      "rd_center",
+      "design_center",
+      "testing_center",
+      "port_terminal"
+    ],
+    "facility_status": [
+      "active",
+      "planned",
+      "under_construction",
+      "paused",
+      "closed",
+      "converted",
+      "unknown"
+    ],
+    "role_type": [
+      "headquarters",
+      "registered_office",
+      "regional_headquarters",
+      "rd_center",
+      "design_center",
+      "factory",
+      "supplier_plant",
+      "testing_center",
+      "media_editorial_office",
+      "university_campus",
+      "event_host",
+      "historical_origin"
+    ],
+    "relation_type": [
+      "owns",
+      "operates",
+      "supplies",
+      "joint_venture_with",
+      "researches_with",
+      "exports_through",
+      "located_in",
+      "belongs_to_cluster",
+      "cluster_adjacent",
+      "historically_linked_to",
+      "replaced_by"
+    ],
+    "media_type": [
+      "portal",
+      "trade_media",
+      "nev_media",
+      "business_media",
+      "review_video",
+      "auto_culture",
+      "tuning",
+      "motorsport",
+      "local_community"
+    ],
+    "source_grade": ["A", "B", "C", "D"],
+    "source_type": [
+      "government_stats",
+      "regulator",
+      "company_ir",
+      "company_site",
+      "university_site",
+      "industry_association",
+      "national_media",
+      "trade_media",
+      "compilation",
+      "map_or_registry",
+      "forum"
+    ]
+  }
+}

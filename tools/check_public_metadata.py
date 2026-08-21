@@ -48,8 +48,8 @@ def main() -> int:
     demo_entries = sorted(
         set(re.findall(r'href=["\'](demos/[^"\']+/index\.html)["\']', root_html))
     )
-    if len(demo_entries) != 11:
-        raise ValueError(f"index.html: expected 11 linked public demos, found {len(demo_entries)}")
+    if len(demo_entries) != 12:
+        raise ValueError(f"index.html: expected 12 linked public demos, found {len(demo_entries)}")
 
     validate_page(root_index, PUBLIC_ORIGIN)
     for entry in demo_entries:

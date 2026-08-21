@@ -1,0 +1,1696 @@
+{
+  "organizations": [
+    {
+      "parent_id": null,
+      "founded_year": 1958,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing",
+        "headquarters"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "baic",
+      "legal_name_zh": "北京汽车集团有限公司",
+      "legal_name_en": "Beijing Automotive Group Co., Ltd.",
+      "display_name_zh": "北汽",
+      "display_name_en": "BAIC",
+      "organization_type": "automaker",
+      "headquarters_city_id": "beijing"
+    },
+    {
+      "parent_id": "baic",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "beijing-benz",
+      "legal_name_zh": "北京奔驰汽车有限公司",
+      "legal_name_en": "Beijing Benz Automotive Co., Ltd.",
+      "display_name_zh": "北京奔驰",
+      "display_name_en": "Beijing Benz",
+      "organization_type": "automaker",
+      "headquarters_city_id": "beijing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": 2021,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing",
+        "auto_software"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "xiaomi-auto",
+      "legal_name_zh": "小米汽车",
+      "legal_name_en": "Xiaomi Auto",
+      "display_name_zh": "小米汽车",
+      "display_name_en": "Xiaomi Auto",
+      "organization_type": "automaker",
+      "headquarters_city_id": "beijing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": 2015,
+      "website": "https://www.lixiang.com/",
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "li-auto",
+      "legal_name_zh": "理想汽车",
+      "legal_name_en": "Li Auto",
+      "display_name_zh": "理想汽车",
+      "display_name_en": "Li Auto",
+      "organization_type": "automaker",
+      "headquarters_city_id": "beijing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "autonomous_driving",
+        "auto_software"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "baidu",
+      "legal_name_zh": "百度",
+      "legal_name_en": "Baidu",
+      "display_name_zh": "百度",
+      "display_name_en": "Baidu",
+      "organization_type": "software_company",
+      "headquarters_city_id": "beijing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "chips",
+        "autonomous_driving"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "horizon-robotics",
+      "legal_name_zh": "地平线",
+      "legal_name_en": "Horizon Robotics",
+      "display_name_zh": "地平线",
+      "display_name_en": "Horizon Robotics",
+      "organization_type": "chip_company",
+      "headquarters_city_id": "beijing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.saicmotor.com/",
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "saic",
+      "legal_name_zh": "上海汽车集团股份有限公司",
+      "legal_name_en": "SAIC Motor Corporation Limited",
+      "display_name_zh": "上汽集团",
+      "display_name_en": "SAIC Motor",
+      "organization_type": "automaker",
+      "headquarters_city_id": "shanghai"
+    },
+    {
+      "parent_id": null,
+      "founded_year": 2019,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing",
+        "export_logistics"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "tesla-china",
+      "legal_name_zh": "特斯拉（上海）有限公司",
+      "legal_name_en": "Tesla (Shanghai) Co., Ltd.",
+      "display_name_zh": "特斯拉上海",
+      "display_name_en": "Tesla Shanghai",
+      "organization_type": "automaker",
+      "headquarters_city_id": "shanghai"
+    },
+    {
+      "parent_id": null,
+      "founded_year": 1995,
+      "website": "https://www.byd.com/",
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing",
+        "battery"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "byd",
+      "legal_name_zh": "比亚迪股份有限公司",
+      "legal_name_en": "BYD Company Limited",
+      "display_name_zh": "比亚迪",
+      "display_name_en": "BYD",
+      "organization_type": "automaker",
+      "headquarters_city_id": "shenzhen"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.gac.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "gac",
+      "legal_name_zh": "广州汽车集团股份有限公司",
+      "legal_name_en": "Guangzhou Automobile Group Co., Ltd.",
+      "display_name_zh": "广汽集团",
+      "display_name_en": "GAC Group",
+      "organization_type": "automaker",
+      "headquarters_city_id": "guangzhou"
+    },
+    {
+      "parent_id": "gac",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "gac-honda",
+      "legal_name_zh": "广汽本田汽车有限公司",
+      "legal_name_en": "GAC Honda Automobile Co., Ltd.",
+      "display_name_zh": "广汽本田",
+      "display_name_en": "GAC Honda",
+      "organization_type": "automaker",
+      "headquarters_city_id": "guangzhou"
+    },
+    {
+      "parent_id": "gac",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "gac-toyota",
+      "legal_name_zh": "广汽丰田汽车有限公司",
+      "legal_name_en": "GAC Toyota Motor Co., Ltd.",
+      "display_name_zh": "广汽丰田",
+      "display_name_en": "GAC Toyota",
+      "organization_type": "automaker",
+      "headquarters_city_id": "guangzhou"
+    },
+    {
+      "parent_id": "dongfeng",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "dongfeng-nissan",
+      "legal_name_zh": "东风汽车有限公司东风日产乘用车公司",
+      "legal_name_en": "Dongfeng Nissan Passenger Vehicle Company",
+      "display_name_zh": "东风日产",
+      "display_name_en": "Dongfeng Nissan",
+      "organization_type": "automaker",
+      "headquarters_city_id": "guangzhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.xiaopeng.com/",
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing",
+        "autonomous_driving"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "xpeng",
+      "legal_name_zh": "小鹏汽车",
+      "legal_name_en": "XPENG",
+      "display_name_zh": "小鹏汽车",
+      "display_name_en": "XPENG",
+      "organization_type": "automaker",
+      "headquarters_city_id": "guangzhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "autonomous_driving"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "weiride",
+      "legal_name_zh": "文远知行",
+      "legal_name_en": "WeRide",
+      "display_name_zh": "文远知行",
+      "display_name_en": "WeRide",
+      "organization_type": "software_company",
+      "headquarters_city_id": "guangzhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "autonomous_driving"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "pony-ai",
+      "legal_name_zh": "小马智行",
+      "legal_name_en": "Pony.ai",
+      "display_name_zh": "小马智行",
+      "display_name_en": "Pony.ai",
+      "organization_type": "software_company",
+      "headquarters_city_id": "guangzhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.changan.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "changan",
+      "legal_name_zh": "重庆长安汽车股份有限公司",
+      "legal_name_en": "Chongqing Changan Automobile Co., Ltd.",
+      "display_name_zh": "长安汽车",
+      "display_name_en": "Changan Auto",
+      "organization_type": "automaker",
+      "headquarters_city_id": "chongqing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "seres",
+      "legal_name_zh": "赛力斯集团",
+      "legal_name_en": "Seres Group",
+      "display_name_zh": "赛力斯",
+      "display_name_en": "Seres",
+      "organization_type": "automaker",
+      "headquarters_city_id": "chongqing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "auto_software"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "qianli",
+      "legal_name_zh": "千里科技",
+      "legal_name_en": "Qianli Technology",
+      "display_name_zh": "千里科技",
+      "display_name_en": "Qianli Technology",
+      "organization_type": "software_company",
+      "headquarters_city_id": "chongqing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "jac",
+      "legal_name_zh": "安徽江淮汽车集团股份有限公司",
+      "legal_name_en": "Anhui Jianghuai Automobile Group",
+      "display_name_zh": "江淮汽车",
+      "display_name_en": "JAC",
+      "organization_type": "automaker",
+      "headquarters_city_id": "hefei"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.nio.com/",
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "nio",
+      "legal_name_zh": "蔚来",
+      "legal_name_en": "NIO",
+      "display_name_zh": "蔚来",
+      "display_name_en": "NIO",
+      "organization_type": "automaker",
+      "headquarters_city_id": "hefei"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "vw-anhui",
+      "legal_name_zh": "大众汽车（安徽）有限公司",
+      "legal_name_en": "Volkswagen (Anhui) Co., Ltd.",
+      "display_name_zh": "大众安徽",
+      "display_name_en": "Volkswagen Anhui",
+      "organization_type": "automaker",
+      "headquarters_city_id": "hefei"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "battery"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "gotion",
+      "legal_name_zh": "国轩高科",
+      "legal_name_en": "Gotion High-tech",
+      "display_name_zh": "国轩高科",
+      "display_name_en": "Gotion",
+      "organization_type": "battery_company",
+      "headquarters_city_id": "hefei"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.cheryinternational.com/",
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing",
+        "export_logistics"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "chery",
+      "legal_name_zh": "奇瑞汽车股份有限公司",
+      "legal_name_en": "Chery Automobile Co., Ltd.",
+      "display_name_zh": "奇瑞汽车",
+      "display_name_en": "Chery",
+      "organization_type": "automaker",
+      "headquarters_city_id": "wuhu"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "geely",
+      "legal_name_zh": "浙江吉利控股集团",
+      "legal_name_en": "Zhejiang Geely Holding Group",
+      "display_name_zh": "吉利",
+      "display_name_en": "Geely",
+      "organization_type": "automaker",
+      "headquarters_city_id": null
+    },
+    {
+      "parent_id": null,
+      "founded_year": 1953,
+      "website": "https://www.faw.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing",
+        "auto_history"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "faw",
+      "legal_name_zh": "中国第一汽车集团有限公司",
+      "legal_name_en": "China FAW Group Co., Ltd.",
+      "display_name_zh": "中国一汽",
+      "display_name_en": "FAW",
+      "organization_type": "automaker",
+      "headquarters_city_id": "changchun"
+    },
+    {
+      "parent_id": "faw",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "hongqi",
+      "legal_name_zh": "一汽红旗",
+      "legal_name_en": "FAW Hongqi",
+      "display_name_zh": "红旗",
+      "display_name_en": "Hongqi",
+      "organization_type": "brand",
+      "headquarters_city_id": "changchun"
+    },
+    {
+      "parent_id": "faw",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "jiefang",
+      "legal_name_zh": "一汽解放",
+      "legal_name_en": "FAW Jiefang",
+      "display_name_zh": "解放",
+      "display_name_en": "Jiefang",
+      "organization_type": "brand",
+      "headquarters_city_id": "changchun"
+    },
+    {
+      "parent_id": "faw",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "bestune",
+      "legal_name_zh": "一汽奔腾",
+      "legal_name_en": "Bestune",
+      "display_name_zh": "奔腾",
+      "display_name_en": "Bestune",
+      "organization_type": "brand",
+      "headquarters_city_id": "changchun"
+    },
+    {
+      "parent_id": "faw",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "faw-vw",
+      "legal_name_zh": "一汽-大众汽车有限公司",
+      "legal_name_en": "FAW-Volkswagen Automotive Co., Ltd.",
+      "display_name_zh": "一汽-大众",
+      "display_name_en": "FAW-Volkswagen",
+      "organization_type": "automaker",
+      "headquarters_city_id": "changchun"
+    },
+    {
+      "parent_id": "faw",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "audi-faw-nev",
+      "legal_name_zh": "奥迪一汽新能源汽车有限公司",
+      "legal_name_en": "Audi FAW NEV Co., Ltd.",
+      "display_name_zh": "奥迪一汽新能源",
+      "display_name_en": "Audi FAW NEV",
+      "organization_type": "automaker",
+      "headquarters_city_id": "changchun"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://en.yutong.com/",
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing",
+        "export_logistics"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "yutong",
+      "legal_name_zh": "宇通客车股份有限公司",
+      "legal_name_en": "Yutong Bus Co., Ltd.",
+      "display_name_zh": "宇通客车",
+      "display_name_en": "Yutong",
+      "organization_type": "automaker",
+      "headquarters_city_id": "zhengzhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "zhengzhou-nissan",
+      "legal_name_zh": "郑州日产汽车有限公司",
+      "legal_name_en": "Zhengzhou Nissan Automobile Co., Ltd.",
+      "display_name_zh": "郑州日产",
+      "display_name_en": "Zhengzhou Nissan",
+      "organization_type": "automaker",
+      "headquarters_city_id": "zhengzhou"
+    },
+    {
+      "parent_id": "saic",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "sgmw",
+      "legal_name_zh": "上汽通用五菱汽车股份有限公司",
+      "legal_name_en": "SAIC-GM-Wuling Automobile",
+      "display_name_zh": "上汽通用五菱",
+      "display_name_en": "SGMW",
+      "organization_type": "automaker",
+      "headquarters_city_id": "liuzhou"
+    },
+    {
+      "parent_id": "dongfeng",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "dongfeng-liuzhou",
+      "legal_name_zh": "东风柳州汽车有限公司",
+      "legal_name_en": "Dongfeng Liuzhou Motor Co., Ltd.",
+      "display_name_zh": "东风柳汽",
+      "display_name_en": "Dongfeng Liuzhou Motor",
+      "organization_type": "automaker",
+      "headquarters_city_id": "liuzhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "guangxi-auto",
+      "legal_name_zh": "广西汽车集团",
+      "legal_name_en": "Guangxi Automobile Group",
+      "display_name_zh": "广西汽车集团",
+      "display_name_en": "Guangxi Auto Group",
+      "organization_type": "automaker",
+      "headquarters_city_id": "liuzhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.dfmc.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing",
+        "auto_history"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "dongfeng",
+      "legal_name_zh": "东风汽车集团有限公司",
+      "legal_name_en": "Dongfeng Motor Corporation",
+      "display_name_zh": "东风集团",
+      "display_name_en": "Dongfeng Motor",
+      "organization_type": "automaker",
+      "headquarters_city_id": "wuhan"
+    },
+    {
+      "parent_id": "dongfeng",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "voyah",
+      "legal_name_zh": "岚图汽车",
+      "legal_name_en": "Voyah",
+      "display_name_zh": "岚图",
+      "display_name_en": "Voyah",
+      "organization_type": "brand",
+      "headquarters_city_id": "wuhan"
+    },
+    {
+      "parent_id": "dongfeng",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "mengshi",
+      "legal_name_zh": "猛士汽车",
+      "legal_name_en": "Mengshi",
+      "display_name_zh": "猛士",
+      "display_name_en": "Mengshi",
+      "organization_type": "brand",
+      "headquarters_city_id": "wuhan"
+    },
+    {
+      "parent_id": "dongfeng",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "aeolus",
+      "legal_name_zh": "东风奕派",
+      "legal_name_en": "Aeolus (Voyah family / Dongfeng Aeolus)",
+      "display_name_zh": "奕派",
+      "display_name_en": "Aeolus",
+      "organization_type": "brand",
+      "headquarters_city_id": "wuhan"
+    },
+    {
+      "parent_id": "faw",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "faw-toyota",
+      "legal_name_zh": "一汽丰田",
+      "legal_name_en": "FAW Toyota",
+      "display_name_zh": "一汽丰田",
+      "display_name_en": "FAW Toyota",
+      "organization_type": "automaker",
+      "headquarters_city_id": "tianjin"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.gwm.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "gwm",
+      "legal_name_zh": "长城汽车股份有限公司",
+      "legal_name_en": "Great Wall Motor Company Limited",
+      "display_name_zh": "长城汽车",
+      "display_name_en": "Great Wall Motor",
+      "organization_type": "automaker",
+      "headquarters_city_id": "baoding"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "volvo-cars-chengdu",
+      "legal_name_zh": "沃尔沃汽车成都工厂运营主体",
+      "legal_name_en": "Volvo Cars Chengdu plant operator",
+      "display_name_zh": "沃尔沃成都",
+      "display_name_en": "Volvo Chengdu",
+      "organization_type": "automaker",
+      "headquarters_city_id": "chengdu"
+    },
+    {
+      "parent_id": null,
+      "founded_year": 2011,
+      "website": "https://www.catl.com/",
+      "status": "active",
+      "focus_tags": [
+        "battery",
+        "headquarters"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "catl",
+      "legal_name_zh": "宁德时代新能源科技股份有限公司",
+      "legal_name_en": "Contemporary Amperex Technology Co., Limited",
+      "display_name_zh": "宁德时代",
+      "display_name_en": "CATL",
+      "organization_type": "battery_company",
+      "headquarters_city_id": "ningde"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "battery"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "svolt",
+      "legal_name_zh": "蜂巢能源",
+      "legal_name_en": "SVOLT Energy",
+      "display_name_zh": "蜂巢能源",
+      "display_name_en": "SVOLT",
+      "organization_type": "battery_company",
+      "headquarters_city_id": "changzhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "battery"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "calb",
+      "legal_name_zh": "中创新航",
+      "legal_name_en": "CALB",
+      "display_name_zh": "中创新航",
+      "display_name_en": "CALB",
+      "organization_type": "battery_company",
+      "headquarters_city_id": "changzhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "auto_electronics"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "desay-sv",
+      "legal_name_zh": "惠州市德赛西威汽车电子股份有限公司",
+      "legal_name_en": "Huizhou Desay SV Automotive Co., Ltd.",
+      "display_name_zh": "德赛西威",
+      "display_name_en": "Desay SV",
+      "organization_type": "supplier",
+      "headquarters_city_id": "huizhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "auto_electronics"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "holosonics",
+      "legal_name_zh": "惠州市华阳集团",
+      "legal_name_en": "Foryou / HuaYang Group",
+      "display_name_zh": "华阳集团",
+      "display_name_en": "HuaYang",
+      "organization_type": "supplier",
+      "headquarters_city_id": "huizhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "battery"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "eve-energy",
+      "legal_name_zh": "亿纬锂能",
+      "legal_name_en": "EVE Energy",
+      "display_name_zh": "亿纬锂能",
+      "display_name_en": "EVE Energy",
+      "organization_type": "battery_company",
+      "headquarters_city_id": "huizhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "auto_electronics",
+        "parts"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "joyson",
+      "legal_name_zh": "均胜电子",
+      "legal_name_en": "Joyson Electronics",
+      "display_name_zh": "均胜电子",
+      "display_name_en": "Joyson",
+      "organization_type": "supplier",
+      "headquarters_city_id": "ningbo"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "parts"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "tuopu",
+      "legal_name_zh": "拓普集团",
+      "legal_name_en": "Tuopu Group",
+      "display_name_zh": "拓普集团",
+      "display_name_en": "Tuopu",
+      "organization_type": "supplier",
+      "headquarters_city_id": "ningbo"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "parts"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "minth",
+      "legal_name_zh": "敏实集团",
+      "legal_name_en": "Minth Group",
+      "display_name_zh": "敏实集团",
+      "display_name_en": "Minth",
+      "organization_type": "supplier",
+      "headquarters_city_id": "ningbo"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "parts"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "huaxiang",
+      "legal_name_zh": "华翔集团",
+      "legal_name_en": "Huaxiang Group",
+      "display_name_zh": "华翔集团",
+      "display_name_en": "Huaxiang",
+      "organization_type": "supplier",
+      "headquarters_city_id": "ningbo"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "headquarters",
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "sinotruk",
+      "legal_name_zh": "中国重型汽车集团有限公司",
+      "legal_name_en": "China National Heavy Duty Truck Group",
+      "display_name_zh": "中国重汽",
+      "display_name_en": "Sinotruk",
+      "organization_type": "automaker",
+      "headquarters_city_id": "jinan"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "king-long",
+      "legal_name_zh": "厦门金龙联合汽车工业有限公司",
+      "legal_name_en": "King Long United Automotive Industry Co., Ltd.",
+      "display_name_zh": "金龙客车",
+      "display_name_en": "King Long",
+      "organization_type": "automaker",
+      "headquarters_city_id": "xiamen"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "golden-dragon",
+      "legal_name_zh": "厦门金龙旅行车有限公司",
+      "legal_name_en": "Xiamen Golden Dragon Bus Co., Ltd.",
+      "display_name_zh": "金旅客车",
+      "display_name_en": "Golden Dragon",
+      "organization_type": "automaker",
+      "headquarters_city_id": "xiamen"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "testing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "catarc",
+      "legal_name_zh": "中国汽车技术研究中心有限公司",
+      "legal_name_en": "China Automotive Technology and Research Center",
+      "display_name_zh": "中汽中心",
+      "display_name_en": "CATARC",
+      "organization_type": "testing_body",
+      "headquarters_city_id": "tianjin"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "testing",
+        "rd_design"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "caeri",
+      "legal_name_zh": "中国汽车工程研究院股份有限公司",
+      "legal_name_en": "China Automotive Engineering Research Institute",
+      "display_name_zh": "中国汽研",
+      "display_name_en": "CAERI",
+      "organization_type": "research_institute",
+      "headquarters_city_id": "chongqing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.tsinghua.edu.cn/",
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "tsinghua",
+      "legal_name_zh": "清华大学",
+      "legal_name_en": "Tsinghua University",
+      "display_name_zh": "清华大学",
+      "display_name_en": "Tsinghua University",
+      "organization_type": "university",
+      "headquarters_city_id": "beijing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "bit",
+      "legal_name_zh": "北京理工大学",
+      "legal_name_en": "Beijing Institute of Technology",
+      "display_name_zh": "北京理工大学",
+      "display_name_en": "BIT",
+      "organization_type": "university",
+      "headquarters_city_id": "beijing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "tongji",
+      "legal_name_zh": "同济大学",
+      "legal_name_en": "Tongji University",
+      "display_name_zh": "同济大学",
+      "display_name_en": "Tongji University",
+      "organization_type": "university",
+      "headquarters_city_id": "shanghai"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "sjtu",
+      "legal_name_zh": "上海交通大学",
+      "legal_name_en": "Shanghai Jiao Tong University",
+      "display_name_zh": "上海交通大学",
+      "display_name_en": "SJTU",
+      "organization_type": "university",
+      "headquarters_city_id": "shanghai"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education",
+        "auto_history"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "jlu",
+      "legal_name_zh": "吉林大学",
+      "legal_name_en": "Jilin University",
+      "display_name_zh": "吉林大学",
+      "display_name_en": "Jilin University",
+      "organization_type": "university",
+      "headquarters_city_id": "changchun"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "whut",
+      "legal_name_zh": "武汉理工大学",
+      "legal_name_en": "Wuhan University of Technology",
+      "display_name_zh": "武汉理工大学",
+      "display_name_en": "WUT",
+      "organization_type": "university",
+      "headquarters_city_id": "wuhan"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "hfut",
+      "legal_name_zh": "合肥工业大学",
+      "legal_name_en": "Hefei University of Technology",
+      "display_name_zh": "合肥工业大学",
+      "display_name_en": "HFUT",
+      "organization_type": "university",
+      "headquarters_city_id": "hefei"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "changan-univ",
+      "legal_name_zh": "长安大学",
+      "legal_name_en": "Chang'an University",
+      "display_name_zh": "长安大学",
+      "display_name_en": "Chang'an University",
+      "organization_type": "university",
+      "headquarters_city_id": "xian"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "hnu",
+      "legal_name_zh": "湖南大学",
+      "legal_name_en": "Hunan University",
+      "display_name_zh": "湖南大学",
+      "display_name_en": "Hunan University",
+      "organization_type": "university",
+      "headquarters_city_id": "changsha"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "scut",
+      "legal_name_zh": "华南理工大学",
+      "legal_name_en": "South China University of Technology",
+      "display_name_zh": "华南理工大学",
+      "display_name_en": "SCUT",
+      "organization_type": "university",
+      "headquarters_city_id": "guangzhou"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "cqu",
+      "legal_name_zh": "重庆大学",
+      "legal_name_en": "Chongqing University",
+      "display_name_zh": "重庆大学",
+      "display_name_en": "Chongqing University",
+      "organization_type": "university",
+      "headquarters_city_id": "chongqing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "higher_education"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "cqut",
+      "legal_name_zh": "重庆理工大学",
+      "legal_name_en": "Chongqing University of Technology",
+      "display_name_zh": "重庆理工大学",
+      "display_name_en": "CQUT",
+      "organization_type": "university",
+      "headquarters_city_id": "chongqing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.autohome.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "autohome",
+      "legal_name_zh": "汽车之家",
+      "legal_name_en": "Autohome",
+      "display_name_zh": "汽车之家",
+      "display_name_en": "Autohome",
+      "organization_type": "media_company",
+      "headquarters_city_id": "beijing"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.gasgoo.com/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "gasgoo",
+      "legal_name_zh": "盖世汽车",
+      "legal_name_en": "Gasgoo",
+      "display_name_zh": "盖世汽车",
+      "display_name_en": "Gasgoo",
+      "organization_type": "media_company",
+      "headquarters_city_id": "shanghai"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "garage42",
+      "legal_name_zh": "42号车库",
+      "legal_name_en": "Garage 42",
+      "display_name_zh": "42号车库",
+      "display_name_en": "Garage 42",
+      "organization_type": "media_company",
+      "headquarters_city_id": "shanghai"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "xchuxing",
+      "legal_name_zh": "新出行",
+      "legal_name_en": "Xchuxing",
+      "display_name_zh": "新出行",
+      "display_name_en": "Xchuxing",
+      "organization_type": "media_company",
+      "headquarters_city_id": "shenzhen"
+    },
+    {
+      "parent_id": null,
+      "founded_year": null,
+      "website": "https://www.pcauto.com.cn/",
+      "status": "active",
+      "focus_tags": [
+        "auto_media"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses",
+        "src-research-brief-2026-08"
+      ],
+      "id": "pcauto",
+      "legal_name_zh": "太平洋汽车",
+      "legal_name_en": "PCauto",
+      "display_name_zh": "太平洋汽车",
+      "display_name_en": "PCauto",
+      "organization_type": "media_company",
+      "headquarters_city_id": "guangzhou"
+    },
+    {
+      "parent_id": "gac",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "gac-aion",
+      "legal_name_zh": "广汽埃安新能源汽车股份有限公司",
+      "legal_name_en": "GAC Aion New Energy Automobile Co., Ltd.",
+      "display_name_zh": "广汽埃安",
+      "display_name_en": "GAC Aion",
+      "organization_type": "brand",
+      "headquarters_city_id": "guangzhou"
+    },
+    {
+      "parent_id": "saic",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "saic-vw",
+      "legal_name_zh": "上汽大众汽车有限公司",
+      "legal_name_en": "SAIC Volkswagen Automotive Co., Ltd.",
+      "display_name_zh": "上汽大众",
+      "display_name_en": "SAIC Volkswagen",
+      "organization_type": "automaker",
+      "headquarters_city_id": "shanghai"
+    },
+    {
+      "parent_id": "baic",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "baic-foton",
+      "legal_name_zh": "北汽福田汽车股份有限公司",
+      "legal_name_en": "BAIC Foton Motor Co., Ltd.",
+      "display_name_zh": "北汽福田",
+      "display_name_en": "Foton",
+      "organization_type": "automaker",
+      "headquarters_city_id": "beijing"
+    },
+    {
+      "parent_id": "dongfeng",
+      "founded_year": null,
+      "website": null,
+      "status": "active",
+      "focus_tags": [
+        "oem_manufacturing",
+        "auto_history"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "id": "dongfeng-cv",
+      "legal_name_zh": "东风商用车有限公司",
+      "legal_name_en": "Dongfeng Commercial Vehicle Co., Ltd.",
+      "display_name_zh": "东风商用车",
+      "display_name_en": "Dongfeng Commercial Vehicles",
+      "organization_type": "automaker",
+      "headquarters_city_id": "shiyan"
+    }
+  ]
+}

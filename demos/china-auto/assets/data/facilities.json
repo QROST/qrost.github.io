@@ -1,0 +1,502 @@
+{
+  "facilities": [
+    {
+      "district_zh": "临港",
+      "district_en": "Lingang",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [
+        "Model 3",
+        "Model Y"
+      ],
+      "technology_tags": [
+        "nev"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "tesla-shanghai-gigafactory",
+      "name_zh": "特斯拉上海超级工厂",
+      "name_en": "Tesla Shanghai Gigafactory",
+      "operator_id": "tesla-china",
+      "city_id": "shanghai",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": "坪山",
+      "district_en": "Pingshan",
+      "lat": 22.5431,
+      "lng": 114.0579,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "nev",
+        "battery"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "byd-shenzhen-hq",
+      "name_zh": "比亚迪深圳总部及研发",
+      "name_en": "BYD Shenzhen HQ & R&D",
+      "operator_id": "byd",
+      "city_id": "shenzhen",
+      "facility_type": "headquarters_campus"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 34.3416,
+      "lng": 108.9398,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "nev"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "byd-xian-plant",
+      "name_zh": "比亚迪西安基地",
+      "name_en": "BYD Xi'an base",
+      "operator_id": "byd",
+      "city_id": "xian",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 31.8206,
+      "lng": 117.2272,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "nev"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "byd-hefei-plant",
+      "name_zh": "比亚迪合肥基地",
+      "name_en": "BYD Hefei base",
+      "operator_id": "byd",
+      "city_id": "hefei",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 34.7466,
+      "lng": 113.6254,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "nev"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "byd-zhengzhou-plant",
+      "name_zh": "比亚迪郑州基地",
+      "name_en": "BYD Zhengzhou base",
+      "operator_id": "byd",
+      "city_id": "zhengzhou",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 28.2282,
+      "lng": 112.9388,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "nev"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "byd-changsha-plant",
+      "name_zh": "比亚迪长沙基地",
+      "name_en": "BYD Changsha base",
+      "operator_id": "byd",
+      "city_id": "changsha",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 36.6512,
+      "lng": 117.1201,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "nev"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "byd-jinan-plant",
+      "name_zh": "比亚迪济南基地",
+      "name_en": "BYD Jinan base",
+      "operator_id": "byd",
+      "city_id": "jinan",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 31.8107,
+      "lng": 119.9741,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "nev"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "byd-changzhou-plant",
+      "name_zh": "比亚迪常州基地",
+      "name_en": "BYD Changzhou base",
+      "operator_id": "byd",
+      "city_id": "changzhou",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 31.3528,
+      "lng": 118.4331,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "export"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "chery-wuhu-plant",
+      "name_zh": "奇瑞芜湖整车基地",
+      "name_en": "Chery Wuhu vehicle base",
+      "operator_id": "chery",
+      "city_id": "wuhu",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 43.8171,
+      "lng": 125.3235,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "auto_history"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "faw-changchun-hq",
+      "name_zh": "中国一汽长春总部",
+      "name_en": "FAW Changchun headquarters",
+      "operator_id": "faw",
+      "city_id": "changchun",
+      "facility_type": "headquarters_campus"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 31.8107,
+      "lng": 119.9741,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "nev"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "li-auto-changzhou",
+      "name_zh": "理想汽车常州工厂",
+      "name_en": "Li Auto Changzhou plant",
+      "operator_id": "li-auto",
+      "city_id": "changzhou",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 26.6655,
+      "lng": 119.548,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "battery"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "catl-ningde",
+      "name_zh": "宁德时代宁德基地",
+      "name_en": "CATL Ningde base",
+      "operator_id": "catl",
+      "city_id": "ningde",
+      "facility_type": "battery_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 28.7518,
+      "lng": 104.6432,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "battery"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "catl-yibin",
+      "name_zh": "四川时代宜宾基地",
+      "name_en": "CATL Sichuan Yibin base",
+      "operator_id": "catl",
+      "city_id": "yibin",
+      "facility_type": "battery_plant"
+    },
+    {
+      "district_zh": "徐水",
+      "district_en": "Xushui",
+      "lat": 38.851,
+      "lng": 115.49,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "gwm-xushui",
+      "name_zh": "长城汽车徐水智慧工厂",
+      "name_en": "GWM Xushui smart plant",
+      "operator_id": "gwm",
+      "city_id": "baoding",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 24.3264,
+      "lng": 109.4281,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "sgmw-liuzhou",
+      "name_zh": "上汽通用五菱柳州基地",
+      "name_en": "SGMW Liuzhou base",
+      "operator_id": "sgmw",
+      "city_id": "liuzhou",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 34.7466,
+      "lng": 113.6254,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "bus"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "yutong-zhengzhou",
+      "name_zh": "宇通客车郑州基地",
+      "name_en": "Yutong Zhengzhou base",
+      "operator_id": "yutong",
+      "city_id": "zhengzhou",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 29.563,
+      "lng": 106.5516,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "changan-chongqing",
+      "name_zh": "长安汽车重庆整车基地",
+      "name_en": "Changan Chongqing vehicle base",
+      "operator_id": "changan",
+      "city_id": "chongqing",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 31.8206,
+      "lng": 117.2272,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "nev"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "nio-hefei",
+      "name_zh": "蔚来合肥制造基地",
+      "name_en": "NIO Hefei manufacturing base",
+      "operator_id": "nio",
+      "city_id": "hefei",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 32.6294,
+      "lng": 110.798,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "commercial"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "dongfeng-shiyan",
+      "name_zh": "东风商用车十堰工厂",
+      "name_en": "Dongfeng CV Shiyan plant",
+      "operator_id": "dongfeng-cv",
+      "city_id": "shiyan",
+      "facility_type": "vehicle_plant"
+    },
+    {
+      "district_zh": null,
+      "district_en": null,
+      "lat": 39.3434,
+      "lng": 117.3616,
+      "status": "active",
+      "opened_at": null,
+      "current_products": [],
+      "technology_tags": [
+        "testing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.62,
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ],
+      "coord_note_zh": "坐标暂用城市中心点，待工厂级地理编码。",
+      "coord_note_en": "Coordinates currently use the city centroid pending plant-level geocoding.",
+      "id": "catarc-tianjin",
+      "name_zh": "中汽中心天津检测基地",
+      "name_en": "CATARC Tianjin testing campus",
+      "operator_id": "catarc",
+      "city_id": "tianjin",
+      "facility_type": "testing_center"
+    }
+  ]
+}

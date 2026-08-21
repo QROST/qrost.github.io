@@ -1,0 +1,210 @@
+{
+  "institutions": [
+    {
+      "id": "inst-tsinghua",
+      "organization_id": "tsinghua",
+      "school_zh": "清华大学",
+      "school_en": "Tsinghua University",
+      "city_id": "beijing",
+      "college_zh": "车辆与运载学院",
+      "college_en": "School of Vehicle and Mobility",
+      "strengths_zh": "新能源、智能驾驶、跨学科研究",
+      "strengths_en": "NEV, autonomous driving, cross-disciplinary research",
+      "industry_partners": [],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-bit",
+      "organization_id": "bit",
+      "school_zh": "北京理工大学",
+      "school_en": "Beijing Institute of Technology",
+      "city_id": "beijing",
+      "college_zh": "机械与车辆学院",
+      "college_en": "School of Mechanical Engineering",
+      "strengths_zh": "车辆工程与军工车辆传统",
+      "strengths_en": "Vehicle engineering and defence-vehicle tradition",
+      "industry_partners": [],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-tongji",
+      "organization_id": "tongji",
+      "school_zh": "同济大学",
+      "school_en": "Tongji University",
+      "city_id": "shanghai",
+      "college_zh": "汽车学院",
+      "college_en": "School of Automotive Studies",
+      "strengths_zh": "汽车工程、测试与国际合作",
+      "strengths_en": "Automotive engineering, testing and international cooperation",
+      "industry_partners": [
+        "saic"
+      ],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-sjtu",
+      "organization_id": "sjtu",
+      "school_zh": "上海交通大学",
+      "school_en": "Shanghai Jiao Tong University",
+      "city_id": "shanghai",
+      "college_zh": "汽车动力与智能控制相关研究机构",
+      "college_en": "Automotive power and intelligent-control labs",
+      "strengths_zh": "动力系统与控制",
+      "strengths_en": "Powertrain and control",
+      "industry_partners": [],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-jlu",
+      "organization_id": "jlu",
+      "school_zh": "吉林大学",
+      "school_en": "Jilin University",
+      "city_id": "changchun",
+      "college_zh": "汽车工程学院",
+      "college_en": "College of Automotive Engineering",
+      "strengths_zh": "传统车辆工程积累深厚",
+      "strengths_en": "Deep traditional vehicle-engineering stock",
+      "industry_partners": [
+        "faw"
+      ],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-whut",
+      "organization_id": "whut",
+      "school_zh": "武汉理工大学",
+      "school_en": "Wuhan University of Technology",
+      "city_id": "wuhan",
+      "college_zh": "汽车工程学院",
+      "college_en": "School of Automotive Engineering",
+      "strengths_zh": "传统车辆工程",
+      "strengths_en": "Traditional vehicle engineering",
+      "industry_partners": [
+        "dongfeng"
+      ],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-hfut",
+      "organization_id": "hfut",
+      "school_zh": "合肥工业大学",
+      "school_en": "Hefei University of Technology",
+      "city_id": "hefei",
+      "college_zh": "汽车与交通工程学院",
+      "college_en": "School of Automotive and Transportation Engineering",
+      "strengths_zh": "传统车辆工程",
+      "strengths_en": "Traditional vehicle engineering",
+      "industry_partners": [
+        "jac"
+      ],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-chd",
+      "organization_id": "changan-univ",
+      "school_zh": "长安大学",
+      "school_en": "Chang'an University",
+      "city_id": "xian",
+      "college_zh": "汽车学院",
+      "college_en": "School of Automobile",
+      "strengths_zh": "传统车辆工程",
+      "strengths_en": "Traditional vehicle engineering",
+      "industry_partners": [],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-hnu",
+      "organization_id": "hnu",
+      "school_zh": "湖南大学",
+      "school_en": "Hunan University",
+      "city_id": "changsha",
+      "college_zh": "车辆工程及智能汽车研究",
+      "college_en": "Vehicle engineering and intelligent-vehicle research",
+      "strengths_zh": "车辆工程与智能汽车",
+      "strengths_en": "Vehicle engineering and intelligent vehicles",
+      "industry_partners": [],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-scut",
+      "organization_id": "scut",
+      "school_zh": "华南理工大学",
+      "school_en": "South China University of Technology",
+      "city_id": "guangzhou",
+      "college_zh": "车辆工程相关院系",
+      "college_en": "Vehicle-engineering departments",
+      "strengths_zh": "车辆工程",
+      "strengths_en": "Vehicle engineering",
+      "industry_partners": [
+        "gac"
+      ],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-cqu",
+      "organization_id": "cqu",
+      "school_zh": "重庆大学",
+      "school_en": "Chongqing University",
+      "city_id": "chongqing",
+      "college_zh": "车辆工程相关学院",
+      "college_en": "Vehicle-engineering schools",
+      "strengths_zh": "车辆工程",
+      "strengths_en": "Vehicle engineering",
+      "industry_partners": [
+        "changan"
+      ],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "inst-cqut",
+      "organization_id": "cqut",
+      "school_zh": "重庆理工大学",
+      "school_en": "Chongqing University of Technology",
+      "city_id": "chongqing",
+      "college_zh": "车辆工程相关学院",
+      "college_en": "Vehicle-engineering schools",
+      "strengths_zh": "车辆工程",
+      "strengths_en": "Vehicle engineering",
+      "industry_partners": [
+        "changan"
+      ],
+      "last_verified": "2026-08",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    }
+  ]
+}

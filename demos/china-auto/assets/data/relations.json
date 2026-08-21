@@ -1,0 +1,760 @@
+{
+  "relations": [
+    {
+      "id": "shanghai__belongs_to_cluster__yangtze-river-delta__yangtze-river-delta",
+      "from_id": "shanghai",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "yangtze-river-delta",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "suzhou__belongs_to_cluster__yangtze-river-delta__yangtze-river-delta",
+      "from_id": "suzhou",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "yangtze-river-delta",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "changzhou__belongs_to_cluster__yangtze-river-delta__yangtze-river-delta",
+      "from_id": "changzhou",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "yangtze-river-delta",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "ningbo__belongs_to_cluster__yangtze-river-delta__yangtze-river-delta",
+      "from_id": "ningbo",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "yangtze-river-delta",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "hefei__belongs_to_cluster__yangtze-river-delta__yangtze-river-delta",
+      "from_id": "hefei",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "yangtze-river-delta",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "wuhu__belongs_to_cluster__yangtze-river-delta__yangtze-river-delta",
+      "from_id": "wuhu",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "yangtze-river-delta",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "guangzhou__belongs_to_cluster__greater-bay-area__greater-bay-area",
+      "from_id": "guangzhou",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "greater-bay-area",
+      "cluster_id": "greater-bay-area",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shenzhen__belongs_to_cluster__greater-bay-area__greater-bay-area",
+      "from_id": "shenzhen",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "greater-bay-area",
+      "cluster_id": "greater-bay-area",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "huizhou__belongs_to_cluster__greater-bay-area__greater-bay-area",
+      "from_id": "huizhou",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "greater-bay-area",
+      "cluster_id": "greater-bay-area",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__belongs_to_cluster__jingjinji__jingjinji",
+      "from_id": "beijing",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "jingjinji",
+      "cluster_id": "jingjinji",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tianjin__belongs_to_cluster__jingjinji__jingjinji",
+      "from_id": "tianjin",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "jingjinji",
+      "cluster_id": "jingjinji",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "baoding__belongs_to_cluster__jingjinji__jingjinji",
+      "from_id": "baoding",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "jingjinji",
+      "cluster_id": "jingjinji",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "chongqing__belongs_to_cluster__chengyu__chengyu",
+      "from_id": "chongqing",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "chengyu",
+      "cluster_id": "chengyu",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "chengdu__belongs_to_cluster__chengyu__chengyu",
+      "from_id": "chengdu",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "chengyu",
+      "cluster_id": "chengyu",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yibin__belongs_to_cluster__chengyu__chengyu",
+      "from_id": "yibin",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "chengyu",
+      "cluster_id": "chengyu",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "wuhan__belongs_to_cluster__hubei-axis__hubei-axis",
+      "from_id": "wuhan",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "hubei-axis",
+      "cluster_id": "hubei-axis",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shiyan__belongs_to_cluster__hubei-axis__hubei-axis",
+      "from_id": "shiyan",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "hubei-axis",
+      "cluster_id": "hubei-axis",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "changsha__belongs_to_cluster__hunan-axis__hunan-axis",
+      "from_id": "changsha",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "hunan-axis",
+      "cluster_id": "hunan-axis",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "changchun__belongs_to_cluster__northeast__northeast",
+      "from_id": "changchun",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "northeast",
+      "cluster_id": "northeast",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "zhengzhou__belongs_to_cluster__central-plains__central-plains",
+      "from_id": "zhengzhou",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "central-plains",
+      "cluster_id": "central-plains",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "liuzhou__belongs_to_cluster__guangxi__guangxi",
+      "from_id": "liuzhou",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "guangxi",
+      "cluster_id": "guangxi",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "ningde__belongs_to_cluster__battery-corridor__battery-corridor",
+      "from_id": "ningde",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "battery-corridor",
+      "cluster_id": "battery-corridor",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "changzhou__belongs_to_cluster__battery-corridor__battery-corridor",
+      "from_id": "changzhou",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "battery-corridor",
+      "cluster_id": "battery-corridor",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yibin__belongs_to_cluster__battery-corridor__battery-corridor",
+      "from_id": "yibin",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "battery-corridor",
+      "cluster_id": "battery-corridor",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "hefei__belongs_to_cluster__battery-corridor__battery-corridor",
+      "from_id": "hefei",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "battery-corridor",
+      "cluster_id": "battery-corridor",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "huizhou__belongs_to_cluster__battery-corridor__battery-corridor",
+      "from_id": "huizhou",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "battery-corridor",
+      "cluster_id": "battery-corridor",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xian__belongs_to_cluster__northwest__northwest",
+      "from_id": "xian",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "northwest",
+      "cluster_id": "northwest",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "jinan__belongs_to_cluster__shandong__shandong",
+      "from_id": "jinan",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "shandong",
+      "cluster_id": "shandong",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xiamen__belongs_to_cluster__fujian-bus__fujian-bus",
+      "from_id": "xiamen",
+      "relation_type": "belongs_to_cluster",
+      "to_id": "fujian-bus",
+      "cluster_id": "fujian-bus",
+      "description_zh": "城市属于该产业集群",
+      "description_en": "City belongs to this cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shanghai__cluster_adjacent__suzhou__yangtze-river-delta",
+      "from_id": "shanghai",
+      "relation_type": "cluster_adjacent",
+      "to_id": "suzhou",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "suzhou__cluster_adjacent__shanghai__yangtze-river-delta",
+      "from_id": "suzhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "shanghai",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "suzhou__cluster_adjacent__changzhou__yangtze-river-delta",
+      "from_id": "suzhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "changzhou",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "changzhou__cluster_adjacent__suzhou__yangtze-river-delta",
+      "from_id": "changzhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "suzhou",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "changzhou__cluster_adjacent__ningbo__yangtze-river-delta",
+      "from_id": "changzhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "ningbo",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "ningbo__cluster_adjacent__changzhou__yangtze-river-delta",
+      "from_id": "ningbo",
+      "relation_type": "cluster_adjacent",
+      "to_id": "changzhou",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shanghai__cluster_adjacent__hefei__yangtze-river-delta",
+      "from_id": "shanghai",
+      "relation_type": "cluster_adjacent",
+      "to_id": "hefei",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "hefei__cluster_adjacent__shanghai__yangtze-river-delta",
+      "from_id": "hefei",
+      "relation_type": "cluster_adjacent",
+      "to_id": "shanghai",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "hefei__cluster_adjacent__wuhu__yangtze-river-delta",
+      "from_id": "hefei",
+      "relation_type": "cluster_adjacent",
+      "to_id": "wuhu",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "wuhu__cluster_adjacent__hefei__yangtze-river-delta",
+      "from_id": "wuhu",
+      "relation_type": "cluster_adjacent",
+      "to_id": "hefei",
+      "cluster_id": "yangtze-river-delta",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "guangzhou__cluster_adjacent__shenzhen__greater-bay-area",
+      "from_id": "guangzhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "shenzhen",
+      "cluster_id": "greater-bay-area",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shenzhen__cluster_adjacent__guangzhou__greater-bay-area",
+      "from_id": "shenzhen",
+      "relation_type": "cluster_adjacent",
+      "to_id": "guangzhou",
+      "cluster_id": "greater-bay-area",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shenzhen__cluster_adjacent__huizhou__greater-bay-area",
+      "from_id": "shenzhen",
+      "relation_type": "cluster_adjacent",
+      "to_id": "huizhou",
+      "cluster_id": "greater-bay-area",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "huizhou__cluster_adjacent__shenzhen__greater-bay-area",
+      "from_id": "huizhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "shenzhen",
+      "cluster_id": "greater-bay-area",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "guangzhou__cluster_adjacent__huizhou__greater-bay-area",
+      "from_id": "guangzhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "huizhou",
+      "cluster_id": "greater-bay-area",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "huizhou__cluster_adjacent__guangzhou__greater-bay-area",
+      "from_id": "huizhou",
+      "relation_type": "cluster_adjacent",
+      "to_id": "guangzhou",
+      "cluster_id": "greater-bay-area",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__cluster_adjacent__tianjin__jingjinji",
+      "from_id": "beijing",
+      "relation_type": "cluster_adjacent",
+      "to_id": "tianjin",
+      "cluster_id": "jingjinji",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tianjin__cluster_adjacent__beijing__jingjinji",
+      "from_id": "tianjin",
+      "relation_type": "cluster_adjacent",
+      "to_id": "beijing",
+      "cluster_id": "jingjinji",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__cluster_adjacent__baoding__jingjinji",
+      "from_id": "beijing",
+      "relation_type": "cluster_adjacent",
+      "to_id": "baoding",
+      "cluster_id": "jingjinji",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "baoding__cluster_adjacent__beijing__jingjinji",
+      "from_id": "baoding",
+      "relation_type": "cluster_adjacent",
+      "to_id": "beijing",
+      "cluster_id": "jingjinji",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tianjin__cluster_adjacent__baoding__jingjinji",
+      "from_id": "tianjin",
+      "relation_type": "cluster_adjacent",
+      "to_id": "baoding",
+      "cluster_id": "jingjinji",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "baoding__cluster_adjacent__tianjin__jingjinji",
+      "from_id": "baoding",
+      "relation_type": "cluster_adjacent",
+      "to_id": "tianjin",
+      "cluster_id": "jingjinji",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "chongqing__cluster_adjacent__chengdu__chengyu",
+      "from_id": "chongqing",
+      "relation_type": "cluster_adjacent",
+      "to_id": "chengdu",
+      "cluster_id": "chengyu",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "chengdu__cluster_adjacent__chongqing__chengyu",
+      "from_id": "chengdu",
+      "relation_type": "cluster_adjacent",
+      "to_id": "chongqing",
+      "cluster_id": "chengyu",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "chengdu__cluster_adjacent__yibin__chengyu",
+      "from_id": "chengdu",
+      "relation_type": "cluster_adjacent",
+      "to_id": "yibin",
+      "cluster_id": "chengyu",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yibin__cluster_adjacent__chengdu__chengyu",
+      "from_id": "yibin",
+      "relation_type": "cluster_adjacent",
+      "to_id": "chengdu",
+      "cluster_id": "chengyu",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "chongqing__cluster_adjacent__yibin__chengyu",
+      "from_id": "chongqing",
+      "relation_type": "cluster_adjacent",
+      "to_id": "yibin",
+      "cluster_id": "chengyu",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yibin__cluster_adjacent__chongqing__chengyu",
+      "from_id": "yibin",
+      "relation_type": "cluster_adjacent",
+      "to_id": "chongqing",
+      "cluster_id": "chengyu",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "wuhan__cluster_adjacent__shiyan__hubei-axis",
+      "from_id": "wuhan",
+      "relation_type": "cluster_adjacent",
+      "to_id": "shiyan",
+      "cluster_id": "hubei-axis",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shiyan__cluster_adjacent__wuhan__hubei-axis",
+      "from_id": "shiyan",
+      "relation_type": "cluster_adjacent",
+      "to_id": "wuhan",
+      "cluster_id": "hubei-axis",
+      "description_zh": "产业集群相邻协作",
+      "description_en": "Adjacent collaboration inside the cluster",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "byd__located_in__shenzhen__",
+      "from_id": "byd",
+      "relation_type": "located_in",
+      "to_id": "shenzhen",
+      "cluster_id": null,
+      "description_zh": "集团总部",
+      "description_en": "Group headquarters",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "catl__located_in__ningde__",
+      "from_id": "catl",
+      "relation_type": "located_in",
+      "to_id": "ningde",
+      "cluster_id": null,
+      "description_zh": "集团总部",
+      "description_en": "Group headquarters",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "faw__historically_linked_to__changchun__",
+      "from_id": "faw",
+      "relation_type": "historically_linked_to",
+      "to_id": "changchun",
+      "cluster_id": null,
+      "description_zh": "一汽发源地",
+      "description_en": "FAW place of origin",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dongfeng__historically_linked_to__shiyan__",
+      "from_id": "dongfeng",
+      "relation_type": "historically_linked_to",
+      "to_id": "shiyan",
+      "cluster_id": null,
+      "description_zh": "二汽发源地",
+      "description_en": "Second Auto Works place of origin",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    }
+  ]
+}

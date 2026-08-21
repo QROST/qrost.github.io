@@ -1,0 +1,119 @@
+{
+  "media": [
+    {
+      "id": "media-autohome",
+      "organization_id": "autohome",
+      "media_name_zh": "汽车之家",
+      "media_name_en": "Autohome",
+      "media_type": "portal",
+      "operating_company_zh": "汽车之家",
+      "operating_company_en": "Autohome",
+      "registered_city_id": "beijing",
+      "editorial_city_id": "beijing",
+      "founded_year": 2005,
+      "focus_tags": [
+        "portal"
+      ],
+      "website": "https://www.autohome.com.cn/",
+      "status": "active",
+      "last_verified": "2026-08",
+      "confidence": 0.8,
+      "source_ids": [
+        "src-media-public-addresses"
+      ],
+      "national_platform": true
+    },
+    {
+      "id": "media-gasgoo",
+      "organization_id": "gasgoo",
+      "media_name_zh": "盖世汽车",
+      "media_name_en": "Gasgoo",
+      "media_type": "trade_media",
+      "operating_company_zh": "盖世汽车",
+      "operating_company_en": "Gasgoo",
+      "registered_city_id": "shanghai",
+      "editorial_city_id": "shanghai",
+      "founded_year": null,
+      "focus_tags": [
+        "trade_media"
+      ],
+      "website": "https://www.gasgoo.com/",
+      "status": "active",
+      "last_verified": "2026-08",
+      "confidence": 0.75,
+      "source_ids": [
+        "src-media-public-addresses"
+      ],
+      "national_platform": true
+    },
+    {
+      "id": "media-garage42",
+      "organization_id": "garage42",
+      "media_name_zh": "42号车库",
+      "media_name_en": "Garage 42",
+      "media_type": "nev_media",
+      "operating_company_zh": "42号车库",
+      "operating_company_en": "Garage 42",
+      "registered_city_id": "shanghai",
+      "editorial_city_id": "shanghai",
+      "founded_year": null,
+      "focus_tags": [
+        "nev_media"
+      ],
+      "website": null,
+      "status": "active",
+      "last_verified": "2026-08",
+      "confidence": 0.7,
+      "source_ids": [
+        "src-media-public-addresses"
+      ],
+      "national_platform": true
+    },
+    {
+      "id": "media-xchuxing",
+      "organization_id": "xchuxing",
+      "media_name_zh": "新出行",
+      "media_name_en": "Xchuxing",
+      "media_type": "nev_media",
+      "operating_company_zh": "新出行",
+      "operating_company_en": "Xchuxing",
+      "registered_city_id": "shenzhen",
+      "editorial_city_id": "shenzhen",
+      "founded_year": null,
+      "focus_tags": [
+        "nev_media"
+      ],
+      "website": null,
+      "status": "active",
+      "last_verified": "2026-08",
+      "confidence": 0.72,
+      "source_ids": [
+        "src-media-public-addresses"
+      ],
+      "national_platform": true
+    },
+    {
+      "id": "media-pcauto",
+      "organization_id": "pcauto",
+      "media_name_zh": "太平洋汽车",
+      "media_name_en": "PCauto",
+      "media_type": "portal",
+      "operating_company_zh": "太平洋汽车",
+      "operating_company_en": "PCauto",
+      "registered_city_id": "guangzhou",
+      "editorial_city_id": "guangzhou",
+      "founded_year": null,
+      "focus_tags": [
+        "portal"
+      ],
+      "website": "https://www.pcauto.com.cn/",
+      "status": "active",
+      "last_verified": "2026-08",
+      "confidence": 0.75,
+      "source_ids": [
+        "src-media-public-addresses"
+      ],
+      "national_platform": true
+    }
+  ]
+}

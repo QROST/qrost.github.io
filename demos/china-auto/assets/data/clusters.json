@@ -1,0 +1,176 @@
+{
+  "clusters": [
+    {
+      "id": "yangtze-river-delta",
+      "name_zh": "长三角汽车网络",
+      "name_en": "Yangtze River Delta auto network",
+      "city_ids": [
+        "shanghai",
+        "suzhou",
+        "changzhou",
+        "ningbo",
+        "hefei",
+        "wuhu"
+      ],
+      "summary_zh": "上海承担总部、芯片、软件、国际合作和整车制造；常州具有电池与新能源整车；苏州和宁波拥有汽车电子与零部件；合肥和芜湖承担快速增长的整车生产。完整链还应包含杭州，将在二期补入。",
+      "summary_en": "Shanghai carries HQ, chips, software, international cooperation and vehicle plants; Changzhou batteries and NEVs; Suzhou and Ningbo electronics and parts; Hefei and Wuhu fast-growing vehicle output. Hangzhou joins in phase 2.",
+      "output_note_zh": "国家发展改革委区域资料将上海软件芯片、常州动力电池和宁波整车制造作为协作案例。",
+      "output_note_en": "NDRC regional materials cite Shanghai software/chips, Changzhou batteries and Ningbo vehicle manufacturing as a collaboration case."
+    },
+    {
+      "id": "greater-bay-area",
+      "name_zh": "粤港澳大湾区汽车网络",
+      "name_en": "Greater Bay Area auto network",
+      "city_ids": [
+        "guangzhou",
+        "shenzhen",
+        "huizhou"
+      ],
+      "summary_zh": "广州多品牌整车；深圳比亚迪总部、汽车电子和智能驾驶；惠州德赛西威、华阳和亿纬锂能。佛山、东莞将在二期补入。",
+      "summary_en": "Guangzhou multi-brand plants; Shenzhen BYD HQ, electronics and autonomy; Huizhou Desay SV, HuaYang and EVE. Foshan and Dongguan join in phase 2.",
+      "output_note_zh": "广州和深圳官方产业规划均将跨城市协作列为重要方向。",
+      "output_note_en": "Guangzhou and Shenzhen official industry plans both treat cross-city collaboration as a priority."
+    },
+    {
+      "id": "jingjinji",
+      "name_zh": "京津冀汽车网络",
+      "name_en": "Jing-Jin-Ji auto network",
+      "city_ids": [
+        "beijing",
+        "tianjin",
+        "baoding"
+      ],
+      "summary_zh": "北京总部、算法、软件和创新平台；天津整车、检测标准和港口；保定长城总部和制造。廊坊等河北配套城市二期补入。",
+      "summary_en": "Beijing HQ, algorithms, software and platforms; Tianjin vehicles, testing standards and port; Baoding GWM HQ and manufacturing. Langfang joins in phase 2.",
+      "output_note_zh": "京津冀已形成以数小时运输半径组织的汽车供应链。",
+      "output_note_en": "Jing-Jin-Ji already organises auto supply on a same-day trucking radius."
+    },
+    {
+      "id": "chengyu",
+      "name_zh": "成渝汽车网络",
+      "name_en": "Chengdu–Chongqing auto network",
+      "city_ids": [
+        "chongqing",
+        "chengdu",
+        "yibin"
+      ],
+      "summary_zh": "重庆与成都构成整车和零部件双中心，宜宾提供动力电池产业支持。",
+      "summary_en": "Chongqing and Chengdu form a dual vehicle-and-parts centre; Yibin supplies power batteries.",
+      "output_note_zh": "2024年成渝地区汽车产量约343万辆，新能源汽车约108.7万辆。",
+      "output_note_en": "In 2024 the Chengdu–Chongqing region produced about 3.43 million vehicles, including about 1.087 million NEVs."
+    },
+    {
+      "id": "hubei-axis",
+      "name_zh": "湖北汽车轴线",
+      "name_en": "Hubei auto axis",
+      "city_ids": [
+        "wuhan",
+        "shiyan"
+      ],
+      "summary_zh": "武汉侧重乘用车、新能源和智能网联；十堰侧重中重型商用车。襄阳、随州二期补入，适合做成东风历史专题。",
+      "summary_en": "Wuhan: passenger cars, NEVs and intelligent connectivity; Shiyan: medium/heavy commercial vehicles. Xiangyang and Suizhou join in phase 2 as a Dongfeng history special.",
+      "output_note_zh": null,
+      "output_note_en": null
+    },
+    {
+      "id": "hunan-axis",
+      "name_zh": "湖南汽车轴线",
+      "name_en": "Hunan auto axis",
+      "city_ids": [
+        "changsha"
+      ],
+      "summary_zh": "长沙拥有比亚迪、广汽埃安和上汽大众。株洲新能源商用车和湘潭吉利体系二期补入。",
+      "summary_en": "Changsha hosts BYD, GAC Aion and SAIC Volkswagen. Zhuzhou NEV commercial vehicles and Xiangtan's Geely system join in phase 2.",
+      "output_note_zh": null,
+      "output_note_en": null
+    },
+    {
+      "id": "northeast",
+      "name_zh": "东北一汽枢纽",
+      "name_en": "Northeast FAW hub",
+      "city_ids": [
+        "changchun"
+      ],
+      "summary_zh": "长春作为一汽总部与历史核心独立呈现，后续连接沈阳华晨宝马供应网络。",
+      "summary_en": "Changchun is presented as FAW HQ and historical core; Shenyang BMW Brilliance supply joins later.",
+      "output_note_zh": null,
+      "output_note_en": null
+    },
+    {
+      "id": "central-plains",
+      "name_zh": "中原客车与新能源",
+      "name_en": "Central Plains coaches and NEVs",
+      "city_ids": [
+        "zhengzhou"
+      ],
+      "summary_zh": "郑州同时承担比亚迪综合制造和宇通全球客车影响力。",
+      "summary_en": "Zhengzhou hosts both BYD integrated manufacturing and Yutong's global coach role.",
+      "output_note_zh": null,
+      "output_note_en": null
+    },
+    {
+      "id": "guangxi",
+      "name_zh": "桂中车城",
+      "name_en": "Central Guangxi auto city",
+      "city_ids": [
+        "liuzhou"
+      ],
+      "summary_zh": "柳州以五菱、柳汽和本地汽车文化构成相对完整的地方车城。",
+      "summary_en": "Liuzhou forms a relatively complete local auto city around Wuling, Dongfeng Liuzhou Motor and civic auto culture.",
+      "output_note_zh": null,
+      "output_note_en": null
+    },
+    {
+      "id": "battery-corridor",
+      "name_zh": "动力电池走廊",
+      "name_en": "Power-battery corridor",
+      "city_ids": [
+        "ningde",
+        "changzhou",
+        "yibin",
+        "hefei",
+        "huizhou"
+      ],
+      "summary_zh": "宁德总部、常州集聚、宜宾能源条件、合肥国轩与整车、惠州亿纬，用来说明电池城市不必拥有整车厂。",
+      "summary_en": "CATL HQ, Changzhou agglomeration, Yibin energy conditions, Hefei Gotion plus vehicles, Huizhou EVE — battery cities need not host OEM plants.",
+      "output_note_zh": null,
+      "output_note_en": null
+    },
+    {
+      "id": "northwest",
+      "name_zh": "西北制造节点",
+      "name_en": "Northwest manufacturing node",
+      "city_ids": [
+        "xian"
+      ],
+      "summary_zh": "西安以比亚迪大规模制造进入全国产量第一梯队。",
+      "summary_en": "Xi'an entered the national output first tier through BYD-scale manufacturing.",
+      "output_note_zh": null,
+      "output_note_en": null
+    },
+    {
+      "id": "shandong",
+      "name_zh": "山东商用车与新能源",
+      "name_en": "Shandong commercial vehicles and NEVs",
+      "city_ids": [
+        "jinan"
+      ],
+      "summary_zh": "济南以重汽商用车叠加比亚迪、吉利新能源整车。青岛一汽-大众/解放/奇瑞将在二期补入。",
+      "summary_en": "Jinan stacks Sinotruk commercial vehicles with BYD and Geely NEV plants. Qingdao FAW-VW/Jiefang/Chery joins in phase 2.",
+      "output_note_zh": null,
+      "output_note_en": null
+    },
+    {
+      "id": "fujian-bus",
+      "name_zh": "福建客车",
+      "name_en": "Fujian coaches",
+      "city_ids": [
+        "xiamen"
+      ],
+      "summary_zh": "厦门金龙与金旅代表客车和新能源商用车出口路径。",
+      "summary_en": "Xiamen King Long and Golden Dragon represent the coach and NEV-commercial export path.",
+      "output_note_zh": null,
+      "output_note_en": null
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+/* China Auto City Atlas — theme tokens + components (Tailwind CDN companion). */
+
+:root {
+  --bg-base: #f6f8fb;
+  --bg-shell: rgba(255, 255, 255, 0.92);
+  --bg-surface: #ffffff;
+  --bg-elev: #f1f5f9;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #64748b;
+  --accent: #0d9488;
+  --accent-strong: #0f766e;
+  --accent-soft: rgba(13, 148, 136, 0.12);
+
+  --chart-1: #0f766e; --chart-2: #0891b2; --chart-3: #6366f1; --chart-4: #f59e0b;
+  --chart-5: #ec4899; --chart-6: #22c55e; --chart-7: #8b5cf6; --chart-8: #ef4444;
+
+  --map-land: #e8edf4;
+  --map-border: #cbd5e1;
+}
+
+html.dark {
+  --bg-base: #0b1220;
+  --bg-shell: rgba(15, 23, 42, 0.88);
+  --bg-surface: #131d30;
+  --bg-elev: #1e293b;
+  --border: #273449;
+  --border-strong: #3b4d66;
+  --text: #f1f5f9;
+  --text-muted: #b4c0d3;
+  --text-faint: #7c8aa3;
+  --accent: #2dd4bf;
+  --accent-strong: #5eead4;
+  --accent-soft: rgba(45, 212, 191, 0.14);
+
+  --map-land: #1c2740;
+  --map-border: #34415c;
+}
+
+html, body { background: var(--bg-base); }
+body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
+
+.bg-base { background: var(--bg-base); }
+.bg-shell { background: var(--bg-shell); }
+.text-base { color: var(--text); }
+.text-muted { color: var(--text-muted); }
+.text-faint { color: var(--text-faint); }
+.border-base { border-color: var(--border); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  padding: 0.5rem 1rem; background: var(--accent-strong); color: #fff;
+  border-radius: 0 0 0.5rem 0.5rem; font-size: 0.85rem; text-decoration: none;
+}
+.skip-link:focus { left: 0.5rem; top: 0.5rem; }
+
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.nav-link {
+  padding: 0.35rem 0.6rem; border-radius: 0.5rem; color: var(--text-muted);
+  white-space: nowrap; transition: background .15s, color .15s;
+}
+.nav-link:hover { background: var(--bg-elev); color: var(--text); }
+.nav-scroll {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent 100%);
+  mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent 100%);
+}
+
+.btn-ghost {
+  padding: 0.35rem 0.7rem; border-radius: 0.5rem; font-size: 0.8rem;
+  border: 1px solid var(--border); color: var(--text-muted); background: transparent;
+  transition: all .15s; cursor: pointer;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.section-title { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; }
+.panel {
+  border: 1px solid var(--border); border-radius: 0.85rem; background: var(--bg-surface);
+  overflow: hidden;
+}
+.panel-head {
+  padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--border);
+  font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
+}
+.chart-h-md { width: 100%; height: 320px; }
+.chart-h-lg { width: 100%; height: 520px; }
+.chart-h-graph { width: 100%; height: 420px; }
+
+.kpi-card {
+  border: 1px solid var(--border); border-radius: 0.85rem; background: var(--bg-surface);
+  padding: 0.9rem 1rem;
+}
+.kpi-num { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; color: var(--accent-strong); }
+.kpi-label { margin-top: 0.15rem; font-size: 0.72rem; color: var(--text-faint); }
+
+.select {
+  padding: 0.35rem 0.6rem; border-radius: 0.5rem; font-size: 0.8rem;
+  border: 1px solid var(--border); background: var(--bg-surface); color: var(--text);
+}
+.select:focus { outline: none; border-color: var(--accent); }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 0.5rem; overflow: hidden; }
+.seg button {
+  padding: 0.35rem 0.7rem; font-size: 0.78rem; background: transparent; color: var(--text-muted);
+  border: none; border-right: 1px solid var(--border); cursor: pointer; white-space: nowrap;
+}
+.seg button:last-child { border-right: none; }
+.seg button.active { background: var(--accent-soft); color: var(--accent-strong); font-weight: 600; }
+
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 640px; }
+.data-table th, .data-table td { padding: 0.5rem 0.7rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.data-table th { color: var(--text-faint); font-weight: 500; position: sticky; top: 0; background: var(--bg-surface); cursor: pointer; user-select: none; }
+.data-table th:hover { color: var(--accent); }
+.data-table tbody tr { cursor: pointer; }
+.data-table tbody tr:hover { background: var(--accent-soft); }
+.data-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.map-legend { display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 0.6rem 0.9rem; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--text-muted); }
+.map-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+
+.badge { display: inline-block; padding: 0.08rem 0.45rem; border-radius: 0.4rem; font-size: 0.66rem; font-weight: 500; line-height: 1.5; }
+.badge-tier-core { background: rgba(15,118,110,.15); color: #0f766e; }
+.badge-tier-specialist { background: rgba(99,102,241,.15); color: #6366f1; }
+html.dark .badge-tier-core { color: #2dd4bf; }
+html.dark .badge-tier-specialist { color: #a5b4fc; }
+
+.badge-rt-oem_manufacturing { background: rgba(15,118,110,.15); color: #0f766e; }
+.badge-rt-headquarters { background: rgba(99,102,241,.15); color: #6366f1; }
+.badge-rt-rd_design { background: rgba(8,145,178,.15); color: #0891b2; }
+.badge-rt-autonomous_driving { background: rgba(139,92,246,.15); color: #7c3aed; }
+.badge-rt-auto_software { background: rgba(56,189,248,.15); color: #0284c7; }
+.badge-rt-chips { background: rgba(245,158,11,.15); color: #b45309; }
+.badge-rt-battery { background: rgba(34,197,94,.15); color: #16a34a; }
+.badge-rt-auto_electronics { background: rgba(236,72,153,.15); color: #db2777; }
+.badge-rt-parts { background: rgba(100,116,139,.16); color: #475569; }
+.badge-rt-testing { background: rgba(168,85,247,.15); color: #9333ea; }
+.badge-rt-higher_education { background: rgba(14,165,233,.15); color: #0369a1; }
+.badge-rt-auto_media { background: rgba(244,63,94,.13); color: #be123c; }
+.badge-rt-expo_culture { background: rgba(234,179,8,.15); color: #a16207; }
+.badge-rt-export_logistics { background: rgba(20,184,166,.15); color: #0d9488; }
+.badge-rt-auto_history { background: rgba(120,113,108,.15); color: #57534e; }
+html.dark .badge-rt-parts { color: #cbd5e1; }
+html.dark .badge-rt-auto_history { color: #d6d3d1; }
+
+.badge-grade-A { background: rgba(34,197,94,.16); color: #16a34a; }
+.badge-grade-B { background: rgba(56,189,248,.16); color: #0284c7; }
+.badge-grade-C { background: rgba(245,158,11,.16); color: #b45309; }
+.badge-grade-D { background: rgba(239,68,68,.15); color: #dc2626; }
+html.dark .badge-grade-A { color: #4ade80; }
+html.dark .badge-grade-B { color: #38bdf8; }
+html.dark .badge-grade-C { color: #fbbf24; }
+html.dark .badge-grade-D { color: #f87171; }
+
+.cluster-card {
+  border: 1px solid var(--border); border-radius: 0.85rem; background: var(--bg-surface);
+  padding: 0.9rem 1rem; cursor: pointer; transition: border-color .15s;
+}
+.cluster-card:hover { border-color: var(--accent); }
+.cluster-card h3 { font-size: 0.95rem; font-weight: 600; }
+.cluster-card p { margin-top: 0.35rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.45; }
+
+.list-card {
+  border: 1px solid var(--border); border-radius: 0.7rem; background: var(--bg-surface);
+  padding: 0.75rem 0.9rem; font-size: 0.82rem; cursor: pointer; transition: border-color .15s;
+}
+.list-card:hover { border-color: var(--accent); }
+.list-card + .list-card { margin-top: 0.5rem; }
+
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 60; background: rgba(2, 6, 23, 0.6);
+  backdrop-filter: blur(2px); display: flex; align-items: flex-start; justify-content: center;
+  padding: 4vh 1rem; overflow-y: auto;
+}
+.modal-panel {
+  position: relative; width: 100%; max-width: 880px; background: var(--bg-surface);
+  border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem 1.4rem 1.6rem;
+}
+.modal-close {
+  position: absolute; top: 0.6rem; right: 0.9rem; font-size: 1.5rem; line-height: 1;
+  color: var(--text-faint); background: none; border: none; cursor: pointer;
+}
+.modal-close:hover { color: var(--text); }
+.modal-tabs { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.9rem; border-bottom: 1px solid var(--border); }
+.modal-tab-btn {
+  padding: 0.4rem 0.7rem; font-size: 0.8rem; color: var(--text-muted);
+  border: none; background: none; border-bottom: 2px solid transparent; cursor: pointer;
+}
+.modal-tab-btn.active { color: var(--accent-strong); border-bottom-color: var(--accent); font-weight: 600; }
+.modal-body { margin-top: 0.9rem; font-size: 0.85rem; line-height: 1.55; }
+.modal-body h4 { font-size: 0.78rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.04em; margin: 0.9rem 0 0.35rem; }
+.modal-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 0.9rem; }
+.kv dt { color: var(--text-faint); }
+.chip { display: inline-block; padding: 0.1rem 0.5rem; margin: 0.1rem; border-radius: 0.4rem; background: var(--bg-elev); font-size: 0.72rem; }
+.chip-link { border: 1px solid var(--border); color: var(--accent); cursor: pointer; transition: background .12s, border-color .12s; }
+.chip-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.warn-box {
+  border: 1px solid rgba(245,158,11,.35); background: rgba(245,158,11,.08);
+  border-radius: 0.7rem; padding: 0.75rem 0.9rem; font-size: 0.82rem; color: var(--text-muted);
+}
+.loading { color: var(--text-faint); font-size: 0.85rem; padding: 1.5rem; text-align: center; }
+.hidden { display: none !important; }
+.chip-link {
+  display: inline-block; padding: 0.1rem 0.5rem; margin: 0.1rem; border-radius: 0.4rem;
+  background: var(--bg-elev); font-size: 0.72rem;
+}

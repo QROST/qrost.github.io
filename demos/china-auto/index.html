@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中国汽车城市图谱 · China Auto City Atlas — QROST</title>
+  <meta name="description" content="以城市为节点看中国汽车产业：产量、产业集群、总部与研发、工厂供应链、高校院所与汽车媒体。V1 覆盖 25 城样本。" />
+  <link rel="canonical" href="https://qrost.github.io/demos/china-auto/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="中国汽车城市图谱 · China Auto City Atlas" />
+  <meta property="og:description" content="Cities as nodes in China's auto industry — output, clusters, HQ/R&D, plants, universities and media on one map." />
+  <meta property="og:url" content="https://qrost.github.io/demos/china-auto/" />
+  <meta property="og:site_name" content="QROST" />
+  <meta property="og:image" content="https://qrost.github.io/demos/china-auto/assets/img/china-auto-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="QROST — 中国汽车城市图谱 China Auto City Atlas" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="中国汽车城市图谱 · China Auto City Atlas" />
+  <meta name="twitter:description" content="Cities as nodes in China's auto industry — output, clusters, HQ/R&D, plants, universities and media." />
+  <meta name="twitter:image" content="https://qrost.github.io/demos/china-auto/assets/img/china-auto-og.png" />
+  <link rel="icon" href="../../favicon.svg" />
+  <link rel="apple-touch-icon" href="../../favicon.svg" />
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('china-auto-theme');
+        var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', dark);
+      } catch (e) {}
+    })();
+    window.CHINA_AUTO_DATA_VERSION = '4f68de35f9';
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="assets/css/china-auto.css?v=4f68de35f9v" />
+  <style>
+    #theme-toggle .sun-icon,
+    #theme-toggle .moon-icon { transition: opacity 0.25s, transform 0.3s; }
+    .dark #theme-toggle .sun-icon  { opacity: 1; transform: rotate(0deg) scale(1); }
+    .dark #theme-toggle .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+    #theme-toggle .sun-icon  { opacity: 0; transform: rotate(90deg) scale(0.6); }
+    #theme-toggle .moon-icon { opacity: 1; transform: rotate(0deg) scale(1); }
+  </style>
+</head>
+
+<body class="bg-base text-base antialiased">
+  <a class="skip-link" href="#main-content" data-i18n="skipToContent">跳到主要内容</a>
+
+  <nav class="sticky top-0 z-40 backdrop-blur border-b border-base bg-shell" aria-label="Primary">
+    <div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-4">
+      <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] uppercase shrink-0 transition-colors" title="QROST">Qrost</a>
+      <span class="text-muted hidden sm:inline">/</span>
+      <span class="text-sm text-muted hidden sm:inline" data-i18n="navBrand">汽车城市图谱</span>
+      <div class="ml-auto flex items-center gap-1 text-sm overflow-x-auto no-scrollbar nav-scroll">
+        <a href="#overview" class="nav-link" data-i18n="navOverview">概览</a>
+        <a href="#map" class="nav-link" data-i18n="navMap">地图</a>
+        <a href="#catalog" class="nav-link" data-i18n="navCatalog">城市目录</a>
+        <a href="#clusters" class="nav-link" data-i18n="navClusters">产业集群</a>
+        <a href="#orgs" class="nav-link" data-i18n="navOrgs">企业</a>
+        <a href="#institutions" class="nav-link" data-i18n="navInstitutions">高校院所</a>
+        <a href="#media" class="nav-link" data-i18n="navMedia">媒体</a>
+        <a href="#methodology" class="nav-link" data-i18n="navMethodology">方法</a>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="lang-toggle" type="button" class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all text-xs font-semibold shrink-0" title="English" aria-label="Switch language">EN</button>
+        <button id="theme-toggle" type="button" class="relative w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shrink-0" title="Dark mode" aria-label="Toggle dark mode">
+          <svg class="sun-icon absolute w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="moon-icon absolute w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="init-error" class="hidden max-w-7xl mx-auto px-4 mt-4" role="alert">
+    <div class="rounded-lg border border-rose-500/40 bg-rose-500/10 text-sm p-4">
+      <strong data-i18n="errTitle">数据加载失败</strong>
+      <p class="mt-1 text-muted" data-i18n="errBody">本页通过 fetch 读取 JSON，需经 HTTP(S) 提供（不能用 file:// 直接打开）。请用本地服务器访问。</p>
+    </div>
+  </div>
+
+  <header class="max-w-7xl mx-auto px-4 pt-10 pb-6">
+    <p class="text-xs uppercase tracking-[0.2em] text-faint" data-i18n="heroEyebrow">产量不是全部实力 · output is not the whole story</p>
+    <h1 class="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight" data-i18n="heroTitle">中国汽车城市图谱</h1>
+    <p class="mt-3 text-muted max-w-3xl leading-relaxed" data-i18n="heroSub">以城市为节点，把整车产量、产业集群、总部与研发、工厂与供应链、高校院所与汽车媒体放在同一张图上。</p>
+    <ul class="mt-4 text-sm text-muted max-w-3xl space-y-1 list-disc pl-5">
+      <li data-i18n="heroV1">V1 覆盖 15 座核心城市 + 10 座专长城市（25 城样本）。</li>
+      <li data-i18n="heroOutput">2025 产量数字为各地统计公报/工信口径的汇编，不是统一的国家统计局城市排名。</li>
+      <li data-i18n="heroLocation">自 2025 年起，产量按实际生产地归属，而非企业总部所在地。</li>
+      <li data-i18n="heroRoles">总部、研发、工厂、供应链、媒体是不同角色——同一企业可在多城出现。</li>
+    </ul>
+    <p class="mt-3 text-xs text-faint" data-i18n="heroNote">研究性演示，非投资建议。末次审阅：2026-08。</p>
+  </header>
+
+  <main id="main-content" class="max-w-7xl mx-auto px-4 pb-24 space-y-16">
+
+    <section id="overview" class="scroll-mt-20">
+      <h2 class="section-title" data-i18n="ovTitle">概览</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mt-4">
+        <div class="kpi-card"><div class="kpi-num" id="kpi-cities">—</div><div class="kpi-label" data-i18n="kpiCities">城市</div></div>
+        <div class="kpi-card"><div class="kpi-num" id="kpi-orgs">—</div><div class="kpi-label" data-i18n="kpiOrgs">企业/机构</div></div>
+        <div class="kpi-card"><div class="kpi-num" id="kpi-facilities">—</div><div class="kpi-label" data-i18n="kpiFacilities">设施站点</div></div>
+        <div class="kpi-card"><div class="kpi-num" id="kpi-clusters">—</div><div class="kpi-label" data-i18n="kpiClusters">产业集群</div></div>
+        <div class="kpi-card"><div class="kpi-num" id="kpi-output-cities">—</div><div class="kpi-label" data-i18n="kpiOutputCities">有产量数据城市</div></div>
+      </div>
+      <div class="panel mt-4">
+        <div class="panel-head"><span data-i18n="ovChart">2025 整车产量（万辆）</span></div>
+        <div id="overview-chart" class="chart-h-md"></div>
+      </div>
+    </section>
+
+    <section id="map" class="scroll-mt-20">
+      <h2 class="section-title" data-i18n="mapTitle">中国城市地图</h2>
+      <p class="text-sm text-muted mt-1" data-i18n="mapSub">按产量、集群或主角色着色；可筛选角色标签、集群与层级。点击标记打开城市详情。</p>
+      <div class="flex flex-wrap items-center gap-2 mt-3">
+        <div id="map-dims" class="seg" role="group" aria-label="Map dimension"></div>
+        <div id="map-layers" class="seg" role="group" aria-label="Map layer"></div>
+        <select id="map-filter-role" class="select" aria-label="Role filter"></select>
+        <select id="map-filter-cluster" class="select" aria-label="Cluster filter"></select>
+        <select id="map-filter-tier" class="select" aria-label="Tier filter"></select>
+        <button id="map-reset" type="button" class="btn-ghost" data-i18n="reset">重置</button>
+      </div>
+      <div class="panel mt-3">
+        <div id="china-map" class="chart-h-lg" role="img" aria-label="China map"></div>
+        <div id="map-legend" class="map-legend"></div>
+      </div>
+    </section>
+
+    <section id="catalog" class="scroll-mt-20">
+      <h2 class="section-title" data-i18n="catTitle">城市目录</h2>
+      <div class="flex flex-wrap items-center gap-2 mt-3">
+        <input id="cat-search" type="search" class="select grow min-w-[12rem]" data-i18n-placeholder="catSearch" placeholder="搜索城市…" aria-label="Search cities" />
+        <select id="cat-filter-tier" class="select" aria-label="Tier filter"></select>
+        <select id="cat-filter-role" class="select" aria-label="Role filter"></select>
+        <select id="cat-filter-cluster" class="select" aria-label="Cluster filter"></select>
+        <button id="cat-reset" type="button" class="btn-ghost" data-i18n="reset">重置</button>
+        <span id="cat-count" class="text-xs text-faint ml-auto"></span>
+      </div>
+      <div class="panel mt-3 table-wrap">
+        <table class="data-table">
+          <thead><tr id="catalog-head"></tr></thead>
+          <tbody id="catalog-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="clusters" class="scroll-mt-20">
+      <h2 class="section-title" data-i18n="clustersTitle">产业集群</h2>
+      <p class="text-sm text-muted mt-1" data-i18n="clustersSub">集群卡片 + 城市节点关系图（相邻与归属）。</p>
+      <div id="cluster-cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4"></div>
+      <div class="panel mt-4">
+        <div id="cluster-graph" class="chart-h-graph"></div>
+      </div>
+    </section>
+
+    <section id="orgs" class="scroll-mt-20">
+      <h2 class="section-title" data-i18n="orgsTitle">企业与机构目录</h2>
+      <p class="text-sm text-muted mt-1" data-i18n="orgsSub">按类型筛选；点击可查看详情或跳转总部城市。</p>
+      <div class="flex flex-wrap items-center gap-2 mt-3">
+        <input id="org-search" type="search" class="select grow min-w-[12rem]" data-i18n-placeholder="orgSearch" placeholder="搜索企业…" aria-label="Search organizations" />
+        <select id="org-filter-type" class="select" aria-label="Organization type"></select>
+        <span id="org-count" class="text-xs text-faint ml-auto"></span>
+      </div>
+      <div id="orgs-list" class="mt-3"></div>
+    </section>
+
+    <section id="institutions" class="scroll-mt-20">
+      <h2 class="section-title" data-i18n="instTitle">高校与科研院所</h2>
+      <p class="text-sm text-muted mt-1" data-i18n="instSub">汽车相关专业与产学研合作线索。</p>
+      <div id="inst-list" class="mt-3"></div>
+    </section>
+
+    <section id="media" class="scroll-mt-20">
+      <h2 class="section-title" data-i18n="mediaTitle">汽车媒体</h2>
+      <p class="text-sm text-muted mt-1" data-i18n="mediaSub">按采编城市与媒体类型浏览。</p>
+      <div id="media-list" class="mt-3"></div>
+    </section>
+
+    <section id="methodology" class="scroll-mt-20">
+      <h2 class="section-title" data-i18n="meTitle">方法与来源</h2>
+      <details class="panel mt-3 p-4 text-sm leading-relaxed text-muted" open>
+        <summary class="cursor-pointer text-base font-medium text-base" data-i18n="meSummary">数据范围、统计口径与来源分级</summary>
+        <p class="warn-box mt-3" data-i18n="meScopeWarn">产量统计口径因城市而异（整车/规模以上/辖区范围）。对比前请阅读各条 scope_note。</p>
+        <div class="table-wrap mt-4">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-i18n="thGrade">等级</th>
+                <th data-i18n="thPublisher">发布方</th>
+                <th data-i18n="thSource">来源</th>
+                <th data-i18n="thType">类型</th>
+                <th data-i18n="thDate">日期</th>
+              </tr>
+            </thead>
+            <tbody id="sources-body"></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="border-t border-base">
+    <div class="max-w-7xl mx-auto px-4 py-6 text-xs text-faint flex flex-wrap gap-x-6 gap-y-1">
+      <span data-i18n="footUpdated">Last updated 2026-08.</span>
+      <span data-i18n="footDisclaimer">Nothing here is financial, legal or tax advice.</span>
+      <span id="foot-build" class="ml-auto"></span>
+    </div>
+  </footer>
+
+  <div id="city-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="city-modal-title">
+    <div class="modal-panel">
+      <button type="button" class="modal-close" data-close-city aria-label="Close">&times;</button>
+      <div id="city-modal-head"></div>
+      <div id="city-modal-tabs" class="modal-tabs"></div>
+      <div id="city-modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="org-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-panel">
+      <button type="button" class="modal-close" data-close-org aria-label="Close">&times;</button>
+      <div id="org-modal-head"></div>
+      <div id="org-modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="assets/data/china-geo.js?v=4f68de35f9v"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="assets/js/i18n.js?v=4f68de35f9v"></script>
+  <script src="assets/js/data-loader.js?v=4f68de35f9v"></script>
+  <script src="assets/js/charts.js?v=4f68de35f9v"></script>
+  <script src="assets/js/map.js?v=4f68de35f9v"></script>
+  <script src="assets/js/app.js?v=4f68de35f9v"></script>
+</body>
+</html>

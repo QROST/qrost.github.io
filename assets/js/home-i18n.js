@@ -50,6 +50,14 @@
       en: 'A growing set of housing listing samples across China — price × livability on an interactive map with ERA5 climate overlays, hazard layers, rankings and a sortable table. Tier-1 outliers hidden by default. Dark mode · EN/中文.',
       zh: '覆盖全国、持续扩充的住房挂牌样本——价格 × 宜居：ERA5 气候底图、灾害层、排行榜与可排序表格。默认隐藏一线城市高价样本。深色模式 · 中英切换。',
     },
+    cardAutoTitle: {
+      en: 'China auto city atlas · headquarters are not output',
+      zh: '中国汽车城市图谱 · 总部不等于产量',
+    },
+    cardAutoDesc: {
+      en: '25 Chinese auto cities (15 core + 10 specialist) with role tags for HQ, plants, batteries, software, media and universities — China map, cluster graph, sourced 2025 local output figures. Dark mode · EN/中文.',
+      zh: '25 座汽车城市（15 核心 + 10 专业），用角色标签分开总部、工厂、电池、软件、媒体和院校——中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
+    },
     cardPebbleTitle: {
       en: 'Pebble Beach 2026 · Monterey Car Week public guide',
       zh: 'Pebble Beach 2026 · 蒙特雷汽车周公众指南',

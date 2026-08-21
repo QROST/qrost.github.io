@@ -1,0 +1,1068 @@
+{
+  "cities": [
+    {
+      "id": "beijing",
+      "name_zh": "北京",
+      "name_en": "Beijing",
+      "province_zh": "北京市",
+      "province_en": "Beijing Municipality",
+      "admin_level": "municipality",
+      "admin_code": "110000",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "tier": "core",
+      "summary_zh": "全国汽车总部、智能化、标准和媒体中心。官方产业规划将经开区、顺义、房山、昌平、怀柔和密云列为主要汽车产业承载区。",
+      "summary_en": "National auto HQ, intelligence, standards and media hub. Official plans name BDA, Shunyi, Fangshan, Changping, Huairou and Miyun as main auto-industry zones.",
+      "history_summary_zh": "从计划经济时期的整车试制与零部件配套，转向总部、软件、自动驾驶与标准制定。产量不代表北京的全部汽车实力。",
+      "history_summary_en": "Shifted from planned-era assembly toward HQ, software, autonomous driving and standards. Output does not capture Beijing's full auto weight.",
+      "role_tags": [
+        "headquarters",
+        "auto_software",
+        "autonomous_driving",
+        "chips",
+        "testing",
+        "higher_education",
+        "auto_media",
+        "oem_manufacturing"
+      ],
+      "cluster_ids": [
+        "jingjinji"
+      ],
+      "districts_zh": [
+        "经开区",
+        "顺义",
+        "房山",
+        "昌平",
+        "怀柔",
+        "密云"
+      ],
+      "districts_en": [
+        "Beijing Economic-Technological Development Area",
+        "Shunyi",
+        "Fangshan",
+        "Changping",
+        "Huairou",
+        "Miyun"
+      ],
+      "featured_entity_ids": [
+        "baic",
+        "beijing-benz",
+        "xiaomi-auto",
+        "li-auto",
+        "baidu",
+        "horizon-robotics",
+        "tsinghua",
+        "bit",
+        "autohome"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "shanghai",
+      "name_zh": "上海",
+      "name_en": "Shanghai",
+      "province_zh": "上海市",
+      "province_en": "Shanghai Municipality",
+      "admin_level": "municipality",
+      "admin_code": "310000",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "tier": "core",
+      "summary_zh": "综合汽车中心和国际汽车产业窗口：整车、零部件、软件、测试认证、汽车会展和国际合作并存。",
+      "summary_en": "A full-stack auto centre and international window: vehicles, parts, software, testing, auto shows and cross-border cooperation.",
+      "history_summary_zh": "中国最早的轿车工业基地之一。嘉定上海国际汽车城与临港特斯拉超级工厂把总部、测试和大规模制造叠在同一座城市。",
+      "history_summary_en": "One of China's earliest passenger-car bases. Jiading's International Auto City and the Tesla Gigafactory stack HQ, testing and mass manufacturing in one city.",
+      "role_tags": [
+        "headquarters",
+        "oem_manufacturing",
+        "parts",
+        "auto_software",
+        "chips",
+        "testing",
+        "expo_culture",
+        "export_logistics",
+        "higher_education",
+        "auto_media"
+      ],
+      "cluster_ids": [
+        "yangtze-river-delta"
+      ],
+      "districts_zh": [
+        "嘉定",
+        "临港",
+        "浦东",
+        "安亭"
+      ],
+      "districts_en": [
+        "Jiading",
+        "Lingang",
+        "Pudong",
+        "Anting"
+      ],
+      "featured_entity_ids": [
+        "saic",
+        "tesla-china",
+        "tongji",
+        "sjtu",
+        "gasgoo",
+        "garage42",
+        "saic-vw"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "shenzhen",
+      "name_zh": "深圳",
+      "name_en": "Shenzhen",
+      "province_zh": "广东省",
+      "province_en": "Guangdong",
+      "admin_level": "prefecture",
+      "admin_code": "440300",
+      "lat": 22.5431,
+      "lng": 114.0579,
+      "tier": "core",
+      "summary_zh": "新能源总部、汽车电子、软件和出口中心。官方规划明确区分深汕整车制造与南山、宝安、坪山、龙岗的研发和产业功能。",
+      "summary_en": "NEV headquarters, auto-electronics, software and export hub. Official plans split Shenshan vehicle manufacturing from Nanshan, Bao'an, Pingshan and Longgang R&D.",
+      "history_summary_zh": "比亚迪总部位于深圳，但大量整车在西安、合肥、郑州、长沙、济南、常州和深汕等地生产。把产量记在深圳会严重高估其制造份额。",
+      "history_summary_en": "BYD is headquartered in Shenzhen, but much of its vehicle output sits in Xi'an, Hefei, Zhengzhou, Changsha, Jinan, Changzhou and Shenshan. Booking that output to Shenzhen overstates its plants.",
+      "role_tags": [
+        "headquarters",
+        "battery",
+        "auto_electronics",
+        "auto_software",
+        "autonomous_driving",
+        "export_logistics",
+        "rd_design"
+      ],
+      "cluster_ids": [
+        "greater-bay-area"
+      ],
+      "districts_zh": [
+        "南山",
+        "宝安",
+        "坪山",
+        "龙岗",
+        "深汕特别合作区"
+      ],
+      "districts_en": [
+        "Nanshan",
+        "Bao'an",
+        "Pingshan",
+        "Longgang",
+        "Shenshan Special Cooperation Zone"
+      ],
+      "featured_entity_ids": [
+        "byd",
+        "xchuxing"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "guangzhou",
+      "name_zh": "广州",
+      "name_en": "Guangzhou",
+      "province_zh": "广东省",
+      "province_en": "Guangdong",
+      "admin_level": "prefecture",
+      "admin_code": "440100",
+      "lat": 23.1291,
+      "lng": 113.2644,
+      "tier": "core",
+      "summary_zh": "多品牌整车制造、自动驾驶、会展和汽车媒体中心。产业空间覆盖番禺、南沙、花都、黄埔和增城。",
+      "summary_en": "Multi-brand vehicle manufacturing plus autonomous driving, auto shows and auto media. Industry space spans Panyu, Nansha, Huadu, Huangpu and Zengcheng.",
+      "history_summary_zh": "日系合资长期主导乘用车产量；广汽埃安与小鹏把新能源和自动驾驶叠进同一座制造型城市。",
+      "history_summary_en": "Japanese JVs long dominated passenger-car output; GAC Aion and XPENG folded NEVs and autonomy into the same manufacturing city.",
+      "role_tags": [
+        "oem_manufacturing",
+        "headquarters",
+        "autonomous_driving",
+        "expo_culture",
+        "auto_media",
+        "higher_education"
+      ],
+      "cluster_ids": [
+        "greater-bay-area"
+      ],
+      "districts_zh": [
+        "番禺",
+        "南沙",
+        "花都",
+        "黄埔",
+        "增城"
+      ],
+      "districts_en": [
+        "Panyu",
+        "Nansha",
+        "Huadu",
+        "Huangpu",
+        "Zengcheng"
+      ],
+      "featured_entity_ids": [
+        "gac",
+        "gac-honda",
+        "gac-toyota",
+        "dongfeng-nissan",
+        "xpeng",
+        "weiride",
+        "pony-ai",
+        "scut",
+        "pcauto",
+        "gac-aion"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "chongqing",
+      "name_zh": "重庆",
+      "name_en": "Chongqing",
+      "province_zh": "重庆市",
+      "province_en": "Chongqing Municipality",
+      "admin_level": "municipality",
+      "admin_code": "500000",
+      "lat": 29.563,
+      "lng": 106.5516,
+      "tier": "core",
+      "summary_zh": "大规模整车制造和智能网联转型中心。多家整车企业、大量零部件企业和正在增长的汽车软件集群并存。",
+      "summary_en": "A large-scale vehicle-manufacturing and intelligent-connected transition hub, with multiple OEMs, a dense parts base and a growing auto-software cluster.",
+      "history_summary_zh": "长安体系与兵工转产塑造了西南最大的乘用车和商用车基地之一；2025年地方统计拼合产量居全国城市前列。",
+      "history_summary_en": "Changan and the defence-to-civilian conversion built one of the southwest's largest passenger- and commercial-vehicle bases. Compiled 2025 local output ranks among the top cities.",
+      "role_tags": [
+        "oem_manufacturing",
+        "headquarters",
+        "parts",
+        "auto_software",
+        "testing",
+        "higher_education"
+      ],
+      "cluster_ids": [
+        "chengyu"
+      ],
+      "districts_zh": [
+        "两江新区",
+        "渝北",
+        "江北",
+        "巴南"
+      ],
+      "districts_en": [
+        "Liangjiang New Area",
+        "Yubei",
+        "Jiangbei",
+        "Banan"
+      ],
+      "featured_entity_ids": [
+        "changan",
+        "seres",
+        "qianli",
+        "caeri",
+        "cqu",
+        "cqut"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "hefei",
+      "name_zh": "合肥",
+      "name_en": "Hefei",
+      "province_zh": "安徽省",
+      "province_en": "Anhui",
+      "admin_level": "prefecture",
+      "admin_code": "340100",
+      "lat": 31.8206,
+      "lng": 117.2272,
+      "tier": "core",
+      "summary_zh": "新能源整车增长最快的综合节点之一。江淮、蔚来、大众安徽、比亚迪、长安与国轩高科同城布局。",
+      "summary_en": "One of the fastest-growing NEV manufacturing nodes: JAC, NIO, Volkswagen Anhui, BYD, Changan and Gotion share the city.",
+      "history_summary_zh": "从江淮商用车和乘用车基地，叠加蔚来中国总部制造与比亚迪新基地后，2025年汽车与新能源汽车产量均位于全国前列。",
+      "history_summary_en": "A JAC commercial/passenger base that absorbed NIO manufacturing and a BYD plant; 2025 auto and NEV output both rank nationally among the leaders.",
+      "role_tags": [
+        "oem_manufacturing",
+        "headquarters",
+        "battery",
+        "higher_education"
+      ],
+      "cluster_ids": [
+        "yangtze-river-delta"
+      ],
+      "districts_zh": [
+        "经开区",
+        "新站",
+        "肥西"
+      ],
+      "districts_en": [
+        "Economic Development Area",
+        "Xinzhan",
+        "Feixi"
+      ],
+      "featured_entity_ids": [
+        "jac",
+        "nio",
+        "vw-anhui",
+        "byd",
+        "changan",
+        "gotion",
+        "hfut"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "wuhu",
+      "name_zh": "芜湖",
+      "name_en": "Wuhu",
+      "province_zh": "安徽省",
+      "province_en": "Anhui",
+      "admin_level": "prefecture",
+      "admin_code": "340200",
+      "lat": 31.3528,
+      "lng": 118.4331,
+      "tier": "core",
+      "summary_zh": "奇瑞主导的全球化整车与供应链城市，围绕发动机、变速箱、出口体系和本地零部件集群展开。",
+      "summary_en": "A Chery-centred global vehicle and supply-chain city: engines, transmissions, export systems and a local parts cluster.",
+      "history_summary_zh": "奇瑞从地方项目成长为出口导向整车集团，芜湖因此成为少有的“一企主导、产量全国前列”的地级市样本。",
+      "history_summary_en": "Chery grew from a local project into an export-oriented OEM, making Wuhu a rare prefecture-level city whose output ranks nationally on one group.",
+      "role_tags": [
+        "oem_manufacturing",
+        "headquarters",
+        "parts",
+        "export_logistics"
+      ],
+      "cluster_ids": [
+        "yangtze-river-delta"
+      ],
+      "districts_zh": [
+        "经济技术开发区"
+      ],
+      "districts_en": [
+        "Wuhu Economic & Technological Development Area"
+      ],
+      "featured_entity_ids": [
+        "chery"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "xian",
+      "name_zh": "西安",
+      "name_en": "Xi'an",
+      "province_zh": "陕西省",
+      "province_en": "Shaanxi",
+      "admin_level": "prefecture",
+      "admin_code": "610100",
+      "lat": 34.3416,
+      "lng": 108.9398,
+      "tier": "core",
+      "summary_zh": "比亚迪大规模制造与西北汽车教育节点。2025年主要产量来自比亚迪和吉利，新能源汽车占比较高。",
+      "summary_en": "BYD's large-scale manufacturing node and a northwest auto-education hub. 2025 output is mainly BYD and Geely, with a high NEV share.",
+      "history_summary_zh": "军工和商用车遗产之上，比亚迪西安基地把西北城市推入全国产量第一梯队。",
+      "history_summary_en": "On a defence and commercial-vehicle legacy, BYD's Xi'an base pushed the city into the national output first tier.",
+      "role_tags": [
+        "oem_manufacturing",
+        "higher_education",
+        "battery"
+      ],
+      "cluster_ids": [
+        "northwest"
+      ],
+      "districts_zh": [
+        "高新区",
+        "经开区"
+      ],
+      "districts_en": [
+        "High-tech Zone",
+        "Economic Development Area"
+      ],
+      "featured_entity_ids": [
+        "byd",
+        "geely",
+        "changan-univ"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "changchun",
+      "name_zh": "长春",
+      "name_en": "Changchun",
+      "province_zh": "吉林省",
+      "province_en": "Jilin",
+      "admin_level": "prefecture",
+      "admin_code": "220100",
+      "lat": 43.8171,
+      "lng": 125.3235,
+      "tier": "core",
+      "summary_zh": "中国汽车工业历史核心和一汽总部城市。历史、制造、研发和汽车文化均适合重点呈现。",
+      "summary_en": "Historical core of China's auto industry and FAW headquarters. History, manufacturing, R&D and auto culture all belong on the city page.",
+      "history_summary_zh": "第一汽车制造厂1950年代在此建厂，红旗、解放、一汽-大众构成中国最长的整车谱系之一。",
+      "history_summary_en": "FAW was founded here in the 1950s. Hongqi, Jiefang and FAW-Volkswagen form one of China's longest vehicle lineages.",
+      "role_tags": [
+        "oem_manufacturing",
+        "headquarters",
+        "auto_history",
+        "higher_education",
+        "expo_culture",
+        "rd_design"
+      ],
+      "cluster_ids": [
+        "northeast"
+      ],
+      "districts_zh": [
+        "汽车经济技术开发区",
+        "绿园"
+      ],
+      "districts_en": [
+        "Automobile Economic & Technological Development Area",
+        "Lvyuan"
+      ],
+      "featured_entity_ids": [
+        "faw",
+        "hongqi",
+        "jiefang",
+        "bestune",
+        "faw-vw",
+        "audi-faw-nev",
+        "jlu"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "zhengzhou",
+      "name_zh": "郑州",
+      "name_en": "Zhengzhou",
+      "province_zh": "河南省",
+      "province_en": "Henan",
+      "admin_level": "prefecture",
+      "admin_code": "410100",
+      "lat": 34.7466,
+      "lng": 113.6254,
+      "tier": "core",
+      "summary_zh": "新能源整车和客车双重中心。比亚迪郑州基地与宇通客车构成乘用车和商用车两条主线。",
+      "summary_en": "A dual NEV-vehicle and coach hub: BYD's Zhengzhou complex and Yutong form the passenger and commercial spines.",
+      "history_summary_zh": "从客车出口和日产品牌，转向比亚迪综合制造基地后，产量跃入全国前列。",
+      "history_summary_en": "Coach exports and the Nissan marque gave way to a BYD integrated manufacturing base, lifting output into the national top tier.",
+      "role_tags": [
+        "oem_manufacturing",
+        "export_logistics"
+      ],
+      "cluster_ids": [
+        "central-plains"
+      ],
+      "districts_zh": [
+        "经开区",
+        "航空港"
+      ],
+      "districts_en": [
+        "Economic Development Area",
+        "Airport Economy Zone"
+      ],
+      "featured_entity_ids": [
+        "byd",
+        "yutong",
+        "zhengzhou-nissan",
+        "saic"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "liuzhou",
+      "name_zh": "柳州",
+      "name_en": "Liuzhou",
+      "province_zh": "广西壮族自治区",
+      "province_en": "Guangxi",
+      "admin_level": "prefecture",
+      "admin_code": "450200",
+      "lat": 24.3264,
+      "lng": 109.4281,
+      "tier": "core",
+      "summary_zh": "小型车、商用车和本地汽车文化城市。四家主要整车生产主体和数百家新能源汽车及零部件企业。",
+      "summary_en": "A small-car, commercial-vehicle and local auto-culture city, with four main vehicle producers and hundreds of NEV and parts firms.",
+      "history_summary_zh": "五菱微型车和东风柳汽商用车把一座工业城市塑造成“车城”认同。",
+      "history_summary_en": "Wuling minicars and Dongfeng Liuzhou trucks turned an industrial city into a self-identified auto town.",
+      "role_tags": [
+        "oem_manufacturing",
+        "parts",
+        "auto_history",
+        "expo_culture"
+      ],
+      "cluster_ids": [
+        "guangxi"
+      ],
+      "districts_zh": [
+        "柳东",
+        "阳和"
+      ],
+      "districts_en": [
+        "Liudong",
+        "Yanghe"
+      ],
+      "featured_entity_ids": [
+        "sgmw",
+        "dongfeng-liuzhou",
+        "guangxi-auto",
+        "jiefang"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "wuhan",
+      "name_zh": "武汉",
+      "name_en": "Wuhan",
+      "province_zh": "湖北省",
+      "province_en": "Hubei",
+      "admin_level": "prefecture",
+      "admin_code": "420100",
+      "lat": 30.5928,
+      "lng": 114.3055,
+      "tier": "core",
+      "summary_zh": "东风体系、乘用车和智能网联中心。武汉经开区（中国车谷）聚集整车工厂、供应链和产业平台。",
+      "summary_en": "Dongfeng system, passenger cars and intelligent-connected hub. Wuhan Economic & Technological Development Area (China Auto Valley) hosts plants, suppliers and platforms.",
+      "history_summary_zh": "二汽总部东迁武汉后，车谷成为乘用车、新能源和智能网联的湖北轴线起点。",
+      "history_summary_en": "After Dongfeng's HQ moved east to Wuhan, Auto Valley became the Hubei axis starting point for passenger cars, NEVs and intelligent connectivity.",
+      "role_tags": [
+        "oem_manufacturing",
+        "headquarters",
+        "autonomous_driving",
+        "higher_education",
+        "parts"
+      ],
+      "cluster_ids": [
+        "hubei-axis"
+      ],
+      "districts_zh": [
+        "武汉经开区",
+        "汉阳"
+      ],
+      "districts_en": [
+        "Wuhan Economic & Technological Development Area",
+        "Hanyang"
+      ],
+      "featured_entity_ids": [
+        "dongfeng",
+        "voyah",
+        "mengshi",
+        "aeolus",
+        "whut"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "changsha",
+      "name_zh": "长沙",
+      "name_en": "Changsha",
+      "province_zh": "湖南省",
+      "province_en": "Hunan",
+      "admin_level": "prefecture",
+      "admin_code": "430100",
+      "lat": 28.2282,
+      "lng": 112.9388,
+      "tier": "core",
+      "summary_zh": "新能源整车与湖南汽车产业轴核心。页面还应关联株洲的新能源商用车和湘潭的吉利体系。",
+      "summary_en": "NEV manufacturing core of the Hunan auto axis. Later pages should link Zhuzhou NEV commercial vehicles and Xiangtan's Geely system.",
+      "history_summary_zh": "比亚迪、上汽大众、广汽埃安和北汽福田把长沙推成中部新能源整车节点。",
+      "history_summary_en": "BYD, SAIC Volkswagen, GAC Aion and BAIC Foton made Changsha a central-China NEV vehicle node.",
+      "role_tags": [
+        "oem_manufacturing",
+        "higher_education"
+      ],
+      "cluster_ids": [
+        "hunan-axis"
+      ],
+      "districts_zh": [
+        "经开区",
+        "雨花"
+      ],
+      "districts_en": [
+        "Economic Development Area",
+        "Yuhua"
+      ],
+      "featured_entity_ids": [
+        "byd",
+        "saic-vw",
+        "gac-aion",
+        "baic-foton",
+        "hnu"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "tianjin",
+      "name_zh": "天津",
+      "name_en": "Tianjin",
+      "province_zh": "天津市",
+      "province_en": "Tianjin Municipality",
+      "admin_level": "municipality",
+      "admin_code": "120000",
+      "lat": 39.3434,
+      "lng": 117.3616,
+      "tier": "core",
+      "summary_zh": "整车生产、检测认证和行业标准中心。天津经开区承担天津大部分汽车产量，并主办泰达汽车论坛。",
+      "summary_en": "Vehicle production, testing/certification and industry-standards centre. TEDA accounts for most of Tianjin's output and hosts the TEDA Auto Forum.",
+      "history_summary_zh": "港口城市叠加一汽丰田、一汽-大众和长城产能，并以中汽中心掌握检测与标准话语权。",
+      "history_summary_en": "A port city stacking FAW Toyota, FAW-Volkswagen and GWM capacity, with CATARC holding testing and standards authority.",
+      "role_tags": [
+        "oem_manufacturing",
+        "testing",
+        "expo_culture",
+        "export_logistics"
+      ],
+      "cluster_ids": [
+        "jingjinji"
+      ],
+      "districts_zh": [
+        "天津经开区",
+        "西青"
+      ],
+      "districts_en": [
+        "Tianjin Economic-Technological Development Area",
+        "Xiqing"
+      ],
+      "featured_entity_ids": [
+        "faw-toyota",
+        "faw-vw",
+        "gwm",
+        "catarc"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "chengdu",
+      "name_zh": "成都",
+      "name_en": "Chengdu",
+      "province_zh": "四川省",
+      "province_en": "Sichuan",
+      "admin_level": "prefecture",
+      "admin_code": "510100",
+      "lat": 30.5728,
+      "lng": 104.0668,
+      "tier": "core",
+      "summary_zh": "西南整车生产和成渝供应链节点。与重庆、宜宾之间存在整车、零部件和动力电池协作。",
+      "summary_en": "Southwest vehicle production and a Chengdu–Chongqing supply node, collaborating with Chongqing and Yibin on vehicles, parts and batteries.",
+      "history_summary_zh": "一汽-大众、一汽丰田、沃尔沃与吉利/领克相关基地把成都经开区做成西南乘用车第二中心。",
+      "history_summary_en": "FAW-Volkswagen, FAW Toyota, Volvo and Geely/Lynk & Co plants made Chengdu's development area the southwest's second passenger-car centre.",
+      "role_tags": [
+        "oem_manufacturing",
+        "parts"
+      ],
+      "cluster_ids": [
+        "chengyu"
+      ],
+      "districts_zh": [
+        "成都经开区",
+        "龙泉驿"
+      ],
+      "districts_en": [
+        "Chengdu Economic Development Area",
+        "Longquanyi"
+      ],
+      "featured_entity_ids": [
+        "faw-vw",
+        "faw-toyota",
+        "volvo-cars-chengdu",
+        "geely"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.72
+    },
+    {
+      "id": "ningde",
+      "name_zh": "宁德",
+      "name_en": "Ningde",
+      "province_zh": "福建省",
+      "province_en": "Fujian",
+      "admin_level": "prefecture",
+      "admin_code": "350900",
+      "lat": 26.6655,
+      "lng": 119.548,
+      "tier": "specialist",
+      "summary_zh": "动力电池总部和产业集群。宁德时代已形成跨城市、跨国生产和研发网络。",
+      "summary_en": "Power-battery headquarters and industrial cluster. CATL already runs a cross-city and cross-border manufacturing and R&D network.",
+      "history_summary_zh": "一座原本不以整车见长的东部地级市，因动力电池成为全球汽车供应链关键节点。",
+      "history_summary_en": "An eastern prefecture that was never an OEM city became a global auto-supply node through power batteries.",
+      "role_tags": [
+        "battery",
+        "headquarters",
+        "rd_design"
+      ],
+      "cluster_ids": [
+        "battery-corridor"
+      ],
+      "districts_zh": [
+        "蕉城",
+        "福鼎",
+        "霞浦"
+      ],
+      "districts_en": [
+        "Jiaocheng",
+        "Fuding",
+        "Xiapu"
+      ],
+      "featured_entity_ids": [
+        "catl"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.68
+    },
+    {
+      "id": "changzhou",
+      "name_zh": "常州",
+      "name_en": "Changzhou",
+      "province_zh": "江苏省",
+      "province_en": "Jiangsu",
+      "admin_level": "prefecture",
+      "admin_code": "320400",
+      "lat": 31.8107,
+      "lng": 119.9741,
+      "tier": "specialist",
+      "summary_zh": "新能源整车与动力电池高度集聚：理想汽车、比亚迪、江苏时代、蜂巢能源、中创新航及大量零部件企业。",
+      "summary_en": "Dense NEV vehicles and batteries: Li Auto, BYD, CATL Jiangsu, SVOLT, CALB and a large parts base.",
+      "history_summary_zh": "在长三角协作中常被点名为动力电池节点，同时承接理想和比亚迪整车。",
+      "history_summary_en": "Named in Yangtze Delta collaboration cases as a battery node, while also hosting Li Auto and BYD vehicle plants.",
+      "role_tags": [
+        "oem_manufacturing",
+        "battery",
+        "parts"
+      ],
+      "cluster_ids": [
+        "yangtze-river-delta",
+        "battery-corridor"
+      ],
+      "districts_zh": [
+        "金坛",
+        "武进",
+        "经开区"
+      ],
+      "districts_en": [
+        "Jintan",
+        "Wujin",
+        "Economic Development Area"
+      ],
+      "featured_entity_ids": [
+        "li-auto",
+        "byd",
+        "catl",
+        "svolt",
+        "calb"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.68
+    },
+    {
+      "id": "suzhou",
+      "name_zh": "苏州",
+      "name_en": "Suzhou",
+      "province_zh": "江苏省",
+      "province_en": "Jiangsu",
+      "admin_level": "prefecture",
+      "admin_code": "320500",
+      "lat": 31.2989,
+      "lng": 120.5853,
+      "tier": "specialist",
+      "summary_zh": "汽车电子、零部件、智能网联测试和出口。太仓德系零部件集群与太仓港汽车出口是跨城市网络的典型接口。",
+      "summary_en": "Auto electronics, parts, intelligent-connected testing and export. Taicang's German parts cluster and auto export port are typical cross-city interfaces.",
+      "history_summary_zh": "不靠整车厂定义自己，而靠给上海和长三角整车配套。",
+      "history_summary_en": "Defines itself by supplying Shanghai and Yangtze Delta OEMs rather than by hosting a flagship plant.",
+      "role_tags": [
+        "auto_electronics",
+        "parts",
+        "testing",
+        "export_logistics"
+      ],
+      "cluster_ids": [
+        "yangtze-river-delta"
+      ],
+      "districts_zh": [
+        "工业园区",
+        "太仓",
+        "昆山"
+      ],
+      "districts_en": [
+        "Suzhou Industrial Park",
+        "Taicang",
+        "Kunshan"
+      ],
+      "featured_entity_ids": [],
+      "last_verified": "2026-08",
+      "confidence": 0.68
+    },
+    {
+      "id": "ningbo",
+      "name_zh": "宁波",
+      "name_en": "Ningbo",
+      "province_zh": "浙江省",
+      "province_en": "Zhejiang",
+      "admin_level": "prefecture",
+      "admin_code": "330200",
+      "lat": 29.8683,
+      "lng": 121.544,
+      "tier": "specialist",
+      "summary_zh": "全球化零部件公司集群：均胜电子、拓普集团、敏实集团、华翔集团及大量规模以上汽车企业。",
+      "summary_en": "A cluster of globalising parts groups: Joyson, Tuopu, Minth, Huaxiang and many above-scale auto firms.",
+      "history_summary_zh": "国家发展改革委区域资料将宁波整车制造与上海软件芯片、常州动力电池并列为长三角协作案例。",
+      "history_summary_en": "NDRC regional materials cite Ningbo vehicle manufacturing alongside Shanghai software/chips and Changzhou batteries as a Yangtze Delta collaboration case.",
+      "role_tags": [
+        "parts",
+        "auto_electronics",
+        "oem_manufacturing",
+        "export_logistics"
+      ],
+      "cluster_ids": [
+        "yangtze-river-delta"
+      ],
+      "districts_zh": [
+        "杭州湾",
+        "北仑",
+        "慈溪"
+      ],
+      "districts_en": [
+        "Hangzhou Bay",
+        "Beilun",
+        "Cixi"
+      ],
+      "featured_entity_ids": [
+        "joyson",
+        "tuopu",
+        "minth",
+        "huaxiang",
+        "geely"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.68
+    },
+    {
+      "id": "huizhou",
+      "name_zh": "惠州",
+      "name_en": "Huizhou",
+      "province_zh": "广东省",
+      "province_en": "Guangdong",
+      "admin_level": "prefecture",
+      "admin_code": "441300",
+      "lat": 23.1115,
+      "lng": 114.4162,
+      "tier": "specialist",
+      "summary_zh": "汽车电子、智能座舱和动力电池。德赛西威、华阳集团、亿纬锂能与深圳、广州形成电子与零部件协作。",
+      "summary_en": "Auto electronics, smart cockpit and batteries. Desay SV, Holosonics/HuaYang and EVE Energy collaborate with Shenzhen and Guangzhou.",
+      "history_summary_zh": "湾区电子制造外溢，使惠州成为座舱域控制器和电池的专业城市。",
+      "history_summary_en": "Bay Area electronics overflow made Huizhou a specialist city for cockpit domain controllers and batteries.",
+      "role_tags": [
+        "auto_electronics",
+        "battery",
+        "parts"
+      ],
+      "cluster_ids": [
+        "greater-bay-area"
+      ],
+      "districts_zh": [
+        "仲恺",
+        "惠城"
+      ],
+      "districts_en": [
+        "Zhongkai",
+        "Huicheng"
+      ],
+      "featured_entity_ids": [
+        "desay-sv",
+        "holosonics",
+        "eve-energy"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.68
+    },
+    {
+      "id": "yibin",
+      "name_zh": "宜宾",
+      "name_en": "Yibin",
+      "province_zh": "四川省",
+      "province_en": "Sichuan",
+      "admin_level": "prefecture",
+      "admin_code": "511500",
+      "lat": 28.7518,
+      "lng": 104.6432,
+      "tier": "specialist",
+      "summary_zh": "动力电池制造和能源条件城市。四川时代、动力电池产业园与世界动力电池大会构成成渝电池支点。",
+      "summary_en": "Power-battery manufacturing plus energy conditions. CATL Sichuan, the battery park and the World Power Battery Conference form the Chengyu battery pivot.",
+      "history_summary_zh": "水电与工业用地条件吸引宁德时代落地，宜宾因此进入汽车图谱，而不是因为整车厂。",
+      "history_summary_en": "Hydropower and industrial land brought CATL in; Yibin enters the auto atlas through batteries, not OEMs.",
+      "role_tags": [
+        "battery",
+        "expo_culture"
+      ],
+      "cluster_ids": [
+        "chengyu",
+        "battery-corridor"
+      ],
+      "districts_zh": [
+        "三江新区"
+      ],
+      "districts_en": [
+        "Sanjiang New Area"
+      ],
+      "featured_entity_ids": [
+        "catl"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.68
+    },
+    {
+      "id": "baoding",
+      "name_zh": "保定",
+      "name_en": "Baoding",
+      "province_zh": "河北省",
+      "province_en": "Hebei",
+      "admin_level": "prefecture",
+      "admin_code": "130600",
+      "lat": 38.851,
+      "lng": 115.49,
+      "tier": "specialist",
+      "summary_zh": "民营整车总部和完整制造链。长城汽车总部、研发设施、徐水智慧工厂及本地零部件体系。",
+      "summary_en": "A private OEM headquarters with a full manufacturing chain: GWM HQ, R&D, the Xushui smart plant and a local parts system.",
+      "history_summary_zh": "长城从皮卡和SUV起家，使保定成为京津冀整车制造的河北支点。",
+      "history_summary_en": "GWM's pickup and SUV path made Baoding the Hebei vehicle-manufacturing pivot of Jing-Jin-Ji.",
+      "role_tags": [
+        "headquarters",
+        "oem_manufacturing",
+        "rd_design",
+        "parts"
+      ],
+      "cluster_ids": [
+        "jingjinji"
+      ],
+      "districts_zh": [
+        "徐水",
+        "莲池"
+      ],
+      "districts_en": [
+        "Xushui",
+        "Lianchi"
+      ],
+      "featured_entity_ids": [
+        "gwm"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.68
+    },
+    {
+      "id": "jinan",
+      "name_zh": "济南",
+      "name_en": "Jinan",
+      "province_zh": "山东省",
+      "province_en": "Shandong",
+      "admin_level": "prefecture",
+      "admin_code": "370100",
+      "lat": 36.6512,
+      "lng": 117.1201,
+      "tier": "specialist",
+      "summary_zh": "重型商用车与新能源整车。中国重汽、比亚迪、吉利及相关零部件园区。",
+      "summary_en": "Heavy commercial vehicles plus NEV passenger cars: Sinotruk, BYD, Geely and related parts parks.",
+      "history_summary_zh": "重汽体系长期定义济南的商用车身份，比亚迪等新基地把它拉进新能源乘用车版图。",
+      "history_summary_en": "Sinotruk long defined Jinan as a commercial-vehicle city; BYD and others pulled it into NEV passenger cars.",
+      "role_tags": [
+        "oem_manufacturing",
+        "headquarters",
+        "parts"
+      ],
+      "cluster_ids": [
+        "shandong"
+      ],
+      "districts_zh": [
+        "高新区",
+        "章丘"
+      ],
+      "districts_en": [
+        "High-tech Zone",
+        "Zhangqiu"
+      ],
+      "featured_entity_ids": [
+        "sinotruk",
+        "byd",
+        "geely"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.68
+    },
+    {
+      "id": "shiyan",
+      "name_zh": "十堰",
+      "name_en": "Shiyan",
+      "province_zh": "湖北省",
+      "province_en": "Hubei",
+      "admin_level": "prefecture",
+      "admin_code": "420300",
+      "lat": 32.6294,
+      "lng": 110.798,
+      "tier": "specialist",
+      "summary_zh": "中国商用车历史和专业供应链城市。东风商用车、重型与中型商用车工厂、大量专用零部件企业。",
+      "summary_en": "China's commercial-vehicle history city and a specialist supply chain: Dongfeng Commercial Vehicles, medium/heavy plants and dedicated parts firms.",
+      "history_summary_zh": "第二汽车制造厂因备战选址十堰。总部东迁武汉后，十堰仍是中重卡和专用件的历史产地。",
+      "history_summary_en": "Second Auto Works was sited in Shiyan for defence-in-depth. After HQ moved to Wuhan, Shiyan remained the historical home of medium/heavy trucks and specialist parts.",
+      "role_tags": [
+        "oem_manufacturing",
+        "auto_history",
+        "parts"
+      ],
+      "cluster_ids": [
+        "hubei-axis"
+      ],
+      "districts_zh": [
+        "张湾",
+        "茅箭"
+      ],
+      "districts_en": [
+        "Zhangwan",
+        "Maojian"
+      ],
+      "featured_entity_ids": [
+        "dongfeng-cv"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.68
+    },
+    {
+      "id": "xiamen",
+      "name_zh": "厦门",
+      "name_en": "Xiamen",
+      "province_zh": "福建省",
+      "province_en": "Fujian",
+      "admin_level": "prefecture",
+      "admin_code": "350200",
+      "lat": 24.4798,
+      "lng": 118.0894,
+      "tier": "specialist",
+      "summary_zh": "客车和新能源商用车。金龙客车、金旅客车，以及新能源客车与燃料电池商用车产业。",
+      "summary_en": "Coaches and NEV commercial vehicles: King Long, Golden Dragon, plus NEV buses and fuel-cell commercial vehicles.",
+      "history_summary_zh": "港口城市用客车出口建立全球可见度，而不是用乘用车产量。",
+      "history_summary_en": "A port city that earned global visibility through coach exports rather than passenger-car volume.",
+      "role_tags": [
+        "oem_manufacturing",
+        "export_logistics"
+      ],
+      "cluster_ids": [
+        "fujian-bus"
+      ],
+      "districts_zh": [
+        "集美",
+        "湖里"
+      ],
+      "districts_en": [
+        "Jimei",
+        "Huli"
+      ],
+      "featured_entity_ids": [
+        "king-long",
+        "golden-dragon"
+      ],
+      "last_verified": "2026-08",
+      "confidence": 0.68
+    }
+  ]
+}
