@@ -52,6 +52,9 @@ def main() -> int:
     rc = subprocess.call([sys.executable, str(ROOT / "tools" / "validate.py")])
     if rc != 0:
         return rc
+    rc = subprocess.call([sys.executable, str(ROOT / "tools" / "test_search.py")])
+    if rc != 0:
+        return rc
     print("build: OK")
     return 0
 

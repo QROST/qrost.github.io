@@ -21,7 +21,18 @@
       "source_ids": [
         "src-media-public-addresses"
       ],
-      "national_platform": true
+      "national_platform": true,
+      "search_keys": [
+        "a",
+        "autohome",
+        "m",
+        "mediaautohome",
+        "qc",
+        "qcz",
+        "qczj",
+        "qichezhijia",
+        "汽车之家"
+      ]
     },
     {
       "id": "media-gasgoo",
@@ -44,7 +55,18 @@
       "source_ids": [
         "src-media-public-addresses"
       ],
-      "national_platform": true
+      "national_platform": true,
+      "search_keys": [
+        "g",
+        "gaishiqiche",
+        "gasgoo",
+        "gs",
+        "gsq",
+        "gsqc",
+        "m",
+        "mediagasgoo",
+        "盖世汽车"
+      ]
     },
     {
       "id": "media-garage42",
@@ -67,7 +89,22 @@
       "source_ids": [
         "src-media-public-addresses"
       ],
-      "national_platform": true
+      "national_platform": true,
+      "search_keys": [
+        "42",
+        "42h",
+        "42haocheku",
+        "42hck",
+        "42号车库",
+        "4h",
+        "4hc",
+        "4hck",
+        "ck",
+        "g",
+        "garage42",
+        "m",
+        "mediagarage42"
+      ]
     },
     {
       "id": "media-xchuxing",
@@ -90,7 +127,17 @@
       "source_ids": [
         "src-media-public-addresses"
       ],
-      "national_platform": true
+      "national_platform": true,
+      "search_keys": [
+        "m",
+        "mediaxchuxing",
+        "x",
+        "xc",
+        "xchuxing",
+        "xcx",
+        "xinchuxing",
+        "新出行"
+      ]
     },
     {
       "id": "media-pcauto",
@@ -113,7 +160,18 @@
       "source_ids": [
         "src-media-public-addresses"
       ],
-      "national_platform": true
+      "national_platform": true,
+      "search_keys": [
+        "m",
+        "mediapcauto",
+        "p",
+        "pcauto",
+        "taipingyangqiche",
+        "tp",
+        "tpy",
+        "tpyqc",
+        "太平洋汽车"
+      ]
     }
   ]
 }

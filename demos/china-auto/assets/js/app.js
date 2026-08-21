@@ -2,6 +2,7 @@
 (function () {
   'use strict';
   var I18N = window.CHINA_AUTO_I18N, D = window.CHINA_AUTO_DATA, CH = window.CHINA_AUTO_CHARTS, MAP = window.CHINA_AUTO_MAP;
+  var S = window.CHINA_AUTO_SEARCH;
   var $ = function (id) { return document.getElementById(id); };
 
   var state = {
@@ -108,10 +109,7 @@
       if (f.tier && c.tier !== f.tier) return false;
       if (f.cluster && (c.cluster_ids || []).indexOf(f.cluster) === -1) return false;
       if (f.role && (c.role_tags || []).indexOf(f.role) === -1) return false;
-      if (q) {
-        var hay = ((c.name_zh || '') + ' ' + (c.name_en || '') + ' ' + (c.province_zh || '') + ' ' + (c.province_en || '')).toLowerCase();
-        if (hay.indexOf(q) === -1) return false;
-      }
+      if (q && !S.match(c, q)) return false;
       return true;
     });
     var k = f.sort, dir = f.dir;
@@ -168,10 +166,7 @@
     var f = state.org, q = f.search.toLowerCase();
     return D.organizations.filter(function (o) {
       if (f.type && o.organization_type !== f.type) return false;
-      if (q) {
-        var hay = ((o.display_name_zh || '') + ' ' + (o.display_name_en || '') + ' ' + (o.legal_name_zh || '') + ' ' + (o.legal_name_en || '')).toLowerCase();
-        if (hay.indexOf(q) === -1) return false;
-      }
+      if (q && !S.match(o, q)) return false;
       return true;
     });
   }
@@ -335,7 +330,7 @@
     var hq = o.headquarters_city_id ? D.getCity(o.headquarters_city_id) : null;
     var body = '<dl class="kv">' +
       (o.founded_year ? '<dt>' + I18N.t('founded') + '</dt><dd>' + o.founded_year + '</dd>' : '') +
-      (hq ? '<dt>' + I18N.t('hqCity') + '</dt><dd><button type="button" class="chip-link" data-city-link="' + esc(hq.id) + '">' + esc(I18N.name(hq)) + '</button></dd>' : '') +
+      (hq ? '<dt>' + I18N.t('hqCity') + '</dt><dd><button type="button" class="chip-link" data-city-link="' + esc(hq.id) + '">' + esc(I18N.name(hq)) + '</button></dd>' : '<dt>' + I18N.t('hqCity') + '</dt><dd class="text-faint">' + I18N.t('hqUnknown') + '</dd>') +
       (o.website ? '<dt>' + I18N.t('website') + '</dt><dd><a href="' + esc(o.website) + '" target="_blank" rel="noopener">' + esc(o.website) + '</a></dd>' : '') +
       (o.status ? '<dt>' + I18N.t('status') + '</dt><dd>' + esc(o.status) + '</dd>' : '') +
       '</dl>' + sourcesHtml(o.source_ids);
@@ -371,6 +366,72 @@
     $('org-filter-type').value = state.org.type;
   }
 
+  var searchHits = [];
+  var searchSel = -1;
+
+  function collectSearch(q) {
+    var hits = [];
+    if (!q || !S.fold(q)) return hits;
+    D.cities.forEach(function (c) {
+      if (S.match(c, q)) hits.push({ kind: 'city', id: c.id, score: S.score(c, q), label: I18N.name(c), sub: I18N.pick(c.province_zh, c.province_en) });
+    });
+    D.organizations.forEach(function (o) {
+      if (S.match(o, q)) {
+        var hq = o.headquarters_city_id ? D.getCity(o.headquarters_city_id) : null;
+        hits.push({
+          kind: 'org', id: o.id, score: S.score(o, q), label: I18N.name(o),
+          sub: I18N.enumLabel('organization_type', o.organization_type) + (hq ? ' · ' + I18N.name(hq) : '')
+        });
+      }
+    });
+    hits.sort(function (a, b) {
+      if (b.score !== a.score) return b.score - a.score;
+      return a.label.localeCompare(b.label, I18N.isEn() ? 'en' : 'zh');
+    });
+    var cities = hits.filter(function (h) { return h.kind === 'city'; });
+    var orgs = hits.filter(function (h) { return h.kind === 'org'; });
+    return cities.concat(orgs).slice(0, 12);
+  }
+
+  function hideSearchPop() {
+    var box = $('search-results'), inp = $('global-search');
+    box.classList.add('hidden');
+    box.innerHTML = '';
+    if (inp) inp.setAttribute('aria-expanded', 'false');
+    searchHits = [];
+    searchSel = -1;
+  }
+
+  function renderSearchPop(q) {
+    var box = $('search-results'), inp = $('global-search');
+    searchHits = collectSearch(q);
+    if (!S.fold(q)) { hideSearchPop(); return; }
+    inp.setAttribute('aria-expanded', 'true');
+    box.classList.remove('hidden');
+    if (!searchHits.length) {
+      box.innerHTML = '<div class="search-pop-empty">' + I18N.t('searchNoResult') + '</div>';
+      searchSel = -1;
+      return;
+    }
+    if (searchSel < 0 || searchSel >= searchHits.length) searchSel = 0;
+    var html = '', last = '';
+    searchHits.forEach(function (h, i) {
+      var group = h.kind === 'city' ? I18N.t('searchCities') : I18N.t('searchOrgs');
+      if (group !== last) { html += '<div class="search-pop-group">' + esc(group) + '</div>'; last = group; }
+      html += '<button type="button" class="search-pop-item" role="option" data-i="' + i + '" aria-selected="' + (i === searchSel) + '">' +
+        esc(h.label) + (h.sub ? ' <span class="text-faint text-xs">' + esc(h.sub) + '</span>' : '') + '</button>';
+    });
+    box.innerHTML = html;
+  }
+
+  function activateSearchHit(i) {
+    var h = searchHits[i]; if (!h) return;
+    hideSearchPop();
+    $('global-search').blur();
+    if (h.kind === 'city') { cityModalTab = 'tabOverview'; openCityModal(h.id); }
+    else openOrgModal(h.id);
+  }
+
   function bind() {
     $('lang-toggle').addEventListener('click', function () { I18N.toggleLang(); });
     $('theme-toggle').addEventListener('click', toggleTheme);
@@ -385,7 +446,39 @@
       $(m[0]).addEventListener('click', function (e) { if (e.target === this) closeModals(); });
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeModals();
+      if (e.key === 'Escape') { hideSearchPop(); closeModals(); }
+      var tag = (e.target && e.target.tagName) || '';
+      if (e.key === '/' && tag !== 'INPUT' && tag !== 'TEXTAREA' && tag !== 'SELECT') {
+        e.preventDefault();
+        $('global-search').focus();
+      }
+    });
+
+    $('global-search').addEventListener('input', function (e) { renderSearchPop(e.target.value); });
+    $('global-search').addEventListener('focus', function (e) { if (e.target.value) renderSearchPop(e.target.value); });
+    $('global-search').addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (!searchHits.length) { searchSel = 0; renderSearchPop(e.target.value); return; }
+        searchSel = Math.min(searchHits.length - 1, searchSel + 1);
+        renderSearchPop(e.target.value);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        searchSel = Math.max(0, searchSel - 1);
+        renderSearchPop(e.target.value);
+      } else if (e.key === 'Enter') {
+        if (searchHits.length) { e.preventDefault(); activateSearchHit(searchSel < 0 ? 0 : searchSel); }
+      } else if (e.key === 'Escape') {
+        hideSearchPop(); e.target.blur();
+      }
+    });
+    $('search-results').addEventListener('mousedown', function (e) {
+      var btn = e.target.closest('[data-i]'); if (!btn) return;
+      e.preventDefault();
+      activateSearchHit(parseInt(btn.getAttribute('data-i'), 10));
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.search-wrap')) hideSearchPop();
     });
 
     $('map-dims').addEventListener('click', function (e) {

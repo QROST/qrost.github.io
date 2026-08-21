@@ -755,6 +755,582 @@
       "source_ids": [
         "src-research-brief-2026-08"
       ]
+    },
+    {
+      "id": "baic__owns__beijing-benz__",
+      "from_id": "baic",
+      "relation_type": "owns",
+      "to_id": "beijing-benz",
+      "cluster_id": null,
+      "description_zh": "北汽 旗下 北京奔驰",
+      "description_en": "BAIC owns Beijing Benz",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "gac__owns__gac-honda__",
+      "from_id": "gac",
+      "relation_type": "owns",
+      "to_id": "gac-honda",
+      "cluster_id": null,
+      "description_zh": "广汽集团 旗下 广汽本田",
+      "description_en": "GAC Group owns GAC Honda",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "gac__owns__gac-toyota__",
+      "from_id": "gac",
+      "relation_type": "owns",
+      "to_id": "gac-toyota",
+      "cluster_id": null,
+      "description_zh": "广汽集团 旗下 广汽丰田",
+      "description_en": "GAC Group owns GAC Toyota",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dongfeng__owns__dongfeng-nissan__",
+      "from_id": "dongfeng",
+      "relation_type": "owns",
+      "to_id": "dongfeng-nissan",
+      "cluster_id": null,
+      "description_zh": "东风集团 旗下 东风日产",
+      "description_en": "Dongfeng Motor owns Dongfeng Nissan",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "faw__owns__hongqi__",
+      "from_id": "faw",
+      "relation_type": "owns",
+      "to_id": "hongqi",
+      "cluster_id": null,
+      "description_zh": "中国一汽 旗下 红旗",
+      "description_en": "FAW owns Hongqi",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "faw__owns__jiefang__",
+      "from_id": "faw",
+      "relation_type": "owns",
+      "to_id": "jiefang",
+      "cluster_id": null,
+      "description_zh": "中国一汽 旗下 解放",
+      "description_en": "FAW owns Jiefang",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "faw__owns__bestune__",
+      "from_id": "faw",
+      "relation_type": "owns",
+      "to_id": "bestune",
+      "cluster_id": null,
+      "description_zh": "中国一汽 旗下 奔腾",
+      "description_en": "FAW owns Bestune",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "faw__owns__faw-vw__",
+      "from_id": "faw",
+      "relation_type": "owns",
+      "to_id": "faw-vw",
+      "cluster_id": null,
+      "description_zh": "中国一汽 旗下 一汽-大众",
+      "description_en": "FAW owns FAW-Volkswagen",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "faw__owns__audi-faw-nev__",
+      "from_id": "faw",
+      "relation_type": "owns",
+      "to_id": "audi-faw-nev",
+      "cluster_id": null,
+      "description_zh": "中国一汽 旗下 奥迪一汽新能源",
+      "description_en": "FAW owns Audi FAW NEV",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "saic__owns__sgmw__",
+      "from_id": "saic",
+      "relation_type": "owns",
+      "to_id": "sgmw",
+      "cluster_id": null,
+      "description_zh": "上汽集团 旗下 上汽通用五菱",
+      "description_en": "SAIC Motor owns SGMW",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dongfeng__owns__dongfeng-liuzhou__",
+      "from_id": "dongfeng",
+      "relation_type": "owns",
+      "to_id": "dongfeng-liuzhou",
+      "cluster_id": null,
+      "description_zh": "东风集团 旗下 东风柳汽",
+      "description_en": "Dongfeng Motor owns Dongfeng Liuzhou Motor",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dongfeng__owns__voyah__",
+      "from_id": "dongfeng",
+      "relation_type": "owns",
+      "to_id": "voyah",
+      "cluster_id": null,
+      "description_zh": "东风集团 旗下 岚图",
+      "description_en": "Dongfeng Motor owns Voyah",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dongfeng__owns__mengshi__",
+      "from_id": "dongfeng",
+      "relation_type": "owns",
+      "to_id": "mengshi",
+      "cluster_id": null,
+      "description_zh": "东风集团 旗下 猛士",
+      "description_en": "Dongfeng Motor owns Mengshi",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dongfeng__owns__aeolus__",
+      "from_id": "dongfeng",
+      "relation_type": "owns",
+      "to_id": "aeolus",
+      "cluster_id": null,
+      "description_zh": "东风集团 旗下 奕派",
+      "description_en": "Dongfeng Motor owns Aeolus",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "faw__owns__faw-toyota__",
+      "from_id": "faw",
+      "relation_type": "owns",
+      "to_id": "faw-toyota",
+      "cluster_id": null,
+      "description_zh": "中国一汽 旗下 一汽丰田",
+      "description_en": "FAW owns FAW Toyota",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "gac__owns__gac-aion__",
+      "from_id": "gac",
+      "relation_type": "owns",
+      "to_id": "gac-aion",
+      "cluster_id": null,
+      "description_zh": "广汽集团 旗下 广汽埃安",
+      "description_en": "GAC Group owns GAC Aion",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "saic__owns__saic-vw__",
+      "from_id": "saic",
+      "relation_type": "owns",
+      "to_id": "saic-vw",
+      "cluster_id": null,
+      "description_zh": "上汽集团 旗下 上汽大众",
+      "description_en": "SAIC Motor owns SAIC Volkswagen",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "baic__owns__baic-foton__",
+      "from_id": "baic",
+      "relation_type": "owns",
+      "to_id": "baic-foton",
+      "cluster_id": null,
+      "description_zh": "北汽 旗下 北汽福田",
+      "description_en": "BAIC owns Foton",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dongfeng__owns__dongfeng-cv__",
+      "from_id": "dongfeng",
+      "relation_type": "owns",
+      "to_id": "dongfeng-cv",
+      "cluster_id": null,
+      "description_zh": "东风集团 旗下 东风商用车",
+      "description_en": "Dongfeng Motor owns Dongfeng Commercial Vehicles",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "baic__owns__arcfox__",
+      "from_id": "baic",
+      "relation_type": "owns",
+      "to_id": "arcfox",
+      "cluster_id": null,
+      "description_zh": "北汽 旗下 极狐",
+      "description_en": "BAIC owns Arcfox",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "saic__owns__saic-gm__",
+      "from_id": "saic",
+      "relation_type": "owns",
+      "to_id": "saic-gm",
+      "cluster_id": null,
+      "description_zh": "上汽集团 旗下 上汽通用",
+      "description_en": "SAIC Motor owns SAIC-GM",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "saic__owns__im-motors__",
+      "from_id": "saic",
+      "relation_type": "owns",
+      "to_id": "im-motors",
+      "cluster_id": null,
+      "description_zh": "上汽集团 旗下 智己汽车",
+      "description_en": "SAIC Motor owns IM Motors",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "saic__owns__rising-auto__",
+      "from_id": "saic",
+      "relation_type": "owns",
+      "to_id": "rising-auto",
+      "cluster_id": null,
+      "description_zh": "上汽集团 旗下 飞凡汽车",
+      "description_en": "SAIC Motor owns Rising Auto",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "saic__owns__roewe__",
+      "from_id": "saic",
+      "relation_type": "owns",
+      "to_id": "roewe",
+      "cluster_id": null,
+      "description_zh": "上汽集团 旗下 荣威",
+      "description_en": "SAIC Motor owns Roewe",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "saic__owns__mg__",
+      "from_id": "saic",
+      "relation_type": "owns",
+      "to_id": "mg",
+      "cluster_id": null,
+      "description_zh": "上汽集团 旗下 名爵",
+      "description_en": "SAIC Motor owns MG",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "byd__owns__denza__",
+      "from_id": "byd",
+      "relation_type": "owns",
+      "to_id": "denza",
+      "cluster_id": null,
+      "description_zh": "比亚迪 旗下 腾势",
+      "description_en": "BYD owns Denza",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "byd__owns__yangwang__",
+      "from_id": "byd",
+      "relation_type": "owns",
+      "to_id": "yangwang",
+      "cluster_id": null,
+      "description_zh": "比亚迪 旗下 仰望",
+      "description_en": "BYD owns Yangwang",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "byd__owns__fangchengbao__",
+      "from_id": "byd",
+      "relation_type": "owns",
+      "to_id": "fangchengbao",
+      "cluster_id": null,
+      "description_zh": "比亚迪 旗下 方程豹",
+      "description_en": "BYD owns Fangchengbao",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "gac__owns__gac-trumpchi__",
+      "from_id": "gac",
+      "relation_type": "owns",
+      "to_id": "gac-trumpchi",
+      "cluster_id": null,
+      "description_zh": "广汽集团 旗下 广汽传祺",
+      "description_en": "GAC Group owns Trumpchi",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "gac__owns__hyptec__",
+      "from_id": "gac",
+      "relation_type": "owns",
+      "to_id": "hyptec",
+      "cluster_id": null,
+      "description_zh": "广汽集团 旗下 昊铂",
+      "description_en": "GAC Group owns Hyptec",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "changan__owns__avatr__",
+      "from_id": "changan",
+      "relation_type": "owns",
+      "to_id": "avatr",
+      "cluster_id": null,
+      "description_zh": "长安汽车 旗下 阿维塔",
+      "description_en": "Changan Auto owns Avatr",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "changan__owns__deepal__",
+      "from_id": "changan",
+      "relation_type": "owns",
+      "to_id": "deepal",
+      "cluster_id": null,
+      "description_zh": "长安汽车 旗下 深蓝汽车",
+      "description_en": "Changan Auto owns Deepal",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "seres__owns__aito__",
+      "from_id": "seres",
+      "relation_type": "owns",
+      "to_id": "aito",
+      "cluster_id": null,
+      "description_zh": "赛力斯 旗下 问界",
+      "description_en": "Seres owns AITO",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dongfeng__owns__dongfeng-honda__",
+      "from_id": "dongfeng",
+      "relation_type": "owns",
+      "to_id": "dongfeng-honda",
+      "cluster_id": null,
+      "description_zh": "东风集团 旗下 东风本田",
+      "description_en": "Dongfeng Motor owns Dongfeng Honda",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "geely__owns__lotus__",
+      "from_id": "geely",
+      "relation_type": "owns",
+      "to_id": "lotus",
+      "cluster_id": null,
+      "description_zh": "吉利 旗下 路特斯",
+      "description_en": "Geely owns Lotus",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "geely__owns__lynk-co__",
+      "from_id": "geely",
+      "relation_type": "owns",
+      "to_id": "lynk-co",
+      "cluster_id": null,
+      "description_zh": "吉利 旗下 领克",
+      "description_en": "Geely owns Lynk & Co",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "geely__owns__zeekr__",
+      "from_id": "geely",
+      "relation_type": "owns",
+      "to_id": "zeekr",
+      "cluster_id": null,
+      "description_zh": "吉利 旗下 极氪",
+      "description_en": "Geely owns Zeekr",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "geely__owns__geely-galaxy__",
+      "from_id": "geely",
+      "relation_type": "owns",
+      "to_id": "geely-galaxy",
+      "cluster_id": null,
+      "description_zh": "吉利 旗下 吉利银河",
+      "description_en": "Geely owns Geely Galaxy",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "sgmw__owns__wuling__",
+      "from_id": "sgmw",
+      "relation_type": "owns",
+      "to_id": "wuling",
+      "cluster_id": null,
+      "description_zh": "上汽通用五菱 旗下 五菱",
+      "description_en": "SGMW owns Wuling",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "sgmw__owns__baojun__",
+      "from_id": "sgmw",
+      "relation_type": "owns",
+      "to_id": "baojun",
+      "cluster_id": null,
+      "description_zh": "上汽通用五菱 旗下 宝骏",
+      "description_en": "SGMW owns Baojun",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "gwm__owns__haval__",
+      "from_id": "gwm",
+      "relation_type": "owns",
+      "to_id": "haval",
+      "cluster_id": null,
+      "description_zh": "长城汽车 旗下 哈弗",
+      "description_en": "Great Wall Motor owns Haval",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "gwm__owns__tank__",
+      "from_id": "gwm",
+      "relation_type": "owns",
+      "to_id": "tank",
+      "cluster_id": null,
+      "description_zh": "长城汽车 旗下 坦克",
+      "description_en": "Great Wall Motor owns Tank",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "gwm__owns__ora__",
+      "from_id": "gwm",
+      "relation_type": "owns",
+      "to_id": "ora",
+      "cluster_id": null,
+      "description_zh": "长城汽车 旗下 欧拉",
+      "description_en": "Great Wall Motor owns ORA",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "gwm__owns__wey__",
+      "from_id": "gwm",
+      "relation_type": "owns",
+      "to_id": "wey",
+      "cluster_id": null,
+      "description_zh": "长城汽车 旗下 魏牌",
+      "description_en": "Great Wall Motor owns WEY",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "chery__owns__exeed__",
+      "from_id": "chery",
+      "relation_type": "owns",
+      "to_id": "exeed",
+      "cluster_id": null,
+      "description_zh": "奇瑞汽车 旗下 星途",
+      "description_en": "Chery owns Exeed",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "chery__owns__jetour__",
+      "from_id": "chery",
+      "relation_type": "owns",
+      "to_id": "jetour",
+      "cluster_id": null,
+      "description_zh": "奇瑞汽车 旗下 捷途",
+      "description_en": "Chery owns Jetour",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "chery__owns__icar__",
+      "from_id": "chery",
+      "relation_type": "owns",
+      "to_id": "icar",
+      "cluster_id": null,
+      "description_zh": "奇瑞汽车 旗下 iCAR",
+      "description_en": "Chery owns iCAR",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "saic__owns__saic-maxus__",
+      "from_id": "saic",
+      "relation_type": "owns",
+      "to_id": "saic-maxus",
+      "cluster_id": null,
+      "description_zh": "上汽集团 旗下 上汽大通",
+      "description_en": "SAIC Motor owns SAIC Maxus",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
     }
   ]
 }

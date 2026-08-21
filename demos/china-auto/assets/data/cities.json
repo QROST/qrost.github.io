@@ -53,10 +53,35 @@
         "horizon-robotics",
         "tsinghua",
         "bit",
-        "autohome"
+        "autohome",
+        "arcfox",
+        "beijing-hyundai",
+        "baic-foton"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "bj",
+        "pek",
+        "peking",
+        "帝都"
+      ],
+      "search_keys": [
+        "b",
+        "beijing",
+        "beijingmunicipality",
+        "beijingshi",
+        "bj",
+        "bjs",
+        "dd",
+        "didu",
+        "p",
+        "pek",
+        "peking",
+        "北京",
+        "北京市",
+        "帝都"
+      ]
     },
     {
       "id": "shanghai",
@@ -107,10 +132,33 @@
         "sjtu",
         "gasgoo",
         "garage42",
-        "saic-vw"
+        "saic-vw",
+        "saic-gm",
+        "im-motors",
+        "rising-auto",
+        "roewe",
+        "mg"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "sh",
+        "hu",
+        "沪"
+      ],
+      "search_keys": [
+        "h",
+        "hu",
+        "s",
+        "sh",
+        "shanghai",
+        "shanghaimunicipality",
+        "shanghaishi",
+        "shs",
+        "上海",
+        "上海市",
+        "沪"
+      ]
     },
     {
       "id": "shenzhen",
@@ -155,10 +203,33 @@
       ],
       "featured_entity_ids": [
         "byd",
-        "xchuxing"
+        "xchuxing",
+        "denza",
+        "yangwang",
+        "fangchengbao",
+        "huawei-car"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "sz",
+        "鹏城"
+      ],
+      "search_keys": [
+        "g",
+        "gd",
+        "gds",
+        "guangdong",
+        "guangdongsheng",
+        "pc",
+        "pengcheng",
+        "s",
+        "shenzhen",
+        "sz",
+        "广东省",
+        "深圳",
+        "鹏城"
+      ]
     },
     {
       "id": "guangzhou",
@@ -210,10 +281,33 @@
         "pony-ai",
         "scut",
         "pcauto",
-        "gac-aion"
+        "gac-aion",
+        "gac-trumpchi",
+        "hyptec"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "gz",
+        "canton",
+        "穗"
+      ],
+      "search_keys": [
+        "c",
+        "canton",
+        "g",
+        "gd",
+        "gds",
+        "guangdong",
+        "guangdongsheng",
+        "guangzhou",
+        "gz",
+        "s",
+        "sui",
+        "广东省",
+        "广州",
+        "穗"
+      ]
     },
     {
       "id": "chongqing",
@@ -259,10 +353,30 @@
         "qianli",
         "caeri",
         "cqu",
-        "cqut"
+        "cqut",
+        "avatr",
+        "deepal",
+        "aito"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "cq",
+        "渝"
+      ],
+      "search_keys": [
+        "c",
+        "chongqing",
+        "chongqingmunicipality",
+        "chongqingshi",
+        "cq",
+        "cqs",
+        "y",
+        "yu",
+        "渝",
+        "重庆",
+        "重庆市"
+      ]
     },
     {
       "id": "hefei",
@@ -308,7 +422,22 @@
         "hfut"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "hf"
+      ],
+      "search_keys": [
+        "a",
+        "ah",
+        "ahs",
+        "anhui",
+        "anhuisheng",
+        "h",
+        "hefei",
+        "hf",
+        "合肥",
+        "安徽省"
+      ]
     },
     {
       "id": "wuhu",
@@ -341,10 +470,29 @@
         "Wuhu Economic & Technological Development Area"
       ],
       "featured_entity_ids": [
-        "chery"
+        "chery",
+        "exeed",
+        "jetour",
+        "icar"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "whu"
+      ],
+      "search_keys": [
+        "a",
+        "ah",
+        "ahs",
+        "anhui",
+        "anhuisheng",
+        "w",
+        "wh",
+        "whu",
+        "wuhu",
+        "安徽省",
+        "芜湖"
+      ]
     },
     {
       "id": "xian",
@@ -383,7 +531,26 @@
         "changan-univ"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "xa",
+        "xian",
+        "sian",
+        "xi'an"
+      ],
+      "search_keys": [
+        "s",
+        "shaanxi",
+        "shanxisheng",
+        "sian",
+        "sx",
+        "sxs",
+        "x",
+        "xa",
+        "xian",
+        "西安",
+        "陕西省"
+      ]
     },
     {
       "id": "changchun",
@@ -429,7 +596,22 @@
         "jlu"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "cc"
+      ],
+      "search_keys": [
+        "c",
+        "cc",
+        "changchun",
+        "j",
+        "jilin",
+        "jilinsheng",
+        "jl",
+        "jls",
+        "吉林省",
+        "长春"
+      ]
     },
     {
       "id": "zhengzhou",
@@ -468,7 +650,22 @@
         "saic"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "zz"
+      ],
+      "search_keys": [
+        "h",
+        "henan",
+        "henansheng",
+        "hn",
+        "hns",
+        "z",
+        "zhengzhou",
+        "zz",
+        "河南省",
+        "郑州"
+      ]
     },
     {
       "id": "liuzhou",
@@ -506,10 +703,28 @@
         "sgmw",
         "dongfeng-liuzhou",
         "guangxi-auto",
-        "jiefang"
+        "jiefang",
+        "wuling",
+        "baojun"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "lz"
+      ],
+      "search_keys": [
+        "g",
+        "guangxi",
+        "guangxizhuangzuzizhiqu",
+        "gx",
+        "gxz",
+        "gxzzzzq",
+        "l",
+        "liuzhou",
+        "lz",
+        "广西壮族自治区",
+        "柳州"
+      ]
     },
     {
       "id": "wuhan",
@@ -549,10 +764,30 @@
         "voyah",
         "mengshi",
         "aeolus",
-        "whut"
+        "whut",
+        "dongfeng-honda",
+        "lotus"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "wh",
+        "汉"
+      ],
+      "search_keys": [
+        "h",
+        "han",
+        "hb",
+        "hbs",
+        "hubei",
+        "hubeisheng",
+        "w",
+        "wh",
+        "wuhan",
+        "武汉",
+        "汉",
+        "湖北省"
+      ]
     },
     {
       "id": "changsha",
@@ -592,7 +827,22 @@
         "hnu"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "cs"
+      ],
+      "search_keys": [
+        "c",
+        "changsha",
+        "cs",
+        "h",
+        "hn",
+        "hns",
+        "hunan",
+        "hunansheng",
+        "湖南省",
+        "长沙"
+      ]
     },
     {
       "id": "tianjin",
@@ -633,7 +883,24 @@
         "catarc"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "tj",
+        "津"
+      ],
+      "search_keys": [
+        "j",
+        "jin",
+        "t",
+        "tianjin",
+        "tianjinmunicipality",
+        "tianjinshi",
+        "tj",
+        "tjs",
+        "天津",
+        "天津市",
+        "津"
+      ]
     },
     {
       "id": "chengdu",
@@ -669,10 +936,30 @@
         "faw-vw",
         "faw-toyota",
         "volvo-cars-chengdu",
-        "geely"
+        "geely",
+        "lynk-co"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.72
+      "confidence": 0.72,
+      "aliases": [
+        "cd",
+        "蓉"
+      ],
+      "search_keys": [
+        "c",
+        "cd",
+        "chengdu",
+        "r",
+        "rong",
+        "s",
+        "sc",
+        "scs",
+        "sichuan",
+        "sichuansheng",
+        "四川省",
+        "成都",
+        "蓉"
+      ]
     },
     {
       "id": "ningde",
@@ -711,7 +998,22 @@
         "catl"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "aliases": [
+        "nd"
+      ],
+      "search_keys": [
+        "f",
+        "fj",
+        "fjs",
+        "fujian",
+        "fujiansheng",
+        "n",
+        "nd",
+        "ningde",
+        "宁德",
+        "福建省"
+      ]
     },
     {
       "id": "changzhou",
@@ -755,7 +1057,22 @@
         "calb"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "aliases": [
+        "cz"
+      ],
+      "search_keys": [
+        "c",
+        "changzhou",
+        "cz",
+        "j",
+        "jiangsu",
+        "jiangsusheng",
+        "js",
+        "jss",
+        "常州",
+        "江苏省"
+      ]
     },
     {
       "id": "suzhou",
@@ -793,7 +1110,23 @@
       ],
       "featured_entity_ids": [],
       "last_verified": "2026-08",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "aliases": [
+        "su"
+      ],
+      "search_keys": [
+        "j",
+        "jiangsu",
+        "jiangsusheng",
+        "js",
+        "jss",
+        "s",
+        "su",
+        "suzhou",
+        "sz",
+        "江苏省",
+        "苏州"
+      ]
     },
     {
       "id": "ningbo",
@@ -834,10 +1167,31 @@
         "tuopu",
         "minth",
         "huaxiang",
-        "geely"
+        "geely",
+        "zeekr",
+        "geely-galaxy"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "aliases": [
+        "nb",
+        "甬"
+      ],
+      "search_keys": [
+        "n",
+        "nb",
+        "ningbo",
+        "y",
+        "yong",
+        "z",
+        "zhejiang",
+        "zhejiangsheng",
+        "zj",
+        "zjs",
+        "宁波",
+        "浙江省",
+        "甬"
+      ]
     },
     {
       "id": "huizhou",
@@ -876,7 +1230,22 @@
         "eve-energy"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "aliases": [
+        "hz"
+      ],
+      "search_keys": [
+        "g",
+        "gd",
+        "gds",
+        "guangdong",
+        "guangdongsheng",
+        "h",
+        "huizhou",
+        "hz",
+        "广东省",
+        "惠州"
+      ]
     },
     {
       "id": "yibin",
@@ -911,7 +1280,22 @@
         "catl"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "aliases": [
+        "yb"
+      ],
+      "search_keys": [
+        "s",
+        "sc",
+        "scs",
+        "sichuan",
+        "sichuansheng",
+        "y",
+        "yb",
+        "yibin",
+        "四川省",
+        "宜宾"
+      ]
     },
     {
       "id": "baoding",
@@ -946,10 +1330,29 @@
         "Lianchi"
       ],
       "featured_entity_ids": [
-        "gwm"
+        "gwm",
+        "haval",
+        "tank",
+        "ora",
+        "wey"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "aliases": [
+        "bd"
+      ],
+      "search_keys": [
+        "b",
+        "baoding",
+        "bd",
+        "h",
+        "hb",
+        "hbs",
+        "hebei",
+        "hebeisheng",
+        "保定",
+        "河北省"
+      ]
     },
     {
       "id": "jinan",
@@ -988,7 +1391,26 @@
         "geely"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "aliases": [
+        "jn",
+        "泉城"
+      ],
+      "search_keys": [
+        "j",
+        "jinan",
+        "jn",
+        "qc",
+        "quancheng",
+        "s",
+        "sd",
+        "sds",
+        "shandong",
+        "shandongsheng",
+        "山东省",
+        "泉城",
+        "济南"
+      ]
     },
     {
       "id": "shiyan",
@@ -1025,7 +1447,22 @@
         "dongfeng-cv"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "aliases": [
+        "sy"
+      ],
+      "search_keys": [
+        "h",
+        "hb",
+        "hbs",
+        "hubei",
+        "hubeisheng",
+        "s",
+        "shiyan",
+        "sy",
+        "十堰",
+        "湖北省"
+      ]
     },
     {
       "id": "xiamen",
@@ -1062,7 +1499,29 @@
         "golden-dragon"
       ],
       "last_verified": "2026-08",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "aliases": [
+        "xm",
+        "amoy",
+        "鹭"
+      ],
+      "search_keys": [
+        "a",
+        "amoy",
+        "f",
+        "fj",
+        "fjs",
+        "fujian",
+        "fujiansheng",
+        "l",
+        "lu",
+        "x",
+        "xiamen",
+        "xm",
+        "厦门",
+        "福建省",
+        "鹭"
+      ]
     }
   ]
 }

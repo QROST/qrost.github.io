@@ -212,3 +212,31 @@ html.dark .badge-grade-D { color: #f87171; }
   display: inline-block; padding: 0.1rem 0.5rem; margin: 0.1rem; border-radius: 0.4rem;
   background: var(--bg-elev); font-size: 0.72rem;
 }
+
+.search-wrap { position: relative; width: min(18rem, 42vw); }
+.search-input {
+  width: 100%; height: 2.15rem; padding: 0 0.7rem; font-size: 0.8rem;
+  border: 1px solid var(--border); border-radius: 0.55rem;
+  background: var(--bg-surface); color: var(--text);
+}
+.search-input:focus { outline: none; border-color: var(--accent); }
+.search-pop {
+  position: absolute; top: calc(100% + 0.35rem); right: 0; left: 0; z-index: 50;
+  min-width: 16rem; max-height: 22rem; overflow-y: auto;
+  background: var(--bg-surface); border: 1px solid var(--border); border-radius: 0.7rem;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+}
+html.dark .search-pop { box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35); }
+.search-pop-group {
+  padding: 0.35rem 0.7rem 0.15rem; font-size: 0.68rem; color: var(--text-faint);
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.search-pop-item {
+  display: block; width: 100%; text-align: left; padding: 0.45rem 0.75rem;
+  font-size: 0.82rem; color: var(--text); background: none; border: none; cursor: pointer;
+}
+.search-pop-item:hover, .search-pop-item[aria-selected="true"] { background: var(--accent-soft); }
+.search-pop-empty { padding: 0.7rem 0.8rem; font-size: 0.8rem; color: var(--text-faint); }
+@media (max-width: 720px) {
+  .search-wrap { width: 9.5rem; }
+}

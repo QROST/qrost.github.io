@@ -55,8 +55,8 @@
       zh: '中国汽车城市图谱 · 总部不等于产量',
     },
     cardAutoDesc: {
-      en: '25 Chinese auto cities (15 core + 10 specialist) with role tags for HQ, plants, batteries, software, media and universities — China map, cluster graph, sourced 2025 local output figures. Dark mode · EN/中文.',
-      zh: '25 座汽车城市（15 核心 + 10 专业），用角色标签分开总部、工厂、电池、软件、媒体和院校——中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
+      en: '25 Chinese auto cities (15 core + 10 specialist) and 113 companies/brands — HQ, plants, batteries, software, media and universities as separate roles. Pinyin / initials search, China map, cluster graph, sourced 2025 local output. Dark mode · EN/中文.',
+      zh: '25 座汽车城市（15 核心 + 10 专业）与 113 家企业/品牌，用角色标签分开总部、工厂、电池、软件、媒体和院校。支持拼音/首字母/简写搜索，中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
     },
     cardPebbleTitle: {
       en: 'Pebble Beach 2026 · Monterey Car Week public guide',
