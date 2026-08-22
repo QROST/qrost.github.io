@@ -105,6 +105,15 @@ def main() -> int:
         raise AssertionError("youjia parent must be baidu")
     if che168.get("parent_id") != "autohome":
         raise AssertionError("che168 parent must be autohome")
+    luobo = by_id(orgs, "luobo-report")
+    laosiji = by_id(orgs, "laosiji")
+    r38 = by_id(orgs, "review-38")
+    mouse = by_id(orgs, "li-laoshu")
+    expect(luobo, "陈震")
+    expect(luobo, "萝卜报告")
+    expect(laosiji, "韩路")
+    expect(r38, "38号")
+    expect(mouse, "李老鼠")
     print("test_search: OK")
     return 0
 

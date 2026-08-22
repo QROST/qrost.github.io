@@ -485,6 +485,116 @@
       ]
     },
     {
+      "id": "beijing__luobo-report__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "luobo-report",
+      "role_type": "media_editorial_office",
+      "description_zh": "萝卜报告在beijing的media_editorial_office角色",
+      "description_en": "Luobo Report media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__laosiji__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "laosiji",
+      "role_type": "media_editorial_office",
+      "description_zh": "老司机出品在beijing的media_editorial_office角色",
+      "description_en": "Laosiji media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__review-38__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "review-38",
+      "role_type": "media_editorial_office",
+      "description_zh": "38号车评中心在beijing的media_editorial_office角色",
+      "description_en": "Review 38 media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__li-laoshu__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "li-laoshu",
+      "role_type": "media_editorial_office",
+      "description_zh": "李老鼠说车在beijing的media_editorial_office角色",
+      "description_en": "Li Laoshu media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__tichebang__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "tichebang",
+      "role_type": "media_editorial_office",
+      "description_zh": "踢车帮在beijing的media_editorial_office角色",
+      "description_en": "Tichebang media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__yan-chuang__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "yan-chuang",
+      "role_type": "media_editorial_office",
+      "description_zh": "闫闯说车在beijing的media_editorial_office角色",
+      "description_en": "Yan Chuang media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__che-ruo-chujian__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "che-ruo-chujian",
+      "role_type": "media_editorial_office",
+      "description_zh": "车若初见在beijing的media_editorial_office角色",
+      "description_en": "Che Ruo Chujian media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__doudouche__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "doudouche",
+      "role_type": "media_editorial_office",
+      "description_zh": "逗斗车在beijing的media_editorial_office角色",
+      "description_en": "Doudouche media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__dabiaoche__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "dabiaoche",
+      "role_type": "media_editorial_office",
+      "description_zh": "大飙车在beijing的media_editorial_office角色",
+      "description_en": "Da Biaoche media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__cidi-wuyin__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "cidi-wuyin",
+      "role_type": "media_editorial_office",
+      "description_zh": "此地无垠在beijing的media_editorial_office角色",
+      "description_en": "Cidi Wuyin media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
       "id": "shanghai__saic__headquarters",
       "city_id": "shanghai",
       "entity_id": "saic",
@@ -898,6 +1008,39 @@
       "role_type": "media_editorial_office",
       "description_zh": "21世纪经济报道汽车在guangzhou的media_editorial_office角色",
       "description_en": "21CBH Auto media_editorial_office role in guangzhou",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "guangzhou__speedsters__media_editorial_office",
+      "city_id": "guangzhou",
+      "entity_id": "speedsters",
+      "role_type": "media_editorial_office",
+      "description_zh": "极速拍档在guangzhou的media_editorial_office角色",
+      "description_en": "Speedsters media_editorial_office role in guangzhou",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "guangzhou__dajia-cheyan__media_editorial_office",
+      "city_id": "guangzhou",
+      "entity_id": "dajia-cheyan",
+      "role_type": "media_editorial_office",
+      "description_zh": "大家车言论在guangzhou的media_editorial_office角色",
+      "description_en": "Dajia Cars Talk media_editorial_office role in guangzhou",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "guangzhou__xincheping__media_editorial_office",
+      "city_id": "guangzhou",
+      "entity_id": "xincheping",
+      "role_type": "media_editorial_office",
+      "description_zh": "新车评在guangzhou的media_editorial_office角色",
+      "description_en": "Xincheping media_editorial_office role in guangzhou",
       "source_ids": [
         "src-research-brief-2026-08"
       ]
@@ -1415,6 +1558,17 @@
       "role_type": "headquarters",
       "description_zh": "路特斯在wuhan的headquarters角色",
       "description_en": "Lotus headquarters role in wuhan",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "wuhan__y-car-review__media_editorial_office",
+      "city_id": "wuhan",
+      "entity_id": "y-car-review",
+      "role_type": "media_editorial_office",
+      "description_zh": "Y车评在wuhan的media_editorial_office角色",
+      "description_en": "Y Car Review media_editorial_office role in wuhan",
       "source_ids": [
         "src-research-brief-2026-08"
       ]

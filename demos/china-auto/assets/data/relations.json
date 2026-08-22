@@ -4561,6 +4561,2334 @@
       ]
     },
     {
+      "id": "luobo-report__competes_with__laosiji__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__luobo-report__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__review-38__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__luobo-report__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__li-laoshu__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__luobo-report__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__speedsters__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__luobo-report__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__dajia-cheyan__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__luobo-report__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__xincheping__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__luobo-report__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__tichebang__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__luobo-report__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__yan-chuang__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__luobo-report__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__che-ruo-chujian__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__luobo-report__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__doudouche__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__luobo-report__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__y-car-review__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__luobo-report__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__dabiaoche__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__luobo-report__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__competes_with__cidi-wuyin__",
+      "from_id": "luobo-report",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__luobo-report__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__review-38__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__laosiji__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__li-laoshu__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__laosiji__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__speedsters__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__laosiji__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__dajia-cheyan__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__laosiji__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__xincheping__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__laosiji__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__tichebang__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__laosiji__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__yan-chuang__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__laosiji__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__che-ruo-chujian__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__laosiji__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__doudouche__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__laosiji__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__y-car-review__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__laosiji__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__dabiaoche__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__laosiji__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__competes_with__cidi-wuyin__",
+      "from_id": "laosiji",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__laosiji__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__li-laoshu__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__review-38__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__speedsters__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__review-38__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__dajia-cheyan__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__review-38__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__xincheping__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__review-38__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__tichebang__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__review-38__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__yan-chuang__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__review-38__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__che-ruo-chujian__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__review-38__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__doudouche__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__review-38__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__y-car-review__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__review-38__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__dabiaoche__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__review-38__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "review-38__competes_with__cidi-wuyin__",
+      "from_id": "review-38",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__review-38__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "review-38",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__speedsters__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__li-laoshu__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__dajia-cheyan__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__li-laoshu__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__xincheping__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__li-laoshu__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__tichebang__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__li-laoshu__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__yan-chuang__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__li-laoshu__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__che-ruo-chujian__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__li-laoshu__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__doudouche__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__li-laoshu__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__y-car-review__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__li-laoshu__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__dabiaoche__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__li-laoshu__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "li-laoshu__competes_with__cidi-wuyin__",
+      "from_id": "li-laoshu",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__li-laoshu__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "li-laoshu",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__dajia-cheyan__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__speedsters__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__xincheping__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__speedsters__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__tichebang__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__speedsters__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__yan-chuang__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__speedsters__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__che-ruo-chujian__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__speedsters__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__doudouche__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__speedsters__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__y-car-review__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__speedsters__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__dabiaoche__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__speedsters__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "speedsters__competes_with__cidi-wuyin__",
+      "from_id": "speedsters",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__speedsters__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "speedsters",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__xincheping__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__dajia-cheyan__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__tichebang__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__dajia-cheyan__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__yan-chuang__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__dajia-cheyan__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__che-ruo-chujian__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__dajia-cheyan__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__doudouche__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__dajia-cheyan__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__y-car-review__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__dajia-cheyan__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__dabiaoche__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__dajia-cheyan__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__competes_with__cidi-wuyin__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__dajia-cheyan__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__tichebang__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__xincheping__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__yan-chuang__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__xincheping__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__che-ruo-chujian__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__xincheping__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__doudouche__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__xincheping__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__y-car-review__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__xincheping__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__dabiaoche__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__xincheping__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__competes_with__cidi-wuyin__",
+      "from_id": "xincheping",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__xincheping__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__yan-chuang__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__tichebang__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__che-ruo-chujian__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__tichebang__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__doudouche__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__tichebang__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__y-car-review__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__tichebang__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__dabiaoche__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__tichebang__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "tichebang__competes_with__cidi-wuyin__",
+      "from_id": "tichebang",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__tichebang__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "tichebang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__che-ruo-chujian__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__yan-chuang__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__doudouche__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__yan-chuang__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__y-car-review__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__yan-chuang__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__dabiaoche__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__yan-chuang__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__competes_with__cidi-wuyin__",
+      "from_id": "yan-chuang",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__yan-chuang__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__doudouche__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__che-ruo-chujian__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__y-car-review__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__che-ruo-chujian__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__dabiaoche__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__che-ruo-chujian__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__competes_with__cidi-wuyin__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__che-ruo-chujian__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__y-car-review__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__doudouche__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__dabiaoche__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__doudouche__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__competes_with__cidi-wuyin__",
+      "from_id": "doudouche",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__doudouche__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__dabiaoche__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__y-car-review__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "y-car-review__competes_with__cidi-wuyin__",
+      "from_id": "y-car-review",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__y-car-review__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "y-car-review",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dabiaoche__competes_with__cidi-wuyin__",
+      "from_id": "dabiaoche",
+      "relation_type": "competes_with",
+      "to_id": "cidi-wuyin",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "cidi-wuyin__competes_with__dabiaoche__",
+      "from_id": "cidi-wuyin",
+      "relation_type": "competes_with",
+      "to_id": "dabiaoche",
+      "cluster_id": null,
+      "description_zh": "全国汽车评测视频KOL同赛道",
+      "description_en": "National auto review-video KOLs, same beat",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "xincheping__historically_linked_to__dajia-cheyan__",
+      "from_id": "xincheping",
+      "relation_type": "historically_linked_to",
+      "to_id": "dajia-cheyan",
+      "cluster_id": null,
+      "description_zh": "颜宇鹏等从新车评独立创办大家车言论",
+      "description_en": "YYP and others left Xincheping to found Dajia Cars Talk",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "dajia-cheyan__historically_linked_to__xincheping__",
+      "from_id": "dajia-cheyan",
+      "relation_type": "historically_linked_to",
+      "to_id": "xincheping",
+      "cluster_id": null,
+      "description_zh": "大家车言论源自新车评主创团队",
+      "description_en": "Dajia Cars Talk spun out of the Xincheping founding team",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "luobo-report__historically_linked_to__autohome__",
+      "from_id": "luobo-report",
+      "relation_type": "historically_linked_to",
+      "to_id": "autohome",
+      "cluster_id": null,
+      "description_zh": "陈震团队出自汽车之家",
+      "description_en": "Chen Zhen's team came out of Autohome",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "autohome__historically_linked_to__luobo-report__",
+      "from_id": "autohome",
+      "relation_type": "historically_linked_to",
+      "to_id": "luobo-report",
+      "cluster_id": null,
+      "description_zh": "陈震团队出自汽车之家",
+      "description_en": "Chen Zhen's team came out of Autohome",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "laosiji__historically_linked_to__autohome__",
+      "from_id": "laosiji",
+      "relation_type": "historically_linked_to",
+      "to_id": "autohome",
+      "cluster_id": null,
+      "description_zh": "韩路团队出自汽车之家",
+      "description_en": "Han Lu's studio came out of Autohome",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "autohome__historically_linked_to__laosiji__",
+      "from_id": "autohome",
+      "relation_type": "historically_linked_to",
+      "to_id": "laosiji",
+      "cluster_id": null,
+      "description_zh": "韩路团队出自汽车之家",
+      "description_en": "Han Lu's studio came out of Autohome",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yan-chuang__historically_linked_to__autohome__",
+      "from_id": "yan-chuang",
+      "relation_type": "historically_linked_to",
+      "to_id": "autohome",
+      "cluster_id": null,
+      "description_zh": "闫闯说车由汽车之家孵化",
+      "description_en": "Yan Chuang's show was incubated at Autohome",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "autohome__historically_linked_to__yan-chuang__",
+      "from_id": "autohome",
+      "relation_type": "historically_linked_to",
+      "to_id": "yan-chuang",
+      "cluster_id": null,
+      "description_zh": "闫闯说车由汽车之家孵化",
+      "description_en": "Yan Chuang's show was incubated at Autohome",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "doudouche__historically_linked_to__autohome__",
+      "from_id": "doudouche",
+      "relation_type": "historically_linked_to",
+      "to_id": "autohome",
+      "cluster_id": null,
+      "description_zh": "逗斗车主创出自汽车之家",
+      "description_en": "Doudouche founders came out of Autohome",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "autohome__historically_linked_to__doudouche__",
+      "from_id": "autohome",
+      "relation_type": "historically_linked_to",
+      "to_id": "doudouche",
+      "cluster_id": null,
+      "description_zh": "逗斗车主创出自汽车之家",
+      "description_en": "Doudouche founders came out of Autohome",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "che-ruo-chujian__historically_linked_to__yiche__",
+      "from_id": "che-ruo-chujian",
+      "relation_type": "historically_linked_to",
+      "to_id": "yiche",
+      "cluster_id": null,
+      "description_zh": "车若初见与易车资本/分发协作",
+      "description_en": "Che Ruo Chujian is linked to Yiche capital and distribution",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "yiche__historically_linked_to__che-ruo-chujian__",
+      "from_id": "yiche",
+      "relation_type": "historically_linked_to",
+      "to_id": "che-ruo-chujian",
+      "cluster_id": null,
+      "description_zh": "车若初见与易车资本/分发协作",
+      "description_en": "Che Ruo Chujian is linked to Yiche capital and distribution",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
       "id": "cheshi__historically_linked_to__xcar__",
       "from_id": "cheshi",
       "relation_type": "historically_linked_to",
