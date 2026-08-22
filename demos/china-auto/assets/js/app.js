@@ -474,6 +474,24 @@
         (ed ? '<dt>' + I18N.t('editorialCity') + '</dt><dd><button type="button" class="chip-link" data-city-link="' + esc(ed.id) + '">' + esc(I18N.name(ed)) + '</button></dd>' : '') +
         '</dl>';
     }
+    var rels = D.relationsFor(o.id).filter(function (r) {
+      return r.from_id === o.id && r.relation_type !== 'belongs_to_cluster' && r.relation_type !== 'cluster_adjacent';
+    });
+    if (rels.length) {
+      body += '<h4>' + I18N.t('relations') + '</h4><ul>' + rels.map(function (r) {
+        var other = D.getOrg(r.to_id) || D.getCity(r.to_id);
+        var otherName = other ? I18N.name(other) : r.to_id;
+        var link;
+        if (other && other.organization_type) {
+          link = '<button type="button" class="chip-link" data-org-link="' + esc(r.to_id) + '">' + esc(otherName) + '</button>';
+        } else if (other && other.admin_level) {
+          link = '<button type="button" class="chip-link" data-city-link="' + esc(r.to_id) + '">' + esc(otherName) + '</button>';
+        } else {
+          link = esc(otherName);
+        }
+        return '<li>' + esc(I18N.enumLabel('relation_type', r.relation_type)) + ' → ' + link + '</li>';
+      }).join('') + '</ul>';
+    }
     body += sourcesHtml(o.source_ids);
     $('org-modal-body').innerHTML = body;
     $('org-modal').classList.remove('hidden');

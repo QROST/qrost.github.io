@@ -90,6 +90,21 @@ def main() -> int:
         raise AssertionError("neta HQ must be jiaxing")
     if bmw.get("headquarters_city_id") != "shenyang":
         raise AssertionError("bmw-brilliance HQ must be shenyang")
+    youjia = by_id(orgs, "youjia")
+    che168 = by_id(orgs, "che168")
+    truck = by_id(orgs, "truck-home")
+    caam = by_id(orgs, "caam")
+    people = by_id(orgs, "people-auto")
+    expect(youjia, "有驾")
+    expect(che168, "二手车之家")
+    expect(truck, "卡车之家")
+    expect(truck, "360che")
+    expect(caam, "中汽协")
+    expect(people, "人民网")
+    if youjia.get("parent_id") != "baidu":
+        raise AssertionError("youjia parent must be baidu")
+    if che168.get("parent_id") != "autohome":
+        raise AssertionError("che168 parent must be autohome")
     print("test_search: OK")
     return 0
 

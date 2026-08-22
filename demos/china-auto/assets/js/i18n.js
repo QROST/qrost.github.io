@@ -243,7 +243,8 @@
       belongs_to_cluster: { zh: '归属集群', en: 'Belongs to cluster' },
       cluster_adjacent: { zh: '集群相邻', en: 'Cluster adjacent' },
       historically_linked_to: { zh: '历史关联', en: 'Historical link' },
-      replaced_by: { zh: '被替代', en: 'Replaced by' }
+      replaced_by: { zh: '被替代', en: 'Replaced by' },
+      competes_with: { zh: '竞品', en: 'Competes with' }
     },
     media_type: {
       portal: { zh: '门户', en: 'Portal' },

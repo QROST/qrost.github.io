@@ -5,7 +5,7 @@
 - `demos/architecture-history/` — 建筑谱系 · Architecture Lineages, a bilingual source-first architectural-history evidence browser with revision-pinned candidate records, searchable map/catalog, field-level provenance, raw relation review, and an explicit 9-region × 8-period coverage ledger.
 - `demos/wfoe-china/` contains the China WFOE + hiring costs interactive page.
 - `demos/china-housing/` — small-city housing & rent data visualization.
-- `demos/china-auto/` — China auto city atlas: 28 cities (17 core + 11 specialist), 131 companies/brands, every org has a headquarters city, pinyin/initials search, HQ vs plant vs battery/software roles, clusters and sourced 2025 local output figures.
+- `demos/china-auto/` — China auto city atlas: 28 cities (17 core + 11 specialist), 154 companies/brands, 42 auto media titles grouped by beat, every org has a headquarters city, pinyin/initials search, HQ vs plant vs battery/software roles, clusters and sourced 2025 local output figures.
 - `demos/pebble-beach-2026/` — Pebble Beach 2026 · Monterey Car Week public guide for Aug 7–17, with a bilingual day-by-day itinerary (early free shows + peak week), nearby pre-week picks, event and ticket prices, lodging-price snapshot, commute planner, and light/dark themes.
 - `demos/china-industrial-software/` — China industrial software survey.
 - `demos/pharm-companies/` — global pharmaceutical industry atlas.

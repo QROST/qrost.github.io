@@ -287,6 +287,204 @@
       ]
     },
     {
+      "id": "beijing__chexun__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "chexun",
+      "role_type": "media_editorial_office",
+      "description_zh": "车讯网在beijing的media_editorial_office角色",
+      "description_en": "Chexun media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__che168__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "che168",
+      "role_type": "media_editorial_office",
+      "description_zh": "二手车之家在beijing的media_editorial_office角色",
+      "description_en": "Che168 media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__people-auto__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "people-auto",
+      "role_type": "media_editorial_office",
+      "description_zh": "人民网汽车在beijing的media_editorial_office角色",
+      "description_en": "People.cn Auto media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__xinhua-auto__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "xinhua-auto",
+      "role_type": "media_editorial_office",
+      "description_zh": "新华网汽车在beijing的media_editorial_office角色",
+      "description_en": "Xinhua Auto media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__cctv-auto__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "cctv-auto",
+      "role_type": "media_editorial_office",
+      "description_zh": "央视网汽车在beijing的media_editorial_office角色",
+      "description_en": "CCTV Auto media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__chinanews-auto__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "chinanews-auto",
+      "role_type": "media_editorial_office",
+      "description_zh": "中新网汽车在beijing的media_editorial_office角色",
+      "description_en": "China News Auto media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__caixin-auto__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "caixin-auto",
+      "role_type": "media_editorial_office",
+      "description_zh": "财新汽车在beijing的media_editorial_office角色",
+      "description_en": "Caixin Auto media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__eeo-auto__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "eeo-auto",
+      "role_type": "media_editorial_office",
+      "description_zh": "经济观察网汽车在beijing的media_editorial_office角色",
+      "description_en": "EEO Auto media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__cheyun__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "cheyun",
+      "role_type": "media_editorial_office",
+      "description_zh": "车云网在beijing的media_editorial_office角色",
+      "description_en": "Cheyun media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__auto-zongheng__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "auto-zongheng",
+      "role_type": "media_editorial_office",
+      "description_zh": "汽车纵横在beijing的media_editorial_office角色",
+      "description_en": "Auto Zongheng media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__motor-trend-china__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "motor-trend-china",
+      "role_type": "media_editorial_office",
+      "description_zh": "汽车族在beijing的media_editorial_office角色",
+      "description_en": "Motor Trend China media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__truck-home__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "truck-home",
+      "role_type": "media_editorial_office",
+      "description_zh": "卡车之家在beijing的media_editorial_office角色",
+      "description_en": "Truck Home media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__chinabuses__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "chinabuses",
+      "role_type": "media_editorial_office",
+      "description_zh": "客车网在beijing的media_editorial_office角色",
+      "description_en": "Chinabuses media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__chinaspv__media_editorial_office",
+      "city_id": "beijing",
+      "entity_id": "chinaspv",
+      "role_type": "media_editorial_office",
+      "description_zh": "专用汽车网在beijing的media_editorial_office角色",
+      "description_en": "China SPV media_editorial_office role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__caam__headquarters",
+      "city_id": "beijing",
+      "entity_id": "caam",
+      "role_type": "headquarters",
+      "description_zh": "中汽协在beijing的headquarters角色",
+      "description_en": "CAAM headquarters role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__cada__headquarters",
+      "city_id": "beijing",
+      "entity_id": "cada",
+      "role_type": "headquarters",
+      "description_zh": "中汽流通协会在beijing的headquarters角色",
+      "description_en": "CADA headquarters role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__sae-china__headquarters",
+      "city_id": "beijing",
+      "entity_id": "sae-china",
+      "role_type": "headquarters",
+      "description_zh": "中汽学会在beijing的headquarters角色",
+      "description_en": "SAE-China headquarters role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "beijing__china-ev100__headquarters",
+      "city_id": "beijing",
+      "entity_id": "china-ev100",
+      "role_type": "headquarters",
+      "description_zh": "电动汽车百人会在beijing的headquarters角色",
+      "description_en": "China EV100 headquarters role in beijing",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
       "id": "shanghai__saic__headquarters",
       "city_id": "shanghai",
       "entity_id": "saic",
@@ -441,6 +639,39 @@
       ]
     },
     {
+      "id": "shanghai__thepaper-auto__media_editorial_office",
+      "city_id": "shanghai",
+      "entity_id": "thepaper-auto",
+      "role_type": "media_editorial_office",
+      "description_zh": "澎湃汽车在shanghai的media_editorial_office角色",
+      "description_en": "The Paper Auto media_editorial_office role in shanghai",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shanghai__jiemian-auto__media_editorial_office",
+      "city_id": "shanghai",
+      "entity_id": "jiemian-auto",
+      "role_type": "media_editorial_office",
+      "description_zh": "界面汽车在shanghai的media_editorial_office角色",
+      "description_en": "Jiemian Auto media_editorial_office role in shanghai",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shanghai__yanzhi-auto__media_editorial_office",
+      "city_id": "shanghai",
+      "entity_id": "yanzhi-auto",
+      "role_type": "media_editorial_office",
+      "description_zh": "焉知汽车在shanghai的media_editorial_office角色",
+      "description_en": "Yanzhi Auto media_editorial_office role in shanghai",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
       "id": "shenzhen__byd__headquarters",
       "city_id": "shenzhen",
       "entity_id": "byd",
@@ -513,6 +744,17 @@
       "role_type": "rd_center",
       "description_zh": "华为车BU在shenzhen的rd_center角色",
       "description_en": "Huawei IAS rd_center role in shenzhen",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "shenzhen__gaogong-ev__media_editorial_office",
+      "city_id": "shenzhen",
+      "entity_id": "gaogong-ev",
+      "role_type": "media_editorial_office",
+      "description_zh": "高工智能汽车在shenzhen的media_editorial_office角色",
+      "description_en": "GG-EV media_editorial_office role in shenzhen",
       "source_ids": [
         "src-research-brief-2026-08"
       ]
@@ -645,6 +887,17 @@
       "role_type": "headquarters",
       "description_zh": "昊铂在guangzhou的headquarters角色",
       "description_en": "Hyptec headquarters role in guangzhou",
+      "source_ids": [
+        "src-research-brief-2026-08"
+      ]
+    },
+    {
+      "id": "guangzhou__21jingji-auto__media_editorial_office",
+      "city_id": "guangzhou",
+      "entity_id": "21jingji-auto",
+      "role_type": "media_editorial_office",
+      "description_zh": "21世纪经济报道汽车在guangzhou的media_editorial_office角色",
+      "description_en": "21CBH Auto media_editorial_office role in guangzhou",
       "source_ids": [
         "src-research-brief-2026-08"
       ]

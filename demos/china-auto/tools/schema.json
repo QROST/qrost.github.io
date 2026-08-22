@@ -82,7 +82,8 @@
       "belongs_to_cluster",
       "cluster_adjacent",
       "historically_linked_to",
-      "replaced_by"
+      "replaced_by",
+      "competes_with"
     ],
     "media_type": [
       "portal",

@@ -4,13 +4,13 @@
   "last_verified": "2026-08",
   "counts": {
     "cities": 28,
-    "organizations": 131,
+    "organizations": 154,
     "facilities": 26,
-    "city_roles": 158,
-    "relations": 125,
+    "city_roles": 181,
+    "relations": 386,
     "clusters": 13,
     "statistics": 10,
-    "media": 23,
+    "media": 42,
     "institutions": 12,
     "sources": 5,
     "core_cities": 17,
@@ -18,6 +18,6 @@
   },
   "notes_zh": "V1：17座核心城 + 11座专业城。产量为地方统计拼合。每家企业必须有总部城市。",
   "notes_en": "V1: 17 core + 11 specialist cities. Output figures are a local-statistics compilation. Every organization must have a headquarters city.",
-  "cache_token": "879cf4a34d",
-  "built_at": "2026-08-21T01:58:46Z"
+  "cache_token": "9cdac8edb2",
+  "built_at": "2026-08-21T13:12:37Z"
 }
