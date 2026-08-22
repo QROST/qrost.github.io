@@ -279,10 +279,16 @@
         "value": "1825-01-02"
       },
       "claim_ids": [
+        "claim-wd-q1041068-birth",
+        "claim-wd-q1041068-death",
+        "claim-wd-q1041068-external-ids",
         "claim-wd-q1041068-name-en",
-        "claim-wd-q1041068-name-zh"
+        "claim-wd-q1041068-name-zh",
+        "claim-wd-q1041068-name-zh-status",
+        "claim-wd-q1041068-roles",
+        "claim-wd-q1041068-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "DE"
       ],
@@ -2793,6 +2799,48 @@
     },
     {
       "aliases_en": [
+        "Heikki Ilmari Niemeläinen"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1910,
+        "latest": 1910,
+        "precision": "day",
+        "value": "1910-12-16"
+      },
+      "claim_ids": [
+        "claim-wd-q11864637-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FI"
+      ],
+      "death": {
+        "earliest": 1951,
+        "latest": 1951,
+        "precision": "day",
+        "value": "1951-05-28"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q11864637"
+      },
+      "id": "person-wd-q11864637",
+      "last_verified": "2026-08-22",
+      "name_en": "Ilmari Niemeläinen",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Finnish architect and diver",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Kingo Tatsuno"
       ],
       "aliases_zh": [],
@@ -2858,10 +2906,19 @@
         "value": "1852-09-28"
       },
       "claim_ids": [
+        "claim-wd-q1187770-aliases-en",
+        "claim-wd-q1187770-aliases-zh",
+        "claim-wd-q1187770-birth",
+        "claim-wd-q1187770-death",
+        "claim-wd-q1187770-external-ids",
         "claim-wd-q1187770-name-en",
-        "claim-wd-q1187770-name-zh"
+        "claim-wd-q1187770-name-zh",
+        "claim-wd-q1187770-name-zh-status",
+        "claim-wd-q1187770-roles",
+        "claim-wd-q1187770-summary-en",
+        "claim-wd-q1187770-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "GB"
       ],
@@ -4066,10 +4123,17 @@
         "value": "1634"
       },
       "claim_ids": [
+        "claim-wd-q1270258-aliases-en",
+        "claim-wd-q1270258-birth",
+        "claim-wd-q1270258-death",
+        "claim-wd-q1270258-external-ids",
         "claim-wd-q1270258-name-en",
-        "claim-wd-q1270258-name-zh"
+        "claim-wd-q1270258-name-zh",
+        "claim-wd-q1270258-name-zh-status",
+        "claim-wd-q1270258-roles",
+        "claim-wd-q1270258-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "FR"
       ],
@@ -4461,6 +4525,50 @@
         "architect"
       ],
       "summary_en": "German architect (1875-1945)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Ignazio Mario Gardella"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1905,
+        "latest": 1905,
+        "precision": "day",
+        "value": "1905-03-30"
+      },
+      "claim_ids": [
+        "claim-wd-q1306518-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 1999,
+        "latest": 1999,
+        "precision": "day",
+        "value": "1999-03-16"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1306518"
+      },
+      "id": "person-wd-q1306518",
+      "last_verified": "2026-08-22",
+      "name_en": "Ignazio Gardella",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "engineer",
+        "designer"
+      ],
+      "summary_en": "Italian architect (1905-1999)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -5887,6 +5995,58 @@
       "summary_en": "Italian architect",
       "summary_zh": "",
       "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Henning Göbel Larsen"
+      ],
+      "aliases_zh": [
+        "汉宁·拉森"
+      ],
+      "birth": {
+        "earliest": 1925,
+        "latest": 1925,
+        "precision": "day",
+        "value": "1925-08-20"
+      },
+      "claim_ids": [
+        "claim-wd-q1377332-aliases-en",
+        "claim-wd-q1377332-aliases-zh",
+        "claim-wd-q1377332-birth",
+        "claim-wd-q1377332-death",
+        "claim-wd-q1377332-external-ids",
+        "claim-wd-q1377332-name-en",
+        "claim-wd-q1377332-name-zh",
+        "claim-wd-q1377332-name-zh-status",
+        "claim-wd-q1377332-roles",
+        "claim-wd-q1377332-summary-en",
+        "claim-wd-q1377332-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2013,
+        "latest": 2013,
+        "precision": "day",
+        "value": "2013-06-22"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1377332"
+      },
+      "id": "person-wd-q1377332",
+      "last_verified": "2026-08-22",
+      "name_en": "Henning Larsen",
+      "name_native": null,
+      "name_zh": "亨寧·拉森",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Architect (1925-2013)",
+      "summary_zh": "丹麥建築師",
+      "verification_status": "verified"
     },
     {
       "aliases_en": [],
@@ -8517,6 +8677,48 @@
     },
     {
       "aliases_en": [
+        "E. Zenghelis"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1937,
+        "latest": 1937,
+        "precision": "year",
+        "value": "1937"
+      },
+      "claim_ids": [
+        "claim-wd-q1658487-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "GR"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1658487"
+      },
+      "id": "person-wd-q1658487",
+      "last_verified": "2026-08-22",
+      "name_en": "Elia Zenghelis",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Greek architect (born 1937)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Jehan Ravy"
       ],
       "aliases_zh": [],
@@ -9050,6 +9252,54 @@
       "summary_en": "",
       "summary_zh": "",
       "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Johannes Duiker"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1890,
+        "latest": 1890,
+        "precision": "day",
+        "value": "1890-03-01"
+      },
+      "claim_ids": [
+        "claim-wd-q1697434-aliases-en",
+        "claim-wd-q1697434-birth",
+        "claim-wd-q1697434-death",
+        "claim-wd-q1697434-external-ids",
+        "claim-wd-q1697434-name-en",
+        "claim-wd-q1697434-name-zh",
+        "claim-wd-q1697434-name-zh-status",
+        "claim-wd-q1697434-roles",
+        "claim-wd-q1697434-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1935,
+        "latest": 1935,
+        "precision": "day",
+        "value": "1935-02-23"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1697434"
+      },
+      "id": "person-wd-q1697434",
+      "last_verified": "2026-08-22",
+      "name_en": "Jan Duiker",
+      "name_native": null,
+      "name_zh": "揚·杜克",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Dutch architect (1890–1935)",
+      "summary_zh": "",
+      "verification_status": "verified"
     },
     {
       "aliases_en": [
@@ -9948,10 +10198,19 @@
         "value": "1508-11"
       },
       "claim_ids": [
+        "claim-wd-q177692-aliases-en",
+        "claim-wd-q177692-aliases-zh",
+        "claim-wd-q177692-birth",
+        "claim-wd-q177692-death",
+        "claim-wd-q177692-external-ids",
         "claim-wd-q177692-name-en",
-        "claim-wd-q177692-name-zh"
+        "claim-wd-q177692-name-zh",
+        "claim-wd-q177692-name-zh-status",
+        "claim-wd-q177692-roles",
+        "claim-wd-q177692-summary-en",
+        "claim-wd-q177692-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "IT"
       ],
@@ -10218,10 +10477,19 @@
         "value": "1918-04-09"
       },
       "claim_ids": [
+        "claim-wd-q180398-aliases-en",
+        "claim-wd-q180398-aliases-zh",
+        "claim-wd-q180398-birth",
+        "claim-wd-q180398-death",
+        "claim-wd-q180398-external-ids",
         "claim-wd-q180398-name-en",
-        "claim-wd-q180398-name-zh"
+        "claim-wd-q180398-name-zh",
+        "claim-wd-q180398-name-zh-status",
+        "claim-wd-q180398-roles",
+        "claim-wd-q180398-summary-en",
+        "claim-wd-q180398-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "DK"
       ],
@@ -10247,6 +10515,46 @@
       ],
       "summary_en": "Danish architect (1918–2008)",
       "summary_zh": "丹麥建築師",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1870,
+        "latest": 1870,
+        "precision": "day",
+        "value": "1870-04-17"
+      },
+      "claim_ids": [
+        "claim-wd-q1806244-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "SE"
+      ],
+      "death": {
+        "earliest": 1952,
+        "latest": 1952,
+        "precision": "day",
+        "value": "1952-09-18"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1806244"
+      },
+      "id": "person-wd-q1806244",
+      "last_verified": "2026-08-22",
+      "name_en": "Lars Israel Wahlman",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Swedish architect (1870–1952)",
+      "summary_zh": "瑞典建築師",
       "verification_status": "candidate"
     },
     {
@@ -11204,10 +11512,16 @@
         "value": "1855-03-03"
       },
       "claim_ids": [
+        "claim-wd-q19258118-aliases-en",
+        "claim-wd-q19258118-birth",
+        "claim-wd-q19258118-death",
+        "claim-wd-q19258118-external-ids",
         "claim-wd-q19258118-name-en",
-        "claim-wd-q19258118-name-zh"
+        "claim-wd-q19258118-name-zh",
+        "claim-wd-q19258118-name-zh-status",
+        "claim-wd-q19258118-roles"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "CZ"
       ],
@@ -11839,10 +12153,16 @@
         "value": "1955-07-02"
       },
       "claim_ids": [
+        "claim-wd-q2009000-aliases-en",
+        "claim-wd-q2009000-birth",
+        "claim-wd-q2009000-external-ids",
         "claim-wd-q2009000-name-en",
-        "claim-wd-q2009000-name-zh"
+        "claim-wd-q2009000-name-zh",
+        "claim-wd-q2009000-name-zh-status",
+        "claim-wd-q2009000-roles",
+        "claim-wd-q2009000-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "NL"
       ],
@@ -12036,6 +12356,46 @@
         "historian"
       ],
       "summary_en": "German art historian and archaeologist (1848–1900)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1923,
+        "latest": 1923,
+        "precision": "day",
+        "value": "1923-10-18"
+      },
+      "claim_ids": [
+        "claim-wd-q20643094-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "GB"
+      ],
+      "death": {
+        "earliest": 2015,
+        "latest": 2015,
+        "precision": "day",
+        "value": "2015-06-12"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q20643094"
+      },
+      "id": "person-wd-q20643094",
+      "last_verified": "2026-08-22",
+      "name_en": "James Gowan",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "British architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -13982,10 +14342,17 @@
         "value": "1807-10-28"
       },
       "claim_ids": [
+        "claim-wd-q2252872-aliases-en",
+        "claim-wd-q2252872-birth",
+        "claim-wd-q2252872-death",
+        "claim-wd-q2252872-external-ids",
         "claim-wd-q2252872-name-en",
-        "claim-wd-q2252872-name-zh"
+        "claim-wd-q2252872-name-zh",
+        "claim-wd-q2252872-name-zh-status",
+        "claim-wd-q2252872-roles",
+        "claim-wd-q2252872-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "IT"
       ],
@@ -14482,10 +14849,18 @@
         "value": "1944-11-17"
       },
       "claim_ids": [
+        "claim-wd-q232364-aliases-en",
+        "claim-wd-q232364-aliases-zh",
+        "claim-wd-q232364-birth",
+        "claim-wd-q232364-external-ids",
         "claim-wd-q232364-name-en",
-        "claim-wd-q232364-name-zh"
+        "claim-wd-q232364-name-zh",
+        "claim-wd-q232364-name-zh-status",
+        "claim-wd-q232364-roles",
+        "claim-wd-q232364-summary-en",
+        "claim-wd-q232364-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "NL"
       ],
@@ -15743,10 +16118,17 @@
         "value": "1892-05-23"
       },
       "claim_ids": [
+        "claim-wd-q2493977-aliases-en",
+        "claim-wd-q2493977-birth",
+        "claim-wd-q2493977-death",
+        "claim-wd-q2493977-external-ids",
         "claim-wd-q2493977-name-en",
-        "claim-wd-q2493977-name-zh"
+        "claim-wd-q2493977-name-zh",
+        "claim-wd-q2493977-name-zh-status",
+        "claim-wd-q2493977-roles",
+        "claim-wd-q2493977-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "RU"
       ],
@@ -16054,10 +16436,17 @@
         "value": "1540"
       },
       "claim_ids": [
+        "claim-wd-q2533343-aliases-en",
+        "claim-wd-q2533343-birth",
+        "claim-wd-q2533343-death",
+        "claim-wd-q2533343-external-ids",
         "claim-wd-q2533343-name-en",
-        "claim-wd-q2533343-name-zh"
+        "claim-wd-q2533343-name-zh",
+        "claim-wd-q2533343-name-zh-status",
+        "claim-wd-q2533343-roles",
+        "claim-wd-q2533343-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "AL"
       ],
@@ -16191,10 +16580,18 @@
         "value": "1580"
       },
       "claim_ids": [
+        "claim-wd-q2551253-aliases-en",
+        "claim-wd-q2551253-aliases-zh",
+        "claim-wd-q2551253-birth",
+        "claim-wd-q2551253-death",
+        "claim-wd-q2551253-external-ids",
         "claim-wd-q2551253-name-en",
-        "claim-wd-q2551253-name-zh"
+        "claim-wd-q2551253-name-zh",
+        "claim-wd-q2551253-name-zh-status",
+        "claim-wd-q2551253-roles",
+        "claim-wd-q2551253-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "PK"
       ],
@@ -16221,6 +16618,61 @@
       "summary_en": "17th century Mughal chief architect",
       "summary_zh": "",
       "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Frans Riema Ilmari Pietilä"
+      ],
+      "aliases_zh": [
+        "Reima和Raili Pietilä夫妇"
+      ],
+      "birth": {
+        "earliest": 1923,
+        "latest": 1923,
+        "precision": "day",
+        "value": "1923-08-25"
+      },
+      "claim_ids": [
+        "claim-wd-q2582922-aliases-en",
+        "claim-wd-q2582922-aliases-zh",
+        "claim-wd-q2582922-birth",
+        "claim-wd-q2582922-country-codes",
+        "claim-wd-q2582922-death",
+        "claim-wd-q2582922-external-ids",
+        "claim-wd-q2582922-name-en",
+        "claim-wd-q2582922-name-zh",
+        "claim-wd-q2582922-name-zh-status",
+        "claim-wd-q2582922-region",
+        "claim-wd-q2582922-roles",
+        "claim-wd-q2582922-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FI"
+      ],
+      "death": {
+        "earliest": 1993,
+        "latest": 1993,
+        "precision": "day",
+        "value": "1993-08-26"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2582922"
+      },
+      "id": "person-wd-q2582922",
+      "last_verified": "2026-08-22",
+      "name_en": "Reima Pietilä",
+      "name_native": null,
+      "name_zh": "雷伊马·皮耶蒂莱",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Finnish architect (1923–1993)",
+      "summary_zh": "",
+      "verification_status": "verified"
     },
     {
       "aliases_en": [
@@ -16545,10 +16997,19 @@
         "value": "1903-12-24"
       },
       "claim_ids": [
+        "claim-wd-q2641514-aliases-en",
+        "claim-wd-q2641514-aliases-zh",
+        "claim-wd-q2641514-birth",
+        "claim-wd-q2641514-death",
+        "claim-wd-q2641514-external-ids",
         "claim-wd-q2641514-name-en",
-        "claim-wd-q2641514-name-zh"
+        "claim-wd-q2641514-name-zh",
+        "claim-wd-q2641514-name-zh-status",
+        "claim-wd-q2641514-roles",
+        "claim-wd-q2641514-summary-en",
+        "claim-wd-q2641514-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "RU"
       ],
@@ -18619,10 +19080,18 @@
         "value": "1691-06-17"
       },
       "claim_ids": [
+        "claim-wd-q286670-aliases-en",
+        "claim-wd-q286670-aliases-zh",
+        "claim-wd-q286670-birth",
+        "claim-wd-q286670-death",
+        "claim-wd-q286670-external-ids",
         "claim-wd-q286670-name-en",
-        "claim-wd-q286670-name-zh"
+        "claim-wd-q286670-name-zh",
+        "claim-wd-q286670-name-zh-status",
+        "claim-wd-q286670-roles",
+        "claim-wd-q286670-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "IT"
       ],
@@ -18663,10 +19132,17 @@
         "value": null
       },
       "claim_ids": [
+        "claim-wd-q2869352-aliases-en",
+        "claim-wd-q2869352-death",
+        "claim-wd-q2869352-external-ids",
         "claim-wd-q2869352-name-en",
-        "claim-wd-q2869352-name-zh"
+        "claim-wd-q2869352-name-zh",
+        "claim-wd-q2869352-name-zh-status",
+        "claim-wd-q2869352-roles",
+        "claim-wd-q2869352-summary-en",
+        "claim-wd-q2869352-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "TR"
       ],
@@ -19350,10 +19826,17 @@
         "value": "1507-10-01"
       },
       "claim_ids": [
+        "claim-wd-q297565-aliases-en",
+        "claim-wd-q297565-birth",
+        "claim-wd-q297565-death",
+        "claim-wd-q297565-external-ids",
         "claim-wd-q297565-name-en",
-        "claim-wd-q297565-name-zh"
+        "claim-wd-q297565-name-zh",
+        "claim-wd-q297565-name-zh-status",
+        "claim-wd-q297565-roles",
+        "claim-wd-q297565-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "IT"
       ],
@@ -19394,10 +19877,17 @@
         "value": "0950"
       },
       "claim_ids": [
+        "claim-wd-q29761-aliases-en",
+        "claim-wd-q29761-birth",
+        "claim-wd-q29761-death",
+        "claim-wd-q29761-external-ids",
         "claim-wd-q29761-name-en",
-        "claim-wd-q29761-name-zh"
+        "claim-wd-q29761-name-zh",
+        "claim-wd-q29761-name-zh-status",
+        "claim-wd-q29761-roles",
+        "claim-wd-q29761-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "SM"
       ],
@@ -19619,10 +20109,17 @@
         "value": "1700"
       },
       "claim_ids": [
+        "claim-wd-q299687-aliases-en",
+        "claim-wd-q299687-birth",
+        "claim-wd-q299687-death",
+        "claim-wd-q299687-external-ids",
         "claim-wd-q299687-name-en",
-        "claim-wd-q299687-name-zh"
+        "claim-wd-q299687-name-zh",
+        "claim-wd-q299687-name-zh-status",
+        "claim-wd-q299687-roles",
+        "claim-wd-q299687-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "FR"
       ],
@@ -21062,10 +21559,18 @@
         "value": "1548-09-02"
       },
       "claim_ids": [
+        "claim-wd-q309733-aliases-en",
+        "claim-wd-q309733-aliases-zh",
+        "claim-wd-q309733-birth",
+        "claim-wd-q309733-death",
+        "claim-wd-q309733-external-ids",
         "claim-wd-q309733-name-en",
-        "claim-wd-q309733-name-zh"
+        "claim-wd-q309733-name-zh",
+        "claim-wd-q309733-name-zh-status",
+        "claim-wd-q309733-roles",
+        "claim-wd-q309733-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "IT"
       ],
@@ -21153,10 +21658,17 @@
         "value": "1752-01-18"
       },
       "claim_ids": [
+        "claim-wd-q309905-birth",
+        "claim-wd-q309905-death",
+        "claim-wd-q309905-external-ids",
         "claim-wd-q309905-name-en",
-        "claim-wd-q309905-name-zh"
+        "claim-wd-q309905-name-zh",
+        "claim-wd-q309905-name-zh-status",
+        "claim-wd-q309905-roles",
+        "claim-wd-q309905-summary-en",
+        "claim-wd-q309905-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "GB"
       ],
@@ -21199,10 +21711,17 @@
         "value": "0442"
       },
       "claim_ids": [
+        "claim-wd-q310028-aliases-en",
+        "claim-wd-q310028-birth",
+        "claim-wd-q310028-death",
+        "claim-wd-q310028-external-ids",
         "claim-wd-q310028-name-en",
-        "claim-wd-q310028-name-zh"
+        "claim-wd-q310028-name-zh",
+        "claim-wd-q310028-name-zh-status",
+        "claim-wd-q310028-roles",
+        "claim-wd-q310028-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "SM"
       ],
@@ -22515,10 +23034,18 @@
         "value": "1819-05-20"
       },
       "claim_ids": [
+        "claim-wd-q3140459-aliases-en",
+        "claim-wd-q3140459-aliases-zh",
+        "claim-wd-q3140459-birth",
+        "claim-wd-q3140459-death",
+        "claim-wd-q3140459-external-ids",
         "claim-wd-q3140459-name-en",
-        "claim-wd-q3140459-name-zh"
+        "claim-wd-q3140459-name-zh",
+        "claim-wd-q3140459-name-zh-status",
+        "claim-wd-q3140459-roles",
+        "claim-wd-q3140459-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "GB"
       ],
@@ -24370,10 +24897,17 @@
         "value": "1581-10-21"
       },
       "claim_ids": [
+        "claim-wd-q320118-aliases-en",
+        "claim-wd-q320118-birth",
+        "claim-wd-q320118-death",
+        "claim-wd-q320118-external-ids",
         "claim-wd-q320118-name-en",
-        "claim-wd-q320118-name-zh"
+        "claim-wd-q320118-name-zh",
+        "claim-wd-q320118-name-zh-status",
+        "claim-wd-q320118-roles",
+        "claim-wd-q320118-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "IT"
       ],
@@ -27379,10 +27913,17 @@
         "value": "1613-09-25"
       },
       "claim_ids": [
+        "claim-wd-q347699-aliases-en",
+        "claim-wd-q347699-birth",
+        "claim-wd-q347699-death",
+        "claim-wd-q347699-external-ids",
         "claim-wd-q347699-name-en",
-        "claim-wd-q347699-name-zh"
+        "claim-wd-q347699-name-zh",
+        "claim-wd-q347699-name-zh-status",
+        "claim-wd-q347699-roles",
+        "claim-wd-q347699-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "FR"
       ],
@@ -29146,10 +29687,19 @@
         "value": "1386"
       },
       "claim_ids": [
+        "claim-wd-q37562-aliases-en",
+        "claim-wd-q37562-aliases-zh",
+        "claim-wd-q37562-birth",
+        "claim-wd-q37562-death",
+        "claim-wd-q37562-external-ids",
         "claim-wd-q37562-name-en",
-        "claim-wd-q37562-name-zh"
+        "claim-wd-q37562-name-zh",
+        "claim-wd-q37562-name-zh-status",
+        "claim-wd-q37562-roles",
+        "claim-wd-q37562-summary-en",
+        "claim-wd-q37562-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "IT"
       ],
@@ -29233,10 +29783,16 @@
         "value": "1763-09-15"
       },
       "claim_ids": [
+        "claim-wd-q3760513-birth",
+        "claim-wd-q3760513-death",
+        "claim-wd-q3760513-external-ids",
         "claim-wd-q3760513-name-en",
-        "claim-wd-q3760513-name-zh"
+        "claim-wd-q3760513-name-zh",
+        "claim-wd-q3760513-name-zh-status",
+        "claim-wd-q3760513-roles",
+        "claim-wd-q3760513-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "IT"
       ],
@@ -29604,10 +30160,18 @@
         "value": "1873-10-08"
       },
       "claim_ids": [
+        "claim-wd-q380282-aliases-en",
+        "claim-wd-q380282-aliases-zh",
+        "claim-wd-q380282-birth",
+        "claim-wd-q380282-death",
+        "claim-wd-q380282-external-ids",
         "claim-wd-q380282-name-en",
-        "claim-wd-q380282-name-zh"
+        "claim-wd-q380282-name-zh",
+        "claim-wd-q380282-name-zh-status",
+        "claim-wd-q380282-roles",
+        "claim-wd-q380282-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "RU"
       ],
@@ -30231,6 +30795,50 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Louis Emanuel Jean Guy de Savoie-Carignan de Soissons",
+        "Louis De Soissons"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1890,
+        "latest": 1890,
+        "precision": "day",
+        "value": "1890-07-31"
+      },
+      "claim_ids": [
+        "claim-wd-q3837633-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "CA",
+        "GB"
+      ],
+      "death": {
+        "earliest": 1962,
+        "latest": 1962,
+        "precision": "day",
+        "value": "1962-09-23"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3837633"
+      },
+      "id": "person-wd-q3837633",
+      "last_verified": "2026-08-22",
+      "name_en": "Louis de Soissons",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "transregional",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "British-Canadian architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -30644,10 +31252,15 @@
         "value": null
       },
       "claim_ids": [
+        "claim-wd-q395404-aliases-en",
+        "claim-wd-q395404-external-ids",
         "claim-wd-q395404-name-en",
-        "claim-wd-q395404-name-zh"
+        "claim-wd-q395404-name-zh",
+        "claim-wd-q395404-name-zh-status",
+        "claim-wd-q395404-roles",
+        "claim-wd-q395404-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "TR"
       ],
@@ -30930,6 +31543,48 @@
         "designer"
       ],
       "summary_en": "Italian architect and designer",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Vittorino Garatti"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1927,
+        "latest": 1927,
+        "precision": "day",
+        "value": "1927-04-06"
+      },
+      "claim_ids": [
+        "claim-wd-q4015390-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 2023,
+        "latest": 2023,
+        "precision": "day",
+        "value": "2023-01-12"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q4015390"
+      },
+      "id": "person-wd-q4015390",
+      "last_verified": "2026-08-22",
+      "name_en": "Vittorio Garatti",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Vittorio Garatti, b. 1927; Italian architect active in Cuba",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -31707,10 +32362,16 @@
         "value": "1748-01-07"
       },
       "claim_ids": [
+        "claim-wd-q445970-birth",
+        "claim-wd-q445970-death",
+        "claim-wd-q445970-external-ids",
         "claim-wd-q445970-name-en",
-        "claim-wd-q445970-name-zh"
+        "claim-wd-q445970-name-zh",
+        "claim-wd-q445970-name-zh-status",
+        "claim-wd-q445970-roles",
+        "claim-wd-q445970-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "DE"
       ],
@@ -31977,10 +32638,17 @@
         "value": "1929-05-04"
       },
       "claim_ids": [
+        "claim-wd-q452033-aliases-en",
+        "claim-wd-q452033-birth",
+        "claim-wd-q452033-death",
+        "claim-wd-q452033-external-ids",
         "claim-wd-q452033-name-en",
-        "claim-wd-q452033-name-zh"
+        "claim-wd-q452033-name-zh",
+        "claim-wd-q452033-name-zh-status",
+        "claim-wd-q452033-roles",
+        "claim-wd-q452033-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "DK"
       ],
@@ -32628,10 +33296,19 @@
         "value": "1635-07-18"
       },
       "claim_ids": [
+        "claim-wd-q46830-aliases-en",
+        "claim-wd-q46830-aliases-zh",
+        "claim-wd-q46830-birth",
+        "claim-wd-q46830-death",
+        "claim-wd-q46830-external-ids",
         "claim-wd-q46830-name-en",
-        "claim-wd-q46830-name-zh"
+        "claim-wd-q46830-name-zh",
+        "claim-wd-q46830-name-zh-status",
+        "claim-wd-q46830-roles",
+        "claim-wd-q46830-summary-en",
+        "claim-wd-q46830-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "GB"
       ],
@@ -32720,6 +33397,52 @@
       "summary_en": "Chinese-American architect (1917–2019)",
       "summary_zh": "美籍華裔建築師（1917—2019）",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
+        "J J. P. Oud",
+        "J.J.P. Oud",
+        "J. J. Pieter Oud",
+        "Jakobus Johannes Pieter Oud",
+        "Jacobus Oud"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1890,
+        "latest": 1890,
+        "precision": "day",
+        "value": "1890-02-09"
+      },
+      "claim_ids": [
+        "claim-wd-q470588-name-en",
+        "claim-wd-q470588-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1963,
+        "latest": 1963,
+        "precision": "day",
+        "value": "1963-04-05"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q470588"
+      },
+      "id": "person-wd-q470588",
+      "last_verified": "2026-08-22",
+      "name_en": "J. J. P. Oud",
+      "name_native": null,
+      "name_zh": "雅各布斯·约翰内斯·彼得·奥德",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Dutch architect (1890–1963)",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -33815,10 +34538,17 @@
         "value": "1823"
       },
       "claim_ids": [
+        "claim-wd-q5075445-aliases-en",
+        "claim-wd-q5075445-birth",
+        "claim-wd-q5075445-death",
+        "claim-wd-q5075445-external-ids",
         "claim-wd-q5075445-name-en",
-        "claim-wd-q5075445-name-zh"
+        "claim-wd-q5075445-name-zh",
+        "claim-wd-q5075445-name-zh-status",
+        "claim-wd-q5075445-roles",
+        "claim-wd-q5075445-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "GB"
       ],
@@ -34496,6 +35226,50 @@
     },
     {
       "aliases_en": [
+        "Jacob Berend Bakema",
+        "Jacob Bakema",
+        "J. B. Bakema",
+        "Jakob B. Bakema"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1914,
+        "latest": 1914,
+        "precision": "day",
+        "value": "1914-03-08"
+      },
+      "claim_ids": [
+        "claim-wd-q519135-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1981,
+        "latest": 1981,
+        "precision": "day",
+        "value": "1981-02-20"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q519135"
+      },
+      "id": "person-wd-q519135",
+      "last_verified": "2026-08-22",
+      "name_en": "Jaap Bakema",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Dutch modernist architect (1914–1981)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Vlado Milunič",
         "Vlado Milunic",
         "Vladimir Milunić"
@@ -35002,6 +35776,49 @@
     },
     {
       "aliases_en": [
+        "Ted Cullinan",
+        "Edward Horder Cullinan"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1931,
+        "latest": 1931,
+        "precision": "day",
+        "value": "1931-07-17"
+      },
+      "claim_ids": [
+        "claim-wd-q5342473-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "GB"
+      ],
+      "death": {
+        "earliest": 2019,
+        "latest": 2019,
+        "precision": "day",
+        "value": "2019-11-11"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5342473"
+      },
+      "id": "person-wd-q5342473",
+      "last_verified": "2026-08-22",
+      "name_en": "Edward Cullinan",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "British architect (1931-2019)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Xavier Montsalvatge i Bassols",
         "Xavier Montsalvatge Bassols"
       ],
@@ -35189,6 +36006,48 @@
     },
     {
       "aliases_en": [
+        "Fernando Romero Havaux"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1971,
+        "latest": 1971,
+        "precision": "day",
+        "value": "1971-10-11"
+      },
+      "claim_ids": [
+        "claim-wd-q5444909-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "MX"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5444909"
+      },
+      "id": "person-wd-q5444909",
+      "last_verified": "2026-08-22",
+      "name_en": "Fernando Romero",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "latin_america_caribbean",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Florence Schust Knoll",
         "Florence Knoll Bassett",
         "Florence Marguerite Schust",
@@ -35288,10 +36147,16 @@
         "value": "1959"
       },
       "claim_ids": [
+        "claim-wd-q547004-birth",
+        "claim-wd-q547004-external-ids",
         "claim-wd-q547004-name-en",
-        "claim-wd-q547004-name-zh"
+        "claim-wd-q547004-name-zh",
+        "claim-wd-q547004-name-zh-status",
+        "claim-wd-q547004-roles",
+        "claim-wd-q547004-summary-en",
+        "claim-wd-q547004-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "NL"
       ],
@@ -35553,10 +36418,17 @@
         "value": "1713-07-22"
       },
       "claim_ids": [
+        "claim-wd-q550244-aliases-en",
+        "claim-wd-q550244-birth",
+        "claim-wd-q550244-death",
+        "claim-wd-q550244-external-ids",
         "claim-wd-q550244-name-en",
-        "claim-wd-q550244-name-zh"
+        "claim-wd-q550244-name-zh",
+        "claim-wd-q550244-name-zh-status",
+        "claim-wd-q550244-roles",
+        "claim-wd-q550244-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "FR"
       ],
@@ -35776,10 +36648,17 @@
         "value": "1795-05-23"
       },
       "claim_ids": [
+        "claim-wd-q552584-aliases-en",
+        "claim-wd-q552584-birth",
+        "claim-wd-q552584-death",
+        "claim-wd-q552584-external-ids",
         "claim-wd-q552584-name-en",
-        "claim-wd-q552584-name-zh"
+        "claim-wd-q552584-name-zh",
+        "claim-wd-q552584-name-zh-status",
+        "claim-wd-q552584-roles",
+        "claim-wd-q552584-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "GB"
       ],
@@ -36596,10 +37475,19 @@
         "value": "1490"
       },
       "claim_ids": [
+        "claim-wd-q5600-aliases-en",
+        "claim-wd-q5600-aliases-zh",
+        "claim-wd-q5600-birth",
+        "claim-wd-q5600-death",
+        "claim-wd-q5600-external-ids",
         "claim-wd-q5600-name-en",
-        "claim-wd-q5600-name-zh"
+        "claim-wd-q5600-name-zh",
+        "claim-wd-q5600-name-zh-status",
+        "claim-wd-q5600-roles",
+        "claim-wd-q5600-summary-en",
+        "claim-wd-q5600-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "TR"
       ],
@@ -36841,10 +37729,18 @@
         "value": "1957-01-25"
       },
       "claim_ids": [
+        "claim-wd-q565390-aliases-en",
+        "claim-wd-q565390-aliases-zh",
+        "claim-wd-q565390-birth",
+        "claim-wd-q565390-external-ids",
         "claim-wd-q565390-name-en",
-        "claim-wd-q565390-name-zh"
+        "claim-wd-q565390-name-zh",
+        "claim-wd-q565390-name-zh-status",
+        "claim-wd-q565390-roles",
+        "claim-wd-q565390-summary-en",
+        "claim-wd-q565390-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "NL"
       ],
@@ -38779,10 +39675,16 @@
         "value": "1803-11-29"
       },
       "claim_ids": [
+        "claim-wd-q61342-birth",
+        "claim-wd-q61342-death",
+        "claim-wd-q61342-external-ids",
         "claim-wd-q61342-name-en",
-        "claim-wd-q61342-name-zh"
+        "claim-wd-q61342-name-zh",
+        "claim-wd-q61342-name-zh-status",
+        "claim-wd-q61342-roles",
+        "claim-wd-q61342-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "DE"
       ],
@@ -39554,10 +40456,17 @@
         "value": "1662-05-03"
       },
       "claim_ids": [
+        "claim-wd-q62637-aliases-en",
+        "claim-wd-q62637-birth",
+        "claim-wd-q62637-death",
+        "claim-wd-q62637-external-ids",
         "claim-wd-q62637-name-en",
-        "claim-wd-q62637-name-zh"
+        "claim-wd-q62637-name-zh",
+        "claim-wd-q62637-name-zh-status",
+        "claim-wd-q62637-roles",
+        "claim-wd-q62637-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "DE"
       ],
@@ -39638,10 +40547,17 @@
         "value": "1823"
       },
       "claim_ids": [
+        "claim-wd-q6286523-aliases-zh",
+        "claim-wd-q6286523-birth",
+        "claim-wd-q6286523-death",
+        "claim-wd-q6286523-external-ids",
         "claim-wd-q6286523-name-en",
-        "claim-wd-q6286523-name-zh"
+        "claim-wd-q6286523-name-zh",
+        "claim-wd-q6286523-name-zh-status",
+        "claim-wd-q6286523-roles",
+        "claim-wd-q6286523-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "GB"
       ],
@@ -39783,10 +40699,18 @@
         "value": "1772-02-16"
       },
       "claim_ids": [
+        "claim-wd-q62973-aliases-en",
+        "claim-wd-q62973-aliases-zh",
+        "claim-wd-q62973-birth",
+        "claim-wd-q62973-death",
+        "claim-wd-q62973-external-ids",
         "claim-wd-q62973-name-en",
-        "claim-wd-q62973-name-zh"
+        "claim-wd-q62973-name-zh",
+        "claim-wd-q62973-name-zh-status",
+        "claim-wd-q62973-roles",
+        "claim-wd-q62973-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "DE"
       ],
@@ -41462,6 +42386,60 @@
     },
     {
       "aliases_en": [],
+      "aliases_zh": [
+        "葛雷高第",
+        "维托里奥·格里高蒂"
+      ],
+      "birth": {
+        "earliest": 1927,
+        "latest": 1927,
+        "precision": "day",
+        "value": "1927-08-10"
+      },
+      "claim_ids": [
+        "claim-wd-q679049-aliases-zh",
+        "claim-wd-q679049-birth",
+        "claim-wd-q679049-country-codes",
+        "claim-wd-q679049-death",
+        "claim-wd-q679049-external-ids",
+        "claim-wd-q679049-name-en",
+        "claim-wd-q679049-name-zh",
+        "claim-wd-q679049-name-zh-status",
+        "claim-wd-q679049-region",
+        "claim-wd-q679049-roles",
+        "claim-wd-q679049-summary-en",
+        "claim-wd-q679049-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 2020,
+        "latest": 2020,
+        "precision": "day",
+        "value": "2020-03-15"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q679049"
+      },
+      "id": "person-wd-q679049",
+      "last_verified": "2026-08-22",
+      "name_en": "Vittorio Gregotti",
+      "name_native": null,
+      "name_zh": "维托里奥·格里高蒂",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Italian architect (1927-2020)",
+      "summary_zh": "意大利建筑师",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [],
       "aliases_zh": [],
       "birth": {
         "earliest": 1785,
@@ -41561,10 +42539,18 @@
         "value": "1811-07-13"
       },
       "claim_ids": [
+        "claim-wd-q681007-aliases-en",
+        "claim-wd-q681007-aliases-zh",
+        "claim-wd-q681007-birth",
+        "claim-wd-q681007-death",
+        "claim-wd-q681007-external-ids",
         "claim-wd-q681007-name-en",
-        "claim-wd-q681007-name-zh"
+        "claim-wd-q681007-name-zh",
+        "claim-wd-q681007-name-zh-status",
+        "claim-wd-q681007-roles",
+        "claim-wd-q681007-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "GB"
       ],
@@ -41867,10 +42853,17 @@
         "value": "1823-07-02"
       },
       "claim_ids": [
+        "claim-wd-q69715-aliases-en",
+        "claim-wd-q69715-birth",
+        "claim-wd-q69715-death",
+        "claim-wd-q69715-external-ids",
         "claim-wd-q69715-name-en",
-        "claim-wd-q69715-name-zh"
+        "claim-wd-q69715-name-zh",
+        "claim-wd-q69715-name-zh-status",
+        "claim-wd-q69715-roles",
+        "claim-wd-q69715-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "PL"
       ],
@@ -42016,10 +43009,17 @@
         "value": "1803-02-15"
       },
       "claim_ids": [
+        "claim-wd-q700033-aliases-en",
+        "claim-wd-q700033-birth",
+        "claim-wd-q700033-death",
+        "claim-wd-q700033-external-ids",
         "claim-wd-q700033-name-en",
-        "claim-wd-q700033-name-zh"
+        "claim-wd-q700033-name-zh",
+        "claim-wd-q700033-name-zh-status",
+        "claim-wd-q700033-roles",
+        "claim-wd-q700033-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "DE"
       ],
@@ -42749,6 +43749,50 @@
     },
     {
       "aliases_en": [
+        "Sir Philip Powell",
+        "Philip, Sir Powell",
+        "Sir Arnold Joseph Philip Powell"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1921,
+        "latest": 1921,
+        "precision": "day",
+        "value": "1921-03-15"
+      },
+      "claim_ids": [
+        "claim-wd-q7184227-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "GB"
+      ],
+      "death": {
+        "earliest": 2003,
+        "latest": 2003,
+        "precision": "day",
+        "value": "2003-05-05"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q7184227"
+      },
+      "id": "person-wd-q7184227",
+      "last_verified": "2026-08-22",
+      "name_en": "Philip Powell",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "British architect (1921–2003)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Liang Ssu-ch'eng",
         "Sicheng Liang",
         "Ssu-cheng Liang",
@@ -42947,10 +43991,17 @@
         "value": "1885-03-01"
       },
       "claim_ids": [
+        "claim-wd-q723343-aliases-en",
+        "claim-wd-q723343-birth",
+        "claim-wd-q723343-death",
+        "claim-wd-q723343-external-ids",
         "claim-wd-q723343-name-en",
-        "claim-wd-q723343-name-zh"
+        "claim-wd-q723343-name-zh",
+        "claim-wd-q723343-name-zh-status",
+        "claim-wd-q723343-roles",
+        "claim-wd-q723343-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "RU"
       ],
@@ -44690,6 +45741,50 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "José Villagrán",
+        "Jose Villagran Garcia",
+        "Jose Villagran"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1901,
+        "latest": 1901,
+        "precision": "day",
+        "value": "1901-09-22"
+      },
+      "claim_ids": [
+        "claim-wd-q767114-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "MX"
+      ],
+      "death": {
+        "earliest": 1982,
+        "latest": 1982,
+        "precision": "day",
+        "value": "1982-11-03"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q767114"
+      },
+      "id": "person-wd-q767114",
+      "last_verified": "2026-08-22",
+      "name_en": "José Villagrán García",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "latin_america_caribbean",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Mexican architect laureated with the 1968 National Prize for Arts and Sciences (1901–1982)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -45293,10 +46388,17 @@
         "value": "1841-06-26"
       },
       "claim_ids": [
+        "claim-wd-q77357-aliases-en",
+        "claim-wd-q77357-birth",
+        "claim-wd-q77357-death",
+        "claim-wd-q77357-external-ids",
         "claim-wd-q77357-name-en",
-        "claim-wd-q77357-name-zh"
+        "claim-wd-q77357-name-zh",
+        "claim-wd-q77357-name-zh-status",
+        "claim-wd-q77357-roles",
+        "claim-wd-q77357-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "DE"
       ],
@@ -45568,10 +46670,17 @@
         "value": "1889-08-23"
       },
       "claim_ids": [
+        "claim-wd-q7848367-aliases-en",
+        "claim-wd-q7848367-birth",
+        "claim-wd-q7848367-death",
+        "claim-wd-q7848367-external-ids",
         "claim-wd-q7848367-name-en",
-        "claim-wd-q7848367-name-zh"
+        "claim-wd-q7848367-name-zh",
+        "claim-wd-q7848367-name-zh-status",
+        "claim-wd-q7848367-roles",
+        "claim-wd-q7848367-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "NL"
       ],
@@ -46489,10 +47598,18 @@
         "value": "1646-04-16"
       },
       "claim_ids": [
+        "claim-wd-q8053-aliases-en",
+        "claim-wd-q8053-birth",
+        "claim-wd-q8053-death",
+        "claim-wd-q8053-external-ids",
         "claim-wd-q8053-name-en",
-        "claim-wd-q8053-name-zh"
+        "claim-wd-q8053-name-zh",
+        "claim-wd-q8053-name-zh-status",
+        "claim-wd-q8053-roles",
+        "claim-wd-q8053-summary-en",
+        "claim-wd-q8053-summary-zh"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "FR"
       ],
@@ -46947,10 +48064,17 @@
         "value": "1901-12-14"
       },
       "claim_ids": [
+        "claim-wd-q827997-aliases-en",
+        "claim-wd-q827997-birth",
+        "claim-wd-q827997-death",
+        "claim-wd-q827997-external-ids",
         "claim-wd-q827997-name-en",
-        "claim-wd-q827997-name-zh"
+        "claim-wd-q827997-name-zh",
+        "claim-wd-q827997-name-zh-status",
+        "claim-wd-q827997-roles",
+        "claim-wd-q827997-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "RU"
       ],
@@ -47763,10 +48887,16 @@
         "value": "1891-06-14"
       },
       "claim_ids": [
+        "claim-wd-q85557-birth",
+        "claim-wd-q85557-death",
+        "claim-wd-q85557-external-ids",
         "claim-wd-q85557-name-en",
-        "claim-wd-q85557-name-zh"
+        "claim-wd-q85557-name-zh",
+        "claim-wd-q85557-name-zh-status",
+        "claim-wd-q85557-roles",
+        "claim-wd-q85557-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "CZ"
       ],
@@ -48865,6 +49995,55 @@
       "verification_status": "verified"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1914,
+        "latest": 1914,
+        "precision": "day",
+        "value": "1914-12-17"
+      },
+      "claim_ids": [
+        "claim-wd-q925721-birth",
+        "claim-wd-q925721-country-codes",
+        "claim-wd-q925721-death",
+        "claim-wd-q925721-external-ids",
+        "claim-wd-q925721-name-en",
+        "claim-wd-q925721-name-zh",
+        "claim-wd-q925721-name-zh-status",
+        "claim-wd-q925721-region",
+        "claim-wd-q925721-roles",
+        "claim-wd-q925721-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FI"
+      ],
+      "death": {
+        "earliest": 1995,
+        "latest": 1995,
+        "precision": "day",
+        "value": "1995-11-23"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q925721"
+      },
+      "id": "person-wd-q925721",
+      "last_verified": "2026-08-22",
+      "name_en": "Einari Teräsvirta",
+      "name_native": null,
+      "name_zh": "埃伊纳里·泰雷斯维尔塔",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Finnish gymnast and architect (1914–1995)",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
       "aliases_en": [
         "František Gahura",
         "Ladislav František Gahura",
@@ -48934,10 +50113,18 @@
         "value": "1890-07-22"
       },
       "claim_ids": [
+        "claim-wd-q930-aliases-en",
+        "claim-wd-q930-aliases-zh",
+        "claim-wd-q930-birth",
+        "claim-wd-q930-death",
+        "claim-wd-q930-external-ids",
         "claim-wd-q930-name-en",
-        "claim-wd-q930-name-zh"
+        "claim-wd-q930-name-zh",
+        "claim-wd-q930-name-zh-status",
+        "claim-wd-q930-roles",
+        "claim-wd-q930-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "RU"
       ],
@@ -49208,6 +50395,57 @@
       "summary_en": "American architect (1827–1895)",
       "summary_zh": "美国建筑师",
       "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Cornelis Van Eesteren",
+        "Cor van Eesteren",
+        "Cor Eesteren",
+        "C. van Eesteren"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1897,
+        "latest": 1897,
+        "precision": "day",
+        "value": "1897-07-04"
+      },
+      "claim_ids": [
+        "claim-wd-q940647-aliases-en",
+        "claim-wd-q940647-birth",
+        "claim-wd-q940647-death",
+        "claim-wd-q940647-external-ids",
+        "claim-wd-q940647-name-en",
+        "claim-wd-q940647-name-zh",
+        "claim-wd-q940647-name-zh-status",
+        "claim-wd-q940647-roles",
+        "claim-wd-q940647-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1988,
+        "latest": 1988,
+        "precision": "day",
+        "value": "1988-02-21"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q940647"
+      },
+      "id": "person-wd-q940647",
+      "last_verified": "2026-08-22",
+      "name_en": "Cornelis van Eesteren",
+      "name_native": null,
+      "name_zh": "科内利斯·范·埃斯特伦",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Dutch architect and planner (1897-1988)",
+      "summary_zh": "",
+      "verification_status": "verified"
     },
     {
       "aliases_en": [],
@@ -50782,6 +52020,52 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Wells Wintemute Coates"
+      ],
+      "aliases_zh": [
+        "威尔斯温特穆特·寇特斯"
+      ],
+      "birth": {
+        "earliest": 1895,
+        "latest": 1895,
+        "precision": "day",
+        "value": "1895-12-17"
+      },
+      "claim_ids": [
+        "claim-wd-q969009-name-en",
+        "claim-wd-q969009-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "CA"
+      ],
+      "death": {
+        "earliest": 1958,
+        "latest": 1958,
+        "precision": "day",
+        "value": "1958-06-17"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q969009"
+      },
+      "id": "person-wd-q969009",
+      "last_verified": "2026-08-22",
+      "name_en": "Wells Coates",
+      "name_native": null,
+      "name_zh": "威尔斯·寇特斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "north_america",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Canadian architect (1895–1958)",
+      "summary_zh": "加拿大建筑师",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -51161,10 +52445,18 @@
         "value": "1780-10-01"
       },
       "claim_ids": [
+        "claim-wd-q983719-aliases-en",
+        "claim-wd-q983719-aliases-zh",
+        "claim-wd-q983719-birth",
+        "claim-wd-q983719-death",
+        "claim-wd-q983719-external-ids",
         "claim-wd-q983719-name-en",
-        "claim-wd-q983719-name-zh"
+        "claim-wd-q983719-name-zh",
+        "claim-wd-q983719-name-zh-status",
+        "claim-wd-q983719-roles",
+        "claim-wd-q983719-summary-en"
       ],
-      "confidence": 0.6,
+      "confidence": 0.5,
       "country_codes": [
         "GB"
       ],

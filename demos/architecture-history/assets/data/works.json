@@ -76544,15 +76544,16 @@
       "claim_ids": [
         "claim-wd-q7604504-name-en",
         "claim-wd-q7604504-name-zh",
+        "claim-wd-q7604504-coordinates",
         "claim-wd-q7604504-period",
         "claim-wd-q7604504-p571-1"
       ],
       "confidence": 0.6,
       "coordinates": {
-        "claim_id": null,
-        "lat": null,
-        "lng": null,
-        "precision": null
+        "claim_id": "claim-wd-q7604504-coordinates",
+        "lat": 21.838,
+        "lng": 73.7191,
+        "precision": 0.0001
       },
       "credit_set_completeness": "unknown",
       "credits": [],

@@ -133,6 +133,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q1377332-q180398",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Henning Larsen worked in the office of Jørn Utzon. Source quote: \"Mellan 1956 och 1959 var han anställd vid arkitektkontoret Brüel, Bornebusch & Selchau, och år 1958 arbetade han även en period vid Jørn Utzons kontor.\" (Henning Larsen - Wikipedia (sv)).",
+        "note_zh": "履历任职边：Henning Larsen 曾在 Jørn Utzon 门下任职。来源引文：\"Mellan 1956 och 1959 var han anställd vid arkitektkontoret Brüel, Bornebusch & Selchau, och år 1958 arbetade han även en period vid Jørn Utzons kontor.\"（Henning Larsen - Wikipedia (sv)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1377332",
+      "id": "relation-res-worked-for-q1377332-q180398",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q180398",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q1377332-q273572",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Henning Larsen worked in the office of Arne Jacobsen. Source quote: \"Samma år arbetade han hos Grassold & Johnsson Architects i Milwaukee, Wisconsin, och därefter vid Arne Jacobsens arkitektkontor 1952–1953.\" (Henning Larsen - Wikipedia (sv)).",
+        "note_zh": "履历任职边：Henning Larsen 曾在 Arne Jacobsen 门下任职。来源引文：\"Samma år arbetade han hos Grassold & Johnsson Architects i Milwaukee, Wisconsin, och därefter vid Arne Jacobsens arkitektkontor 1952–1953.\"（Henning Larsen - Wikipedia (sv)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1377332",
+      "id": "relation-res-worked-for-q1377332-q273572",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q273572",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q151794-q129938",
       "confidence": 0.5,
       "context": {
@@ -284,6 +328,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q121598806",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q20643094-q7184227",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: James Gowan worked in the office of Philip Powell. Source quote: \"After graduating Gowan was employed by Philip Powell who had been his tutor at Kingston.\" (James Gowan - Wikipedia).",
+        "note_zh": "履历任职边：James Gowan 曾在 Philip Powell 门下任职。来源引文：\"After graduating Gowan was employed by Philip Powell who had been his tutor at Kingston.\"（James Gowan - Wikipedia）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20643094",
+      "id": "relation-res-worked-for-q20643094-q7184227",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q7184227",
       "verification_status": "candidate"
     },
     {
@@ -507,6 +573,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q2582922-q11864637",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Reima Pietilä worked in the office of Ilmari Niemeläinen. Source quote: \"Pietilä työskenteli opiskeluaikana vuonna 1947 Ilmari Niemeläisen toimistossa sekä vuosina 1948–1949 Einari Teräsvirran ja Ragnar Ypyän toimistoissa\" (Reima Pietilä - Wikipedia (fi)).",
+        "note_zh": "履历任职边：Reima Pietilä 曾在 Ilmari Niemeläinen 门下任职。来源引文：\"Pietilä työskenteli opiskeluaikana vuonna 1947 Ilmari Niemeläisen toimistossa sekä vuosina 1948–1949 Einari Teräsvirran ja Ragnar Ypyän toimistoissa\"（Reima Pietilä - Wikipedia (fi)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2582922",
+      "id": "relation-res-worked-for-q2582922-q11864637",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q11864637",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q2582922-q925721",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Reima Pietilä worked in the office of Einari Teräsvirta. Source quote: \"Pietilä työskenteli opiskeluaikana vuonna 1947 Ilmari Niemeläisen toimistossa sekä vuosina 1948–1949 Einari Teräsvirran ja Ragnar Ypyän toimistoissa\" (Reima Pietilä - Wikipedia (fi)).",
+        "note_zh": "履历任职边：Reima Pietilä 曾在 Einari Teräsvirta 门下任职。来源引文：\"Pietilä työskenteli opiskeluaikana vuonna 1947 Ilmari Niemeläisen toimistossa sekä vuosina 1948–1949 Einari Teräsvirran ja Ragnar Ypyän toimistoissa\"（Reima Pietilä - Wikipedia (fi)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2582922",
+      "id": "relation-res-worked-for-q2582922-q925721",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q925721",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q272400-q435810",
       "confidence": 0.5,
       "context": {
@@ -614,6 +724,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q2450186",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q312070-q1806244",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Gunnar Asplund worked in the office of Lars Israel Wahlman. Source quote: \"Uppdraget förmedlades av Wahlmans arkitektkontor där Asplund arbetat under studietiden.\" (Gunnar Asplund - Wikipedia (svenska)).",
+        "note_zh": "履历任职边：Gunnar Asplund 曾在 Lars Israel Wahlman 门下任职。来源引文：\"Uppdraget förmedlades av Wahlmans arkitektkontor där Asplund arbetat under studietiden.\"（Gunnar Asplund - Wikipedia (svenska)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q312070",
+      "id": "relation-res-worked-for-q312070-q1806244",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1806244",
       "verification_status": "candidate"
     },
     {
@@ -746,6 +878,50 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q151794",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q322953-q1306518",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Aldo Rossi worked in the office of Ignazio Gardella. Source quote: \"Inizia l'attivita professionale presso lo studio di Ignazio Gardella nel 1956, passando poi per lo studio di Marco Zanuso.\" (Aldo Rossi - Wikipedia (it)).",
+        "note_zh": "履历任职边：Aldo Rossi 曾在 Ignazio Gardella 门下任职。来源引文：\"Inizia l'attivita professionale presso lo studio di Ignazio Gardella nel 1956, passando poi per lo studio di Marco Zanuso.\"（Aldo Rossi - Wikipedia (it)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q322953",
+      "id": "relation-res-worked-for-q322953-q1306518",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1306518",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q322953-q1394730",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Aldo Rossi worked in the office of Marco Zanuso. Source quote: \"He began his professional career at the studio of Ignazio Gardella in 1956, moving on to the studio of Marco Zanuso.\" (Aldo Rossi - Wikipedia (en)).",
+        "note_zh": "履历任职边：Aldo Rossi 曾在 Marco Zanuso 门下任职。来源引文：\"He began his professional career at the studio of Ignazio Gardella in 1956, moving on to the studio of Marco Zanuso.\"（Aldo Rossi - Wikipedia (en)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q322953",
+      "id": "relation-res-worked-for-q322953-q1394730",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1394730",
       "verification_status": "candidate"
     },
     {
@@ -947,6 +1123,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q388683-q435810",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Franco Albini worked in the office of Gio Ponti. Source quote: \"began his professional career working for Gio Ponti\" (Franco Albini - Wikipedia (en)).",
+        "note_zh": "履历任职边：Franco Albini 曾在 Gio Ponti 门下任职。来源引文：\"began his professional career working for Gio Ponti\"（Franco Albini - Wikipedia (en)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q388683",
+      "id": "relation-res-worked-for-q388683-q435810",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q435810",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q4015390-q1043186",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Vittorio Garatti worked in the office of Carlos Raúl Villanueva. Source quote: \"he found employment in the Banco Obrero project led by architect Carlos Raúl Villanueva\" (Vittorio Garatti - Wikipedia (en)).",
+        "note_zh": "履历任职边：Vittorio Garatti 曾在 Carlos Raúl Villanueva 门下任职。来源引文：\"he found employment in the Banco Obrero project led by architect Carlos Raúl Villanueva\"（Vittorio Garatti - Wikipedia (en)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q4015390",
+      "id": "relation-res-worked-for-q4015390-q1043186",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1043186",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q41508-q1277977",
       "confidence": 0.5,
       "context": {
@@ -1057,6 +1277,72 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q466400-q969009",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Denys Lasdun worked in the office of Wells Coates. Source quote: \"Lasdun studied at the Architectural Association School of Architecture in London, and was a junior in the practice of Wells Coates.\" (Denys Lasdun - Wikipedia).",
+        "note_zh": "履历任职边：Denys Lasdun 曾在 Wells Coates 门下任职。来源引文：\"Lasdun studied at the Architectural Association School of Architecture in London, and was a junior in the practice of Wells Coates.\"（Denys Lasdun - Wikipedia）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q466400",
+      "id": "relation-res-worked-for-q466400-q969009",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q969009",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q470588-q2186472",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: J. J. P. Oud worked in the office of Jan Stuyt. Source quote: \"Van 1907 tot 1908 was hij als opzichter/tekenaar stagiair bij het bureau van Joseph Cuypers en Jan Stuyt, eveneens in Amsterdam.\" (J.J.P. Oud - Wikipedia (nl)).",
+        "note_zh": "履历任职边：J. J. P. Oud 曾在 Jan Stuyt 门下任职。来源引文：\"Van 1907 tot 1908 was hij als opzichter/tekenaar stagiair bij het bureau van Joseph Cuypers en Jan Stuyt, eveneens in Amsterdam.\"（J.J.P. Oud - Wikipedia (nl)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q470588",
+      "id": "relation-res-worked-for-q470588-q2186472",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q2186472",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q470588-q540431",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: J. J. P. Oud worked in the office of Pierre Cuypers. Source quote: \"Van 1907 tot 1908 was hij als opzichter/tekenaar stagiair bij het bureau van Joseph Cuypers en Jan Stuyt, eveneens in Amsterdam.\" (J.J.P. Oud - Wikipedia (nl)).",
+        "note_zh": "履历任职边：J. J. P. Oud 曾在 Pierre Cuypers 门下任职。来源引文：\"Van 1907 tot 1908 was hij als opzichter/tekenaar stagiair bij het bureau van Joseph Cuypers en Jan Stuyt, eveneens in Amsterdam.\"（J.J.P. Oud - Wikipedia (nl)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q470588",
+      "id": "relation-res-worked-for-q470588-q540431",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q540431",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q4724-q381978",
       "confidence": 0.5,
       "context": {
@@ -1101,6 +1387,72 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q47780-q1658487",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Zaha Hadid worked in the office of Elia Zenghelis. Source quote: \"After graduation in 1977, she went to work for her former professors, Koolhaas and Zenghelis at the Office for Metropolitan Architecture in Rotterdam, the Netherlands.\" (Zaha Hadid - Wikipedia).",
+        "note_zh": "履历任职边：Zaha Hadid 曾在 Elia Zenghelis 门下任职。来源引文：\"After graduation in 1977, she went to work for her former professors, Koolhaas and Zenghelis at the Office for Metropolitan Architecture in Rotterdam, the Netherlands.\"（Zaha Hadid - Wikipedia）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q47780",
+      "id": "relation-res-worked-for-q47780-q1658487",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1658487",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q47780-q232364",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Zaha Hadid worked in the office of Rem Koolhaas. Source quote: \"After graduation in 1977, she went to work for her former professors, Koolhaas and Zenghelis at the Office for Metropolitan Architecture in Rotterdam, the Netherlands.\" (Zaha Hadid - Wikipedia).",
+        "note_zh": "履历任职边：Zaha Hadid 曾在 Rem Koolhaas 门下任职。来源引文：\"After graduation in 1977, she went to work for her former professors, Koolhaas and Zenghelis at the Office for Metropolitan Architecture in Rotterdam, the Netherlands.\"（Zaha Hadid - Wikipedia）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q47780",
+      "id": "relation-res-worked-for-q47780-q232364",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q232364",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q519135-q940647",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Jaap Bakema worked in the office of Cornelis van Eesteren. Source quote: \"In deze periode werkte hij ook bij Cornelis van Eesteren in Amsterdam en bij Van Tijen en Maaskant in Rotterdam.\" (Jaap Bakema - Wikipedia (nl)).",
+        "note_zh": "履历任职边：Jaap Bakema 曾在 Cornelis van Eesteren 门下任职。来源引文：\"In deze periode werkte hij ook bij Cornelis van Eesteren in Amsterdam en bij Van Tijen en Maaskant in Rotterdam.\"（Jaap Bakema - Wikipedia (nl)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q519135",
+      "id": "relation-res-worked-for-q519135-q940647",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q940647",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q526725-q317135",
       "confidence": 0.5,
       "context": {
@@ -1120,6 +1472,50 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q317135",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q5342473-q466400",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Edward Cullinan worked in the office of Denys Lasdun. Source quote: \"After the AA, he studied at the University of California, Berkeley before working for Denys Lasdun where he designed the student residences for the University of East Anglia.\" (Edward Cullinan - Wikipedia).",
+        "note_zh": "履历任职边：Edward Cullinan 曾在 Denys Lasdun 门下任职。来源引文：\"After the AA, he studied at the University of California, Berkeley before working for Denys Lasdun where he designed the student residences for the University of East Anglia.\"（Edward Cullinan - Wikipedia）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q5342473",
+      "id": "relation-res-worked-for-q5342473-q466400",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q466400",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q5444909-q232364",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Fernando Romero worked in the office of Rem Koolhaas. Source quote: \"In 1995, following graduation, Romero joined the office of Rem Koolhaas, Office for Metropolitan Architecture (OMA), in Rotterdam, Netherlands.\" (Fernando Romero (architect) - Wikipedia).",
+        "note_zh": "履历任职边：Fernando Romero 曾在 Rem Koolhaas 门下任职。来源引文：\"In 1995, following graduation, Romero joined the office of Rem Koolhaas, Office for Metropolitan Architecture (OMA), in Rotterdam, Netherlands.\"（Fernando Romero (architect) - Wikipedia）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q5444909",
+      "id": "relation-res-worked-for-q5444909-q232364",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q232364",
       "verification_status": "candidate"
     },
     {
@@ -1164,6 +1560,50 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q57588",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q555682-q104898",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Jan Kaplický worked in the office of Norman Foster. Source quote: \"he joined Foster Associates, now Foster and Partners (1979–1983)\" (Jan Kaplický - Wikipedia).",
+        "note_zh": "履历任职边：Jan Kaplický 曾在 Norman Foster 门下任职。来源引文：\"he joined Foster Associates, now Foster and Partners (1979–1983)\"（Jan Kaplický - Wikipedia）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q555682",
+      "id": "relation-res-worked-for-q555682-q104898",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q104898",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q555682-q466400",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Jan Kaplický worked in the office of Denys Lasdun. Source quote: \"In England, Kaplický first worked for Denys Lasdun and Partners (1969–1971)\" (Jan Kaplický - Wikipedia).",
+        "note_zh": "履历任职边：Jan Kaplický 曾在 Denys Lasdun 门下任职。来源引文：\"In England, Kaplický first worked for Denys Lasdun and Partners (1969–1971)\"（Jan Kaplický - Wikipedia）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q555682",
+      "id": "relation-res-worked-for-q555682-q466400",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q466400",
       "verification_status": "candidate"
     },
     {
@@ -1255,6 +1695,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q679049-q381978",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Vittorio Gregotti worked in the office of Auguste Perret. Source quote: \"a Parigi nel 1947, presso l'importante studio dei fratelli Gustave, Claude e Auguste Perret, dove lavora per due settimane\" (Vittorio Gregotti - Wikipedia (it)).",
+        "note_zh": "履历任职边：Vittorio Gregotti 曾在 Auguste Perret 门下任职。来源引文：\"a Parigi nel 1947, presso l'importante studio dei fratelli Gustave, Claude e Auguste Perret, dove lavora per due settimane\"（Vittorio Gregotti - Wikipedia (it)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q679049",
+      "id": "relation-res-worked-for-q679049-q381978",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q381978",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q707020-q104898",
       "confidence": 0.5,
       "context": {
@@ -1340,6 +1802,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q4724",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q732502-q767114",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Ricardo Legorreta worked in the office of José Villagrán García. Source quote: \"trabaja en el taller de José Villagrán García hasta 1960, año en que funda su despacho en sociedad con Noé Castro y Carlos Vargas\" (Ricardo Legorreta Vilchis - Wikipedia (español)).",
+        "note_zh": "履历任职边：Ricardo Legorreta 曾在 José Villagrán García 门下任职。来源引文：\"trabaja en el taller de José Villagrán García hasta 1960, año en que funda su despacho en sociedad con Noé Castro y Carlos Vargas\"（Ricardo Legorreta Vilchis - Wikipedia (español)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q732502",
+      "id": "relation-res-worked-for-q732502-q767114",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q767114",
       "verification_status": "candidate"
     },
     {
@@ -1563,6 +2047,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q959698-q3837633",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Ralph Erskine worked in the office of Louis de Soissons. Source quote: \"Erskine began work with the design team for Welwyn Garden City under the leadership of Louis de Soissons.\" (Ralph Erskine (architect) - Wikipedia).",
+        "note_zh": "履历任职边：Ralph Erskine 曾在 Louis de Soissons 门下任职。来源引文：\"Erskine began work with the design team for Welwyn Garden City under the leadership of Louis de Soissons.\"（Ralph Erskine (architect) - Wikipedia）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q959698",
+      "id": "relation-res-worked-for-q959698-q3837633",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3837633",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q998392-q4724",
       "confidence": 0.5,
       "context": {
@@ -1670,6 +2176,28 @@
       ],
       "relation_type": "cofounded_with",
       "to_id": "practice-wd-q69570584",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-cofounded-with-q1658487-q2015762",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded founding edge: Elia Zenghelis → Office for Metropolitan Architecture. Raw Wikidata P112 founding edge; it does not by itself establish cofounder status or founding partnership.",
+        "note_zh": "待审创立边：Elia Zenghelis → 大都會建築事務所。Wikidata P112 原始创立边；本身不能证明联合创始人身份或创立合作关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1658487",
+      "id": "relation-wd-cofounded-with-q1658487-q2015762",
+      "last_verified": "2026-08-22",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "cofounded_with",
+      "to_id": "practice-wd-q2015762",
       "verification_status": "candidate"
     },
     {
