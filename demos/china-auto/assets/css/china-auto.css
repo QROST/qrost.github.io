@@ -92,8 +92,7 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
 }
 .chart-h-md { width: 100%; height: 320px; }
 .chart-h-lg { width: 100%; height: 520px; }
-.chart-h-graph { width: 100%; height: 480px; }
-.chart-h-graph.is-deep { height: 560px; }
+.chart-h-graph { width: 100%; height: 560px; }
 
 .kpi-card {
   border: 1px solid var(--border); border-radius: 0.85rem; background: var(--bg-surface);
@@ -198,6 +197,12 @@ html.dark .badge-grade-D { color: #f87171; }
   background: var(--accent-soft);
 }
 .cluster-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cluster-card-hint { margin-top: 0.45rem; font-size: 0.72rem; color: var(--accent); }
+.map-legend .legend-cluster {
+  border: 0; background: transparent; color: inherit; cursor: pointer; padding: 0; font: inherit;
+}
+.map-legend .legend-cluster:hover, .map-legend .legend-cluster.is-on { color: var(--accent-strong); }
+.map-legend .legend-cluster:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .cluster-card h3 { font-size: 0.95rem; font-weight: 600; }
 .cluster-card p { margin-top: 0.35rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.45; }
 

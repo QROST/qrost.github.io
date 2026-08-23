@@ -9,7 +9,7 @@
     map: { dim: 'output', role: '', cluster: '', tier: '', layer: 'cities' },
     cat: { search: '', tier: '', role: '', cluster: '', sort: 'output', dir: -1 },
     org: { search: '', type: '', sort: 'type', dir: 1, groups: { identity: true, scale: true, product: true, network: false } },
-    cluster: { selected: '', layers: { hq: true, plants: true } }
+    cluster: { selected: '', layers: { hq: true, brands: true, plants: false } }
   };
   var cityModalTab = 'tabOverview';
   var openCityId = null;
@@ -174,46 +174,45 @@
     $('cluster-cards').innerHTML = D.clusters.map(function (cl) {
       var cityObjs = (cl.city_ids || []).map(function (id) { return D.getCity(id); }).filter(Boolean);
       var cities = cityObjs.map(function (c) { return I18N.name(c); }).join(' · ');
-      var hqN = 0, plantN = 0;
+      var hqN = 0, brandN = 0, plantN = 0;
       cityObjs.forEach(function (c) {
-        hqN += D.orgsForCity(c.id).filter(function (o) {
-          return o.headquarters_city_id === c.id &&
-            ({ automaker: 1, brand: 1, battery_company: 1, supplier: 1, software_company: 1, chip_company: 1 })[o.organization_type];
-        }).length;
+        D.orgsForCity(c.id).forEach(function (o) {
+          if (o.headquarters_city_id !== c.id) return;
+          if (o.organization_type === 'brand') brandN += 1;
+          else if (o.organization_type === 'automaker' || o.organization_type === 'battery_company' ||
+            o.organization_type === 'supplier' || o.organization_type === 'software_company' ||
+            o.organization_type === 'chip_company') hqN += 1;
+        });
         plantN += D.facilitiesForCity(c.id).length;
       });
       var note = I18N.pick(cl.output_note_zh, cl.output_note_en);
       var on = selected === cl.id;
       return '<article class="cluster-card' + (on ? ' active' : '') + '" data-cluster="' + esc(cl.id) +
         '" role="button" tabindex="0" aria-pressed="' + (on ? 'true' : 'false') + '"' +
-        ' aria-label="' + esc(I18N.name(cl)) + '">' +
+        ' aria-label="' + esc(I18N.name(cl) + ' · ' + I18N.t('clusterCardHint')) + '">' +
         '<h3>' + esc(I18N.name(cl)) + '</h3>' +
         '<p>' + esc(I18N.pick(cl.summary_zh, cl.summary_en)) + '</p>' +
         (note ? '<p class="text-faint text-xs mt-2">' + esc(note) + '</p>' : '') +
         '<p class="text-faint text-xs mt-2">' + I18N.t('citiesInCluster') + ': ' + esc(cities) +
-        ' · ' + I18N.t('countHq') + ' ' + hqN + ' · ' + I18N.t('countPlants') + ' ' + plantN + '</p></article>';
+        ' · ' + I18N.t('countHq') + ' ' + hqN + ' · ' + I18N.t('countBrands') + ' ' + brandN +
+        ' · ' + I18N.t('countPlants') + ' ' + plantN + '</p>' +
+        '<p class="cluster-card-hint">' + esc(on ? I18N.t('clusterCardOn') : I18N.t('clusterCardHint')) + '</p></article>';
     }).join('') || '<p class="loading">' + I18N.t('noData') + '</p>';
 
-    var hqBtn = $('cluster-layer-hq'), plantBtn = $('cluster-layer-plants'), resetBtn = $('cluster-reset');
-    var deep = !!selected;
-    if (hqBtn) {
-      hqBtn.classList.toggle('active', state.cluster.layers.hq);
-      hqBtn.disabled = !deep;
-      hqBtn.setAttribute('aria-pressed', state.cluster.layers.hq ? 'true' : 'false');
-    }
-    if (plantBtn) {
-      plantBtn.classList.toggle('active', state.cluster.layers.plants);
-      plantBtn.disabled = !deep;
-      plantBtn.setAttribute('aria-pressed', state.cluster.layers.plants ? 'true' : 'false');
-    }
-    if (resetBtn) resetBtn.disabled = !deep;
-    var graphEl = $('cluster-graph');
-    if (graphEl) graphEl.classList.toggle('is-deep', deep);
+    var resetBtn = $('cluster-reset');
+    document.querySelectorAll('#cluster-layers [data-cluster-layer]').forEach(function (btn) {
+      var k = btn.getAttribute('data-cluster-layer');
+      btn.classList.toggle('active', !!state.cluster.layers[k]);
+      btn.disabled = false;
+      btn.setAttribute('aria-pressed', state.cluster.layers[k] ? 'true' : 'false');
+    });
+    if (resetBtn) resetBtn.disabled = !selected;
 
     CH.renderClusterGraph({
       cities: D.cities, relations: D.relations, clusters: D.clusters,
       selectedClusterId: selected, layers: state.cluster.layers,
       getCluster: D.getCluster, getStat: D.stat2025, getOrg: D.getOrg, getFacility: D.getFacility,
+      getCity: D.getCity, childrenOf: D.childrenOf,
       orgsForCity: D.orgsForCity, facilitiesForCity: D.facilitiesForCity,
       mediaForCity: D.mediaForCity, institutionsForCity: D.institutionsForCity
     });
@@ -789,6 +788,10 @@
       var k = b.getAttribute('data-cluster-layer');
       state.cluster.layers[k] = !state.cluster.layers[k];
       renderClusters();
+    });
+    $('cluster-legend').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-cluster]'); if (!b) return;
+      selectCluster(b.getAttribute('data-cluster'), { toggle: true });
     });
 
     var catRoles = uniq(D.cities.reduce(function (a, c) { return a.concat(c.role_tags || []); }, []));
