@@ -2967,7 +2967,8 @@
               },
               "relation_type": {
                 "enum": [
-                  "worked_for"
+                  "worked_for",
+                  "worked_at_practice"
                 ]
               },
               "citations": {

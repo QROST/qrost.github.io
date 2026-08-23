@@ -38,6 +38,10 @@ def person_id(qid: str) -> str:
     return f"person-wd-{qid.lower()}"
 
 
+def practice_id(qid: str) -> str:
+    return f"practice-wd-{qid.lower()}"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pack", type=Path)
@@ -72,17 +76,30 @@ def main() -> int:
             "SELECT id FROM entities WHERE source_table='people'"
         )
     }
+    existing_practices = {
+        row[0]
+        for row in conn.execute(
+            "SELECT id FROM entities WHERE source_table='practices'"
+        )
+    }
 
     inserted = skipped_pair = missing_endpoint = 0
     for entry in pack["entries"]:
         employee = person_id(entry["employee_qid"])
-        employer = person_id(entry["employer_qid"])
+        if entry["relation_type"] == "worked_at_practice":
+            employer = practice_id(entry["employer_qid"])
+            employer_pool = existing_practices
+            relation_slug = "worked-at-practice"
+        else:
+            employer = person_id(entry["employer_qid"])
+            employer_pool = existing_people
+            relation_slug = "worked_for" if False else "worked-for"
         pair = (employee, employer, entry["relation_type"])
         reverse = (employer, employee, entry["relation_type"])
         if pair in existing_pairs or reverse in existing_pairs:
             skipped_pair += 1
             continue
-        if employee not in existing_people or employer not in existing_people:
+        if employee not in existing_people or employer not in employer_pool:
             missing_endpoint += 1
             print(
                 f"  SKIP (endpoint not in store): {employee} -> {employer}",
@@ -92,7 +109,7 @@ def main() -> int:
 
         slug_a = entry["employee_qid"].lower()
         slug_b = entry["employer_qid"].lower()
-        relation_id = f"relation-res-worked-for-{slug_a}-{slug_b}"
+        relation_id = f"relation-res-{relation_slug}-{slug_a}-{slug_b}"
         claim_id = f"claim-{relation_id}"
 
         names = {}
@@ -112,7 +129,7 @@ def main() -> int:
                 "language": "en",
                 "locator": f"{slug_a}/worked_for/{slug_b}#{index}",
                 "native_field_path": f"/entries/{index}",
-                "native_predicate": "worked_for",
+                "native_predicate": entry["relation_type"],
                 "native_record_id": f"{entry['employee_qid']}/{entry['employer_qid']}",
                 "qualifiers": [],
                 "rank": None,
@@ -153,7 +170,7 @@ def main() -> int:
                 "Biographical quote establishes employment but not exact "
                 "tenure, role, or deputy rank."
             ],
-            "relation_type": "worked_for",
+            "relation_type": entry["relation_type"],
             "to_id": employer,
             "verification_status": "candidate",
         }
@@ -162,7 +179,7 @@ def main() -> int:
             "evidence": evidence_rows,
             "id": claim_id,
             "object": {"entity_id": employer},
-            "predicate": "worked_for",
+            "predicate": entry["relation_type"],
             "qualifiers": {"from_id": employee},
             "reviewed_at": pack["accessed"],
             "reviewed_by": REVIEWER_ID,
@@ -177,7 +194,7 @@ def main() -> int:
                 " context, rejection_reasons, payload)"
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
-                    relation_id, employee, employer, "worked_for",
+                    relation_id, employee, employer, entry["relation_type"],
                     "candidate", RELATION_CONFIDENCE, claim_id,
                     pack["accessed"], json.dumps(context, ensure_ascii=False),
                     json.dumps(relation_payload["rejection_reasons"],
@@ -192,7 +209,7 @@ def main() -> int:
                 " object, qualifiers, payload)"
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
-                    claim_id, relation_id, "worked_for", "candidate",
+                    claim_id, relation_id, entry["relation_type"], "candidate",
                     RELATION_CONFIDENCE, REVIEWER_ID, pack["accessed"],
                     json.dumps(claim_payload["object"], ensure_ascii=False),
                     json.dumps(claim_payload["qualifiers"],

@@ -2809,6 +2809,14 @@ def main() -> int:
                     entry["employer_qid"],
                     entry["relation_type"],
                 )
+                if entry["relation_type"] not in {
+                    "worked_for",
+                    "worked_at_practice",
+                }:
+                    errors.append(
+                        f"{snapshot_id}: unsupported research relation "
+                        f"type {entry['relation_type']!r}"
+                    )
                 if pair in seen_pairs:
                     errors.append(
                         f"{snapshot_id}: duplicate research entry {pair!r}"

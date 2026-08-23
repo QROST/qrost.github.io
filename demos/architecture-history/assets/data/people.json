@@ -1286,6 +1286,48 @@
     },
     {
       "aliases_en": [
+        "Francisco Xavier Rocha de Aires Mateus"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1964,
+        "latest": 1964,
+        "precision": "year",
+        "value": "1964"
+      },
+      "claim_ids": [
+        "claim-wd-q107567335-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "PT"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q107567335"
+      },
+      "id": "person-wd-q107567335",
+      "last_verified": "2026-08-22",
+      "name_en": "Francisco Aires Mateus",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Portuguese architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Pietro di Giovanni d'Ambrogio"
       ],
       "aliases_zh": [],
@@ -3489,6 +3531,48 @@
     },
     {
       "aliases_en": [
+        "Helio Piñón Pallarés"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1942,
+        "latest": 1942,
+        "precision": "year",
+        "value": "1942"
+      },
+      "claim_ids": [
+        "claim-wd-q12258997-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q12258997"
+      },
+      "id": "person-wd-q12258997",
+      "last_verified": "2026-08-22",
+      "name_en": "Helio Piñón",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect (born 1942)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Guglielmo da Modena",
         "Wiligelmus",
         "Gulielmo da Modena",
@@ -5684,6 +5768,54 @@
       "verification_status": "verified"
     },
     {
+      "aliases_en": [
+        "W. Maas",
+        "W.G.M. Maas"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1959,
+        "latest": 1959,
+        "precision": "day",
+        "value": "1959-01-17"
+      },
+      "claim_ids": [
+        "claim-wd-q1356269-aliases-en",
+        "claim-wd-q1356269-birth",
+        "claim-wd-q1356269-external-ids",
+        "claim-wd-q1356269-name-en",
+        "claim-wd-q1356269-name-zh",
+        "claim-wd-q1356269-name-zh-status",
+        "claim-wd-q1356269-roles",
+        "claim-wd-q1356269-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1356269"
+      },
+      "id": "person-wd-q1356269",
+      "last_verified": "2026-08-22",
+      "name_en": "Winy Maas",
+      "name_native": null,
+      "name_zh": "韦尼·马斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Dutch architect (b.1958)",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -5993,6 +6125,53 @@
         "engineer"
       ],
       "summary_en": "Italian architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Ivan Vladislavovič Žoltovskij",
+        "Ivan Vladislavovich Zholtovskii",
+        "Ivan Zoltovskij",
+        "Jan Żółtowski",
+        "Ivan Vladislavovic Zoltovskij",
+        "Ivan Vladislavovich Zholtovsky",
+        "Ivan Zholtovsky",
+        "Ivan Joltovski"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1867,
+        "latest": 1867,
+        "precision": "day",
+        "value": "1867-11-15"
+      },
+      "claim_ids": [
+        "claim-wd-q1376819-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1959,
+        "latest": 1959,
+        "precision": "day",
+        "value": "1959-07-16"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1376819"
+      },
+      "id": "person-wd-q1376819",
+      "last_verified": "2026-08-22",
+      "name_en": "Ivan Zholtovskiy",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Russian architect, 1867–1959 (1867–1959)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -6515,6 +6694,62 @@
         "architect"
       ],
       "summary_en": "Austrian architect (1887–1969)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Fyodor. Shekhtel'",
+        "Fjodor Osipovitsch Schechtel",
+        "Fyodor Osipovich Shekhtel'",
+        "Fedor Osipovič Šehtel'",
+        "Fjodor Osipowitsch Schechtel",
+        "Frants Al'bert Shekhtel'",
+        "Frants Osipovich Shekhtel'",
+        "Fyodor Shekhtel'",
+        "Franz Osipovitsch Schechtel",
+        "Fedor Osipovic Sehtel",
+        "Fedor Shekhtel'",
+        "Frants Shekhtel'",
+        "Fedor Osipovich Shekhtel'",
+        "Fedor Shekhtel",
+        "Fedor Osipovic Sehtel'",
+        "Franz Osipowitsch Schechtel",
+        "Fyodor Osipovich Schechtel"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1859,
+        "latest": 1859,
+        "precision": "day",
+        "value": "1859-07-26"
+      },
+      "claim_ids": [
+        "claim-wd-q1422362-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1926,
+        "latest": 1926,
+        "precision": "day",
+        "value": "1926-07-07"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1422362"
+      },
+      "id": "person-wd-q1422362",
+      "last_verified": "2026-08-22",
+      "name_en": "Fyodor Schechtel",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Russian architect, graphic artist and stage designer (1859-1926)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -10608,6 +10843,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Kjetil Traedal Thorsen"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1958,
+        "latest": 1958,
+        "precision": "day",
+        "value": "1958-06-14"
+      },
+      "claim_ids": [
+        "claim-wd-q1813434-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1813434"
+      },
+      "id": "person-wd-q1813434",
+      "last_verified": "2026-08-22",
+      "name_en": "Kjetil Trædal Thorsen",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Norwegian architect (born 1958)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -12661,6 +12936,54 @@
     },
     {
       "aliases_en": [
+        "Marian Marianovich Peretyatkovich"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1872,
+        "latest": 1872,
+        "precision": "day",
+        "value": "1872-08-23"
+      },
+      "claim_ids": [
+        "claim-wd-q2071023-aliases-en",
+        "claim-wd-q2071023-birth",
+        "claim-wd-q2071023-death",
+        "claim-wd-q2071023-external-ids",
+        "claim-wd-q2071023-name-en",
+        "claim-wd-q2071023-name-zh",
+        "claim-wd-q2071023-name-zh-status",
+        "claim-wd-q2071023-roles",
+        "claim-wd-q2071023-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1916,
+        "latest": 1916,
+        "precision": "day",
+        "value": "1916-05-22"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2071023"
+      },
+      "id": "person-wd-q2071023",
+      "last_verified": "2026-08-22",
+      "name_en": "Marian Peretyatkovich",
+      "name_native": null,
+      "name_zh": "玛丽安·佩列佳特科维奇",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Ukrainian-born Russian architect (1872-1916)",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
         "Alphonse Hubert François Balat",
         "Alphonse-Hubert-François Balat"
       ],
@@ -14331,6 +14654,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1946,
+        "latest": 1946,
+        "precision": "day",
+        "value": "1946-10-15"
+      },
+      "claim_ids": [
+        "claim-wd-q2247482-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2247482"
+      },
+      "id": "person-wd-q2247482",
+      "last_verified": "2026-08-22",
+      "name_en": "Alberto Campo Baeza",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect (born 1946)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Emilio de Fabris"
       ],
@@ -14525,6 +14888,51 @@
       "summary_en": "Dutch architect (1898-1978)",
       "summary_zh": "",
       "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1964,
+        "latest": 1964,
+        "precision": "year",
+        "value": "1964"
+      },
+      "claim_ids": [
+        "claim-wd-q225927-birth",
+        "claim-wd-q225927-external-ids",
+        "claim-wd-q225927-name-en",
+        "claim-wd-q225927-name-zh",
+        "claim-wd-q225927-name-zh-status",
+        "claim-wd-q225927-roles",
+        "claim-wd-q225927-summary-en",
+        "claim-wd-q225927-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q225927"
+      },
+      "id": "person-wd-q225927",
+      "last_verified": "2026-08-22",
+      "name_en": "Jacob van Rijs",
+      "name_native": null,
+      "name_zh": "雅各布·凡·里斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Dutch architect (born 1964)",
+      "summary_zh": "荷蘭建築師",
+      "verification_status": "verified"
     },
     {
       "aliases_en": [],
@@ -15641,6 +16049,54 @@
     },
     {
       "aliases_en": [
+        "Il'ya Aleksandrovich Golosov",
+        "Il'ya Golosov",
+        "Il'ja Aleksandrovic Golosov",
+        "I. A. Golosov",
+        "Il'ia Aleksandrovich Golosov",
+        "Il'ja Aleksandrovič Golosov",
+        "Ilia Golosov",
+        "Il'ja Golosov",
+        "Ilya Alexandrovich Golosov"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1883,
+        "latest": 1883,
+        "precision": "day",
+        "value": "1883-07-19"
+      },
+      "claim_ids": [
+        "claim-wd-q2426884-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1945,
+        "latest": 1945,
+        "precision": "day",
+        "value": "1945-01-29"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2426884"
+      },
+      "id": "person-wd-q2426884",
+      "last_verified": "2026-08-22",
+      "name_en": "Ilya Golosov",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Russian architect (1883–1945)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Louis H. Sullivan",
         "Henry Sullivan",
         "Louis. Sullivan",
@@ -16525,6 +16981,48 @@
     },
     {
       "aliases_en": [
+        "Gonçalo Sousa Byrne"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1941,
+        "latest": 1941,
+        "precision": "day",
+        "value": "1941-12-06"
+      },
+      "claim_ids": [
+        "claim-wd-q2535925-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "PT"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2535925"
+      },
+      "id": "person-wd-q2535925",
+      "last_verified": "2026-08-22",
+      "name_en": "Gonçalo Byrne",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Portuguese architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Guillaume de Sens"
       ],
       "aliases_zh": [],
@@ -16616,6 +17114,50 @@
         "architect"
       ],
       "summary_en": "17th century Mughal chief architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Viktor Aleksandrovič Vesnin",
+        "Victor Alexandrovits Vesnin",
+        "Viktor Aleksandrovic Vesnin",
+        "Viktor Aleksandrovich Vesnin"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1882,
+        "latest": 1882,
+        "precision": "day",
+        "value": "1882-03-28"
+      },
+      "claim_ids": [
+        "claim-wd-q2562455-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1950,
+        "latest": 1950,
+        "precision": "day",
+        "value": "1950-09-17"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2562455"
+      },
+      "id": "person-wd-q2562455",
+      "last_verified": "2026-08-22",
+      "name_en": "Viktor Vesnin",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect",
+        "patron"
+      ],
+      "summary_en": "Russian architect (1882–1950)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -17448,6 +17990,54 @@
       "summary_en": "Swedish architect (1902–1964)",
       "summary_zh": "瑞典建築師",
       "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1973,
+        "latest": 1973,
+        "precision": "year",
+        "value": "1973"
+      },
+      "claim_ids": [
+        "claim-wd-q27150755-birth",
+        "claim-wd-q27150755-country-codes",
+        "claim-wd-q27150755-external-ids",
+        "claim-wd-q27150755-name-en",
+        "claim-wd-q27150755-name-zh",
+        "claim-wd-q27150755-name-zh-status",
+        "claim-wd-q27150755-region",
+        "claim-wd-q27150755-roles",
+        "claim-wd-q27150755-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "JP"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q27150755"
+      },
+      "id": "person-wd-q27150755",
+      "last_verified": "2026-08-22",
+      "name_en": "Shohei Shigematsu",
+      "name_native": null,
+      "name_zh": "重松象平",
+      "name_zh_status": "source_label_candidate",
+      "region": "east_asia",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Japanese architect",
+      "summary_zh": "",
+      "verification_status": "verified"
     },
     {
       "aliases_en": [
@@ -18445,6 +19035,56 @@
       "summary_en": "French architect (1847–1907)",
       "summary_zh": "",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
+        "Aleksandr Aleksandrovich Vesnin",
+        "Alexandre Vesnin",
+        "Alexander Alexandrovits Vesnin",
+        "Aleksandr Aleksandrovic Vesnin",
+        "Aleksandr Aleksandrovič Vesnin",
+        "Aleksandr Vesnin",
+        "Oleksandr Oleksandrovic Vesnin",
+        "Alexandre Vesnine",
+        "Alexander A. Wessnin",
+        "Alexander Aleksandrovich Vesnin",
+        "Alexander Aleksandrovic Vesnin"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1883,
+        "latest": 1883,
+        "precision": "day",
+        "value": "1883-05-16"
+      },
+      "claim_ids": [
+        "claim-wd-q2834123-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1959,
+        "latest": 1959,
+        "precision": "day",
+        "value": "1959-11-07"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2834123"
+      },
+      "id": "person-wd-q2834123",
+      "last_verified": "2026-08-22",
+      "name_en": "Alexander Vesnin",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Soviet Russian architect (1883–1959)",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -20889,6 +21529,47 @@
         "architect"
       ],
       "summary_en": "French architect (1819–1879)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1965,
+        "latest": 1965,
+        "precision": "year",
+        "value": "1965"
+      },
+      "claim_ids": [
+        "claim-wd-q3067023-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "GB",
+        "IR"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3067023"
+      },
+      "id": "person-wd-q3067023",
+      "last_verified": "2026-08-22",
+      "name_en": "Farshid Moussavi",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "transregional",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Iranian-born British architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -31748,6 +32429,88 @@
     },
     {
       "aliases_en": [
+        "Illarion Ivanov-Shits",
+        "Illarion Aleksandrovich Ivanov-Shits",
+        "Illarion Aleksandrovich Ivanov-Schitz"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1865,
+        "latest": 1865,
+        "precision": "day",
+        "value": "1865-03-28"
+      },
+      "claim_ids": [
+        "claim-wd-q4196379-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1937,
+        "latest": 1937,
+        "precision": "day",
+        "value": "1937-12-07"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q4196379"
+      },
+      "id": "person-wd-q4196379",
+      "last_verified": "2026-08-22",
+      "name_en": "Illarion Ivanov-Schitz",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Russian architect (1865–1937)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Lev Nikolayevich Kekushev"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1862,
+        "latest": 1862,
+        "precision": "day",
+        "value": "1862-02-07"
+      },
+      "claim_ids": [
+        "claim-wd-q4219049-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1917,
+        "latest": 1917,
+        "precision": "year",
+        "value": "1917"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q4219049"
+      },
+      "id": "person-wd-q4219049",
+      "last_verified": "2026-08-22",
+      "name_en": "Lev Kekushev",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Russian architect (1862-1917)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Karl Roesner",
         "Karl Rösner"
       ],
@@ -31876,6 +32639,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Ivan Sergeyevich Kuznetsov"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1867,
+        "latest": 1867,
+        "precision": "day",
+        "value": "1867-05-27"
+      },
+      "claim_ids": [
+        "claim-wd-q4244992-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1942,
+        "latest": 1942,
+        "precision": "day",
+        "value": "1942-06-03"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q4244992"
+      },
+      "id": "person-wd-q4244992",
+      "last_verified": "2026-08-22",
+      "name_en": "Ivan Kuznetsov",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Russian architect (1867-1942)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -31922,6 +32725,51 @@
       ],
       "summary_en": "Argentine architect (1928-1968)",
       "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1974,
+        "latest": 1974,
+        "precision": "day",
+        "value": "1974-10-02"
+      },
+      "claim_ids": [
+        "claim-wd-q429817-birth",
+        "claim-wd-q429817-external-ids",
+        "claim-wd-q429817-name-en",
+        "claim-wd-q429817-name-zh",
+        "claim-wd-q429817-name-zh-status",
+        "claim-wd-q429817-roles",
+        "claim-wd-q429817-summary-en",
+        "claim-wd-q429817-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q429817"
+      },
+      "id": "person-wd-q429817",
+      "last_verified": "2026-08-22",
+      "name_en": "Bjarke Ingels",
+      "name_native": null,
+      "name_zh": "比雅克·英格斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Danish architect (b.1974)",
+      "summary_zh": "丹麥建築師",
       "verification_status": "verified"
     },
     {
@@ -32300,6 +33148,54 @@
       "summary_en": "Austrian and Czech architect and art collector (1870-1933)",
       "summary_zh": "奥地利和捷克建筑师",
       "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1964,
+        "latest": 1964,
+        "precision": "day",
+        "value": "1964-03-19"
+      },
+      "claim_ids": [
+        "claim-wd-q444257-birth",
+        "claim-wd-q444257-country-codes",
+        "claim-wd-q444257-external-ids",
+        "claim-wd-q444257-name-en",
+        "claim-wd-q444257-name-zh",
+        "claim-wd-q444257-name-zh-status",
+        "claim-wd-q444257-region",
+        "claim-wd-q444257-roles",
+        "claim-wd-q444257-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q444257"
+      },
+      "id": "person-wd-q444257",
+      "last_verified": "2026-08-22",
+      "name_en": "Jeanne Gang",
+      "name_native": null,
+      "name_zh": "珍妮·甘",
+      "name_zh_status": "source_label_candidate",
+      "region": "north_america",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "American architect (born 1964)",
+      "summary_zh": "",
+      "verification_status": "verified"
     },
     {
       "aliases_en": [
@@ -33400,6 +34296,54 @@
     },
     {
       "aliases_en": [
+        "Nathalie De Vries"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1965,
+        "latest": 1965,
+        "precision": "day",
+        "value": "1965-03-22"
+      },
+      "claim_ids": [
+        "claim-wd-q469961-aliases-en",
+        "claim-wd-q469961-birth",
+        "claim-wd-q469961-external-ids",
+        "claim-wd-q469961-name-en",
+        "claim-wd-q469961-name-zh",
+        "claim-wd-q469961-name-zh-status",
+        "claim-wd-q469961-roles",
+        "claim-wd-q469961-summary-en",
+        "claim-wd-q469961-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q469961"
+      },
+      "id": "person-wd-q469961",
+      "last_verified": "2026-08-22",
+      "name_en": "Nathalie de Vries",
+      "name_native": null,
+      "name_zh": "娜莎莉·德·弗里斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Dutch architect (born 1965)",
+      "summary_zh": "荷蘭建築師",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
         "J J. P. Oud",
         "J.J.P. Oud",
         "J. J. Pieter Oud",
@@ -33891,6 +34835,48 @@
         "architect"
       ],
       "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Manuel Rocha de Aires Mateus"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1963,
+        "latest": 1963,
+        "precision": "year",
+        "value": "1963"
+      },
+      "claim_ids": [
+        "claim-wd-q47537785-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "PT"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q47537785"
+      },
+      "id": "person-wd-q47537785",
+      "last_verified": "2026-08-22",
+      "name_en": "Manuel Aires Mateus",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Portuguese architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -35085,6 +36071,47 @@
         "historian"
       ],
       "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Craig E. Dykers",
+        "Craig Edward Dykers"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1961,
+        "latest": 1961,
+        "precision": "year",
+        "value": "1961"
+      },
+      "claim_ids": [
+        "claim-wd-q5180916-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5180916"
+      },
+      "id": "person-wd-q5180916",
+      "last_verified": "2026-08-22",
+      "name_en": "Craig Dykers",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "American architect (born 1961)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -39007,6 +40034,49 @@
     },
     {
       "aliases_en": [
+        "Juan Navarro-Baldeweg"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1939,
+        "latest": 1939,
+        "precision": "day",
+        "value": "1939-06-11"
+      },
+      "claim_ids": [
+        "claim-wd-q601339-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q601339"
+      },
+      "id": "person-wd-q601339",
+      "last_verified": "2026-08-22",
+      "name_en": "Juan Navarro Baldeweg",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "craftsperson"
+      ],
+      "summary_en": "Spanish architect (born 1939)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Miguel Cruchaga"
       ],
       "aliases_zh": [],
@@ -40739,6 +41809,49 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Carillo da Garça",
+        "João Carrilho da Graça"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1952,
+        "latest": 1952,
+        "precision": "day",
+        "value": "1952-11-22"
+      },
+      "claim_ids": [
+        "claim-wd-q6298223-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "PT"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6298223"
+      },
+      "id": "person-wd-q6298223",
+      "last_verified": "2026-08-22",
+      "name_en": "João Luís Carrilho da Graça",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -41167,6 +42280,53 @@
     },
     {
       "aliases_en": [
+        "Ivan Il'ič Leonidov",
+        "Ivan Ivanovich Leonidov",
+        "Ivan Il'ich Leonidov",
+        "Ivan I. Leonidov",
+        "Ivan Ilich Leonidov",
+        "I. I. Leonidov",
+        "Ivan Ilyich Leonidov"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1902,
+        "latest": 1902,
+        "precision": "day",
+        "value": "1902-02-09"
+      },
+      "claim_ids": [
+        "claim-wd-q641667-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1959,
+        "latest": 1959,
+        "precision": "day",
+        "value": "1959-11-06"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q641667"
+      },
+      "id": "person-wd-q641667",
+      "last_verified": "2026-08-22",
+      "name_en": "Ivan Leonidov",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Soviet Russian architect (1902-1959)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Alphonse Jean Nicolas Boosten",
         "A.J.N. Boosten"
       ],
@@ -41325,6 +42485,58 @@
       ],
       "summary_en": "German architect (1925-2015)",
       "summary_zh": "德国建筑师",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
+        "Kunle Adeyemi",
+        "Adekunlé Adeyemi"
+      ],
+      "aliases_zh": [
+        "昆雷·阿德耶米"
+      ],
+      "birth": {
+        "earliest": 1976,
+        "latest": 1976,
+        "precision": "day",
+        "value": "1976-04-07"
+      },
+      "claim_ids": [
+        "claim-wd-q6444872-aliases-en",
+        "claim-wd-q6444872-aliases-zh",
+        "claim-wd-q6444872-birth",
+        "claim-wd-q6444872-external-ids",
+        "claim-wd-q6444872-name-en",
+        "claim-wd-q6444872-name-zh",
+        "claim-wd-q6444872-name-zh-status",
+        "claim-wd-q6444872-roles",
+        "claim-wd-q6444872-summary-en",
+        "claim-wd-q6444872-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6444872"
+      },
+      "id": "person-wd-q6444872",
+      "last_verified": "2026-08-22",
+      "name_en": "Kunlé Adeyemi",
+      "name_native": null,
+      "name_zh": "Kunlé Adeyemi",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "architect, urbanist, creative researcher",
+      "summary_zh": "尼日利亚建筑师",
       "verification_status": "verified"
     },
     {
@@ -47862,6 +49074,49 @@
     },
     {
       "aliases_en": [
+        "Albert Viaplana i Veà",
+        "Albert Viaplana i Vea"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1933,
+        "latest": 1933,
+        "precision": "year",
+        "value": "1933"
+      },
+      "claim_ids": [
+        "claim-wd-q8193419-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 2014,
+        "latest": 2014,
+        "precision": "day",
+        "value": "2014-05-14"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q8193419"
+      },
+      "id": "person-wd-q8193419",
+      "last_verified": "2026-08-22",
+      "name_en": "Albert Viaplana",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect (1933–2014)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Antoni Gilabert Fornes",
         "Antonio Gilabert",
         "Antonio Gilavert",
@@ -51979,6 +53234,48 @@
     },
     {
       "aliases_en": [
+        "Alejandro Zaera Polo"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1963,
+        "latest": 1963,
+        "precision": "day",
+        "value": "1963-10-17"
+      },
+      "claim_ids": [
+        "claim-wd-q966279-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q966279"
+      },
+      "id": "person-wd-q966279",
+      "last_verified": "2026-08-22",
+      "name_en": "Alejandro Zaera-Polo",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Oskar Mothes"
       ],
       "aliases_zh": [],
@@ -52151,6 +53448,48 @@
       ],
       "summary_en": "French architect (1764–1838)",
       "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1944,
+        "latest": 1944,
+        "precision": "day",
+        "value": "1944-01-09"
+      },
+      "claim_ids": [
+        "claim-wd-q969726-name-en",
+        "claim-wd-q969726-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q969726"
+      },
+      "id": "person-wd-q969726",
+      "last_verified": "2026-08-22",
+      "name_en": "Massimiliano Fuksas",
+      "name_native": null,
+      "name_zh": "馬希米拉諾·佛克薩斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Italian architect and designer (born 1944)",
+      "summary_zh": "意大利建築師和設計師",
       "verification_status": "candidate"
     },
     {
@@ -52416,6 +53755,47 @@
         "architect"
       ],
       "summary_en": "late Baroque Italian architect, most notable for his design of the Spanish Steps in Rome in collaboration with Alessandro Specchi",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Ivan Ivanovich Rerberg"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1869,
+        "latest": 1869,
+        "precision": "day",
+        "value": "1869-09-22"
+      },
+      "claim_ids": [
+        "claim-wd-q982097-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1932,
+        "latest": 1932,
+        "precision": "day",
+        "value": "1932-10-15"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q982097"
+      },
+      "id": "person-wd-q982097",
+      "last_verified": "2026-08-22",
+      "name_en": "Ivan Rerberg",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect",
+        "engineer"
+      ],
+      "summary_en": "Russian architect (1869–1932)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
