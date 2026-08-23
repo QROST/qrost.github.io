@@ -79,6 +79,7 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
   transition: all .15s; cursor: pointer;
 }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.btn-ghost:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .section-title { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; }
 .panel {
@@ -91,7 +92,8 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
 }
 .chart-h-md { width: 100%; height: 320px; }
 .chart-h-lg { width: 100%; height: 520px; }
-.chart-h-graph { width: 100%; height: 420px; }
+.chart-h-graph { width: 100%; height: 480px; }
+.chart-h-graph.is-deep { height: 560px; }
 
 .kpi-card {
   border: 1px solid var(--border); border-radius: 0.85rem; background: var(--bg-surface);
@@ -149,7 +151,8 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
 }
 
 .map-legend { display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 0.6rem 0.9rem; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--text-muted); }
-.map-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.map-legend .legend-sep { display: inline-block; width: 1px; height: 0.9rem; background: var(--border); margin: 0 0.15rem; vertical-align: middle; }
+.seg button:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .badge { display: inline-block; padding: 0.08rem 0.45rem; border-radius: 0.4rem; font-size: 0.66rem; font-weight: 500; line-height: 1.5; }
 .badge-tier-core { background: rgba(15,118,110,.15); color: #0f766e; }
@@ -189,6 +192,12 @@ html.dark .badge-grade-D { color: #f87171; }
   padding: 0.9rem 1rem; cursor: pointer; transition: border-color .15s;
 }
 .cluster-card:hover { border-color: var(--accent); }
+.cluster-card.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+  background: var(--accent-soft);
+}
+.cluster-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .cluster-card h3 { font-size: 0.95rem; font-weight: 600; }
 .cluster-card p { margin-top: 0.35rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.45; }
 

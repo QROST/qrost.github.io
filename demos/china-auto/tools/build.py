@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "assets" / "data"
 HTML = ROOT / "index.html"
-TOKEN_RE = re.compile(r"(\?v=)[0-9a-f]+")
+TOKEN_RE = re.compile(r"(\?v=)[^\"'\s>]+")
 VERSION_RE = re.compile(r"(window\.CHINA_AUTO_DATA_VERSION\s*=\s*')([^']*)(')")
 
 

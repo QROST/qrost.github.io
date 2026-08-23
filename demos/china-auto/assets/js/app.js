@@ -8,7 +8,8 @@
   var state = {
     map: { dim: 'output', role: '', cluster: '', tier: '', layer: 'cities' },
     cat: { search: '', tier: '', role: '', cluster: '', sort: 'output', dir: -1 },
-    org: { search: '', type: '', sort: 'type', dir: 1, groups: { identity: true, scale: true, product: true, network: false } }
+    org: { search: '', type: '', sort: 'type', dir: 1, groups: { identity: true, scale: true, product: true, network: false } },
+    cluster: { selected: '', layers: { hq: true, plants: true } }
   };
   var cityModalTab = 'tabOverview';
   var openCityId = null;
@@ -169,14 +170,66 @@
   }
 
   function renderClusters() {
+    var selected = state.cluster.selected;
     $('cluster-cards').innerHTML = D.clusters.map(function (cl) {
-      var cities = (cl.city_ids || []).map(function (id) { var c = D.getCity(id); return c ? I18N.name(c) : id; }).join(' · ');
-      return '<article class="cluster-card" data-cluster="' + esc(cl.id) + '">' +
+      var cityObjs = (cl.city_ids || []).map(function (id) { return D.getCity(id); }).filter(Boolean);
+      var cities = cityObjs.map(function (c) { return I18N.name(c); }).join(' · ');
+      var hqN = 0, plantN = 0;
+      cityObjs.forEach(function (c) {
+        hqN += D.orgsForCity(c.id).filter(function (o) {
+          return o.headquarters_city_id === c.id &&
+            ({ automaker: 1, brand: 1, battery_company: 1, supplier: 1, software_company: 1, chip_company: 1 })[o.organization_type];
+        }).length;
+        plantN += D.facilitiesForCity(c.id).length;
+      });
+      var note = I18N.pick(cl.output_note_zh, cl.output_note_en);
+      var on = selected === cl.id;
+      return '<article class="cluster-card' + (on ? ' active' : '') + '" data-cluster="' + esc(cl.id) +
+        '" role="button" tabindex="0" aria-pressed="' + (on ? 'true' : 'false') + '"' +
+        ' aria-label="' + esc(I18N.name(cl)) + '">' +
         '<h3>' + esc(I18N.name(cl)) + '</h3>' +
         '<p>' + esc(I18N.pick(cl.summary_zh, cl.summary_en)) + '</p>' +
-        '<p class="text-faint text-xs mt-2">' + I18N.t('citiesInCluster') + ': ' + esc(cities) + '</p></article>';
+        (note ? '<p class="text-faint text-xs mt-2">' + esc(note) + '</p>' : '') +
+        '<p class="text-faint text-xs mt-2">' + I18N.t('citiesInCluster') + ': ' + esc(cities) +
+        ' · ' + I18N.t('countHq') + ' ' + hqN + ' · ' + I18N.t('countPlants') + ' ' + plantN + '</p></article>';
     }).join('') || '<p class="loading">' + I18N.t('noData') + '</p>';
-    CH.renderClusterGraph(D.cities, D.relations, D.clusters, D.getCluster);
+
+    var hqBtn = $('cluster-layer-hq'), plantBtn = $('cluster-layer-plants'), resetBtn = $('cluster-reset');
+    var deep = !!selected;
+    if (hqBtn) {
+      hqBtn.classList.toggle('active', state.cluster.layers.hq);
+      hqBtn.disabled = !deep;
+      hqBtn.setAttribute('aria-pressed', state.cluster.layers.hq ? 'true' : 'false');
+    }
+    if (plantBtn) {
+      plantBtn.classList.toggle('active', state.cluster.layers.plants);
+      plantBtn.disabled = !deep;
+      plantBtn.setAttribute('aria-pressed', state.cluster.layers.plants ? 'true' : 'false');
+    }
+    if (resetBtn) resetBtn.disabled = !deep;
+    var graphEl = $('cluster-graph');
+    if (graphEl) graphEl.classList.toggle('is-deep', deep);
+
+    CH.renderClusterGraph({
+      cities: D.cities, relations: D.relations, clusters: D.clusters,
+      selectedClusterId: selected, layers: state.cluster.layers,
+      getCluster: D.getCluster, getStat: D.stat2025, getOrg: D.getOrg, getFacility: D.getFacility,
+      orgsForCity: D.orgsForCity, facilitiesForCity: D.facilitiesForCity,
+      mediaForCity: D.mediaForCity, institutionsForCity: D.institutionsForCity
+    });
+    CH.resizeAll();
+  }
+
+  function selectCluster(id, opts) {
+    opts = opts || {};
+    if (!id) state.cluster.selected = '';
+    else if (opts.toggle !== false && state.cluster.selected === id) state.cluster.selected = '';
+    else state.cluster.selected = id;
+    renderClusters();
+    if (opts.scroll) {
+      var g = $('cluster-graph');
+      if (g) g.scrollIntoView({ block: 'nearest' });
+    }
   }
 
   function parentName(o) {
@@ -722,8 +775,20 @@
     });
     $('cluster-cards').addEventListener('click', function (e) {
       var card = e.target.closest('[data-cluster]'); if (!card) return;
-      var cl = D.getCluster(card.getAttribute('data-cluster'));
-      if (cl && cl.city_ids && cl.city_ids[0]) openCityModal(cl.city_ids[0]);
+      selectCluster(card.getAttribute('data-cluster'), { toggle: true, scroll: true });
+    });
+    $('cluster-cards').addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var card = e.target.closest('[data-cluster]'); if (!card) return;
+      e.preventDefault();
+      selectCluster(card.getAttribute('data-cluster'), { toggle: true, scroll: true });
+    });
+    $('cluster-reset').addEventListener('click', function () { selectCluster('', { toggle: false }); });
+    $('cluster-layers').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-cluster-layer]'); if (!b || b.disabled) return;
+      var k = b.getAttribute('data-cluster-layer');
+      state.cluster.layers[k] = !state.cluster.layers[k];
+      renderClusters();
     });
 
     var catRoles = uniq(D.cities.reduce(function (a, c) { return a.concat(c.role_tags || []); }, []));
@@ -777,6 +842,6 @@
     }
   }
 
-  window.CHINA_AUTO_APP = { init: init, openCityModal: openCityModal };
+  window.CHINA_AUTO_APP = { init: init, openCityModal: openCityModal, openOrgModal: openOrgModal, selectCluster: selectCluster };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
