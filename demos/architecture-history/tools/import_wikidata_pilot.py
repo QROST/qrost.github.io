@@ -1337,8 +1337,6 @@ class CatalogBuilder:
     def is_lineage_anchor_qid(self, qid: str) -> bool:
         if self.is_practice_qid(qid):
             return True
-        if qid in self.person_seed_qids:
-            return True
         return self.is_architecture_occupation(qid)
 
     def ensure_lineage_person(
@@ -1361,10 +1359,10 @@ class CatalogBuilder:
         )
 
     def should_expand_lineage_from(self, qid: str) -> bool:
-        if self.is_lineage_anchor_qid(qid):
-            return True
-        person_id = entity_id("person", qid)
-        return person_id in self.people
+        # Expansion is stricter than display admission. A curated person seed
+        # and a one-hop non-architect endpoint can appear in the catalog, but
+        # neither becomes a new traversal source merely by being present.
+        return self.is_lineage_anchor_qid(qid)
 
     def ensure_practice(self, qid: str) -> Optional[str]:
         practice_id = entity_id("practice", qid)

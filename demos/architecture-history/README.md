@@ -9,7 +9,7 @@ global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
 The current catalog contains 1152 works, 1197 people, 63 practices, 57
-country-place records, 953 relationship edges, and 13921 source claims. Exact
+country-place records, 939 relationship edges, and 13,907 source claims. Exact
 direct-P31 mapping currently classifies 888 works, while 230 remain unmapped and
 34 remain ambiguous. Wikidata is the primary structured source; a refreshed
 24-anchor Getty ULAN P245 crosswalk is regenerated locally per re-hydrate
@@ -20,7 +20,7 @@ zero `ulan` external ids. Agentic verification (`reviewer-agentic-cursor`,
 2026-08-23) currently covers all 57 country places, all 63 practices, 257
 people, and 104 works (481 verified entities and relations). Known-period works
 stay candidate because `field_period` is only indirectly evidenced from
-P571/P1619. All 953 relations remain `candidate` by design — Wikidata's
+P571/P1619. All 939 relations remain `candidate` by design — Wikidata's
 relationship dimension is `candidate`-authority, so verified lineage requires a
 stronger source (Getty ULAN relationships, academic literature) than Wikidata
 alone provides.
@@ -34,6 +34,11 @@ full validate/test gate). The public JSON below is a projection; never hand-edit
 it. See `tools/README.md` for the complete edit flow and the Wikidata re-hydrate
 path.
 
+Evidence is accepted only from publishers registered as
+`independent_external`. QROST's own research briefs are never an information
+source or evidence authority. / 证据只接受登记为 `independent_external`
+的独立外部发布者；QROST 自写研究简报不作为信息来源或证据权威。
+
 The public data graph lives in `assets/data/`:
 
 - `source-registry.json` — source access, reuse, attribution, and bias decisions;
@@ -42,6 +47,14 @@ The public data graph lives in `assets/data/`:
 - `claims.json` — field- and relation-level evidence;
 - `relations.json` — typed relationships, never inferred from visual similarity;
 - `manifest.json` — content hashes, counts, and coverage derived by the build.
+
+The browser loads the entity graph first and fetches `claims.json` only when a
+reader opens an entity or relation detail. The deferred request is still bound
+to the manifest SHA-256 and record count; a failed evidence request leaves the
+summary usable, shows a retryable error, and never falls back to unverified
+bytes. The catalog filters and sorts the full in-memory entity set, then renders
+100 records per page (at most 200 record views across the desktop table and
+mobile card container).
 
 Work records preserve each named contributor, role, project phase, and claim.
 `credit_set_completeness` separately records whether that list is unknown,
@@ -124,6 +137,14 @@ not treated as mentorship without human reclassification and stronger evidence.
 Editorial verification is deliberately stored separately from source records.
 The library preserves candidate, contested, and declined states so readers can
 inspect uncertainty without silently rewriting the historical evidence.
+
+Curated person seeds are display-admission records, not lineage-expansion
+anchors. Only architecture-occupation people, credited contributors, and
+architecture practices can anchor the bounded relation traversal. An unmapped
+P106 occupation is published as `unknown`, never silently relabeled
+`historian`; curated theorists, historians, critics, and engineer-builders do
+not pull their unrelated neighbors into the graph merely because they were
+selected for display.
 
 ## Build
 

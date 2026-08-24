@@ -49,6 +49,20 @@ def human_record(qid: str, *, occupations: list[str] | None = None) -> dict:
 
 
 class PeoplePolicyTests(unittest.TestCase):
+    def test_unmapped_occupation_is_explicitly_unknown_not_historian(self):
+        record = human_record("Q900", occupations=["Q999999"])
+        self.assertEqual(
+            policy.derive_person_roles(record, role_from_credit=False),
+            ["unknown"],
+        )
+
+    def test_work_credit_is_the_only_unknown_occupation_architect_fallback(self):
+        record = human_record("Q900", occupations=["Q999999"])
+        self.assertEqual(
+            policy.derive_person_roles(record, role_from_credit=True),
+            ["architect"],
+        )
+
     def test_drops_confucius_without_architecture_anchor(self):
         people = [
             person("person-wd-q42973", "Q42973", name_en="Architect Seed"),

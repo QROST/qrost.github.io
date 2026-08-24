@@ -78,10 +78,14 @@ class PageContractTests(unittest.TestCase):
             "status-filter",
             "catalog-table-body",
             "catalog-card-list",
+            "catalog-prev",
+            "catalog-next",
+            "catalog-page-status",
             "lineage-graph",
             "lineage-list",
             "coverage-matrix",
             "source-grid",
+            "source-registry-copy",
             "detail-modal",
             "detail-close",
             "init-error",
@@ -183,13 +187,36 @@ class PageContractTests(unittest.TestCase):
         self.assertNotIn("source-snapshots/", self.loader)
         self.assertNotIn("catalog/", self.loader)
 
+    def test_claims_are_lazy_and_not_in_the_initial_request_set(self) -> None:
+        initial_files = re.search(
+            r"const INITIAL_FILES = \{(?P<body>.*?)\n  \};",
+            self.loader,
+            flags=re.DOTALL,
+        )
+        self.assertIsNotNone(initial_files)
+        self.assertNotIn("claims.json", initial_files.group("body"))
+        self.assertIn("const CLAIMS_FILE = 'claims.json';", self.loader)
+        self.assertIn("async function loadClaims()", self.loader)
+        self.assertIn("Object.entries(INITIAL_FILES)", self.loader)
+        self.assertIn("loadClaims: loadClaims", self.loader)
+        for phrase in (
+            "fetchJson(CLAIMS_FILE, expected)",
+            "assertArray(payload, 'claims', CLAIMS_FILE)",
+            "assertCount(",
+            "claimsPromise = null",
+        ):
+            self.assertIn(phrase, self.loader)
+        self.assertIn("loader.loadClaims()", self.app)
+        self.assertIn("Architecture claims failed:", self.app)
+        self.assertIn("data-retry-claims", self.app)
+
     def test_loader_verifies_manifest_hashes_and_counts(self) -> None:
         for phrase in (
             "response.arrayBuffer()",
             "window.crypto.subtle.digest('SHA-256', bytes)",
             "actual !== expectedFile.sha256",
             "records.length !== expected.count",
-            "fetchJson(FILES.manifest, { sha256: MANIFEST_SHA256 })",
+            "fetchJson(MANIFEST_FILE, { sha256: MANIFEST_SHA256 })",
             "manifest.hash_algorithm !== 'sha256'",
         ):
             self.assertIn(phrase, self.loader)
@@ -248,6 +275,48 @@ class PageContractTests(unittest.TestCase):
         self.assertIn("i18n.t('claimsCount', { count: claims.length })", self.app)
         self.assertIn("</ul></details>", self.app)
 
+    def test_catalog_rendering_is_bounded_but_filters_the_full_catalog(self) -> None:
+        for phrase in (
+            "const CATALOG_PAGE_SIZE = 100;",
+            "const rows = filteredEntities();",
+            "rows.slice(startIndex, startIndex + CATALOG_PAGE_SIZE)",
+            "body.innerHTML = pageRows.map",
+            "mobile.innerHTML = pageRows.map",
+            "state.catalogPage = 1",
+        ):
+            self.assertIn(phrase, self.app)
+        for element_id in ("catalog-prev", "catalog-next", "catalog-page-status"):
+            self.assertIn(f'id="{element_id}"', self.html)
+        self.assertIn(
+            "grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr)",
+            self.css,
+        )
+        self.assertIn("overflow-wrap: anywhere", self.css)
+
+    def test_public_counts_are_derived_from_current_data(self) -> None:
+        combined = self.html + self.i18n
+        for stale in ("719/754", "719 of 754", "11 条 Getty", "11 reciprocal Getty"):
+            self.assertNotIn(stale, combined)
+        for phrase in (
+            "state.data.works.filter(hasCoordinates).length",
+            "state.data.people.filter",
+            "person.external_ids.ulan",
+            "source-registry-copy",
+        ):
+            self.assertIn(phrase, self.app + self.html)
+        self.assertNotIn(
+            'id="source-registry-copy" data-i18n="sourceRegistryCopy"',
+            self.html,
+        )
+
+    def test_public_methodology_excludes_qrost_self_authored_briefs(self) -> None:
+        for phrase in (
+            "independent_external",
+            "QROST 自写研究简报不作为信息来源或证据",
+            "research briefs authored by QROST are never an information source",
+        ):
+            self.assertIn(phrase, self.html + self.i18n)
+
     def test_source_derived_period_filter_is_wired_without_claiming_coverage(self) -> None:
         for phrase in (
             "period: 'all'",
@@ -302,12 +371,13 @@ class PageContractTests(unittest.TestCase):
         self.assertIn("agentic verification", self.html + self.i18n)
 
     def test_lineage_graph_is_person_to_person_only(self) -> None:
-        self.assertNotIn('data-lineage-type="worked_at_practice"', self.html)
-        self.assertNotIn('data-lineage-type="cofounded_with"', self.html)
         self.assertIn('data-lineage-type="student_of_recorded"', self.html)
         self.assertIn('data-lineage-type="documented_influence"', self.html)
-        self.assertNotIn("lineageTypePractice", self.html + self.i18n)
-        self.assertNotIn("lineageTypeCofounded", self.html + self.i18n)
+        self.assertIn('data-lineage-type="worked_at_practice"', self.html)
+        self.assertIn('data-lineage-type="worked_for"', self.html)
+        self.assertIn('data-lineage-type="cofounded_with"', self.html)
+        self.assertIn("const ALL_RELATION_TYPES", self.app)
+        self.assertIn("const graphRelations = relations.filter", self.app)
         for phrase in (
             "isPersonLineageEndpoint",
             "personLineageReviewRelations",
@@ -316,7 +386,7 @@ class PageContractTests(unittest.TestCase):
             "PRACTICE_AFFILIATION_TYPES",
         ):
             self.assertIn(phrase, self.app + self.i18n)
-        self.assertIn("!isPersonLineageEndpoint(relation.from_id)", self.app)
+        self.assertIn("isPersonLineageEndpoint(relation.from_id) &&", self.app)
         self.assertIn("entity_type !== 'person'", self.maps)
 
     def test_social_preview_is_declared_and_present(self) -> None:

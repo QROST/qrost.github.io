@@ -28,7 +28,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/css/tailwind-built.css?v=cabadb5821">
-  <link rel="stylesheet" href="assets/css/architecture-history.css?v=6d95be333d">
+  <link rel="stylesheet" href="assets/css/architecture-history.css?v=b318c6522c">
 </head>
 <body>
   <a class="skip-link" href="#main-content" data-i18n="skipToContent">跳到主要内容</a>
@@ -144,7 +144,7 @@
         </div>
         <div class="map-footer">
           <div id="map-legend" class="map-legend" aria-label="区域图例" data-i18n-aria-label="regionLegendLabel"></div>
-          <p id="map-note" data-i18n="mapNote">719/754 件种子作品带来源坐标；其余 35 件保持坐标缺失，不猜测补齐。</p>
+          <p id="map-note">坐标覆盖由当前数据清单计算。</p>
         </div>
       </div>
       <details class="coordinate-details">
@@ -243,6 +243,11 @@
         </table>
       </div>
       <div id="catalog-card-list" class="catalog-card-list"></div>
+      <nav class="catalog-pagination" aria-label="目录分页" data-i18n-aria-label="catalogPaginationAria">
+        <button id="catalog-prev" class="secondary-button" type="button" data-i18n="catalogPrevious">上一页</button>
+        <span id="catalog-page-status" aria-live="polite">—</span>
+        <button id="catalog-next" class="secondary-button" type="button" data-i18n="catalogNext">下一页</button>
+      </nav>
       <div id="catalog-empty" class="empty-state hidden">
         <strong data-i18n="emptyTitle">没有符合条件的记录</strong>
         <p data-i18n="emptyCopy">请放宽筛选条件，或重置后重新搜索。</p>
@@ -254,7 +259,7 @@
         <div>
           <p class="section-kicker" data-i18n="lineageKicker">03 · 待审知识传递</p>
           <h2 id="lineage-title" data-i18n="lineageTitle">原始关系复核图</h2>
-          <p data-i18n="lineageIntro">这些虚线边来自 Wikidata P1066/P802 的原始记录，只表示待审的“前序人物 → 后续人物”线索；不能自动解释为教师、导师或师徒。任职与创立关系见人物详情，不在此图中展示。</p>
+          <p data-i18n="lineageIntro">图中虚线只展示人物间的学习与影响线索；右侧清单还可筛选任职、门下任职与共同创立。全部关系均为来源记录的候选线索，不能自动证明师承。</p>
         </div>
         <div class="section-stat"><strong id="lineage-count">—</strong><span data-i18n="lineageCountLabel">条候选待审边</span></div>
       </div>
@@ -274,6 +279,9 @@
         <div class="lineage-type-tabs">
           <button type="button" class="active" data-lineage-type="student_of_recorded" aria-pressed="true"><span data-i18n="lineageTypeStudent">学习关系</span></button>
           <button type="button" class="active" data-lineage-type="documented_influence" aria-pressed="true"><span data-i18n="lineageTypeInfluence">影响关系</span></button>
+          <button type="button" data-lineage-type="worked_at_practice" aria-pressed="false"><span data-i18n="lineageTypePractice">事务所任职</span></button>
+          <button type="button" data-lineage-type="worked_for" aria-pressed="false"><span data-i18n="lineageTypeWorkedFor">门下任职</span></button>
+          <button type="button" data-lineage-type="cofounded_with" aria-pressed="false"><span data-i18n="lineageTypeCofounded">共同创立</span></button>
         </div>
       </div>
       <div id="lineage-empty" class="empty-state hidden">
@@ -339,7 +347,7 @@
         <article>
           <span class="method-number">01</span>
           <h3 data-i18n="methodOneTitle">先接权威聚合</h3>
-          <p data-i18n="methodOneCopy">优先接入 Wikidata、Getty Vocabularies、Archnet、SAH Archipedia 等已有知识组织，减少重复劳动。</p>
+          <p data-i18n="methodOneCopy">优先接入已登记的外部知识组织；证据只接受 independent_external 发布者，QROST 自写研究简报不作为信息来源或证据。</p>
         </article>
         <article>
           <span class="method-number">02</span>
@@ -361,7 +369,7 @@
       <div class="source-heading">
         <div>
           <h3 data-i18n="sourceRegistryTitle">来源登记表</h3>
-          <p data-i18n="sourceRegistryCopy">显示本项目计划复用的来源、许可决策与当前适配状态。当前发布目录以钉死修订的 Wikidata 种子作品为主体，并加入 11 条 Getty ULAN 双向身份候选。</p>
+          <p id="source-registry-copy">显示计划复用的来源、许可决策与适配状态；公开 ULAN 标识数量由当前人物数据计算，身份候选不构成关系证据。</p>
         </div>
         <span id="source-count">—</span>
       </div>
@@ -406,9 +414,9 @@
     src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
     integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
     crossorigin="anonymous"></script>
-  <script src="assets/js/i18n.js?v=e5b8d607d1"></script>
-  <script src="assets/js/data-loader.js?v=d6812ac268"></script>
+  <script src="assets/js/i18n.js?v=04cab5e364"></script>
+  <script src="assets/js/data-loader.js?v=623a1d4e71"></script>
   <script src="assets/js/maps.js?v=d6fe1f36f1"></script>
-  <script src="assets/js/app.js?v=e7303bb7fd"></script>
+  <script src="assets/js/app.js?v=7116489897"></script>
 </body>
 </html>

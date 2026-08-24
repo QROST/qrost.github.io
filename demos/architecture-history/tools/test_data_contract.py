@@ -189,7 +189,7 @@ class DataContractTests(unittest.TestCase):
             },
             "queries": [
                 {
-                    "cell_id": "fixture-cell",
+                    "cell_id": "unknown__unknown",
                     "region": "unknown",
                     "country_code": "US",
                     "country_qid": "Q30",
@@ -307,6 +307,80 @@ class DataContractTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("unexpected property 'invented_permission'", result.stderr)
 
+    def test_cross_domain_self_authored_source_is_rejected(self):
+        temp = self.isolated_root()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        registry_path = root / "assets" / "data" / "source-registry.json"
+        payload = json.loads(registry_path.read_text(encoding="utf-8"))
+        payload["sources"][0]["publisher_origin"] = "self_authored"
+        payload["sources"][0]["landing_url"] = (
+            "https://independent.example.org/qrost-research-brief"
+        )
+        registry_path.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        (root / "assets" / "data" / "manifest.json").unlink()
+        result = self.run_validator(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "self-authored/internal sources cannot serve as research authority",
+            result.stderr,
+        )
+
+    def test_qrost_and_local_authority_urls_are_rejected(self):
+        temp = self.isolated_root()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        self.add_malicious_relation_fixture(root)
+        data = root / "assets" / "data"
+        registry_path = data / "source-registry.json"
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+        registry["sources"][0]["landing_url"] = (
+            "https://qrost.github.io/research-brief"
+        )
+        registry["sources"][0]["access"]["docs_url"] = (
+            "http://localhost/internal-brief"
+        )
+        registry_path.write_text(
+            json.dumps(registry, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        claims_path = data / "claims.json"
+        claims = json.loads(claims_path.read_text(encoding="utf-8"))
+        claims["claims"][0]["evidence"][0]["url"] = (
+            "https://qrost.github.io/internal-evidence"
+        )
+        claims_path.write_text(
+            json.dumps(claims, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        result = self.run_validator(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "landing_url: QROST-owned URLs cannot serve as research authority",
+            result.stderr,
+        )
+        self.assertIn(
+            "access.docs_url: local hostnames cannot serve as research authority",
+            result.stderr,
+        )
+        self.assertIn(
+            "evidence URL: QROST-owned URLs cannot serve as research authority",
+            result.stderr,
+        )
+
+    def test_authority_url_helper_rejects_non_public_paths(self):
+        for value in (
+            "file:///tmp/internal-brief.json",
+            "../internal-brief.json",
+            "http://127.0.0.1/research",
+            "http://intranet/research",
+        ):
+            with self.subTest(value=value):
+                self.assertIsNotNone(validator.authority_url_rejection(value))
+
     def test_duplicate_source_id_fails(self):
         temp = self.isolated_root()
         self.addCleanup(temp.cleanup)
@@ -389,7 +463,7 @@ class DataContractTests(unittest.TestCase):
         }
         coverage["queries"] = [
             {
-                "cell_id": "schema-cell",
+                "cell_id": "unknown__unknown",
                 "region": "unknown",
                 "country_code": "US",
                 "country_qid": "Q30",

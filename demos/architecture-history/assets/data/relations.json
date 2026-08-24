@@ -3829,28 +3829,6 @@
       "verification_status": "candidate"
     },
     {
-      "claim_id": "claim-relation-wd-documented-influence-q20882-q117851407",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded influence edge: Gustave Eiffel → François Rigolet. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
-        "note_zh": "待审影响边：居斯塔夫·埃菲尔 → François Rigolet。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q20882",
-      "id": "relation-wd-documented-influence-q20882-q117851407",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "documented_influence",
-      "to_id": "person-wd-q117851407",
-      "verification_status": "candidate"
-    },
-    {
       "claim_id": "claim-relation-wd-documented-influence-q214564-q45055",
       "confidence": 0.45,
       "context": {
@@ -3939,50 +3917,6 @@
       "verification_status": "candidate"
     },
     {
-      "claim_id": "claim-relation-wd-documented-influence-q2658411-q42309940",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded influence edge: Bahāʾ al-dīn al-ʿĀmilī → Jawad ibn Sa'd al-Kadhimi. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
-        "note_zh": "待审影响边：巴哈丁·阿米里 → Jawad ibn Sa'd al-Kadhimi。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q2658411",
-      "id": "relation-wd-documented-influence-q2658411-q42309940",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "documented_influence",
-      "to_id": "person-wd-q42309940",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-documented-influence-q320118-q41554",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded influence edge: Domenichino → Nicolas Poussin. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
-        "note_zh": "待审影响边：多梅尼基諾 → 尼古拉·普桑。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q320118",
-      "id": "relation-wd-documented-influence-q320118-q41554",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "documented_influence",
-      "to_id": "person-wd-q41554",
-      "verification_status": "candidate"
-    },
-    {
       "claim_id": "claim-relation-wd-documented-influence-q335112-q11812",
       "confidence": 0.45,
       "context": {
@@ -4024,28 +3958,6 @@
       ],
       "relation_type": "documented_influence",
       "to_id": "person-wd-q9391",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-documented-influence-q371979-q2746989",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded influence edge: Pierre Puget → Jean Antoine Injalbert. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
-        "note_zh": "待审影响边：Pierre Puget → 让-安托万·安雅尔贝。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q371979",
-      "id": "relation-wd-documented-influence-q371979-q2746989",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "documented_influence",
-      "to_id": "person-wd-q2746989",
       "verification_status": "candidate"
     },
     {
@@ -4247,28 +4159,6 @@
       "verification_status": "candidate"
     },
     {
-      "claim_id": "claim-relation-wd-documented-influence-q4724-q234335",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded influence edge: Le Corbusier → Jane Jacobs. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
-        "note_zh": "待审影响边：勒·柯布西耶 → 简·雅各布斯。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q4724",
-      "id": "relation-wd-documented-influence-q4724-q234335",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "documented_influence",
-      "to_id": "person-wd-q234335",
-      "verification_status": "candidate"
-    },
-    {
       "claim_id": "claim-relation-wd-documented-influence-q51137-q122363",
       "confidence": 0.45,
       "context": {
@@ -4332,28 +4222,6 @@
       ],
       "relation_type": "documented_influence",
       "to_id": "person-wd-q325930",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-documented-influence-q60028-q33760",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded influence edge: Gottlob Frege → Bertrand Russell. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
-        "note_zh": "待审影响边：戈特洛布·弗雷格 → 伯特兰·罗素。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q60028",
-      "id": "relation-wd-documented-influence-q60028-q33760",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "documented_influence",
-      "to_id": "person-wd-q33760",
       "verification_status": "candidate"
     },
     {
@@ -4442,72 +4310,6 @@
       ],
       "relation_type": "documented_influence",
       "to_id": "person-wd-q1801886",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-documented-influence-q9391-q229646",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded influence edge: Ludwig Wittgenstein → G. E. M. Anscombe. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
-        "note_zh": "待审影响边：路德维希·维特根斯坦 → 伊莉莎白·安斯康姆。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q9391",
-      "id": "relation-wd-documented-influence-q9391-q229646",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "documented_influence",
-      "to_id": "person-wd-q229646",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-documented-influence-q9391-q33760",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded influence edge: Ludwig Wittgenstein → Bertrand Russell. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
-        "note_zh": "待审影响边：路德维希·维特根斯坦 → 伯特兰·罗素。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q9391",
-      "id": "relation-wd-documented-influence-q9391-q33760",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "documented_influence",
-      "to_id": "person-wd-q33760",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-documented-influence-q9391-q4725710",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded influence edge: Ludwig Wittgenstein → Alice Ambrose. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
-        "note_zh": "待审影响边：路德维希·维特根斯坦 → 艾丽斯·安布罗斯。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q9391",
-      "id": "relation-wd-documented-influence-q9391-q4725710",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "documented_influence",
-      "to_id": "person-wd-q4725710",
       "verification_status": "candidate"
     },
     {
@@ -4816,28 +4618,6 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q898689",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-student-recorded-q121091803-q29422184",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": 1912,
-        "institution_id": null,
-        "note_en": "Recorded edge: Eugen Mayer → Gustav Beran. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
-        "note_zh": "待审记录边：Eugen Mayer → Gustav Beran。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q121091803",
-      "id": "relation-wd-student-recorded-q121091803-q29422184",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "student_of_recorded",
-      "to_id": "person-wd-q29422184",
       "verification_status": "candidate"
     },
     {
@@ -5520,28 +5300,6 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q95485556",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-student-recorded-q16052580-q5802395",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded edge: Muhammad Taqi al-Majlisi → Mulla Salih Mazandarani. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
-        "note_zh": "待审记录边：Muhammad Taqi al-Majlisi → Mulla Salih Mazandarani。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q16052580",
-      "id": "relation-wd-student-recorded-q16052580-q5802395",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "student_of_recorded",
-      "to_id": "person-wd-q5802395",
       "verification_status": "candidate"
     },
     {
@@ -12604,28 +12362,6 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q465917",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-student-recorded-q37562-q828363",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": 1435,
-        "institution_id": null,
-        "note_en": "Recorded edge: Donatello → Bertoldo di Giovanni. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
-        "note_zh": "待审记录边：多那太羅 → 贝托尔多·迪·乔瓦尼。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q37562",
-      "id": "relation-wd-student-recorded-q37562-q828363",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "student_of_recorded",
-      "to_id": "person-wd-q828363",
       "verification_status": "candidate"
     },
     {
@@ -20417,28 +20153,6 @@
       "verification_status": "candidate"
     },
     {
-      "claim_id": "claim-relation-wd-worked-for-q117851407-q20882",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded employment-under edge: François Rigolet → Gustave Eiffel. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
-        "note_zh": "待审任职边：François Rigolet → 居斯塔夫·埃菲尔。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q117851407",
-      "id": "relation-wd-worked-for-q117851407-q20882",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "worked_for",
-      "to_id": "person-wd-q20882",
-      "verification_status": "candidate"
-    },
-    {
       "claim_id": "claim-relation-wd-worked-for-q1187770-q186265",
       "confidence": 0.45,
       "context": {
@@ -20766,28 +20480,6 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q352451",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-worked-for-q37562-q208125",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded employment-under edge: Donatello → Lorenzo Ghiberti. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
-        "note_zh": "待审任职边：多那太羅 → 洛伦佐·吉贝尔蒂。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q37562",
-      "id": "relation-wd-worked-for-q37562-q208125",
-      "last_verified": "2026-08-23",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "worked_for",
-      "to_id": "person-wd-q208125",
       "verification_status": "candidate"
     },
     {

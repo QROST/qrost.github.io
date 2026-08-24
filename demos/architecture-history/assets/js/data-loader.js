@@ -2,23 +2,26 @@
 (function () {
   'use strict';
 
-  const DATA_VERSION = 'a0d23716de144082f7fede3bc3f28378ee2a8f2e37b0a7da27ce5aa64ec1da79';
-  const MANIFEST_SHA256 = '4814c5ff7b633d363a20ca985462e0dfe3271bcc58a93ac74bd04d81b56195db';
+  const DATA_VERSION = '5f236aaf60a6d1ab6366eafa6e13dc385fbdab82de9c1ab999c67a14e7647ca3';
+  const MANIFEST_SHA256 = '56be55b6a9eeef48641d50faf3aa4b77a77f06c7430bf17625811bd8dd8989f0';
   const SCHEMA_ID = 'architecture-lineages';
   const SCHEMA_VERSION = '1.5.0';
-  const FILES = {
-    manifest: 'manifest.json',
+  const MANIFEST_FILE = 'manifest.json';
+  const CLAIMS_FILE = 'claims.json';
+  const INITIAL_FILES = {
     works: 'works.json',
     people: 'people.json',
     practices: 'practices.json',
     places: 'places.json',
     relations: 'relations.json',
-    claims: 'claims.json',
     sources: 'source-registry.json',
     coverageConfig: 'methodology/wikidata-coverage-config.json',
   };
 
   let cache = null;
+  let manifestCache = null;
+  let claimsCache = null;
+  let claimsPromise = null;
 
   function assertArray(payload, key, filename) {
     if (!payload || !Array.isArray(payload[key])) {
@@ -70,7 +73,7 @@
 
   async function load() {
     if (cache) return cache;
-    const manifest = await fetchJson(FILES.manifest, { sha256: MANIFEST_SHA256 });
+    const manifest = await fetchJson(MANIFEST_FILE, { sha256: MANIFEST_SHA256 });
     if (
       !manifest ||
       manifest.schema_id !== SCHEMA_ID ||
@@ -81,9 +84,7 @@
       throw new Error('Data manifest and loader version do not match');
     }
     const entries = await Promise.all(
-      Object.entries(FILES).filter(function (entry) {
-        return entry[0] !== 'manifest';
-      }).map(async function (entry) {
+      Object.entries(INITIAL_FILES).map(async function (entry) {
         const expected = manifest.files && manifest.files[entry[1]];
         if (!expected) throw new Error('Manifest does not declare ' + entry[1]);
         return [entry[0], await fetchJson(entry[1], expected)];
@@ -93,30 +94,73 @@
     const data = {
       manifest: raw.manifest,
       coverageConfig: raw.coverageConfig,
-      works: assertCount(assertArray(raw.works, 'works', FILES.works), manifest, FILES.works),
-      people: assertCount(assertArray(raw.people, 'people', FILES.people), manifest, FILES.people),
+      works: assertCount(
+        assertArray(raw.works, 'works', INITIAL_FILES.works),
+        manifest,
+        INITIAL_FILES.works
+      ),
+      people: assertCount(
+        assertArray(raw.people, 'people', INITIAL_FILES.people),
+        manifest,
+        INITIAL_FILES.people
+      ),
       practices: assertCount(
-        assertArray(raw.practices, 'practices', FILES.practices),
+        assertArray(raw.practices, 'practices', INITIAL_FILES.practices),
         manifest,
-        FILES.practices
+        INITIAL_FILES.practices
       ),
-      places: assertCount(assertArray(raw.places, 'places', FILES.places), manifest, FILES.places),
+      places: assertCount(
+        assertArray(raw.places, 'places', INITIAL_FILES.places),
+        manifest,
+        INITIAL_FILES.places
+      ),
       relations: assertCount(
-        assertArray(raw.relations, 'relations', FILES.relations),
+        assertArray(raw.relations, 'relations', INITIAL_FILES.relations),
         manifest,
-        FILES.relations
+        INITIAL_FILES.relations
       ),
-      claims: assertCount(assertArray(raw.claims, 'claims', FILES.claims), manifest, FILES.claims),
-      sources: assertCount(assertArray(raw.sources, 'sources', FILES.sources), manifest, FILES.sources),
+      sources: assertCount(
+        assertArray(raw.sources, 'sources', INITIAL_FILES.sources),
+        manifest,
+        INITIAL_FILES.sources
+      ),
       dataVersion: DATA_VERSION,
     };
+    manifestCache = manifest;
     cache = data;
     return data;
+  }
+
+  async function loadClaims() {
+    if (claimsCache) return claimsCache;
+    if (claimsPromise) return claimsPromise;
+    claimsPromise = (async function () {
+      if (!manifestCache) await load();
+      const expected = manifestCache.files && manifestCache.files[CLAIMS_FILE];
+      if (!expected) throw new Error('Manifest does not declare ' + CLAIMS_FILE);
+      const payload = await fetchJson(CLAIMS_FILE, expected);
+      const records = assertCount(
+        assertArray(payload, 'claims', CLAIMS_FILE),
+        manifestCache,
+        CLAIMS_FILE
+      );
+      claimsCache = records;
+      return records;
+    })();
+    try {
+      return await claimsPromise;
+    } catch (error) {
+      // A transient local-server or cache failure can be retried from the
+      // visible detail fallback without weakening hash/count validation.
+      claimsPromise = null;
+      throw error;
+    }
   }
 
   window.ARCH_DATA = {
     DATA_VERSION: DATA_VERSION,
     MANIFEST_SHA256: MANIFEST_SHA256,
     load: load,
+    loadClaims: loadClaims,
   };
 })();

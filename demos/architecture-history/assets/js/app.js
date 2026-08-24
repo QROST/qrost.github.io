@@ -11,6 +11,9 @@
     entities: [],
     entitiesById: {},
     claimsById: {},
+    claimsStatus: 'idle',
+    claimsPromise: null,
+    claimsError: '',
     relationsById: {},
     worksByContributor: {},
     worksByPlace: {},
@@ -26,6 +29,7 @@
       hasCredits: false,
     },
     sort: { key: 'name', direction: 'ascending' },
+    catalogPage: 1,
     detailEntityId: null,
     detailRelationId: null,
     lastFocused: null,
@@ -42,6 +46,14 @@
     'student_of_recorded',
     'documented_influence',
   ];
+
+  const ALL_RELATION_TYPES = LINEAGE_RELATION_TYPES.concat([
+    'worked_at_practice',
+    'worked_for',
+    'cofounded_with',
+  ]);
+
+  const CATALOG_PAGE_SIZE = 100;
 
   const PRACTICE_AFFILIATION_TYPES = new Set([
     'worked_at_practice',
@@ -197,9 +209,7 @@
     state.entitiesById = Object.fromEntries(state.entities.map(function (entity) {
       return [entity.id, entity];
     }));
-    state.claimsById = Object.fromEntries(data.claims.map(function (claim) {
-      return [claim.id, claim];
-    }));
+    state.claimsById = {};
     state.relationsById = Object.fromEntries(data.relations.map(function (relation) {
       return [relation.id, relation];
     }));
@@ -234,6 +244,18 @@
     putText('#tab-count-person', state.data.people.length);
     putText('#tab-count-practice', state.data.practices.length);
     putText('#tab-count-place', state.data.places.length);
+    const coordinateCount = state.data.works.filter(hasCoordinates).length;
+    putText('#map-note', i18n.t('mapNote', {
+      withCoordinates: coordinateCount,
+      total: state.data.works.length,
+      missing: state.data.works.length - coordinateCount,
+    }));
+    const ulanCount = state.data.people.filter(function (person) {
+      return Boolean(person.external_ids && person.external_ids.ulan);
+    }).length;
+    putText('#source-registry-copy', i18n.t('sourceRegistryCopy', {
+      count: ulanCount,
+    }));
   }
 
   function renderRegionOptions() {
@@ -318,12 +340,25 @@
 
   function renderCatalog() {
     const rows = filteredEntities();
+    const totalPages = Math.max(1, Math.ceil(rows.length / CATALOG_PAGE_SIZE));
+    state.catalogPage = Math.min(Math.max(1, state.catalogPage), totalPages);
+    const startIndex = (state.catalogPage - 1) * CATALOG_PAGE_SIZE;
+    const pageRows = rows.slice(startIndex, startIndex + CATALOG_PAGE_SIZE);
     putText('#result-summary', i18n.t('resultCount', {
       shown: rows.length,
       total: state.entities.length,
     }));
+    putText('#catalog-page-status', i18n.t('catalogPageStatus', {
+      start: rows.length ? startIndex + 1 : 0,
+      end: startIndex + pageRows.length,
+      filtered: rows.length,
+    }));
+    const previous = $('#catalog-prev');
+    const next = $('#catalog-next');
+    previous.disabled = state.catalogPage <= 1;
+    next.disabled = state.catalogPage >= totalPages;
     const body = $('#catalog-table-body');
-    body.innerHTML = rows.map(function (entity) {
+    body.innerHTML = pageRows.map(function (entity) {
       const primary = i18n.name(entity);
       const secondary = i18n.secondaryName(entity) || (!entity.name_zh ? i18n.t('noChineseLabel') : '');
       return '<tr data-row-entity="' + escapeHtml(entity.id) + '">' +
@@ -341,7 +376,7 @@
     }).join('');
 
     const mobile = $('#catalog-card-list');
-    mobile.innerHTML = rows.map(function (entity) {
+    mobile.innerHTML = pageRows.map(function (entity) {
       const secondary = i18n.secondaryName(entity) || (!entity.name_zh ? i18n.t('noChineseLabel') : '');
       return '<button class="catalog-mobile-card" type="button" data-open-entity="' + escapeHtml(entity.id) + '">' +
         '<span><strong>' + escapeHtml(i18n.name(entity)) + '</strong>' + statusChip(entity) + '</span>' +
@@ -435,9 +470,8 @@
     const filters = state.lineageFilters;
     const query = normalize(filters.query);
     return state.data.relations.filter(function (relation) {
+      if (!ALL_RELATION_TYPES.includes(relation.relation_type)) return false;
       if (!filters.relationTypes.has(relation.relation_type)) return false;
-      if (!isPersonLineageEndpoint(relation.from_id) ||
-        !isPersonLineageEndpoint(relation.to_id)) return false;
       if (!query) return true;
       return relationEndpointMatchesQuery(relation.from_id, query) ||
         relationEndpointMatchesQuery(relation.to_id, query);
@@ -484,11 +518,11 @@
   }
 
   function renderLineage() {
-    const total = personLineageReviewRelations().length;
+    const total = state.data.relations.length;
     const relations = filteredLineageRelations();
     putText('#lineage-count', relations.length + ' / ' + total);
     const edgeless = lineageEdgelessPersonMatches(
-      relations,
+      personLineageReviewRelations(),
       normalize(state.lineageFilters.query)
     );
     renderLineageEdgeless(edgeless);
@@ -516,9 +550,14 @@
         '<small>' + escapeHtml(note) + '</small>' +
       '</li>';
     }).join('');
+    const graphRelations = relations.filter(function (relation) {
+      return LINEAGE_RELATION_TYPES.includes(relation.relation_type) &&
+        isPersonLineageEndpoint(relation.from_id) &&
+        isPersonLineageEndpoint(relation.to_id);
+    });
     let ok = false;
     try {
-      ok = Boolean(maps && maps.renderLineage(relations, {
+      ok = Boolean(maps && maps.renderLineage(graphRelations, {
         entitiesById: state.entitiesById,
         onClick: openDetail,
         onRelationClick: openRelationDetail,
@@ -782,7 +821,23 @@
   }
 
   function claimsHtml(subject) {
-    const claims = (subject.claim_ids || []).map(function (claimId) {
+    const claimIds = subject.claim_ids || [];
+    if (!claimIds.length) return '';
+    if (state.claimsStatus !== 'loaded') {
+      const failed = state.claimsStatus === 'failed';
+      return '<section class="detail-section claims-load-state" role="' +
+        (failed ? 'alert' : 'status') + '"><h3>' +
+        escapeHtml(i18n.t('detailClaims')) + '</h3><p>' +
+        escapeHtml(i18n.t(failed ? 'claimsUnavailable' : 'claimsLoading', {
+          count: claimIds.length,
+        })) + '</p>' +
+        (failed
+          ? '<button class="secondary-button" type="button" data-retry-claims>' +
+            escapeHtml(i18n.t('claimsRetry')) + '</button>'
+          : '') +
+        '</section>';
+    }
+    const claims = claimIds.map(function (claimId) {
       return state.claimsById[claimId];
     }).filter(Boolean);
     if (!claims.length) return '';
@@ -882,6 +937,12 @@
     }
     if (entity.entity_type === 'person') {
       facts.push(detailFact(i18n.t('detailNameStatus'), i18n.enumLabel('name_zh_status', entity.name_zh_status)));
+      facts.push(detailFact(
+        i18n.t('detailRoles'),
+        (entity.roles || []).map(function (role) {
+          return i18n.enumLabel('role', role);
+        }).join(' · ')
+      ));
     }
     if (entity.entity_type === 'place') {
       facts.push(detailFact(i18n.t('detailCountryCode'), entity.country_code || i18n.t('noData')));
@@ -959,18 +1020,56 @@
       claimsHtml({ claim_ids: [relation.claim_id] });
   }
 
-  function showDetailContent(html) {
+  function showDetailContent(html, preserveScroll) {
     const modal = $('#detail-modal');
     const wasHidden = modal.classList.contains('hidden');
     const focusWasInside = modal.contains(document.activeElement);
+    const panel = $('.detail-panel', modal);
+    const previousScroll = panel.scrollTop;
     if (wasHidden) state.lastFocused = document.activeElement;
     $('#detail-content').innerHTML = html;
     modal.classList.remove('hidden');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
-    const panel = $('.detail-panel', modal);
-    panel.scrollTop = 0;
+    panel.scrollTop = preserveScroll ? previousScroll : 0;
     if (wasHidden || focusWasInside) panel.focus();
+  }
+
+  function rerenderCurrentDetail() {
+    if (state.detailRelationId) {
+      const relation = state.relationsById[state.detailRelationId];
+      if (relation) showDetailContent(relationDetailHtml(relation), true);
+      return;
+    }
+    if (state.detailEntityId) {
+      const entity = state.entitiesById[state.detailEntityId];
+      if (entity) showDetailContent(detailHtml(entity), true);
+    }
+  }
+
+  function loadClaimsForDetail() {
+    if (state.claimsStatus === 'loaded' || state.claimsPromise) return;
+    state.claimsStatus = 'loading';
+    state.claimsError = '';
+    rerenderCurrentDetail();
+    const request = loader.loadClaims();
+    state.claimsPromise = request;
+    request.then(function (claims) {
+      if (state.claimsPromise !== request) return;
+      state.claimsById = Object.fromEntries(claims.map(function (claim) {
+        return [claim.id, claim];
+      }));
+      state.claimsStatus = 'loaded';
+    }).catch(function (error) {
+      if (state.claimsPromise !== request) return;
+      console.error('Architecture claims failed:', error);
+      state.claimsStatus = 'failed';
+      state.claimsError = String(error && error.message || error);
+    }).finally(function () {
+      if (state.claimsPromise !== request) return;
+      state.claimsPromise = null;
+      rerenderCurrentDetail();
+    });
   }
 
   function openDetail(entityId) {
@@ -978,7 +1077,8 @@
     if (!entity) return;
     state.detailEntityId = entityId;
     state.detailRelationId = null;
-    showDetailContent(detailHtml(entity));
+    showDetailContent(detailHtml(entity), false);
+    loadClaimsForDetail();
   }
 
   function openRelationDetail(relationId) {
@@ -986,7 +1086,8 @@
     if (!relation) return;
     state.detailEntityId = null;
     state.detailRelationId = relationId;
-    showDetailContent(relationDetailHtml(relation));
+    showDetailContent(relationDetailHtml(relation), false);
+    loadClaimsForDetail();
   }
 
   function closeDetail() {
@@ -1034,8 +1135,9 @@
     const search = $('#lineage-search');
     if (search) search.value = '';
     $$('[data-lineage-type]').forEach(function (button) {
-      button.classList.add('active');
-      button.setAttribute('aria-pressed', 'true');
+      const active = state.lineageFilters.relationTypes.has(button.dataset.lineageType);
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
     });
     renderLineage();
   }
@@ -1080,6 +1182,7 @@
       hasCoordinates: false,
       hasCredits: false,
     };
+    state.catalogPage = 1;
     $('#catalog-search').value = '';
     $('#region-filter').value = 'all';
     $('#period-filter').value = 'all';
@@ -1100,26 +1203,31 @@
   function wireFilters() {
     $('#catalog-search').addEventListener('input', function (event) {
       state.filters.query = event.target.value;
+      state.catalogPage = 1;
       renderCatalog();
       renderMap();
     });
     $('#region-filter').addEventListener('change', function (event) {
       state.filters.region = event.target.value;
+      state.catalogPage = 1;
       renderCatalog();
       renderMap();
     });
     $('#period-filter').addEventListener('change', function (event) {
       state.filters.period = event.target.value;
+      state.catalogPage = 1;
       renderCatalog();
       renderMap();
     });
     $('#status-filter').addEventListener('change', function (event) {
       state.filters.verification = event.target.value;
+      state.catalogPage = 1;
       renderCatalog();
       renderMap();
     });
     $('#work-type-filter').addEventListener('change', function (event) {
       state.filters.workTypeMapping = event.target.value;
+      state.catalogPage = 1;
       renderCatalog();
       renderMap();
     });
@@ -1130,6 +1238,7 @@
     ].forEach(function (entry) {
       $(entry[0]).addEventListener('change', function (event) {
         state.filters[entry[1]] = event.target.checked;
+        state.catalogPage = 1;
         renderCatalog();
         renderMap();
       });
@@ -1137,6 +1246,7 @@
     $$('[data-entity-filter]').forEach(function (button) {
       button.addEventListener('click', function () {
         state.filters.entityType = button.dataset.entityFilter;
+        state.catalogPage = 1;
         $$('[data-entity-filter]').forEach(function (candidate) {
           const active = candidate === button;
           candidate.classList.toggle('active', active);
@@ -1155,8 +1265,18 @@
           state.sort.key = key;
           state.sort.direction = 'ascending';
         }
+        state.catalogPage = 1;
         renderCatalog();
       });
+    });
+    $('#catalog-prev').addEventListener('click', function () {
+      if (state.catalogPage <= 1) return;
+      state.catalogPage -= 1;
+      renderCatalog();
+    });
+    $('#catalog-next').addEventListener('click', function () {
+      state.catalogPage += 1;
+      renderCatalog();
     });
     document.addEventListener('keydown', function (event) {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
@@ -1168,6 +1288,13 @@
 
   function wireDelegation() {
     document.addEventListener('click', function (event) {
+      const claimsRetry = event.target.closest('[data-retry-claims]');
+      if (claimsRetry) {
+        event.preventDefault();
+        state.claimsStatus = 'idle';
+        loadClaimsForDetail();
+        return;
+      }
       const relationOpener = event.target.closest('[data-open-relation]');
       if (relationOpener) {
         event.preventDefault();

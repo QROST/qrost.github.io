@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import hashlib
+import ipaddress
 import json
 import os
 import re
@@ -11,6 +12,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any, Optional
+from urllib.parse import urlparse
 
 
 ROOT = Path(
@@ -44,6 +46,8 @@ LINEAGE_TYPES = {"direct_mentor", "master_of_apprentice", "formal_teacher"}
 SYMMETRIC_RELATION_TYPES = {"collaborated_with", "cofounded_with"}
 UNREVIEWABLE_EXTRACTIONS = {"ocr_candidate", "llm_candidate"}
 VERIFIED_AUTHORITY = "claim_evidence"
+INDEPENDENT_PUBLISHER_ORIGIN = "independent_external"
+QROST_AUTHORITY_HOST = "qrost.github.io"
 DATE_AUTHORITY_PREDICATES = {
     "field_birth",
     "field_death",
@@ -148,6 +152,33 @@ def load_json(path: Path):
 def records(filename: str) -> list[dict]:
     payload = load_json(DATA / filename)
     return payload[FILE_KEYS[filename]]
+
+
+def authority_url_rejection(url: Any) -> Optional[str]:
+    """Return why a research-authority URL is not public and independent."""
+    if not isinstance(url, str) or not url:
+        return "URL is missing"
+    parsed = urlparse(url)
+    if parsed.scheme not in {"http", "https"} or not parsed.hostname:
+        return "URL must be absolute HTTP(S), not local, file, or relative"
+    host = parsed.hostname.rstrip(".").lower()
+    if host == QROST_AUTHORITY_HOST or host.endswith(f".{QROST_AUTHORITY_HOST}"):
+        return "QROST-owned URLs cannot serve as research authority"
+    if (
+        host == "localhost"
+        or host.endswith(".localhost")
+        or host.endswith(".local")
+    ):
+        return "local hostnames cannot serve as research authority"
+    try:
+        address = ipaddress.ip_address(host)
+    except ValueError:
+        if "." not in host:
+            return "single-label/internal hostnames cannot serve as research authority"
+    else:
+        if not address.is_global:
+            return "non-public IP addresses cannot serve as research authority"
+    return None
 
 
 def resolve_ref(root_schema: dict, ref: str) -> dict:
@@ -3375,6 +3406,26 @@ def main() -> int:
     for source in sources:
         operations = source["allowed_operations"]
         implementation_status = source["adapter_status"]
+        if source.get("publisher_origin") != INDEPENDENT_PUBLISHER_ORIGIN:
+            errors.append(
+                f"source {source['id']!r}: publisher_origin must be "
+                f"{INDEPENDENT_PUBLISHER_ORIGIN!r}; self-authored/internal "
+                "sources cannot serve as research authority"
+            )
+        source_urls = {
+            "landing_url": source.get("landing_url"),
+            "license_url": source.get("license_url"),
+            "terms_url": source.get("terms_url"),
+            "access.docs_url": source.get("access", {}).get("docs_url"),
+        }
+        for field, url in source_urls.items():
+            if url is None and field == "license_url":
+                continue
+            rejection = authority_url_rejection(url)
+            if rejection:
+                errors.append(
+                    f"source {source['id']!r}.{field}: {rejection}"
+                )
         implemented = implementation_status in {
             "fixture_only",
             "tested",
@@ -3678,6 +3729,9 @@ def main() -> int:
         verified_authority_evidence = 0
         for evidence in claim["evidence"]:
             source_id = evidence["source_id"]
+            rejection = authority_url_rejection(evidence.get("url"))
+            if rejection:
+                errors.append(f"{claim_id}: evidence URL: {rejection}")
             if source_id not in source_ids:
                 errors.append(f"{claim_id}: evidence -> unknown source {source_id!r}")
             else:

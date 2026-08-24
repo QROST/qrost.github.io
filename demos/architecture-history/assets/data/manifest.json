@@ -2,7 +2,7 @@
   "catalog_profile": {
     "evidence_by_source_family": {
       "editorial": 137,
-      "wikimedia": 14377
+      "wikimedia": 14361
     },
     "periods": {
       "1000_1499": {
@@ -100,7 +100,7 @@
       }
     },
     "verification": {
-      "candidate": 2941,
+      "candidate": 2927,
       "verified": 481
     },
     "work_type_mapping": {
@@ -110,14 +110,14 @@
     }
   },
   "counts": {
-    "candidate_entities_and_relations": 2941,
-    "claims": 13921,
+    "candidate_entities_and_relations": 2927,
+    "claims": 13907,
     "contested_entities_and_relations": 0,
     "declined_entities_and_relations": 0,
     "people": 1197,
     "places": 57,
     "practices": 63,
-    "relations": 953,
+    "relations": 939,
     "reviewers": 2,
     "sources": 13,
     "verified_entities_and_relations": 481,
@@ -737,15 +737,15 @@
     "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "a0d23716de144082f7fede3bc3f28378ee2a8f2e37b0a7da27ce5aa64ec1da79",
+  "data_version": "5f236aaf60a6d1ab6366eafa6e13dc385fbdab82de9c1ab999c67a14e7647ca3",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "536f5bde7fa55e64d8c6c49c5b1173c620401c860fc1b1dd9e6020c6ec084c01"
+      "sha256": "61e52bc6663992b1457dbcb6c59f5a5d02c94062ae7a18d358cffca2f1c69f4f"
     },
     "claims.json": {
-      "count": 13921,
-      "sha256": "566de4ff88ea9e1942d07f17bcf1b12465f270bd6a60b34bfff29de62fbb7d03"
+      "count": 13907,
+      "sha256": "a812dcf76882631396e10cb0c1283f326080423003b335910fcd5f0f1219ff0a"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
@@ -753,7 +753,7 @@
     },
     "people.json": {
       "count": 1197,
-      "sha256": "f5648eb7406020d8e9613fd91d65702e20b5397e0cb9ce16cccb4e43a37ec49e"
+      "sha256": "891408684e5cd5f7f85ca0c21b99fefae5a3bc93cd57c32f905a4c9db67e3441"
     },
     "places.json": {
       "count": 57,
@@ -764,8 +764,8 @@
       "sha256": "83bf4693881652664b5b03a32ba2c1f4fb602422432f5be5d550fcdd1ecc25e4"
     },
     "relations.json": {
-      "count": 953,
-      "sha256": "e87d23757cee1085a07b0c9ce5ed62d2760bfa07c6009c55ce25fd5f48532f39"
+      "count": 939,
+      "sha256": "c8007630833c5d622c863043d920076b030894cd6633cbf922feb2e2f573a4c7"
     },
     "reviewers.json": {
       "count": 2,
@@ -773,7 +773,7 @@
     },
     "source-registry.json": {
       "count": 13,
-      "sha256": "f63e4bea9c5dca017c1d00ee08d48eec84c7fe4539ba9777a582d5ece6fa2652"
+      "sha256": "6c6649728206696655ef7ccff542947aebd5ce118d6e08ee95b472e23568801f"
     },
     "source-snapshots/editorial-research-2026-08-20-6b0be17ec4f5.json": {
       "count": 1,

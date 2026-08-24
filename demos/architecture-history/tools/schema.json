@@ -288,6 +288,7 @@
         "title_zh",
         "title_en",
         "publisher",
+        "publisher_origin",
         "landing_url",
         "source_family",
         "scope",
@@ -326,6 +327,13 @@
         "publisher": {
           "type": "string",
           "minLength": 1
+        },
+        "publisher_origin": {
+          "enum": [
+            "independent_external",
+            "self_authored",
+            "internal"
+          ]
         },
         "landing_url": {
           "$ref": "#/$defs/url"
@@ -575,7 +583,8 @@
               "educator",
               "craftsperson",
               "patron",
-              "historian"
+              "historian",
+              "unknown"
             ]
           }
         },

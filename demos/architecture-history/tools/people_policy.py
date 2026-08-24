@@ -34,7 +34,7 @@ OCCUPATION_TO_ROLE: dict[str, str] = {
     PATRON_QID: "patron",
 }
 
-SCHEMA_ROLES = frozenset(OCCUPATION_TO_ROLE.values())
+SCHEMA_ROLES = frozenset((*OCCUPATION_TO_ROLE.values(), "unknown"))
 
 
 def item_values(record: dict[str, Any], property_id: str) -> list[str]:
@@ -77,7 +77,10 @@ def derive_person_roles(
         return roles
     if role_from_credit:
         return ["architect"]
-    return ["historian"]
+    # An unmapped P106 value is not evidence that a person is a historian.
+    # Curated person seeds may still be displayed, but their role stays
+    # explicitly unknown until a reviewed occupation mapping is added.
+    return ["unknown"]
 
 
 def credited_person_ids(works: Iterable[dict[str, Any]]) -> set[str]:

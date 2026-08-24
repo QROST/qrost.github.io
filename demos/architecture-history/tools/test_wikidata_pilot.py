@@ -196,7 +196,11 @@ def entity_wrapper(record: dict) -> dict:
     }
 
 
-def minimal_lineage_snapshot(entities: dict[str, dict]) -> dict:
+def minimal_lineage_snapshot(
+    entities: dict[str, dict],
+    *,
+    person_seeds: list[dict] | None = None,
+) -> dict:
     return {
         "accessed": "2026-08-07",
         "adapter_id": importer.ADAPTER_ID,
@@ -209,6 +213,7 @@ def minimal_lineage_snapshot(entities: dict[str, dict]) -> dict:
         "license": "CC0-1.0",
         "queries": [],
         "seeds": [],
+        "person_seeds": person_seeds or [],
         "selection": {
             "method": "pinned_hydration_fixtures",
             "notes_en": "lineage fixture",
@@ -1323,8 +1328,16 @@ class LineageMeshFixtureTests(unittest.TestCase):
             cls.config
         )
 
-    def build_catalog(self, entities: dict[str, dict]) -> dict:
-        snapshot = minimal_lineage_snapshot(entities)
+    def build_catalog(
+        self,
+        entities: dict[str, dict],
+        *,
+        person_seeds: list[dict] | None = None,
+    ) -> dict:
+        snapshot = minimal_lineage_snapshot(
+            entities,
+            person_seeds=person_seeds,
+        )
         return importer.CatalogBuilder(
             snapshot,
             self.config,
@@ -1354,6 +1367,72 @@ class LineageMeshFixtureTests(unittest.TestCase):
         self.assertEqual(relation["relation_type"], "student_of_recorded")
         self.assertEqual(relation["from_id"], "person-wd-q100")
         self.assertEqual(relation["to_id"], "person-wd-q101")
+
+    def test_curated_display_people_do_not_expand_unrelated_neighbors(self):
+        curated = [
+            {"qid": "Q500", "label_hint_en": "Curated historian"},
+            {"qid": "Q510", "label_hint_en": "Curated theorist"},
+            {"qid": "Q520", "label_hint_en": "Curated critic"},
+            {"qid": "Q530", "label_hint_en": "Curated engineer-builder"},
+        ]
+        entities = {
+            "Q1000": human_record(
+                "Q1000",
+                label_en="Independent architect anchor",
+                occupations=[importer.ARCHITECT_QID],
+                claims={"P802": [item_entity_statement("Q1001")]},
+            ),
+            "Q1001": human_record("Q1001", label_en="One-hop student"),
+            "Q500": human_record(
+                "Q500",
+                label_en="Curated historian",
+                occupations=["Q201820"],
+                claims={"P737": [item_entity_statement("Q501")]},
+            ),
+            "Q510": human_record(
+                "Q510",
+                label_en="Curated theorist",
+                occupations=["Q999510"],
+                claims={"P802": [item_entity_statement("Q511")]},
+            ),
+            "Q520": human_record(
+                "Q520",
+                label_en="Curated critic",
+                occupations=["Q999520"],
+                claims={"P1066": [item_entity_statement("Q521")]},
+            ),
+            "Q530": human_record(
+                "Q530",
+                label_en="Curated engineer-builder",
+                occupations=["Q81096"],
+                claims={"P737": [item_entity_statement("Q531")]},
+            ),
+            "Q501": human_record("Q501", label_en="Unrelated neighbor 1"),
+            "Q511": human_record("Q511", label_en="Unrelated neighbor 2"),
+            "Q521": human_record("Q521", label_en="Unrelated neighbor 3"),
+            "Q531": human_record("Q531", label_en="Unrelated neighbor 4"),
+        }
+        catalog = self.build_catalog(
+            entities,
+            person_seeds=curated,
+        )
+        people_by_qid = {
+            person["external_ids"]["wikidata"]: person
+            for person in catalog["people"]
+        }
+        self.assertEqual(
+            set(people_by_qid),
+            {"Q1000", "Q1001", "Q500", "Q510", "Q520", "Q530"},
+        )
+        self.assertEqual(people_by_qid["Q500"]["roles"], ["historian"])
+        self.assertEqual(people_by_qid["Q510"]["roles"], ["unknown"])
+        self.assertEqual(people_by_qid["Q520"]["roles"], ["unknown"])
+        self.assertEqual(people_by_qid["Q530"]["roles"], ["engineer"])
+        self.assertEqual(len(catalog["relations"]), 1)
+        self.assertEqual(
+            catalog["relations"][0]["id"],
+            "relation-wd-student-recorded-q1000-q1001",
+        )
 
     def test_lineage_imports_documented_influence_and_practice_edges(self):
         catalog = self.build_catalog(
