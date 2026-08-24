@@ -16,7 +16,7 @@ const targets = [
     input: 'assets/css/home-input.css',
     expected: 'assets/css/home-built.css',
   },
-  ...['china-housing', 'pharm-companies', 'shelter-cats'].map((demo) => ({
+  ...['china-auto', 'china-housing', 'pharm-companies', 'shelter-cats'].map((demo) => ({
     label: demo,
     cwd: join(root, 'demos', demo),
     config: 'tailwind.config.js',

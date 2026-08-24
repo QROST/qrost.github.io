@@ -12,6 +12,7 @@ def require(text: str, token: str, label: str) -> None:
 def main() -> int:
     html = (ROOT / "index.html").read_text(encoding="utf-8")
     css = (ROOT / "assets/css/china-auto.css").read_text(encoding="utf-8")
+    built_css_path = ROOT / "assets/css/tailwind-built.css"
     app = (ROOT / "assets/js/app.js").read_text(encoding="utf-8")
     charts = (ROOT / "assets/js/charts.js").read_text(encoding="utf-8")
 
@@ -41,7 +42,12 @@ def main() -> int:
     require(html, 'data-i18n="thSupportScope"', "public source scope column")
     require(app, "(s.support_scope || {}).scope_zh", "public source scope rendering")
 
-    require(html, "CHINA_AUTO_TAILWIND_FAILED", "Tailwind failure signal")
+    require(html, 'href="assets/css/tailwind-built.css?v=', "committed Tailwind CSS")
+    assert "cdn.tailwindcss.com" not in html, "runtime Tailwind CDN must not be used"
+    assert "CHINA_AUTO_TAILWIND_FAILED" not in html, "obsolete Tailwind fallback signal remains"
+    assert "window.tailwind" not in app, "runtime Tailwind detection remains"
+    assert built_css_path.exists() and built_css_path.stat().st_size > 1000, "committed Tailwind CSS is missing or empty"
+    assert html.index("tailwind-built.css") < html.index("china-auto.css"), "custom CSS must load after Tailwind"
     require(html, "CHINA_AUTO_ECHARTS_FAILED", "ECharts failure signal")
     require(html, 'id="runtime-warning"', "visible runtime warning")
     require(app, "renderRuntimeFallbacks", "runtime fallback renderer")

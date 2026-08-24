@@ -77,9 +77,7 @@
 
   function renderRuntimeFallbacks() {
     var messages = [];
-    var noTailwind = !!window.CHINA_AUTO_TAILWIND_FAILED || !window.tailwind;
     var noEcharts = !!window.CHINA_AUTO_ECHARTS_FAILED || !window.echarts;
-    if (noTailwind) messages.push(I18N.t('tailwindFallback'));
     if (noEcharts) messages.push(I18N.t('echartsFallback'));
     var warning = $('runtime-warning');
     if (warning) {

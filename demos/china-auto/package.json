@@ -1,0 +1,13 @@
+{
+  "name": "qrost-china-auto",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Tailwind build for the QROST China auto city atlas.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind-input.css -o ./assets/css/tailwind-built.css --minify && python3 ./tools/build.py",
+    "check:cache": "python3 ./tools/build.py --check"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
