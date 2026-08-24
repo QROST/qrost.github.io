@@ -48,6 +48,8 @@
   let modalPolicyId = null;
   let timelineCategoryFilter = '';
   let policyTypeFilter = '';
+  const dialogStack = [];
+  const dialogReturnFocus = new Map();
 
   const POLICY_TYPE_LABELS = {
     zh: { fyp: '五年规划', 'two-sessions': '两会', ministry: '部委文件', program: '国家专项', standard: '标准规范', fund: '产业基金', statistic: '统计实测' },
@@ -74,6 +76,65 @@
     const kernelOpen = !document.getElementById('kernel-modal')?.classList.contains('hidden');
     const policyOpen = !document.getElementById('policy-modal')?.classList.contains('hidden');
     if (!productOpen && !compareOpen && !kernelOpen && !policyOpen) document.body.style.overflow = '';
+  }
+
+  function showDialog(backdrop, closeButtonId) {
+    if (!backdrop) return;
+    const opening = backdrop.classList.contains('hidden');
+    if (opening) {
+      const active = document.activeElement;
+      if (active instanceof HTMLElement && active !== document.body && !backdrop.contains(active)) {
+        dialogReturnFocus.set(backdrop.id, active);
+      }
+      const oldIndex = dialogStack.indexOf(backdrop.id);
+      if (oldIndex >= 0) dialogStack.splice(oldIndex, 1);
+      dialogStack.push(backdrop.id);
+    }
+    backdrop.classList.remove('hidden');
+    backdrop.setAttribute('aria-hidden', 'false');
+    lockBodyScroll();
+    document.getElementById(closeButtonId)?.focus();
+  }
+
+  function hideDialog(backdrop) {
+    if (!backdrop || backdrop.classList.contains('hidden')) return false;
+    backdrop.classList.add('hidden');
+    backdrop.setAttribute('aria-hidden', 'true');
+    const stackIndex = dialogStack.lastIndexOf(backdrop.id);
+    if (stackIndex >= 0) dialogStack.splice(stackIndex, 1);
+    unlockBodyScroll();
+    const trigger = dialogReturnFocus.get(backdrop.id);
+    dialogReturnFocus.delete(backdrop.id);
+    if (trigger instanceof HTMLElement && trigger.isConnected) trigger.focus();
+    return true;
+  }
+
+  function topDialog() {
+    while (dialogStack.length) {
+      const dialog = document.getElementById(dialogStack[dialogStack.length - 1]);
+      if (dialog && !dialog.classList.contains('hidden')) return dialog;
+      dialogStack.pop();
+    }
+    return null;
+  }
+
+  function trapDialogFocus(event, dialog) {
+    const focusable = [...dialog.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )].filter((el) => !el.closest('.hidden') && el.getAttribute('aria-hidden') !== 'true');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (!dialog.contains(document.activeElement)) {
+      event.preventDefault();
+      (event.shiftKey ? last : first).focus();
+    } else if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   function kernelOriginBadgeClass(o) {
@@ -195,7 +256,7 @@
     const hc = document.getElementById('hero-product-count');
     if (hc) hc.textContent = String(prods.length || manifest?.total_products || 0);
     const built = document.getElementById('footer-built-at');
-    if (built && manifest?.build_time) built.textContent = manifest.build_time;
+    if (built && manifest?.data_version) built.textContent = manifest.data_version;
   }
 
   function toggleCompare(id) {
@@ -262,7 +323,7 @@
 
       tr.innerHTML = `
         <td class="px-3 py-2.5 border-b border-slate-100 col-sticky">
-          <span class="font-medium text-slate-900">${I18N().productName(p)}</span>
+          <button type="button" class="catalog-open-detail font-medium text-slate-900">${I18N().productName(p)}</button>
         </td>
         <td class="px-3 py-2.5 border-b border-slate-100 text-slate-600">${I18N().vendorName(v) || p.vendor_id}</td>
         <td class="px-3 py-2.5 border-b border-slate-100">
@@ -298,9 +359,37 @@
       case_study: { zh: '案例研究', en: 'Case study', cls: 'badge-evidence-case' },
       vendor_claim: { zh: '厂商披露', en: 'Vendor claim', cls: 'badge-evidence-vendor' },
       media: { zh: '媒体报道', en: 'Media', cls: 'badge-evidence-media' },
+      candidate: { zh: '候选线索', en: 'Candidate lead', cls: 'badge-evidence-candidate' },
     };
     const e = map[level] || map.media;
     return `<span class="text-xs px-2 py-0.5 rounded ${e.cls}">${I18N().isEn() ? e.en : e.zh}</span>`;
+  }
+
+  function sourceScopeLabel(scope) {
+    const labels = {
+      entity_identity: { zh: '实体识别', en: 'Entity identity' },
+      claim_evidence: { zh: '主张证据', en: 'Claim evidence' },
+      candidate_lead: { zh: '候选线索', en: 'Candidate lead' },
+    };
+    const item = labels[scope] || labels.candidate_lead;
+    return I18N().isEn() ? item.en : item.zh;
+  }
+
+  function sourceLink(s, fallback) {
+    const label = s.title || fallback || s.url;
+    const publisher = s.publisher || s.publisher_domain || '';
+    return `<a href="${s.url}" class="text-link underline" target="_blank" rel="noopener">${label}</a>`
+      + `<span class="source-authority">${publisher} · ${sourceScopeLabel(s.support_scope)}</span>`;
+  }
+
+  function sourceUrlLink(record, fallback) {
+    return sourceLink({
+      url: record.source_url,
+      title: fallback,
+      publisher: record.source_publisher,
+      publisher_domain: record.source_publisher_domain,
+      support_scope: record.source_support_scope,
+    }, fallback);
   }
 
   function getMilestonesForProduct(productId) {
@@ -359,7 +448,8 @@
         return `<span class="metric-chip">${label}: <strong>${mt.value}</strong></span>`;
       }).join('');
       const sources = (m.sources || []).map((s, i) =>
-        `<a href="${s.url}" class="text-xs text-link underline" target="_blank" rel="noopener">${s.title || `source ${i + 1}`}</a>`).join(' · ');
+        `<span class="milestone-source-item">${sourceLink(s, `source ${i + 1}`)}</span>`).join('');
+      const displayDate = m.date_precision === 'year' ? m.date.slice(0, 4) : m.date;
       const capChip = m.capability_key
         ? `<span class="ms-cap-chip">${capLabel(m.capability_key)}</span>` : '';
       const incumbents = (m.incumbent_product_ids || []).map((pid) => {
@@ -370,14 +460,14 @@
           : `<span class="text-xs text-slate-500">${pid}</span>`;
       }).join(' · ');
       return `
-      <article class="timeline-node" role="listitem" data-milestone-id="${m.id}" id="milestone-${m.id}">
+      <article class="timeline-node" role="listitem" data-milestone-id="${m.id}" data-candidate="${m.evidence_level === 'candidate'}" id="milestone-${m.id}">
         <div class="timeline-marker" aria-hidden="true">
           <span class="timeline-dot"></span>
         </div>
         <div class="timeline-node-body">
           <details class="timeline-node-details">
             <summary class="timeline-row">
-              <time class="timeline-row-date" datetime="${m.date}">${m.date}</time>
+              <time class="timeline-row-date" datetime="${m.date}">${displayDate}</time>
               <span class="timeline-category-badge">${m.category_l2}</span>
               ${capChip}
               <span class="ms-row-headline">${headline}</span>
@@ -453,6 +543,7 @@
       : t('policyGanttOngoing');
     const issuer = I18N().isEn() ? (p.issuer_en || p.issuer_zh) : (p.issuer_zh || p.issuer_en);
     const tagBits = [
+      p.verification_status === 'candidate' ? evidenceBadge('candidate') : '',
       p.policy_type ? `<span class="policy-type-chip">${policyTypeLabel(p.policy_type)}</span>` : '',
       issuer ? `<span>${issuer}</span>` : '',
       p.doc_number ? `<span class="font-mono text-slate-600">${p.doc_number}</span>` : '',
@@ -471,7 +562,7 @@
       </dl>
       ${note ? `<p class="text-xs text-slate-500 mt-3">${note}</p>` : ''}
       ${renderPolicyDetail(p)}
-      ${(!p.detail || !(p.detail.sources || []).length) && p.source_url ? `<a href="${p.source_url}" class="text-xs text-link underline mt-3 inline-block" target="_blank" rel="noopener">${t('policySource')} ↗</a>` : ''}`;
+      ${(!p.detail || !(p.detail.sources || []).length) && p.source_url ? `<div class="text-xs mt-3">${sourceUrlLink(p, `${t('policySource')} ↗`)}</div>` : ''}`;
   }
 
   // Rich directional block (additive): only renders when a node carries `detail`.
@@ -492,8 +583,7 @@
     }).filter(Boolean).join('');
     const sources = (d.sources || []).map((s) => {
       const label = pick(s.label_zh, s.label_en) || s.url;
-      const pub = s.publisher ? `<span class="policy-source-pub">${s.publisher}</span>` : '';
-      return `<li><a href="${s.url}" target="_blank" rel="noopener" class="text-link underline">${label} ↗</a> ${pub}</li>`;
+      return `<li>${sourceLink(Object.assign({}, s, { title: `${label} ↗` }), label)}</li>`;
     }).join('');
     const confCls = d.confidence ? `policy-conf policy-conf--${d.confidence}` : '';
     return `
@@ -538,19 +628,13 @@
     bodyEl.querySelectorAll('[data-policy-link]').forEach((btn) => {
       btn.addEventListener('click', () => openPolicyModal(btn.dataset.policyLink));
     });
-    backdrop.classList.remove('hidden');
-    backdrop.setAttribute('aria-hidden', 'false');
-    lockBodyScroll();
-    document.getElementById('policy-modal-close')?.focus();
+    showDialog(backdrop, 'policy-modal-close');
   }
 
   function closePolicyModal() {
     const backdrop = document.getElementById('policy-modal');
-    if (!backdrop || backdrop.classList.contains('hidden')) return;
-    backdrop.classList.add('hidden');
-    backdrop.setAttribute('aria-hidden', 'true');
+    if (!hideDialog(backdrop)) return;
     modalPolicyId = null;
-    unlockBodyScroll();
   }
 
   function renderPolicyNodes(policies) {
@@ -597,6 +681,8 @@
 
     const rowsHtml = items.map((p) => {
       const title = I18N().isEn() ? p.title_en : p.title_zh;
+      const candidate = p.verification_status === 'candidate';
+      const candidateBadge = candidate ? evidenceBadge('candidate') : '';
       const startMonths = parsePolicyYm(p.date);
       const endMonths = p.target_deadline ? parsePolicyYm(p.target_deadline) : null;
       const state = policyBarState(p.target_deadline, nowMonths);
@@ -611,10 +697,10 @@
         barHtml = `<button type="button" class="policy-gantt-marker policy-gantt-marker--ongoing policy-gantt-trigger" data-policy-id="${p.id}" style="left:${leftPct.toFixed(2)}%" aria-label="${rangeLabel}"><span class="policy-gantt-marker-stub" aria-hidden="true"></span></button>`;
       }
       return `
-      <div class="policy-gantt-entry" role="listitem">
+      <div class="policy-gantt-entry" role="listitem" data-candidate="${candidate}">
         <div class="policy-gantt-row">
           <button type="button" class="policy-gantt-label policy-gantt-trigger" data-policy-id="${p.id}" title="${title}">
-            <span class="policy-gantt-label-text">${p.policy_type ? `<span class="policy-type-chip">${policyTypeLabel(p.policy_type)}</span>` : ''}${title}</span>
+            <span class="policy-gantt-label-text">${candidateBadge}${p.policy_type ? `<span class="policy-type-chip">${policyTypeLabel(p.policy_type)}</span>` : ''}${title}</span>
             <span class="policy-gantt-label-dates">${p.date}${p.target_deadline ? ` → ${p.target_deadline}` : ''}</span>
           </button>
           <div class="policy-gantt-track">
@@ -640,7 +726,7 @@
     if (footEl && policies.footnotes?.length) {
       footEl.innerHTML = policies.footnotes.map((f) => {
         const text = I18N().isEn() ? f.text_en : f.text_zh;
-        return `<li class="text-xs text-slate-500">${f.date}: ${text} ${f.source_url ? `<a href="${f.source_url}" class="text-link underline" target="_blank" rel="noopener">↗</a>` : ''}</li>`;
+        return `<li class="text-xs text-slate-500">${f.date}: ${text} ${f.source_url ? sourceUrlLink(f, '↗') : ''}</li>`;
       }).join('');
       footEl.closest('details')?.classList.remove('hidden');
     }
@@ -737,8 +823,8 @@
   function buildOverviewTab(p, v) {
     const strengths = I18N().listField(p, 'strengths_zh', 'strengths_en');
     const limits = I18N().listField(p, 'limitations_zh', 'limitations_en');
-    const srcs = (p.sources || []).map((s) =>
-      `<li><a href="${s.url}" class="text-link underline" target="_blank" rel="noopener">${s.title || s.url}</a></li>`).join('');
+    const srcs = (p.sources || []).map((s, i) =>
+      `<li>${sourceLink(s, `source ${i + 1}`)}</li>`).join('');
     return `
       <div class="mt-2 grid grid-cols-2 gap-3 text-sm">
         <div><span class="text-slate-500">${t('colMaturity')}</span>: ${I18N().maturityLabel(p.maturity)}</div>
@@ -923,6 +1009,7 @@
     }
     const card = (m, kind) => {
       const headline = isEn ? m.headline_en : m.headline_zh;
+      const displayDate = m.date_precision === 'year' ? m.date.slice(0, 4) : m.date;
       const cap = m.capability_key ? capLabel(m.capability_key) : '';
       // reverse: show which domestic product broke this incumbent
       const breakers = (m.product_ids || []).map((pid) => {
@@ -933,19 +1020,20 @@
       const lead = kind === 'reverse'
         ? `<span class="text-xs text-amber-700">${isEn ? 'Monopoly broken' : '被突破'}${breakers ? ` · ${breakers}` : ''}</span>`
         : '';
-      return `<div class="border-l-4 ${border} pl-4 py-2 mb-3">
-        <p class="text-sm font-medium text-slate-800">${m.date}${cap ? ` · <span class="ms-cap-chip">${cap}</span>` : ''} · ${headline}</p>
+      return `<div class="border-l-4 ${border} pl-4 py-2 mb-3" data-candidate="${m.evidence_level === 'candidate'}">
+        <p class="text-sm font-medium text-slate-800">${displayDate}${cap ? ` · <span class="ms-cap-chip">${cap}</span>` : ''} · ${headline}</p>
+        <div class="mt-1">${evidenceBadge(m.evidence_level)}</div>
         ${lead}
         <button type="button" class="block text-xs text-link underline mt-1 milestone-modal-link" data-milestone-id="${m.id}">${isEn ? 'View on timeline →' : '查看时间线 →'}</button>
       </div>`;
     };
     let html = '';
     if (forward.length) {
-      html += `<h4 class="font-medium text-emerald-800 mb-2">${isEn ? 'Breakthroughs achieved' : '本产品的突破'}</h4>`;
+      html += `<h4 class="font-medium text-emerald-800 mb-2">${isEn ? 'Breakthroughs & candidate leads' : '突破与候选线索'}</h4>`;
       html += forward.map((m) => card(m, 'forward')).join('');
     }
     if (reverse.length) {
-      html += `<h4 class="font-medium text-amber-800 mb-2 ${forward.length ? 'mt-4' : ''}">${isEn ? 'Capabilities where domestic challengers caught up' : '被国产突破的能力'}</h4>`;
+      html += `<h4 class="font-medium text-amber-800 mb-2 ${forward.length ? 'mt-4' : ''}">${isEn ? 'Reported catch-up links & candidate leads' : '被突破关联与候选线索'}</h4>`;
       html += reverse.map((m) => card(m, 'reverse')).join('');
     }
     return html;
@@ -1014,20 +1102,14 @@
     });
 
     updateProductModalCompareBtn();
-    backdrop.classList.remove('hidden');
-    backdrop.setAttribute('aria-hidden', 'false');
-    lockBodyScroll();
+    showDialog(backdrop, 'modal-close');
     history.replaceState(null, '', `#product=${id}`);
   }
 
   function closeModal() {
     const backdrop = document.getElementById('product-modal');
-    if (backdrop) {
-      backdrop.classList.add('hidden');
-      backdrop.setAttribute('aria-hidden', 'true');
-    }
+    hideDialog(backdrop);
     modalProductId = null;
-    unlockBodyScroll();
     if (location.hash.startsWith('#product=')) {
       history.replaceState(null, '', location.pathname + location.search);
     }
@@ -1038,9 +1120,7 @@
     if (!backdrop) return;
     if (!document.getElementById('product-modal')?.classList.contains('hidden')) closeModal();
     refreshCompare();
-    backdrop.classList.remove('hidden');
-    backdrop.setAttribute('aria-hidden', 'false');
-    lockBodyScroll();
+    showDialog(backdrop, 'compare-modal-close');
     setTimeout(() => {
       CHARTS().resizeCompareRadar();
       const prods = CMP().getSelectedProducts();
@@ -1053,10 +1133,7 @@
 
   function closeCompareModal() {
     const backdrop = document.getElementById('compare-modal');
-    if (!backdrop || backdrop.classList.contains('hidden')) return;
-    backdrop.classList.add('hidden');
-    backdrop.setAttribute('aria-hidden', 'true');
-    unlockBodyScroll();
+    hideDialog(backdrop);
   }
 
   function applyKernelFilters() {
@@ -1093,7 +1170,7 @@
       const tr = document.createElement('tr');
       tr.dataset.kernelId = k.id;
       tr.innerHTML = `
-        <td class="px-3 py-2.5 border-b border-slate-100 font-medium text-slate-900 col-sticky">${CAT().kernelDisplayName(k)}</td>
+        <td class="px-3 py-2.5 border-b border-slate-100 font-medium text-slate-900 col-sticky"><button type="button" class="catalog-open-detail">${CAT().kernelDisplayName(k)}</button></td>
         <td class="px-3 py-2.5 border-b border-slate-100 text-slate-600">${k.owner}</td>
         <td class="px-3 py-2.5 border-b border-slate-100">
           <span class="badge-origin ${kernelOriginBadgeClass(k.origin)}">${kernelOriginLabel(k.origin)}</span>
@@ -1134,8 +1211,8 @@
     const caps = I18N().listField(k, 'capabilities_zh', 'capabilities_en');
     const strengths = I18N().listField(k, 'strengths_zh', 'strengths_en');
     const limits = I18N().listField(k, 'limitations_zh', 'limitations_en');
-    const srcs = (k.sources || []).map((s) =>
-      `<li><a href="${s.url}" class="text-link underline" target="_blank" rel="noopener">${s.title || s.url}</a></li>`).join('');
+    const srcs = (k.sources || []).map((s, i) =>
+      `<li>${sourceLink(s, `source ${i + 1}`)}</li>`).join('');
     const catalogProds = CAT().getProductsByKernel(id);
     const prodLinks = catalogProds.map((p) =>
       `<button type="button" class="text-link underline product-link-btn mr-2" data-product-id="${p.id}">${I18N().productName(p)}</button>`).join('') || '—';
@@ -1171,20 +1248,14 @@
         openModal(btn.dataset.productId);
       });
     });
-    backdrop.classList.remove('hidden');
-    backdrop.setAttribute('aria-hidden', 'false');
-    lockBodyScroll();
+    showDialog(backdrop, 'kernel-modal-close');
     history.replaceState(null, '', `#kernel=${id}`);
   }
 
   function closeKernelModal() {
     const backdrop = document.getElementById('kernel-modal');
-    if (backdrop) {
-      backdrop.classList.add('hidden');
-      backdrop.setAttribute('aria-hidden', 'true');
-    }
+    hideDialog(backdrop);
     modalKernelId = null;
-    unlockBodyScroll();
     if (location.hash.startsWith('#kernel=')) {
       history.replaceState(null, '', location.pathname + location.search);
     }
@@ -1366,11 +1437,18 @@
       document.getElementById(id)?.addEventListener('click', () => openCompareModal());
     });
     document.addEventListener('keydown', (e) => {
+      const dialog = topDialog();
+      if (!dialog) return;
+      if (e.key === 'Tab') {
+        trapDialogFocus(e, dialog);
+        return;
+      }
       if (e.key !== 'Escape') return;
-      closeCompareModal();
-      closePolicyModal();
-      closeKernelModal();
-      closeModal();
+      e.preventDefault();
+      if (dialog.id === 'compare-modal') closeCompareModal();
+      else if (dialog.id === 'policy-modal') closePolicyModal();
+      else if (dialog.id === 'kernel-modal') closeKernelModal();
+      else if (dialog.id === 'product-modal') closeModal();
     });
     document.getElementById('filter-origin')?.addEventListener('change', (e) => {
       state.filterOrigin = e.target.value;

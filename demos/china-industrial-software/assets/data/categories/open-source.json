@@ -45,12 +45,20 @@
         {
           "url": "https://dev.opencascade.org/",
           "title": "Open CASCADE Technology",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "dev.opencascade.org",
+          "publisher_domain": "dev.opencascade.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://dev.opencascade.org/resources/faq",
           "title": "OCCT FAQ — LGPL commercial use",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "dev.opencascade.org",
+          "publisher_domain": "dev.opencascade.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -102,17 +110,29 @@
         {
           "url": "https://www.freecad.org/",
           "title": "FreeCAD",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.freecad.org",
+          "publisher_domain": "www.freecad.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/OpenCASCADE.md",
           "title": "FreeCAD OCCT documentation",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/CAM_Workbench.md",
           "title": "FreeCAD CAM (Path) workbench",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -164,12 +184,20 @@
         {
           "url": "https://openscad.org/",
           "title": "OpenSCAD",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "openscad.org",
+          "publisher_domain": "openscad.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/openscad/openscad/blob/master/COPYING",
           "title": "OpenSCAD GPLv2 + CGAL exception",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "kernel_id": "cgal"
@@ -217,12 +245,20 @@
         {
           "url": "http://solvespace.com/",
           "title": "SolveSpace",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "solvespace.com",
+          "publisher_domain": "solvespace.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/solvespace/solvespace",
           "title": "SolveSpace GitHub (GPLv3)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "kernel_id": "solvespace-kernel"
@@ -267,7 +303,11 @@
         {
           "url": "https://librecad.org/",
           "title": "LibreCAD",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "librecad.org",
+          "publisher_domain": "librecad.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "kernel_id": "librecad-rs-entity-engine"
@@ -315,12 +355,20 @@
         {
           "url": "https://cadquery.readthedocs.io/",
           "title": "CadQuery documentation",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "cadquery.readthedocs.io",
+          "publisher_domain": "cadquery.readthedocs.io",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://pypi.org/project/cadquery/",
           "title": "CadQuery PyPI (Apache 2.0)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "pypi.org",
+          "publisher_domain": "pypi.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -371,12 +419,20 @@
         {
           "url": "https://build123d.readthedocs.io/",
           "title": "build123d documentation",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "build123d.readthedocs.io",
+          "publisher_domain": "build123d.readthedocs.io",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/gumyr/build123d",
           "title": "build123d GitHub (Apache 2.0)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -424,7 +480,11 @@
         {
           "url": "https://github.com/Heeks/heekscad",
           "title": "HeeksCAD GitHub",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "kernel_id": "open-cascade"
@@ -471,12 +531,20 @@
         {
           "url": "https://brlcad.org/",
           "title": "BRL-CAD",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "brlcad.org",
+          "publisher_domain": "brlcad.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/BRL-CAD/brlcad",
           "title": "BRL-CAD GitHub",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "kernel_id": "brl-cad-csg"
@@ -525,13 +593,21 @@
           "year": 2024,
           "text_zh": "Blender 4.2 LTS 发布 Extensions 扩展平台，USD 导入导出与 Hydra 视口管线进一步成熟",
           "text_en": "Blender 4.2 LTS ships Extensions platform with maturing USD IO and Hydra viewport pipeline",
-          "source_url": "https://www.blender.org/download/lts/4-2/"
+          "source_url": "https://www.blender.org/download/lts/4-2/",
+          "source_publisher": "www.blender.org",
+          "source_publisher_domain": "www.blender.org",
+          "source_publisher_ownership": "external",
+          "source_support_scope": "candidate_lead"
         },
         {
           "year": 2022,
           "text_zh": "Geometry Nodes 成为核心模块，支持程序化硬表面与工业可视化工作流",
           "text_en": "Geometry Nodes matured as core module for procedural hard-surface and industrial viz workflows",
-          "source_url": "https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html"
+          "source_url": "https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html",
+          "source_publisher": "docs.blender.org",
+          "source_publisher_domain": "docs.blender.org",
+          "source_publisher_ownership": "external",
+          "source_support_scope": "candidate_lead"
         }
       ],
       "industries": [
@@ -548,27 +624,47 @@
         {
           "url": "https://www.blender.org/",
           "title": "Blender — Official site",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.blender.org",
+          "publisher_domain": "www.blender.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/introduction.html",
           "title": "Blender Manual — Mesh modeling (B-mesh)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "docs.blender.org",
+          "publisher_domain": "docs.blender.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://docs.blender.org/manual/en/latest/files/import_export/usd.html",
           "title": "Blender Manual — USD import/export",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "docs.blender.org",
+          "publisher_domain": "docs.blender.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/hlorus/CAD_Sketcher",
           "title": "CAD Sketcher — constraint-based CAD add-on for Blender",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://wiki.blender.org/wiki/Reference/Development/Architecture/BMesh",
           "title": "Blender Wiki — BMesh architecture",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "wiki.blender.org",
+          "publisher_domain": "wiki.blender.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -625,7 +721,11 @@
         {
           "url": "https://eznesting.com/",
           "title": "EZNESTING",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "eznesting.com",
+          "publisher_domain": "eznesting.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [

@@ -7,6 +7,8 @@ import re
 import sys
 from pathlib import Path
 
+from provenance import registry_contract_issues, source_contract_issues, source_url_contract_issues
+
 ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_PATH = Path(__file__).resolve().parent / "schema.json"
 
@@ -44,7 +46,7 @@ VALID_TAGS = {
     "point_cloud", "model_checking", "4d_simulation", "open_bim",
     "visual_programming", "cad_scripting",
 }
-VALID_EVIDENCE = {"audited", "case_study", "vendor_claim", "media"}
+VALID_EVIDENCE = {"audited", "case_study", "vendor_claim", "media", "candidate"}
 MILESTONE_REQUIRED = {
     "id", "date", "vendor_id", "category_l2",
     "headline_zh", "headline_en",
@@ -55,6 +57,7 @@ MILESTONE_REQUIRED = {
 }
 ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
+SCHEMA = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
 
 
 def load_json(path: Path) -> object:
@@ -66,14 +69,23 @@ def err(msg: str) -> None:
     print(f"ERROR: {msg}", file=sys.stderr)
 
 
-def validate_source(src: dict, ctx: str) -> list[str]:
-    issues = []
+def strict_object_issues(value: object, definition: str, ctx: str) -> list[str]:
+    """Enforce each schema definition's closed set of object fields."""
+    if not isinstance(value, dict):
+        return [f"{ctx}: not an object"]
+    spec = SCHEMA.get("definitions", {}).get(definition, {})
+    properties = spec.get("properties")
+    if spec.get("additionalProperties") is not False or not isinstance(properties, dict):
+        return [f"schema definition {definition!r} must set additionalProperties=false"]
+    unknown = sorted(set(value) - set(properties))
+    return [f"{ctx}: unexpected fields {unknown}"] if unknown else []
+
+
+def validate_source(src: dict, ctx: str, expected_scope: str) -> list[str]:
+    issues = strict_object_issues(src, "source", ctx)
+    issues.extend(source_contract_issues(src, ctx, expected_scope=expected_scope))
     if not isinstance(src, dict):
-        return [f"{ctx}: source must be object"]
-    if not src.get("url"):
-        issues.append(f"{ctx}: source missing url")
-    elif not str(src["url"]).startswith(("http://", "https://")):
-        issues.append(f"{ctx}: source url must be http(s)")
+        return issues
     acc = src.get("accessed")
     if acc and not DATE_RE.match(str(acc)):
         issues.append(f"{ctx}: invalid accessed date {acc!r}")
@@ -81,7 +93,7 @@ def validate_source(src: dict, ctx: str) -> list[str]:
 
 
 def validate_product(p: dict, ctx: str, kernel_ids: set[str] | None = None) -> list[str]:
-    issues = []
+    issues = strict_object_issues(p, "product", ctx)
     if not isinstance(p, dict):
         return [f"{ctx}: not an object"]
     missing = REQUIRED_PRODUCT - set(p.keys())
@@ -111,7 +123,7 @@ def validate_product(p: dict, ctx: str, kernel_ids: set[str] | None = None) -> l
         issues.append(f"{ctx}: sources required")
     else:
         for i, s in enumerate(sources):
-            issues.extend(validate_source(s, f"{ctx}.sources[{i}]"))
+            issues.extend(validate_source(s, f"{ctx}.sources[{i}]", "entity_identity"))
     if conf is not None and float(conf) > 0.3 and not sources:
         issues.append(f"{ctx}: confidence>0.3 requires sources")
     for arr in ("strengths_zh", "strengths_en", "limitations_zh", "limitations_en", "industries"):
@@ -135,11 +147,31 @@ def validate_product(p: dict, ctx: str, kernel_ids: set[str] | None = None) -> l
                 if tag in seen_tags:
                     issues.append(f"{ctx}: duplicate tag {tag!r}")
                 seen_tags.add(tag)
+    for i, breakthrough in enumerate(p.get("breakthroughs") or []):
+        issues.extend(strict_object_issues(breakthrough, "breakthrough", f"{ctx}.breakthroughs[{i}]"))
+        if isinstance(breakthrough, dict) and breakthrough.get("source_url"):
+            issues.extend(source_url_contract_issues(
+                breakthrough,
+                f"{ctx}.breakthroughs[{i}]",
+                expected_scope="candidate_lead",
+            ))
+    capabilities = p.get("capabilities")
+    if capabilities is not None:
+        if not isinstance(capabilities, dict):
+            issues.append(f"{ctx}: capabilities must be an object")
+        else:
+            unknown = sorted(set(capabilities) - {"full", "partial"})
+            if unknown:
+                issues.append(f"{ctx}: capabilities has unexpected fields {unknown}")
+            for field in ("full", "partial"):
+                values = capabilities.get(field)
+                if not isinstance(values, list) or any(not isinstance(item, str) for item in values):
+                    issues.append(f"{ctx}: capabilities.{field} must be an array of strings")
     return issues
 
 
 def validate_kernel(k: dict, ctx: str, product_ids: set[str], kernel_ids: set[str]) -> list[str]:
-    issues = []
+    issues = strict_object_issues(k, "kernel", ctx)
     if not isinstance(k, dict):
         return [f"{ctx}: not an object"]
     missing = REQUIRED_KERNEL - set(k.keys())
@@ -172,7 +204,7 @@ def validate_kernel(k: dict, ctx: str, product_ids: set[str], kernel_ids: set[st
         issues.append(f"{ctx}: sources required")
     else:
         for i, s in enumerate(sources):
-            issues.extend(validate_source(s, f"{ctx}.sources[{i}]"))
+            issues.extend(validate_source(s, f"{ctx}.sources[{i}]", "entity_identity"))
     yr = k.get("first_release_year")
     if yr is not None and not isinstance(yr, int):
         issues.append(f"{ctx}: first_release_year must be int or null")
@@ -229,7 +261,7 @@ def warn_duplicate_product_names(paths: list[Path]) -> list[str]:
 
 
 def validate_milestone(m: dict, ctx: str) -> list[str]:
-    issues = []
+    issues = strict_object_issues(m, "milestone", ctx)
     if not isinstance(m, dict):
         return [f"{ctx}: not an object"]
     missing = MILESTONE_REQUIRED - set(m.keys())
@@ -240,19 +272,61 @@ def validate_milestone(m: dict, ctx: str) -> list[str]:
         issues.append(f"{ctx}: invalid id {mid!r}")
     if m.get("date") and not DATE_RE.match(str(m["date"])):
         issues.append(f"{ctx}: invalid date {m.get('date')!r}")
+    precision = m.get("date_precision")
+    if precision is not None and precision not in {"year", "month", "day"}:
+        issues.append(f"{ctx}: invalid date_precision={precision!r}")
+    if precision == "year" and not re.match(r"^\d{4}-01$", str(m.get("date", ""))):
+        issues.append(f"{ctx}: year precision must use deterministic YYYY-01 storage")
     if m.get("evidence_level") and m["evidence_level"] not in VALID_EVIDENCE:
         issues.append(f"{ctx}: invalid evidence_level={m['evidence_level']!r}")
     conf = m.get("confidence")
     if conf is not None and not (0 <= float(conf) <= 1):
         issues.append(f"{ctx}: confidence out of range")
+    if m.get("evidence_level") == "candidate" and conf is not None and float(conf) > 0.5:
+        issues.append(f"{ctx}: candidate confidence must be <=0.5")
+    if m.get("evidence_level") == "candidate" and any(
+        metric.get("verified") is True for metric in (m.get("metrics") or []) if isinstance(metric, dict)
+    ):
+        issues.append(f"{ctx}: candidate metrics cannot be marked verified")
+    for index, metric in enumerate(m.get("metrics") or []):
+        issues.extend(strict_object_issues(metric, "milestone_metric", f"{ctx}.metrics[{index}]"))
+    expected_scope = "candidate_lead" if m.get("evidence_level") == "candidate" else "claim_evidence"
     for i, s in enumerate(m.get("sources") or []):
-        issues.extend(validate_source(s, f"{ctx}.sources[{i}]"))
+        issues.extend(validate_source(s, f"{ctx}.sources[{i}]", expected_scope))
     if not m.get("sources"):
         issues.append(f"{ctx}: sources required")
+    if "source_research" in m:
+        issues.append(f"{ctx}: internal research marker cannot be public source authority")
     return issues
 
 
-def validate_breakthroughs(path: Path) -> list[str]:
+def validate_milestone_references(
+    milestone: dict,
+    ctx: str,
+    product_ids: set[str],
+    vendor_ids: set[str],
+    policy_ids: set[str],
+) -> list[str]:
+    """Validate every milestone FK, including the formerly omitted policy edge."""
+    issues: list[str] = []
+    if milestone.get("vendor_id") not in vendor_ids:
+        issues.append(f"{ctx}: unknown vendor_id {milestone.get('vendor_id')!r}")
+    for field in ("product_ids", "incumbent_product_ids"):
+        for product_id in milestone.get(field) or []:
+            if product_id not in product_ids:
+                issues.append(f"{ctx}: {field} references unknown product {product_id!r}")
+    for policy_id in milestone.get("related_policy_ids") or []:
+        if policy_id not in policy_ids:
+            issues.append(f"{ctx}: related_policy_ids references unknown policy {policy_id!r}")
+    return issues
+
+
+def validate_breakthroughs(
+    path: Path,
+    product_ids: set[str],
+    vendor_ids: set[str],
+    policy_ids: set[str],
+) -> list[str]:
     data = load_json(path)
     milestones = data.get("milestones", [])
     if not isinstance(milestones, list):
@@ -262,6 +336,7 @@ def validate_breakthroughs(path: Path) -> list[str]:
     for i, m in enumerate(milestones):
         ctx = f"breakthroughs[{i}] id={m.get('id', '?')}"
         issues.extend(validate_milestone(m, ctx))
+        issues.extend(validate_milestone_references(m, ctx, product_ids, vendor_ids, policy_ids))
         mid = m.get("id")
         if mid in seen:
             issues.append(f"duplicate milestone id {mid}")
@@ -279,6 +354,7 @@ def validate_vendors(path: Path) -> list[str]:
     issues = []
     seen = set()
     for i, v in enumerate(vendors):
+        issues.extend(strict_object_issues(v, "vendor", f"vendors[{i}]"))
         if not v.get("id"):
             issues.append(f"vendors[{i}]: missing id")
         if v.get("id") in seen:
@@ -343,11 +419,59 @@ def validate_benchmark_pairs(product_ids: set[str]) -> list[str]:
     return issues
 
 
+def validate_auxiliary_provenance(path: Path) -> list[str]:
+    """Validate policy/market source arrays and legacy source_url shorthands."""
+    data = load_json(path)
+    issues: list[str] = []
+
+    def walk(value: object, pointer: str, expected_scope: str) -> None:
+        if isinstance(value, dict):
+            if isinstance(value.get("source_url"), str):
+                issues.extend(source_url_contract_issues(
+                    value,
+                    f"{path.name}:{pointer or '/'}",
+                    expected_scope=expected_scope,
+                ))
+            sources = value.get("sources")
+            if isinstance(sources, list):
+                for index, source in enumerate(sources):
+                    issues.extend(validate_source(
+                        source,
+                        f"{path.name}:{pointer}/sources[{index}]",
+                        expected_scope,
+                    ))
+            for key, child in value.items():
+                if key == "sources":
+                    continue
+                walk(child, f"{pointer}/{key}", expected_scope)
+        elif isinstance(value, list):
+            for index, child in enumerate(value):
+                walk(child, f"{pointer}/{index}", expected_scope)
+
+    if path.name == "policies.json" and isinstance(data, dict):
+        for index, policy in enumerate(data.get("policies") or []):
+            candidate = policy.get("verification_status") == "candidate"
+            scope = "candidate_lead" if candidate else "claim_evidence"
+            if candidate and float(policy.get("confidence", 1)) > 0.5:
+                issues.append(f"policies[{index}] id={policy.get('id')}: candidate confidence must be <=0.5")
+            if "source_research" in policy:
+                issues.append(f"policies[{index}] id={policy.get('id')}: internal research marker cannot be source authority")
+            walk(policy, f"/policies/{index}", scope)
+        for key, value in data.items():
+            if key != "policies":
+                walk(value, f"/{key}", "claim_evidence")
+    else:
+        walk(data, "", "claim_evidence")
+    return issues
+
+
 def main() -> int:
     issues: list[str] = []
     if not SCHEMA_PATH.exists():
         err("schema.json missing")
         return 1
+
+    issues.extend(registry_contract_issues())
 
     cat_dir = ROOT / "assets" / "data" / "categories"
     research_dir = ROOT / "tmp" / "research"
@@ -377,14 +501,36 @@ def main() -> int:
         print(f"WARN: {w}", file=sys.stderr)
 
     vendors_path = ROOT / "assets" / "data" / "vendors.json"
+    vendor_ids: set[str] = set()
     if vendors_path.exists():
         issues.extend(validate_vendors(vendors_path))
+        vendors_data = load_json(vendors_path)
+        vendor_rows = vendors_data.get("vendors", vendors_data) if isinstance(vendors_data, dict) else vendors_data
+        vendor_ids = {
+            v.get("id") for v in vendor_rows
+            if isinstance(v, dict) and v.get("id")
+        }
+
+    policies_path = ROOT / "assets" / "data" / "policies.json"
+    policy_ids: set[str] = set()
+    if policies_path.exists():
+        policies_data = load_json(policies_path)
+        policy_rows = policies_data.get("policies", []) if isinstance(policies_data, dict) else []
+        policy_ids = {
+            policy.get("id") for policy in policy_rows
+            if isinstance(policy, dict) and policy.get("id")
+        }
 
     breakthroughs_path = ROOT / "assets" / "data" / "breakthroughs.json"
     if breakthroughs_path.exists():
-        issues.extend(validate_breakthroughs(breakthroughs_path))
+        issues.extend(validate_breakthroughs(breakthroughs_path, product_ids, vendor_ids, policy_ids))
 
     issues.extend(validate_benchmark_pairs(product_ids))
+
+    for auxiliary_name in ("policies.json", "market-stats.json"):
+        auxiliary_path = ROOT / "assets" / "data" / auxiliary_name
+        if auxiliary_path.exists():
+            issues.extend(validate_auxiliary_provenance(auxiliary_path))
 
     if issues:
         for i in issues:

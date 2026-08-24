@@ -40,7 +40,11 @@
         {
           "url": "https://www.peraglobal.com/",
           "title": "PERA SIM",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.peraglobal.com",
+          "publisher_domain": "www.peraglobal.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -86,7 +90,11 @@
         {
           "url": "https://www.suochen.com.cn/",
           "title": "Suochen Abyss",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.suochen.com.cn",
+          "publisher_domain": "www.suochen.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -132,7 +140,11 @@
         {
           "url": "https://www.bochu.com/",
           "title": "Bochu CypCut",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.bochu.com",
+          "publisher_domain": "www.bochu.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -179,7 +191,11 @@
         {
           "url": "https://www.weihong.com.cn/",
           "title": "Weihong NC",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.weihong.com.cn",
+          "publisher_domain": "www.weihong.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [],
@@ -224,7 +240,11 @@
         {
           "url": "http://www.huazhongcnc.com/",
           "title": "Huazhong CNC",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.huazhongcnc.com",
+          "publisher_domain": "www.huazhongcnc.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [],
@@ -268,7 +288,11 @@
         {
           "url": "http://www.gsk.com.cn/",
           "title": "GSK CNC",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.gsk.com.cn",
+          "publisher_domain": "www.gsk.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -310,7 +334,11 @@
         {
           "url": "https://www.simright.com/",
           "title": "SimRight CAE Cloud",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.simright.com",
+          "publisher_domain": "www.simright.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -353,7 +381,11 @@
         {
           "url": "https://www.ansys.com/",
           "title": "Ansys Mechanical",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.ansys.com",
+          "publisher_domain": "www.ansys.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "listed_ticker": "ANSS"
@@ -397,7 +429,11 @@
         {
           "url": "https://www.ansys.com/products/fluids/ansys-fluent",
           "title": "Ansys Fluent",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.ansys.com",
+          "publisher_domain": "www.ansys.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -440,7 +476,11 @@
         {
           "url": "https://www.3ds.com/products/simulia/abaqus",
           "title": "Abaqus",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.3ds.com",
+          "publisher_domain": "www.3ds.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -482,7 +522,11 @@
         {
           "url": "https://altair.com/hyperworks",
           "title": "Altair HyperWorks",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "altair.com",
+          "publisher_domain": "altair.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "listed_ticker": "ALTR"
@@ -526,7 +570,11 @@
         {
           "url": "https://www.comsol.com/",
           "title": "COMSOL Multiphysics",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.comsol.com",
+          "publisher_domain": "www.comsol.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -568,7 +616,11 @@
         {
           "url": "https://hexagon.com/products/msc-nastran",
           "title": "MSC Nastran",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "hexagon.com",
+          "publisher_domain": "hexagon.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -616,17 +668,29 @@
         {
           "url": "https://www.mastercam.com/",
           "title": "Mastercam",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.mastercam.com",
+          "publisher_domain": "www.mastercam.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://transmagic.com/cad-format-ladder-part-2/",
           "title": "Mastercam Parasolid-based CAM",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "transmagic.com",
+          "publisher_domain": "transmagic.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.mastercam.com/support/technical-support/translators/",
           "title": "Mastercam translators (Parasolid native, ACIS import)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.mastercam.com",
+          "publisher_domain": "www.mastercam.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -668,7 +732,11 @@
         {
           "url": "https://www.autodesk.com/products/powermill",
           "title": "PowerMill",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.autodesk.com",
+          "publisher_domain": "www.autodesk.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -711,7 +779,11 @@
         {
           "url": "https://www.openmind-tech.com/",
           "title": "hyperMILL",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.openmind-tech.com",
+          "publisher_domain": "www.openmind-tech.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -758,17 +830,29 @@
         {
           "url": "https://www.cimatron.com/",
           "title": "Cimatron",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.cimatron.com",
+          "publisher_domain": "www.cimatron.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://en.wikipedia.org/wiki/ACIS",
           "title": "ACIS — Cimatron listed as licensee",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.spatial.com/case-studies/imsi",
           "title": "Spatial ACIS CAM ISV case studies",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.spatial.com",
+          "publisher_domain": "www.spatial.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -810,7 +894,11 @@
         {
           "url": "https://www.jiyuan-tech.com/",
           "title": "Jiyuan Simulation",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.jiyuan-tech.com",
+          "publisher_domain": "www.jiyuan-tech.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -857,12 +945,20 @@
         {
           "url": "https://www.salome-platform.org/",
           "title": "SALOME Platform",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.salome-platform.org",
+          "publisher_domain": "www.salome-platform.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://en.wikipedia.org/wiki/Open_Cascade_Technology",
           "title": "OCCT — SALOME listed as dependent",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -912,7 +1008,11 @@
         {
           "url": "https://www.jingdiao.com/",
           "title": "北京精雕",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.jingdiao.com",
+          "publisher_domain": "www.jingdiao.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -965,7 +1065,11 @@
         {
           "url": "https://www.autodesk.com/products/moldflow/overview",
           "title": "Autodesk Moldflow",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.autodesk.com",
+          "publisher_domain": "www.autodesk.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1014,7 +1118,11 @@
         {
           "url": "https://www.ansys.com/products/structures/ansys-ls-dyna",
           "title": "Ansys LS-DYNA",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.ansys.com",
+          "publisher_domain": "www.ansys.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1064,7 +1172,11 @@
         {
           "url": "https://altair.com/hypermesh",
           "title": "Altair HyperMesh",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "altair.com",
+          "publisher_domain": "altair.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1116,7 +1228,11 @@
         {
           "url": "http://www.smartnest.com.cn/Products.asp",
           "title": "SmartNest",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.smartnest.com.cn",
+          "publisher_domain": "www.smartnest.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1164,7 +1280,11 @@
         {
           "url": "http://www.smartnest.com.cn/Products.asp?BigClassID=55",
           "title": "LaserCAM",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.smartnest.com.cn",
+          "publisher_domain": "www.smartnest.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1212,7 +1332,11 @@
         {
           "url": "https://www.laserdmk.com/hinest-smart-nesting-software-powered-by-industry-40",
           "title": "HiNest",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.laserdmk.com",
+          "publisher_domain": "www.laserdmk.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1261,7 +1385,11 @@
         {
           "url": "https://cutleader.com/np/np/cn/index.php",
           "title": "CutLeader CN",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "cutleader.com",
+          "publisher_domain": "cutleader.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1312,7 +1440,11 @@
         {
           "url": "https://www.fastcam.cn/pro-v9",
           "title": "FastCAM V9",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.fastcam.cn",
+          "publisher_domain": "www.fastcam.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1360,7 +1492,11 @@
         {
           "url": "https://www.bochu.com/ch/soft/cypnest/",
           "title": "CypNest",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.bochu.com",
+          "publisher_domain": "www.bochu.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1410,7 +1546,11 @@
         {
           "url": "http://static.cninfo.com.cn/finalpage/2026-03-31/1225056946.PDF",
           "title": "金橙子 2025 年报",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "static.cninfo.com.cn",
+          "publisher_domain": "static.cninfo.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1461,7 +1601,11 @@
         {
           "url": "https://www.laserfair.com/m/news/202511/12/89451.html",
           "title": "RDNest 介绍",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.laserfair.com",
+          "publisher_domain": "www.laserfair.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1512,7 +1656,11 @@
         {
           "url": "https://www.lantek.com/cn/lantek-china-shanghai",
           "title": "Lantek China",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.lantek.com",
+          "publisher_domain": "www.lantek.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1567,7 +1715,11 @@
         {
           "url": "https://cntech.com/index-cn.html",
           "title": "CnTech",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "cntech.com",
+          "publisher_domain": "cntech.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1616,7 +1768,11 @@
         {
           "url": "https://pitchhub.36kr.com/project/1818806921941124",
           "title": "36kr CnTech",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "pitchhub.36kr.com",
+          "publisher_domain": "pitchhub.36kr.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -1662,7 +1818,11 @@
         {
           "url": "https://www.wolfram.com/mathematica/",
           "title": "Wolfram Mathematica",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.wolfram.com",
+          "publisher_domain": "www.wolfram.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -1705,12 +1865,20 @@
         {
           "url": "http://www.anwiseglobal.com/",
           "title": "北京安怀信科技股份有限公司",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.anwiseglobal.com",
+          "publisher_domain": "www.anwiseglobal.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.maitaonet.com/company/info/230227145617D5960012",
           "title": "安怀信企业信息",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.maitaonet.com",
+          "publisher_domain": "www.maitaonet.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -1754,7 +1922,11 @@
         {
           "url": "https://www.mathworks.com/products/matlab.html",
           "title": "MATLAB",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.mathworks.com",
+          "publisher_domain": "www.mathworks.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -1797,7 +1969,11 @@
         {
           "url": "https://altair.com/radioss",
           "title": "Altair Radioss",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "altair.com",
+          "publisher_domain": "altair.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -1840,7 +2016,11 @@
         {
           "url": "https://altair.com/optistruct",
           "title": "Altair OptiStruct",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "altair.com",
+          "publisher_domain": "altair.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -1883,7 +2063,11 @@
         {
           "url": "https://hexagon.com/products/adams",
           "title": "MSC Adams",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "hexagon.com",
+          "publisher_domain": "hexagon.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -1926,7 +2110,11 @@
         {
           "url": "https://hexagon.com/products/pc-dmis",
           "title": "PC-DMIS",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "hexagon.com",
+          "publisher_domain": "hexagon.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -1969,7 +2157,11 @@
         {
           "url": "https://plm.sw.siemens.com/en-US/simcenter/",
           "title": "Siemens Simcenter",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "plm.sw.siemens.com",
+          "publisher_domain": "plm.sw.siemens.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -2012,7 +2204,11 @@
         {
           "url": "https://www.autodesk.com/products/powershape",
           "title": "Autodesk PowerShape",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.autodesk.com",
+          "publisher_domain": "www.autodesk.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ]
     },
@@ -2054,7 +2250,11 @@
         {
           "url": "https://www.pkpm.cn/about",
           "title": "构力科技 PKPM",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.pkpm.cn",
+          "publisher_domain": "www.pkpm.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2107,7 +2307,11 @@
         {
           "url": "https://www.pkpm.cn/about",
           "title": "构力科技 PKPM-CAE",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.pkpm.cn",
+          "publisher_domain": "www.pkpm.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2161,7 +2365,11 @@
         {
           "url": "https://www.pkpm.cn/about",
           "title": "构力科技 PKPM-SAUSG",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.pkpm.cn",
+          "publisher_domain": "www.pkpm.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2215,7 +2423,11 @@
         {
           "url": "https://www.yjk.cn/",
           "title": "盈建科 YJK",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.yjk.cn",
+          "publisher_domain": "www.yjk.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2268,7 +2480,11 @@
         {
           "url": "https://www.tj3d3s.com/",
           "title": "3D3S",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.tj3d3s.com",
+          "publisher_domain": "www.tj3d3s.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2321,7 +2537,11 @@
         {
           "url": "http://www.doctorbridge.com/721432.html",
           "title": "桥梁博士 V5",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.doctorbridge.com",
+          "publisher_domain": "www.doctorbridge.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2375,7 +2595,11 @@
         {
           "url": "https://www.lizheng.com.cn/",
           "title": "理正结构工具箱",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.lizheng.com.cn",
+          "publisher_domain": "www.lizheng.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2427,7 +2651,11 @@
         {
           "url": "https://karamba3d.com/",
           "title": "Karamba3D",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "karamba3d.com",
+          "publisher_domain": "karamba3d.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2480,7 +2708,11 @@
         {
           "url": "https://www.csiamerica.com/products/sap2000",
           "title": "SAP2000",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.csiamerica.com",
+          "publisher_domain": "www.csiamerica.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2530,7 +2762,11 @@
         {
           "url": "https://www.csiamerica.com/products/etabs",
           "title": "ETABS",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.csiamerica.com",
+          "publisher_domain": "www.csiamerica.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2580,7 +2816,11 @@
         {
           "url": "https://www.csiamerica.com/products/perform3d",
           "title": "Perform3D",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.csiamerica.com",
+          "publisher_domain": "www.csiamerica.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2629,7 +2869,11 @@
         {
           "url": "https://www.csiamerica.com/products/safe",
           "title": "SAFE",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.csiamerica.com",
+          "publisher_domain": "www.csiamerica.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2678,7 +2922,11 @@
         {
           "url": "https://product.midasit.cn/index/products-civil.asp",
           "title": "midas Civil",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "product.midasit.cn",
+          "publisher_domain": "product.midasit.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2727,7 +2975,11 @@
         {
           "url": "https://product.midasit.cn/index/products-gen.asp",
           "title": "midas Gen",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "product.midasit.cn",
+          "publisher_domain": "product.midasit.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2777,7 +3029,11 @@
         {
           "url": "https://www.dlubal.com/en/products/rfem-and-rstab",
           "title": "RFEM",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.dlubal.com",
+          "publisher_domain": "www.dlubal.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2827,7 +3083,11 @@
         {
           "url": "https://plm.sw.siemens.com/en-US/simcenter/STAR-CCM/",
           "title": "STAR-CCM+",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "plm.sw.siemens.com",
+          "publisher_domain": "plm.sw.siemens.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2881,7 +3141,11 @@
         {
           "url": "https://openfoam.org/",
           "title": "OpenFOAM",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "openfoam.org",
+          "publisher_domain": "openfoam.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2933,7 +3197,11 @@
         {
           "url": "https://www.ansys.com/products/fluids/ansys-cfx",
           "title": "Ansys CFX",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.ansys.com",
+          "publisher_domain": "www.ansys.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -2986,7 +3254,11 @@
         {
           "url": "https://www.bentley.com/software/plaxis/",
           "title": "PLAXIS",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.bentley.com",
+          "publisher_domain": "www.bentley.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -3035,7 +3307,11 @@
         {
           "url": "https://www.itascacg.com/software/flac3d",
           "title": "FLAC3D",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.itascacg.com",
+          "publisher_domain": "www.itascacg.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -3084,7 +3360,11 @@
         {
           "url": "https://www.bentley.com/software/geostudio/",
           "title": "GeoStudio",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.bentley.com",
+          "publisher_domain": "www.bentley.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -3133,7 +3413,11 @@
         {
           "url": "https://www.autodesk.com/products/robot-structural-analysis/overview",
           "title": "Robot Structural Analysis",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.autodesk.com",
+          "publisher_domain": "www.autodesk.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -3185,7 +3469,11 @@
         {
           "url": "https://hexagon.com/products/femap",
           "title": "Femap",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "hexagon.com",
+          "publisher_domain": "hexagon.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -3239,7 +3527,11 @@
         {
           "url": "https://www.functionbay.com/",
           "title": "RecurDyn",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.functionbay.com",
+          "publisher_domain": "www.functionbay.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -3291,7 +3583,11 @@
         {
           "url": "https://openfast.readthedocs.io/",
           "title": "OpenFAST Documentation",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "openfast.readthedocs.io",
+          "publisher_domain": "openfast.readthedocs.io",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -3343,7 +3639,11 @@
         {
           "url": "https://www.dnv.com/software/services/bladed/",
           "title": "DNV Bladed",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.dnv.com",
+          "publisher_domain": "www.dnv.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -3395,7 +3695,11 @@
         {
           "url": "https://www.gibbscam.com/en/explore-gibbscam",
           "title": "GibbsCAM",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.gibbscam.com",
+          "publisher_domain": "www.gibbscam.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [
@@ -3444,7 +3748,11 @@
         {
           "url": "https://sprutcam.com/",
           "title": "SprutCAM X",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "sprutcam.com",
+          "publisher_domain": "sprutcam.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "international_benchmarks": [

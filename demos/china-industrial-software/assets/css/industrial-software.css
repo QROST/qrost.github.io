@@ -164,6 +164,8 @@
     --color-evidence-vendor-fg: #6b21a8;
     --color-evidence-media-bg: var(--color-bg-surface);
     --color-evidence-media-fg: var(--color-text-secondary);
+    --color-evidence-candidate-bg: var(--color-warning-bg);
+    --color-evidence-candidate-fg: var(--color-warning-fg);
 
     /* Lane F: localization depth (indigo/violet — NOT taxonomy triad) */
     --color-loc-none-bg: var(--color-bg-surface);
@@ -623,6 +625,11 @@ html.dark .hover\:text-slate-800:hover { color: var(--color-text-primary) !impor
     box-shadow: 0 2px 10px var(--color-shadow-sm);
 }
 
+.timeline-node[data-candidate="true"] .timeline-node-body {
+    border-style: dashed;
+    border-color: var(--color-warning-border);
+}
+
 .timeline-category-badge {
     padding: 0.125rem 0.5rem;
     border-radius: 0.25rem;
@@ -814,6 +821,46 @@ html.dark .hover\:text-slate-800:hover { color: var(--color-text-primary) !impor
 .badge-evidence-case { background: var(--color-evidence-case-bg); color: var(--color-evidence-case-fg); }
 .badge-evidence-vendor { background: var(--color-evidence-vendor-bg); color: var(--color-evidence-vendor-fg); }
 .badge-evidence-media { background: var(--color-evidence-media-bg); color: var(--color-evidence-media-fg); }
+.badge-evidence-candidate { background: var(--color-evidence-candidate-bg); color: var(--color-evidence-candidate-fg); }
+
+.source-authority {
+    display: inline-block;
+    margin-left: 0.35rem;
+    color: var(--color-text-subtle);
+    font-size: 0.68rem;
+}
+
+.milestone-source-item {
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.catalog-open-detail {
+    display: inline-block;
+    max-width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.catalog-open-detail:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
 
 /* Policy subsection — visual break after milestone cards (#timeline) */
 .timeline-policies {
@@ -837,6 +884,20 @@ html.dark .hover\:text-slate-800:hover { color: var(--color-text-primary) !impor
     border: 1px solid var(--color-border-default);
     border-radius: 0.75rem;
     background: var(--color-bg-elevated);
+}
+
+.policy-gantt-entry[data-candidate="true"] .policy-gantt-label-text {
+    color: var(--color-warning-fg);
+}
+
+.policy-gantt-entry[data-candidate="true"] .policy-gantt-bar,
+.policy-gantt-entry[data-candidate="true"] .policy-gantt-marker {
+    opacity: 0.72;
+    border-style: dashed;
+}
+
+.policy-gantt-label-text .badge-evidence-candidate {
+    margin-right: 0.3rem;
 }
 
 .policy-gantt-scroll::-webkit-scrollbar {

@@ -78,12 +78,20 @@
         {
           "url": "https://plm.sw.siemens.com/en-US/plm/components/parasolid/",
           "title": "Siemens Parasolid",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "plm.sw.siemens.com",
+          "publisher_domain": "plm.sw.siemens.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://en.wikipedia.org/wiki/Geometric_modeling_kernel",
           "title": "Geometric modeling kernel",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -166,27 +174,47 @@
         {
           "url": "https://www.spatial.com/products/acis",
           "title": "Spatial ACIS",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.spatial.com",
+          "publisher_domain": "www.spatial.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.bricsys.com/blog/what-is-an-acis-solid-and-why-should-you-care",
           "title": "BricsCAD ACIS blog",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.bricsys.com",
+          "publisher_domain": "www.bricsys.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "http://cad.caxa.com/function3d",
           "title": "CAXA 3D multi-engine MEGA/Parasolid/ACIS",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "cad.caxa.com",
+          "publisher_domain": "cad.caxa.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://en.wikipedia.org/wiki/ACIS",
           "title": "ACIS licensee overview",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://spaceclaim.com/en/Support/FAQ/General_FAQ.aspx",
           "title": "SpaceClaim ACIS kernel FAQ",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "spaceclaim.com",
+          "publisher_domain": "spaceclaim.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -255,12 +283,20 @@
         {
           "url": "https://c3dlabs.com/products/c3d-toolkit/",
           "title": "C3D Toolkit",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "c3dlabs.com",
+          "publisher_domain": "c3dlabs.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://c3dlabs.com/customers/ascon/",
           "title": "ASCON / KOMPAS-3D",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "c3dlabs.com",
+          "publisher_domain": "c3dlabs.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -328,12 +364,20 @@
         {
           "url": "https://www.ptc.com/en/products/creo",
           "title": "PTC Creo",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.ptc.com",
+          "publisher_domain": "www.ptc.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.cadinterop.com/en/formats/neutral-format/granite.html",
           "title": "Granite format notes",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.cadinterop.com",
+          "publisher_domain": "www.cadinterop.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -427,27 +471,47 @@
         {
           "url": "https://dev.opencascade.org/",
           "title": "Open CASCADE Technology",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "dev.opencascade.org",
+          "publisher_domain": "dev.opencascade.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://dev.opencascade.org/doc/occt-7.4.0/overview/html/occt_public_license.html",
           "title": "OCCT LGPL 2.1 license",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "dev.opencascade.org",
+          "publisher_domain": "dev.opencascade.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://en.wikipedia.org/wiki/Open_Cascade_Technology",
           "title": "Open Cascade Technology (Wikipedia)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.freecad.org/",
           "title": "FreeCAD",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.freecad.org",
+          "publisher_domain": "www.freecad.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://product.amcax.net/",
           "title": "AMCAX 九韶内核 OCC 风格接口",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "product.amcax.net",
+          "publisher_domain": "product.amcax.net",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -518,27 +582,47 @@
         {
           "url": "https://www.3ds.com/products/catia",
           "title": "CATIA",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.3ds.com",
+          "publisher_domain": "www.3ds.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.engineering.com/what-is-a-geometric-modeling-kernel/",
           "title": "Engineering.com — CGM powers CATIA/3DEXPERIENCE",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.engineering.com",
+          "publisher_domain": "www.engineering.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://blog.spatial.com/cgm",
           "title": "Spatial — CGM same engine as CATIA V5/V6",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "blog.spatial.com",
+          "publisher_domain": "blog.spatial.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://discover.3ds.com/xapps-talks-cloud-based-3d-modeling-applications",
           "title": "3DS xApps — xGenerative Design uses CATIA CGM",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "discover.3ds.com",
+          "publisher_domain": "discover.3ds.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://mechanitec.ca/what-is-solidworks-xdesign/",
           "title": "xDesign CGM vs desktop SOLIDWORKS Parasolid",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "mechanitec.ca",
+          "publisher_domain": "mechanitec.ca",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -603,12 +687,20 @@
         {
           "url": "https://en.wikipedia.org/wiki/Geometric_modeling_kernel",
           "title": "ShapeManager",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.autodesk.com/products/inventor",
           "title": "Autodesk Inventor",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.autodesk.com",
+          "publisher_domain": "www.autodesk.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -673,12 +765,20 @@
         {
           "url": "https://www.zwsoft.com/product/overdrive",
           "title": "ZWSOFT Overdrive",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.zwsoft.com",
+          "publisher_domain": "www.zwsoft.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.zwsoft.cn/",
           "title": "ZWSOFT China",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.zwsoft.cn",
+          "publisher_domain": "www.zwsoft.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -740,17 +840,29 @@
         {
           "url": "https://www.crowncad.com/",
           "title": "CrownCAD",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.crowncad.com",
+          "publisher_domain": "www.crowncad.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "http://www.jhhg.net.cn/4371598/4390469.html",
           "title": "CrownCAD DGM+DCS 自主云 CAD 发布",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.jhhg.net.cn",
+          "publisher_domain": "www.jhhg.net.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://qikan.cmes.org/jxgcxb/EN/PDF/10.3901/JME.2023.23.158",
           "title": "机械工程学报：国产几何内核综述（DGM）",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "qikan.cmes.org",
+          "publisher_domain": "qikan.cmes.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -814,17 +926,29 @@
         {
           "url": "https://www.caxa.com/news/2025/48888.html",
           "title": "CAXA MEGA Kernel 发布",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.caxa.com",
+          "publisher_domain": "www.caxa.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "http://www.cngyol.com/article/2416.html",
           "title": "CAXA 多内核引擎架构",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.cngyol.com",
+          "publisher_domain": "www.cngyol.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.caxa.com/",
           "title": "CAXA",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.caxa.com",
+          "publisher_domain": "www.caxa.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -890,17 +1014,29 @@
         {
           "url": "https://www.gstarcad.com/cad/",
           "title": "GstarCAD 自主 2D 平台",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.gstarcad.com",
+          "publisher_domain": "www.gstarcad.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "http://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=8357331&stockid=688657",
           "title": "浩辰软件 IPO：ACIS 用于 3D 模块",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "vip.stock.finance.sina.com.cn",
+          "publisher_domain": "vip.stock.finance.sina.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://cloud.tencent.com.cn/developer/news/643581",
           "title": "浩辰 CAD 8 自主内核",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "cloud.tencent.com.cn",
+          "publisher_domain": "cloud.tencent.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -964,12 +1100,20 @@
         {
           "url": "https://www.poissonsoft.com/page323?_l=zh_CN",
           "title": "Geoshape engine",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.poissonsoft.com",
+          "publisher_domain": "www.poissonsoft.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.poissonsoft.com/page236?article_id=830",
           "title": "DISA standard statement",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.poissonsoft.com",
+          "publisher_domain": "www.poissonsoft.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1035,17 +1179,29 @@
         {
           "url": "https://qikan.cmes.org/jxgcxb/EN/PDF/10.3901/JME.2023.23.158",
           "title": "机械工程学报：CRUX IV 内核",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "qikan.cmes.org",
+          "publisher_domain": "qikan.cmes.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://blog.csdn.net/weixin_43911798/article/details/108742161",
           "title": "SINOVATION CRUX IV 历史",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "blog.csdn.net",
+          "publisher_domain": "blog.csdn.net",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.hoteamsoft.com/",
           "title": "Hoteam Software",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.hoteamsoft.com",
+          "publisher_domain": "www.hoteamsoft.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1112,12 +1268,20 @@
         {
           "url": "https://www.thsoft.com.cn/Products.html",
           "title": "THCAD 自主平台",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.thsoft.com.cn",
+          "publisher_domain": "www.thsoft.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.thsoft.com.cn/news_detail/50.html",
           "title": "THCAD 2026 内核安全可控",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.thsoft.com.cn",
+          "publisher_domain": "www.thsoft.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1183,12 +1347,20 @@
         {
           "url": "http://www.pengye.com.cn/gclazagent/",
           "title": "鹏业 BIM 三维安装算量",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.pengye.com.cn",
+          "publisher_domain": "www.pengye.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://developer.cloud.tencent.com/news/499744",
           "title": "鹏业自主图形平台",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "developer.cloud.tencent.com",
+          "publisher_domain": "developer.cloud.tencent.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1253,7 +1425,11 @@
         {
           "url": "https://www.autodesk.com.cn/",
           "title": "AutoCAD China",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.autodesk.com.cn",
+          "publisher_domain": "www.autodesk.com.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1314,7 +1490,11 @@
         {
           "url": "https://www.sketchup.com/",
           "title": "SketchUp",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.sketchup.com",
+          "publisher_domain": "www.sketchup.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1378,17 +1558,29 @@
         {
           "url": "https://librecad.org/",
           "title": "LibreCAD",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "librecad.org",
+          "publisher_domain": "librecad.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/LibreCAD/LibreCAD/blob/master/README.md",
           "title": "LibreCAD README — QCAD CE lineage, libdxfrw",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/LibreCAD/libdxfrw",
           "title": "libdxfrw — DXF/DWG I/O library",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1454,17 +1646,29 @@
         {
           "url": "https://product.amcax.net/",
           "title": "AMCAX Kernel 产品页",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "product.amcax.net",
+          "publisher_domain": "product.amcax.net",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://docs.amcax.net/v4_7_0/zh_cn/html/index.html",
           "title": "AMCAX Kernel 文档",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "docs.amcax.net",
+          "publisher_domain": "docs.amcax.net",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.amcax.net/nd.jsp?id=1261",
           "title": "AMCAX 4.0 发布会",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.amcax.net",
+          "publisher_domain": "www.amcax.net",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1530,17 +1734,29 @@
         {
           "url": "https://www.newdimchina.com/news/963.html",
           "title": "新迪收购 Solid Edge 源码",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.newdimchina.com",
+          "publisher_domain": "www.newdimchina.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.newdimchina.com/news/947.html",
           "title": "Parasolid+DCM 永久授权说明",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.newdimchina.com",
+          "publisher_domain": "www.newdimchina.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.newdimchina.com/product/94.html",
           "title": "新迪天工 CAD",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.newdimchina.com",
+          "publisher_domain": "www.newdimchina.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1603,12 +1819,20 @@
         {
           "url": "https://c3dlabs.com/customers/ascon/",
           "title": "KOMPAS-3D / C3D",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "c3dlabs.com",
+          "publisher_domain": "c3dlabs.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://ascon.ru/products/kompas-3d/",
           "title": "ASCON KOMPAS-3D",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "ascon.ru",
+          "publisher_domain": "ascon.ru",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1673,12 +1897,20 @@
         {
           "url": "https://tech-clarity.com/nx-cad-vision/3744",
           "title": "NX CAD vision / Parasolid+ST",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "tech-clarity.com",
+          "publisher_domain": "tech-clarity.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://plm.sw.siemens.com/",
           "title": "Siemens NX",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "plm.sw.siemens.com",
+          "publisher_domain": "plm.sw.siemens.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1753,17 +1985,29 @@
         {
           "url": "https://github.com/mcneel/opennurbs",
           "title": "openNURBS GitHub",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.rhino3d.com/opennurbs",
           "title": "McNeel openNURBS",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.rhino3d.com",
+          "publisher_domain": "www.rhino3d.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://en.wikipedia.org/wiki/OpenNURBS",
           "title": "OpenNURBS (Wikipedia)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1827,12 +2071,20 @@
         {
           "url": "https://www.techsoft3d.com/products/hoops-exchange/",
           "title": "HOOPS Exchange",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.techsoft3d.com",
+          "publisher_domain": "www.techsoft3d.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://docs.techsoft3d.com/exchange/latest/index.html",
           "title": "HOOPS Exchange documentation",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "docs.techsoft3d.com",
+          "publisher_domain": "docs.techsoft3d.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1893,7 +2145,11 @@
         {
           "url": "https://www.techsoft3d.com/products/hoops-communicator/",
           "title": "HOOPS Communicator",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.techsoft3d.com",
+          "publisher_domain": "www.techsoft3d.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -1958,12 +2214,20 @@
         {
           "url": "https://www.siemens.com/global/en/products/services/mbse/polygonica.html",
           "title": "Polygonica (Siemens)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.siemens.com",
+          "publisher_domain": "www.siemens.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.machineworks.com/",
           "title": "MachineWorks Polygonica",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.machineworks.com",
+          "publisher_domain": "www.machineworks.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2031,27 +2295,47 @@
         {
           "url": "https://www.spatial.com/products/cgm",
           "title": "Spatial CGM Modeler",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.spatial.com",
+          "publisher_domain": "www.spatial.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.spatial.com/case-studies/staubli",
           "title": "Stäubli Robotics Suite + CGM OEM",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.spatial.com",
+          "publisher_domain": "www.spatial.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://blog.spatial.com/cgm",
           "title": "Spatial CGM launch — Mitsui Zosen first OEM",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "blog.spatial.com",
+          "publisher_domain": "blog.spatial.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.spatial.com/products/acis",
           "title": "Spatial ACIS (distinct from CGM)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.spatial.com",
+          "publisher_domain": "www.spatial.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.demystifyingplm.com/chapter-3-proprietary-versus-licensed-kernels",
           "title": "DemystifyingPLM — CGM OEM licensees",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.demystifyingplm.com",
+          "publisher_domain": "www.demystifyingplm.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2123,12 +2407,20 @@
         {
           "url": "https://www.3ds.com/3dexperience",
           "title": "3DEXPERIENCE platform",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.3ds.com",
+          "publisher_domain": "www.3ds.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.3ds.com/products/catia",
           "title": "CATIA on 3DEXPERIENCE",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.3ds.com",
+          "publisher_domain": "www.3ds.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2193,12 +2485,20 @@
         {
           "url": "https://www.cgal.org/",
           "title": "CGAL",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.cgal.org",
+          "publisher_domain": "www.cgal.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/openscad/openscad",
           "title": "OpenSCAD uses CGAL",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2259,12 +2559,20 @@
         {
           "url": "https://libigl.github.io/",
           "title": "libigl",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "libigl.github.io",
+          "publisher_domain": "libigl.github.io",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/libigl/libigl",
           "title": "libigl GitHub",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2323,7 +2631,11 @@
         {
           "url": "https://github.com/elalish/manifold",
           "title": "Manifold GitHub",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2382,7 +2694,11 @@
         {
           "url": "https://github.com/gilbo/cork",
           "title": "Cork GitHub",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2442,7 +2758,11 @@
         {
           "url": "https://github.com/qhduan/carve",
           "title": "Carve CSG (GitHub mirror)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2502,12 +2822,20 @@
         {
           "url": "https://www.openvdb.org/",
           "title": "OpenVDB",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.openvdb.org",
+          "publisher_domain": "www.openvdb.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/AcademySoftwareFoundation/openvdb",
           "title": "OpenVDB GitHub",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2569,7 +2897,11 @@
         {
           "url": "https://www.greo.cn/",
           "title": "国睿信维",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.greo.cn",
+          "publisher_domain": "www.greo.cn",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2630,7 +2962,11 @@
         {
           "url": "https://www.farsoon.com/",
           "title": "Farsoon 华曙高科",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.farsoon.com",
+          "publisher_domain": "www.farsoon.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2689,12 +3025,20 @@
         {
           "url": "https://en.wikipedia.org/wiki/Geometric_modeling_kernel",
           "title": "Geometric modeling kernel history",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://en.wikipedia.org/wiki/Unigraphics",
           "title": "Unigraphics history",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2756,12 +3100,20 @@
         {
           "url": "https://plm.sw.siemens.com/en-US/nx/",
           "title": "Siemens NX lineage",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "plm.sw.siemens.com",
+          "publisher_domain": "plm.sw.siemens.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://en.wikipedia.org/wiki/Unigraphics",
           "title": "Unigraphics",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2825,12 +3177,20 @@
         {
           "url": "https://www.ironcad.com/",
           "title": "IronCAD dual kernel",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.ironcad.com",
+          "publisher_domain": "www.ironcad.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://en.wikipedia.org/wiki/IronCAD",
           "title": "IronCAD (Wikipedia)",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "en.wikipedia.org",
+          "publisher_domain": "en.wikipedia.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2895,12 +3255,20 @@
         {
           "url": "https://github.com/solvespace/solvespace",
           "title": "SolveSpace GitHub",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "http://solvespace.com/",
           "title": "SolveSpace",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "solvespace.com",
+          "publisher_domain": "solvespace.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -2963,12 +3331,20 @@
         {
           "url": "https://brlcad.org/",
           "title": "BRL-CAD",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "brlcad.org",
+          "publisher_domain": "brlcad.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://github.com/BRL-CAD/brlcad",
           "title": "BRL-CAD GitHub",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "github.com",
+          "publisher_domain": "github.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -3030,12 +3406,20 @@
         {
           "url": "https://www.kubotek3d.com/",
           "title": "Kubotek KeyCreator",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.kubotek3d.com",
+          "publisher_domain": "www.kubotek3d.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.spatial.com/products/acis",
           "title": "Spatial ACIS licensees",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.spatial.com",
+          "publisher_domain": "www.spatial.com",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []
@@ -3100,17 +3484,29 @@
         {
           "url": "https://wiki.blender.org/wiki/Reference/Development/Architecture/BMesh",
           "title": "Blender Wiki — BMesh architecture",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "wiki.blender.org",
+          "publisher_domain": "wiki.blender.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/introduction.html",
           "title": "Blender Manual — Mesh modeling",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "docs.blender.org",
+          "publisher_domain": "docs.blender.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         },
         {
           "url": "https://www.blender.org/about/license/",
           "title": "Blender GPL license",
-          "accessed": "2026-06"
+          "accessed": "2026-06",
+          "publisher": "www.blender.org",
+          "publisher_domain": "www.blender.org",
+          "publisher_ownership": "external",
+          "support_scope": "entity_identity"
         }
       ],
       "used_by_domestic": []

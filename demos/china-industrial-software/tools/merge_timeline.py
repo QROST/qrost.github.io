@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from migrate_breakthrough_contract import normalize_milestone_source_contract
+
 ROOT = Path(__file__).resolve().parent.parent
 POLICIES_PATH = ROOT / "assets" / "data" / "policies.json"
 BREAKTHROUGHS_PATH = ROOT / "assets" / "data" / "breakthroughs.json"
@@ -834,6 +836,8 @@ def merge_breakthroughs() -> tuple[int, list[str]]:
     added = 0
 
     for m in NEW_MILESTONES:
+        m = dict(m)
+        normalize_milestone_source_contract(m)
         mid = m["id"]
         if mid in existing_ids:
             skipped.append(mid)

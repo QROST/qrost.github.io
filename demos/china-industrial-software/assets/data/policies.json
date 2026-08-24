@@ -18,7 +18,11 @@
       "summary_zh": "国家高技术研究发展计划启动，为CIMS/CAD/自动化等工业软件科研提供顶层资金渠道",
       "summary_en": "National High-Tech R&D Program launch—top-level funding channel for CIMS/CAD/automation R&D",
       "source_url": "https://www.cmse.gov.cn/ztbd/xwzt/qzxzgcllszntbzt/fzlc/200909/t20090925_39615.html",
-      "policy_type": "program"
+      "policy_type": "program",
+      "source_publisher": "www.cmse.gov.cn",
+      "source_publisher_domain": "www.cmse.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "cad-application-program-1992",
@@ -38,7 +42,11 @@
       "summary_zh": "首个国务院层面CAD应用工程，推动国产二维CAD与外资工具规模化落地",
       "summary_en": "First State Council-level CAD rollout—scaled domestic 2D CAD alongside foreign tools",
       "source_url": "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/qtwj/qtwj2010before/200312/t20031209_143209.html",
-      "policy_type": "program"
+      "policy_type": "program",
+      "source_publisher": "www.most.gov.cn",
+      "source_publisher_domain": "www.most.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "fund-guofa-2000-no-18-software-ic-industry-fiscal-inc-2000",
@@ -62,7 +70,12 @@
       "doc_number": "国发〔2000〕18号",
       "policy_type": "fund",
       "source_url": "https://www.gov.cn/gongbao/content/2000/content_60310.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "guofa-18-software-ic-2000",
@@ -82,7 +95,11 @@
       "summary_zh": "早期软件与集成电路（含EDA）产业化的国家级财税政策基石",
       "summary_en": "Foundational national fiscal policy for software, IC design, and EDA industrialization",
       "source_url": "https://www.gov.cn/gongbao/content/2000/content_60310.htm",
-      "policy_type": "program"
+      "policy_type": "program",
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "fyp-10th-fyp-outline-fixed-mobile-subscriber-targets-2001",
@@ -106,7 +123,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/gongbao/content/2001/content/60648.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-10th-fyp-outline-informatization-telecom-kpis-2001",
@@ -130,7 +152,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/gongbao/content/2001/content/60648.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "ministry-electronic-information-industry-10th-fyp-plan-ma-2001",
@@ -154,7 +181,12 @@
       "doc_number": "",
       "policy_type": "ministry",
       "source_url": "http://www.news.cn/tech/2001-07/20/content_1234567.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.news.cn",
+      "source_publisher_domain": "www.news.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "manufacturing-informatization-2002",
@@ -174,7 +206,11 @@
       "summary_zh": "CAD/CIMS之后最大规模的制造业数字化专项，推动PLM/MES/ERP应用",
       "summary_en": "Largest post-CAD/CIMS manufacturing digitization program driving PLM/MES/ERP adoption",
       "source_url": "http://www.kepu365.com/kepu/KXBL/200701/114984.html",
-      "policy_type": "program"
+      "policy_type": "program",
+      "source_publisher": "www.kepu365.com",
+      "source_publisher_domain": "www.kepu365.com",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "program-software-industry-revitalization-outline-2005-re-2002",
@@ -198,7 +234,12 @@
       "doc_number": "国办发〔2002〕47号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/gongbao/content/2002/content/61398.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "hegaoji-launch-2008",
@@ -218,7 +259,11 @@
       "summary_zh": "国家科技重大专项直接资助CPU/OS/EDA等基础软件与芯片工具链",
       "summary_en": "National mega-project funding CPU/OS/EDA and basic software toolchain",
       "source_url": "https://www.most.gov.cn/xwzx/twzb/fbh17112001/twbbwzsl/201711/t20171124_136445.html",
-      "policy_type": "program"
+      "policy_type": "program",
+      "source_publisher": "www.most.gov.cn",
+      "source_publisher_domain": "www.most.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "program-core-electronic-devices-high-end-software-ic-meg-2008",
@@ -242,7 +287,12 @@
       "doc_number": "",
       "policy_type": "program",
       "source_url": "https://www.most.gov.cn/xwzx/twzb/fbh17112001/twbbwzsl/201711/t20171124_136445.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.most.gov.cn",
+      "source_publisher_domain": "www.most.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-state-council-approves-core-electronic-devices-h-2008",
@@ -266,7 +316,12 @@
       "doc_number": "",
       "policy_type": "program",
       "source_url": "https://www.most.gov.cn/xwzx/twzb/fbh17112001/twbbwzsl/201711/t20171124_136445.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.most.gov.cn",
+      "source_publisher_domain": "www.most.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-11th-five-year-project-deployment-scale-2010",
@@ -290,7 +345,12 @@
       "doc_number": "",
       "policy_type": "program",
       "source_url": "https://www.most.gov.cn/xwzx/twzb/fbh17112001/twbbwzsl/201711/t20171124_136445.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.most.gov.cn",
+      "source_publisher_domain": "www.most.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-11th-fyp-central-fiscal-investment-2010",
@@ -314,7 +374,12 @@
       "doc_number": "",
       "policy_type": "program",
       "source_url": "https://www.most.gov.cn/xwzx/twzb/fbh17112001/twbbwzsl/201711/t20171124_136445.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.most.gov.cn",
+      "source_publisher_domain": "www.most.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-11th-fyp-total-budget-incl-co-funding-2010",
@@ -338,7 +403,12 @@
       "doc_number": "",
       "policy_type": "program",
       "source_url": "https://www.most.gov.cn/xwzx/twzb/fbh17112001/twbbwzsl/201711/t20171124_136445.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.most.gov.cn",
+      "source_publisher_domain": "www.most.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "guofa-4-software-ic-2011",
@@ -358,7 +428,11 @@
       "summary_zh": "2010年代软件与工业软件产业政策环境的国务院接续文件",
       "summary_en": "State Council continuation of 2010s software/industrial software policy environment",
       "source_url": "http://jsnews.jschina.com.cn/zt2024/fzsxxxpt/hdxf/fgxwj/202404/t20240424_3396470.shtml",
-      "policy_type": "program"
+      "policy_type": "program",
+      "source_publisher": "jsnews.jschina.com.cn",
+      "source_publisher_domain": "jsnews.jschina.com.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "fyp-12th-fyp-outline-strategic-emerging-industries-v-2011",
@@ -382,7 +456,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/2011lh/content_1825838.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "integration-informatization-industrialization-2011",
@@ -402,7 +481,11 @@
       "summary_zh": "「两化融合」纲领性文件，推动MES/ERP/DCS等工业软件渗透制造环节",
       "summary_en": "Cornerstone 'integration of informatization & industrialization' policy for MES/ERP/DCS penetration",
       "source_url": "https://www.gov.cn/gongbao/content/2011/content_1967421.htm",
-      "policy_type": "ministry"
+      "policy_type": "ministry",
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "fyp-12th-fyp-software-it-services-plan-software-reve-2012",
@@ -426,7 +509,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2012-01/12/content_2027244.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-12th-fyp-software-plan-software-export-target-2012",
@@ -450,7 +538,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2012-01/12/content_2027244.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-12th-fyp-software-plan-software-value-added-shar-2012",
@@ -474,7 +567,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2012-01/12/content_2027244.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-industrial-transformation-plan-average-annual-gr-2012",
@@ -498,7 +596,12 @@
       "doc_number": "国发〔2012〕2号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2012-01/18/content_2031490.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-industrial-transformation-plan-cad-digital-desig-2012",
@@ -522,7 +625,12 @@
       "doc_number": "国发〔2012〕2号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2012-01/18/content_2031490.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-industrial-transformation-plan-cnc-rate-in-key-p-2012",
@@ -546,7 +654,12 @@
       "doc_number": "国发〔2012〕2号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2012-01/18/content_2031490.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-12th-fyp-national-informatization-plan-e-commerc-2012",
@@ -570,7 +683,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zwgk/2012-06/28/content_2170745.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "ic-industry-guideline-2014",
@@ -590,7 +708,11 @@
       "summary_zh": "集成电路（含EDA/IP）国家战略，为大基金投资华大九天等提供依据",
       "summary_en": "National IC strategy (incl. EDA/IP)—policy basis for Big Fund EDA investments",
       "source_url": "https://www.cac.gov.cn/2014-06/26/c_1111325916.htm",
-      "policy_type": "program"
+      "policy_type": "program",
+      "source_publisher": "www.cac.gov.cn",
+      "source_publisher_domain": "www.cac.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "fund-national-ic-industry-investment-fund-phase-i-est-2014",
@@ -614,7 +736,12 @@
       "doc_number": "",
       "policy_type": "fund",
       "source_url": "https://www.gov.cn/xinwen/2014-09/26/content_2753869.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-county-district-government-software-legalization-2014",
@@ -638,7 +765,12 @@
       "doc_number": "国办发〔2014〕88号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2014-12/30/content_9355.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-municipal-prefectural-government-software-legali-2014",
@@ -662,7 +794,12 @@
       "doc_number": "国办发〔2014〕88号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2014-12/30/content_9355.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "two-sessions-2015-government-work-report-internet-plus-rollou-2015",
@@ -686,7 +823,12 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/gongbao/content/2015/content_2883.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "made-in-china-2025",
@@ -706,7 +848,11 @@
       "summary_zh": "制造强国十年行动纲领，智能制造与工业软件自主可控的总纲",
       "summary_en": "Decade-long manufacturing power roadmap—intelligent manufacturing & software autonomy",
       "source_url": "https://www.ndrc.gov.cn/xxgk/zcfb/qt/201505/t20150520_967388.html",
-      "policy_type": "program"
+      "policy_type": "program",
+      "source_publisher": "www.ndrc.gov.cn",
+      "source_publisher_domain": "www.ndrc.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "program-made-in-china-2025-digital-r-d-design-tool-penet-2015",
@@ -730,7 +876,12 @@
       "doc_number": "国发〔2015〕28号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2015-05/19/content_9784.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-made-in-china-2025-fixed-broadband-household-pen-2015",
@@ -754,7 +905,12 @@
       "doc_number": "国发〔2015〕28号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2015-05/19/content_9784.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-made-in-china-2025-interim-targets-2020-2015",
@@ -778,7 +934,12 @@
       "doc_number": "国发〔2015〕28号",
       "policy_type": "program",
       "source_url": "https://www.ndrc.gov.cn/xxgk/zcfb/qt/201505/t20150520_967388.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.ndrc.gov.cn",
+      "source_publisher_domain": "www.ndrc.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-made-in-china-2025-key-process-cnc-rate-2015",
@@ -802,7 +963,12 @@
       "doc_number": "国发〔2015〕28号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2015-05/19/content_9784.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-made-in-china-2025-key-process-numerical-control-2015",
@@ -826,7 +992,12 @@
       "doc_number": "国发〔2015〕28号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2015-05/19/content_9784.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-made-in-china-2025-manufacturing-r-d-intensity-t-2015",
@@ -850,7 +1021,12 @@
       "doc_number": "国发〔2015〕28号",
       "policy_type": "program",
       "source_url": "https://www.ndrc.gov.cn/xxgk/zcfb/qt/201505/t20150520_967388.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.ndrc.gov.cn",
+      "source_publisher_domain": "www.ndrc.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-made-in-china-2025-manufacturing-value-added-rat-2015",
@@ -874,7 +1050,12 @@
       "doc_number": "国发〔2015〕28号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2015-05/19/content_9784.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "ministry-guidance-on-promoting-bim-application-2015",
@@ -898,7 +1079,12 @@
       "doc_number": "建质函〔2015〕159号",
       "policy_type": "ministry",
       "source_url": "https://www.mohurd.gov.cn/wjfb/201507/t20150701_226234.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.mohurd.gov.cn",
+      "source_publisher_domain": "www.mohurd.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "mohurd-bim-guidance-2015",
@@ -918,7 +1104,11 @@
       "summary_zh": "国家级BIM应用政策，推动国产BIM/GIS软件与协同平台",
       "summary_en": "National BIM policy driving domestic BIM/GIS software and collaboration platforms",
       "source_url": "http://zjj.sz.gov.cn/xxgk/zcfgs/zcfg/content/post_9728322.html",
-      "policy_type": "ministry"
+      "policy_type": "ministry",
+      "source_publisher": "zjj.sz.gov.cn",
+      "source_publisher_domain": "zjj.sz.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "program-internet-plus-action-plan-mobile-broadband-house-2015",
@@ -942,7 +1132,12 @@
       "doc_number": "国发〔2015〕40号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2015-07/04/content_28972.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "xinchuang-committee-2016",
@@ -962,7 +1157,11 @@
       "summary_zh": "信创政策体系命名与组织起点，后续延伸至CAD/PLM/ERP国产化采购",
       "summary_en": "Naming and institutional start of 信创—later extended to CAD/PLM/ERP procurement",
       "source_url": "https://36kr.com/p/2329929920881545",
-      "policy_type": "ministry"
+      "policy_type": "ministry",
+      "source_publisher": "36kr.com",
+      "source_publisher_domain": "36kr.com",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "fyp-13th-five-year-plan-outline-r-d-intensity-indica-2016",
@@ -986,7 +1185,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/xinwen/2016-03/17/content_5054992.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "two-sessions-2016-government-work-report-13th-fyp-r-d-intensi-2016",
@@ -1010,7 +1214,12 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/gongbao/content/2016/content_5048.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "intelligent-manufacturing-plan-2016",
@@ -1030,7 +1239,11 @@
       "summary_zh": "十三五智能制造纲领，明确工业软件为智能工厂核心支撑",
       "summary_en": "13th FYP intelligent manufacturing plan—industrial software as smart-factory backbone",
       "source_url": "http://www.mof.gov.cn/gp/xxgkml/jjjss/201612/t20161208_2512227.htm",
-      "policy_type": "program"
+      "policy_type": "program",
+      "source_publisher": "www.mof.gov.cn",
+      "source_publisher_domain": "www.mof.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "ministry-intelligent-manufacturing-plan-2020-interim-targ-2016",
@@ -1054,7 +1267,12 @@
       "doc_number": "工信部联规〔2016〕349号",
       "policy_type": "ministry",
       "source_url": "https://www.miit.gov.cn/jgsj/kjs/wjfb/art/2016/art_00000000000000000000000000000000.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-state-council-guideline-on-vigorously-developing-2016",
@@ -1078,7 +1296,12 @@
       "doc_number": "国办发〔2016〕71号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2016-09/30/content_5113471.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-informatization-industrialization-integration-de-2016",
@@ -1102,7 +1325,12 @@
       "doc_number": "工信部规〔2016〕333号",
       "policy_type": "fyp",
       "source_url": "https://www.miit.gov.cn/jgsj/xxh/xxh/art/2016/art_7f8b3c1e2d3f4a5b6c7d8e9f0a1b2c3d.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-13th-fyp-software-it-services-development-plan-2-2016",
@@ -1126,7 +1354,12 @@
       "doc_number": "工信部规〔2016〕426号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2016-12/31/content_5154580.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-13th-fyp-software-plan-it-services-revenue-share-2016",
@@ -1150,7 +1383,12 @@
       "doc_number": "工信部规〔2016〕426号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2016-12/31/content_5154580.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-intelligent-manufacturing-plan-digital-r-d-desig-2016",
@@ -1174,7 +1412,12 @@
       "doc_number": "工信部联规〔2016〕349号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2016-12/08/content_5148909.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-intelligent-manufacturing-plan-industrial-softwa-2016",
@@ -1198,7 +1441,12 @@
       "doc_number": "工信部联规〔2016〕349号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2016-12/08/content_5148909.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-intelligent-manufacturing-plan-key-process-cnc-r-2016",
@@ -1222,7 +1470,12 @@
       "doc_number": "工信部联规〔2016〕349号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2016-12/08/content_5148909.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-13th-five-year-plan-for-construction-industry-de-2017",
@@ -1246,7 +1499,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/xinwen/2017-05/17/content_5194615.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "two-sessions-2017-government-work-report-digital-economy-and--2017",
@@ -1270,7 +1528,12 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/gongbao/content/2017/content_5168.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "standard-management-system-requirements-for-informatizati-2017",
@@ -1294,7 +1557,12 @@
       "doc_number": "GB/T 23001-2017",
       "policy_type": "standard",
       "source_url": "https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=7C5B5E5E5E5E5E5E5E5E5E5E5E5E5E5E",
-      "source_research": "composer-2.5"
+      "source_publisher": "openstd.samr.gov.cn",
+      "source_publisher_domain": "openstd.samr.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "industrial-internet-guidance-2017",
@@ -1314,7 +1582,11 @@
       "summary_zh": "工业互联网国家级政策，推动工业APP与MES/SCADA平台化",
       "summary_en": "National Industrial Internet policy—platformization of industrial apps, MES, SCADA",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2017-11/27/content_5242582.htm",
-      "policy_type": "ministry"
+      "policy_type": "ministry",
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "two-sessions-2018-government-work-report-r-d-intensity-progre-2018",
@@ -1338,7 +1610,12 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/gongbao/content/2018/content_5267.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "two-sessions-2019-government-work-report-annual-tax-fee-cuts-2019",
@@ -1362,7 +1639,12 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/premier/2019-03/05/content_5371524.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fund-national-ic-industry-investment-fund-phase-ii-es-2019",
@@ -1386,7 +1668,12 @@
       "doc_number": "",
       "policy_type": "fund",
       "source_url": "http://www.news.cn/fortune/2019-10/25/c_1124156789.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.news.cn",
+      "source_publisher_domain": "www.news.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "two-sessions-2020-government-work-report-new-tax-fee-reductio-2020",
@@ -1410,7 +1697,12 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/premier/2020-05/22/content_5512697.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "ministry-guidance-on-coordinated-development-of-intellige-2020",
@@ -1434,7 +1726,12 @@
       "doc_number": "建市〔2020〕60号",
       "policy_type": "ministry",
       "source_url": "https://www.gov.cn/zhengce/content/2020-08/28/content_5537869.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "statistic-2020-software-it-services-statistical-communique-2021",
@@ -1458,7 +1755,12 @@
       "doc_number": "",
       "policy_type": "statistic",
       "source_url": "https://www.xinhuanet.com/tech/2021-01/28/c_1124668437.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.xinhuanet.com",
+      "source_publisher_domain": "www.xinhuanet.com",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-iiot-innovation-action-plan-connected-industrial-2021",
@@ -1482,7 +1784,12 @@
       "doc_number": "工信部联信管〔2021〕43号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2021-02/18/content_5582125.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-outline-digital-economy-core-industries-2021",
@@ -1506,7 +1813,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/xinwen/2021-03/13/content_5592681.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-outline-manufacturing-value-added-share-2021",
@@ -1530,7 +1842,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/xinwen/2021-03/13/content_5592681.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "two-sessions-2021-government-work-report-new-tax-fee-reductio-2021",
@@ -1554,7 +1871,12 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/premier/2021-03/05/content_5592681.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-five-year-plan-for-in-depth-integration-of--2021",
@@ -1578,7 +1900,12 @@
       "doc_number": "工信部规〔2021〕182号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/30/content_5656771.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-integration-plan-industrial-equipment-c-2021",
@@ -1602,7 +1929,12 @@
       "doc_number": "工信规〔2021〕182号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-11/17/content_5643812.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-it-ii-integration-plan-networked-produc-2021",
@@ -1626,7 +1958,12 @@
       "doc_number": "工信部规〔2021〕225号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2021-11/17/content_5648833.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-software-it-services-plan-industry-reve-2021",
@@ -1650,7 +1987,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-software-plan-cumulative-industrial-app-2021",
@@ -1674,7 +2016,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-software-plan-international-standards-i-2021",
@@ -1698,7 +2045,12 @@
       "doc_number": "工信部规〔2021〕180号",
       "policy_type": "fyp",
       "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-software-plan-national-standards-in-key-2021",
@@ -1722,7 +2074,12 @@
       "doc_number": "工信部规〔2021〕180号",
       "policy_type": "fyp",
       "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "miit-industrial-app-1m",
@@ -1742,7 +2099,11 @@
       "summary_zh": "同一规划文件提出的工业 APP 量化指标",
       "summary_en": "Industrial APP metric from the same plan document",
       "source_url": "http://sh.people.com.cn/n2/2021/1130/c134768-35029719.html",
-      "policy_type": "fyp"
+      "policy_type": "fyp",
+      "source_publisher": "sh.people.com.cn",
+      "source_publisher_domain": "sh.people.com.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "miit-national-standards-125",
@@ -1762,7 +2123,11 @@
       "summary_zh": "软件业「十四五」标准体系建设目标",
       "summary_en": "14th Five-Year standards system build target",
       "source_url": "http://sh.people.com.cn/n2/2021/1130/c134768-35029719.html",
-      "policy_type": "fyp"
+      "policy_type": "fyp",
+      "source_publisher": "sh.people.com.cn",
+      "source_publisher_domain": "sh.people.com.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "miit-software-revenue-14tn",
@@ -1782,7 +2147,11 @@
       "summary_zh": "工信部《「十四五」软件和信息技术服务业发展规划》量化目标",
       "summary_en": "MIIT 14th Five-Year software sector quantitative target",
       "source_url": "http://sh.people.com.cn/n2/2021/1130/c134768-35029719.html",
-      "policy_type": "fyp"
+      "policy_type": "fyp",
+      "source_publisher": "sh.people.com.cn",
+      "source_publisher_domain": "sh.people.com.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "ministry-14th-fyp-big-data-industry-plan-industry-scale-a-2021",
@@ -1806,7 +2175,12 @@
       "doc_number": "工信部规〔2021〕179号",
       "policy_type": "ministry",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/01/content_5664620.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "ministry-14th-fyp-software-plan-industrial-app-count-2021",
@@ -1830,7 +2204,12 @@
       "doc_number": "工信部规〔2021〕180号",
       "policy_type": "ministry",
       "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-five-year-intelligent-manufacturing-develop-2021",
@@ -1854,7 +2233,12 @@
       "doc_number": "工信部联规〔2021〕207号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/28/content_5655525.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-digital-economy-plan-digital-r-d-design-2021",
@@ -1878,7 +2262,12 @@
       "doc_number": "国发〔2021〕29号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2022-01/12/content_5665667.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-digital-economy-plan-industrial-interne-2021",
@@ -1902,7 +2291,12 @@
       "doc_number": "国发〔2021〕29号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2022-01/12/content_5665667.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "ministry-14th-fyp-industrial-internet-plan-connected-indu-2021",
@@ -1926,7 +2320,12 @@
       "doc_number": "工信部规〔2021〕207号",
       "policy_type": "ministry",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/30/content_5664621.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-14th-fyp-smart-manufacturing-plan-industrial-sof-2021",
@@ -1950,7 +2349,12 @@
       "doc_number": "工信部联规〔2021〕207号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/29/content_5664975.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "standard-smart-manufacturing-standards-14th-fyp-formulati-2021",
@@ -1974,7 +2378,12 @@
       "doc_number": "工信部联科〔2021〕187号",
       "policy_type": "standard",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/29/content_5653929.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "standard-smart-manufacturing-standards-published-stock-20-2021",
@@ -1998,7 +2407,12 @@
       "doc_number": "工信部联科〔2021〕187号",
       "policy_type": "standard",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/29/content_5653929.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-five-year-plan-for-construction-industry-de-2022",
@@ -2022,7 +2436,12 @@
       "doc_number": "建标〔2022〕3号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2022-01/19/content_5669209.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-digital-economy-plan-core-industry-valu-2022",
@@ -2046,7 +2465,12 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/2022-01/12/content_5667817.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-14th-fyp-digital-economy-plan-key-process-cnc-ra-2022",
@@ -2070,7 +2494,12 @@
       "doc_number": "国发〔2021〕32号",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/content/20220121/content_5669153.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-east-data-west-computing-national-compute-hub-sy-2022",
@@ -2094,7 +2523,12 @@
       "doc_number": "发改高技〔2022〕130号",
       "policy_type": "program",
       "source_url": "https://www.ndrc.gov.cn/xxgk/zcfb/fzggwl/202203/t20220307_1319574.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.ndrc.gov.cn",
+      "source_publisher_domain": "www.ndrc.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "two-sessions-2022-government-work-report-vat-credit-refunds-2022",
@@ -2118,7 +2552,12 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/premier/2022-03/05/content_5676011.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "miit-xinchuang-cad",
@@ -2138,7 +2577,11 @@
       "summary_zh": "信创采购推动研发设计软件替代（政策框架，缺单一全国 KPI）",
       "summary_en": "IT-innovation procurement framework for R&D software (no single national KPI)",
       "source_url": "https://www.zwsoft.cn/news/16-12851.html",
-      "policy_type": "ministry"
+      "policy_type": "ministry",
+      "source_publisher": "www.zwsoft.cn",
+      "source_publisher_domain": "www.zwsoft.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "program-xinchuang-document-79-party-gov-eight-sector-sub-2022",
@@ -2162,7 +2605,12 @@
       "doc_number": "",
       "policy_type": "program",
       "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-mohurd-announces-intelligent-construction-pilot--2023",
@@ -2186,7 +2634,12 @@
       "doc_number": "",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/lianbo/bumen/202301/t20230119_8563451.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "statistic-miit-progress-on-digital-workshops-and-smart-fac-2023",
@@ -2210,7 +2663,12 @@
       "doc_number": "",
       "policy_type": "statistic",
       "source_url": "https://www.gov.cn/lianbo/bumen/202301/t20230118_6734567.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "miit-erp-xinchuang",
@@ -2230,7 +2688,11 @@
       "summary_zh": "高端 ERP 国产化以标杆项目计量，尚无全国统一替代率 KPI",
       "summary_en": "High-end ERP localization measured by benchmark projects; no national substitution-rate KPI",
       "source_url": "https://www.huawei.com/cn/news/2023/4/metaerp-press-release",
-      "policy_type": "ministry"
+      "policy_type": "ministry",
+      "source_publisher": "www.huawei.com",
+      "source_publisher_domain": "www.huawei.com",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "ministry-high-quality-compute-infrastructure-development--2023",
@@ -2254,7 +2716,12 @@
       "doc_number": "工信部联通信〔2023〕180号",
       "policy_type": "ministry",
       "source_url": "https://www.gov.cn/zhengce/content/2023-10/08/content_6909456.htm",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-data-element-three-year-action-plan-2024-2026-2024",
@@ -2278,7 +2745,6 @@
       "doc_number": "国数政策〔2023〕11号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2024-01/04/content_6923456.htm",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "国家数据局牵头、17部门联合，把数据作为生产要素系统性激活，覆盖工业制造、现代农业、商贸流通、交通运输、金融、科技创新、文旅、医疗健康等12个重点领域；强调高质量数据供给与合规高效流通，到2026年底打造300个以上典型应用场景、数据产业年均增速超20%、数据交易规模倍增。",
         "direction_en": "Led by the National Data Administration with 17 departments, the plan systematically activates data as a production factor across 12 priority sectors (industrial manufacturing first among them), pushing high-quality data supply and compliant, efficient circulation. By end-2026: 300+ benchmark application scenarios, >20% annual growth in the data industry, and a doubling of data-trading scale.",
@@ -2309,17 +2775,29 @@
             "url": "https://www.nda.gov.cn/sjj/xxgk/gknr/ghjh/0909/20240909160155798592998_pc.html",
             "label_zh": "关于印发数据要素×三年行动计划的通知（国数政策〔2023〕11号）",
             "label_en": "Notice issuing the Data Elements x Three-Year Action Plan (Guoshu Zhengce [2023] No.11)",
-            "publisher": "国家数据局"
+            "publisher": "国家数据局",
+            "publisher_domain": "www.nda.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://www.nda.gov.cn/sjj/zhuanti/ztsjysx/qt/0902/20240829161904685377785_pc.html",
             "label_zh": "国家数据局：17部门联合印发数据要素×三年行动计划",
             "label_en": "National Data Administration: 17 departments jointly issue the plan",
-            "publisher": "国家数据局"
+            "publisher": "国家数据局",
+            "publisher_domain": "www.nda.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "statistic-2023-measured-above-scale-software-business-reve-2024",
@@ -2343,7 +2821,12 @@
       "doc_number": "",
       "policy_type": "statistic",
       "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/sjfb/index.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "statistic-miit-integration-statistics-release-2024",
@@ -2367,7 +2850,12 @@
       "doc_number": "",
       "policy_type": "statistic",
       "source_url": "https://www.miit.gov.cn/",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "statistic-2023-statistical-communiqu-manufacturing-va-and--2024",
@@ -2391,7 +2879,12 @@
       "doc_number": "",
       "policy_type": "statistic",
       "source_url": "https://www.stats.gov.cn/sj/zxfb/202402/t20240229_1947915.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.stats.gov.cn",
+      "source_publisher_domain": "www.stats.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "miit-dcs-substitution",
@@ -2442,18 +2935,28 @@
             "url": "https://www.miit.gov.cn/jgsj/ghs/wjfb/art/2024/art_9532b8a4a0fa4dfabedde39e0883a338.html",
             "label_zh": "工信部：推动工业领域设备更新实施方案（工信部联规〔2024〕53号）",
             "label_en": "MIIT: Implementation Plan for Industrial Equipment Renewal (No.53)",
-            "publisher": "工业和信息化部"
+            "publisher": "工业和信息化部",
+            "publisher_domain": "www.miit.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           },
           {
             "url": "https://www.gov.cn/zhengce/zhengceku/202404/content_6944252.htm",
             "label_zh": "中国政府网：七部门关于印发设备更新实施方案的通知",
             "label_en": "gov.cn: Notice issuing the equipment-renewal implementation plan",
-            "publisher": "中国政府网"
+            "publisher": "中国政府网",
+            "publisher_domain": "www.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           }
         ],
         "confidence": "medium"
       },
-      "doc_number": "工信部联规〔2024〕53号"
+      "doc_number": "工信部联规〔2024〕53号",
+      "source_publisher": "www.citnews.com.cn",
+      "source_publisher_domain": "www.citnews.com.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "two-sessions-2024-government-work-report-manufacturing-invest-2024",
@@ -2477,7 +2980,6 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/lishi/2024-03/05/content_6937881.htm",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "2024年报告首提「新质生产力」与「人工智能+」行动，把「大力推进现代化产业体系建设、加快发展新质生产力」列为年度首要任务，方向是以科技创新推动产业创新、加快推进新型工业化、提高全要素生产率。",
         "direction_en": "The 2024 report debuts 'new quality productive forces' and the 'AI+' initiative, naming 'building a modern industrial system and accelerating new quality productive forces' the year's top task — driving industrial innovation through tech innovation, advancing new-type industrialization and total-factor productivity.",
@@ -2509,17 +3011,29 @@
             "url": "https://www.cac.gov.cn/2024-03/12/c_1711913994070892.htm",
             "label_zh": "「人工智能+」首次写入政府工作报告",
             "label_en": "'AI+' first written into the Government Work Report",
-            "publisher": "中央网信办"
+            "publisher": "中央网信办",
+            "publisher_domain": "www.cac.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://topics.caixin.com/2024-03-05/102171992.html",
             "label_zh": "政府工作报告：加快发展新质生产力 开展「人工智能+」行动",
             "label_en": "Work report: new quality productive forces, launch 'AI+'",
-            "publisher": "财新网"
+            "publisher": "财新网",
+            "publisher_domain": "topics.caixin.com",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fund-national-ic-industry-investment-fund-phase-iii-e-2024",
@@ -2543,7 +3057,6 @@
       "doc_number": "",
       "policy_type": "fund",
       "source_url": "https://www.gov.cn/lianbo/bumen/202405/content_6951234.htm",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "国家集成电路产业投资基金（三期）股份有限公司于2024年5月24日获批成立，注册资本3440亿元，超过一期（987.2亿）与二期（2041.5亿）之和；财政部为最大股东，国有六大行合计拟出资1140亿元、持股约33.14%。资金重点向半导体设备、材料、HBM/先进存储及AI芯片等自主化核心赛道倾斜。",
         "direction_en": "The National IC Industry Investment Fund Phase III Co., Ltd. was approved/established on 24 May 2024 with registered capital of RMB 344 billion—exceeding the combined Phase I (98.72bn) and Phase II (204.15bn). The Ministry of Finance is the largest shareholder; the six big state banks committed RMB 114bn for ~33.14%. Capital tilts toward self-sufficiency core tracks: semiconductor equipment, materials, HBM/advanced memory, and AI chips.",
@@ -2575,17 +3088,29 @@
             "url": "https://www.cnr.cn/jrpd/mxdj/20240527/t20240527_526720907.shtml",
             "label_zh": "央广网：大基金三期成立 注册资本3440亿元 多家大行拟出资",
             "label_en": "CNR: Fund Phase III established, RMB 344bn registered capital",
-            "publisher": "央广网"
+            "publisher": "央广网",
+            "publisher_domain": "www.cnr.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://finance.cctv.com/2024/05/28/ARTIhM6N831KrZyhRYMQziH8240528.shtml",
             "label_zh": "央视网：注册资本3440亿 国家大基金三期来了",
             "label_en": "CCTV Finance: RMB 344bn—IC Big Fund Phase III arrives",
-            "publisher": "央视网"
+            "publisher": "央视网",
+            "publisher_domain": "finance.cctv.com",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "miit-industrial-software-market-3390",
@@ -2605,7 +3130,11 @@
       "summary_zh": "第三方基于工信部数据的行业规模预测（非政府考核指标，作市场参照）",
       "summary_en": "Third-party market forecast from MIIT-derived data (reference, not a government KPI)",
       "source_url": "https://finance.sina.com.cn/stock/relnews/cn/2025-07-08/doc-infetcsx6117561.shtml",
-      "policy_type": "statistic"
+      "policy_type": "statistic",
+      "source_publisher": "finance.sina.com.cn",
+      "source_publisher_domain": "finance.sina.com.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "miit-rd-design-loc-10pct",
@@ -2625,7 +3154,11 @@
       "summary_zh": "信创/工业软件国产化率分品类参照（研报口径，非单一政府 KPI）",
       "summary_en": "Category-level localization reference (research boundary, not a single government KPI)",
       "source_url": "http://wap.seccw.com/document/detail/id/32649.html",
-      "policy_type": "statistic"
+      "policy_type": "statistic",
+      "source_publisher": "wap.seccw.com",
+      "source_publisher_domain": "wap.seccw.com",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "statistic-5th-national-economic-census-revised-2023-gdp-2024",
@@ -2649,7 +3182,12 @@
       "doc_number": "",
       "policy_type": "statistic",
       "source_url": "https://www.stats.gov.cn/sj/zxfb/202412/t20241226_1955895.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.stats.gov.cn",
+      "source_publisher_domain": "www.stats.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "standard-3d-cad-security-evaluation-group-standard-series-2025",
@@ -2673,7 +3211,6 @@
       "doc_number": "T/CIE 311-2025",
       "policy_type": "standard",
       "source_url": "https://www.ndls.org.cn/standard/detail/00b0d0aaf2e0b4625a67d2cd3d94749d",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "三维CAD软件安全性/测评相关团体标准呈「成体系」推进态势：以 T/CIE 311-2025（安全性）为锚点，向功能、兼容性、性能等多维测评扩展，形成国产三维CAD测评标准体系（具体兄弟标准编号尚需以标准馆/中国电子学会原始发布为准）。",
         "direction_en": "The 3D CAD security/evaluation group standards are advancing as a coordinated SERIES: anchored by T/CIE 311-2025 (security) and extending to function, compatibility and performance dimensions to form a domestic 3D-CAD evaluation standards system (specific sibling standard numbers must be confirmed against the original ndls.org.cn / CIE publication).",
@@ -2702,17 +3239,29 @@
             "url": "https://www.ndls.org.cn/standard/detail/00b0d0aaf2e0b4625a67d2cd3d94749d",
             "label_zh": "国家数字标准馆 — T/CIE 311-2025（系列锚点记录）",
             "label_en": "National Digital Standards Library — T/CIE 311-2025 (series anchor record)",
-            "publisher": "国家数字标准馆 ndls.org.cn"
+            "publisher": "国家数字标准馆 ndls.org.cn",
+            "publisher_domain": "www.ndls.org.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://www.cie.org.cn/list_53/15824.html",
             "label_zh": "中国电子学会 在研/发布标准汇总页",
             "label_en": "China Electronics Society — published-standards list",
-            "publisher": "中国电子学会"
+            "publisher": "中国电子学会",
+            "publisher_domain": "www.cie.org.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "medium"
-      }
+      },
+      "source_publisher": "www.ndls.org.cn",
+      "source_publisher_domain": "www.ndls.org.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "standard-secure-reliable-evaluation-domestic-cpus-at-leve-2025",
@@ -2736,7 +3285,6 @@
       "doc_number": "2025年第1号",
       "policy_type": "standard",
       "source_url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202503/t20250314_216512.html",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "中国信息安全测评中心发布《安全可靠测评结果公告（2025年第1号）》，首次有一批国产 CPU 跨入最高的 Ⅱ 级——按测评口径 Ⅰ 级为「国内设计+海外代工」，Ⅱ 级为「设计到流片全流程自主」。标志国产算力底座从「可用」转向「全栈自主可控」。",
         "direction_en": "CITSEC's 2025 Announcement No.1 placed a cohort of domestic CPUs at the top Grade Ⅱ. Under the scheme, Grade Ⅰ = domestic-design + overseas foundry, Grade Ⅱ = fully autonomous design-to-fab. It marks the domestic compute base moving from 'usable' to 'full-stack self-controllable'.",
@@ -2769,11 +3317,20 @@
             "url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202503/t20250314_216512.html",
             "label_zh": "安全可靠测评结果公告（2025年第1号）",
             "label_en": "Secure-Reliable Evaluation Results Announcement No.1 (2025)",
-            "publisher": "中国信息安全测评中心"
+            "publisher": "中国信息安全测评中心",
+            "publisher_domain": "www.itsec.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.itsec.gov.cn",
+      "source_publisher_domain": "www.itsec.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "t-cie-311-cad-security-2025",
@@ -2825,17 +3382,27 @@
             "url": "https://www.ndls.org.cn/standard/detail/00b0d0aaf2e0b4625a67d2cd3d94749d",
             "label_zh": "国家数字标准馆 — T/CIE 311-2025 三维CAD软件安全性测评规范",
             "label_en": "National Digital Standards Library — T/CIE 311-2025",
-            "publisher": "国家数字标准馆 ndls.org.cn"
+            "publisher": "国家数字标准馆 ndls.org.cn",
+            "publisher_domain": "www.ndls.org.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           },
           {
             "url": "https://www.cie.org.cn/",
             "label_zh": "中国电子学会官网（团标归口单位）",
             "label_en": "China Electronics Society official site (group-standard issuer)",
-            "publisher": "中国电子学会"
+            "publisher": "中国电子学会",
+            "publisher_domain": "www.cie.org.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.ndls.org.cn",
+      "source_publisher_domain": "www.ndls.org.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "two-sessions-2025-government-work-report-2025-gdp-growth-targ-2025",
@@ -2859,7 +3426,6 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/2025/03/05/content_7008856.htm",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "2025年报告延续并深化数字化方向：「人工智能+」连续第二年写入，部署为「持续推进『人工智能+』行动，将数字技术与制造优势、市场优势更好结合起来，支持大模型广泛应用」；并宣布数字经济核心产业增加值占 GDP 约10%，提前实现「十四五」目标。",
         "direction_en": "The 2025 report continues and deepens the digital line: 'AI+' appears for a second straight year, framed as 'keep advancing the AI+ initiative, better combining digital tech with manufacturing and market strengths, supporting broad large-model deployment.' It declares the digital-economy core-industry value-add at ~10% of GDP, hitting the 14th-FYP target ahead of schedule.",
@@ -2892,17 +3458,29 @@
             "url": "http://www.news.cn/fortune/20250309/dba84e83a06d42faa7407bab66676810/c.html",
             "label_zh": "数说中国经济：从「10%左右」看数字经济",
             "label_en": "Digital economy at ~10% of GDP",
-            "publisher": "新华网"
+            "publisher": "新华网",
+            "publisher_domain": "www.news.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://www.cac.gov.cn/2025-12/09/c_1767006260045309.htm",
             "label_zh": "「人工智能+」行动加速赋能高质量发展",
             "label_en": "'AI+' accelerating high-quality development",
-            "publisher": "中央网信办"
+            "publisher": "中央网信办",
+            "publisher_domain": "www.cac.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "cesi-industrial-software-2940-2024",
@@ -2922,7 +3500,11 @@
       "summary_zh": "《中国工业软件产业发展研究报告（2025）》南京软件大会发布",
       "summary_en": "China Industrial Software Report (2025) at Nanjing Software Congress",
       "source_url": "https://www.nanjing.gov.cn/hdjl/wszb/2025njrjdh/xgbd/202506/t20250618_5588391.html",
-      "policy_type": "statistic"
+      "policy_type": "statistic",
+      "source_publisher": "www.nanjing.gov.cn",
+      "source_publisher_domain": "www.nanjing.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "statistic-industrial-software-market-size-ai-manufacturing-2025",
@@ -2946,7 +3528,12 @@
       "doc_number": "",
       "policy_type": "statistic",
       "source_url": "https://www.nanjing.gov.cn/hdjl/wszb/2025njrjdh/xgbd/202506/t20250618_5588391.html",
-      "source_research": "composer-2.5"
+      "source_publisher": "www.nanjing.gov.cn",
+      "source_publisher_domain": "www.nanjing.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "gov-procurement-domestic-20pct",
@@ -2997,18 +3584,28 @@
             "url": "https://www.gov.cn/gongbao/2025/issue_12346/202510/content_7044731.html",
             "label_zh": "国务院公报：国办发〔2025〕34号 政府采购本国产品标准及相关政策",
             "label_en": "State Council Gazette: Guoban Fa [2025] No.34 domestic-product procurement policy",
-            "publisher": "中国政府网（国务院公报）"
+            "publisher": "中国政府网（国务院公报）",
+            "publisher_domain": "www.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           },
           {
             "url": "https://m.mof.gov.cn/czxw/202509/t20250930_3973725.htm",
             "label_zh": "财政部：本国产品标准及相关政策答记者问",
             "label_en": "MOF: Q&A on domestic-product standard and related policies",
-            "publisher": "财政部"
+            "publisher": "财政部",
+            "publisher_domain": "m.mof.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           }
         ],
         "confidence": "high"
       },
-      "doc_number": "国办发〔2025〕34号"
+      "doc_number": "国办发〔2025〕34号",
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "standard-domestic-product-eligibility-in-china-component--2025",
@@ -3032,7 +3629,6 @@
       "doc_number": "国办发〔2025〕34号",
       "policy_type": "standard",
       "source_url": "https://www.gov.cn/gongbao/2025/issue_12346/202510/content_7044731.html",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "为「本国产品」给出可执行的认定口径：以「境内生产组件成本占比」达到规定比例作为核心门槛，并要求供应商披露装配地、采购地、生产地等信息以核验本地化含量。",
         "direction_en": "Provides an operable definition of a domestic product: the core criterion is that the cost share of components produced within China reaches a prescribed ratio, with suppliers required to disclose assembly, procurement and production locations to verify localization content.",
@@ -3064,17 +3660,29 @@
             "url": "https://www.gov.cn/gongbao/2025/issue_12346/202510/content_7044731.html",
             "label_zh": "国务院公报：国办发〔2025〕34号（本国产品认定口径）",
             "label_en": "State Council Gazette: Guoban Fa [2025] No.34 (domestic-product qualification)",
-            "publisher": "中国政府网（国务院公报）"
+            "publisher": "中国政府网（国务院公报）",
+            "publisher_domain": "www.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://m.mof.gov.cn/czxw/202509/t20250930_3973725.htm",
             "label_zh": "财政部：答记者问（组件成本占比按行业 3-5 年内确定）",
             "label_en": "MOF Q&A: component-cost ratio set by industry within 3-5 years",
-            "publisher": "财政部"
+            "publisher": "财政部",
+            "publisher_domain": "m.mof.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-15th-fyp-proposal-full-rollout-of-the-ai-initiat-2025",
@@ -3098,7 +3706,6 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/2025-10/28/content_7045678.htm",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "十五五建议在科技自立自强章节提出「全面实施人工智能+行动」，以 AI 引领科研范式变革，强化算力、算法、数据高效供给，并把 AI 与产业发展深度结合，推动实体经济与数字经济深度融合、抢占产业应用制高点。",
         "direction_en": "Within the science-self-reliance chapter, the proposal calls to 'fully implement the AI+ action', using AI to transform research paradigms, strengthening efficient supply of compute/algorithms/data, and binding AI to industrial development to deepen real-digital economy integration and seize the high ground of industrial application.",
@@ -3136,17 +3743,29 @@
             "url": "https://www.mee.gov.cn/zcwj/zyygwj/202510/t20251030_1131008.shtml",
             "label_zh": "中共中央关于制定十五五规划的建议（全文）",
             "label_en": "CPC Central Committee Proposal on the 15th FYP (full text)",
-            "publisher": "新华社（生态环境部转发）"
+            "publisher": "新华社（生态环境部转发）",
+            "publisher_domain": "www.mee.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://www.yicai.com/news/102884423.html",
             "label_zh": "8次提到人工智能，十五五给AI产业划重点",
             "label_en": "AI mentioned 8 times — 15th FYP AI priorities",
-            "publisher": "第一财经"
+            "publisher": "第一财经",
+            "publisher_domain": "www.yicai.com",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "fyp-cpc-central-committee-proposal-on-the-15th-five--2025",
@@ -3170,7 +3789,6 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/2025-10/28/content_7045678.htm",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "十五五建议把着力点放在实体经济与现代化产业体系上，明确「保持制造业合理比重」，并在科技自立自强章节首次把「基础软件」与集成电路、工业母机、高端仪器并列为需取得决定性突破的关键核心技术。方向是以自主可控的底层技术支撑制造强国与数字中国。",
         "direction_en": "The 15th FYP proposal anchors development on the real economy and a modern industrial system, mandates 'keeping manufacturing at a reasonable share', and for the first time lists 'basic/foundational software' alongside ICs, machine tools and high-end instruments among the key core technologies that must achieve decisive breakthroughs. The thrust is self-controllable underlying technology underpinning a manufacturing power and Digital China.",
@@ -3207,17 +3825,29 @@
             "url": "https://www.mee.gov.cn/zcwj/zyygwj/202510/t20251030_1131008.shtml",
             "label_zh": "中共中央关于制定十五五规划的建议（全文）",
             "label_en": "CPC Central Committee Proposal on the 15th FYP (full text)",
-            "publisher": "新华社（生态环境部转发）"
+            "publisher": "新华社（生态环境部转发）",
+            "publisher_domain": "www.mee.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://www.yicai.com/news/102884423.html",
             "label_zh": "十五五给AI产业发展划重点",
             "label_en": "15th FYP priorities for the AI industry",
-            "publisher": "第一财经"
+            "publisher": "第一财经",
+            "publisher_domain": "www.yicai.com",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "miit-ai-manufacturing-2027-kpi",
@@ -3278,24 +3908,37 @@
             "url": "https://www.news.cn/politics/20260107/1286279b91ac4758841b6d56e80a49af/c.html",
             "label_zh": "新华网：八部门提出到2027年人工智能关键核心技术实现安全可靠供给",
             "label_en": "Xinhua: Eight ministries set 2027 AI core-tech goals",
-            "publisher": "新华社"
+            "publisher": "新华社",
+            "publisher_domain": "www.news.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           },
           {
             "url": "https://www.miit.gov.cn/jgsj/kjs/wjfb/art/2026/art_5ea5b1663f264fcea69df0ab00d1f6f3.html",
             "label_zh": "工信部：印发《「人工智能+制造」专项行动实施意见》（工信部联科〔2025〕279号）",
             "label_en": "MIIT: notice issuing the AI+Manufacturing Special Action Opinion (No.279)",
-            "publisher": "工业和信息化部"
+            "publisher": "工业和信息化部",
+            "publisher_domain": "www.miit.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           },
           {
             "url": "https://www.nda.gov.cn/sjj/zwgk/zcfb/0112/20260107214358696030895_pc.html",
             "label_zh": "国家数据局转载：《「人工智能+制造」专项行动实施意见》",
             "label_en": "National Data Bureau republication of the Opinion",
-            "publisher": "国家数据局"
+            "publisher": "国家数据局",
+            "publisher_domain": "www.nda.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           }
         ],
         "confidence": "high"
       },
-      "doc_number": "工信部联科〔2025〕279号"
+      "doc_number": "工信部联科〔2025〕279号",
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "program-sector-guide-software-it-services-transformation-2026",
@@ -3319,7 +3962,6 @@
       "doc_number": "工信部联科〔2025〕279号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/202601/content_7054423.htm",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "作为《「人工智能+制造」专项行动》附件《人工智能赋能制造业重点行业转型指引》的五大行业之一，「软件和信息技术服务」被给出专属转型路径：打造软件全生命周期智能工具链，并加快基础软件、工业软件及行业应用软件的智能化升级与价值重构。",
         "direction_en": "As one of five sectors in the AI-Enabled Manufacturing Key-Industry Transformation Guide (annex to the AI+Manufacturing Special Action), 'software and IT services' gets a dedicated path: build a full-software-lifecycle intelligent toolchain and accelerate the AI upgrade and value reconstruction of basic, industrial and application software.",
@@ -3351,17 +3993,29 @@
             "url": "https://www.gov.cn/zhengce/202601/content_7054423.htm",
             "label_zh": "中国政府网：八部门印发「人工智能+制造」专项行动实施意见（含五大行业转型路径）",
             "label_en": "gov.cn: AI+Manufacturing Special Action Opinion (five-sector paths)",
-            "publisher": "中国政府网"
+            "publisher": "中国政府网",
+            "publisher_domain": "www.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "http://news.ctei.cn/policy/hyzc/202601/P020260108572771326203.pdf",
             "label_zh": "《人工智能赋能制造业重点行业转型指引》官方附件全文（PDF）",
             "label_en": "Full-text annex: AI-Enabled Manufacturing Key-Industry Transformation Guide (PDF)",
-            "publisher": "中国纺织经济信息网（政策原文转载）"
+            "publisher": "中国纺织经济信息网（政策原文转载）",
+            "publisher_domain": "news.ctei.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "xinchuang-harmonyos-desktop-ii-2026",
@@ -3414,11 +4068,18 @@
             "url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202601/t20260116_249958.html",
             "label_zh": "安全可靠测评结果公告（2026年第1号）",
             "label_en": "Secure-Reliable Evaluation Results Announcement No.1 (2026)",
-            "publisher": "中国信息安全测评中心"
+            "publisher": "中国信息安全测评中心",
+            "publisher_domain": "www.itsec.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.itsec.gov.cn",
+      "source_publisher_domain": "www.itsec.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "id": "two-sessions-2026-government-work-report-first-year-of-15th-f-2026",
@@ -3442,7 +4103,6 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/2026lh/",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "作为十五五开局年报告，2026 政府工作报告把「深化拓展人工智能+」「打造5G+工业互联网升级版」「打造智能经济新形态」列为重点，并部署制造业重点产业链高质量发展、工业基础再造、大规模设备更新与中小企业数智化转型，强调 AI 在重点行业的商业化规模化落地。",
         "direction_en": "As the opening-year report of the 15th FYP, the 2026 government work report prioritizes 'deepening and expanding AI+', 'building an upgraded 5G+Industrial Internet', and 'a new form of intelligent economy', while deploying high-quality development of key manufacturing chains, industrial-base re-engineering, large-scale equipment renewal and SME digital-intelligent transformation, stressing commercialized at-scale AI in key sectors.",
@@ -3485,17 +4145,29 @@
             "url": "https://www.beijing.gov.cn/zhengce/zhengcefagui/202602/t20260228_4545451.html",
             "label_zh": "2026年政府工作报告（政策文件）",
             "label_en": "2026 Government Work Report (policy document)",
-            "publisher": "北京市人民政府"
+            "publisher": "北京市人民政府",
+            "publisher_domain": "www.beijing.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://lmtw.com/mzw/content/detail/id/251833/keyword_id/-1",
             "label_zh": "2026政府工作报告：打造5G+工业互联网升级版",
             "label_en": "2026 report: upgraded 5G+Industrial Internet",
-            "publisher": "流媒体网"
+            "publisher": "流媒体网",
+            "publisher_domain": "lmtw.com",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "medium"
-      }
+      },
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "program-2026-model-data-resonance-action-ai-manufacturin-2026",
@@ -3519,7 +4191,6 @@
       "doc_number": "工信厅联科函〔2026〕193号",
       "policy_type": "program",
       "source_url": "https://nmca.miit.gov.cn/xwdt/xydt/art/2026/art_1ea8fd4d6e6049f0be2985051ef73898.html",
-      "source_research": "composer-2.5",
       "detail": {
         "direction_zh": "工业和信息化部办公厅、国家数据局综合司联合印发《关于联合实施2026年「模数共振」行动的通知》（工信厅联科函〔2026〕193号，2026-04-24），落地《「人工智能+制造」专项行动》技术底座任务，推动「数据-模型-场景应用」良性互促、同频共振，年底前基本形成该闭环。",
         "direction_en": "MIIT General Office and the National Data Bureau Comprehensive Department jointly issued the 2026 Model-Data Resonance Action notice (MIIT Ting Lian Ke Han [2026] No.193, 2026-04-24), operationalizing the AI+Manufacturing technology foundation by driving a virtuous 'data-model-scenario' resonance loop, to be basically formed by end-2026.",
@@ -3560,23 +4231,38 @@
             "url": "https://nmca.miit.gov.cn/xwdt/xydt/art/2026/art_1ea8fd4d6e6049f0be2985051ef73898.html",
             "label_zh": "工信部：联合实施2026年「模数共振」行动通知",
             "label_en": "MIIT: joint 2026 Model-Data Resonance Action notice",
-            "publisher": "工业和信息化部"
+            "publisher": "工业和信息化部",
+            "publisher_domain": "nmca.miit.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://jxt.hubei.gov.cn/fbjd/zc/qtzdgkwj/gwfb/202605/t20260515_5937674.shtml",
             "label_zh": "湖北省经信厅、省数据局：联合实施2026年「模数共振」行动通知",
             "label_en": "Hubei DEIT/Data Bureau provincial Resonance notice",
-            "publisher": "湖北省经济和信息化厅"
+            "publisher": "湖北省经济和信息化厅",
+            "publisher_domain": "jxt.hubei.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           },
           {
             "url": "https://finance.sina.com.cn/roll/2026-05-06/doc-inhwycsf9018140.shtml",
             "label_zh": "工信部、国家数据局启动2026年「模数共振」行动",
             "label_en": "MIIT and National Data Bureau launch 2026 Resonance action",
-            "publisher": "新浪财经"
+            "publisher": "新浪财经",
+            "publisher_domain": "finance.sina.com.cn",
+            "publisher_ownership": "external",
+            "support_scope": "candidate_lead"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "nmca.miit.gov.cn",
+      "source_publisher_domain": "nmca.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "candidate_lead",
+      "verification_status": "candidate",
+      "confidence": 0.5
     },
     {
       "id": "xinchuang-ai-chip-eval-2026",
@@ -3629,11 +4315,18 @@
             "url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202605/t20260526_259396.html",
             "label_zh": "安全可靠测评结果公告（2026年第2号）",
             "label_en": "Secure-Reliable Evaluation Results Announcement No.2 (2026)",
-            "publisher": "中国信息安全测评中心"
+            "publisher": "中国信息安全测评中心",
+            "publisher_domain": "www.itsec.gov.cn",
+            "publisher_ownership": "external",
+            "support_scope": "claim_evidence"
           }
         ],
         "confidence": "high"
-      }
+      },
+      "source_publisher": "www.itsec.gov.cn",
+      "source_publisher_domain": "www.itsec.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     }
   ],
   "footnotes": [
@@ -3641,19 +4334,31 @@
       "date": "2024-03",
       "text_zh": "政府工作报告提出「加快发展新质生产力」——无单一量化工业软件 KPI，作宏观背景。",
       "text_en": "Government Work Report on \"new quality productive forces\" — no single industrial-software KPI; macro context only.",
-      "source_url": "https://www.gov.cn/"
+      "source_url": "https://www.gov.cn/",
+      "source_publisher": "www.gov.cn",
+      "source_publisher_domain": "www.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "date": "2024-06",
       "text_zh": "工信部「工业软件高质量发展」行动——方向性文件，具体指标见品类专项规划。",
       "text_en": "MIIT industrial software high-quality development initiative — directional; see category-specific plans for metrics.",
-      "source_url": "https://www.miit.gov.cn/"
+      "source_url": "https://www.miit.gov.cn/",
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
       "date": "2021-11",
       "text_zh": "《「十四五」软件和信息技术服务业发展规划》专章部署工业软件补短板（CAD/CAE/EDA/PLC/DCS/MES），量化 KPI 见上方 miit-software-revenue-14tn 等节点。",
       "text_en": "MIIT 14th Five-Year software plan dedicates a section to industrial software short boards; quantitative KPIs are listed in miit-software-revenue-14tn and related nodes above.",
-      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html"
+      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
+      "source_publisher": "www.miit.gov.cn",
+      "source_publisher_domain": "www.miit.gov.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     }
   ]
 }

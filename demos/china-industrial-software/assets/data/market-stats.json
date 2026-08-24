@@ -9,55 +9,163 @@
     "source_url": "https://www.miit.gov.cn/",
     "source_title": "工信部及行业研究机构工业软件市场规模估算",
     "note_zh": "不同研报口径含嵌入式/工业云边界差异，取2024-2025区间",
-    "note_en": "Market boundary varies by embedded/cloud inclusion; 2024-2025 range"
+    "note_en": "Market boundary varies by embedded/cloud inclusion; 2024-2025 range",
+    "source_publisher": "www.miit.gov.cn",
+    "source_publisher_domain": "www.miit.gov.cn",
+    "source_publisher_ownership": "external",
+    "source_support_scope": "claim_evidence"
   },
   "category_structure": [
-    {"id": "rd", "name_zh": "研发设计类", "name_en": "R&D / Design", "share_pct": 28, "cny_billion": 991},
-    {"id": "mfg", "name_zh": "生产制造类", "name_en": "Production", "share_pct": 32, "cny_billion": 1133},
-    {"id": "mgmt", "name_zh": "经营管理类", "name_en": "Management", "share_pct": 25, "cny_billion": 885},
-    {"id": "plat", "name_zh": "基础平台类", "name_en": "Platform", "share_pct": 15, "cny_billion": 531}
+    {
+      "id": "rd",
+      "name_zh": "研发设计类",
+      "name_en": "R&D / Design",
+      "share_pct": 28,
+      "cny_billion": 991
+    },
+    {
+      "id": "mfg",
+      "name_zh": "生产制造类",
+      "name_en": "Production",
+      "share_pct": 32,
+      "cny_billion": 1133
+    },
+    {
+      "id": "mgmt",
+      "name_zh": "经营管理类",
+      "name_en": "Management",
+      "share_pct": 25,
+      "cny_billion": 885
+    },
+    {
+      "id": "plat",
+      "name_zh": "基础平台类",
+      "name_en": "Platform",
+      "share_pct": 15,
+      "cny_billion": 531
+    }
   ],
   "localization_rates": [
     {
-      "category_zh": "研发设计", "category_en": "R&D Design",
-      "breadth_pct": 35, "depth_pct": 12,
+      "category_zh": "研发设计",
+      "category_en": "R&D Design",
+      "breadth_pct": 35,
+      "depth_pct": 12,
       "year": 2024,
       "source_url": "https://www.cinn.cn/",
-      "note_zh": "广度=有国产部署；深度=核心生产不可替代"
+      "note_zh": "广度=有国产部署；深度=核心生产不可替代",
+      "source_publisher": "www.cinn.cn",
+      "source_publisher_domain": "www.cinn.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
-      "category_zh": "生产制造", "category_en": "Production",
-      "breadth_pct": 52, "depth_pct": 28,
+      "category_zh": "生产制造",
+      "category_en": "Production",
+      "breadth_pct": 52,
+      "depth_pct": 28,
       "year": 2024,
       "source_url": "https://www.eoitek.com/",
-      "note_zh": "DCS/MES国产化广度较高，高端仪表与MES核心模块仍进口"
+      "note_zh": "DCS/MES国产化广度较高，高端仪表与MES核心模块仍进口",
+      "source_publisher": "www.eoitek.com",
+      "source_publisher_domain": "www.eoitek.com",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
-      "category_zh": "经营管理", "category_en": "Management",
-      "breadth_pct": 45, "depth_pct": 22,
+      "category_zh": "经营管理",
+      "category_en": "Management",
+      "breadth_pct": 45,
+      "depth_pct": 22,
       "year": 2024,
       "source_url": "https://www.yonyou.com/",
-      "note_zh": "大型集团核心财务供应链仍部分SAP"
+      "note_zh": "大型集团核心财务供应链仍部分SAP",
+      "source_publisher": "www.yonyou.com",
+      "source_publisher_domain": "www.yonyou.com",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     },
     {
-      "category_zh": "基础平台", "category_en": "Platform",
-      "breadth_pct": 40, "depth_pct": 18,
+      "category_zh": "基础平台",
+      "category_en": "Platform",
+      "breadth_pct": 40,
+      "depth_pct": 18,
       "year": 2024,
       "source_url": "https://www.caict.ac.cn/",
-      "note_zh": "工业互联网平台数量多，深度替代仍在试点"
+      "note_zh": "工业互联网平台数量多，深度替代仍在试点",
+      "source_publisher": "www.caict.ac.cn",
+      "source_publisher_domain": "www.caict.ac.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
     }
   ],
   "segment_highlights": [
-    {"segment": "EDA", "domestic_share_pct": 15, "year": 2024, "source_url": "https://www.semi.org/"},
-    {"segment": "CAD", "domestic_share_pct": 20, "year": 2024, "source_url": "https://www.zwsoft.cn/"},
-    {"segment": "DCS", "domestic_share_pct": 55, "year": 2024, "source_url": "https://www.supcon.com/"},
-    {"segment": "ERP", "domestic_share_pct": 38, "year": 2024, "source_url": "https://www.kingdee.com/"}
+    {
+      "segment": "EDA",
+      "domestic_share_pct": 15,
+      "year": 2024,
+      "source_url": "https://www.semi.org/",
+      "source_publisher": "www.semi.org",
+      "source_publisher_domain": "www.semi.org",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
+    },
+    {
+      "segment": "CAD",
+      "domestic_share_pct": 20,
+      "year": 2024,
+      "source_url": "https://www.zwsoft.cn/",
+      "source_publisher": "www.zwsoft.cn",
+      "source_publisher_domain": "www.zwsoft.cn",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
+    },
+    {
+      "segment": "DCS",
+      "domestic_share_pct": 55,
+      "year": 2024,
+      "source_url": "https://www.supcon.com/",
+      "source_publisher": "www.supcon.com",
+      "source_publisher_domain": "www.supcon.com",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
+    },
+    {
+      "segment": "ERP",
+      "domestic_share_pct": 38,
+      "year": 2024,
+      "source_url": "https://www.kingdee.com/",
+      "source_publisher": "www.kingdee.com",
+      "source_publisher_domain": "www.kingdee.com",
+      "source_publisher_ownership": "external",
+      "source_support_scope": "claim_evidence"
+    }
   ],
   "time_series": [
-    {"year": 2020, "market_cny_billion": 1974, "domestic_share_pct": 32},
-    {"year": 2021, "market_cny_billion": 2414, "domestic_share_pct": 35},
-    {"year": 2022, "market_cny_billion": 2765, "domestic_share_pct": 38},
-    {"year": 2023, "market_cny_billion": 3058, "domestic_share_pct": 40},
-    {"year": 2024, "market_cny_billion": 3197, "domestic_share_pct": 42}
+    {
+      "year": 2020,
+      "market_cny_billion": 1974,
+      "domestic_share_pct": 32
+    },
+    {
+      "year": 2021,
+      "market_cny_billion": 2414,
+      "domestic_share_pct": 35
+    },
+    {
+      "year": 2022,
+      "market_cny_billion": 2765,
+      "domestic_share_pct": 38
+    },
+    {
+      "year": 2023,
+      "market_cny_billion": 3058,
+      "domestic_share_pct": 40
+    },
+    {
+      "year": 2024,
+      "market_cny_billion": 3197,
+      "domestic_share_pct": 42
+    }
   ]
 }

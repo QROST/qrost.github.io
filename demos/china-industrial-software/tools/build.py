@@ -3,17 +3,24 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import re
 import subprocess
 import sys
 from collections import Counter
-from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 RESEARCH = ROOT / "tmp" / "research"
 CAT_DIR = ROOT / "assets" / "data" / "categories"
 DATA_DIR = ROOT / "assets" / "data"
+HTML = ROOT / "index.html"
+CATALOG_LOADER = ROOT / "assets" / "js" / "catalog-loader.js"
+MIGRATION = ROOT / "tools" / "migrate_breakthrough_contract.py"
+
+TOKEN_RE = re.compile(r"(\?v=)[^\"'\s>]+")
+DATA_VERSION_RE = re.compile(r"(const DATA_VERSION\s*=\s*')([^']*)(')")
 
 # Map agent output filenames → category bundle keys
 CATEGORY_MAP = {
@@ -133,7 +140,7 @@ def build_manifest(buckets: dict[str, list[dict]]) -> dict:
                 kernel_ref_counts[p["kernel_id"]] += 1
     kernel_total = read_kernel_count()
     return {
-        "build_time": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data_version": "",
         "total_products": total,
         "total_kernels": kernel_total,
         "category_counts": counts,
@@ -148,6 +155,59 @@ def build_manifest(buckets: dict[str, list[dict]]) -> dict:
     }
 
 
+def run_contract_migration() -> bool:
+    completed = subprocess.run([sys.executable, "-B", str(MIGRATION)], cwd=str(ROOT))
+    return completed.returncode == 0
+
+
+def normalized_content(path: Path) -> bytes:
+    """Return bytes with existing cache tokens neutralized to avoid hash cycles."""
+    if path == HTML:
+        text = path.read_text(encoding="utf-8")
+        return TOKEN_RE.sub(r"\g<1>__CONTENT_HASH__", text).encode()
+    if path == CATALOG_LOADER:
+        text = path.read_text(encoding="utf-8")
+        return DATA_VERSION_RE.sub(r"\g<1>__CONTENT_HASH__\3", text).encode()
+    return path.read_bytes()
+
+
+def content_token() -> str:
+    manifest_path = DATA_DIR / "manifest.json"
+    files = sorted(
+        path for path in DATA_DIR.rglob("*.json")
+        if path != manifest_path
+    )
+    files += sorted((ROOT / "assets" / "js").glob("*.js"))
+    files += sorted((ROOT / "assets" / "css").glob("*.css"))
+    if HTML.exists():
+        files.append(HTML)
+    digest = hashlib.sha256()
+    for path in files:
+        digest.update(path.relative_to(ROOT).as_posix().encode())
+        digest.update(normalized_content(path))
+    return digest.hexdigest()[:12]
+
+
+def stamp_cache_bust(token: str, manifest: dict) -> None:
+    html = HTML.read_text(encoding="utf-8")
+    stamped_html = TOKEN_RE.sub(rf"\g<1>{token}", html)
+    if stamped_html != html:
+        HTML.write_text(stamped_html, encoding="utf-8")
+
+    loader = CATALOG_LOADER.read_text(encoding="utf-8")
+    stamped_loader = DATA_VERSION_RE.sub(rf"\g<1>{token}\3", loader)
+    if stamped_loader != loader:
+        CATALOG_LOADER.write_text(stamped_loader, encoding="utf-8")
+
+    manifest["data_version"] = token
+    manifest_path = DATA_DIR / "manifest.json"
+    manifest_path.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    print(f"  cache token: {token}")
+
+
 def run_validate() -> bool:
     r = subprocess.run(
         [sys.executable, str(ROOT / "tools" / "validate.py")],
@@ -159,6 +219,27 @@ def run_validate() -> bool:
     if r.stderr:
         print(r.stderr, end="", file=sys.stderr)
     return r.returncode == 0
+
+
+def run_contract_tests() -> bool:
+    for name in (
+        "test_provenance.py",
+        "test_breakthrough_migration.py",
+        "test_data_contract.py",
+        "test_page_contract.py",
+    ):
+        completed = subprocess.run(
+            [sys.executable, "-B", str(ROOT / "tools" / name)],
+            cwd=str(ROOT),
+            capture_output=True,
+            text=True,
+        )
+        print(completed.stdout, end="")
+        if completed.stderr:
+            print(completed.stderr, end="", file=sys.stderr)
+        if completed.returncode != 0:
+            return False
+    return True
 
 
 def _dir_max_mtime(directory: Path, pattern: str = "*.json") -> float:
@@ -224,13 +305,18 @@ def main() -> int:
     else:
         print("build.py: manifest-only — skipping research merge (use --merge-research to opt in)")
 
+    if not run_contract_migration():
+        return 1
+
     buckets = read_existing_categories()
     manifest = build_manifest(buckets)
-    manifest_path = DATA_DIR / "manifest.json"
-    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    token = content_token()
+    stamp_cache_bust(token, manifest)
     print(f"  wrote manifest.json: {manifest['total_products']} products, {manifest.get('total_kernels', 0)} kernels")
 
     if not run_validate():
+        return 1
+    if not run_contract_tests():
         return 1
     return 0
 

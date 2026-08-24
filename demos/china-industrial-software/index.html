@@ -5,23 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中国工业软件现状综述 | China Industrial Software Survey | QROST</title>
-    <meta name="description" content="可追溯的中国工业软件调研：EDA、CAD、CAE、PLM、DCS/MES、ERP、BIM/GIS、3D 切片软件与工业互联网平台 300+ 款已核验产品。区分国产化广度与深度替代。Bilingual 中文/EN。">
+    <meta name="description" content="可追溯的中国工业软件调研：EDA、CAD、CAE、PLM、DCS/MES、ERP、BIM/GIS、3D 切片软件与工业互联网平台 300+ 款附外部来源的产品条目。区分审阅证据与候选线索。Bilingual 中文/EN。">
     <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
     <link rel="apple-touch-icon" href="../../favicon.svg">
     <link rel="canonical" href="https://qrost.github.io/demos/china-industrial-software/">
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="中国工业软件现状综述 — China Industrial Software Survey">
-    <meta property="og:description" content="300+ verified products across EDA, CAD, CAE, PLM, DCS/MES, ERP, BIM/GIS, 3D slicers and IIoT platforms. Breadth vs depth localization metrics.">
+    <meta property="og:description" content="300+ externally sourced product entries across EDA, CAD, CAE, PLM, DCS/MES, ERP, BIM/GIS, 3D slicers and IIoT, with reviewed evidence separated from candidate leads.">
     <meta property="og:url" content="https://qrost.github.io/demos/china-industrial-software/">
     <meta property="og:site_name" content="QROST">
     <meta property="og:image" content="https://qrost.github.io/demos/china-industrial-software/assets/img/china-industrial-software-og.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="QROST — China Industrial Software Survey, 300+ verified products across EDA/CAD/CAE/PLM/MES/ERP/BIM-GIS">
+    <meta property="og:image:alt" content="QROST — China Industrial Software Survey, 300+ externally sourced product entries across EDA/CAD/CAE/PLM/MES/ERP/BIM-GIS">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="中国工业软件现状综述 — China Industrial Software Survey">
-    <meta name="twitter:description" content="300+ verified products across EDA, CAD, CAE, PLM, DCS/MES, ERP, BIM/GIS, 3D slicers and IIoT platforms.">
+    <meta name="twitter:description" content="300+ externally sourced product entries across EDA, CAD, CAE, PLM, DCS/MES, ERP, BIM/GIS, 3D slicers and IIoT, with candidate leads labeled.">
     <meta name="twitter:image" content="https://qrost.github.io/demos/china-industrial-software/assets/img/china-industrial-software-og.png">
 
     <!-- Theme bootstrap: apply saved/system dark mode BEFORE first paint to avoid flash -->
@@ -35,9 +35,9 @@
       })();
     </script>
 
-    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=20260616a">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=939eaa25119f">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/industrial-software.css?v=20260616a">
+    <link rel="stylesheet" href="assets/css/industrial-software.css?v=939eaa25119f">
 </head>
 
 <body class="antialiased scroll-smooth">
@@ -190,7 +190,7 @@
                 </select>
                 <select id="filter-category" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white" aria-label="Filter by category"></select>
                 <select id="filter-kernel" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[10rem]" aria-label="Filter by geometry kernel"></select>
-                <input type="search" id="catalog-search" class="text-sm border border-slate-200 rounded px-3 py-2 flex-1 min-w-[12rem]" data-i18n-placeholder="searchPlaceholder">
+                <input type="search" id="catalog-search" class="text-sm border border-slate-200 rounded px-3 py-2 flex-1 min-w-[12rem]" data-i18n-placeholder="searchPlaceholder" aria-label="搜索产品 / Search products">
                 <button type="button" id="catalog-clear-filters" class="clear-filters-btn" data-i18n="clearFilters" hidden>清除筛选</button>
             </div>
             <p class="filter-result-count mb-2"><span id="catalog-count">0</span> <span data-i18n="catalogRowsUnit">款产品</span></p>
@@ -225,7 +225,7 @@
                     <option value="open_source" data-i18n="originOSS">开源</option>
                 </select>
                 <select id="matrix-filter-category" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white" aria-label="Filter by category"></select>
-                <input type="search" id="matrix-search" class="text-sm border border-slate-200 rounded px-3 py-2 flex-1 min-w-[12rem]" data-i18n-placeholder="searchPlaceholder">
+                <input type="search" id="matrix-search" class="text-sm border border-slate-200 rounded px-3 py-2 flex-1 min-w-[12rem]" data-i18n-placeholder="searchPlaceholder" aria-label="搜索能力矩阵 / Search capability matrix">
                 <button type="button" id="matrix-clear-filters" class="clear-filters-btn" data-i18n="clearFilters" hidden>清除筛选</button>
                 <span class="filter-result-count"><span id="matrix-count">0</span> <span data-i18n="matrixRowsUnit">款产品</span></span>
             </div>
@@ -402,11 +402,11 @@
         </div>
     </div>
 
-    <script src="assets/js/i18n.js?v=20260616a"></script>
-    <script src="assets/js/catalog-loader.js?v=20260616a"></script>
-    <script src="assets/js/charts.js?v=20260616a"></script>
-    <script src="assets/js/compare.js?v=20260616a"></script>
-    <script src="assets/js/matrix.js?v=20260616a"></script>
-    <script src="assets/js/app.js?v=20260616a"></script>
+    <script src="assets/js/i18n.js?v=939eaa25119f"></script>
+    <script src="assets/js/catalog-loader.js?v=939eaa25119f"></script>
+    <script src="assets/js/charts.js?v=939eaa25119f"></script>
+    <script src="assets/js/compare.js?v=939eaa25119f"></script>
+    <script src="assets/js/matrix.js?v=939eaa25119f"></script>
+    <script src="assets/js/app.js?v=939eaa25119f"></script>
 </body>
 </html>

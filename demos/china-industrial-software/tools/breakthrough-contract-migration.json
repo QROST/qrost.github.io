@@ -1,0 +1,3609 @@
+{
+  "schema_version": 1,
+  "legacy_public_commit": "3be98d9e9804414f837bdd50652cb54857281c0c",
+  "rules": {
+    "id": "replace underscores with hyphens",
+    "year_date": "YYYY becomes YYYY-01 with date_precision=year",
+    "reported_evidence": "candidate with confidence capped at 0.5",
+    "agent_researched_policies": "candidate with confidence capped at 0.5",
+    "source_authority": "exact reviewed URL registry plus explicit support scope"
+  },
+  "counts": {
+    "id_mappings": 244,
+    "date_mappings": 124,
+    "evidence_mappings": 252,
+    "inline_sources_scoped": 961,
+    "source_urls_scoped": 139,
+    "total_external_links_scoped": 1100,
+    "policy_candidates": 96
+  },
+  "breakthroughs_sha256": "c8a3d5168dc23c68befc3bded46c0b0b1d35a06104b565b9a0f58226b82f116b",
+  "id_map": [
+    {
+      "old_id": "3d3s-design-code_compliance-2003",
+      "new_id": "3d3s-design-code-compliance-2003"
+    },
+    {
+      "old_id": "3d3s-design-code_compliance-2017",
+      "new_id": "3d3s-design-code-compliance-2017"
+    },
+    {
+      "old_id": "3d3s-design-drafting_2d-2008",
+      "new_id": "3d3s-design-drafting-2d-2008"
+    },
+    {
+      "old_id": "3d3s-design-fea_structure-2000",
+      "new_id": "3d3s-design-fea-structure-2000"
+    },
+    {
+      "old_id": "3d3s-design-fea_structure-2012",
+      "new_id": "3d3s-design-fea-structure-2012"
+    },
+    {
+      "old_id": "alibaba-industrial-brain-iiot_historian-2017",
+      "new_id": "alibaba-industrial-brain-iiot-historian-2017"
+    },
+    {
+      "old_id": "alibaba-industrial-brain-predictive_maintenance_apm-2019",
+      "new_id": "alibaba-industrial-brain-predictive-maintenance-apm-2019"
+    },
+    {
+      "old_id": "alibaba-industrial-brain-process_control-2018",
+      "new_id": "alibaba-industrial-brain-process-control-2018"
+    },
+    {
+      "old_id": "alibaba-industrial-brain-quality_spc_traceability-2017",
+      "new_id": "alibaba-industrial-brain-quality-spc-traceability-2017"
+    },
+    {
+      "old_id": "alibaba-industrial-brain-scheduling_ops-2018",
+      "new_id": "alibaba-industrial-brain-scheduling-ops-2018"
+    },
+    {
+      "old_id": "bambu-studio-am_layout-2022",
+      "new_id": "bambu-studio-am-layout-2022"
+    },
+    {
+      "old_id": "bambu-studio-cloud_native-2022",
+      "new_id": "bambu-studio-cloud-native-2022"
+    },
+    {
+      "old_id": "baosight-mes-digital_twin-2015",
+      "new_id": "baosight-mes-digital-twin-2015"
+    },
+    {
+      "old_id": "baosight-mes-quality_spc_traceability-2004",
+      "new_id": "baosight-mes-quality-spc-traceability-2004"
+    },
+    {
+      "old_id": "baosight-mes-scheduling_ops-1996",
+      "new_id": "baosight-mes-scheduling-ops-1996"
+    },
+    {
+      "old_id": "baosight-mes-scheduling_ops-2001",
+      "new_id": "baosight-mes-scheduling-ops-2001"
+    },
+    {
+      "old_id": "baosight-mes-scheduling_ops-2018",
+      "new_id": "baosight-mes-scheduling-ops-2018"
+    },
+    {
+      "old_id": "bochu-cypcut-cam_milling_cnc-2012",
+      "new_id": "bochu-cypcut-cam-milling-cnc-2012"
+    },
+    {
+      "old_id": "bochu-cypcut-cam_milling_cnc-2018",
+      "new_id": "bochu-cypcut-cam-milling-cnc-2018"
+    },
+    {
+      "old_id": "bochu-cypcut-cam_milling_cnc-2020",
+      "new_id": "bochu-cypcut-cam-milling-cnc-2020"
+    },
+    {
+      "old_id": "bochu-cypcut-process_control-2013",
+      "new_id": "bochu-cypcut-process-control-2013"
+    },
+    {
+      "old_id": "bochu-cypcut-sheet_nesting_2d-2017",
+      "new_id": "bochu-cypcut-sheet-nesting-2d-2017"
+    },
+    {
+      "old_id": "bochu-cypnest-cloud_native-2020",
+      "new_id": "bochu-cypnest-cloud-native-2020"
+    },
+    {
+      "old_id": "bochu-cypnest-sheet_nesting_2d-2015",
+      "new_id": "bochu-cypnest-sheet-nesting-2d-2015"
+    },
+    {
+      "old_id": "bochu-cypnest-sheet_nesting_2d-2018",
+      "new_id": "bochu-cypnest-sheet-nesting-2d-2018"
+    },
+    {
+      "old_id": "caxa-cad-ext_api-2026",
+      "new_id": "caxa-cad-ext-api-2026"
+    },
+    {
+      "old_id": "caxa-cad-solid_modeling_3d-2003",
+      "new_id": "caxa-cad-solid-modeling-3d-2003"
+    },
+    {
+      "old_id": "chitubox-am_layout-2021",
+      "new_id": "chitubox-am-layout-2021"
+    },
+    {
+      "old_id": "chitubox-am_support_gen-2019",
+      "new_id": "chitubox-am-support-gen-2019"
+    },
+    {
+      "old_id": "chitubox-ext_api-2020",
+      "new_id": "chitubox-ext-api-2020"
+    },
+    {
+      "old_id": "chitubox-slicing_algorithm-2018",
+      "new_id": "chitubox-slicing-algorithm-2018"
+    },
+    {
+      "old_id": "chitubox-slicing_algorithm-2020",
+      "new_id": "chitubox-slicing-algorithm-2020"
+    },
+    {
+      "old_id": "cosmoplat-mes-quality_spc_traceability-2019",
+      "new_id": "cosmoplat-mes-quality-spc-traceability-2019"
+    },
+    {
+      "old_id": "cosmoplat-mes-scheduling_ops-2017",
+      "new_id": "cosmoplat-mes-scheduling-ops-2017"
+    },
+    {
+      "old_id": "cosmoplat-mes-scheduling_ops-2018",
+      "new_id": "cosmoplat-mes-scheduling-ops-2018"
+    },
+    {
+      "old_id": "cosmoplat-mes-scheduling_ops-2020",
+      "new_id": "cosmoplat-mes-scheduling-ops-2020"
+    },
+    {
+      "old_id": "creality-print-cloud_native-2020",
+      "new_id": "creality-print-cloud-native-2020"
+    },
+    {
+      "old_id": "creality-print-slicing_algorithm-2019",
+      "new_id": "creality-print-slicing-algorithm-2019"
+    },
+    {
+      "old_id": "creality-print-slicing_algorithm-2020",
+      "new_id": "creality-print-slicing-algorithm-2020"
+    },
+    {
+      "old_id": "creality-print-slicing_algorithm-2022",
+      "new_id": "creality-print-slicing-algorithm-2022"
+    },
+    {
+      "old_id": "creality-print-slicing_algorithm-2023",
+      "new_id": "creality-print-slicing-algorithm-2023"
+    },
+    {
+      "old_id": "crown-styling-cloud_native-2026",
+      "new_id": "crown-styling-cloud-native-2026"
+    },
+    {
+      "old_id": "crowncad-parametric_design-2020",
+      "new_id": "crowncad-parametric-design-2020"
+    },
+    {
+      "old_id": "cscec-digital-construction_4d_sim-2021",
+      "new_id": "cscec-digital-construction-4d-sim-2021"
+    },
+    {
+      "old_id": "cscec-digital-data_acquisition-2019",
+      "new_id": "cscec-digital-data-acquisition-2019"
+    },
+    {
+      "old_id": "cscec-digital-iiot_historian-2018",
+      "new_id": "cscec-digital-iiot-historian-2018"
+    },
+    {
+      "old_id": "digiwin-workflow-bom_mgmt-2013",
+      "new_id": "digiwin-workflow-bom-mgmt-2013"
+    },
+    {
+      "old_id": "digiwin-workflow-cloud_native-2018",
+      "new_id": "digiwin-workflow-cloud-native-2018"
+    },
+    {
+      "old_id": "digiwin-workflow-finance_ledger-2014",
+      "new_id": "digiwin-workflow-finance-ledger-2014"
+    },
+    {
+      "old_id": "digiwin-workflow-scheduling_ops-2020",
+      "new_id": "digiwin-workflow-scheduling-ops-2020"
+    },
+    {
+      "old_id": "digiwin-workflow-xinchuang_compat-2021",
+      "new_id": "digiwin-workflow-xinchuang-compat-2021"
+    },
+    {
+      "old_id": "empyrean-alps-simulation_vv-2024",
+      "new_id": "empyrean-alps-simulation-vv-2024"
+    },
+    {
+      "old_id": "empyrean-digital-ic_physical_signoff-2021",
+      "new_id": "empyrean-digital-ic-physical-signoff-2021"
+    },
+    {
+      "old_id": "emqx-data_acquisition-2018",
+      "new_id": "emqx-data-acquisition-2018"
+    },
+    {
+      "old_id": "emqx-ot_protocol_gateway-2022",
+      "new_id": "emqx-ot-protocol-gateway-2022"
+    },
+    {
+      "old_id": "emqx-xinchuang_compat-2022",
+      "new_id": "emqx-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "fastcam-pro-v9-cam_milling_cnc-1998",
+      "new_id": "fastcam-pro-v9-cam-milling-cnc-1998"
+    },
+    {
+      "old_id": "fastcam-pro-v9-ext_api-2008",
+      "new_id": "fastcam-pro-v9-ext-api-2008"
+    },
+    {
+      "old_id": "fastcam-pro-v9-sheet_nesting_2d-2012",
+      "new_id": "fastcam-pro-v9-sheet-nesting-2d-2012"
+    },
+    {
+      "old_id": "fastcam-pro-v9-xinchuang_compat-2019",
+      "new_id": "fastcam-pro-v9-xinchuang-compat-2019"
+    },
+    {
+      "old_id": "getech-semiconductor-cim-cloud_native-2022",
+      "new_id": "getech-semiconductor-cim-cloud-native-2022"
+    },
+    {
+      "old_id": "getech-semiconductor-cim-data_acquisition-2020",
+      "new_id": "getech-semiconductor-cim-data-acquisition-2020"
+    },
+    {
+      "old_id": "getech-semiconductor-cim-fab_automation_eap-2020",
+      "new_id": "getech-semiconductor-cim-fab-automation-eap-2020"
+    },
+    {
+      "old_id": "getech-semiconductor-cim-quality_spc_traceability-2020",
+      "new_id": "getech-semiconductor-cim-quality-spc-traceability-2020"
+    },
+    {
+      "old_id": "getech-semiconductor-cim-scheduling_ops-2019",
+      "new_id": "getech-semiconductor-cim-scheduling-ops-2019"
+    },
+    {
+      "old_id": "glodon-bim-bim_quantity_takeoff-2010",
+      "new_id": "glodon-bim-bim-quantity-takeoff-2010"
+    },
+    {
+      "old_id": "glodon-bim-bim_quantity_takeoff-2017",
+      "new_id": "glodon-bim-bim-quantity-takeoff-2017"
+    },
+    {
+      "old_id": "glodon-bim-cad_repair_interop-2018",
+      "new_id": "glodon-bim-cad-repair-interop-2018"
+    },
+    {
+      "old_id": "glodon-bim-cloud_native-2017",
+      "new_id": "glodon-bim-cloud-native-2017"
+    },
+    {
+      "old_id": "glodon-bim-xinchuang_compat-2024",
+      "new_id": "glodon-bim-xinchuang-compat-2024"
+    },
+    {
+      "old_id": "glodon-bimface-bim_clash-2018",
+      "new_id": "glodon-bimface-bim-clash-2018"
+    },
+    {
+      "old_id": "glodon-bimface-ext_api-2018",
+      "new_id": "glodon-bimface-ext-api-2018"
+    },
+    {
+      "old_id": "glodon-bimface-xinchuang_compat-2022",
+      "new_id": "glodon-bimface-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "glodon-parametric-library-parametric_design-2024",
+      "new_id": "glodon-parametric-library-parametric-design-2024"
+    },
+    {
+      "old_id": "glodon-parametric-library-parametric_design-2026",
+      "new_id": "glodon-parametric-library-parametric-design-2026"
+    },
+    {
+      "old_id": "gstarcad-cloud_native-2024",
+      "new_id": "gstarcad-cloud-native-2024"
+    },
+    {
+      "old_id": "gstarcad-drafting_2d-2013",
+      "new_id": "gstarcad-drafting-2d-2013"
+    },
+    {
+      "old_id": "gstarcad-ext_api-2009",
+      "new_id": "gstarcad-ext-api-2009"
+    },
+    {
+      "old_id": "gstarcad-xinchuang_compat-2020",
+      "new_id": "gstarcad-xinchuang-compat-2020"
+    },
+    {
+      "old_id": "gstarcad-xinchuang_compat-2025",
+      "new_id": "gstarcad-xinchuang-compat-2025"
+    },
+    {
+      "old_id": "haier-cosmoplat-platform-cloud_native-2019",
+      "new_id": "haier-cosmoplat-platform-cloud-native-2019"
+    },
+    {
+      "old_id": "haier-cosmoplat-platform-data_acquisition-2019",
+      "new_id": "haier-cosmoplat-platform-data-acquisition-2019"
+    },
+    {
+      "old_id": "haier-cosmoplat-platform-digital_twin-2018",
+      "new_id": "haier-cosmoplat-platform-digital-twin-2018"
+    },
+    {
+      "old_id": "haier-cosmoplat-platform-scheduling_ops-2021",
+      "new_id": "haier-cosmoplat-platform-scheduling-ops-2021"
+    },
+    {
+      "old_id": "heygears-hps-am_layout-2019",
+      "new_id": "heygears-hps-am-layout-2019"
+    },
+    {
+      "old_id": "heygears-hps-am_layout-2020",
+      "new_id": "heygears-hps-am-layout-2020"
+    },
+    {
+      "old_id": "heygears-hps-am_support_gen-2020",
+      "new_id": "heygears-hps-am-support-gen-2020"
+    },
+    {
+      "old_id": "heygears-hps-scheduling_ops-2021",
+      "new_id": "heygears-hps-scheduling-ops-2021"
+    },
+    {
+      "old_id": "heygears-hps-slicing_algorithm-2018",
+      "new_id": "heygears-hps-slicing-algorithm-2018"
+    },
+    {
+      "old_id": "hollysys-dcs-process_control-2006",
+      "new_id": "hollysys-dcs-process-control-2006"
+    },
+    {
+      "old_id": "hollysys-dcs-process_control-2013",
+      "new_id": "hollysys-dcs-process-control-2013"
+    },
+    {
+      "old_id": "hollysys-dcs-process_control-2016",
+      "new_id": "hollysys-dcs-process-control-2016"
+    },
+    {
+      "old_id": "hollysys-dcs-process_control-2021",
+      "new_id": "hollysys-dcs-process-control-2021"
+    },
+    {
+      "old_id": "hollysys-dcs-xinchuang_compat-2022",
+      "new_id": "hollysys-dcs-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "hoteam-cad-solid_modeling_3d-2009",
+      "new_id": "hoteam-cad-solid-modeling-3d-2009"
+    },
+    {
+      "old_id": "hoteam-cad-surface_modeling-2026",
+      "new_id": "hoteam-cad-surface-modeling-2026"
+    },
+    {
+      "old_id": "hoteam-plm-cad_repair_interop-2009",
+      "new_id": "hoteam-plm-cad-repair-interop-2009"
+    },
+    {
+      "old_id": "hoteam-plm-cloud_native-2018",
+      "new_id": "hoteam-plm-cloud-native-2018"
+    },
+    {
+      "old_id": "hoteam-plm-lifecycle_mgmt-1998",
+      "new_id": "hoteam-plm-lifecycle-mgmt-1998"
+    },
+    {
+      "old_id": "hoteam-sview-cad_repair_interop-2012",
+      "new_id": "hoteam-sview-cad-repair-interop-2012"
+    },
+    {
+      "old_id": "hoteam-sview-cloud_native-2019",
+      "new_id": "hoteam-sview-cloud-native-2019"
+    },
+    {
+      "old_id": "hoteam-sview-lifecycle_mgmt-2016",
+      "new_id": "hoteam-sview-lifecycle-mgmt-2016"
+    },
+    {
+      "old_id": "hoteam-sview-xinchuang_compat-2021",
+      "new_id": "hoteam-sview-xinchuang-compat-2021"
+    },
+    {
+      "old_id": "huafeng-ate-software-codegen_hil-2010",
+      "new_id": "huafeng-ate-software-codegen-hil-2010"
+    },
+    {
+      "old_id": "huafeng-ate-software-data_acquisition-2008",
+      "new_id": "huafeng-ate-software-data-acquisition-2008"
+    },
+    {
+      "old_id": "huafeng-ate-software-data_acquisition-2019",
+      "new_id": "huafeng-ate-software-data-acquisition-2019"
+    },
+    {
+      "old_id": "huafeng-ate-software-yield_yms-2020",
+      "new_id": "huafeng-ate-software-yield-yms-2020"
+    },
+    {
+      "old_id": "huawei-fusionplant-digital_twin-2020",
+      "new_id": "huawei-fusionplant-digital-twin-2020"
+    },
+    {
+      "old_id": "huawei-fusionplant-ot_protocol_gateway-2021",
+      "new_id": "huawei-fusionplant-ot-protocol-gateway-2021"
+    },
+    {
+      "old_id": "huawei-fusionplant-predictive_maintenance_apm-2020",
+      "new_id": "huawei-fusionplant-predictive-maintenance-apm-2020"
+    },
+    {
+      "old_id": "huawei-fusionplant-xinchuang_compat-2022",
+      "new_id": "huawei-fusionplant-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "huawei-metaerp-finance_ledger-2023",
+      "new_id": "huawei-metaerp-finance-ledger-2023"
+    },
+    {
+      "old_id": "huawei-metaerp-group_consolidation_mgmt-2023",
+      "new_id": "huawei-metaerp-group-consolidation-mgmt-2023"
+    },
+    {
+      "old_id": "huawei-metaerp-supply_chain_procurement-2023",
+      "new_id": "huawei-metaerp-supply-chain-procurement-2023"
+    },
+    {
+      "old_id": "huawei-metaerp-xinchuang_compat-2023",
+      "new_id": "huawei-metaerp-xinchuang-compat-2023"
+    },
+    {
+      "old_id": "huazhong-cnc-cam_milling_cnc-2015",
+      "new_id": "huazhong-cnc-cam-milling-cnc-2015"
+    },
+    {
+      "old_id": "huazhong-cnc-cam_milling_cnc-2018",
+      "new_id": "huazhong-cnc-cam-milling-cnc-2018"
+    },
+    {
+      "old_id": "inspur-gs-cloud_native-2021",
+      "new_id": "inspur-gs-cloud-native-2021"
+    },
+    {
+      "old_id": "inspur-gs-finance_ledger-2022",
+      "new_id": "inspur-gs-finance-ledger-2022"
+    },
+    {
+      "old_id": "inspur-gs-finance_ledger-2023",
+      "new_id": "inspur-gs-finance-ledger-2023"
+    },
+    {
+      "old_id": "inspur-gs-group_consolidation_mgmt-2020",
+      "new_id": "inspur-gs-group-consolidation-mgmt-2020"
+    },
+    {
+      "old_id": "inspur-gs-xinchuang_compat-2022",
+      "new_id": "inspur-gs-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "jcz-cutmaker-cam_milling_cnc-2018",
+      "new_id": "jcz-cutmaker-cam-milling-cnc-2018"
+    },
+    {
+      "old_id": "jcz-cutmaker-process_control-2016",
+      "new_id": "jcz-cutmaker-process-control-2016"
+    },
+    {
+      "old_id": "jcz-cutmaker-process_control-2020",
+      "new_id": "jcz-cutmaker-process-control-2020"
+    },
+    {
+      "old_id": "jlceda-bom_mgmt-2020",
+      "new_id": "jlceda-bom-mgmt-2020"
+    },
+    {
+      "old_id": "jlceda-cloud_native-2020",
+      "new_id": "jlceda-cloud-native-2020"
+    },
+    {
+      "old_id": "jlceda-pcb_layout_design-2022",
+      "new_id": "jlceda-pcb-layout-design-2022"
+    },
+    {
+      "old_id": "jlceda-supply_chain_procurement-2020",
+      "new_id": "jlceda-supply-chain-procurement-2020"
+    },
+    {
+      "old_id": "kingdee-cosmic-cloud_native-2018",
+      "new_id": "kingdee-cosmic-cloud-native-2018"
+    },
+    {
+      "old_id": "kingdee-cosmic-finance_ledger-2024",
+      "new_id": "kingdee-cosmic-finance-ledger-2024"
+    },
+    {
+      "old_id": "kingdee-cosmic-group_consolidation_mgmt-2024",
+      "new_id": "kingdee-cosmic-group-consolidation-mgmt-2024"
+    },
+    {
+      "old_id": "kingdee-cosmic-lifecycle_mgmt-2021",
+      "new_id": "kingdee-cosmic-lifecycle-mgmt-2021"
+    },
+    {
+      "old_id": "kingdee-cosmic-visual_programming-2024",
+      "new_id": "kingdee-cosmic-visual-programming-2024"
+    },
+    {
+      "old_id": "nari-dcs-process_control-2009",
+      "new_id": "nari-dcs-process-control-2009"
+    },
+    {
+      "old_id": "nari-dcs-process_control-2010",
+      "new_id": "nari-dcs-process-control-2010"
+    },
+    {
+      "old_id": "newdim-tiangong-cad-cloud_native-2023",
+      "new_id": "newdim-tiangong-cad-cloud-native-2023"
+    },
+    {
+      "old_id": "newdim-tiangong-cad-parametric_design-2023",
+      "new_id": "newdim-tiangong-cad-parametric-design-2023"
+    },
+    {
+      "old_id": "newdim-tiangong-cad-solid_modeling_3d-2022",
+      "new_id": "newdim-tiangong-cad-solid-modeling-3d-2022"
+    },
+    {
+      "old_id": "newdim-tiangong-cad-solid_modeling_3d-2023",
+      "new_id": "newdim-tiangong-cad-solid-modeling-3d-2023"
+    },
+    {
+      "old_id": "newdim-tiangong-cad-xinchuang_compat-2022",
+      "new_id": "newdim-tiangong-cad-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "pcitc-smart-refining-digital_twin-2018",
+      "new_id": "pcitc-smart-refining-digital-twin-2018"
+    },
+    {
+      "old_id": "pcitc-smart-refining-iiot_historian-2019",
+      "new_id": "pcitc-smart-refining-iiot-historian-2019"
+    },
+    {
+      "old_id": "pcitc-smart-refining-scheduling_ops-2015",
+      "new_id": "pcitc-smart-refining-scheduling-ops-2015"
+    },
+    {
+      "old_id": "pcitc-smart-refining-scheduling_ops-2020",
+      "new_id": "pcitc-smart-refining-scheduling-ops-2020"
+    },
+    {
+      "old_id": "pcitc-smart-refining-xinchuang_compat-2022",
+      "new_id": "pcitc-smart-refining-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "pengye-cad-bim_quantity_takeoff-2010",
+      "new_id": "pengye-cad-bim-quantity-takeoff-2010"
+    },
+    {
+      "old_id": "pera-sim-cfd_fluid-2022",
+      "new_id": "pera-sim-cfd-fluid-2022"
+    },
+    {
+      "old_id": "pera-sim-fea_structure-2022",
+      "new_id": "pera-sim-fea-structure-2022"
+    },
+    {
+      "old_id": "pera-sim-multi_physics-2022",
+      "new_id": "pera-sim-multi-physics-2022"
+    },
+    {
+      "old_id": "pinming-bim-construction_4d_sim-2019",
+      "new_id": "pinming-bim-construction-4d-sim-2019"
+    },
+    {
+      "old_id": "pinming-bim-data_acquisition-2020",
+      "new_id": "pinming-bim-data-acquisition-2020"
+    },
+    {
+      "old_id": "pkpm-cae-cloud_native-2021",
+      "new_id": "pkpm-cae-cloud-native-2021"
+    },
+    {
+      "old_id": "pkpm-cae-fea_structure-2021",
+      "new_id": "pkpm-cae-fea-structure-2021"
+    },
+    {
+      "old_id": "pkpm-cae-multi_physics-2022",
+      "new_id": "pkpm-cae-multi-physics-2022"
+    },
+    {
+      "old_id": "pkpm-sausg-code_compliance-2010",
+      "new_id": "pkpm-sausg-code-compliance-2010"
+    },
+    {
+      "old_id": "pkpm-sausg-fea_structure-2008",
+      "new_id": "pkpm-sausg-fea-structure-2008"
+    },
+    {
+      "old_id": "pkpm-sausg-fea_structure-2010",
+      "new_id": "pkpm-sausg-fea-structure-2010"
+    },
+    {
+      "old_id": "pkpm-structure-code_compliance-2004",
+      "new_id": "pkpm-structure-code-compliance-2004"
+    },
+    {
+      "old_id": "pkpm-structure-drafting_2d-2003",
+      "new_id": "pkpm-structure-drafting-2d-2003"
+    },
+    {
+      "old_id": "pkpm-structure-fea_structure-1988",
+      "new_id": "pkpm-structure-fea-structure-1988"
+    },
+    {
+      "old_id": "pkpm-structure-xinchuang_compat-2022",
+      "new_id": "pkpm-structure-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "primarius-device-analog_ic_design-2021",
+      "new_id": "primarius-device-analog-ic-design-2021"
+    },
+    {
+      "old_id": "primarius-nanospice-analog_ic_design-2019",
+      "new_id": "primarius-nanospice-analog-ic-design-2019"
+    },
+    {
+      "old_id": "primarius-nanospice-analog_ic_design-2023",
+      "new_id": "primarius-nanospice-analog-ic-design-2023"
+    },
+    {
+      "old_id": "primarius-nanospice-analog_ic_design-2024",
+      "new_id": "primarius-nanospice-analog-ic-design-2024"
+    },
+    {
+      "old_id": "rootcloud-cloud_native-2019",
+      "new_id": "rootcloud-cloud-native-2019"
+    },
+    {
+      "old_id": "rootcloud-data_acquisition-2018",
+      "new_id": "rootcloud-data-acquisition-2018"
+    },
+    {
+      "old_id": "rootcloud-iiot_historian-2020",
+      "new_id": "rootcloud-iiot-historian-2020"
+    },
+    {
+      "old_id": "ruida-rdnest-cam_milling_cnc-2025",
+      "new_id": "ruida-rdnest-cam-milling-cnc-2025"
+    },
+    {
+      "old_id": "ruida-rdnest-cloud_native-2025",
+      "new_id": "ruida-rdnest-cloud-native-2025"
+    },
+    {
+      "old_id": "ruida-rdnest-sheet_nesting_2d-2025",
+      "new_id": "ruida-rdnest-sheet-nesting-2d-2025"
+    },
+    {
+      "old_id": "sciyon-dcs-process_control-2003",
+      "new_id": "sciyon-dcs-process-control-2003"
+    },
+    {
+      "old_id": "sciyon-dcs-process_control-2009",
+      "new_id": "sciyon-dcs-process-control-2009"
+    },
+    {
+      "old_id": "sciyon-dcs-process_control-2016",
+      "new_id": "sciyon-dcs-process-control-2016"
+    },
+    {
+      "old_id": "sciyon-dcs-xinchuang_compat-2022",
+      "new_id": "sciyon-dcs-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "sie-mes-data_acquisition-2020",
+      "new_id": "sie-mes-data-acquisition-2020"
+    },
+    {
+      "old_id": "sie-mes-quality_spc_traceability-2021",
+      "new_id": "sie-mes-quality-spc-traceability-2021"
+    },
+    {
+      "old_id": "sie-mes-scheduling_ops-2017",
+      "new_id": "sie-mes-scheduling-ops-2017"
+    },
+    {
+      "old_id": "sie-mes-scheduling_ops-2020",
+      "new_id": "sie-mes-scheduling-ops-2020"
+    },
+    {
+      "old_id": "sie-mes-xinchuang_compat-2022",
+      "new_id": "sie-mes-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "sipm-plm-bom_mgmt-2018",
+      "new_id": "sipm-plm-bom-mgmt-2018"
+    },
+    {
+      "old_id": "sipm-plm-change_config_mgmt-2010",
+      "new_id": "sipm-plm-change-config-mgmt-2010"
+    },
+    {
+      "old_id": "sipm-plm-lifecycle_mgmt-1996",
+      "new_id": "sipm-plm-lifecycle-mgmt-1996"
+    },
+    {
+      "old_id": "sipm-plm-lifecycle_mgmt-2017",
+      "new_id": "sipm-plm-lifecycle-mgmt-2017"
+    },
+    {
+      "old_id": "sipm-plm-xinchuang_compat-2022",
+      "new_id": "sipm-plm-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "southsurvey-cass-drafting_2d-2018",
+      "new_id": "southsurvey-cass-drafting-2d-2018"
+    },
+    {
+      "old_id": "southsurvey-cass-gis_spatial-1998",
+      "new_id": "southsurvey-cass-gis-spatial-1998"
+    },
+    {
+      "old_id": "southsurvey-cass-gis_spatial-2020",
+      "new_id": "southsurvey-cass-gis-spatial-2020"
+    },
+    {
+      "old_id": "southsurvey-cass-xinchuang_compat-2023",
+      "new_id": "southsurvey-cass-xinchuang-compat-2023"
+    },
+    {
+      "old_id": "suochen-abyss-cfd_fluid-2017",
+      "new_id": "suochen-abyss-cfd-fluid-2017"
+    },
+    {
+      "old_id": "suochen-abyss-fea_structure-2012",
+      "new_id": "suochen-abyss-fea-structure-2012"
+    },
+    {
+      "old_id": "suochen-abyss-multi_physics-2018",
+      "new_id": "suochen-abyss-multi-physics-2018"
+    },
+    {
+      "old_id": "suochen-abyss-xinchuang_compat-2023",
+      "new_id": "suochen-abyss-xinchuang-compat-2023"
+    },
+    {
+      "old_id": "supcon-supos-cloud_native-2017",
+      "new_id": "supcon-supos-cloud-native-2017"
+    },
+    {
+      "old_id": "supcon-supos-iiot_historian-2019",
+      "new_id": "supcon-supos-iiot-historian-2019"
+    },
+    {
+      "old_id": "supcon-supos-process_control-2024",
+      "new_id": "supcon-supos-process-control-2024"
+    },
+    {
+      "old_id": "supcon-supos-xinchuang_compat-2022",
+      "new_id": "supcon-supos-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "tongyuan-mworks-codegen_hil-2021",
+      "new_id": "tongyuan-mworks-codegen-hil-2021"
+    },
+    {
+      "old_id": "tongyuan-mworks-ext_api-2017",
+      "new_id": "tongyuan-mworks-ext-api-2017"
+    },
+    {
+      "old_id": "tongyuan-mworks-mbse_sys-2015",
+      "new_id": "tongyuan-mworks-mbse-sys-2015"
+    },
+    {
+      "old_id": "tongyuan-mworks-mbse_sys-2018",
+      "new_id": "tongyuan-mworks-mbse-sys-2018"
+    },
+    {
+      "old_id": "tongyuan-mworks-visual_programming-2020",
+      "new_id": "tongyuan-mworks-visual-programming-2020"
+    },
+    {
+      "old_id": "weihong-nc-cam_milling_cnc-2003",
+      "new_id": "weihong-nc-cam-milling-cnc-2003"
+    },
+    {
+      "old_id": "weihong-nc-cam_milling_cnc-2010",
+      "new_id": "weihong-nc-cam-milling-cnc-2010"
+    },
+    {
+      "old_id": "weihong-nc-cam_milling_cnc-2016",
+      "new_id": "weihong-nc-cam-milling-cnc-2016"
+    },
+    {
+      "old_id": "weihong-nc-cam_milling_cnc-2019",
+      "new_id": "weihong-nc-cam-milling-cnc-2019"
+    },
+    {
+      "old_id": "wellintech-kingview-iiot_historian-2010",
+      "new_id": "wellintech-kingview-iiot-historian-2010"
+    },
+    {
+      "old_id": "wellintech-kingview-process_control-2003",
+      "new_id": "wellintech-kingview-process-control-2003"
+    },
+    {
+      "old_id": "wellintech-kingview-process_control-2020",
+      "new_id": "wellintech-kingview-process-control-2020"
+    },
+    {
+      "old_id": "wellintech-kingview-visual_programming-1997",
+      "new_id": "wellintech-kingview-visual-programming-1997"
+    },
+    {
+      "old_id": "wellintech-kingview-xinchuang_compat-2022",
+      "new_id": "wellintech-kingview-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "yfway-fdm20-bom_mgmt-2016",
+      "new_id": "yfway-fdm20-bom-mgmt-2016"
+    },
+    {
+      "old_id": "yfway-fdm20-data_acquisition-2015",
+      "new_id": "yfway-fdm20-data-acquisition-2015"
+    },
+    {
+      "old_id": "yfway-fdm20-lifecycle_mgmt-2018",
+      "new_id": "yfway-fdm20-lifecycle-mgmt-2018"
+    },
+    {
+      "old_id": "yfway-fdm20-quality_spc_traceability-2017",
+      "new_id": "yfway-fdm20-quality-spc-traceability-2017"
+    },
+    {
+      "old_id": "yfway-fdm20-scheduling_ops-2017",
+      "new_id": "yfway-fdm20-scheduling-ops-2017"
+    },
+    {
+      "old_id": "ygsoft-erp-cloud_native-2020",
+      "new_id": "ygsoft-erp-cloud-native-2020"
+    },
+    {
+      "old_id": "ygsoft-erp-finance_ledger-2008",
+      "new_id": "ygsoft-erp-finance-ledger-2008"
+    },
+    {
+      "old_id": "ygsoft-erp-finance_ledger-2010",
+      "new_id": "ygsoft-erp-finance-ledger-2010"
+    },
+    {
+      "old_id": "ygsoft-erp-group_consolidation_mgmt-2017",
+      "new_id": "ygsoft-erp-group-consolidation-mgmt-2017"
+    },
+    {
+      "old_id": "ygsoft-erp-xinchuang_compat-2024",
+      "new_id": "ygsoft-erp-xinchuang-compat-2024"
+    },
+    {
+      "old_id": "yjk-structure-code_compliance-2018",
+      "new_id": "yjk-structure-code-compliance-2018"
+    },
+    {
+      "old_id": "yjk-structure-fea_structure-2016",
+      "new_id": "yjk-structure-fea-structure-2016"
+    },
+    {
+      "old_id": "yjk-structure-fea_structure-2019",
+      "new_id": "yjk-structure-fea-structure-2019"
+    },
+    {
+      "old_id": "yonyou-bip-finance_ledger-2022",
+      "new_id": "yonyou-bip-finance-ledger-2022"
+    },
+    {
+      "old_id": "yonyou-bip-group_consolidation_mgmt-2024",
+      "new_id": "yonyou-bip-group-consolidation-mgmt-2024"
+    },
+    {
+      "old_id": "yonyou-bip-lifecycle_mgmt-2023",
+      "new_id": "yonyou-bip-lifecycle-mgmt-2023"
+    },
+    {
+      "old_id": "yonyou-bip-xinchuang_compat-2021",
+      "new_id": "yonyou-bip-xinchuang-compat-2021"
+    },
+    {
+      "old_id": "yonyou-iip-cloud_native-2017",
+      "new_id": "yonyou-iip-cloud-native-2017"
+    },
+    {
+      "old_id": "yonyou-iip-cloud_native-2020",
+      "new_id": "yonyou-iip-cloud-native-2020"
+    },
+    {
+      "old_id": "yonyou-iip-data_acquisition-2020",
+      "new_id": "yonyou-iip-data-acquisition-2020"
+    },
+    {
+      "old_id": "yonyou-iip-digital_twin-2022",
+      "new_id": "yonyou-iip-digital-twin-2022"
+    },
+    {
+      "old_id": "yonyou-iip-xinchuang_compat-2022",
+      "new_id": "yonyou-iip-xinchuang-compat-2022"
+    },
+    {
+      "old_id": "zw3d-cam_milling_cnc-2010",
+      "new_id": "zw3d-cam-milling-cnc-2010"
+    },
+    {
+      "old_id": "zw3d-parametric_design-2024",
+      "new_id": "zw3d-parametric-design-2024"
+    },
+    {
+      "old_id": "zw3d-solid_modeling_3d-2010",
+      "new_id": "zw3d-solid-modeling-3d-2010"
+    },
+    {
+      "old_id": "zw3d-xinchuang_compat-2026",
+      "new_id": "zw3d-xinchuang-compat-2026"
+    },
+    {
+      "old_id": "zwcad-api-ext_api-2024",
+      "new_id": "zwcad-api-ext-api-2024"
+    },
+    {
+      "old_id": "zwcad-api-ext_api-2025",
+      "new_id": "zwcad-api-ext-api-2025"
+    },
+    {
+      "old_id": "zwcad-drafting_2d-2004",
+      "new_id": "zwcad-drafting-2d-2004"
+    },
+    {
+      "old_id": "zwcad-parametric_design-2010",
+      "new_id": "zwcad-parametric-design-2010"
+    },
+    {
+      "old_id": "zwcad-solid_modeling_3d-2008",
+      "new_id": "zwcad-solid-modeling-3d-2008"
+    },
+    {
+      "old_id": "zwcad-xinchuang_compat-2024",
+      "new_id": "zwcad-xinchuang-compat-2024"
+    }
+  ],
+  "date_map": [
+    {
+      "id": "3d3s-design-code-compliance-2003",
+      "old_date": "2003",
+      "new_date": "2003-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "3d3s-design-drafting-2d-2008",
+      "old_date": "2008",
+      "new_date": "2008-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "3d3s-design-fea-structure-2000",
+      "old_date": "2000",
+      "new_date": "2000-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "3d3s-design-fea-structure-2012",
+      "old_date": "2012",
+      "new_date": "2012-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "alibaba-industrial-brain-predictive-maintenance-apm-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "alibaba-industrial-brain-process-control-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "baosight-mes-quality-spc-traceability-2004",
+      "old_date": "2004",
+      "new_date": "2004-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "baosight-mes-scheduling-ops-1996",
+      "old_date": "1996",
+      "new_date": "1996-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "baosight-mes-scheduling-ops-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "bochu-cypcut-cam-milling-cnc-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "bochu-cypcut-cam-milling-cnc-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "bochu-cypcut-process-control-2013",
+      "old_date": "2013",
+      "new_date": "2013-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "bochu-cypcut-sheet-nesting-2d-2017",
+      "old_date": "2017",
+      "new_date": "2017-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "bochu-cypnest-cloud-native-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "bochu-cypnest-sheet-nesting-2d-2015",
+      "old_date": "2015",
+      "new_date": "2015-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "bochu-cypnest-sheet-nesting-2d-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "caxa-cad-solid-modeling-3d-2003",
+      "old_date": "2003",
+      "new_date": "2003-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "chitubox-am-layout-2021",
+      "old_date": "2021",
+      "new_date": "2021-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "chitubox-am-support-gen-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "chitubox-ext-api-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "chitubox-slicing-algorithm-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "creality-print-cloud-native-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "creality-print-slicing-algorithm-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "creality-print-slicing-algorithm-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "cscec-digital-iiot-historian-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "fastcam-pro-v9-cam-milling-cnc-1998",
+      "old_date": "1998",
+      "new_date": "1998-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "fastcam-pro-v9-ext-api-2008",
+      "old_date": "2008",
+      "new_date": "2008-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "fastcam-pro-v9-sheet-nesting-2d-2012",
+      "old_date": "2012",
+      "new_date": "2012-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "fastcam-pro-v9-xinchuang-compat-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "getech-semiconductor-cim-data-acquisition-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "getech-semiconductor-cim-fab-automation-eap-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "getech-semiconductor-cim-quality-spc-traceability-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "getech-semiconductor-cim-scheduling-ops-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "glodon-bim-cad-repair-interop-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "glodon-bim-cloud-native-2017",
+      "old_date": "2017",
+      "new_date": "2017-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "glodon-bimface-bim-clash-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "glodon-bimface-collaboration-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "glodon-bimface-ext-api-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "glodon-bimface-xinchuang-compat-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "gstarcad-cloud-native-2024",
+      "old_date": "2024",
+      "new_date": "2024-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "gstarcad-drafting-2d-2013",
+      "old_date": "2013",
+      "new_date": "2013-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "gstarcad-ext-api-2009",
+      "old_date": "2009",
+      "new_date": "2009-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "gstarcad-xinchuang-compat-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "heygears-hps-scheduling-ops-2021",
+      "old_date": "2021",
+      "new_date": "2021-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "hollysys-dcs-process-control-2006",
+      "old_date": "2006",
+      "new_date": "2006-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "hoteam-cad-solid-modeling-3d-2009",
+      "old_date": "2009",
+      "new_date": "2009-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "hoteam-plm-cad-repair-interop-2009",
+      "old_date": "2009",
+      "new_date": "2009-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "hoteam-plm-cloud-native-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "hoteam-plm-collaboration-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "hoteam-plm-lifecycle-mgmt-1998",
+      "old_date": "1998",
+      "new_date": "1998-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "hoteam-sview-cad-repair-interop-2012",
+      "old_date": "2012",
+      "new_date": "2012-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "hoteam-sview-collaboration-2017",
+      "old_date": "2017",
+      "new_date": "2017-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "hoteam-sview-lifecycle-mgmt-2016",
+      "old_date": "2016",
+      "new_date": "2016-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "hoteam-sview-xinchuang-compat-2021",
+      "old_date": "2021",
+      "new_date": "2021-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "huafeng-ate-software-codegen-hil-2010",
+      "old_date": "2010",
+      "new_date": "2010-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "huafeng-ate-software-data-acquisition-2008",
+      "old_date": "2008",
+      "new_date": "2008-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "huazhong-cnc-cam-milling-cnc-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "inspur-gs-finance-ledger-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "inspur-gs-finance-ledger-2023",
+      "old_date": "2023",
+      "new_date": "2023-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "inspur-gs-xinchuang-compat-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "jcz-cutmaker-cam-milling-cnc-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "jcz-cutmaker-process-control-2016",
+      "old_date": "2016",
+      "new_date": "2016-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "jcz-cutmaker-process-control-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "jlceda-bom-mgmt-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "jlceda-supply-chain-procurement-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "kingdee-cosmic-group-consolidation-mgmt-2024",
+      "old_date": "2024",
+      "new_date": "2024-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pcitc-smart-refining-iiot-historian-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pcitc-smart-refining-xinchuang-compat-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pengye-cad-bim-quantity-takeoff-2010",
+      "old_date": "2010",
+      "new_date": "2010-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pera-sim-cfd-fluid-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pera-sim-electromagnetics-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pera-sim-fea-structure-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pera-sim-multi-physics-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pinming-bim-construction-4d-sim-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pinming-bim-data-acquisition-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pkpm-cae-cloud-native-2021",
+      "old_date": "2021",
+      "new_date": "2021-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pkpm-cae-fea-structure-2021",
+      "old_date": "2021",
+      "new_date": "2021-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pkpm-cae-multi-physics-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pkpm-sausg-fea-structure-2008",
+      "old_date": "2008",
+      "new_date": "2008-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pkpm-structure-drafting-2d-2003",
+      "old_date": "2003",
+      "new_date": "2003-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pkpm-structure-fea-structure-1988",
+      "old_date": "1988",
+      "new_date": "1988-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "pkpm-structure-xinchuang-compat-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "sciyon-dcs-process-control-2003",
+      "old_date": "2003",
+      "new_date": "2003-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "sciyon-dcs-process-control-2016",
+      "old_date": "2016",
+      "new_date": "2016-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "sciyon-dcs-xinchuang-compat-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "sie-mes-data-acquisition-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "sie-mes-xinchuang-compat-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "sipm-plm-bom-mgmt-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "sipm-plm-change-config-mgmt-2010",
+      "old_date": "2010",
+      "new_date": "2010-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "sipm-plm-lifecycle-mgmt-1996",
+      "old_date": "1996",
+      "new_date": "1996-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "sipm-plm-xinchuang-compat-2022",
+      "old_date": "2022",
+      "new_date": "2022-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "southsurvey-cass-drafting-2d-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "southsurvey-cass-gis-spatial-1998",
+      "old_date": "1998",
+      "new_date": "1998-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "southsurvey-cass-gis-spatial-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "southsurvey-cass-xinchuang-compat-2023",
+      "old_date": "2023",
+      "new_date": "2023-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "suochen-abyss-cfd-fluid-2017",
+      "old_date": "2017",
+      "new_date": "2017-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "suochen-abyss-fea-structure-2012",
+      "old_date": "2012",
+      "new_date": "2012-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "suochen-abyss-multi-physics-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "tongyuan-mworks-codegen-hil-2021",
+      "old_date": "2021",
+      "new_date": "2021-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "tongyuan-mworks-ext-api-2017",
+      "old_date": "2017",
+      "new_date": "2017-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "tongyuan-mworks-mbse-sys-2015",
+      "old_date": "2015",
+      "new_date": "2015-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "tongyuan-mworks-visual-programming-2020",
+      "old_date": "2020",
+      "new_date": "2020-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "weihong-nc-cam-milling-cnc-2010",
+      "old_date": "2010",
+      "new_date": "2010-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "weihong-nc-cam-milling-cnc-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "wellintech-kingview-iiot-historian-2010",
+      "old_date": "2010",
+      "new_date": "2010-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "wellintech-kingview-process-control-2003",
+      "old_date": "2003",
+      "new_date": "2003-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "yfway-fdm20-bom-mgmt-2016",
+      "old_date": "2016",
+      "new_date": "2016-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "yfway-fdm20-lifecycle-mgmt-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "yfway-fdm20-quality-spc-traceability-2017",
+      "old_date": "2017",
+      "new_date": "2017-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "ygsoft-erp-finance-ledger-2010",
+      "old_date": "2010",
+      "new_date": "2010-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "ygsoft-erp-group-consolidation-mgmt-2017",
+      "old_date": "2017",
+      "new_date": "2017-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "ygsoft-erp-xinchuang-compat-2024",
+      "old_date": "2024",
+      "new_date": "2024-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "yjk-structure-code-compliance-2018",
+      "old_date": "2018",
+      "new_date": "2018-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "yjk-structure-fea-structure-2016",
+      "old_date": "2016",
+      "new_date": "2016-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "yjk-structure-fea-structure-2019",
+      "old_date": "2019",
+      "new_date": "2019-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "yonyou-bip-group-consolidation-mgmt-2024",
+      "old_date": "2024",
+      "new_date": "2024-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "yonyou-bip-lifecycle-mgmt-2023",
+      "old_date": "2023",
+      "new_date": "2023-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "yonyou-bip-xinchuang-compat-2021",
+      "old_date": "2021",
+      "new_date": "2021-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "zw3d-cam-milling-cnc-2010",
+      "old_date": "2010",
+      "new_date": "2010-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "zw3d-solid-modeling-3d-2010",
+      "old_date": "2010",
+      "new_date": "2010-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "zwcad-api-ext-api-2024",
+      "old_date": "2024",
+      "new_date": "2024-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "zwcad-api-ext-api-2025",
+      "old_date": "2025",
+      "new_date": "2025-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "zwcad-drafting-2d-2004",
+      "old_date": "2004",
+      "new_date": "2004-01",
+      "date_precision": "year"
+    },
+    {
+      "id": "zwcad-parametric-design-2010",
+      "old_date": "2010",
+      "new_date": "2010-01",
+      "date_precision": "year"
+    }
+  ],
+  "evidence_map": [
+    {
+      "id": "3d3s-design-code-compliance-2003",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "3d3s-design-code-compliance-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.64,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "3d3s-design-drafting-2d-2008",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "3d3s-design-fea-structure-2000",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "3d3s-design-fea-structure-2012",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.66,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "alibaba-industrial-brain-iiot-historian-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "alibaba-industrial-brain-predictive-maintenance-apm-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.63,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "alibaba-industrial-brain-process-control-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.65,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "alibaba-industrial-brain-quality-spc-traceability-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "alibaba-industrial-brain-scheduling-ops-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bambu-studio-am-layout-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bambu-studio-cloud-native-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bambu-studio-collaboration-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "baosight-mes-digital-twin-2015",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "baosight-mes-quality-spc-traceability-2004",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "baosight-mes-scheduling-ops-1996",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "baosight-mes-scheduling-ops-2001",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "baosight-mes-scheduling-ops-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bochu-cypcut-cam-milling-cnc-2012",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.9,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bochu-cypcut-cam-milling-cnc-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.92,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bochu-cypcut-cam-milling-cnc-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bochu-cypcut-process-control-2013",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bochu-cypcut-sheet-nesting-2d-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bochu-cypnest-cloud-native-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.62,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bochu-cypnest-sheet-nesting-2d-2015",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "bochu-cypnest-sheet-nesting-2d-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.81,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "caxa-cad-ext-api-2026",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "caxa-cad-solid-modeling-3d-2003",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "chitubox-am-layout-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "chitubox-am-support-gen-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.71,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "chitubox-ext-api-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "chitubox-slicing-algorithm-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "chitubox-slicing-algorithm-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.79,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "cosmoplat-mes-quality-spc-traceability-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.75,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "cosmoplat-mes-scheduling-ops-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "cosmoplat-mes-scheduling-ops-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "cosmoplat-mes-scheduling-ops-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.87,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "creality-print-cloud-native-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "creality-print-slicing-algorithm-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "creality-print-slicing-algorithm-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "creality-print-slicing-algorithm-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "creality-print-slicing-algorithm-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.73,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "crown-styling-cloud-native-2026",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "crowncad-parametric-design-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.84,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "cscec-digital-collaboration-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.66,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "cscec-digital-construction-4d-sim-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.62,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "cscec-digital-data-acquisition-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "cscec-digital-iiot-historian-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.64,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "digiwin-workflow-bom-mgmt-2013",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.81,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "digiwin-workflow-cloud-native-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "digiwin-workflow-finance-ledger-2014",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.89,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "digiwin-workflow-scheduling-ops-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "digiwin-workflow-xinchuang-compat-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "empyrean-alps-simulation-vv-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.9,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "empyrean-digital-ic-physical-signoff-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "emqx-data-acquisition-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "emqx-ot-protocol-gateway-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "emqx-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "fastcam-pro-v9-cam-milling-cnc-1998",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "fastcam-pro-v9-ext-api-2008",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "fastcam-pro-v9-sheet-nesting-2d-2012",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "fastcam-pro-v9-xinchuang-compat-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "getech-semiconductor-cim-cloud-native-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "getech-semiconductor-cim-data-acquisition-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "getech-semiconductor-cim-fab-automation-eap-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "getech-semiconductor-cim-quality-spc-traceability-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.71,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "getech-semiconductor-cim-scheduling-ops-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-bim-bim-quantity-takeoff-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-bim-bim-quantity-takeoff-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-bim-cad-repair-interop-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-bim-cloud-native-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-bim-xinchuang-compat-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.87,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-bimface-bim-clash-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-bimface-collaboration-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.75,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-bimface-ext-api-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.8,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-bimface-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-parametric-library-parametric-design-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.87,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "glodon-parametric-library-parametric-design-2026",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "gstarcad-cloud-native-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.84,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "gstarcad-drafting-2d-2013",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.8,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "gstarcad-ext-api-2009",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.9,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "gstarcad-xinchuang-compat-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "gstarcad-xinchuang-compat-2025",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.85,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "haier-cosmoplat-platform-cloud-native-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "haier-cosmoplat-platform-collaboration-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "haier-cosmoplat-platform-data-acquisition-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.8,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "haier-cosmoplat-platform-digital-twin-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "haier-cosmoplat-platform-scheduling-ops-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "heygears-hps-am-layout-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.71,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "heygears-hps-am-layout-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "heygears-hps-am-support-gen-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.73,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "heygears-hps-scheduling-ops-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.66,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "heygears-hps-slicing-algorithm-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hollysys-dcs-process-control-2006",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hollysys-dcs-process-control-2013",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hollysys-dcs-process-control-2016",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.84,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hollysys-dcs-process-control-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.85,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hollysys-dcs-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-cad-collaboration-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-cad-solid-modeling-3d-2009",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-cad-surface-modeling-2026",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-plm-cad-repair-interop-2009",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-plm-cloud-native-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-plm-collaboration-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-plm-lifecycle-mgmt-1998",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.62,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-sview-cad-repair-interop-2012",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-sview-cloud-native-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-sview-collaboration-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-sview-lifecycle-mgmt-2016",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.66,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "hoteam-sview-xinchuang-compat-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.64,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huafeng-ate-software-codegen-hil-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huafeng-ate-software-data-acquisition-2008",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huafeng-ate-software-data-acquisition-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huafeng-ate-software-yield-yms-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huawei-fusionplant-digital-twin-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huawei-fusionplant-ot-protocol-gateway-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huawei-fusionplant-predictive-maintenance-apm-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.66,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huawei-fusionplant-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huawei-metaerp-finance-ledger-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.9,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huawei-metaerp-group-consolidation-mgmt-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huawei-metaerp-supply-chain-procurement-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.84,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huawei-metaerp-xinchuang-compat-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huazhong-cnc-cam-milling-cnc-2015",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "huazhong-cnc-cam-milling-cnc-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.62,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "inspur-gs-cloud-native-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "inspur-gs-finance-ledger-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "inspur-gs-finance-ledger-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.71,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "inspur-gs-group-consolidation-mgmt-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "inspur-gs-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "jcz-cutmaker-cam-milling-cnc-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "jcz-cutmaker-process-control-2016",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "jcz-cutmaker-process-control-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.65,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "jlceda-bom-mgmt-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "jlceda-cloud-native-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "jlceda-pcb-layout-design-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.66,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "jlceda-supply-chain-procurement-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "kingdee-cosmic-cloud-native-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.91,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "kingdee-cosmic-finance-ledger-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.87,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "kingdee-cosmic-group-consolidation-mgmt-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "kingdee-cosmic-lifecycle-mgmt-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.94,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "kingdee-cosmic-visual-programming-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "nari-dcs-process-control-2009",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.62,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "nari-dcs-process-control-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "newdim-tiangong-cad-cloud-native-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.84,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "newdim-tiangong-cad-parametric-design-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.85,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "newdim-tiangong-cad-solid-modeling-3d-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.9,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "newdim-tiangong-cad-solid-modeling-3d-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "newdim-tiangong-cad-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pcitc-smart-refining-digital-twin-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pcitc-smart-refining-iiot-historian-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.71,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pcitc-smart-refining-scheduling-ops-2015",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pcitc-smart-refining-scheduling-ops-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pcitc-smart-refining-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pengye-cad-bim-quantity-takeoff-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pera-sim-cfd-fluid-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.8,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pera-sim-electromagnetics-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pera-sim-fea-structure-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pera-sim-multi-physics-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pinming-bim-construction-4d-sim-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.62,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pinming-bim-data-acquisition-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pkpm-cae-cloud-native-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pkpm-cae-fea-structure-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.66,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pkpm-cae-multi-physics-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.62,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pkpm-sausg-code-compliance-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pkpm-sausg-fea-structure-2008",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pkpm-sausg-fea-structure-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pkpm-structure-code-compliance-2004",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pkpm-structure-drafting-2d-2003",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pkpm-structure-fea-structure-1988",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.71,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "pkpm-structure-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.67,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "primarius-device-analog-ic-design-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "primarius-nanospice-analog-ic-design-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "primarius-nanospice-analog-ic-design-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "primarius-nanospice-analog-ic-design-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.8,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "rootcloud-cloud-native-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "rootcloud-data-acquisition-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "rootcloud-iiot-historian-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "ruida-rdnest-cam-milling-cnc-2025",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.61,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "ruida-rdnest-cloud-native-2025",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.64,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "ruida-rdnest-sheet-nesting-2d-2025",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sciyon-dcs-process-control-2003",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.9,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sciyon-dcs-process-control-2009",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.8,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sciyon-dcs-process-control-2016",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sciyon-dcs-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sie-mes-data-acquisition-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.8,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sie-mes-quality-spc-traceability-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sie-mes-scheduling-ops-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.9,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sie-mes-scheduling-ops-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.85,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sie-mes-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sipm-plm-bom-mgmt-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sipm-plm-change-config-mgmt-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sipm-plm-lifecycle-mgmt-1996",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sipm-plm-lifecycle-mgmt-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "sipm-plm-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "southsurvey-cass-drafting-2d-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "southsurvey-cass-gis-spatial-1998",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "southsurvey-cass-gis-spatial-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "southsurvey-cass-xinchuang-compat-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "suochen-abyss-cfd-fluid-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "suochen-abyss-fea-structure-2012",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "suochen-abyss-multi-physics-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "suochen-abyss-xinchuang-compat-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.81,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "supcon-supos-cloud-native-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "supcon-supos-iiot-historian-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.84,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "supcon-supos-process-control-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "supcon-supos-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.8,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "tongyuan-mworks-codegen-hil-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.67,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "tongyuan-mworks-ext-api-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.91,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "tongyuan-mworks-mbse-sys-2015",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.71,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "tongyuan-mworks-mbse-sys-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "tongyuan-mworks-visual-programming-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.69,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "weihong-nc-cam-milling-cnc-2003",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "weihong-nc-cam-milling-cnc-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "weihong-nc-cam-milling-cnc-2016",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.91,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "weihong-nc-cam-milling-cnc-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "wellintech-kingview-iiot-historian-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.71,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "wellintech-kingview-process-control-2003",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "wellintech-kingview-process-control-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.85,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "wellintech-kingview-visual-programming-1997",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "wellintech-kingview-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yfway-fdm20-bom-mgmt-2016",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yfway-fdm20-data-acquisition-2015",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yfway-fdm20-lifecycle-mgmt-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.68,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yfway-fdm20-quality-spc-traceability-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yfway-fdm20-scheduling-ops-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "ygsoft-erp-cloud-native-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "ygsoft-erp-finance-ledger-2008",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "ygsoft-erp-finance-ledger-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "ygsoft-erp-group-consolidation-mgmt-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "ygsoft-erp-xinchuang-compat-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yjk-structure-code-compliance-2018",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.62,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yjk-structure-fea-structure-2016",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yjk-structure-fea-structure-2019",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.7,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yonyou-bip-finance-ledger-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.92,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yonyou-bip-group-consolidation-mgmt-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.9,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yonyou-bip-lifecycle-mgmt-2023",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.91,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yonyou-bip-xinchuang-compat-2021",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.9,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yonyou-iip-cloud-native-2017",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yonyou-iip-cloud-native-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yonyou-iip-data-acquisition-2020",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.71,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yonyou-iip-digital-twin-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.74,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "yonyou-iip-xinchuang-compat-2022",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.76,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "zw3d-cam-milling-cnc-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.72,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "zw3d-parametric-design-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.84,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "zw3d-solid-modeling-3d-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.78,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "zw3d-xinchuang-compat-2026",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.88,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "zwcad-api-ext-api-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "zwcad-api-ext-api-2025",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.8,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "zwcad-drafting-2d-2004",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.82,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "zwcad-parametric-design-2010",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.86,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "zwcad-solid-modeling-3d-2008",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.9,
+      "new_confidence": 0.5
+    },
+    {
+      "id": "zwcad-xinchuang-compat-2024",
+      "old_evidence_level": "reported",
+      "new_evidence_level": "candidate",
+      "old_confidence": 0.83,
+      "new_confidence": 0.5
+    }
+  ],
+  "policy_candidate_ids": [
+    "fund-guofa-2000-no-18-software-ic-industry-fiscal-inc-2000",
+    "fund-national-ic-industry-investment-fund-phase-i-est-2014",
+    "fund-national-ic-industry-investment-fund-phase-ii-es-2019",
+    "fund-national-ic-industry-investment-fund-phase-iii-e-2024",
+    "fyp-10th-fyp-outline-fixed-mobile-subscriber-targets-2001",
+    "fyp-10th-fyp-outline-informatization-telecom-kpis-2001",
+    "fyp-12th-fyp-national-informatization-plan-e-commerc-2012",
+    "fyp-12th-fyp-outline-strategic-emerging-industries-v-2011",
+    "fyp-12th-fyp-software-it-services-plan-software-reve-2012",
+    "fyp-12th-fyp-software-plan-software-export-target-2012",
+    "fyp-12th-fyp-software-plan-software-value-added-shar-2012",
+    "fyp-13th-five-year-plan-for-construction-industry-de-2017",
+    "fyp-13th-five-year-plan-outline-r-d-intensity-indica-2016",
+    "fyp-13th-fyp-software-it-services-development-plan-2-2016",
+    "fyp-13th-fyp-software-plan-it-services-revenue-share-2016",
+    "fyp-14th-five-year-intelligent-manufacturing-develop-2021",
+    "fyp-14th-five-year-plan-for-construction-industry-de-2022",
+    "fyp-14th-five-year-plan-for-in-depth-integration-of--2021",
+    "fyp-14th-fyp-digital-economy-plan-core-industry-valu-2022",
+    "fyp-14th-fyp-digital-economy-plan-digital-r-d-design-2021",
+    "fyp-14th-fyp-digital-economy-plan-industrial-interne-2021",
+    "fyp-14th-fyp-digital-economy-plan-key-process-cnc-ra-2022",
+    "fyp-14th-fyp-integration-plan-industrial-equipment-c-2021",
+    "fyp-14th-fyp-it-ii-integration-plan-networked-produc-2021",
+    "fyp-14th-fyp-outline-digital-economy-core-industries-2021",
+    "fyp-14th-fyp-outline-manufacturing-value-added-share-2021",
+    "fyp-14th-fyp-software-it-services-plan-industry-reve-2021",
+    "fyp-14th-fyp-software-plan-cumulative-industrial-app-2021",
+    "fyp-14th-fyp-software-plan-international-standards-i-2021",
+    "fyp-14th-fyp-software-plan-national-standards-in-key-2021",
+    "fyp-15th-fyp-proposal-full-rollout-of-the-ai-initiat-2025",
+    "fyp-cpc-central-committee-proposal-on-the-15th-five--2025",
+    "fyp-industrial-transformation-plan-average-annual-gr-2012",
+    "fyp-industrial-transformation-plan-cad-digital-desig-2012",
+    "fyp-industrial-transformation-plan-cnc-rate-in-key-p-2012",
+    "fyp-informatization-industrialization-integration-de-2016",
+    "ministry-14th-fyp-big-data-industry-plan-industry-scale-a-2021",
+    "ministry-14th-fyp-industrial-internet-plan-connected-indu-2021",
+    "ministry-14th-fyp-software-plan-industrial-app-count-2021",
+    "ministry-electronic-information-industry-10th-fyp-plan-ma-2001",
+    "ministry-guidance-on-coordinated-development-of-intellige-2020",
+    "ministry-guidance-on-promoting-bim-application-2015",
+    "ministry-high-quality-compute-infrastructure-development--2023",
+    "ministry-intelligent-manufacturing-plan-2020-interim-targ-2016",
+    "program-11th-five-year-project-deployment-scale-2010",
+    "program-11th-fyp-central-fiscal-investment-2010",
+    "program-11th-fyp-total-budget-incl-co-funding-2010",
+    "program-14th-fyp-smart-manufacturing-plan-industrial-sof-2021",
+    "program-2026-model-data-resonance-action-ai-manufacturin-2026",
+    "program-core-electronic-devices-high-end-software-ic-meg-2008",
+    "program-county-district-government-software-legalization-2014",
+    "program-data-element-three-year-action-plan-2024-2026-2024",
+    "program-east-data-west-computing-national-compute-hub-sy-2022",
+    "program-iiot-innovation-action-plan-connected-industrial-2021",
+    "program-intelligent-manufacturing-plan-digital-r-d-desig-2016",
+    "program-intelligent-manufacturing-plan-industrial-softwa-2016",
+    "program-intelligent-manufacturing-plan-key-process-cnc-r-2016",
+    "program-internet-plus-action-plan-mobile-broadband-house-2015",
+    "program-made-in-china-2025-digital-r-d-design-tool-penet-2015",
+    "program-made-in-china-2025-fixed-broadband-household-pen-2015",
+    "program-made-in-china-2025-interim-targets-2020-2015",
+    "program-made-in-china-2025-key-process-cnc-rate-2015",
+    "program-made-in-china-2025-key-process-numerical-control-2015",
+    "program-made-in-china-2025-manufacturing-r-d-intensity-t-2015",
+    "program-made-in-china-2025-manufacturing-value-added-rat-2015",
+    "program-mohurd-announces-intelligent-construction-pilot--2023",
+    "program-municipal-prefectural-government-software-legali-2014",
+    "program-sector-guide-software-it-services-transformation-2026",
+    "program-software-industry-revitalization-outline-2005-re-2002",
+    "program-state-council-approves-core-electronic-devices-h-2008",
+    "program-state-council-guideline-on-vigorously-developing-2016",
+    "program-xinchuang-document-79-party-gov-eight-sector-sub-2022",
+    "standard-3d-cad-security-evaluation-group-standard-series-2025",
+    "standard-domestic-product-eligibility-in-china-component--2025",
+    "standard-management-system-requirements-for-informatizati-2017",
+    "standard-secure-reliable-evaluation-domestic-cpus-at-leve-2025",
+    "standard-smart-manufacturing-standards-14th-fyp-formulati-2021",
+    "standard-smart-manufacturing-standards-published-stock-20-2021",
+    "statistic-2020-software-it-services-statistical-communique-2021",
+    "statistic-2023-measured-above-scale-software-business-reve-2024",
+    "statistic-2023-statistical-communiqu-manufacturing-va-and--2024",
+    "statistic-5th-national-economic-census-revised-2023-gdp-2024",
+    "statistic-industrial-software-market-size-ai-manufacturing-2025",
+    "statistic-miit-integration-statistics-release-2024",
+    "statistic-miit-progress-on-digital-workshops-and-smart-fac-2023",
+    "two-sessions-2015-government-work-report-internet-plus-rollou-2015",
+    "two-sessions-2016-government-work-report-13th-fyp-r-d-intensi-2016",
+    "two-sessions-2017-government-work-report-digital-economy-and--2017",
+    "two-sessions-2018-government-work-report-r-d-intensity-progre-2018",
+    "two-sessions-2019-government-work-report-annual-tax-fee-cuts-2019",
+    "two-sessions-2020-government-work-report-new-tax-fee-reductio-2020",
+    "two-sessions-2021-government-work-report-new-tax-fee-reductio-2021",
+    "two-sessions-2022-government-work-report-vat-credit-refunds-2022",
+    "two-sessions-2024-government-work-report-manufacturing-invest-2024",
+    "two-sessions-2025-government-work-report-2025-gdp-growth-targ-2025",
+    "two-sessions-2026-government-work-report-first-year-of-15th-f-2026"
+  ]
+}
