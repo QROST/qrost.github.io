@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""Emit V1 atlas JSON from the 2026-08 research brief.
+"""Emit the China Auto V1 atlas with external-source provenance gates.
 
-Numbers that look precise (2025 city output) are stored as vehicle counts with
-explicit statistical_scope + compilation source — they are NOT a unified NBS ranking.
+Unverified research candidates remain in the public data at low confidence, but
+they never cite QROST's own notes as evidence. Precise output figures are linked
+only when a specific external statistical release is available.
 """
 from __future__ import annotations
 
 import json
 from pathlib import Path
+from urllib.parse import urlparse
 
 from search_index import attach
 
@@ -15,11 +17,29 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "assets" / "data"
 
 LV = "2026-08"
-SRC_COMP = "src-output-compilation-2025"
-SRC_BRIEF = "src-research-brief-2026-08"
-SRC_YRD = "src-ndrc-yrd-collab"
-SRC_CHENGYU = "src-chengyu-2024-cluster"
-SRC_MEDIA = "src-media-public-addresses"
+CANDIDATE_CONFIDENCE = 0.45
+SRC_STAT_CHONGQING_2025 = "src-stat-chongqing-2025"
+SRC_STAT_GUANGZHOU_2025 = "src-stat-guangzhou-2025"
+SRC_STAT_WUHU_2025 = "src-stat-wuhu-2025"
+SRC_STAT_SHANGHAI_2025 = "src-stat-shanghai-2025"
+SRC_STAT_XIAN_2025 = "src-stat-xian-2025"
+SRC_STAT_BEIJING_2025 = "src-stat-beijing-2025"
+SRC_STAT_ZHENGZHOU_2025 = "src-stat-zhengzhou-2025"
+SRC_STAT_HEFEI_NEV_2025 = "src-stat-hefei-nev-2025"
+SRC_STAT_JILIN_2025 = "src-stat-jilin-province-2025"
+SRC_NIO_ABOUT = "src-nio-about-2025"
+SRC_AUTOHOME_20F = "src-autohome-20f-2025"
+SRC_BAIDU_YOUJIA_PRIVACY = "src-baidu-youjia-privacy"
+SRC_CAAM_AUTO_ZONGHENG = "src-caam-auto-zongheng"
+SRC_TESLA_SHANGHAI_CONTACT = "src-tesla-shanghai-contact"
+SRC_CATL_YIBIN = "src-catl-yibin"
+SRC_GWM_GLOBAL = "src-gwm-global-manufacturing"
+SRC_THSVM = "src-tsinghua-svm-profile"
+SRC_BIT_ME = "src-bit-me-profile"
+SRC_TONGJI_AUTO = "src-tongji-auto-profile"
+SRC_JLU_AUTO = "src-jlu-auto-profile"
+SRC_HFUT_AUTO = "src-hfut-auto-profile"
+SRC_CHD_AUTO = "src-changan-university-auto-profile"
 
 
 def dump(name: str, obj: dict) -> None:
@@ -28,8 +48,8 @@ def dump(name: str, obj: dict) -> None:
     print(f"  wrote {path.relative_to(ROOT)}")
 
 
-def srcs(*ids: str) -> list[str]:
-    return list(ids)
+def srcs(*ids: str | None) -> list[str]:
+    return [sid for sid in ids if sid]
 
 
 CITIES = [
@@ -402,7 +422,8 @@ CITIES = [
 for c in CITIES:
     c["featured_entity_ids"] = []
     c["last_verified"] = LV
-    c["confidence"] = 0.72 if c["tier"] == "core" else 0.68
+    c["confidence"] = CANDIDATE_CONFIDENCE
+    c["source_ids"] = []
 
 
 def org(**kw):
@@ -414,8 +435,8 @@ def org(**kw):
         focus_tags=[],
         aliases=[],
         last_verified=LV,
-        confidence=0.7,
-        source_ids=srcs(SRC_BRIEF),
+        confidence=CANDIDATE_CONFIDENCE,
+        source_ids=[],
     )
     row.update(kw)
     return row
@@ -486,7 +507,8 @@ ORGS = [
         headquarters_city_id="hefei", focus_tags=["headquarters", "oem_manufacturing"]),
     org(id="nio", legal_name_zh="蔚来", legal_name_en="NIO",
         display_name_zh="蔚来", display_name_en="NIO", organization_type="automaker",
-        headquarters_city_id="hefei", website="https://www.nio.com/", focus_tags=["headquarters", "oem_manufacturing"]),
+        headquarters_city_id="shanghai", website="https://www.nio.com/", focus_tags=["headquarters", "oem_manufacturing"],
+        confidence=0.80, source_ids=[SRC_NIO_ABOUT]),
     org(id="vw-anhui", legal_name_zh="大众汽车（安徽）有限公司", legal_name_en="Volkswagen (Anhui) Co., Ltd.",
         display_name_zh="大众安徽", display_name_en="Volkswagen Anhui", organization_type="automaker",
         headquarters_city_id="hefei", focus_tags=["oem_manufacturing"]),
@@ -639,245 +661,245 @@ ORGS = [
     org(id="autohome", legal_name_zh="汽车之家", legal_name_en="Autohome",
         display_name_zh="汽车之家", display_name_en="Autohome", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.autohome.com.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="gasgoo", legal_name_zh="盖世汽车", legal_name_en="Gasgoo",
         display_name_zh="盖世汽车", display_name_en="Gasgoo", organization_type="media_company",
         headquarters_city_id="shanghai", website="https://www.gasgoo.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="garage42", legal_name_zh="42号车库", legal_name_en="Garage 42",
         display_name_zh="42号车库", display_name_en="Garage 42", organization_type="media_company",
         headquarters_city_id="shanghai", website="https://www.42how.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="xchuxing", legal_name_zh="新出行", legal_name_en="Xchuxing",
         display_name_zh="新出行", display_name_en="Xchuxing", organization_type="media_company",
         headquarters_city_id="shenzhen", website="https://www.xchuxing.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="pcauto", legal_name_zh="太平洋汽车", legal_name_en="PCauto",
         display_name_zh="太平洋汽车", display_name_en="PCauto", organization_type="media_company",
         headquarters_city_id="guangzhou", website="https://www.pcauto.com.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="yiche", legal_name_zh="北京易车信息科技有限公司", legal_name_en="Bitauto / Yiche",
         display_name_zh="易车", display_name_en="Yiche", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.yiche.com/", founded_year=2000, focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="dongchedi", legal_name_zh="懂车帝", legal_name_en="Dongchedi",
         display_name_zh="懂车帝", display_name_en="Dongchedi", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.dongchedi.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="xcar", legal_name_zh="爱卡汽车", legal_name_en="Xcar",
         display_name_zh="爱卡汽车", display_name_en="Xcar", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.xcar.com.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="youjia", legal_name_zh="有驾", legal_name_en="Youjia",
         display_name_zh="有驾", display_name_en="Youjia", organization_type="media_company",
         parent_id="baidu", headquarters_city_id="beijing", website="https://youjia.baidu.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="cheshi", legal_name_zh="网上车市", legal_name_en="Cheshi",
         display_name_zh="网上车市", display_name_en="Cheshi", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.cheshi.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="sohu-auto", legal_name_zh="搜狐汽车", legal_name_en="Sohu Auto",
         display_name_zh="搜狐汽车", display_name_en="Sohu Auto", organization_type="media_company",
         headquarters_city_id="beijing", website="https://auto.sohu.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="sina-auto", legal_name_zh="新浪汽车", legal_name_en="Sina Auto",
         display_name_zh="新浪汽车", display_name_en="Sina Auto", organization_type="media_company",
         headquarters_city_id="beijing", website="https://auto.sina.com.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="ifeng-auto", legal_name_zh="凤凰汽车", legal_name_en="Ifeng Auto",
         display_name_zh="凤凰汽车", display_name_en="Ifeng Auto", organization_type="media_company",
         headquarters_city_id="beijing", website="https://auto.ifeng.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="tencent-auto", legal_name_zh="腾讯汽车", legal_name_en="Tencent Auto",
         display_name_zh="腾讯汽车", display_name_en="Tencent Auto", organization_type="media_company",
         headquarters_city_id="shenzhen", website="https://auto.qq.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="netease-auto", legal_name_zh="网易汽车", legal_name_en="NetEase Auto",
         display_name_zh="网易汽车", display_name_en="NetEase Auto", organization_type="media_company",
         headquarters_city_id="hangzhou", website="https://auto.163.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="d1ev", legal_name_zh="第一电动网", legal_name_en="D1EV",
         display_name_zh="第一电动网", display_name_en="D1EV", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.d1ev.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="chedongxi", legal_name_zh="车东西", legal_name_en="CheDongXi",
         display_name_zh="车东西", display_name_en="CheDongXi", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.chedongxi.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="diandong", legal_name_zh="电动邦", legal_name_en="Diandong",
         display_name_zh="电动邦", display_name_en="Diandong", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.diandong.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="china-auto-news", legal_name_zh="中国汽车报", legal_name_en="China Automotive News",
         display_name_zh="中国汽车报", display_name_en="China Automotive News", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.cnautonews.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="auto-business-review", legal_name_zh="汽车商业评论", legal_name_en="Auto Business Review",
         display_name_zh="汽车商业评论", display_name_en="Auto Business Review", organization_type="media_company",
         headquarters_city_id="beijing", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="auto-fan", legal_name_zh="汽车之友", legal_name_en="Auto Fan",
         display_name_zh="汽车之友", display_name_en="Auto Fan", organization_type="media_company",
         headquarters_city_id="beijing", website="http://www.autofan.com.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="nbd-auto", legal_name_zh="每日经济新闻", legal_name_en="National Business Daily",
         display_name_zh="每经汽车", display_name_en="NBD Auto", organization_type="media_company",
         headquarters_city_id="chengdu", website="https://www.nbd.com.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="yicai-auto", legal_name_zh="第一财经", legal_name_en="Yicai",
         display_name_zh="第一财经汽车", display_name_en="Yicai Auto", organization_type="media_company",
         headquarters_city_id="shanghai", website="https://www.yicai.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     # National media/association coverage by beat (portals, desks, NEV, trade, CV, magazines, review-video KOLs).
     # Skip WeChat-only accounts and classified marketplaces (58che/瓜子). National review-video KOLs are in-scope.
     org(id="chexun", legal_name_zh="车讯网", legal_name_en="Chexun",
         display_name_zh="车讯网", display_name_en="Chexun", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.chexun.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="che168", legal_name_zh="二手车之家", legal_name_en="Che168",
         display_name_zh="二手车之家", display_name_en="Che168", organization_type="media_company",
         parent_id="autohome", headquarters_city_id="beijing", website="https://www.che168.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="people-auto", legal_name_zh="人民网汽车", legal_name_en="People's Daily Auto",
         display_name_zh="人民网汽车", display_name_en="People.cn Auto", organization_type="media_company",
         headquarters_city_id="beijing", website="http://auto.people.com.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="xinhua-auto", legal_name_zh="新华网汽车", legal_name_en="Xinhua Auto",
         display_name_zh="新华网汽车", display_name_en="Xinhua Auto", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.news.cn/auto/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="cctv-auto", legal_name_zh="央视网汽车", legal_name_en="CCTV Auto",
         display_name_zh="央视网汽车", display_name_en="CCTV Auto", organization_type="media_company",
         headquarters_city_id="beijing", website="https://auto.cctv.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="thepaper-auto", legal_name_zh="澎湃汽车", legal_name_en="The Paper Auto",
         display_name_zh="澎湃汽车", display_name_en="The Paper Auto", organization_type="media_company",
         headquarters_city_id="shanghai", website="https://www.thepaper.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="chinanews-auto", legal_name_zh="中新网汽车", legal_name_en="China News Auto",
         display_name_zh="中新网汽车", display_name_en="China News Auto", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.chinanews.com.cn/auto/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="21jingji-auto", legal_name_zh="21世纪经济报道汽车", legal_name_en="21st Century Business Herald Auto",
         display_name_zh="21世纪经济报道汽车", display_name_en="21CBH Auto", organization_type="media_company",
         headquarters_city_id="guangzhou", website="https://www.21jingji.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="caixin-auto", legal_name_zh="财新汽车", legal_name_en="Caixin Auto",
         display_name_zh="财新汽车", display_name_en="Caixin Auto", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.caixin.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="jiemian-auto", legal_name_zh="界面汽车", legal_name_en="Jiemian Auto",
         display_name_zh="界面汽车", display_name_en="Jiemian Auto", organization_type="media_company",
         headquarters_city_id="shanghai", website="https://www.jiemian.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="eeo-auto", legal_name_zh="经济观察网汽车", legal_name_en="Economic Observer Auto",
         display_name_zh="经济观察网汽车", display_name_en="EEO Auto", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.eeo.com.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="cheyun", legal_name_zh="车云网", legal_name_en="Cheyun",
         display_name_zh="车云网", display_name_en="Cheyun", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.cheyun.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="gaogong-ev", legal_name_zh="高工智能汽车", legal_name_en="Gaogong Auto Intelligence",
         display_name_zh="高工智能汽车", display_name_en="GG-EV", organization_type="media_company",
         headquarters_city_id="shenzhen", website="https://www.ggai.ai/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="yanzhi-auto", legal_name_zh="焉知汽车", legal_name_en="Yanzhi Auto",
         display_name_zh="焉知汽车", display_name_en="Yanzhi Auto", organization_type="media_company",
         headquarters_city_id="shanghai", website="https://www.3cst.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="auto-zongheng", legal_name_zh="汽车纵横", legal_name_en="Auto Review",
         display_name_zh="汽车纵横", display_name_en="Auto Zongheng", organization_type="media_company",
         parent_id="caam", headquarters_city_id="beijing", website="https://www.autoreview.com.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="motor-trend-china", legal_name_zh="汽车族", legal_name_en="Motor Trend China",
         display_name_zh="汽车族", display_name_en="Motor Trend China", organization_type="media_company",
         headquarters_city_id="beijing", website="http://www.cnmotortrend.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="truck-home", legal_name_zh="北京卡车之家信息技术股份有限公司", legal_name_en="Beijing 360che Information Technology",
         display_name_zh="卡车之家", display_name_en="Truck Home", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.360che.com/", founded_year=2008, focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="chinabuses", legal_name_zh="客车网", legal_name_en="Chinabuses",
         display_name_zh="客车网", display_name_en="Chinabuses", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.chinabuses.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="chinaspv", legal_name_zh="专用汽车网", legal_name_en="China SPV",
         display_name_zh="专用汽车网", display_name_en="China SPV", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.chinaspv.com.cn/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="caam", legal_name_zh="中国汽车工业协会", legal_name_en="China Association of Automobile Manufacturers",
         display_name_zh="中汽协", display_name_en="CAAM", organization_type="industry_association",
         headquarters_city_id="beijing", website="http://www.caam.org.cn/", focus_tags=["auto_history"],
-        source_ids=srcs(SRC_BRIEF)),
+        source_ids=[]),
     org(id="cada", legal_name_zh="中国汽车流通协会", legal_name_en="China Automobile Dealers Association",
         display_name_zh="中汽流通协会", display_name_en="CADA", organization_type="industry_association",
         headquarters_city_id="beijing", website="https://www.cada.cn/", focus_tags=["auto_history"],
-        source_ids=srcs(SRC_BRIEF)),
+        source_ids=[]),
     org(id="sae-china", legal_name_zh="中国汽车工程学会", legal_name_en="SAE-China",
         display_name_zh="中汽学会", display_name_en="SAE-China", organization_type="industry_association",
         headquarters_city_id="beijing", website="https://www.sae-china.org/", focus_tags=["rd_design"],
-        source_ids=srcs(SRC_BRIEF)),
+        source_ids=[]),
     org(id="china-ev100", legal_name_zh="中国电动汽车百人会", legal_name_en="China EV100",
         display_name_zh="电动汽车百人会", display_name_en="China EV100", organization_type="industry_association",
         headquarters_city_id="beijing", website="https://www.chinaev100.com/", focus_tags=["rd_design"],
-        source_ids=srcs(SRC_BRIEF)),
+        source_ids=[]),
     org(id="luobo-report", legal_name_zh="北京格锐驰广告传媒有限公司", legal_name_en="Beijing Grechi Advertising Media",
         display_name_zh="萝卜报告", display_name_en="Luobo Report", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.luobobaogao.com/", founded_year=2014, focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="laosiji", legal_name_zh="北京锋巢信息技术有限公司", legal_name_en="Beijing Fengchao Information Technology",
         display_name_zh="老司机出品", display_name_en="Laosiji", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.laosiji.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="review-38", legal_name_zh="38号车评中心", legal_name_en="38 Car Review Center",
         display_name_zh="38号车评中心", display_name_en="Review 38", organization_type="media_company",
         headquarters_city_id="beijing", website="https://www.cheping38.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="li-laoshu", legal_name_zh="北京吱道文化传媒有限公司", legal_name_en="Beijing Zhidao Culture Media",
         display_name_zh="李老鼠说车", display_name_en="Li Laoshu", organization_type="media_company",
         headquarters_city_id="beijing", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="speedsters", legal_name_zh="广州爪黄飞电广告有限公司", legal_name_en="Guangzhou Speedsters",
         display_name_zh="极速拍档", display_name_en="Speedsters", organization_type="media_company",
         headquarters_city_id="guangzhou", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="dajia-cheyan", legal_name_zh="广州朋客网络科技有限公司", legal_name_en="Guangzhou Pengke Network",
         display_name_zh="大家车言论", display_name_en="Dajia Cars Talk", organization_type="media_company",
         headquarters_city_id="guangzhou", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="xincheping", legal_name_zh="新车评网", legal_name_en="Xincheping",
         display_name_zh="新车评", display_name_en="Xincheping", organization_type="media_company",
         headquarters_city_id="guangzhou", website="https://xincheping.com/", founded_year=2006, focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="tichebang", legal_name_zh="北京唯优沃德新媒体科技有限公司", legal_name_en="Beijing Weiyou Wode New Media",
         display_name_zh="踢车帮", display_name_en="Tichebang", organization_type="media_company",
         headquarters_city_id="beijing", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="yan-chuang", legal_name_zh="闫闯说车", legal_name_en="Yan Chuang Says Car",
         display_name_zh="闫闯说车", display_name_en="Yan Chuang", organization_type="media_company",
         headquarters_city_id="beijing", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="che-ruo-chujian", legal_name_zh="北京爱车新世界文化传播有限公司", legal_name_en="Beijing Aiche New World",
         display_name_zh="车若初见", display_name_en="Che Ruo Chujian", organization_type="media_company",
         headquarters_city_id="beijing", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="doudouche", legal_name_zh="北京笑忘车文化传播有限公司", legal_name_en="Beijing Xiaowangche Culture",
         display_name_zh="逗斗车", display_name_en="Doudouche", organization_type="media_company",
         headquarters_city_id="beijing", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="y-car-review", legal_name_zh="武汉楚天牛米汽车服务有限公司", legal_name_en="Wuhan Chutian Niumi Auto Service",
         display_name_zh="Y车评", display_name_en="Y Car Review", organization_type="media_company",
         headquarters_city_id="wuhan", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="dabiaoche", legal_name_zh="素美微尚国际信息咨询（北京）有限公司", legal_name_en="Sumei Weishang Beijing",
         display_name_zh="大飙车", display_name_en="Da Biaoche", organization_type="media_company",
         headquarters_city_id="beijing", website="http://dabiaoche.com/", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="cidi-wuyin", legal_name_zh="此地无垠", legal_name_en="Cidi Wuyin",
         display_name_zh="此地无垠", display_name_en="Cidi Wuyin", organization_type="media_company",
         headquarters_city_id="beijing", focus_tags=["auto_media"],
-        source_ids=srcs(SRC_MEDIA, SRC_BRIEF)),
+        source_ids=[]),
     org(id="gac-aion", legal_name_zh="广汽埃安新能源汽车股份有限公司", legal_name_en="GAC Aion New Energy Automobile Co., Ltd.",
         display_name_zh="广汽埃安", display_name_en="GAC Aion", organization_type="brand",
         parent_id="gac", headquarters_city_id="guangzhou", focus_tags=["oem_manufacturing"]),
@@ -1250,7 +1272,7 @@ def fac(**kw):
     row = dict(
         district_zh=None, district_en=None, lat=city["lat"], lng=city["lng"],
         status="active", opened_at=None, current_products=[], technology_tags=[],
-        last_verified=LV, confidence=0.62, source_ids=srcs(SRC_BRIEF),
+        last_verified=LV, confidence=0.40, source_ids=[],
         coord_note_zh="坐标暂用城市中心点，待工厂级地理编码。",
         coord_note_en="Coordinates currently use the city centroid pending plant-level geocoding.",
     )
@@ -1317,12 +1339,26 @@ FACILITIES = [
         operator_id="lotus", city_id="wuhan", facility_type="vehicle_plant", technology_tags=["nev"]),
 ]
 
+FACILITY_EVIDENCE = {
+    # The Tesla contact page establishes the Shanghai entity/location, but not
+    # every current-product detail in this candidate record.
+    "tesla-shanghai-gigafactory": (SRC_TESLA_SHANGHAI_CONTACT, 0.50),
+    "catl-yibin": (SRC_CATL_YIBIN, 0.80),
+    "gwm-xushui": (SRC_GWM_GLOBAL, 0.75),
+}
+for facility in FACILITIES:
+    if facility["id"] in FACILITY_EVIDENCE:
+        source_id, confidence = FACILITY_EVIDENCE[facility["id"]]
+        facility["source_ids"] = [source_id]
+        facility["confidence"] = confidence
+
 
 def role(city_id, entity_id, role_type, zh, en):
     return dict(
         id=f"{city_id}__{entity_id}__{role_type}",
         city_id=city_id, entity_id=entity_id, role_type=role_type,
-        description_zh=zh, description_en=en, source_ids=srcs(SRC_BRIEF),
+        description_zh=zh, description_en=en,
+        confidence=0.40, source_ids=[],
     )
 
 
@@ -1424,6 +1460,10 @@ CLUSTERS = [
          output_note_zh=None, output_note_en=None),
 ]
 
+for cluster in CLUSTERS:
+    cluster["confidence"] = 0.40
+    cluster["source_ids"] = []
+
 ADJACENT = [
     ("yangtze-river-delta", [("shanghai", "suzhou"), ("suzhou", "changzhou"), ("changzhou", "ningbo"), ("shanghai", "hefei"), ("hefei", "wuhu"), ("shanghai", "hangzhou"), ("hangzhou", "ningbo"), ("hangzhou", "jiaxing"), ("jiaxing", "shanghai")]),
     ("greater-bay-area", [("guangzhou", "shenzhen"), ("shenzhen", "huizhou"), ("guangzhou", "huizhou")]),
@@ -1439,7 +1479,8 @@ def rel(from_id, rtype, to_id, cluster_id=None, zh="", en=""):
     return dict(
         id=f"{from_id}__{rtype}__{to_id}__{cid}",
         from_id=from_id, relation_type=rtype, to_id=to_id, cluster_id=cluster_id,
-        description_zh=zh, description_en=en, source_ids=srcs(SRC_BRIEF),
+        description_zh=zh, description_en=en,
+        confidence=0.40, source_ids=[],
     )
 
 
@@ -1460,10 +1501,11 @@ for o in ORGS:
     pid = o.get("parent_id")
     if pid and pid in ORG_BY_ID:
         parent = ORG_BY_ID[pid]
+        relation_type = "operates" if o["id"] in {"youjia", "che168"} else "owns"
         RELATIONS.append(rel(
-            pid, "owns", o["id"], None,
-            f"{parent['display_name_zh']} 旗下 {o['display_name_zh']}",
-            f"{parent['display_name_en']} owns {o['display_name_en']}",
+            pid, relation_type, o["id"], None,
+            f"{parent['display_name_zh']}运营{o['display_name_zh']}" if relation_type == "operates" else f"{parent['display_name_zh']}旗下{o['display_name_zh']}",
+            f"{parent['display_name_en']} operates {o['display_name_en']}" if relation_type == "operates" else f"{parent['display_name_en']} owns {o['display_name_en']}",
         ))
 
 def clique(ids, rtype, zh, en):
@@ -1534,23 +1576,73 @@ RELATIONS.append(rel("sae-china", "researches_with", "auto-fan", None,
 RELATIONS.append(rel("auto-fan", "researches_with", "sae-china", None,
                      "《汽车之友》与中汽学会办刊协作", "Auto Fan collaborates with SAE-China"))
 
+RELATION_EVIDENCE = {
+    ("autohome", "operates", "che168"): SRC_AUTOHOME_20F,
+    ("baidu", "operates", "youjia"): SRC_BAIDU_YOUJIA_PRIVACY,
+    ("caam", "owns", "auto-zongheng"): SRC_CAAM_AUTO_ZONGHENG,
+}
+for relation in RELATIONS:
+    key = (relation["from_id"], relation["relation_type"], relation["to_id"])
+    if key in RELATION_EVIDENCE:
+        relation["source_ids"] = [RELATION_EVIDENCE[key]]
+        relation["confidence"] = 0.85
+
 STATS = []
 OUTPUT_2025 = {
-    "chongqing": 2787700, "guangzhou": 2409600, "hefei": 1872000, "wuhu": 1830000,
+    "chongqing": 2787700, "guangzhou": 2409600, "hefei": 1872000, "wuhu": 1801000,
     "shanghai": 1772000, "xian": 1482700, "beijing": 1467100, "changchun": 1461300,
     "zhengzhou": 1205000, "liuzhou": 1151900,
 }
-NEV_2025 = {"hefei": 1371000, "xian": 1051400}
+NEV_2025 = {"chongqing": 1296100, "hefei": 1371000, "wuhu": 411000, "xian": 1051400}
+STAT_SOURCE_BY_CITY = {
+    "chongqing": SRC_STAT_CHONGQING_2025,
+    "guangzhou": SRC_STAT_GUANGZHOU_2025,
+    "wuhu": SRC_STAT_WUHU_2025,
+    "shanghai": SRC_STAT_SHANGHAI_2025,
+    "xian": SRC_STAT_XIAN_2025,
+    "beijing": SRC_STAT_BEIJING_2025,
+    "zhengzhou": SRC_STAT_ZHENGZHOU_2025,
+}
+STAT_CONTEXT_SOURCE_BY_CITY = {
+    # These pages support only a subfield or disprove the city scope, so the
+    # complete record must remain at the candidate threshold.
+    "hefei": SRC_STAT_HEFEI_NEV_2025,
+    "changchun": SRC_STAT_JILIN_2025,
+}
 for cid, total in OUTPUT_2025.items():
+    source_id = STAT_SOURCE_BY_CITY.get(cid)
+    context_source_id = STAT_CONTEXT_SOURCE_BY_CITY.get(cid)
     STATS.append(dict(
         city_id=cid, year=2025, total_vehicle_output=total,
         nev_output=NEV_2025.get(cid), commercial_vehicle_output=None, passenger_vehicle_output=None,
-        statistical_scope="local_compilation_actual_production_city",
-        scope_note_zh="地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-        scope_note_en="Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
-        source_ids=srcs(SRC_COMP), confidence=0.58,
+        statistical_scope=(
+            "official_city_release" if source_id else
+            "candidate_province_scope_mismatch" if cid == "changchun" else
+            "candidate_partial_external_support" if cid == "hefei" else
+            "candidate_local_compilation"
+        ),
+        scope_note_zh=(
+            "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。"
+            if source_id else
+            "候选错配值：146.13万辆能在吉林省级序列中定位，但尚无支持长春市同值的官方城市页面，不得作为长春市产量或城市排行依据。"
+            if cid == "changchun" else
+            "候选混合记录：外部政务页面只支持新能源汽车137.1万辆，不支持整车总量187.2万辆；整条记录保持候选。"
+            if cid == "hefei" else
+            "候选拼合值：尚未附上能直接支持本条数字的外部官方页面，不作为权威排行依据。"
+        ),
+        scope_note_en=(
+            "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking."
+            if source_id else
+            "Candidate scope mismatch: 1.4613M can be located in a Jilin provincial series, but no city release supports the same Changchun figure. Do not use it as Changchun output or in a city ranking."
+            if cid == "changchun" else
+            "Candidate mixed record: an external government page supports only 1.371M NEVs, not the 1.872M total-vehicle figure; the whole row stays candidate."
+            if cid == "hefei" else
+            "Candidate compilation value: no external official page directly supporting this record is attached yet; do not treat it as an authoritative ranking."
+        ),
+        source_ids=srcs(source_id, context_source_id),
+        confidence=0.80 if source_id else 0.20 if cid == "changchun" else CANDIDATE_CONFIDENCE,
     ))
-# Qingdao is in the compiled ranking but not a V1 city card — recorded as a note source only.
+# Qingdao is not in the V1 city-card set and is not promoted from an internal compilation.
 
 MEDIA_EXTRA = {
     "autohome": dict(media_type="portal", founded_year=2005, confidence=0.8),
@@ -1627,7 +1719,7 @@ for _o in ORGS:
         registered_city_id=_city, editorial_city_id=_city,
         founded_year=_x.get("founded_year"),
         focus_tags=[_x["media_type"]], website=_o.get("website"), status="active",
-        last_verified=LV, confidence=_x["confidence"], source_ids=srcs(SRC_MEDIA),
+        last_verified=LV, confidence=CANDIDATE_CONFIDENCE, source_ids=[],
         national_platform=True,
     ))
 
@@ -1635,85 +1727,417 @@ INSTITUTIONS = [
     dict(id="inst-tsinghua", organization_id="tsinghua", school_zh="清华大学", school_en="Tsinghua University",
          city_id="beijing", college_zh="车辆与运载学院", college_en="School of Vehicle and Mobility",
          strengths_zh="新能源、智能驾驶、跨学科研究", strengths_en="NEV, autonomous driving, cross-disciplinary research",
-         industry_partners=[], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=[], last_verified=LV, source_ids=[]),
     dict(id="inst-bit", organization_id="bit", school_zh="北京理工大学", school_en="Beijing Institute of Technology",
          city_id="beijing", college_zh="机械与车辆学院", college_en="School of Mechanical Engineering",
          strengths_zh="车辆工程与军工车辆传统", strengths_en="Vehicle engineering and defence-vehicle tradition",
-         industry_partners=[], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=[], last_verified=LV, source_ids=[]),
     dict(id="inst-tongji", organization_id="tongji", school_zh="同济大学", school_en="Tongji University",
-         city_id="shanghai", college_zh="汽车学院", college_en="School of Automotive Studies",
+         city_id="shanghai", college_zh="汽车与能源学院", college_en="School of Automotive and Energy Engineering",
          strengths_zh="汽车工程、测试与国际合作", strengths_en="Automotive engineering, testing and international cooperation",
-         industry_partners=["saic"], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=["saic"], last_verified=LV, source_ids=[]),
     dict(id="inst-sjtu", organization_id="sjtu", school_zh="上海交通大学", school_en="Shanghai Jiao Tong University",
          city_id="shanghai", college_zh="汽车动力与智能控制相关研究机构", college_en="Automotive power and intelligent-control labs",
          strengths_zh="动力系统与控制", strengths_en="Powertrain and control",
-         industry_partners=[], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=[], last_verified=LV, source_ids=[]),
     dict(id="inst-jlu", organization_id="jlu", school_zh="吉林大学", school_en="Jilin University",
          city_id="changchun", college_zh="汽车工程学院", college_en="College of Automotive Engineering",
          strengths_zh="传统车辆工程积累深厚", strengths_en="Deep traditional vehicle-engineering stock",
-         industry_partners=["faw"], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=["faw"], last_verified=LV, source_ids=[]),
     dict(id="inst-whut", organization_id="whut", school_zh="武汉理工大学", school_en="Wuhan University of Technology",
          city_id="wuhan", college_zh="汽车工程学院", college_en="School of Automotive Engineering",
          strengths_zh="传统车辆工程", strengths_en="Traditional vehicle engineering",
-         industry_partners=["dongfeng"], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=["dongfeng"], last_verified=LV, source_ids=[]),
     dict(id="inst-hfut", organization_id="hfut", school_zh="合肥工业大学", school_en="Hefei University of Technology",
          city_id="hefei", college_zh="汽车与交通工程学院", college_en="School of Automotive and Transportation Engineering",
          strengths_zh="传统车辆工程", strengths_en="Traditional vehicle engineering",
-         industry_partners=["jac"], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=["jac"], last_verified=LV, source_ids=[]),
     dict(id="inst-chd", organization_id="changan-univ", school_zh="长安大学", school_en="Chang'an University",
          city_id="xian", college_zh="汽车学院", college_en="School of Automobile",
          strengths_zh="传统车辆工程", strengths_en="Traditional vehicle engineering",
-         industry_partners=[], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=[], last_verified=LV, source_ids=[]),
     dict(id="inst-hnu", organization_id="hnu", school_zh="湖南大学", school_en="Hunan University",
          city_id="changsha", college_zh="车辆工程及智能汽车研究", college_en="Vehicle engineering and intelligent-vehicle research",
          strengths_zh="车辆工程与智能汽车", strengths_en="Vehicle engineering and intelligent vehicles",
-         industry_partners=[], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=[], last_verified=LV, source_ids=[]),
     dict(id="inst-scut", organization_id="scut", school_zh="华南理工大学", school_en="South China University of Technology",
          city_id="guangzhou", college_zh="车辆工程相关院系", college_en="Vehicle-engineering departments",
          strengths_zh="车辆工程", strengths_en="Vehicle engineering",
-         industry_partners=["gac"], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=["gac"], last_verified=LV, source_ids=[]),
     dict(id="inst-cqu", organization_id="cqu", school_zh="重庆大学", school_en="Chongqing University",
          city_id="chongqing", college_zh="车辆工程相关学院", college_en="Vehicle-engineering schools",
          strengths_zh="车辆工程", strengths_en="Vehicle engineering",
-         industry_partners=["changan"], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=["changan"], last_verified=LV, source_ids=[]),
     dict(id="inst-cqut", organization_id="cqut", school_zh="重庆理工大学", school_en="Chongqing University of Technology",
          city_id="chongqing", college_zh="车辆工程相关学院", college_en="Vehicle-engineering schools",
          strengths_zh="车辆工程", strengths_en="Vehicle engineering",
-         industry_partners=["changan"], last_verified=LV, source_ids=srcs(SRC_BRIEF)),
+         industry_partners=["changan"], last_verified=LV, source_ids=[]),
 ]
 
+INSTITUTION_EVIDENCE = {
+    "inst-tsinghua": SRC_THSVM,
+    "inst-bit": SRC_BIT_ME,
+    "inst-tongji": SRC_TONGJI_AUTO,
+    "inst-jlu": SRC_JLU_AUTO,
+    "inst-hfut": SRC_HFUT_AUTO,
+    "inst-chd": SRC_CHD_AUTO,
+}
+for institution in INSTITUTIONS:
+    source_id = INSTITUTION_EVIDENCE.get(institution["id"])
+    # Identity pages do not prove the legacy partnership leads, so a record
+    # carrying those raw candidates never crosses the verified threshold.
+    institution["confidence"] = 0.50 if source_id else 0.40
+    institution["source_ids"] = [source_id] if source_id else []
+
 SOURCES = [
-    dict(id=SRC_COMP, publisher_zh="地方统计资料汇编（非国家统一排行）", publisher_en="Compilation of local statistical releases (not a unified national ranking)",
-         title_zh="2025年主要汽车生产城市产量拼合", title_en="2025 vehicle-output figures compiled from local releases",
-         source_type="compilation", grade="C", published_at="2026-08", accessed_at="2026-08-18", fact_date="2025",
-         url=None, confidence=0.6,
-         notes_zh="重庆278.77万、广州240.96万、合肥187.20万、芜湖183.00万、上海177.20万、西安148.27万、北京146.71万、长春146.13万、郑州120.50万、柳州115.19万、青岛102.20万（青岛城市卡二期）。合肥新能源汽车约137.1万，西安约105.14万。",
-         notes_en="Chongqing 2.7877M, Guangzhou 2.4096M, Hefei 1.8720M, Wuhu 1.8300M, Shanghai 1.7720M, Xi'an 1.4827M, Beijing 1.4671M, Changchun 1.4613M, Zhengzhou 1.2050M, Liuzhou 1.1519M, Qingdao 1.0220M (Qingdao city card in phase 2). Hefei NEV ~1.371M; Xi'an NEV ~1.0514M."),
-    dict(id=SRC_BRIEF, publisher_zh="QROST 研究简报", publisher_en="QROST research brief",
-         title_zh="中国汽车城市图谱第一轮调研结论", title_en="China auto-city atlas, first research pass",
-         source_type="compilation", grade="C", published_at="2026-08-18", accessed_at="2026-08-18", fact_date="2026-08",
-         url=None, confidence=0.65,
-         notes_zh="城市角色、企业名单、产业集群与媒体所在地的结构化整理。产能、在产车型和工厂状态需后续用A/B级来源逐条核验。",
-         notes_en="Structured roles, rosters, clusters and media locations. Plant status, capacity and nameplates still need A/B-grade verification."),
-    dict(id=SRC_YRD, publisher_zh="国家发展和改革委员会（区域协作资料，待补URL）", publisher_en="NDRC regional collaboration materials (URL pending)",
-         title_zh="长三角软件芯片 / 常州电池 / 宁波整车协作案例", title_en="YRD case: Shanghai software/chips, Changzhou batteries, Ningbo vehicles",
-         source_type="government_stats", grade="B", published_at=None, accessed_at="2026-08-18", fact_date=None,
-         url=None, confidence=0.55,
-         notes_zh="调研引用国家发展改革委区域资料，具体公文URL待下一轮补链。",
-         notes_en="Cited from NDRC regional materials; exact document URL to be attached next pass."),
-    dict(id=SRC_CHENGYU, publisher_zh="成渝地区产业统计（待补URL）", publisher_en="Chengdu–Chongqing regional industry statistics (URL pending)",
-         title_zh="2024年成渝汽车产量约343万辆、新能源汽车约108.7万辆", title_en="2024 Chengyu vehicle output ~3.43M, NEV ~1.087M",
-         source_type="government_stats", grade="B", published_at="2025", accessed_at="2026-08-18", fact_date="2024",
-         url=None, confidence=0.55,
-         notes_zh="区域合计，不是单座城市产量。URL待补。",
-         notes_en="Regional aggregate, not a single-city series. URL pending."),
-    dict(id=SRC_MEDIA, publisher_zh="各媒体公开联系地址", publisher_en="Public contact addresses of each outlet",
-         title_zh="全国汽车媒体公开站点与采编城市", title_en="National auto media public sites and editorial cities",
-         source_type="company_site", grade="B", published_at=None, accessed_at="2026-08-18", fact_date="2026-08",
-         url=None, confidence=0.7,
-         notes_zh="采编城市按公开总部或频道所属集团所在城。注册地、编辑部与主要流量城市可能不同。",
-         notes_en="Editorial city follows public HQ or parent group. Registered office, newsroom and traffic city can diverge."),
+    dict(
+        id=SRC_STAT_CHONGQING_2025,
+        publisher_zh="重庆市统计局、国家统计局重庆调查总队",
+        publisher_en="Chongqing Municipal Bureau of Statistics and NBS Chongqing Survey Office",
+        title_zh="2025年重庆市国民经济和社会发展统计公报",
+        title_en="2025 Chongqing statistical communiqué",
+        source_type="government_stats", grade="A", published_at="2026-03-26",
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjjd_55469/202603/t20260326_15568538_wap.html",
+        confidence=0.95,
+        notes_zh="表3直接列出汽车278.77万辆、新能源汽车129.61万辆，口径为规模以上工业主要产品。",
+        notes_en="Table 3 directly reports 2.7877M vehicles and 1.2961M NEVs as major above-scale industrial products.",
+    ),
+    dict(
+        id=SRC_STAT_GUANGZHOU_2025,
+        publisher_zh="广州市统计局、国家统计局广州调查队",
+        publisher_en="Guangzhou Municipal Bureau of Statistics and NBS Guangzhou Survey Office",
+        title_zh="2025年广州市国民经济和社会发展统计公报",
+        title_en="2025 Guangzhou statistical communiqué",
+        source_type="government_stats", grade="A", published_at="2026-05-10",
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://tjj.gz.gov.cn/stats_newtjyw/tjsj/tjgb/qstjgb/content/post_10800227.html",
+        confidence=0.95,
+        notes_zh="规模以上主要工业产品表列出汽车240.96万辆；城市口径不可与其他发布口径无条件混排。",
+        notes_en="The major above-scale industrial-products table reports 2.4096M vehicles; its city scope is not automatically comparable with other releases.",
+    ),
+    dict(
+        id=SRC_STAT_WUHU_2025,
+        publisher_zh="芜湖市统计局、国家统计局芜湖调查队",
+        publisher_en="Wuhu Municipal Bureau of Statistics and NBS Wuhu Survey Office",
+        title_zh="芜湖市2025年国民经济和社会发展统计公报",
+        title_en="2025 Wuhu statistical communiqué",
+        source_type="government_stats", grade="A", published_at="2026-07",
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://www.wuhu.gov.cn/mlwh/tjgb/41219509.html",
+        confidence=0.95,
+        notes_zh="主要工业产品表直接列出汽车180.1万辆、新能源汽车41.1万辆；据此纠正早期候选值183万辆。",
+        notes_en="The industrial-products table directly reports 1.801M vehicles and 0.411M NEVs, correcting the earlier 1.83M candidate value.",
+    ),
+    dict(
+        id=SRC_STAT_SHANGHAI_2025,
+        publisher_zh="上海市统计局、国家统计局上海调查总队",
+        publisher_en="Shanghai Municipal Bureau of Statistics and NBS Shanghai Survey Office",
+        title_zh="2025年上海市国民经济和社会发展统计公报",
+        title_en="2025 Shanghai statistical communiqué",
+        source_type="government_stats", grade="A", published_at="2026-03-30",
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://tjj.sh.gov.cn/tjgb/20260330/e0772941e8e041eaaad2df850b44ef98.html",
+        confidence=0.95,
+        notes_zh="主要工业产品表列出汽车177.20万辆，按上海市公报口径记录。",
+        notes_en="The major-industrial-products table reports 1.7720M vehicles under the Shanghai communiqué's scope.",
+    ),
+    dict(
+        id=SRC_STAT_XIAN_2025,
+        publisher_zh="西安市统计局、国家统计局西安调查队",
+        publisher_en="Xi'an Municipal Bureau of Statistics and NBS Xi'an Survey Office",
+        title_zh="西安市2025年国民经济和社会发展统计公报",
+        title_en="2025 Xi'an statistical communiqué",
+        source_type="government_stats", grade="A", published_at="2026-05-15",
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://tjj.xa.gov.cn/web_files/tjj/file/2026/05/15/202605151000219859531.pdf",
+        confidence=0.95,
+        notes_zh="表2直接列出汽车148.27万辆、新能源汽车105.14万辆，口径为规模以上工业主要产品。",
+        notes_en="Table 2 directly reports 1.4827M vehicles and 1.0514M NEVs as major above-scale industrial products.",
+    ),
+    dict(
+        id=SRC_STAT_BEIJING_2025,
+        publisher_zh="北京市统计局、国家统计局北京调查总队",
+        publisher_en="Beijing Municipal Bureau of Statistics and NBS Beijing Survey Office",
+        title_zh="北京市2025年国民经济和社会发展统计公报",
+        title_en="2025 Beijing statistical communiqué",
+        source_type="government_stats", grade="A", published_at="2026-03-26",
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://tjj.beijing.gov.cn/tjsj_31433/tjgb_31445/ndgb_31446/202603/t20260326_4566469.html",
+        confidence=0.95,
+        notes_zh="规模以上主要工业产品表列出汽车146.71万辆，按北京市公报口径记录。",
+        notes_en="The major above-scale industrial-products table reports 1.4671M vehicles under the Beijing communiqué's scope.",
+    ),
+    dict(
+        id=SRC_STAT_ZHENGZHOU_2025,
+        publisher_zh="郑州市统计局、国家统计局郑州调查队",
+        publisher_en="Zhengzhou Municipal Bureau of Statistics and NBS Zhengzhou Survey Office",
+        title_zh="2025年郑州市国民经济和社会发展统计公报",
+        title_en="2025 Zhengzhou statistical communiqué",
+        source_type="government_stats", grade="A", published_at="2026-04-24",
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://tjj.zhengzhou.gov.cn/tjgb/10017864.jhtml",
+        confidence=0.95,
+        notes_zh="公报直接列出汽车120.5万辆、同比增长9.6%。",
+        notes_en="The communiqué directly reports 1.205M vehicles, up 9.6% year over year.",
+    ),
+    dict(
+        id=SRC_STAT_HEFEI_NEV_2025,
+        publisher_zh="合肥市政务网站", publisher_en="Hefei government website",
+        title_zh="合肥新能源汽车产量信息", title_en="Hefei NEV output information",
+        source_type="government_stats", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://www.hfyaohai.gov.cn/zwdt/bmts/11485597.html", confidence=0.90,
+        notes_zh="页面支持2025年新能源汽车137.1万辆，不支持整车总量187.2万辆；因此合肥统计行仍为候选。",
+        notes_en="The page supports 1.371M NEVs in 2025, not the 1.872M total-vehicle figure; the Hefei statistics row therefore remains candidate.",
+    ),
+    dict(
+        id=SRC_STAT_JILIN_2025,
+        publisher_zh="吉林省统计局", publisher_en="Jilin Provincial Bureau of Statistics",
+        title_zh="2025年吉林省国民经济和社会发展统计公报", title_en="2025 Jilin provincial statistical communiqué",
+        source_type="government_stats", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://tjj.jl.gov.cn/tjsj/tjgb/ndgb/202604/t20260427_3627028.html", confidence=0.95,
+        notes_zh="146.13万辆是吉林省级口径，不是长春市口径；链接用于标记范围错配，不能支持城市排行。",
+        notes_en="The 1.4613M figure is provincial Jilin scope, not Changchun city scope; this link documents the mismatch and cannot support a city ranking.",
+    ),
+    dict(
+        id=SRC_NIO_ABOUT,
+        publisher_zh="蔚来", publisher_en="NIO",
+        title_zh="关于蔚来", title_en="About NIO",
+        source_type="company_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://www.nio.com/about/2025", confidence=0.95,
+        notes_zh="页面明确区分上海全球总部与合肥蔚来中国总部、制造中心；本图谱据此把集团总部记为上海，并保留合肥制造设施。",
+        notes_en="The page distinguishes the global headquarters in Shanghai from NIO China headquarters and the manufacturing centre in Hefei; the atlas therefore records the group HQ in Shanghai and keeps the Hefei plant.",
+    ),
+    dict(
+        id=SRC_AUTOHOME_20F,
+        publisher_zh="汽车之家", publisher_en="Autohome Inc.",
+        title_zh="2025 年年度报告（Form 20-F）", title_en="2025 annual report (Form 20-F)",
+        source_type="company_ir", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date="2025",
+        url="https://www.sec.gov/Archives/edgar/data/1527636/000119312526155932/athm-20251231.htm", confidence=0.95,
+        notes_zh="公司申报文件说明其通过 autohome.com.cn 与 che168.com 提供服务；关系采用“运营”，不推断 Che168 是独立股权主体。",
+        notes_en="The filing says the company serves users through autohome.com.cn and che168.com; the relation is modelled as operates, without inferring that Che168 is a separate equity entity.",
+    ),
+    dict(
+        id=SRC_BAIDU_YOUJIA_PRIVACY,
+        publisher_zh="百度有驾", publisher_en="Baidu Youjia",
+        title_zh="有驾隐私政策", title_en="Youjia privacy policy",
+        source_type="company_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://youjia.baidu.com/pages/my/privacy", confidence=0.95,
+        notes_zh="法律披露列出北京百度网讯科技有限公司及百度关联方为运营主体；关系采用“运营”而非股权“拥有”。",
+        notes_en="The legal disclosure names Beijing Baidu Netcom Technology and Baidu affiliates as operators; the relation is modelled as operates rather than equity ownership.",
+    ),
+    dict(
+        id=SRC_CAAM_AUTO_ZONGHENG,
+        publisher_zh="中国汽车工业协会", publisher_en="China Association of Automobile Manufacturers",
+        title_zh="中国汽车工业协会工作报告", title_en="CAAM work report",
+        source_type="industry_association", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://www.caam.org.cn/chn/5/cate_69/con_5236042.html", confidence=0.95,
+        notes_zh="报告将《汽车纵横》明确称为协会自有媒体，直接支持中汽协与该媒体的归属关系。",
+        notes_en="The report explicitly identifies Auto Zongheng as CAAM's own media, directly supporting the affiliation relation.",
+    ),
+    dict(
+        id=SRC_TESLA_SHANGHAI_CONTACT,
+        publisher_zh="特斯拉", publisher_en="Tesla",
+        title_zh="特斯拉联系信息", title_en="Tesla contact information",
+        source_type="company_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://www.tesla.com/en_sg/contact", confidence=0.90,
+        notes_zh="官方联系页支持上海实体和所在地；不单独支持页面所列车型，故设施记录保持候选阈值。",
+        notes_en="The official contact page supports the Shanghai entity and location, but not the listed model mix; the facility row therefore stays at the candidate threshold.",
+    ),
+    dict(
+        id=SRC_CATL_YIBIN,
+        publisher_zh="宁德时代", publisher_en="CATL",
+        title_zh="四川时代宜宾基地官方报道", title_en="Official report on CATL's Yibin base",
+        source_type="company_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://www.catl.com/en/news/6652.html", confidence=0.90,
+        notes_zh="公司报道直接支持四川时代宜宾电池制造基地的身份和运行状态。",
+        notes_en="The company report directly supports the identity and operating status of CATL's battery-manufacturing base in Yibin.",
+    ),
+    dict(
+        id=SRC_GWM_GLOBAL,
+        publisher_zh="长城汽车", publisher_en="Great Wall Motor",
+        title_zh="全球制造布局", title_en="Global manufacturing footprint",
+        source_type="company_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://www.gwm-global.com/global.html", confidence=0.90,
+        notes_zh="公司全球制造页列出徐水工厂，支持设施身份与保定所在地。",
+        notes_en="The company's manufacturing page lists the Xushui factory, supporting its identity and Baoding location.",
+    ),
+    dict(
+        id=SRC_THSVM,
+        publisher_zh="清华大学车辆与运载学院", publisher_en="Tsinghua School of Vehicle and Mobility",
+        title_zh="学院概况", title_en="School profile",
+        source_type="university_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://www.svm.tsinghua.edu.cn/column/15.html", confidence=0.90,
+        notes_zh="学院官网支持院系名称与研究方向；未用来证明特定企业合作。",
+        notes_en="The school site supports the unit name and research profile; it is not used to prove specific corporate partnerships.",
+    ),
+    dict(
+        id=SRC_BIT_ME,
+        publisher_zh="北京理工大学机械与车辆学院", publisher_en="BIT School of Mechanical Engineering",
+        title_zh="学院介绍", title_en="School introduction",
+        source_type="university_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://me.bit.edu.cn/xygk/xyjs/index.htm", confidence=0.90,
+        notes_zh="学院官网支持院系名称与车辆工程定位；未用来证明特定企业合作。",
+        notes_en="The school site supports the unit name and vehicle-engineering profile; it is not used to prove specific corporate partnerships.",
+    ),
+    dict(
+        id=SRC_TONGJI_AUTO,
+        publisher_zh="同济大学汽车与能源学院", publisher_en="Tongji automotive and energy school",
+        title_zh="汽车与能源学院官网", title_en="Official automotive and energy school site",
+        source_type="university_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://auto.tongji.edu.cn/", confidence=0.90,
+        notes_zh="当前官网显示院系名称为“汽车与能源学院”，据此替换旧称；未用来证明上汽合作。",
+        notes_en="The current site names the unit the automotive and energy school, replacing the stale label; it is not used to prove an SAIC partnership.",
+    ),
+    dict(
+        id=SRC_JLU_AUTO,
+        publisher_zh="吉林大学汽车工程学院", publisher_en="Jilin University College of Automotive Engineering",
+        title_zh="学院简介", title_en="College profile",
+        source_type="university_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://auto.jlu.edu.cn/xygk/xyjj.htm", confidence=0.90,
+        notes_zh="学院官网支持院系名称与车辆工程沿革；未用来证明一汽合作。",
+        notes_en="The college site supports the unit name and automotive-engineering history; it is not used to prove an FAW partnership.",
+    ),
+    dict(
+        id=SRC_HFUT_AUTO,
+        publisher_zh="合肥工业大学汽车与交通工程学院", publisher_en="HFUT School of Automotive and Transportation Engineering",
+        title_zh="学院简介", title_en="School profile",
+        source_type="university_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://qjxy.hfut.edu.cn/xygk/xyjj.htm", confidence=0.90,
+        notes_zh="学院官网支持院系名称与车辆工程定位；未用来证明江淮合作。",
+        notes_en="The school site supports the unit name and vehicle-engineering profile; it is not used to prove a JAC partnership.",
+    ),
+    dict(
+        id=SRC_CHD_AUTO,
+        publisher_zh="长安大学汽车学院", publisher_en="Chang'an University School of Automobile",
+        title_zh="学院简介", title_en="School profile",
+        source_type="university_site", grade="A", published_at=None,
+        accessed_at="2026-08-24", fact_date=None,
+        url="https://qiche.chd.edu.cn/8458/list.htm", confidence=0.90,
+        notes_zh="学院官网支持院系名称与车辆工程定位；未用来证明特定企业合作。",
+        notes_en="The school site supports the unit name and vehicle-engineering profile; it is not used to prove specific corporate partnerships.",
+    ),
 ]
+
+SOURCE_SUPPORT = {
+    SRC_STAT_CHONGQING_2025: (
+        "statistics:chongqing:2025",
+        ["total_vehicle_output", "nev_output", "statistical_scope"],
+    ),
+    SRC_STAT_GUANGZHOU_2025: (
+        "statistics:guangzhou:2025",
+        ["total_vehicle_output", "statistical_scope"],
+    ),
+    SRC_STAT_WUHU_2025: (
+        "statistics:wuhu:2025",
+        ["total_vehicle_output", "nev_output", "statistical_scope"],
+    ),
+    SRC_STAT_SHANGHAI_2025: (
+        "statistics:shanghai:2025",
+        ["total_vehicle_output", "statistical_scope"],
+    ),
+    SRC_STAT_XIAN_2025: (
+        "statistics:xian:2025",
+        ["total_vehicle_output", "nev_output", "statistical_scope"],
+    ),
+    SRC_STAT_BEIJING_2025: (
+        "statistics:beijing:2025",
+        ["total_vehicle_output", "statistical_scope"],
+    ),
+    SRC_STAT_ZHENGZHOU_2025: (
+        "statistics:zhengzhou:2025",
+        ["total_vehicle_output", "statistical_scope"],
+    ),
+    SRC_STAT_HEFEI_NEV_2025: (
+        "statistics:hefei:2025",
+        ["nev_output", "scope_note_zh", "scope_note_en"],
+    ),
+    SRC_STAT_JILIN_2025: (
+        "statistics:changchun:2025",
+        ["statistical_scope", "scope_note_zh", "scope_note_en"],
+    ),
+    SRC_NIO_ABOUT: (
+        "organization:nio",
+        ["legal_name_zh", "legal_name_en", "headquarters_city_id"],
+    ),
+    SRC_AUTOHOME_20F: (
+        "relation:autohome__operates__che168__",
+        ["from_id", "relation_type", "to_id"],
+    ),
+    SRC_BAIDU_YOUJIA_PRIVACY: (
+        "relation:baidu__operates__youjia__",
+        ["from_id", "relation_type", "to_id"],
+    ),
+    SRC_CAAM_AUTO_ZONGHENG: (
+        "relation:caam__owns__auto-zongheng__",
+        ["from_id", "relation_type", "to_id"],
+    ),
+    SRC_TESLA_SHANGHAI_CONTACT: (
+        "facility:tesla-shanghai-gigafactory",
+        ["name_zh", "name_en", "operator_id", "city_id"],
+    ),
+    SRC_CATL_YIBIN: (
+        "facility:catl-yibin",
+        ["name_zh", "name_en", "operator_id", "city_id", "status"],
+    ),
+    SRC_GWM_GLOBAL: (
+        "facility:gwm-xushui",
+        ["name_zh", "name_en", "operator_id", "city_id"],
+    ),
+    SRC_THSVM: (
+        "institution:inst-tsinghua",
+        ["organization_id", "city_id", "college_zh", "college_en"],
+    ),
+    SRC_BIT_ME: (
+        "institution:inst-bit",
+        ["organization_id", "city_id", "college_zh", "college_en"],
+    ),
+    SRC_TONGJI_AUTO: (
+        "institution:inst-tongji",
+        ["organization_id", "city_id", "college_zh", "college_en"],
+    ),
+    SRC_JLU_AUTO: (
+        "institution:inst-jlu",
+        ["organization_id", "city_id", "college_zh", "college_en"],
+    ),
+    SRC_HFUT_AUTO: (
+        "institution:inst-hfut",
+        ["organization_id", "city_id", "college_zh", "college_en"],
+    ),
+    SRC_CHD_AUTO: (
+        "institution:inst-chd",
+        ["organization_id", "city_id", "college_zh", "college_en"],
+    ),
+}
+
+if set(SOURCE_SUPPORT) != {source["id"] for source in SOURCES}:
+    raise SystemExit("every public source must declare one exact support scope")
+
+for source in SOURCES:
+    parsed = urlparse(source["url"])
+    entity_ref, fields = SOURCE_SUPPORT[source["id"]]
+    source["publisher_domain"] = (parsed.hostname or "").lower()
+    source["publisher_ownership"] = "external"
+    source["support_scope"] = {
+        "entity_refs": [entity_ref],
+        "fields": fields,
+        "scope_zh": source["notes_zh"],
+        "scope_en": source["notes_en"],
+    }
 
 
 def main() -> None:
@@ -1764,12 +2188,12 @@ def main() -> None:
         "specialist_cities": sum(1 for c in CITIES if c["tier"] == "specialist"),
     }
     dump("manifest.json", {
-        "data_version": "v1-2026-08",
-        "generated_at": "2026-08-19",
+        "data_version": "v1-2026-08-source-policy",
+        "generated_at": "2026-08-24",
         "last_verified": LV,
         "counts": counts,
-        "notes_zh": "V1：17座核心城 + 11座专业城。产量为地方统计拼合。每家企业必须有总部城市。",
-        "notes_en": "V1: 17 core + 11 specialist cities. Output figures are a local-statistics compilation. Every organization must have a headquarters city.",
+        "notes_zh": "V1：17座核心城 + 11座专业城。仅外部官方链接可作为证据；未逐条核验的数据保留为低置信候选。",
+        "notes_en": "V1: 17 core + 11 specialist cities. Only linked external official releases count as evidence; unverified rows remain low-confidence candidates.",
     })
     print("seed counts:", counts)
 

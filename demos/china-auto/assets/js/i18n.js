@@ -9,6 +9,7 @@
   var L = {
     zh: {
       skipToContent: '跳到主要内容',
+      primaryNav: '主要导航', closeDialog: '关闭对话框', cityTabs: '城市详情分区',
       navBrand: '汽车城市图谱',
       navOverview: '概览', navMap: '地图', navCatalog: '城市目录', navClusters: '产业集群',
       navOrgs: '企业', navInstitutions: '高校院所', navMedia: '媒体', navMethodology: '方法',
@@ -18,12 +19,12 @@
       heroTitle: '中国汽车城市图谱',
       heroSub: '以城市为节点，把整车产量、产业集群、总部与研发、工厂与供应链、高校院所与汽车媒体放在同一张图上——看清一座城在汽车产业链里扮演什么角色。',
       heroV1: 'V1 覆盖 17 座核心城市 + 11 座专长城市（28 城样本）。每家企业均收录总部城市。',
-      heroOutput: '2025 产量数字为各地统计公报/工信口径的汇编，不是统一的国家统计局城市排名。',
+      heroOutput: '2025 产量只把有具体外部统计公报链接的城市作为已核实；其余保留为候选，不构成统一城市排名。',
       heroLocation: '自 2025 年起，产量按实际生产地归属，而非企业总部所在地。',
       heroRoles: '总部、研发、工厂、供应链、媒体是不同角色——同一企业可在多城出现。',
       heroNote: '研究性演示，非投资建议。末次审阅：2026-08。',
-      ovTitle: '概览', ovChart: '2025 整车产量（万辆）',
-      kpiCities: '城市', kpiOrgs: '企业/机构', kpiFacilities: '设施站点', kpiClusters: '产业集群', kpiOutputCities: '有产量数据城市',
+      ovTitle: '概览', ovChart: '2025 已核实整车产量（万辆）',
+      kpiCities: '城市', kpiOrgs: '企业/机构', kpiFacilities: '设施站点', kpiClusters: '产业集群', kpiOutputCities: '有外部来源产量城市',
       mapTitle: '中国城市地图', mapSub: '按产量、集群或主角色着色；可筛选角色标签、集群与层级。点击标记打开城市详情。',
       dimOutput: '产量', dimCluster: '集群', dimRole: '主角色',
       layerCities: '城市', layerFacilities: '设施',
@@ -57,17 +58,21 @@
       instTitle: '高校与科研院所', instSub: '汽车相关专业与产学研合作线索。',
       mediaTitle: '汽车媒体', mediaSub: '按采编城市与媒体类型浏览。',
       meTitle: '方法与来源', meSummary: '数据范围、统计口径与来源分级',
-      meScopeWarn: '产量统计口径因城市而异（整车/规模以上/辖区范围）。对比前请阅读各条 scope_note。青岛 102.20 万辆出现在 2025 拼合表中，城市卡列入二期。',
-      thSource: '来源', thGrade: '等级', thPublisher: '发布方', thType: '类型', thDate: '日期',
+      meScopeWarn: '只接受可解析的外部来源；QROST 自有研究简报不作为证据。产量口径因城市而异，候选记录不进入已核实排行。',
+      thSource: '来源', thSupportScope: '支持范围', thGrade: '等级', thPublisher: '发布方', thType: '类型', thDate: '日期',
       footUpdated: 'Last updated 2026-08.',
       footDisclaimer: 'Nothing here is financial, legal or tax advice.',
-      noData: '暂无数据', loading: '加载中…', sources: '来源', confidence: '置信度',
+      noData: '暂无数据', loading: '加载中…', sources: '来源', confidence: '置信度', candidate: '候选',
+      runtimeWarnTitle: '部分可视化组件未加载',
+      tailwindFallback: '样式 CDN 未加载，页面已切换到基础样式。',
+      echartsFallback: '图表 CDN 未加载；目录、筛选、详情和来源仍可使用。',
+      chartUnavailable: '图表暂不可用；请使用下方目录和来源表。',
       tabOverview: '概览', tabOrgs: '企业与角色', tabFacilities: '设施',
       tabInstMedia: '院所与媒体', tabRelations: '关系', tabStats: '统计与来源',
       summary: '摘要', history: '沿革', districts: '辖区', roleTags: '角色标签',
       facilities: '设施', institutions: '高校院所', media: '媒体', relations: '关系',
       stats: '产量统计', statisticalScope: '统计口径', nev: '新能源', commercial: '商用车', passenger: '乘用车',
-      viewCity: '查看城市', hqCity: '总部城市', founded: '成立', website: '网站', status: '状态',
+      viewCity: '查看城市', viewOrg: '查看机构', hqCity: '总部城市', founded: '成立', website: '网站', status: '状态',
       operator: '运营方', facilityType: '类型', opened: '启用', products: '产品',
       nationalPlatform: '全国性平台', editorialCity: '采编城市', registeredCity: '注册城市',
       strengths: '优势方向', partners: '产业合作', school: '院校', college: '学院',
@@ -77,6 +82,7 @@
     },
     en: {
       skipToContent: 'Skip to main content',
+      primaryNav: 'Primary navigation', closeDialog: 'Close dialog', cityTabs: 'City detail sections',
       navBrand: 'Auto City Atlas',
       navOverview: 'Overview', navMap: 'Map', navCatalog: 'Cities', navClusters: 'Clusters',
       navOrgs: 'Organizations', navInstitutions: 'Universities', navMedia: 'Media', navMethodology: 'Method',
@@ -86,12 +92,12 @@
       heroTitle: 'China Auto City Atlas',
       heroSub: 'Cities as nodes — vehicle output, industrial clusters, HQ & R&D, plants & supply chain, universities and auto media on one map. See what role each city plays in the automotive chain.',
       heroV1: 'V1 covers 17 core + 11 specialist cities (28-city sample). Every organization records a headquarters city.',
-      heroOutput: '2025 output figures compile local statistical releases — not a unified NBS city ranking.',
+      heroOutput: 'Only 2025 figures with a specific linked external statistical release are verified; the rest remain candidates, not a unified city ranking.',
       heroLocation: 'From 2025, output is attributed to actual production location, not company HQ.',
       heroRoles: 'HQ, R&D, plants, supply and media are separate roles — one firm can span many cities.',
       heroNote: 'Research demo, not investment advice. Last reviewed 2026-08.',
-      ovTitle: 'Overview', ovChart: '2025 vehicle output (10k units)',
-      kpiCities: 'Cities', kpiOrgs: 'Organizations', kpiFacilities: 'Facilities', kpiClusters: 'Clusters', kpiOutputCities: 'Cities with output data',
+      ovTitle: 'Overview', ovChart: 'Verified 2025 vehicle output (10k units)',
+      kpiCities: 'Cities', kpiOrgs: 'Organizations', kpiFacilities: 'Facilities', kpiClusters: 'Clusters', kpiOutputCities: 'Cities with externally sourced output',
       mapTitle: 'China city map', mapSub: 'Color by output, cluster or primary role. Filter by role tag, cluster and tier. Click a marker for city detail.',
       dimOutput: 'Output', dimCluster: 'Cluster', dimRole: 'Primary role',
       layerCities: 'Cities', layerFacilities: 'Facilities',
@@ -125,17 +131,21 @@
       instTitle: 'Universities & research institutes', instSub: 'Automotive programs and industry partnership leads.',
       mediaTitle: 'Auto media', mediaSub: 'Browse by editorial city and media type.',
       meTitle: 'Method & sources', meSummary: 'Coverage, statistical scope and source grading',
-      meScopeWarn: 'Output scope varies by city (whole vehicles / above-scale / jurisdiction). Read scope_note before comparing. Qingdao (1.022 million) appears in the 2025 compilation; its city card is phase 2.',
-      thSource: 'Source', thGrade: 'Grade', thPublisher: 'Publisher', thType: 'Type', thDate: 'Date',
+      meScopeWarn: 'Only resolvable external sources count as evidence; QROST-authored research briefs do not. Output scope varies by city, and candidate records are excluded from the verified ranking.',
+      thSource: 'Source', thSupportScope: 'Support scope', thGrade: 'Grade', thPublisher: 'Publisher', thType: 'Type', thDate: 'Date',
       footUpdated: 'Last updated 2026-08.',
       footDisclaimer: 'Nothing here is financial, legal or tax advice.',
-      noData: 'No data yet', loading: 'Loading…', sources: 'Sources', confidence: 'Confidence',
+      noData: 'No data yet', loading: 'Loading…', sources: 'Sources', confidence: 'Confidence', candidate: 'Candidate',
+      runtimeWarnTitle: 'Some visualization components did not load',
+      tailwindFallback: 'The styling CDN did not load; the page is using its basic companion styles.',
+      echartsFallback: 'The chart CDN did not load; catalogs, filters, details and sources remain available.',
+      chartUnavailable: 'Chart unavailable; use the catalogs and source table below.',
       tabOverview: 'Overview', tabOrgs: 'Orgs & roles', tabFacilities: 'Facilities',
       tabInstMedia: 'Institutions & media', tabRelations: 'Relations', tabStats: 'Stats & sources',
       summary: 'Summary', history: 'History', districts: 'Districts', roleTags: 'Role tags',
       facilities: 'Facilities', institutions: 'Institutions', media: 'Media', relations: 'Relations',
       stats: 'Output statistics', statisticalScope: 'Statistical scope', nev: 'NEV', commercial: 'Commercial', passenger: 'Passenger',
-      viewCity: 'View city', hqCity: 'HQ city', founded: 'Founded', website: 'Website', status: 'Status',
+      viewCity: 'View city', viewOrg: 'View organization', hqCity: 'HQ city', founded: 'Founded', website: 'Website', status: 'Status',
       operator: 'Operator', facilityType: 'Type', opened: 'Opened', products: 'Products',
       nationalPlatform: 'National platform', editorialCity: 'Editorial city', registeredCity: 'Registered city',
       strengths: 'Strengths', partners: 'Industry partners', school: 'School', college: 'College',
@@ -321,6 +331,12 @@
     });
     (root || document).querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
       var k = el.getAttribute('data-i18n-placeholder'); var v = t(k); if (v) el.setAttribute('placeholder', v);
+    });
+    (root || document).querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n-aria-label'); var v = t(k); if (v) el.setAttribute('aria-label', v);
+    });
+    (root || document).querySelectorAll('[data-i18n-title]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n-title'); var v = t(k); if (v) el.setAttribute('title', v);
     });
     document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
     var tog = document.getElementById('lang-toggle');

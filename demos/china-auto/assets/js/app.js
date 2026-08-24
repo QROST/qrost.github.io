@@ -13,6 +13,8 @@
   };
   var cityModalTab = 'tabOverview';
   var openCityId = null;
+  var openOrgId = null;
+  var dialogReturnFocus = null;
 
   function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[m]; }); }
   function uniq(a) { var o = {}; a.forEach(function (x) { if (x) o[x] = 1; }); return Object.keys(o); }
@@ -41,8 +43,9 @@
   function enrichOf(o) { return (o && o.enrich) || {}; }
   function confBadge(c) {
     if (c == null) return '';
-    var cls = c >= 0.8 ? 'badge-grade-A' : c >= 0.5 ? 'badge-grade-B' : 'badge-grade-C';
-    return '<span class="badge ' + cls + '">' + I18N.t('confidence') + ' ' + c.toFixed(2) + '</span>';
+    var cls = c >= 0.8 ? 'badge-grade-A' : c > 0.5 ? 'badge-grade-B' : 'badge-grade-C';
+    var label = c <= 0.5 ? I18N.t('candidate') + ' · ' + I18N.t('confidence') : I18N.t('confidence');
+    return '<span class="badge ' + cls + '">' + esc(label) + ' ' + c.toFixed(2) + '</span>';
   }
   function rtBadge(tag) { return '<span class="badge badge-rt-' + tag + '">' + esc(I18N.enumLabel('role_tag', tag)) + '</span>'; }
   function tierBadge(t) { return '<span class="badge badge-tier-' + t + '">' + esc(I18N.enumLabel('city_tier', t)) + '</span>'; }
@@ -58,7 +61,58 @@
     }).join('') + '</ul>';
   }
 
+  function sourceLinksHtml(ids) {
+    var seen = {};
+    var links = (ids || []).filter(function (sid) {
+      if (!sid || seen[sid]) return false;
+      seen[sid] = true;
+      return !!D.getSource(sid);
+    }).map(function (sid) {
+      var s = D.getSource(sid);
+      var title = I18N.pick(s.title_zh, s.title_en) || sid;
+      return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(title) + '</a>';
+    });
+    return links.length ? ' <span class="evidence-links">· ' + links.join(' · ') + '</span>' : '';
+  }
+
+  function renderRuntimeFallbacks() {
+    var messages = [];
+    var noTailwind = !!window.CHINA_AUTO_TAILWIND_FAILED || !window.tailwind;
+    var noEcharts = !!window.CHINA_AUTO_ECHARTS_FAILED || !window.echarts;
+    if (noTailwind) messages.push(I18N.t('tailwindFallback'));
+    if (noEcharts) messages.push(I18N.t('echartsFallback'));
+    var warning = $('runtime-warning');
+    if (warning) {
+      warning.classList.toggle('hidden', !messages.length);
+      $('runtime-warning-title').textContent = messages.length ? I18N.t('runtimeWarnTitle') : '';
+      $('runtime-warning-body').textContent = messages.join(' ');
+    }
+    if (noEcharts) {
+      ['overview-chart', 'china-map', 'cluster-graph'].forEach(function (id) {
+        var el = $(id);
+        if (el) el.innerHTML = '<p class="runtime-chart-fallback">' + esc(I18N.t('chartUnavailable')) + '</p>';
+      });
+    }
+  }
+
   function orgCount(cityId) { return D.orgsForCity(cityId).length; }
+
+  function verifiedOutputStat(city) {
+    var stat = city && D.stat2025(city.id);
+    return stat && stat.confidence > 0.5 && (stat.source_ids || []).length && stat.total_vehicle_output != null ? stat : null;
+  }
+
+  function compareOutputCities(a, b, dir) {
+    var sa = verifiedOutputStat(a), sb = verifiedOutputStat(b);
+    if (!!sa !== !!sb) return sa ? -1 : 1;
+    if (sa && sb) {
+      var byOutput = (sa.total_vehicle_output - sb.total_vehicle_output) * dir;
+      if (byOutput) return byOutput;
+    }
+    // Candidate/no-output cities stay accessible after the verified group,
+    // but their raw candidate figures never determine an implicit ranking.
+    return localeName(a, b);
+  }
 
   function filteredCities() {
     var f = state.map;
@@ -83,7 +137,7 @@
     $('kpi-facilities').textContent = D.facilities.length || '0';
     $('kpi-clusters').textContent = D.clusters.length || '0';
     var outN = D.cities.filter(function (c) {
-      var s = D.stat2025(c.id); return s && s.total_vehicle_output != null;
+      return !!verifiedOutputStat(c);
     }).length;
     $('kpi-output-cities').textContent = outN || '0';
   }
@@ -137,9 +191,7 @@
       if (k === 'province') { va = I18N.pick(a.province_zh, a.province_en); vb = I18N.pick(b.province_zh, b.province_en); return va.localeCompare(vb) * dir; }
       if (k === 'tier') { va = a.tier || ''; vb = b.tier || ''; return va.localeCompare(vb) * dir; }
       if (k === 'output') {
-        va = (D.stat2025(a.id) || {}).total_vehicle_output || -1;
-        vb = (D.stat2025(b.id) || {}).total_vehicle_output || -1;
-        return (va - vb) * dir;
+        return compareOutputCities(a, b, dir);
       }
       if (k === 'orgs') { return (orgCount(a.id) - orgCount(b.id)) * dir; }
       return 0;
@@ -151,18 +203,19 @@
     var cols = [['name', 'thCity'], ['province', 'thProvince'], ['tier', 'thTier'], ['output', 'thOutput'], ['nev', 'thNev'], ['roles', 'thRoles'], ['orgs', 'thOrgs']];
     $('catalog-head').innerHTML = cols.map(function (c) {
       var arrow = state.cat.sort === c[0] ? (state.cat.dir > 0 ? ' ▲' : ' ▼') : '';
-      return '<th data-sort="' + c[0] + '">' + I18N.t(c[1]) + arrow + '</th>';
+      var ariaSort = state.cat.sort === c[0] ? (state.cat.dir > 0 ? 'ascending' : 'descending') : 'none';
+      return '<th data-sort="' + c[0] + '" role="button" tabindex="0" aria-sort="' + ariaSort + '">' + I18N.t(c[1]) + arrow + '</th>';
     }).join('');
     var list = filteredCatalog();
     $('cat-count').textContent = list.length + ' / ' + D.cities.length;
     $('catalog-body').innerHTML = list.map(function (c) {
       var st = D.stat2025(c.id);
       var tags = (c.role_tags || []).slice(0, 3).map(rtBadge).join(' ');
-      return '<tr data-city="' + esc(c.id) + '">' +
+      return '<tr data-city="' + esc(c.id) + '" role="button" tabindex="0" aria-label="' + esc(I18N.t('viewCity') + ': ' + I18N.name(c)) + '">' +
         '<td>' + esc(I18N.name(c)) + '</td>' +
         '<td>' + esc(I18N.pick(c.province_zh, c.province_en)) + '</td>' +
         '<td>' + tierBadge(c.tier) + '</td>' +
-        '<td class="num">' + fmtWan(st && st.total_vehicle_output) + '</td>' +
+        '<td class="num">' + fmtWan(st && st.total_vehicle_output) + (st ? ' ' + confBadge(st.confidence) : '') + '</td>' +
         '<td class="num">' + fmtWan(st && st.nev_output) + '</td>' +
         '<td>' + tags + '</td>' +
         '<td class="num">' + orgCount(c.id) + '</td></tr>';
@@ -190,7 +243,7 @@
       return '<article class="cluster-card' + (on ? ' active' : '') + '" data-cluster="' + esc(cl.id) +
         '" role="button" tabindex="0" aria-pressed="' + (on ? 'true' : 'false') + '"' +
         ' aria-label="' + esc(I18N.name(cl) + ' · ' + I18N.t('clusterCardHint')) + '">' +
-        '<h3>' + esc(I18N.name(cl)) + '</h3>' +
+        '<h3>' + esc(I18N.name(cl)) + ' ' + confBadge(cl.confidence) + '</h3>' +
         '<p>' + esc(I18N.pick(cl.summary_zh, cl.summary_en)) + '</p>' +
         (note ? '<p class="text-faint text-xs mt-2">' + esc(note) + '</p>' : '') +
         '<p class="text-faint text-xs mt-2">' + I18N.t('citiesInCluster') + ': ' + esc(cities) +
@@ -324,7 +377,7 @@
 
   function orgCell(o, key) {
     var en = enrichOf(o);
-    if (key === 'name') return esc(I18N.name(o));
+    if (key === 'name') return esc(I18N.name(o)) + ' ' + confBadge(o.confidence);
     if (key === 'type') return '<span class="badge" style="background:var(--bg-elev)">' + esc(I18N.enumLabel('organization_type', o.organization_type)) + '</span>';
     if (key === 'parent') {
       var parent = o.parent_id ? D.getOrg(o.parent_id) : null;
@@ -363,12 +416,13 @@
     var cols = orgCols();
     $('orgs-head').innerHTML = cols.map(function (c) {
       var arrow = state.org.sort === c.key ? (state.org.dir > 0 ? ' ▲' : ' ▼') : '';
-      return '<th data-sort="' + c.key + '">' + I18N.t(c.label) + arrow + '</th>';
+      var ariaSort = state.org.sort === c.key ? (state.org.dir > 0 ? 'ascending' : 'descending') : 'none';
+      return '<th data-sort="' + c.key + '" role="button" tabindex="0" aria-sort="' + ariaSort + '">' + I18N.t(c.label) + arrow + '</th>';
     }).join('');
     var list = filteredOrgs();
     $('org-count').textContent = list.length + ' / ' + D.organizations.length;
     $('orgs-body').innerHTML = list.map(function (o) {
-      return '<tr data-org="' + esc(o.id) + '">' + cols.map(function (c) {
+      return '<tr data-org="' + esc(o.id) + '" data-candidate="' + (o.confidence <= 0.5 ? 'true' : 'false') + '" role="button" tabindex="0" aria-label="' + esc(I18N.t('viewOrg') + ': ' + I18N.name(o) + (o.confidence <= 0.5 ? ' · ' + I18N.t('candidate') : '')) + '">' + cols.map(function (c) {
         return '<td' + (c.key === 'employees' || c.key === 'sales' || c.key === 'plants' || c.key === 'children' ? ' class="num"' : '') + '>' + orgCell(o, c.key) + '</td>';
       }).join('') + '</tr>';
     }).join('') || '<tr><td colspan="' + cols.length + '" class="loading">' + I18N.t('noData') + '</td></tr>';
@@ -381,9 +435,10 @@
         '<td>' + gradeBadge(s.grade) + '</td>' +
         '<td>' + esc(I18N.pick(s.publisher_zh, s.publisher_en)) + '</td>' +
         '<td>' + (s.url ? '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(I18N.pick(s.title_zh, s.title_en)) + '</a>' : esc(I18N.pick(s.title_zh, s.title_en))) + '</td>' +
+        '<td class="source-scope-cell">' + esc(I18N.pick((s.support_scope || {}).scope_zh, (s.support_scope || {}).scope_en)) + '</td>' +
         '<td>' + esc(s.source_type || '') + '</td>' +
         '<td>' + esc(s.published_at || s.fact_date || '') + '</td></tr>';
-    }).join('') || '<tr><td colspan="5" class="loading">' + I18N.t('noData') + '</td></tr>';
+    }).join('') || '<tr><td colspan="6" class="loading">' + I18N.t('noData') + '</td></tr>';
     var foot = $('foot-build');
     if (foot && D.manifest) foot.textContent = (D.manifest.data_version || '') + ' · ' + (D.manifest.generated_at || '');
   }
@@ -398,25 +453,66 @@
     renderMethodology();
     MAP.resize();
     CH.resizeAll();
+    renderRuntimeFallbacks();
   }
 
   // ---------- city modal ----------
+  function visibleDialog() {
+    return ['org-modal', 'city-modal'].map(function (id) { return $(id); }).filter(function (el) {
+      return el && !el.classList.contains('hidden');
+    })[0] || null;
+  }
+
+  function showModal(id) {
+    var alreadyOpen = visibleDialog();
+    if (!alreadyOpen) dialogReturnFocus = document.activeElement;
+    ['city-modal', 'org-modal'].forEach(function (modalId) {
+      var modal = $(modalId);
+      var on = modalId === id;
+      modal.classList.toggle('hidden', !on);
+      modal.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    document.body.classList.add('modal-open');
+    window.requestAnimationFrame(function () {
+      var close = $(id).querySelector('.modal-close');
+      if (close) close.focus();
+    });
+  }
+
+  function dialogFocusables(dialog) {
+    return Array.prototype.slice.call(dialog.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(function (el) { return !el.hidden && el.getAttribute('aria-hidden') !== 'true'; });
+  }
+
+  function trapDialogFocus(e) {
+    var dialog = visibleDialog();
+    if (!dialog || e.key !== 'Tab') return;
+    var focusable = dialogFocusables(dialog);
+    if (!focusable.length) { e.preventDefault(); dialog.querySelector('.modal-panel').focus(); return; }
+    var first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
   function openCityModal(id) {
     var city = D.getCity(id); if (!city) return;
     openCityId = id;
+    openOrgId = null;
     $('city-modal-head').innerHTML =
-      '<h3 class="text-xl font-semibold">' + esc(I18N.name(city)) + '</h3>' +
+      '<h3 id="city-modal-title" class="text-xl font-semibold">' + esc(I18N.name(city)) + '</h3>' +
       '<div class="mt-1 flex flex-wrap items-center gap-2 text-sm">' + tierBadge(city.tier) +
       '<span class="text-muted">' + esc(I18N.pick(city.province_zh, city.province_en)) + '</span>' +
       confBadge(city.confidence) + '</div>';
     var tabs = ['tabOverview', 'tabOrgs', 'tabFacilities', 'tabRelations', 'tabStats'];
     if (tabs.indexOf(cityModalTab) === -1) cityModalTab = 'tabOverview';
     $('city-modal-tabs').innerHTML = tabs.map(function (t) {
-      return '<button type="button" class="modal-tab-btn ' + (t === cityModalTab ? 'active' : '') + '" data-tab="' + t + '">' + I18N.t(t) + '</button>';
+      var on = t === cityModalTab;
+      return '<button type="button" role="tab" id="city-' + t + '" aria-controls="city-modal-body" aria-selected="' + on + '" tabindex="' + (on ? '0' : '-1') + '" class="modal-tab-btn ' + (on ? 'active' : '') + '" data-tab="' + t + '">' + I18N.t(t) + '</button>';
     }).join('');
+    $('city-modal-body').setAttribute('aria-labelledby', 'city-' + cityModalTab);
     renderCityModalBody(city);
-    $('city-modal').classList.remove('hidden');
-    $('city-modal').setAttribute('aria-hidden', 'false');
+    showModal('city-modal');
   }
 
   function renderCityModalBody(city) {
@@ -429,6 +525,7 @@
       body += '<h4>' + I18N.t('roleTags') + '</h4><p>' + (city.role_tags || []).map(rtBadge).join(' ') + '</p>';
       var dist = I18N.pick((city.districts_zh || []).join('、'), (city.districts_en || []).join(', '));
       if (dist) body += '<h4>' + I18N.t('districts') + '</h4><p>' + esc(dist) + '</p>';
+      body += sourcesHtml(city.source_ids);
     } else if (cityModalTab === 'tabOrgs') {
       var seen = {};
       var rows = [];
@@ -448,13 +545,15 @@
         var roleLabel = row.role ? I18N.enumLabel('role_type', row.role.role_type) : I18N.t('hqCity');
         return '<li><button type="button" class="chip-link" data-org-link="' + esc(ent.id) + '">' + esc(I18N.name(ent)) + '</button>' +
           ' <span class="badge" style="background:var(--bg-elev)">' + esc(I18N.enumLabel('organization_type', ent.organization_type)) + '</span>' +
-          ' — <span class="text-faint">' + esc(roleLabel) + '</span></li>';
+          ' — <span class="text-faint">' + esc(roleLabel) + '</span> ' + confBadge((row.role || ent).confidence) +
+          sourceLinksHtml((row.role || ent).source_ids) + '</li>';
       }).join('') + '</ul>' : '<p class="text-faint">' + I18N.t('noData') + '</p>';
     } else if (cityModalTab === 'tabFacilities') {
       var facs = D.facilitiesForCity(city.id);
       body = facs.length ? '<ul>' + facs.map(function (f) {
         return '<li><b>' + esc(I18N.pick(f.name_zh, f.name_en)) + '</b> — ' + esc(I18N.enumLabel('facility_type', f.facility_type)) +
-          ' <span class="text-faint">(' + esc(I18N.enumLabel('facility_status', f.status)) + ')</span></li>';
+          ' <span class="text-faint">(' + esc(I18N.enumLabel('facility_status', f.status)) + ')</span> ' +
+          confBadge(f.confidence) + sourceLinksHtml(f.source_ids) + '</li>';
       }).join('') + '</ul>' : '<p class="text-faint">' + I18N.t('noData') + '</p>';
     } else if (cityModalTab === 'tabRelations') {
       var rels = D.relationsFor(city.id);
@@ -462,14 +561,15 @@
         var otherId = r.from_id === city.id ? r.to_id : r.from_id;
         var other = D.getCity(otherId) || D.getOrg(otherId) || D.getCluster(otherId);
         var otherName = other ? I18N.name(other) : otherId;
-        return '<li>' + esc(I18N.enumLabel('relation_type', r.relation_type)) + ' → ' + esc(otherName) +
+        return '<li>' + esc(I18N.enumLabel('relation_type', r.relation_type)) + ' → ' + esc(otherName) + ' ' + confBadge(r.confidence) +
+          sourceLinksHtml(r.source_ids) +
           (r.description_zh || r.description_en ? '<br/><span class="text-muted">' + esc(I18N.pick(r.description_zh, r.description_en)) + '</span>' : '') + '</li>';
       }).join('') + '</ul>' : '<p class="text-faint">' + I18N.t('noData') + '</p>';
     } else if (cityModalTab === 'tabStats') {
       var stats = D.statsForCity(city.id);
       body = stats.length ? '<table class="data-table"><thead><tr><th>' + I18N.t('stats') + '</th><th>' + I18N.t('thOutput') + '</th><th>' + I18N.t('nev') + '</th></tr></thead><tbody>' +
         stats.map(function (s) {
-          return '<tr><td>' + s.year + '</td><td class="num">' + fmtWan(s.total_vehicle_output) + '</td><td class="num">' + fmtWan(s.nev_output) + '</td></tr>';
+          return '<tr><td>' + s.year + ' ' + confBadge(s.confidence) + '</td><td class="num">' + fmtWan(s.total_vehicle_output) + '</td><td class="num">' + fmtWan(s.nev_output) + '</td></tr>';
         }).join('') + '</tbody></table>' : '<p class="text-faint">' + I18N.t('noData') + '</p>';
       stats.forEach(function (s) {
         if (s.scope_note_zh || s.scope_note_en) {
@@ -486,8 +586,9 @@
 
   function openOrgModal(id) {
     var o = D.getOrg(id); if (!o) return;
-    $('org-modal-head').innerHTML = '<h3 class="text-lg font-semibold">' + esc(I18N.name(o)) + '</h3>' +
-      '<div class="text-sm text-muted mt-1">' + esc(I18N.enumLabel('organization_type', o.organization_type)) + '</div>';
+    openOrgId = id;
+    $('org-modal-head').innerHTML = '<h3 id="org-modal-title" class="text-lg font-semibold">' + esc(I18N.name(o)) + '</h3>' +
+      '<div class="text-sm text-muted mt-1">' + esc(I18N.enumLabel('organization_type', o.organization_type)) + ' ' + confBadge(o.confidence) + '</div>';
     var hq = o.headquarters_city_id ? D.getCity(o.headquarters_city_id) : null;
     var parent = o.parent_id ? D.getOrg(o.parent_id) : null;
     var kids = D.childrenOf(o.id);
@@ -513,7 +614,8 @@
     if (en.segment && en.segment.length) body += '<h4>' + I18N.t('thSegment') + '</h4><p>' + tinyBadges(en.segment, 'segment') + '</p>';
     if (en.education_tags && en.education_tags.length) body += '<h4>' + I18N.t('school') + '</h4><p>' + tinyBadges(en.education_tags, 'education_tag') + '</p>';
     if (inst) {
-      body += '<h4>' + I18N.t('college') + '</h4><p>' + esc(I18N.pick(inst.college_zh, inst.college_en) || '—') + '</p>';
+      body += '<h4>' + I18N.t('college') + '</h4><p>' + esc(I18N.pick(inst.college_zh, inst.college_en) || '—') + ' ' +
+        confBadge(inst.confidence) + sourceLinksHtml(inst.source_ids) + '</p>';
       if (inst.strengths_zh || inst.strengths_en) {
         body += '<h4>' + I18N.t('strengths') + '</h4><p>' + esc(I18N.pick(inst.strengths_zh, inst.strengths_en)) + '</p>';
       }
@@ -522,7 +624,7 @@
       var ed = media.editorial_city_id ? D.getCity(media.editorial_city_id) : null;
       body += '<dl class="kv mt-2">' +
         '<dt>' + I18N.t('thType') + '</dt><dd>' + esc(I18N.enumLabel('media_type', media.media_type)) +
-        (media.national_platform ? ' · ' + I18N.t('nationalPlatform') : '') + '</dd>' +
+        (media.national_platform ? ' · ' + I18N.t('nationalPlatform') : '') + ' ' + confBadge(media.confidence) + sourceLinksHtml(media.source_ids) + '</dd>' +
         (ed ? '<dt>' + I18N.t('editorialCity') + '</dt><dd><button type="button" class="chip-link" data-city-link="' + esc(ed.id) + '">' + esc(I18N.name(ed)) + '</button></dd>' : '') +
         '</dl>';
     }
@@ -541,19 +643,27 @@
         } else {
           link = esc(otherName);
         }
-        return '<li>' + esc(I18N.enumLabel('relation_type', r.relation_type)) + ' → ' + link + '</li>';
+        return '<li>' + esc(I18N.enumLabel('relation_type', r.relation_type)) + ' → ' + link + ' ' +
+          confBadge(r.confidence) + sourceLinksHtml(r.source_ids) + '</li>';
       }).join('') + '</ul>';
     }
     body += sourcesHtml(o.source_ids);
     $('org-modal-body').innerHTML = body;
-    $('org-modal').classList.remove('hidden');
+    showModal('org-modal');
   }
 
-  function closeModals() {
+  function closeModals(restoreFocus) {
     ['city-modal', 'org-modal'].forEach(function (id) {
       $(id).classList.add('hidden');
       $(id).setAttribute('aria-hidden', 'true');
     });
+    document.body.classList.remove('modal-open');
+    openCityId = null;
+    openOrgId = null;
+    if (restoreFocus !== false && dialogReturnFocus && document.contains(dialogReturnFocus)) {
+      try { dialogReturnFocus.focus(); } catch (e) {}
+    }
+    dialogReturnFocus = null;
   }
 
   function toggleTheme() {
@@ -583,13 +693,13 @@
     var hits = [];
     if (!q || !S.fold(q)) return hits;
     D.cities.forEach(function (c) {
-      if (S.match(c, q)) hits.push({ kind: 'city', id: c.id, score: S.score(c, q), label: I18N.name(c), sub: I18N.pick(c.province_zh, c.province_en) });
+      if (S.match(c, q)) hits.push({ kind: 'city', id: c.id, score: S.score(c, q), label: I18N.name(c), sub: I18N.pick(c.province_zh, c.province_en), confidence: c.confidence });
     });
     D.organizations.forEach(function (o) {
       if (S.match(o, q)) {
         var hq = o.headquarters_city_id ? D.getCity(o.headquarters_city_id) : null;
         hits.push({
-          kind: 'org', id: o.id, orgType: o.organization_type, score: S.score(o, q), label: I18N.name(o),
+          kind: 'org', id: o.id, orgType: o.organization_type, score: S.score(o, q), label: I18N.name(o), confidence: o.confidence,
           sub: I18N.enumLabel('organization_type', o.organization_type) + (hq ? ' · ' + I18N.name(hq) : '')
         });
       }
@@ -633,8 +743,9 @@
         : h.orgType === 'media_company' ? I18N.t('searchMedia')
         : I18N.t('searchOrgs');
       if (group !== last) { html += '<div class="search-pop-group">' + esc(group) + '</div>'; last = group; }
-      html += '<button type="button" class="search-pop-item" role="option" data-i="' + i + '" aria-selected="' + (i === searchSel) + '">' +
-        esc(h.label) + (h.sub ? ' <span class="text-faint text-xs">' + esc(h.sub) + '</span>' : '') + '</button>';
+      html += '<button type="button" class="search-pop-item" role="option" data-i="' + i + '" data-candidate="' + (h.confidence <= 0.5 ? 'true' : 'false') + '" aria-selected="' + (i === searchSel) + '">' +
+        esc(h.label) + (h.sub ? ' <span class="text-faint text-xs">' + esc(h.sub) + '</span>' : '') +
+        (h.confidence <= 0.5 ? ' ' + confBadge(h.confidence) : '') + '</button>';
     });
     box.innerHTML = html;
   }
@@ -642,9 +753,29 @@
   function activateSearchHit(i) {
     var h = searchHits[i]; if (!h) return;
     hideSearchPop();
-    $('global-search').blur();
     if (h.kind === 'city') { cityModalTab = 'tabOverview'; openCityModal(h.id); }
     else openOrgModal(h.id);
+  }
+
+  function selectCityTabButton(button) {
+    if (!button) return;
+    cityModalTab = button.getAttribute('data-tab');
+    $('city-modal-tabs').querySelectorAll('button[role="tab"]').forEach(function (tab) {
+      var on = tab === button;
+      tab.classList.toggle('active', on);
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.setAttribute('tabindex', on ? '0' : '-1');
+    });
+    $('city-modal-body').setAttribute('aria-labelledby', button.id);
+    if (openCityId) { var c = D.getCity(openCityId); if (c) renderCityModalBody(c); }
+  }
+
+  function activateOnKeyboard(e, selector, callback) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var target = e.target.closest(selector);
+    if (!target || e.target.closest('button, a, input, select, textarea')) return;
+    e.preventDefault();
+    callback(target);
   }
 
   function bind() {
@@ -655,13 +786,17 @@
       b.addEventListener('click', closeModals);
     });
     document.querySelectorAll('[data-close-org]').forEach(function (b) {
-      b.addEventListener('click', function () { $('org-modal').classList.add('hidden'); });
+      b.addEventListener('click', closeModals);
     });
     [['city-modal'], ['org-modal']].forEach(function (m) {
       $(m[0]).addEventListener('click', function (e) { if (e.target === this) closeModals(); });
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { hideSearchPop(); closeModals(); }
+      trapDialogFocus(e);
+      if (e.key === 'Escape') {
+        hideSearchPop();
+        if (visibleDialog()) { e.preventDefault(); closeModals(); }
+      }
       var tag = (e.target && e.target.tagName) || '';
       if (e.key === '/' && tag !== 'INPUT' && tag !== 'TEXTAREA' && tag !== 'SELECT') {
         e.preventDefault();
@@ -730,15 +865,32 @@
       if (state.cat.sort === k) state.cat.dir *= -1; else { state.cat.sort = k; state.cat.dir = k === 'name' ? 1 : -1; }
       renderCatalog();
     });
+    $('catalog-head').addEventListener('keydown', function (e) {
+      activateOnKeyboard(e, 'th[data-sort]', function (th) { th.click(); });
+    });
     $('catalog-body').addEventListener('click', function (e) {
       var tr = e.target.closest('tr[data-city]'); if (tr) { cityModalTab = 'tabOverview'; openCityModal(tr.getAttribute('data-city')); }
+    });
+    $('catalog-body').addEventListener('keydown', function (e) {
+      activateOnKeyboard(e, 'tr[data-city]', function (tr) {
+        cityModalTab = 'tabOverview'; openCityModal(tr.getAttribute('data-city'));
+      });
     });
 
     $('city-modal-tabs').addEventListener('click', function (e) {
       var b = e.target.closest('button[data-tab]'); if (!b) return;
-      cityModalTab = b.getAttribute('data-tab');
-      $('city-modal-tabs').querySelectorAll('button').forEach(function (x) { x.classList.toggle('active', x === b); });
-      if (openCityId) { var c = D.getCity(openCityId); if (c) renderCityModalBody(c); }
+      selectCityTabButton(b);
+    });
+    $('city-modal-tabs').addEventListener('keydown', function (e) {
+      if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].indexOf(e.key) === -1) return;
+      var tabs = Array.prototype.slice.call($('city-modal-tabs').querySelectorAll('button[role="tab"]'));
+      var i = tabs.indexOf(e.target); if (i < 0) return;
+      e.preventDefault();
+      if (e.key === 'Home') i = 0;
+      else if (e.key === 'End') i = tabs.length - 1;
+      else i = (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      selectCityTabButton(tabs[i]);
+      tabs[i].focus();
     });
     $('city-modal-body').addEventListener('click', function (e) {
       var ol = e.target.closest('[data-org-link]'); if (ol) { openOrgModal(ol.getAttribute('data-org-link')); return; }
@@ -763,14 +915,20 @@
       if (state.org.sort === k) state.org.dir *= -1; else { state.org.sort = k; state.org.dir = 1; }
       renderOrgs();
     });
+    $('orgs-head').addEventListener('keydown', function (e) {
+      activateOnKeyboard(e, 'th[data-sort]', function (th) { th.click(); });
+    });
     $('orgs-body').addEventListener('click', function (e) {
       var ol = e.target.closest('[data-org-link]'); if (ol) { e.stopPropagation(); openOrgModal(ol.getAttribute('data-org-link')); return; }
       var cl = e.target.closest('[data-city-link]'); if (cl) { e.stopPropagation(); openCityModal(cl.getAttribute('data-city-link')); return; }
       var tr = e.target.closest('tr[data-org]'); if (tr) openOrgModal(tr.getAttribute('data-org'));
     });
+    $('orgs-body').addEventListener('keydown', function (e) {
+      activateOnKeyboard(e, 'tr[data-org]', function (tr) { openOrgModal(tr.getAttribute('data-org')); });
+    });
     $('org-modal-body').addEventListener('click', function (e) {
       var ol = e.target.closest('[data-org-link]'); if (ol) { openOrgModal(ol.getAttribute('data-org-link')); return; }
-      var cl = e.target.closest('[data-city-link]'); if (cl) { closeModals(); openCityModal(cl.getAttribute('data-city-link')); }
+      var cl = e.target.closest('[data-city-link]'); if (cl) { openCityModal(cl.getAttribute('data-city-link')); }
     });
     $('cluster-cards').addEventListener('click', function (e) {
       var card = e.target.closest('[data-cluster]'); if (!card) return;
@@ -809,13 +967,8 @@
         opt('core', I18N.enumLabel('city_tier', 'core')) + opt('specialist', I18N.enumLabel('city_tier', 'specialist'));
       restoreFilters(); renderAll();
       if (openCityId && !$('city-modal').classList.contains('hidden')) {
-        var c = D.getCity(openCityId); if (c) {
-          $('city-modal-tabs').querySelectorAll('button').forEach(function (b) {
-            b.textContent = I18N.t(b.getAttribute('data-tab'));
-          });
-          renderCityModalBody(c);
-        }
-      }
+        openCityModal(openCityId);
+      } else if (openOrgId && !$('org-modal').classList.contains('hidden')) openOrgModal(openOrgId);
     });
   }
 
@@ -831,6 +984,7 @@
 
   async function init() {
     I18N.applyLangToUI();
+    renderRuntimeFallbacks();
     try {
       await D.initCore();
       fillMapSelects();
@@ -845,6 +999,9 @@
     }
   }
 
-  window.CHINA_AUTO_APP = { init: init, openCityModal: openCityModal, openOrgModal: openOrgModal, selectCluster: selectCluster };
+  window.CHINA_AUTO_APP = {
+    init: init, openCityModal: openCityModal, openOrgModal: openOrgModal,
+    selectCluster: selectCluster, renderRuntimeFallbacks: renderRuntimeFallbacks
+  };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

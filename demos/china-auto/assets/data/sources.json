@@ -1,84 +1,670 @@
 {
   "sources": [
     {
-      "id": "src-output-compilation-2025",
-      "publisher_zh": "地方统计资料汇编（非国家统一排行）",
-      "publisher_en": "Compilation of local statistical releases (not a unified national ranking)",
-      "title_zh": "2025年主要汽车生产城市产量拼合",
-      "title_en": "2025 vehicle-output figures compiled from local releases",
-      "source_type": "compilation",
-      "grade": "C",
-      "published_at": "2026-08",
-      "accessed_at": "2026-08-18",
+      "id": "src-stat-chongqing-2025",
+      "publisher_zh": "重庆市统计局、国家统计局重庆调查总队",
+      "publisher_en": "Chongqing Municipal Bureau of Statistics and NBS Chongqing Survey Office",
+      "title_zh": "2025年重庆市国民经济和社会发展统计公报",
+      "title_en": "2025 Chongqing statistical communiqué",
+      "source_type": "government_stats",
+      "grade": "A",
+      "published_at": "2026-03-26",
+      "accessed_at": "2026-08-24",
       "fact_date": "2025",
-      "url": null,
-      "confidence": 0.6,
-      "notes_zh": "重庆278.77万、广州240.96万、合肥187.20万、芜湖183.00万、上海177.20万、西安148.27万、北京146.71万、长春146.13万、郑州120.50万、柳州115.19万、青岛102.20万（青岛城市卡二期）。合肥新能源汽车约137.1万，西安约105.14万。",
-      "notes_en": "Chongqing 2.7877M, Guangzhou 2.4096M, Hefei 1.8720M, Wuhu 1.8300M, Shanghai 1.7720M, Xi'an 1.4827M, Beijing 1.4671M, Changchun 1.4613M, Zhengzhou 1.2050M, Liuzhou 1.1519M, Qingdao 1.0220M (Qingdao city card in phase 2). Hefei NEV ~1.371M; Xi'an NEV ~1.0514M."
+      "url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjjd_55469/202603/t20260326_15568538_wap.html",
+      "confidence": 0.95,
+      "notes_zh": "表3直接列出汽车278.77万辆、新能源汽车129.61万辆，口径为规模以上工业主要产品。",
+      "notes_en": "Table 3 directly reports 2.7877M vehicles and 1.2961M NEVs as major above-scale industrial products.",
+      "publisher_domain": "tjj.cq.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "statistics:chongqing:2025"
+        ],
+        "fields": [
+          "total_vehicle_output",
+          "nev_output",
+          "statistical_scope"
+        ],
+        "scope_zh": "表3直接列出汽车278.77万辆、新能源汽车129.61万辆，口径为规模以上工业主要产品。",
+        "scope_en": "Table 3 directly reports 2.7877M vehicles and 1.2961M NEVs as major above-scale industrial products."
+      }
     },
     {
-      "id": "src-research-brief-2026-08",
-      "publisher_zh": "QROST 研究简报",
-      "publisher_en": "QROST research brief",
-      "title_zh": "中国汽车城市图谱第一轮调研结论",
-      "title_en": "China auto-city atlas, first research pass",
-      "source_type": "compilation",
-      "grade": "C",
-      "published_at": "2026-08-18",
-      "accessed_at": "2026-08-18",
-      "fact_date": "2026-08",
-      "url": null,
-      "confidence": 0.65,
-      "notes_zh": "城市角色、企业名单、产业集群与媒体所在地的结构化整理。产能、在产车型和工厂状态需后续用A/B级来源逐条核验。",
-      "notes_en": "Structured roles, rosters, clusters and media locations. Plant status, capacity and nameplates still need A/B-grade verification."
-    },
-    {
-      "id": "src-ndrc-yrd-collab",
-      "publisher_zh": "国家发展和改革委员会（区域协作资料，待补URL）",
-      "publisher_en": "NDRC regional collaboration materials (URL pending)",
-      "title_zh": "长三角软件芯片 / 常州电池 / 宁波整车协作案例",
-      "title_en": "YRD case: Shanghai software/chips, Changzhou batteries, Ningbo vehicles",
+      "id": "src-stat-guangzhou-2025",
+      "publisher_zh": "广州市统计局、国家统计局广州调查队",
+      "publisher_en": "Guangzhou Municipal Bureau of Statistics and NBS Guangzhou Survey Office",
+      "title_zh": "2025年广州市国民经济和社会发展统计公报",
+      "title_en": "2025 Guangzhou statistical communiqué",
       "source_type": "government_stats",
-      "grade": "B",
+      "grade": "A",
+      "published_at": "2026-05-10",
+      "accessed_at": "2026-08-24",
+      "fact_date": "2025",
+      "url": "https://tjj.gz.gov.cn/stats_newtjyw/tjsj/tjgb/qstjgb/content/post_10800227.html",
+      "confidence": 0.95,
+      "notes_zh": "规模以上主要工业产品表列出汽车240.96万辆；城市口径不可与其他发布口径无条件混排。",
+      "notes_en": "The major above-scale industrial-products table reports 2.4096M vehicles; its city scope is not automatically comparable with other releases.",
+      "publisher_domain": "tjj.gz.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "statistics:guangzhou:2025"
+        ],
+        "fields": [
+          "total_vehicle_output",
+          "statistical_scope"
+        ],
+        "scope_zh": "规模以上主要工业产品表列出汽车240.96万辆；城市口径不可与其他发布口径无条件混排。",
+        "scope_en": "The major above-scale industrial-products table reports 2.4096M vehicles; its city scope is not automatically comparable with other releases."
+      }
+    },
+    {
+      "id": "src-stat-wuhu-2025",
+      "publisher_zh": "芜湖市统计局、国家统计局芜湖调查队",
+      "publisher_en": "Wuhu Municipal Bureau of Statistics and NBS Wuhu Survey Office",
+      "title_zh": "芜湖市2025年国民经济和社会发展统计公报",
+      "title_en": "2025 Wuhu statistical communiqué",
+      "source_type": "government_stats",
+      "grade": "A",
+      "published_at": "2026-07",
+      "accessed_at": "2026-08-24",
+      "fact_date": "2025",
+      "url": "https://www.wuhu.gov.cn/mlwh/tjgb/41219509.html",
+      "confidence": 0.95,
+      "notes_zh": "主要工业产品表直接列出汽车180.1万辆、新能源汽车41.1万辆；据此纠正早期候选值183万辆。",
+      "notes_en": "The industrial-products table directly reports 1.801M vehicles and 0.411M NEVs, correcting the earlier 1.83M candidate value.",
+      "publisher_domain": "www.wuhu.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "statistics:wuhu:2025"
+        ],
+        "fields": [
+          "total_vehicle_output",
+          "nev_output",
+          "statistical_scope"
+        ],
+        "scope_zh": "主要工业产品表直接列出汽车180.1万辆、新能源汽车41.1万辆；据此纠正早期候选值183万辆。",
+        "scope_en": "The industrial-products table directly reports 1.801M vehicles and 0.411M NEVs, correcting the earlier 1.83M candidate value."
+      }
+    },
+    {
+      "id": "src-stat-shanghai-2025",
+      "publisher_zh": "上海市统计局、国家统计局上海调查总队",
+      "publisher_en": "Shanghai Municipal Bureau of Statistics and NBS Shanghai Survey Office",
+      "title_zh": "2025年上海市国民经济和社会发展统计公报",
+      "title_en": "2025 Shanghai statistical communiqué",
+      "source_type": "government_stats",
+      "grade": "A",
+      "published_at": "2026-03-30",
+      "accessed_at": "2026-08-24",
+      "fact_date": "2025",
+      "url": "https://tjj.sh.gov.cn/tjgb/20260330/e0772941e8e041eaaad2df850b44ef98.html",
+      "confidence": 0.95,
+      "notes_zh": "主要工业产品表列出汽车177.20万辆，按上海市公报口径记录。",
+      "notes_en": "The major-industrial-products table reports 1.7720M vehicles under the Shanghai communiqué's scope.",
+      "publisher_domain": "tjj.sh.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "statistics:shanghai:2025"
+        ],
+        "fields": [
+          "total_vehicle_output",
+          "statistical_scope"
+        ],
+        "scope_zh": "主要工业产品表列出汽车177.20万辆，按上海市公报口径记录。",
+        "scope_en": "The major-industrial-products table reports 1.7720M vehicles under the Shanghai communiqué's scope."
+      }
+    },
+    {
+      "id": "src-stat-xian-2025",
+      "publisher_zh": "西安市统计局、国家统计局西安调查队",
+      "publisher_en": "Xi'an Municipal Bureau of Statistics and NBS Xi'an Survey Office",
+      "title_zh": "西安市2025年国民经济和社会发展统计公报",
+      "title_en": "2025 Xi'an statistical communiqué",
+      "source_type": "government_stats",
+      "grade": "A",
+      "published_at": "2026-05-15",
+      "accessed_at": "2026-08-24",
+      "fact_date": "2025",
+      "url": "https://tjj.xa.gov.cn/web_files/tjj/file/2026/05/15/202605151000219859531.pdf",
+      "confidence": 0.95,
+      "notes_zh": "表2直接列出汽车148.27万辆、新能源汽车105.14万辆，口径为规模以上工业主要产品。",
+      "notes_en": "Table 2 directly reports 1.4827M vehicles and 1.0514M NEVs as major above-scale industrial products.",
+      "publisher_domain": "tjj.xa.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "statistics:xian:2025"
+        ],
+        "fields": [
+          "total_vehicle_output",
+          "nev_output",
+          "statistical_scope"
+        ],
+        "scope_zh": "表2直接列出汽车148.27万辆、新能源汽车105.14万辆，口径为规模以上工业主要产品。",
+        "scope_en": "Table 2 directly reports 1.4827M vehicles and 1.0514M NEVs as major above-scale industrial products."
+      }
+    },
+    {
+      "id": "src-stat-beijing-2025",
+      "publisher_zh": "北京市统计局、国家统计局北京调查总队",
+      "publisher_en": "Beijing Municipal Bureau of Statistics and NBS Beijing Survey Office",
+      "title_zh": "北京市2025年国民经济和社会发展统计公报",
+      "title_en": "2025 Beijing statistical communiqué",
+      "source_type": "government_stats",
+      "grade": "A",
+      "published_at": "2026-03-26",
+      "accessed_at": "2026-08-24",
+      "fact_date": "2025",
+      "url": "https://tjj.beijing.gov.cn/tjsj_31433/tjgb_31445/ndgb_31446/202603/t20260326_4566469.html",
+      "confidence": 0.95,
+      "notes_zh": "规模以上主要工业产品表列出汽车146.71万辆，按北京市公报口径记录。",
+      "notes_en": "The major above-scale industrial-products table reports 1.4671M vehicles under the Beijing communiqué's scope.",
+      "publisher_domain": "tjj.beijing.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "statistics:beijing:2025"
+        ],
+        "fields": [
+          "total_vehicle_output",
+          "statistical_scope"
+        ],
+        "scope_zh": "规模以上主要工业产品表列出汽车146.71万辆，按北京市公报口径记录。",
+        "scope_en": "The major above-scale industrial-products table reports 1.4671M vehicles under the Beijing communiqué's scope."
+      }
+    },
+    {
+      "id": "src-stat-zhengzhou-2025",
+      "publisher_zh": "郑州市统计局、国家统计局郑州调查队",
+      "publisher_en": "Zhengzhou Municipal Bureau of Statistics and NBS Zhengzhou Survey Office",
+      "title_zh": "2025年郑州市国民经济和社会发展统计公报",
+      "title_en": "2025 Zhengzhou statistical communiqué",
+      "source_type": "government_stats",
+      "grade": "A",
+      "published_at": "2026-04-24",
+      "accessed_at": "2026-08-24",
+      "fact_date": "2025",
+      "url": "https://tjj.zhengzhou.gov.cn/tjgb/10017864.jhtml",
+      "confidence": 0.95,
+      "notes_zh": "公报直接列出汽车120.5万辆、同比增长9.6%。",
+      "notes_en": "The communiqué directly reports 1.205M vehicles, up 9.6% year over year.",
+      "publisher_domain": "tjj.zhengzhou.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "statistics:zhengzhou:2025"
+        ],
+        "fields": [
+          "total_vehicle_output",
+          "statistical_scope"
+        ],
+        "scope_zh": "公报直接列出汽车120.5万辆、同比增长9.6%。",
+        "scope_en": "The communiqué directly reports 1.205M vehicles, up 9.6% year over year."
+      }
+    },
+    {
+      "id": "src-stat-hefei-nev-2025",
+      "publisher_zh": "合肥市政务网站",
+      "publisher_en": "Hefei government website",
+      "title_zh": "合肥新能源汽车产量信息",
+      "title_en": "Hefei NEV output information",
+      "source_type": "government_stats",
+      "grade": "A",
       "published_at": null,
-      "accessed_at": "2026-08-18",
-      "fact_date": null,
-      "url": null,
-      "confidence": 0.55,
-      "notes_zh": "调研引用国家发展改革委区域资料，具体公文URL待下一轮补链。",
-      "notes_en": "Cited from NDRC regional materials; exact document URL to be attached next pass."
+      "accessed_at": "2026-08-24",
+      "fact_date": "2025",
+      "url": "https://www.hfyaohai.gov.cn/zwdt/bmts/11485597.html",
+      "confidence": 0.9,
+      "notes_zh": "页面支持2025年新能源汽车137.1万辆，不支持整车总量187.2万辆；因此合肥统计行仍为候选。",
+      "notes_en": "The page supports 1.371M NEVs in 2025, not the 1.872M total-vehicle figure; the Hefei statistics row therefore remains candidate.",
+      "publisher_domain": "www.hfyaohai.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "statistics:hefei:2025"
+        ],
+        "fields": [
+          "nev_output",
+          "scope_note_zh",
+          "scope_note_en"
+        ],
+        "scope_zh": "页面支持2025年新能源汽车137.1万辆，不支持整车总量187.2万辆；因此合肥统计行仍为候选。",
+        "scope_en": "The page supports 1.371M NEVs in 2025, not the 1.872M total-vehicle figure; the Hefei statistics row therefore remains candidate."
+      }
     },
     {
-      "id": "src-chengyu-2024-cluster",
-      "publisher_zh": "成渝地区产业统计（待补URL）",
-      "publisher_en": "Chengdu–Chongqing regional industry statistics (URL pending)",
-      "title_zh": "2024年成渝汽车产量约343万辆、新能源汽车约108.7万辆",
-      "title_en": "2024 Chengyu vehicle output ~3.43M, NEV ~1.087M",
+      "id": "src-stat-jilin-province-2025",
+      "publisher_zh": "吉林省统计局",
+      "publisher_en": "Jilin Provincial Bureau of Statistics",
+      "title_zh": "2025年吉林省国民经济和社会发展统计公报",
+      "title_en": "2025 Jilin provincial statistical communiqué",
       "source_type": "government_stats",
-      "grade": "B",
-      "published_at": "2025",
-      "accessed_at": "2026-08-18",
-      "fact_date": "2024",
-      "url": null,
-      "confidence": 0.55,
-      "notes_zh": "区域合计，不是单座城市产量。URL待补。",
-      "notes_en": "Regional aggregate, not a single-city series. URL pending."
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": "2025",
+      "url": "https://tjj.jl.gov.cn/tjsj/tjgb/ndgb/202604/t20260427_3627028.html",
+      "confidence": 0.95,
+      "notes_zh": "146.13万辆是吉林省级口径，不是长春市口径；链接用于标记范围错配，不能支持城市排行。",
+      "notes_en": "The 1.4613M figure is provincial Jilin scope, not Changchun city scope; this link documents the mismatch and cannot support a city ranking.",
+      "publisher_domain": "tjj.jl.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "statistics:changchun:2025"
+        ],
+        "fields": [
+          "statistical_scope",
+          "scope_note_zh",
+          "scope_note_en"
+        ],
+        "scope_zh": "146.13万辆是吉林省级口径，不是长春市口径；链接用于标记范围错配，不能支持城市排行。",
+        "scope_en": "The 1.4613M figure is provincial Jilin scope, not Changchun city scope; this link documents the mismatch and cannot support a city ranking."
+      }
     },
     {
-      "id": "src-media-public-addresses",
-      "publisher_zh": "各媒体公开联系地址",
-      "publisher_en": "Public contact addresses of each outlet",
-      "title_zh": "全国汽车媒体公开站点与采编城市",
-      "title_en": "National auto media public sites and editorial cities",
+      "id": "src-nio-about-2025",
+      "publisher_zh": "蔚来",
+      "publisher_en": "NIO",
+      "title_zh": "关于蔚来",
+      "title_en": "About NIO",
       "source_type": "company_site",
-      "grade": "B",
+      "grade": "A",
       "published_at": null,
-      "accessed_at": "2026-08-18",
-      "fact_date": "2026-08",
-      "url": null,
-      "confidence": 0.7,
-      "notes_zh": "采编城市按公开总部或频道所属集团所在城。注册地、编辑部与主要流量城市可能不同。",
-      "notes_en": "Editorial city follows public HQ or parent group. Registered office, newsroom and traffic city can diverge."
+      "accessed_at": "2026-08-24",
+      "fact_date": "2025",
+      "url": "https://www.nio.com/about/2025",
+      "confidence": 0.95,
+      "notes_zh": "页面明确区分上海全球总部与合肥蔚来中国总部、制造中心；本图谱据此把集团总部记为上海，并保留合肥制造设施。",
+      "notes_en": "The page distinguishes the global headquarters in Shanghai from NIO China headquarters and the manufacturing centre in Hefei; the atlas therefore records the group HQ in Shanghai and keeps the Hefei plant.",
+      "publisher_domain": "www.nio.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "organization:nio"
+        ],
+        "fields": [
+          "legal_name_zh",
+          "legal_name_en",
+          "headquarters_city_id"
+        ],
+        "scope_zh": "页面明确区分上海全球总部与合肥蔚来中国总部、制造中心；本图谱据此把集团总部记为上海，并保留合肥制造设施。",
+        "scope_en": "The page distinguishes the global headquarters in Shanghai from NIO China headquarters and the manufacturing centre in Hefei; the atlas therefore records the group HQ in Shanghai and keeps the Hefei plant."
+      }
+    },
+    {
+      "id": "src-autohome-20f-2025",
+      "publisher_zh": "汽车之家",
+      "publisher_en": "Autohome Inc.",
+      "title_zh": "2025 年年度报告（Form 20-F）",
+      "title_en": "2025 annual report (Form 20-F)",
+      "source_type": "company_ir",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": "2025",
+      "url": "https://www.sec.gov/Archives/edgar/data/1527636/000119312526155932/athm-20251231.htm",
+      "confidence": 0.95,
+      "notes_zh": "公司申报文件说明其通过 autohome.com.cn 与 che168.com 提供服务；关系采用“运营”，不推断 Che168 是独立股权主体。",
+      "notes_en": "The filing says the company serves users through autohome.com.cn and che168.com; the relation is modelled as operates, without inferring that Che168 is a separate equity entity.",
+      "publisher_domain": "www.sec.gov",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "relation:autohome__operates__che168__"
+        ],
+        "fields": [
+          "from_id",
+          "relation_type",
+          "to_id"
+        ],
+        "scope_zh": "公司申报文件说明其通过 autohome.com.cn 与 che168.com 提供服务；关系采用“运营”，不推断 Che168 是独立股权主体。",
+        "scope_en": "The filing says the company serves users through autohome.com.cn and che168.com; the relation is modelled as operates, without inferring that Che168 is a separate equity entity."
+      }
+    },
+    {
+      "id": "src-baidu-youjia-privacy",
+      "publisher_zh": "百度有驾",
+      "publisher_en": "Baidu Youjia",
+      "title_zh": "有驾隐私政策",
+      "title_en": "Youjia privacy policy",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://youjia.baidu.com/pages/my/privacy",
+      "confidence": 0.95,
+      "notes_zh": "法律披露列出北京百度网讯科技有限公司及百度关联方为运营主体；关系采用“运营”而非股权“拥有”。",
+      "notes_en": "The legal disclosure names Beijing Baidu Netcom Technology and Baidu affiliates as operators; the relation is modelled as operates rather than equity ownership.",
+      "publisher_domain": "youjia.baidu.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "relation:baidu__operates__youjia__"
+        ],
+        "fields": [
+          "from_id",
+          "relation_type",
+          "to_id"
+        ],
+        "scope_zh": "法律披露列出北京百度网讯科技有限公司及百度关联方为运营主体；关系采用“运营”而非股权“拥有”。",
+        "scope_en": "The legal disclosure names Beijing Baidu Netcom Technology and Baidu affiliates as operators; the relation is modelled as operates rather than equity ownership."
+      }
+    },
+    {
+      "id": "src-caam-auto-zongheng",
+      "publisher_zh": "中国汽车工业协会",
+      "publisher_en": "China Association of Automobile Manufacturers",
+      "title_zh": "中国汽车工业协会工作报告",
+      "title_en": "CAAM work report",
+      "source_type": "industry_association",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://www.caam.org.cn/chn/5/cate_69/con_5236042.html",
+      "confidence": 0.95,
+      "notes_zh": "报告将《汽车纵横》明确称为协会自有媒体，直接支持中汽协与该媒体的归属关系。",
+      "notes_en": "The report explicitly identifies Auto Zongheng as CAAM's own media, directly supporting the affiliation relation.",
+      "publisher_domain": "www.caam.org.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "relation:caam__owns__auto-zongheng__"
+        ],
+        "fields": [
+          "from_id",
+          "relation_type",
+          "to_id"
+        ],
+        "scope_zh": "报告将《汽车纵横》明确称为协会自有媒体，直接支持中汽协与该媒体的归属关系。",
+        "scope_en": "The report explicitly identifies Auto Zongheng as CAAM's own media, directly supporting the affiliation relation."
+      }
+    },
+    {
+      "id": "src-tesla-shanghai-contact",
+      "publisher_zh": "特斯拉",
+      "publisher_en": "Tesla",
+      "title_zh": "特斯拉联系信息",
+      "title_en": "Tesla contact information",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://www.tesla.com/en_sg/contact",
+      "confidence": 0.9,
+      "notes_zh": "官方联系页支持上海实体和所在地；不单独支持页面所列车型，故设施记录保持候选阈值。",
+      "notes_en": "The official contact page supports the Shanghai entity and location, but not the listed model mix; the facility row therefore stays at the candidate threshold.",
+      "publisher_domain": "www.tesla.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:tesla-shanghai-gigafactory"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id"
+        ],
+        "scope_zh": "官方联系页支持上海实体和所在地；不单独支持页面所列车型，故设施记录保持候选阈值。",
+        "scope_en": "The official contact page supports the Shanghai entity and location, but not the listed model mix; the facility row therefore stays at the candidate threshold."
+      }
+    },
+    {
+      "id": "src-catl-yibin",
+      "publisher_zh": "宁德时代",
+      "publisher_en": "CATL",
+      "title_zh": "四川时代宜宾基地官方报道",
+      "title_en": "Official report on CATL's Yibin base",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://www.catl.com/en/news/6652.html",
+      "confidence": 0.9,
+      "notes_zh": "公司报道直接支持四川时代宜宾电池制造基地的身份和运行状态。",
+      "notes_en": "The company report directly supports the identity and operating status of CATL's battery-manufacturing base in Yibin.",
+      "publisher_domain": "www.catl.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:catl-yibin"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status"
+        ],
+        "scope_zh": "公司报道直接支持四川时代宜宾电池制造基地的身份和运行状态。",
+        "scope_en": "The company report directly supports the identity and operating status of CATL's battery-manufacturing base in Yibin."
+      }
+    },
+    {
+      "id": "src-gwm-global-manufacturing",
+      "publisher_zh": "长城汽车",
+      "publisher_en": "Great Wall Motor",
+      "title_zh": "全球制造布局",
+      "title_en": "Global manufacturing footprint",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://www.gwm-global.com/global.html",
+      "confidence": 0.9,
+      "notes_zh": "公司全球制造页列出徐水工厂，支持设施身份与保定所在地。",
+      "notes_en": "The company's manufacturing page lists the Xushui factory, supporting its identity and Baoding location.",
+      "publisher_domain": "www.gwm-global.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:gwm-xushui"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id"
+        ],
+        "scope_zh": "公司全球制造页列出徐水工厂，支持设施身份与保定所在地。",
+        "scope_en": "The company's manufacturing page lists the Xushui factory, supporting its identity and Baoding location."
+      }
+    },
+    {
+      "id": "src-tsinghua-svm-profile",
+      "publisher_zh": "清华大学车辆与运载学院",
+      "publisher_en": "Tsinghua School of Vehicle and Mobility",
+      "title_zh": "学院概况",
+      "title_en": "School profile",
+      "source_type": "university_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://www.svm.tsinghua.edu.cn/column/15.html",
+      "confidence": 0.9,
+      "notes_zh": "学院官网支持院系名称与研究方向；未用来证明特定企业合作。",
+      "notes_en": "The school site supports the unit name and research profile; it is not used to prove specific corporate partnerships.",
+      "publisher_domain": "www.svm.tsinghua.edu.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "institution:inst-tsinghua"
+        ],
+        "fields": [
+          "organization_id",
+          "city_id",
+          "college_zh",
+          "college_en"
+        ],
+        "scope_zh": "学院官网支持院系名称与研究方向；未用来证明特定企业合作。",
+        "scope_en": "The school site supports the unit name and research profile; it is not used to prove specific corporate partnerships."
+      }
+    },
+    {
+      "id": "src-bit-me-profile",
+      "publisher_zh": "北京理工大学机械与车辆学院",
+      "publisher_en": "BIT School of Mechanical Engineering",
+      "title_zh": "学院介绍",
+      "title_en": "School introduction",
+      "source_type": "university_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://me.bit.edu.cn/xygk/xyjs/index.htm",
+      "confidence": 0.9,
+      "notes_zh": "学院官网支持院系名称与车辆工程定位；未用来证明特定企业合作。",
+      "notes_en": "The school site supports the unit name and vehicle-engineering profile; it is not used to prove specific corporate partnerships.",
+      "publisher_domain": "me.bit.edu.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "institution:inst-bit"
+        ],
+        "fields": [
+          "organization_id",
+          "city_id",
+          "college_zh",
+          "college_en"
+        ],
+        "scope_zh": "学院官网支持院系名称与车辆工程定位；未用来证明特定企业合作。",
+        "scope_en": "The school site supports the unit name and vehicle-engineering profile; it is not used to prove specific corporate partnerships."
+      }
+    },
+    {
+      "id": "src-tongji-auto-profile",
+      "publisher_zh": "同济大学汽车与能源学院",
+      "publisher_en": "Tongji automotive and energy school",
+      "title_zh": "汽车与能源学院官网",
+      "title_en": "Official automotive and energy school site",
+      "source_type": "university_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://auto.tongji.edu.cn/",
+      "confidence": 0.9,
+      "notes_zh": "当前官网显示院系名称为“汽车与能源学院”，据此替换旧称；未用来证明上汽合作。",
+      "notes_en": "The current site names the unit the automotive and energy school, replacing the stale label; it is not used to prove an SAIC partnership.",
+      "publisher_domain": "auto.tongji.edu.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "institution:inst-tongji"
+        ],
+        "fields": [
+          "organization_id",
+          "city_id",
+          "college_zh",
+          "college_en"
+        ],
+        "scope_zh": "当前官网显示院系名称为“汽车与能源学院”，据此替换旧称；未用来证明上汽合作。",
+        "scope_en": "The current site names the unit the automotive and energy school, replacing the stale label; it is not used to prove an SAIC partnership."
+      }
+    },
+    {
+      "id": "src-jlu-auto-profile",
+      "publisher_zh": "吉林大学汽车工程学院",
+      "publisher_en": "Jilin University College of Automotive Engineering",
+      "title_zh": "学院简介",
+      "title_en": "College profile",
+      "source_type": "university_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://auto.jlu.edu.cn/xygk/xyjj.htm",
+      "confidence": 0.9,
+      "notes_zh": "学院官网支持院系名称与车辆工程沿革；未用来证明一汽合作。",
+      "notes_en": "The college site supports the unit name and automotive-engineering history; it is not used to prove an FAW partnership.",
+      "publisher_domain": "auto.jlu.edu.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "institution:inst-jlu"
+        ],
+        "fields": [
+          "organization_id",
+          "city_id",
+          "college_zh",
+          "college_en"
+        ],
+        "scope_zh": "学院官网支持院系名称与车辆工程沿革；未用来证明一汽合作。",
+        "scope_en": "The college site supports the unit name and automotive-engineering history; it is not used to prove an FAW partnership."
+      }
+    },
+    {
+      "id": "src-hfut-auto-profile",
+      "publisher_zh": "合肥工业大学汽车与交通工程学院",
+      "publisher_en": "HFUT School of Automotive and Transportation Engineering",
+      "title_zh": "学院简介",
+      "title_en": "School profile",
+      "source_type": "university_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://qjxy.hfut.edu.cn/xygk/xyjj.htm",
+      "confidence": 0.9,
+      "notes_zh": "学院官网支持院系名称与车辆工程定位；未用来证明江淮合作。",
+      "notes_en": "The school site supports the unit name and vehicle-engineering profile; it is not used to prove a JAC partnership.",
+      "publisher_domain": "qjxy.hfut.edu.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "institution:inst-hfut"
+        ],
+        "fields": [
+          "organization_id",
+          "city_id",
+          "college_zh",
+          "college_en"
+        ],
+        "scope_zh": "学院官网支持院系名称与车辆工程定位；未用来证明江淮合作。",
+        "scope_en": "The school site supports the unit name and vehicle-engineering profile; it is not used to prove a JAC partnership."
+      }
+    },
+    {
+      "id": "src-changan-university-auto-profile",
+      "publisher_zh": "长安大学汽车学院",
+      "publisher_en": "Chang'an University School of Automobile",
+      "title_zh": "学院简介",
+      "title_en": "School profile",
+      "source_type": "university_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-24",
+      "fact_date": null,
+      "url": "https://qiche.chd.edu.cn/8458/list.htm",
+      "confidence": 0.9,
+      "notes_zh": "学院官网支持院系名称与车辆工程定位；未用来证明特定企业合作。",
+      "notes_en": "The school site supports the unit name and vehicle-engineering profile; it is not used to prove specific corporate partnerships.",
+      "publisher_domain": "qiche.chd.edu.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "institution:inst-chd"
+        ],
+        "fields": [
+          "organization_id",
+          "city_id",
+          "college_zh",
+          "college_en"
+        ],
+        "scope_zh": "学院官网支持院系名称与车辆工程定位；未用来证明特定企业合作。",
+        "scope_en": "The school site supports the unit name and vehicle-engineering profile; it is not used to prove specific corporate partnerships."
+      }
     }
   ]
 }

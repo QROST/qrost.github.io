@@ -4,16 +4,16 @@
       "city_id": "chongqing",
       "year": 2025,
       "total_vehicle_output": 2787700,
-      "nev_output": null,
+      "nev_output": 1296100,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "local_compilation_actual_production_city",
-      "scope_note_zh": "地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-      "scope_note_en": "Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
+      "statistical_scope": "official_city_release",
+      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
+      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
       "source_ids": [
-        "src-output-compilation-2025"
+        "src-stat-chongqing-2025"
       ],
-      "confidence": 0.58
+      "confidence": 0.8
     },
     {
       "city_id": "guangzhou",
@@ -22,13 +22,13 @@
       "nev_output": null,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "local_compilation_actual_production_city",
-      "scope_note_zh": "地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-      "scope_note_en": "Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
+      "statistical_scope": "official_city_release",
+      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
+      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
       "source_ids": [
-        "src-output-compilation-2025"
+        "src-stat-guangzhou-2025"
       ],
-      "confidence": 0.58
+      "confidence": 0.8
     },
     {
       "city_id": "hefei",
@@ -37,28 +37,28 @@
       "nev_output": 1371000,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "local_compilation_actual_production_city",
-      "scope_note_zh": "地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-      "scope_note_en": "Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
+      "statistical_scope": "candidate_partial_external_support",
+      "scope_note_zh": "候选混合记录：外部政务页面只支持新能源汽车137.1万辆，不支持整车总量187.2万辆；整条记录保持候选。",
+      "scope_note_en": "Candidate mixed record: an external government page supports only 1.371M NEVs, not the 1.872M total-vehicle figure; the whole row stays candidate.",
       "source_ids": [
-        "src-output-compilation-2025"
+        "src-stat-hefei-nev-2025"
       ],
-      "confidence": 0.58
+      "confidence": 0.45
     },
     {
       "city_id": "wuhu",
       "year": 2025,
-      "total_vehicle_output": 1830000,
-      "nev_output": null,
+      "total_vehicle_output": 1801000,
+      "nev_output": 411000,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "local_compilation_actual_production_city",
-      "scope_note_zh": "地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-      "scope_note_en": "Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
+      "statistical_scope": "official_city_release",
+      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
+      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
       "source_ids": [
-        "src-output-compilation-2025"
+        "src-stat-wuhu-2025"
       ],
-      "confidence": 0.58
+      "confidence": 0.8
     },
     {
       "city_id": "shanghai",
@@ -67,13 +67,13 @@
       "nev_output": null,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "local_compilation_actual_production_city",
-      "scope_note_zh": "地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-      "scope_note_en": "Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
+      "statistical_scope": "official_city_release",
+      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
+      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
       "source_ids": [
-        "src-output-compilation-2025"
+        "src-stat-shanghai-2025"
       ],
-      "confidence": 0.58
+      "confidence": 0.8
     },
     {
       "city_id": "xian",
@@ -82,13 +82,13 @@
       "nev_output": 1051400,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "local_compilation_actual_production_city",
-      "scope_note_zh": "地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-      "scope_note_en": "Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
+      "statistical_scope": "official_city_release",
+      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
+      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
       "source_ids": [
-        "src-output-compilation-2025"
+        "src-stat-xian-2025"
       ],
-      "confidence": 0.58
+      "confidence": 0.8
     },
     {
       "city_id": "beijing",
@@ -97,13 +97,13 @@
       "nev_output": null,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "local_compilation_actual_production_city",
-      "scope_note_zh": "地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-      "scope_note_en": "Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
+      "statistical_scope": "official_city_release",
+      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
+      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
       "source_ids": [
-        "src-output-compilation-2025"
+        "src-stat-beijing-2025"
       ],
-      "confidence": 0.58
+      "confidence": 0.8
     },
     {
       "city_id": "changchun",
@@ -112,13 +112,13 @@
       "nev_output": null,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "local_compilation_actual_production_city",
-      "scope_note_zh": "地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-      "scope_note_en": "Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
+      "statistical_scope": "candidate_province_scope_mismatch",
+      "scope_note_zh": "候选错配值：146.13万辆能在吉林省级序列中定位，但尚无支持长春市同值的官方城市页面，不得作为长春市产量或城市排行依据。",
+      "scope_note_en": "Candidate scope mismatch: 1.4613M can be located in a Jilin provincial series, but no city release supports the same Changchun figure. Do not use it as Changchun output or in a city ranking.",
       "source_ids": [
-        "src-output-compilation-2025"
+        "src-stat-jilin-province-2025"
       ],
-      "confidence": 0.58
+      "confidence": 0.2
     },
     {
       "city_id": "zhengzhou",
@@ -127,13 +127,13 @@
       "nev_output": null,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "local_compilation_actual_production_city",
-      "scope_note_zh": "地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-      "scope_note_en": "Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
+      "statistical_scope": "official_city_release",
+      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
+      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
       "source_ids": [
-        "src-output-compilation-2025"
+        "src-stat-zhengzhou-2025"
       ],
-      "confidence": 0.58
+      "confidence": 0.8
     },
     {
       "city_id": "liuzhou",
@@ -142,13 +142,11 @@
       "nev_output": null,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "local_compilation_actual_production_city",
-      "scope_note_zh": "地方统计资料拼合，按车辆实际生产所在地归属；口径可能含全市/经开区/规模以上差异，并非国家统计局发布的统一城市排行。",
-      "scope_note_en": "Compiled from local statistical releases attributed to actual production location. Scopes may mix city / development-zone / above-scale industry. Not a unified NBS city ranking.",
-      "source_ids": [
-        "src-output-compilation-2025"
-      ],
-      "confidence": 0.58
+      "statistical_scope": "candidate_local_compilation",
+      "scope_note_zh": "候选拼合值：尚未附上能直接支持本条数字的外部官方页面，不作为权威排行依据。",
+      "scope_note_en": "Candidate compilation value: no external official page directly supporting this record is attached yet; do not treat it as an authoritative ranking.",
+      "source_ids": [],
+      "confidence": 0.45
     }
   ]
 }

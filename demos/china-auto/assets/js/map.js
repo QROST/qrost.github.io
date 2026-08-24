@@ -86,11 +86,12 @@
 
     (opts.cities || []).forEach(function (city) {
       var stat = opts.getStat && opts.getStat(city.id);
-      var out = stat && stat.total_vehicle_output;
+      var verified = stat && stat.confidence > 0.5;
+      var out = verified && stat.total_vehicle_output;
       if (out != null) { outMin = Math.min(outMin, out); outMax = Math.max(outMax, out); }
       var color = cssVar('--accent');
       if (dim === 'output') {
-        color = cssVar('--chart-1');
+        color = verified ? cssVar('--chart-1') : cssVar('--text-faint');
       } else if (dim === 'cluster') {
         var cid = (city.cluster_ids || [])[0];
         color = clusterColors[cid] || cssVar('--text-faint');
@@ -129,7 +130,8 @@
           if (ex && ex.city) {
             var st = ex.stat;
             var out = st && st.total_vehicle_output != null ? (st.total_vehicle_output / 10000).toFixed(2) : '—';
-            return '<b>' + I18N.name(ex.city) + '</b><br/>2025: ' + out + (I18N.isEn() ? ' 10k' : ' 万辆');
+            var candidate = st && st.confidence <= 0.5 ? ' · ' + I18N.t('candidate') : '';
+            return '<b>' + I18N.name(ex.city) + '</b><br/>2025: ' + out + (I18N.isEn() ? ' 10k' : ' 万辆') + candidate;
           }
           return p.name || '';
         }
@@ -157,7 +159,7 @@
       };
       points.forEach(function (pt, i) {
         var st = pt._extra && pt._extra.stat;
-        pt.value[2] = st && st.total_vehicle_output != null ? st.total_vehicle_output : built.outMin;
+        pt.value[2] = st && st.confidence > 0.5 && st.total_vehicle_output != null ? st.total_vehicle_output : null;
         points[i] = pt;
       });
       option.series[0].data = points;

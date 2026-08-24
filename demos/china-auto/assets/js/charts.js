@@ -155,7 +155,7 @@
     var c = inst('overview-chart'); if (!c) return;
     var rows = cities.map(function (city) {
       var st = getStat(city.id);
-      return { name: I18N.name(city), val: st && st.total_vehicle_output != null ? st.total_vehicle_output / 10000 : 0 };
+      return { name: I18N.name(city), val: st && st.confidence > 0.5 && st.total_vehicle_output != null ? st.total_vehicle_output / 10000 : 0 };
     }).filter(function (r) { return r.val > 0; });
     rows.sort(function (a, b) { return b.val - a.val; });
     if (!rows.length) return empty('overview-chart');
@@ -171,7 +171,7 @@
 
   var SUPPLY_TYPES = { battery_company: 1, supplier: 1, software_company: 1, chip_company: 1 };
   var GRAPH_REL = {
-    cluster_adjacent: 1, owns: 1,
+    cluster_adjacent: 1, owns: 1, operates: 1,
     historically_linked_to: 1, researches_with: 1, located_in: 1
   };
 
@@ -185,14 +185,14 @@
   }
   function citySymbolSize(city, getStat) {
     var st = getStat ? getStat(city.id) : null;
-    var v = st && st.total_vehicle_output != null ? st.total_vehicle_output / 10000 : 0;
+    var v = st && st.confidence > 0.5 && st.total_vehicle_output != null ? st.total_vehicle_output / 10000 : 0;
     var floor = city.tier === 'core' ? 22 : 16;
     return Math.max(floor, Math.min(46, 14 + Math.sqrt(Math.max(v, 0)) * 2.1));
   }
   function relStyle(type) {
     var s;
     if (type === 'cluster_adjacent') s = { color: cssVar('--chart-3'), width: 1.4, type: 'dashed', opacity: 0.75 };
-    else if (type === 'owns') s = { color: cssVar('--chart-1'), width: 1.6, type: 'solid', opacity: 0.8 };
+    else if (type === 'owns' || type === 'operates') s = { color: cssVar('--chart-1'), width: 1.6, type: 'solid', opacity: 0.8 };
     else if (type === 'historically_linked_to') s = { color: cssVar('--chart-5'), width: 1.2, type: 'dashed', opacity: 0.7 };
     else if (type === 'researches_with') s = { color: cssVar('--chart-6'), width: 1.3, type: 'solid', opacity: 0.75 };
     else if (type === 'headquarters') s = { color: faintColor(), width: 1, type: 'solid', opacity: 0.4 };
@@ -345,7 +345,9 @@
       var tip = [
         '<b>' + I18N.name(city) + '</b>',
         names.length ? names.join(' · ') : '',
-        I18N.t('output2025') + ': ' + fmtWan(st && st.total_vehicle_output) + (st && st.total_vehicle_output != null ? ' ' + I18N.t('wanVehicles') : ''),
+        I18N.t('output2025') + ': ' + fmtWan(st && st.total_vehicle_output) +
+          (st && st.total_vehicle_output != null ? ' ' + I18N.t('wanVehicles') : '') +
+          (st && st.confidence <= 0.5 ? ' · ' + I18N.t('candidate') : ''),
         I18N.t('countHq') + ' ' + oemN + ' · ' + I18N.t('countBrands') + ' ' + brandN +
           ' · ' + I18N.t('countPlants') + ' ' + plantN +
           ' · ' + I18N.t('countMedia') + ' ' + mediaN + ' · ' + I18N.t('countUnis') + ' ' + uniN
@@ -437,7 +439,7 @@
       var sa = nodeIds[a] ? a : (nodeIds['org:' + a] ? 'org:' + a : '');
       var sb = nodeIds[b] ? b : (nodeIds['org:' + b] ? 'org:' + b : '');
       if (!sa || !sb) return;
-      if (r.relation_type === 'cluster_adjacent' || r.relation_type === 'historically_linked_to' || r.relation_type === 'owns') {
+      if (r.relation_type === 'cluster_adjacent' || r.relation_type === 'historically_linked_to' || r.relation_type === 'owns' || r.relation_type === 'operates') {
         var k = sa < sb ? sa + '|' + sb + '|' + r.relation_type : sb + '|' + sa + '|' + r.relation_type;
         if (seenUndirected[k]) return;
         seenUndirected[k] = 1;

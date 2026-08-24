@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stamp content-hash cache-bust tokens on china-auto index.html, then validate."""
+"""Stamp deterministic content-hash cache tokens, then validate China Auto."""
 from __future__ import annotations
 
 import hashlib
@@ -7,7 +7,6 @@ import json
 import re
 import subprocess
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -22,7 +21,11 @@ def sha10(path: Path) -> str:
 
 
 def main() -> int:
-    files = sorted(p for p in DATA.rglob("*") if p.is_file() and p.suffix in {".json", ".js", ".css"})
+    man_path = DATA / "manifest.json"
+    files = sorted(
+        p for p in DATA.rglob("*")
+        if p.is_file() and p != man_path and p.suffix in {".json", ".js", ".css"}
+    )
     files += sorted((ROOT / "assets" / "js").glob("*.js"))
     css = ROOT / "assets" / "css" / "china-auto.css"
     if css.exists():
@@ -35,24 +38,37 @@ def main() -> int:
 
     if HTML.exists():
         html = HTML.read_text(encoding="utf-8")
-        html = VERSION_RE.sub(rf"\g<1>{token}\3", html)
-        html = TOKEN_RE.sub(rf"\g<1>{token}", html)
-        HTML.write_text(html, encoding="utf-8")
-        print(f"build: stamped ?v={token}")
+        stamped = VERSION_RE.sub(rf"\g<1>{token}\3", html)
+        stamped = TOKEN_RE.sub(rf"\g<1>{token}", stamped)
+        if stamped != html:
+            HTML.write_text(stamped, encoding="utf-8")
+            print(f"build: stamped ?v={token}")
+        else:
+            print(f"build: cache token already ?v={token}")
     else:
         print("build: index.html missing, skip stamp")
 
-    man_path = DATA / "manifest.json"
     if man_path.exists():
         man = json.loads(man_path.read_text(encoding="utf-8"))
         man["cache_token"] = token
-        man["built_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-        man_path.write_text(json.dumps(man, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        # Wall-clock build timestamps made identical inputs produce different
+        # tracked output. ``generated_at`` is maintained by the data seed;
+        # cache stamping itself is content-derived only.
+        man.pop("built_at", None)
+        rendered = json.dumps(man, ensure_ascii=False, indent=2) + "\n"
+        if rendered != man_path.read_text(encoding="utf-8"):
+            man_path.write_text(rendered, encoding="utf-8")
 
     rc = subprocess.call([sys.executable, str(ROOT / "tools" / "validate.py")])
     if rc != 0:
         return rc
     rc = subprocess.call([sys.executable, str(ROOT / "tools" / "test_search.py")])
+    if rc != 0:
+        return rc
+    rc = subprocess.call([sys.executable, str(ROOT / "tools" / "test_provenance.py")])
+    if rc != 0:
+        return rc
+    rc = subprocess.call([sys.executable, str(ROOT / "tools" / "test_page_contract.py")])
     if rc != 0:
         return rc
     print("build: OK")

@@ -7,9 +7,8 @@
       "role_type": "headquarters",
       "description_zh": "北汽在beijing的headquarters角色",
       "description_en": "BAIC headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__beijing-benz__headquarters",
@@ -18,9 +17,8 @@
       "role_type": "headquarters",
       "description_zh": "北京奔驰在beijing的headquarters角色",
       "description_en": "Beijing Benz headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__xiaomi-auto__headquarters",
@@ -29,9 +27,8 @@
       "role_type": "headquarters",
       "description_zh": "小米汽车在beijing的headquarters角色",
       "description_en": "Xiaomi Auto headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__li-auto__headquarters",
@@ -40,9 +37,8 @@
       "role_type": "headquarters",
       "description_zh": "理想汽车在beijing的headquarters角色",
       "description_en": "Li Auto headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__baidu__rd_center",
@@ -51,9 +47,8 @@
       "role_type": "rd_center",
       "description_zh": "百度在beijing的rd_center角色",
       "description_en": "Baidu rd_center role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__horizon-robotics__rd_center",
@@ -62,9 +57,8 @@
       "role_type": "rd_center",
       "description_zh": "地平线在beijing的rd_center角色",
       "description_en": "Horizon Robotics rd_center role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__tsinghua__university_campus",
@@ -73,9 +67,8 @@
       "role_type": "university_campus",
       "description_zh": "清华大学在beijing的university_campus角色",
       "description_en": "Tsinghua University university_campus role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__bit__university_campus",
@@ -84,9 +77,8 @@
       "role_type": "university_campus",
       "description_zh": "北京理工大学在beijing的university_campus角色",
       "description_en": "BIT university_campus role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__autohome__media_editorial_office",
@@ -95,9 +87,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "汽车之家在beijing的media_editorial_office角色",
       "description_en": "Autohome media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__yiche__media_editorial_office",
@@ -106,9 +97,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "易车在beijing的media_editorial_office角色",
       "description_en": "Yiche media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__dongchedi__media_editorial_office",
@@ -117,9 +107,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "懂车帝在beijing的media_editorial_office角色",
       "description_en": "Dongchedi media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__xcar__media_editorial_office",
@@ -128,9 +117,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "爱卡汽车在beijing的media_editorial_office角色",
       "description_en": "Xcar media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__youjia__media_editorial_office",
@@ -139,9 +127,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "有驾在beijing的media_editorial_office角色",
       "description_en": "Youjia media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__cheshi__media_editorial_office",
@@ -150,9 +137,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "网上车市在beijing的media_editorial_office角色",
       "description_en": "Cheshi media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__sohu-auto__media_editorial_office",
@@ -161,9 +147,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "搜狐汽车在beijing的media_editorial_office角色",
       "description_en": "Sohu Auto media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__sina-auto__media_editorial_office",
@@ -172,9 +157,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "新浪汽车在beijing的media_editorial_office角色",
       "description_en": "Sina Auto media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__ifeng-auto__media_editorial_office",
@@ -183,9 +167,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "凤凰汽车在beijing的media_editorial_office角色",
       "description_en": "Ifeng Auto media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__d1ev__media_editorial_office",
@@ -194,9 +177,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "第一电动网在beijing的media_editorial_office角色",
       "description_en": "D1EV media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__chedongxi__media_editorial_office",
@@ -205,9 +187,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "车东西在beijing的media_editorial_office角色",
       "description_en": "CheDongXi media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__diandong__media_editorial_office",
@@ -216,9 +197,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "电动邦在beijing的media_editorial_office角色",
       "description_en": "Diandong media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__china-auto-news__media_editorial_office",
@@ -227,9 +207,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "中国汽车报在beijing的media_editorial_office角色",
       "description_en": "China Automotive News media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__auto-business-review__media_editorial_office",
@@ -238,9 +217,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "汽车商业评论在beijing的media_editorial_office角色",
       "description_en": "Auto Business Review media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__auto-fan__media_editorial_office",
@@ -249,9 +227,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "汽车之友在beijing的media_editorial_office角色",
       "description_en": "Auto Fan media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__arcfox__headquarters",
@@ -260,9 +237,8 @@
       "role_type": "headquarters",
       "description_zh": "极狐在beijing的headquarters角色",
       "description_en": "Arcfox headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__beijing-hyundai__headquarters",
@@ -271,9 +247,8 @@
       "role_type": "headquarters",
       "description_zh": "北京现代在beijing的headquarters角色",
       "description_en": "Beijing Hyundai headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__baic-foton__headquarters",
@@ -282,9 +257,8 @@
       "role_type": "headquarters",
       "description_zh": "北汽福田在beijing的headquarters角色",
       "description_en": "Foton headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__chexun__media_editorial_office",
@@ -293,9 +267,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "车讯网在beijing的media_editorial_office角色",
       "description_en": "Chexun media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__che168__media_editorial_office",
@@ -304,9 +277,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "二手车之家在beijing的media_editorial_office角色",
       "description_en": "Che168 media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__people-auto__media_editorial_office",
@@ -315,9 +287,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "人民网汽车在beijing的media_editorial_office角色",
       "description_en": "People.cn Auto media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__xinhua-auto__media_editorial_office",
@@ -326,9 +297,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "新华网汽车在beijing的media_editorial_office角色",
       "description_en": "Xinhua Auto media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__cctv-auto__media_editorial_office",
@@ -337,9 +307,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "央视网汽车在beijing的media_editorial_office角色",
       "description_en": "CCTV Auto media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__chinanews-auto__media_editorial_office",
@@ -348,9 +317,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "中新网汽车在beijing的media_editorial_office角色",
       "description_en": "China News Auto media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__caixin-auto__media_editorial_office",
@@ -359,9 +327,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "财新汽车在beijing的media_editorial_office角色",
       "description_en": "Caixin Auto media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__eeo-auto__media_editorial_office",
@@ -370,9 +337,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "经济观察网汽车在beijing的media_editorial_office角色",
       "description_en": "EEO Auto media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__cheyun__media_editorial_office",
@@ -381,9 +347,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "车云网在beijing的media_editorial_office角色",
       "description_en": "Cheyun media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__auto-zongheng__media_editorial_office",
@@ -392,9 +357,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "汽车纵横在beijing的media_editorial_office角色",
       "description_en": "Auto Zongheng media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__motor-trend-china__media_editorial_office",
@@ -403,9 +367,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "汽车族在beijing的media_editorial_office角色",
       "description_en": "Motor Trend China media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__truck-home__media_editorial_office",
@@ -414,9 +377,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "卡车之家在beijing的media_editorial_office角色",
       "description_en": "Truck Home media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__chinabuses__media_editorial_office",
@@ -425,9 +387,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "客车网在beijing的media_editorial_office角色",
       "description_en": "Chinabuses media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__chinaspv__media_editorial_office",
@@ -436,9 +397,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "专用汽车网在beijing的media_editorial_office角色",
       "description_en": "China SPV media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__caam__headquarters",
@@ -447,9 +407,8 @@
       "role_type": "headquarters",
       "description_zh": "中汽协在beijing的headquarters角色",
       "description_en": "CAAM headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__cada__headquarters",
@@ -458,9 +417,8 @@
       "role_type": "headquarters",
       "description_zh": "中汽流通协会在beijing的headquarters角色",
       "description_en": "CADA headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__sae-china__headquarters",
@@ -469,9 +427,8 @@
       "role_type": "headquarters",
       "description_zh": "中汽学会在beijing的headquarters角色",
       "description_en": "SAE-China headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__china-ev100__headquarters",
@@ -480,9 +437,8 @@
       "role_type": "headquarters",
       "description_zh": "电动汽车百人会在beijing的headquarters角色",
       "description_en": "China EV100 headquarters role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__luobo-report__media_editorial_office",
@@ -491,9 +447,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "萝卜报告在beijing的media_editorial_office角色",
       "description_en": "Luobo Report media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__laosiji__media_editorial_office",
@@ -502,9 +457,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "老司机出品在beijing的media_editorial_office角色",
       "description_en": "Laosiji media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__review-38__media_editorial_office",
@@ -513,9 +467,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "38号车评中心在beijing的media_editorial_office角色",
       "description_en": "Review 38 media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__li-laoshu__media_editorial_office",
@@ -524,9 +477,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "李老鼠说车在beijing的media_editorial_office角色",
       "description_en": "Li Laoshu media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__tichebang__media_editorial_office",
@@ -535,9 +487,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "踢车帮在beijing的media_editorial_office角色",
       "description_en": "Tichebang media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__yan-chuang__media_editorial_office",
@@ -546,9 +497,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "闫闯说车在beijing的media_editorial_office角色",
       "description_en": "Yan Chuang media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__che-ruo-chujian__media_editorial_office",
@@ -557,9 +507,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "车若初见在beijing的media_editorial_office角色",
       "description_en": "Che Ruo Chujian media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__doudouche__media_editorial_office",
@@ -568,9 +517,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "逗斗车在beijing的media_editorial_office角色",
       "description_en": "Doudouche media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__dabiaoche__media_editorial_office",
@@ -579,9 +527,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "大飙车在beijing的media_editorial_office角色",
       "description_en": "Da Biaoche media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "beijing__cidi-wuyin__media_editorial_office",
@@ -590,9 +537,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "此地无垠在beijing的media_editorial_office角色",
       "description_en": "Cidi Wuyin media_editorial_office role in beijing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__saic__headquarters",
@@ -601,9 +547,8 @@
       "role_type": "headquarters",
       "description_zh": "上汽集团在shanghai的headquarters角色",
       "description_en": "SAIC Motor headquarters role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__tesla-china__headquarters",
@@ -612,9 +557,8 @@
       "role_type": "headquarters",
       "description_zh": "特斯拉上海在shanghai的headquarters角色",
       "description_en": "Tesla Shanghai headquarters role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__tongji__university_campus",
@@ -623,9 +567,8 @@
       "role_type": "university_campus",
       "description_zh": "同济大学在shanghai的university_campus角色",
       "description_en": "Tongji University university_campus role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__sjtu__university_campus",
@@ -634,9 +577,8 @@
       "role_type": "university_campus",
       "description_zh": "上海交通大学在shanghai的university_campus角色",
       "description_en": "SJTU university_campus role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__gasgoo__media_editorial_office",
@@ -645,9 +587,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "盖世汽车在shanghai的media_editorial_office角色",
       "description_en": "Gasgoo media_editorial_office role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__garage42__media_editorial_office",
@@ -656,9 +597,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "42号车库在shanghai的media_editorial_office角色",
       "description_en": "Garage 42 media_editorial_office role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__yicai-auto__media_editorial_office",
@@ -667,9 +607,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "第一财经汽车在shanghai的media_editorial_office角色",
       "description_en": "Yicai Auto media_editorial_office role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__saic-vw__headquarters",
@@ -678,9 +617,8 @@
       "role_type": "headquarters",
       "description_zh": "上汽大众在shanghai的headquarters角色",
       "description_en": "SAIC Volkswagen headquarters role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__saic-gm__headquarters",
@@ -689,9 +627,8 @@
       "role_type": "headquarters",
       "description_zh": "上汽通用在shanghai的headquarters角色",
       "description_en": "SAIC-GM headquarters role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__im-motors__headquarters",
@@ -700,9 +637,8 @@
       "role_type": "headquarters",
       "description_zh": "智己汽车在shanghai的headquarters角色",
       "description_en": "IM Motors headquarters role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__rising-auto__headquarters",
@@ -711,9 +647,8 @@
       "role_type": "headquarters",
       "description_zh": "飞凡汽车在shanghai的headquarters角色",
       "description_en": "Rising Auto headquarters role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__roewe__headquarters",
@@ -722,9 +657,8 @@
       "role_type": "headquarters",
       "description_zh": "荣威在shanghai的headquarters角色",
       "description_en": "Roewe headquarters role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__mg__headquarters",
@@ -733,9 +667,8 @@
       "role_type": "headquarters",
       "description_zh": "名爵在shanghai的headquarters角色",
       "description_en": "MG headquarters role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__saic-maxus__headquarters",
@@ -744,9 +677,8 @@
       "role_type": "headquarters",
       "description_zh": "上汽大通在shanghai的headquarters角色",
       "description_en": "SAIC Maxus headquarters role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__thepaper-auto__media_editorial_office",
@@ -755,9 +687,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "澎湃汽车在shanghai的media_editorial_office角色",
       "description_en": "The Paper Auto media_editorial_office role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__jiemian-auto__media_editorial_office",
@@ -766,9 +697,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "界面汽车在shanghai的media_editorial_office角色",
       "description_en": "Jiemian Auto media_editorial_office role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shanghai__yanzhi-auto__media_editorial_office",
@@ -777,9 +707,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "焉知汽车在shanghai的media_editorial_office角色",
       "description_en": "Yanzhi Auto media_editorial_office role in shanghai",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shenzhen__byd__headquarters",
@@ -788,9 +717,8 @@
       "role_type": "headquarters",
       "description_zh": "比亚迪在shenzhen的headquarters角色",
       "description_en": "BYD headquarters role in shenzhen",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shenzhen__xchuxing__media_editorial_office",
@@ -799,9 +727,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "新出行在shenzhen的media_editorial_office角色",
       "description_en": "Xchuxing media_editorial_office role in shenzhen",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shenzhen__tencent-auto__media_editorial_office",
@@ -810,9 +737,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "腾讯汽车在shenzhen的media_editorial_office角色",
       "description_en": "Tencent Auto media_editorial_office role in shenzhen",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shenzhen__denza__headquarters",
@@ -821,9 +747,8 @@
       "role_type": "headquarters",
       "description_zh": "腾势在shenzhen的headquarters角色",
       "description_en": "Denza headquarters role in shenzhen",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shenzhen__yangwang__headquarters",
@@ -832,9 +757,8 @@
       "role_type": "headquarters",
       "description_zh": "仰望在shenzhen的headquarters角色",
       "description_en": "Yangwang headquarters role in shenzhen",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shenzhen__fangchengbao__headquarters",
@@ -843,9 +767,8 @@
       "role_type": "headquarters",
       "description_zh": "方程豹在shenzhen的headquarters角色",
       "description_en": "Fangchengbao headquarters role in shenzhen",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shenzhen__huawei-car__rd_center",
@@ -854,9 +777,8 @@
       "role_type": "rd_center",
       "description_zh": "华为车BU在shenzhen的rd_center角色",
       "description_en": "Huawei IAS rd_center role in shenzhen",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shenzhen__gaogong-ev__media_editorial_office",
@@ -865,9 +787,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "高工智能汽车在shenzhen的media_editorial_office角色",
       "description_en": "GG-EV media_editorial_office role in shenzhen",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__gac__headquarters",
@@ -876,9 +797,8 @@
       "role_type": "headquarters",
       "description_zh": "广汽集团在guangzhou的headquarters角色",
       "description_en": "GAC Group headquarters role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__gac-honda__headquarters",
@@ -887,9 +807,8 @@
       "role_type": "headquarters",
       "description_zh": "广汽本田在guangzhou的headquarters角色",
       "description_en": "GAC Honda headquarters role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__gac-toyota__headquarters",
@@ -898,9 +817,8 @@
       "role_type": "headquarters",
       "description_zh": "广汽丰田在guangzhou的headquarters角色",
       "description_en": "GAC Toyota headquarters role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__dongfeng-nissan__headquarters",
@@ -909,9 +827,8 @@
       "role_type": "headquarters",
       "description_zh": "东风日产在guangzhou的headquarters角色",
       "description_en": "Dongfeng Nissan headquarters role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__xpeng__headquarters",
@@ -920,9 +837,8 @@
       "role_type": "headquarters",
       "description_zh": "小鹏汽车在guangzhou的headquarters角色",
       "description_en": "XPENG headquarters role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__weiride__rd_center",
@@ -931,9 +847,8 @@
       "role_type": "rd_center",
       "description_zh": "文远知行在guangzhou的rd_center角色",
       "description_en": "WeRide rd_center role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__pony-ai__rd_center",
@@ -942,9 +857,8 @@
       "role_type": "rd_center",
       "description_zh": "小马智行在guangzhou的rd_center角色",
       "description_en": "Pony.ai rd_center role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__scut__university_campus",
@@ -953,9 +867,8 @@
       "role_type": "university_campus",
       "description_zh": "华南理工大学在guangzhou的university_campus角色",
       "description_en": "SCUT university_campus role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__pcauto__media_editorial_office",
@@ -964,9 +877,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "太平洋汽车在guangzhou的media_editorial_office角色",
       "description_en": "PCauto media_editorial_office role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__gac-aion__headquarters",
@@ -975,9 +887,8 @@
       "role_type": "headquarters",
       "description_zh": "广汽埃安在guangzhou的headquarters角色",
       "description_en": "GAC Aion headquarters role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__gac-trumpchi__headquarters",
@@ -986,9 +897,8 @@
       "role_type": "headquarters",
       "description_zh": "广汽传祺在guangzhou的headquarters角色",
       "description_en": "Trumpchi headquarters role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__hyptec__headquarters",
@@ -997,9 +907,8 @@
       "role_type": "headquarters",
       "description_zh": "昊铂在guangzhou的headquarters角色",
       "description_en": "Hyptec headquarters role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__21jingji-auto__media_editorial_office",
@@ -1008,9 +917,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "21世纪经济报道汽车在guangzhou的media_editorial_office角色",
       "description_en": "21CBH Auto media_editorial_office role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__speedsters__media_editorial_office",
@@ -1019,9 +927,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "极速拍档在guangzhou的media_editorial_office角色",
       "description_en": "Speedsters media_editorial_office role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__dajia-cheyan__media_editorial_office",
@@ -1030,9 +937,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "大家车言论在guangzhou的media_editorial_office角色",
       "description_en": "Dajia Cars Talk media_editorial_office role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "guangzhou__xincheping__media_editorial_office",
@@ -1041,9 +947,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "新车评在guangzhou的media_editorial_office角色",
       "description_en": "Xincheping media_editorial_office role in guangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chongqing__changan__headquarters",
@@ -1052,9 +957,8 @@
       "role_type": "headquarters",
       "description_zh": "长安汽车在chongqing的headquarters角色",
       "description_en": "Changan Auto headquarters role in chongqing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chongqing__seres__headquarters",
@@ -1063,9 +967,8 @@
       "role_type": "headquarters",
       "description_zh": "赛力斯在chongqing的headquarters角色",
       "description_en": "Seres headquarters role in chongqing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chongqing__qianli__rd_center",
@@ -1074,9 +977,8 @@
       "role_type": "rd_center",
       "description_zh": "千里科技在chongqing的rd_center角色",
       "description_en": "Qianli Technology rd_center role in chongqing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chongqing__caeri__testing_center",
@@ -1085,9 +987,8 @@
       "role_type": "testing_center",
       "description_zh": "中国汽研在chongqing的testing_center角色",
       "description_en": "CAERI testing_center role in chongqing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chongqing__cqu__university_campus",
@@ -1096,9 +997,8 @@
       "role_type": "university_campus",
       "description_zh": "重庆大学在chongqing的university_campus角色",
       "description_en": "Chongqing University university_campus role in chongqing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chongqing__cqut__university_campus",
@@ -1107,9 +1007,8 @@
       "role_type": "university_campus",
       "description_zh": "重庆理工大学在chongqing的university_campus角色",
       "description_en": "CQUT university_campus role in chongqing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chongqing__avatr__headquarters",
@@ -1118,9 +1017,8 @@
       "role_type": "headquarters",
       "description_zh": "阿维塔在chongqing的headquarters角色",
       "description_en": "Avatr headquarters role in chongqing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chongqing__deepal__headquarters",
@@ -1129,9 +1027,8 @@
       "role_type": "headquarters",
       "description_zh": "深蓝汽车在chongqing的headquarters角色",
       "description_en": "Deepal headquarters role in chongqing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chongqing__aito__headquarters",
@@ -1140,9 +1037,8 @@
       "role_type": "headquarters",
       "description_zh": "问界在chongqing的headquarters角色",
       "description_en": "AITO headquarters role in chongqing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hefei__jac__headquarters",
@@ -1151,20 +1047,18 @@
       "role_type": "headquarters",
       "description_zh": "江淮汽车在hefei的headquarters角色",
       "description_en": "JAC headquarters role in hefei",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
-      "id": "hefei__nio__headquarters",
+      "id": "hefei__nio__factory",
       "city_id": "hefei",
       "entity_id": "nio",
-      "role_type": "headquarters",
-      "description_zh": "蔚来在hefei的headquarters角色",
-      "description_en": "NIO headquarters role in hefei",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "role_type": "factory",
+      "description_zh": "蔚来在hefei的factory角色",
+      "description_en": "NIO factory role in hefei",
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hefei__vw-anhui__headquarters",
@@ -1173,9 +1067,8 @@
       "role_type": "headquarters",
       "description_zh": "大众安徽在hefei的headquarters角色",
       "description_en": "Volkswagen Anhui headquarters role in hefei",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hefei__byd__factory",
@@ -1184,9 +1077,8 @@
       "role_type": "factory",
       "description_zh": "比亚迪在hefei的factory角色",
       "description_en": "BYD factory role in hefei",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hefei__changan__factory",
@@ -1195,9 +1087,8 @@
       "role_type": "factory",
       "description_zh": "长安汽车在hefei的factory角色",
       "description_en": "Changan Auto factory role in hefei",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hefei__gotion__headquarters",
@@ -1206,9 +1097,8 @@
       "role_type": "headquarters",
       "description_zh": "国轩高科在hefei的headquarters角色",
       "description_en": "Gotion headquarters role in hefei",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hefei__hfut__university_campus",
@@ -1217,9 +1107,8 @@
       "role_type": "university_campus",
       "description_zh": "合肥工业大学在hefei的university_campus角色",
       "description_en": "HFUT university_campus role in hefei",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhu__chery__headquarters",
@@ -1228,9 +1117,8 @@
       "role_type": "headquarters",
       "description_zh": "奇瑞汽车在wuhu的headquarters角色",
       "description_en": "Chery headquarters role in wuhu",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhu__exeed__headquarters",
@@ -1239,9 +1127,8 @@
       "role_type": "headquarters",
       "description_zh": "星途在wuhu的headquarters角色",
       "description_en": "Exeed headquarters role in wuhu",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhu__jetour__headquarters",
@@ -1250,9 +1137,8 @@
       "role_type": "headquarters",
       "description_zh": "捷途在wuhu的headquarters角色",
       "description_en": "Jetour headquarters role in wuhu",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhu__icar__headquarters",
@@ -1261,9 +1147,8 @@
       "role_type": "headquarters",
       "description_zh": "iCAR在wuhu的headquarters角色",
       "description_en": "iCAR headquarters role in wuhu",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "xian__byd__factory",
@@ -1272,9 +1157,8 @@
       "role_type": "factory",
       "description_zh": "比亚迪在xian的factory角色",
       "description_en": "BYD factory role in xian",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "xian__geely__factory",
@@ -1283,9 +1167,8 @@
       "role_type": "factory",
       "description_zh": "吉利在xian的factory角色",
       "description_en": "Geely factory role in xian",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "xian__changan-univ__university_campus",
@@ -1294,9 +1177,8 @@
       "role_type": "university_campus",
       "description_zh": "长安大学在xian的university_campus角色",
       "description_en": "Chang'an University university_campus role in xian",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changchun__faw__headquarters",
@@ -1305,9 +1187,8 @@
       "role_type": "headquarters",
       "description_zh": "中国一汽在changchun的headquarters角色",
       "description_en": "FAW headquarters role in changchun",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changchun__hongqi__headquarters",
@@ -1316,9 +1197,8 @@
       "role_type": "headquarters",
       "description_zh": "红旗在changchun的headquarters角色",
       "description_en": "Hongqi headquarters role in changchun",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changchun__jiefang__headquarters",
@@ -1327,9 +1207,8 @@
       "role_type": "headquarters",
       "description_zh": "解放在changchun的headquarters角色",
       "description_en": "Jiefang headquarters role in changchun",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changchun__bestune__headquarters",
@@ -1338,9 +1217,8 @@
       "role_type": "headquarters",
       "description_zh": "奔腾在changchun的headquarters角色",
       "description_en": "Bestune headquarters role in changchun",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changchun__faw-vw__headquarters",
@@ -1349,9 +1227,8 @@
       "role_type": "headquarters",
       "description_zh": "一汽-大众在changchun的headquarters角色",
       "description_en": "FAW-Volkswagen headquarters role in changchun",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changchun__audi-faw-nev__headquarters",
@@ -1360,9 +1237,8 @@
       "role_type": "headquarters",
       "description_zh": "奥迪一汽新能源在changchun的headquarters角色",
       "description_en": "Audi FAW NEV headquarters role in changchun",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changchun__jlu__university_campus",
@@ -1371,9 +1247,8 @@
       "role_type": "university_campus",
       "description_zh": "吉林大学在changchun的university_campus角色",
       "description_en": "Jilin University university_campus role in changchun",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "zhengzhou__byd__factory",
@@ -1382,9 +1257,8 @@
       "role_type": "factory",
       "description_zh": "比亚迪在zhengzhou的factory角色",
       "description_en": "BYD factory role in zhengzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "zhengzhou__yutong__headquarters",
@@ -1393,9 +1267,8 @@
       "role_type": "headquarters",
       "description_zh": "宇通客车在zhengzhou的headquarters角色",
       "description_en": "Yutong headquarters role in zhengzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "zhengzhou__zhengzhou-nissan__headquarters",
@@ -1404,9 +1277,8 @@
       "role_type": "headquarters",
       "description_zh": "郑州日产在zhengzhou的headquarters角色",
       "description_en": "Zhengzhou Nissan headquarters role in zhengzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "zhengzhou__saic__factory",
@@ -1415,9 +1287,8 @@
       "role_type": "factory",
       "description_zh": "上汽集团在zhengzhou的factory角色",
       "description_en": "SAIC Motor factory role in zhengzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "liuzhou__sgmw__headquarters",
@@ -1426,9 +1297,8 @@
       "role_type": "headquarters",
       "description_zh": "上汽通用五菱在liuzhou的headquarters角色",
       "description_en": "SGMW headquarters role in liuzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "liuzhou__dongfeng-liuzhou__headquarters",
@@ -1437,9 +1307,8 @@
       "role_type": "headquarters",
       "description_zh": "东风柳汽在liuzhou的headquarters角色",
       "description_en": "Dongfeng Liuzhou Motor headquarters role in liuzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "liuzhou__guangxi-auto__headquarters",
@@ -1448,9 +1317,8 @@
       "role_type": "headquarters",
       "description_zh": "广西汽车集团在liuzhou的headquarters角色",
       "description_en": "Guangxi Auto Group headquarters role in liuzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "liuzhou__jiefang__factory",
@@ -1459,9 +1327,8 @@
       "role_type": "factory",
       "description_zh": "解放在liuzhou的factory角色",
       "description_en": "Jiefang factory role in liuzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "liuzhou__wuling__headquarters",
@@ -1470,9 +1337,8 @@
       "role_type": "headquarters",
       "description_zh": "五菱在liuzhou的headquarters角色",
       "description_en": "Wuling headquarters role in liuzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "liuzhou__baojun__headquarters",
@@ -1481,9 +1347,8 @@
       "role_type": "headquarters",
       "description_zh": "宝骏在liuzhou的headquarters角色",
       "description_en": "Baojun headquarters role in liuzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhan__dongfeng__headquarters",
@@ -1492,9 +1357,8 @@
       "role_type": "headquarters",
       "description_zh": "东风集团在wuhan的headquarters角色",
       "description_en": "Dongfeng Motor headquarters role in wuhan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhan__voyah__headquarters",
@@ -1503,9 +1367,8 @@
       "role_type": "headquarters",
       "description_zh": "岚图在wuhan的headquarters角色",
       "description_en": "Voyah headquarters role in wuhan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhan__mengshi__headquarters",
@@ -1514,9 +1377,8 @@
       "role_type": "headquarters",
       "description_zh": "猛士在wuhan的headquarters角色",
       "description_en": "Mengshi headquarters role in wuhan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhan__aeolus__headquarters",
@@ -1525,9 +1387,8 @@
       "role_type": "headquarters",
       "description_zh": "奕派在wuhan的headquarters角色",
       "description_en": "Aeolus headquarters role in wuhan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhan__whut__university_campus",
@@ -1536,9 +1397,8 @@
       "role_type": "university_campus",
       "description_zh": "武汉理工大学在wuhan的university_campus角色",
       "description_en": "WUT university_campus role in wuhan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhan__dongfeng-honda__headquarters",
@@ -1547,9 +1407,8 @@
       "role_type": "headquarters",
       "description_zh": "东风本田在wuhan的headquarters角色",
       "description_en": "Dongfeng Honda headquarters role in wuhan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhan__lotus__headquarters",
@@ -1558,9 +1417,8 @@
       "role_type": "headquarters",
       "description_zh": "路特斯在wuhan的headquarters角色",
       "description_en": "Lotus headquarters role in wuhan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "wuhan__y-car-review__media_editorial_office",
@@ -1569,9 +1427,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "Y车评在wuhan的media_editorial_office角色",
       "description_en": "Y Car Review media_editorial_office role in wuhan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changsha__byd__factory",
@@ -1580,9 +1437,8 @@
       "role_type": "factory",
       "description_zh": "比亚迪在changsha的factory角色",
       "description_en": "BYD factory role in changsha",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changsha__saic-vw__factory",
@@ -1591,9 +1447,8 @@
       "role_type": "factory",
       "description_zh": "上汽大众在changsha的factory角色",
       "description_en": "SAIC Volkswagen factory role in changsha",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changsha__gac-aion__factory",
@@ -1602,9 +1457,8 @@
       "role_type": "factory",
       "description_zh": "广汽埃安在changsha的factory角色",
       "description_en": "GAC Aion factory role in changsha",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changsha__baic-foton__factory",
@@ -1613,9 +1467,8 @@
       "role_type": "factory",
       "description_zh": "北汽福田在changsha的factory角色",
       "description_en": "Foton factory role in changsha",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changsha__hnu__university_campus",
@@ -1624,9 +1477,8 @@
       "role_type": "university_campus",
       "description_zh": "湖南大学在changsha的university_campus角色",
       "description_en": "Hunan University university_campus role in changsha",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "tianjin__faw-toyota__headquarters",
@@ -1635,9 +1487,8 @@
       "role_type": "headquarters",
       "description_zh": "一汽丰田在tianjin的headquarters角色",
       "description_en": "FAW Toyota headquarters role in tianjin",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "tianjin__faw-vw__factory",
@@ -1646,9 +1497,8 @@
       "role_type": "factory",
       "description_zh": "一汽-大众在tianjin的factory角色",
       "description_en": "FAW-Volkswagen factory role in tianjin",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "tianjin__gwm__factory",
@@ -1657,9 +1507,8 @@
       "role_type": "factory",
       "description_zh": "长城汽车在tianjin的factory角色",
       "description_en": "Great Wall Motor factory role in tianjin",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "tianjin__catarc__testing_center",
@@ -1668,9 +1517,8 @@
       "role_type": "testing_center",
       "description_zh": "中汽中心在tianjin的testing_center角色",
       "description_en": "CATARC testing_center role in tianjin",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chengdu__faw-vw__factory",
@@ -1679,9 +1527,8 @@
       "role_type": "factory",
       "description_zh": "一汽-大众在chengdu的factory角色",
       "description_en": "FAW-Volkswagen factory role in chengdu",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chengdu__faw-toyota__factory",
@@ -1690,9 +1537,8 @@
       "role_type": "factory",
       "description_zh": "一汽丰田在chengdu的factory角色",
       "description_en": "FAW Toyota factory role in chengdu",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chengdu__volvo-cars-chengdu__headquarters",
@@ -1701,9 +1547,8 @@
       "role_type": "headquarters",
       "description_zh": "沃尔沃成都在chengdu的headquarters角色",
       "description_en": "Volvo Chengdu headquarters role in chengdu",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chengdu__geely__factory",
@@ -1712,9 +1557,8 @@
       "role_type": "factory",
       "description_zh": "吉利在chengdu的factory角色",
       "description_en": "Geely factory role in chengdu",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chengdu__lynk-co__factory",
@@ -1723,9 +1567,8 @@
       "role_type": "factory",
       "description_zh": "领克在chengdu的factory角色",
       "description_en": "Lynk & Co factory role in chengdu",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "chengdu__nbd-auto__media_editorial_office",
@@ -1734,9 +1577,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "每经汽车在chengdu的media_editorial_office角色",
       "description_en": "NBD Auto media_editorial_office role in chengdu",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hangzhou__geely__headquarters",
@@ -1745,9 +1587,8 @@
       "role_type": "headquarters",
       "description_zh": "吉利在hangzhou的headquarters角色",
       "description_en": "Geely headquarters role in hangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hangzhou__leapmotor__headquarters",
@@ -1756,9 +1597,8 @@
       "role_type": "headquarters",
       "description_zh": "零跑汽车在hangzhou的headquarters角色",
       "description_en": "Leapmotor headquarters role in hangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hangzhou__lynk-co__headquarters",
@@ -1767,9 +1607,8 @@
       "role_type": "headquarters",
       "description_zh": "领克在hangzhou的headquarters角色",
       "description_en": "Lynk & Co headquarters role in hangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hangzhou__zeekr__headquarters",
@@ -1778,9 +1617,8 @@
       "role_type": "headquarters",
       "description_zh": "极氪在hangzhou的headquarters角色",
       "description_en": "Zeekr headquarters role in hangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hangzhou__geely-galaxy__headquarters",
@@ -1789,9 +1627,8 @@
       "role_type": "headquarters",
       "description_zh": "吉利银河在hangzhou的headquarters角色",
       "description_en": "Geely Galaxy headquarters role in hangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "hangzhou__netease-auto__media_editorial_office",
@@ -1800,9 +1637,8 @@
       "role_type": "media_editorial_office",
       "description_zh": "网易汽车在hangzhou的media_editorial_office角色",
       "description_en": "NetEase Auto media_editorial_office role in hangzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shenyang__bmw-brilliance__headquarters",
@@ -1811,9 +1647,8 @@
       "role_type": "headquarters",
       "description_zh": "华晨宝马在shenyang的headquarters角色",
       "description_en": "BMW Brilliance headquarters role in shenyang",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "ningde__catl__headquarters",
@@ -1822,9 +1657,8 @@
       "role_type": "headquarters",
       "description_zh": "宁德时代在ningde的headquarters角色",
       "description_en": "CATL headquarters role in ningde",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changzhou__li-auto__factory",
@@ -1833,9 +1667,8 @@
       "role_type": "factory",
       "description_zh": "理想汽车在changzhou的factory角色",
       "description_en": "Li Auto factory role in changzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changzhou__byd__factory",
@@ -1844,9 +1677,8 @@
       "role_type": "factory",
       "description_zh": "比亚迪在changzhou的factory角色",
       "description_en": "BYD factory role in changzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changzhou__catl__supplier_plant",
@@ -1855,9 +1687,8 @@
       "role_type": "supplier_plant",
       "description_zh": "宁德时代在changzhou的supplier_plant角色",
       "description_en": "CATL supplier_plant role in changzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changzhou__svolt__headquarters",
@@ -1866,9 +1697,8 @@
       "role_type": "headquarters",
       "description_zh": "蜂巢能源在changzhou的headquarters角色",
       "description_en": "SVOLT headquarters role in changzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "changzhou__calb__headquarters",
@@ -1877,9 +1707,8 @@
       "role_type": "headquarters",
       "description_zh": "中创新航在changzhou的headquarters角色",
       "description_en": "CALB headquarters role in changzhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "ningbo__joyson__headquarters",
@@ -1888,9 +1717,8 @@
       "role_type": "headquarters",
       "description_zh": "均胜电子在ningbo的headquarters角色",
       "description_en": "Joyson headquarters role in ningbo",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "ningbo__tuopu__headquarters",
@@ -1899,9 +1727,8 @@
       "role_type": "headquarters",
       "description_zh": "拓普集团在ningbo的headquarters角色",
       "description_en": "Tuopu headquarters role in ningbo",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "ningbo__minth__headquarters",
@@ -1910,9 +1737,8 @@
       "role_type": "headquarters",
       "description_zh": "敏实集团在ningbo的headquarters角色",
       "description_en": "Minth headquarters role in ningbo",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "ningbo__huaxiang__headquarters",
@@ -1921,9 +1747,8 @@
       "role_type": "headquarters",
       "description_zh": "华翔集团在ningbo的headquarters角色",
       "description_en": "Huaxiang headquarters role in ningbo",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "ningbo__geely__factory",
@@ -1932,9 +1757,8 @@
       "role_type": "factory",
       "description_zh": "吉利在ningbo的factory角色",
       "description_en": "Geely factory role in ningbo",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "ningbo__zeekr__factory",
@@ -1943,9 +1767,8 @@
       "role_type": "factory",
       "description_zh": "极氪在ningbo的factory角色",
       "description_en": "Zeekr factory role in ningbo",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "ningbo__geely-galaxy__factory",
@@ -1954,9 +1777,8 @@
       "role_type": "factory",
       "description_zh": "吉利银河在ningbo的factory角色",
       "description_en": "Geely Galaxy factory role in ningbo",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "huizhou__desay-sv__headquarters",
@@ -1965,9 +1787,8 @@
       "role_type": "headquarters",
       "description_zh": "德赛西威在huizhou的headquarters角色",
       "description_en": "Desay SV headquarters role in huizhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "huizhou__holosonics__headquarters",
@@ -1976,9 +1797,8 @@
       "role_type": "headquarters",
       "description_zh": "华阳集团在huizhou的headquarters角色",
       "description_en": "HuaYang headquarters role in huizhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "huizhou__eve-energy__headquarters",
@@ -1987,9 +1807,8 @@
       "role_type": "headquarters",
       "description_zh": "亿纬锂能在huizhou的headquarters角色",
       "description_en": "EVE Energy headquarters role in huizhou",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "yibin__catl__supplier_plant",
@@ -1998,9 +1817,8 @@
       "role_type": "supplier_plant",
       "description_zh": "宁德时代在yibin的supplier_plant角色",
       "description_en": "CATL supplier_plant role in yibin",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "baoding__gwm__headquarters",
@@ -2009,9 +1827,8 @@
       "role_type": "headquarters",
       "description_zh": "长城汽车在baoding的headquarters角色",
       "description_en": "Great Wall Motor headquarters role in baoding",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "baoding__haval__headquarters",
@@ -2020,9 +1837,8 @@
       "role_type": "headquarters",
       "description_zh": "哈弗在baoding的headquarters角色",
       "description_en": "Haval headquarters role in baoding",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "baoding__tank__headquarters",
@@ -2031,9 +1847,8 @@
       "role_type": "headquarters",
       "description_zh": "坦克在baoding的headquarters角色",
       "description_en": "Tank headquarters role in baoding",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "baoding__ora__headquarters",
@@ -2042,9 +1857,8 @@
       "role_type": "headquarters",
       "description_zh": "欧拉在baoding的headquarters角色",
       "description_en": "ORA headquarters role in baoding",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "baoding__wey__headquarters",
@@ -2053,9 +1867,8 @@
       "role_type": "headquarters",
       "description_zh": "魏牌在baoding的headquarters角色",
       "description_en": "WEY headquarters role in baoding",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "jinan__sinotruk__headquarters",
@@ -2064,9 +1877,8 @@
       "role_type": "headquarters",
       "description_zh": "中国重汽在jinan的headquarters角色",
       "description_en": "Sinotruk headquarters role in jinan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "jinan__byd__factory",
@@ -2075,9 +1887,8 @@
       "role_type": "factory",
       "description_zh": "比亚迪在jinan的factory角色",
       "description_en": "BYD factory role in jinan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "jinan__geely__factory",
@@ -2086,9 +1897,8 @@
       "role_type": "factory",
       "description_zh": "吉利在jinan的factory角色",
       "description_en": "Geely factory role in jinan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shiyan__dongfeng-cv__headquarters",
@@ -2097,9 +1907,8 @@
       "role_type": "headquarters",
       "description_zh": "东风商用车在shiyan的headquarters角色",
       "description_en": "Dongfeng Commercial Vehicles headquarters role in shiyan",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "xiamen__king-long__headquarters",
@@ -2108,9 +1917,8 @@
       "role_type": "headquarters",
       "description_zh": "金龙客车在xiamen的headquarters角色",
       "description_en": "King Long headquarters role in xiamen",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "xiamen__golden-dragon__headquarters",
@@ -2119,9 +1927,8 @@
       "role_type": "headquarters",
       "description_zh": "金旅客车在xiamen的headquarters角色",
       "description_en": "Golden Dragon headquarters role in xiamen",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "jiaxing__neta__headquarters",
@@ -2130,9 +1937,8 @@
       "role_type": "headquarters",
       "description_zh": "哪吒汽车在jiaxing的headquarters角色",
       "description_en": "Neta headquarters role in jiaxing",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     },
     {
       "id": "shenzhen__byd__rd_center",
@@ -2141,9 +1947,8 @@
       "role_type": "rd_center",
       "description_zh": "南山与坪山研发集群",
       "description_en": "Nanshan and Pingshan R&D cluster",
-      "source_ids": [
-        "src-research-brief-2026-08"
-      ]
+      "confidence": 0.4,
+      "source_ids": []
     }
   ]
 }

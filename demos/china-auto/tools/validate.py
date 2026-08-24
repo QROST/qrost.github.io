@@ -4,12 +4,23 @@ from __future__ import annotations
 
 import json
 import sys
+from collections import defaultdict
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "assets" / "data"
 SCHEMA = json.loads((Path(__file__).parent / "schema.json").read_text(encoding="utf-8"))
 ENUMS = SCHEMA["enums"]
+FORBIDDEN_SOURCE_TERMS = (
+    "qrost",
+    "research brief",
+    "研究简报",
+    "internal brief",
+    "内部简报",
+    "self-authored",
+    "自编",
+)
 
 
 def load(name: str, key: str) -> list:
@@ -18,6 +29,111 @@ def load(name: str, key: str) -> list:
     if not isinstance(data.get(key), list):
         raise ValueError(f"{name}: missing list '{key}'")
     return data[key]
+
+
+def is_external_http_url(value: object) -> bool:
+    if not isinstance(value, str) or not value.strip():
+        return False
+    try:
+        parsed = urlparse(value.strip())
+    except ValueError:
+        return False
+    host = (parsed.hostname or "").lower().rstrip(".")
+    if parsed.scheme not in {"http", "https"} or not host:
+        return False
+    return host != "qrost.github.io" and not host.endswith(".qrost.github.io")
+
+
+def provenance_key(kind: str, row: dict) -> str:
+    rid = row.get("id")
+    if rid:
+        return f"{kind} {rid}"
+    if kind == "stats":
+        return f"stats {row.get('city_id')} {row.get('year')}"
+    return kind
+
+
+def evidence_ref(kind: str, row: dict) -> str:
+    if kind == "stats":
+        return f"statistics:{row.get('city_id')}:{row.get('year')}"
+    prefix = {"org": "organization", "role": "city_role"}.get(kind, kind)
+    return f"{prefix}:{row.get('id')}"
+
+
+def check_provenance(
+    errors: list[str], kind: str, row: dict, source_by_id: dict[str, dict]
+) -> None:
+    label = provenance_key(kind, row)
+    confidence = row.get("confidence")
+    if isinstance(confidence, bool) or not isinstance(confidence, (int, float)):
+        errors.append(f"{label}: numeric confidence required")
+        return
+    if not 0 <= confidence <= 1:
+        errors.append(f"{label}: confidence outside 0..1")
+
+    source_ids = row.get("source_ids")
+    if not isinstance(source_ids, list):
+        errors.append(f"{label}: source_ids list required")
+        return
+    if len(source_ids) != len(set(source_ids)):
+        errors.append(f"{label}: duplicate source_ids")
+    for sid in source_ids:
+        source = source_by_id.get(sid)
+        if not source:
+            errors.append(f"{label}: unknown source {sid}")
+        elif not is_external_http_url(source.get("url")):
+            errors.append(f"{label}: source {sid} has no resolvable external URL")
+    if confidence > 0.5 and not source_ids:
+        errors.append(f"{label}: confidence>0.5 requires external source_ids")
+
+
+def check_source_record(errors: list[str], source: dict) -> None:
+    sid = source.get("id", "<missing>")
+    if source.get("grade") not in ENUMS["source_grade"]:
+        errors.append(f"source {sid}: bad grade")
+    if source.get("source_type") not in ENUMS["source_type"]:
+        errors.append(f"source {sid}: bad type")
+    if not is_external_http_url(source.get("url")):
+        errors.append(f"source {sid}: nonempty external http(s) URL required")
+    for field in ("publisher_zh", "publisher_en"):
+        if not isinstance(source.get(field), str) or not source[field].strip():
+            errors.append(f"source {sid}: nonempty {field} required")
+    if source.get("publisher_ownership") != "external":
+        errors.append(f"source {sid}: publisher_ownership must be external")
+    publisher_domain = source.get("publisher_domain")
+    try:
+        url_host = (urlparse(str(source.get("url") or "")).hostname or "").lower().rstrip(".")
+    except ValueError:
+        url_host = ""
+    if not isinstance(publisher_domain, str) or not publisher_domain.strip():
+        errors.append(f"source {sid}: nonempty publisher_domain required")
+    elif publisher_domain.lower().rstrip(".") != url_host:
+        errors.append(f"source {sid}: publisher_domain must match source URL host")
+
+    scope = source.get("support_scope")
+    if not isinstance(scope, dict):
+        errors.append(f"source {sid}: support_scope object required")
+    else:
+        refs = scope.get("entity_refs")
+        fields = scope.get("fields")
+        if not isinstance(refs, list) or not refs or not all(isinstance(ref, str) and ref.strip() for ref in refs):
+            errors.append(f"source {sid}: support_scope.entity_refs must be a nonempty string list")
+        if not isinstance(fields, list) or not fields or not all(isinstance(field, str) and field.strip() for field in fields):
+            errors.append(f"source {sid}: support_scope.fields must be a nonempty string list")
+        for field in ("scope_zh", "scope_en"):
+            if not isinstance(scope.get(field), str) or not scope[field].strip():
+                errors.append(f"source {sid}: support_scope.{field} required")
+    text = " ".join(
+        str(source.get(field) or "")
+        for field in (
+            "id", "publisher_zh", "publisher_en", "title_zh", "title_en",
+            "notes_zh", "notes_en", "url",
+        )
+    ).lower()
+    for term in FORBIDDEN_SOURCE_TERMS:
+        if term.lower() in text:
+            errors.append(f"source {sid}: forbidden internal/self-authored marker {term!r}")
+            break
 
 
 def main() -> int:
@@ -37,12 +153,61 @@ def main() -> int:
     org_ids = {o["id"] for o in orgs}
     cluster_ids = {c["id"] for c in clusters}
     source_ids = {s["id"] for s in sources}
+    source_by_id = {s["id"]: s for s in sources}
     entity_ids = city_ids | org_ids | cluster_ids | {f["id"] for f in facilities} | {m["id"] for m in media}
 
     if len(city_ids) != len(cities):
         errors.append("duplicate city id")
     if len(org_ids) != len(orgs):
         errors.append("duplicate organization id")
+    if len(source_ids) != len(sources):
+        errors.append("duplicate source id")
+
+    for source in sources:
+        check_source_record(errors, source)
+
+    evidence_sets = (
+        ("city", cities),
+        ("org", orgs),
+        ("facility", facilities),
+        ("role", roles),
+        ("relation", relations),
+        ("cluster", clusters),
+        ("stats", stats),
+        ("media", media),
+        ("institution", institutions),
+    )
+    for kind, rows in evidence_sets:
+        for row in rows:
+            check_provenance(errors, kind, row, source_by_id)
+
+    ref_to_row: dict[str, dict] = {}
+    source_usage: dict[str, set[str]] = defaultdict(set)
+    for kind, rows in evidence_sets:
+        for row in rows:
+            ref = evidence_ref(kind, row)
+            if ref in ref_to_row:
+                errors.append(f"duplicate evidence ref {ref}")
+            ref_to_row[ref] = row
+            for sid in row.get("source_ids") or []:
+                source_usage[sid].add(ref)
+    for source in sources:
+        sid = source.get("id", "<missing>")
+        scope = source.get("support_scope")
+        if not isinstance(scope, dict):
+            continue
+        declared = set(scope.get("entity_refs") or [])
+        used = source_usage.get(sid, set())
+        for ref in sorted(declared - set(ref_to_row)):
+            errors.append(f"source {sid}: support_scope unknown entity_ref {ref}")
+        for ref in sorted(used - declared):
+            errors.append(f"source {sid}: used by {ref} but support_scope omits it")
+        for ref in sorted(declared - used):
+            errors.append(f"source {sid}: declares {ref} but that row does not link the source")
+        for field in scope.get("fields") or []:
+            for ref in declared & set(ref_to_row):
+                if field not in ref_to_row[ref]:
+                    errors.append(f"source {sid}: scoped field {field} missing from {ref}")
 
     core = [c for c in cities if c.get("tier") == "core"]
     specialist = [c for c in cities if c.get("tier") == "specialist"]
@@ -81,12 +246,6 @@ def main() -> int:
             errors.append(f"org {o['id']}: parent {parent} missing")
         if o.get("status") not in ENUMS["org_status"]:
             errors.append(f"org {o['id']}: bad status")
-        conf = o.get("confidence") or 0
-        if conf > 0.5 and not o.get("source_ids"):
-            errors.append(f"org {o['id']}: confidence>0.5 requires source_ids")
-        for sid in o.get("source_ids") or []:
-            if sid not in source_ids:
-                errors.append(f"org {o['id']}: unknown source {sid}")
 
     enrich_path = DATA / "org-enrichment.json"
     enrich = {}
@@ -128,8 +287,12 @@ def main() -> int:
                 continue
             if not isinstance(m, dict) or m.get("value") is None:
                 errors.append(f"enrich {eid}: {field} needs value")
-            elif not m.get("source_url"):
-                errors.append(f"enrich {eid}: {field} needs source_url")
+            elif not is_external_http_url(m.get("source_url")):
+                errors.append(f"enrich {eid}: {field} needs external http(s) source_url")
+            else:
+                metric_url = str(m["source_url"]).lower()
+                if any(term.lower() in metric_url for term in FORBIDDEN_SOURCE_TERMS):
+                    errors.append(f"enrich {eid}: {field} source_url is self-authored/internal")
 
     for f in facilities:
         if f.get("operator_id") not in org_ids:
@@ -140,9 +303,6 @@ def main() -> int:
             errors.append(f"facility {f['id']}: bad type")
         if f.get("status") not in ENUMS["facility_status"]:
             errors.append(f"facility {f['id']}: bad status")
-        for sid in f.get("source_ids") or []:
-            if sid not in source_ids:
-                errors.append(f"facility {f['id']}: unknown source {sid}")
 
     role_keys = set()
     for r in roles:
@@ -178,11 +338,6 @@ def main() -> int:
             errors.append(f"stats {st['city_id']} {st['year']}: city missing")
         if not st.get("statistical_scope"):
             errors.append(f"stats {st['city_id']} {st['year']}: statistical_scope required")
-        for sid in st.get("source_ids") or []:
-            if sid not in source_ids:
-                errors.append(f"stats {st['city_id']}: unknown source {sid}")
-        if (st.get("confidence") or 0) > 0.5 and not st.get("source_ids"):
-            errors.append(f"stats {st['city_id']}: confidence>0.5 requires source")
 
     for m in media:
         if m["organization_id"] not in org_ids:
@@ -198,12 +353,6 @@ def main() -> int:
             errors.append(f"institution {inst['id']}: org missing")
         if inst["city_id"] not in city_ids:
             errors.append(f"institution {inst['id']}: city missing")
-
-    for s in sources:
-        if s.get("grade") not in ENUMS["source_grade"]:
-            errors.append(f"source {s['id']}: bad grade")
-        if s.get("source_type") not in ENUMS["source_type"]:
-            errors.append(f"source {s['id']}: bad type")
 
     if errors:
         print(f"validate: {len(errors)} error(s)")
