@@ -9,7 +9,7 @@
     map: { dim: 'output', role: '', cluster: '', tier: '', layer: 'cities' },
     cat: { search: '', tier: '', role: '', cluster: '', sort: 'output', dir: -1 },
     org: { search: '', type: '', sort: 'type', dir: 1, groups: { identity: true, scale: true, product: true, network: false } },
-    cluster: { selected: '', layers: { hq: true, brands: true, plants: false } }
+    cluster: { selected: '', layers: { hq: true, brands: true, plants: true } }
   };
   var cityModalTab = 'tabOverview';
   var openCityId = null;
