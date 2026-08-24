@@ -145,7 +145,12 @@ body.audio-on #enable:focus-visible { opacity: 1; }                     /* hover
 #whisper.show { opacity: 0.84; transform: translateX(-50%) translateY(0); }
 body.ui-hidden #whisper { z-index: 5; }   /* 低语是叙事层，纯画面模式下仍可浮现（不随 HUD 一起隐） */
 @media (max-width: 820px) { #whisper { font-size: 13.5px; top: 15vh; max-width: 88vw; } }
-@media (prefers-reduced-motion: reduce) { #whisper { transition: opacity 1.4s ease; } #whisper.show { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  #whisper { transition: opacity 1.4s ease; }
+  #whisper.show { transform: translateX(-50%); }
+  #grain { animation: none !important; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}
 
 #panel {
   position: fixed; left: max(env(safe-area-inset-left), 12px); top: 50%; transform: translateY(-50%);
@@ -178,6 +183,11 @@ body.ui-hidden #whisper { z-index: 5; }   /* 低语是叙事层，纯画面模�
   background: #04050a; transition: opacity 0.9s;
 }
 #loading.gone { opacity: 0; pointer-events: none; }
+#loading.load-failed {
+  padding: 24px; box-sizing: border-box; text-align: center;
+  white-space: normal; line-height: 1.6; letter-spacing: 0.04em; color: #ffd89a;
+}
+.module-error { margin: 0 0 18px; color: #ffd89a; font-size: 12px; line-height: 1.6; }
 @media (max-width: 820px) { #panel { font-size: 11px; padding: 8px 10px; gap: 1px; top: auto; bottom: 64px; transform: none; } }
 
 @media (max-width: 820px) {

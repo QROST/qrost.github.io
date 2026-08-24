@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Operator console for Makoauto: orders, inventory, AI render queue, and design gallery. Internal use.">
+<link rel="canonical" href="https://qrost.github.io/demos/makoauto/admin.html">
+<script>(function(){try{var t=localStorage.getItem('pinned_theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
 <meta name="theme-color" content="#0E0E0E">
@@ -109,8 +111,9 @@
 
   /* Design gallery cards */
   .design-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
-  .design-card { background:#161616; border:1px solid #2a2a2a; border-radius:12px; padding:14px; cursor:pointer; transition:border-color .12s; }
+  .design-card { width:100%; background:#161616; border:1px solid #2a2a2a; border-radius:12px; padding:14px; cursor:pointer; transition:border-color .12s; color:inherit; font:inherit; text-align:left; }
   .design-card:hover { border-color:var(--lime); }
+  .design-card:focus-visible { outline:2px solid var(--lime); outline-offset:2px; }
   .design-card .mini-plate { aspect-ratio:2/1; border-radius:4px; background:#111; padding:8%; margin-bottom:10px; }
   .design-card .mini-plate.white  { background:#EFEAE0; }
   .design-card .mini-plate.pink   { background:#FF4D8D; }
@@ -168,6 +171,9 @@
   details.docs .docs-body table th { background:#1f1f1f; }
 
   @media (max-width:900px) {
+    .topbar { flex-wrap:wrap; padding:10px 12px; }
+    .topbar .spacer { display:none; }
+    .topbar .right { width:100%; min-width:0; overflow-x:auto; white-space:nowrap; padding-bottom:2px; }
     .shell { grid-template-columns:1fr; }
     nav.side { border-right:none; border-bottom:1px solid #2a2a2a; }
     details.docs .docs-body .arch, details.docs .docs-body .two { grid-template-columns:1fr; }
@@ -190,15 +196,15 @@
   <div class="shell">
     <nav class="side">
       <div class="group">Operations</div>
-      <a data-section="overview" class="active">▦ Overview</a>
-      <a data-section="orders">📦 Orders <span class="count" id="nav-orders-count">–</span></a>
-      <a data-section="ai">📽 AI render jobs <span class="count" id="nav-ai-count">–</span></a>
+      <a href="#overview" data-section="overview" class="active" aria-current="page">▦ Overview</a>
+      <a href="#orders" data-section="orders">📦 Orders <span class="count" id="nav-orders-count">–</span></a>
+      <a href="#ai" data-section="ai">📽 AI render jobs <span class="count" id="nav-ai-count">–</span></a>
       <div class="group">Catalog</div>
-      <a data-section="designs">🎨 Designs <span class="count" id="nav-designs-count">–</span></a>
-      <a data-section="inventory">📍 Pin inventory <span class="count" id="nav-inv-count">–</span></a>
+      <a href="#designs" data-section="designs">🎨 Designs <span class="count" id="nav-designs-count">–</span></a>
+      <a href="#inventory" data-section="inventory">📍 Pin inventory <span class="count" id="nav-inv-count">–</span></a>
       <div class="group">System</div>
-      <a data-section="settings">⚙ Settings</a>
-      <a data-section="docs">📘 Architecture docs</a>
+      <a href="#settings" data-section="settings">⚙ Settings</a>
+      <a href="#docs" data-section="docs">📘 Architecture docs</a>
     </nav>
 
     <main class="main">
@@ -241,7 +247,7 @@
         </div>
 
         <div class="toolbar">
-          <select id="orders-filter-status">
+          <select id="orders-filter-status" aria-label="Filter orders by status">
             <option value="">All statuses</option>
             <option value="queued">queued</option>
             <option value="picking">picking</option>
@@ -250,7 +256,7 @@
             <option value="delivered">delivered</option>
             <option value="cancelled">cancelled</option>
           </select>
-          <input class="search" id="orders-search" placeholder="Filter by id, email, name…">
+          <input class="search" id="orders-search" aria-label="Search orders" placeholder="Filter by id, email, name…">
           <div class="spacer"></div>
           <span class="count-label" id="orders-count-label">—</span>
         </div>
@@ -295,7 +301,7 @@
           <div class="row-btns"><button class="btn-xs" onclick="loadInventory()">↻ Refresh</button></div>
         </div>
         <div class="toolbar">
-          <select id="inv-filter-cat">
+          <select id="inv-filter-cat" aria-label="Filter inventory by category">
             <option value="">All categories</option>
             <option value="letters">Letters</option>
             <option value="numbers">Numbers</option>
@@ -305,14 +311,14 @@
             <option value="sports">Sports</option>
             <option value="cars">Cars</option>
           </select>
-          <select id="inv-filter-finish">
+          <select id="inv-filter-finish" aria-label="Filter inventory by finish">
             <option value="">All finishes</option>
             <option value="silver">Silver</option>
             <option value="gold">Gold</option>
             <option value="black">Black Chrome</option>
             <option value="rose">Rose Gold</option>
           </select>
-          <input class="search" id="inv-search" placeholder="Filter by label or id…">
+          <input class="search" id="inv-search" aria-label="Search inventory" placeholder="Filter by label or id…">
           <div class="spacer"></div>
           <span class="count-label" id="inv-count-label">—</span>
         </div>
@@ -540,9 +546,14 @@ CREATE TABLE ai_preview_jobs ( id, design_id, provider, prompt, car_spec, status
     docs: () => {},
   };
   document.querySelectorAll('nav.side a[data-section]').forEach(a => {
-    a.addEventListener('click', () => {
-      document.querySelectorAll('nav.side a').forEach(x => x.classList.remove('active'));
+    a.addEventListener('click', (event) => {
+      event.preventDefault();
+      document.querySelectorAll('nav.side a').forEach(x => {
+        x.classList.remove('active');
+        x.removeAttribute('aria-current');
+      });
       a.classList.add('active');
+      a.setAttribute('aria-current', 'page');
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       const id = 'section-' + a.dataset.section;
       document.getElementById(id).classList.add('active');
@@ -765,14 +776,14 @@ CREATE TABLE ai_preview_jobs ( id, design_id, provider, prompt, car_spec, status
       const grid = document.getElementById('designs-grid');
       if (!r.designs.length) { grid.innerHTML = '<div style="color:#666;padding:20px">No designs saved yet.</div>'; return; }
       grid.innerHTML = r.designs.map(d => `
-        <div class="design-card" onclick="openDesign('${d.id}')">
+        <button type="button" class="design-card" onclick="openDesign('${d.id}')" aria-label="Open design ${d.id}">
           <div class="mini-plate ${d.frame_color}"><div class="inner">${(d.plate_text || '—').slice(0, 7)}</div></div>
           <div class="idline">${d.id}</div>
           <div class="meta">
             <span>${Object.keys(d.placements || {}).length} pins · v${d.version}</span>
             <span>${fmtDate(d.updated_at)}</span>
           </div>
-        </div>
+        </button>
       `).join('');
     } catch (e) { toast('Designs load failed: ' + e.message, 'err'); }
   }
@@ -849,10 +860,10 @@ CREATE TABLE ai_preview_jobs ( id, design_id, provider, prompt, car_spec, status
         <td><b>${v.label}</b> <code>${v.pin_id}</code></td>
         <td>${v.category}</td>
         <td>${v.finish}</td>
-        <td><input class="in-cell" data-col="bay_location" value="${v.bay_location || ''}" style="width:80px"></td>
-        <td><input type="number" class="in-cell" data-col="stock_qty" value="${v.stock_qty}" ${low ? 'style="color:#ff9c9c;font-weight:700"' : ''}></td>
-        <td><input type="number" class="in-cell" data-col="reorder_point" value="${v.reorder_point}"></td>
-        <td><button class="btn-xs prim" onclick="saveVariant('${v.pin_id}','${v.finish}',this)">Save</button></td>
+        <td><input class="in-cell" data-col="bay_location" aria-label="Bay location for ${v.pin_id} ${v.finish}" value="${v.bay_location || ''}" style="width:80px"></td>
+        <td><input type="number" class="in-cell" data-col="stock_qty" aria-label="Stock quantity for ${v.pin_id} ${v.finish}" value="${v.stock_qty}" ${low ? 'style="color:#ff9c9c;font-weight:700"' : ''}></td>
+        <td><input type="number" class="in-cell" data-col="reorder_point" aria-label="Reorder threshold for ${v.pin_id} ${v.finish}" value="${v.reorder_point}"></td>
+        <td><button class="btn-xs prim" aria-label="Save inventory for ${v.pin_id} ${v.finish}" onclick="saveVariant('${v.pin_id}','${v.finish}',this)">Save</button></td>
       </tr>`;
     }).join('');
     if (rows.length > 400) tb.insertAdjacentHTML('beforeend', '<tr><td colspan="7" style="color:#666;text-align:center;padding:10px">… ' + (rows.length - 400) + ' more rows hidden. Narrow filters to see them.</td></tr>');

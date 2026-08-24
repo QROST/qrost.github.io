@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#04050a" />
   <title>Neon Abyss · 霓虹渊</title>
   <meta name="description" content="A nightclub-grade generative data cosmos: the same housing, industrial-software, pharma, and shelter-cat data driving a Three.js star field, now scored by a 138 BPM Trance / Progressive engine with beat-synced bloom and strobe. The dance-floor sibling of Data Abyss." />
@@ -16,12 +16,14 @@
   <meta property="og:url" content="https://qrost.github.io/demos/neon-abyss/">
   <meta property="og:site_name" content="QROST">
   <meta property="og:image" content="https://qrost.github.io/demos/neon-abyss/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Neon Abyss · 霓虹渊">
   <meta name="twitter:description" content="A nightclub-grade generative data cosmos — Data Abyss reimagined with a 138 BPM Trance engine and beat-synced bloom.">
   <meta name="twitter:image" content="https://qrost.github.io/demos/neon-abyss/assets/og-image.png">
 
-  <link rel="stylesheet" href="style-club.css?v=n3" />
+  <link rel="stylesheet" href="style-club.css?v=c5067c1913" />
 </head>
 <body>
   <div id="scene"></div>
@@ -36,7 +38,7 @@
     <div id="sub">kick · build · drop · rise · trance</div>
   </div>
 
-  <div id="tip"><span id="tip-text"></span><button id="enable">Motion &amp; sound</button><button id="mic-enable" class="mic-hidden">Use mic · 用麦克风驱动</button></div>
+  <div id="tip"><span id="tip-text"></span><button id="enable">Motion &amp; sound</button><button id="mic-enable" class="mic-hidden">Use mic · 用麦克风驱动</button><button id="strobe-toggle" type="button" aria-pressed="false">Strobe off · 频闪已关</button></div>
 
   <div id="card" class="hidden"></div>
   <div id="loading">Igniting the dance floor…</div>
@@ -45,15 +47,56 @@
   <div id="epilepsy-gate" role="dialog" aria-modal="true" aria-labelledby="ep-title">
     <div class="ep-card">
       <h2 id="ep-title">Photosensitivity warning · 光敏性警示</h2>
-      <p class="ep-en">This experience contains <strong>beat-synced strobing flashes</strong> and rapid color changes. If you have photosensitive epilepsy or are sensitive to flashing lights, do not continue.</p>
-      <p class="ep-zh">本作品包含<strong>与节拍同步的频闪与快速闪烁</strong>。如有光敏性癫痫或对闪光敏感，请勿继续。</p>
+      <p class="ep-en">This experience offers optional <strong>beat-synced strobing flashes</strong> and rapid color changes. Strobe stays off unless you explicitly enable it after entering.</p>
+      <p class="ep-zh">本作品可选<strong>与节拍同步的频闪与快速闪烁</strong>。进入后频闪仍默认关闭，只有你明确开启才会运行。</p>
+      <p id="module-error" class="module-error" role="alert" hidden>3D engine failed to load. Check the network and reload. · 3D 引擎加载失败，请检查网络后刷新。</p>
       <div class="ep-actions">
         <a class="ep-leave" href="../../index.html">Leave · 离开</a>
         <a class="ep-alt" href="../visual-page/index.html" aria-label="Go to the calmer, strobe-free sibling page · 前往无频闪的柔和版数渊">Calmer twin · 柔和版数渊</a>
-        <button id="ep-enter" type="button">I understand · 我已知悉</button>
+        <button id="ep-enter" type="button">Continue without flashes · 无频闪进入</button>
       </div>
     </div>
   </div>
+
+  <!-- This classic watchdog does not depend on the ES module (or Three.js) executing. -->
+  <script id="module-watchdog">
+    (function () {
+      var ready = false;
+      var loading = document.getElementById('loading');
+      var gateError = document.getElementById('module-error');
+      var original = loading ? loading.textContent : '';
+      var configured = Number(window.__ABYSS_MODULE_TIMEOUT_MS);
+      var delay = configured > 0 ? configured : 15000;
+      var timer = null;
+      window.__abyssModuleReady = false;
+      window.__abyssModuleFallback = function () {
+        if (ready) return;
+        if (timer) clearTimeout(timer);
+        var copy = '3D engine failed to load. Check the network and reload. · 3D 引擎加载失败，请检查网络后刷新。';
+        if (loading) {
+          loading.textContent = copy;
+          loading.classList.remove('gone');
+          loading.classList.add('load-failed');
+          loading.setAttribute('role', 'alert');
+          loading.setAttribute('aria-live', 'assertive');
+        }
+        if (gateError) { gateError.textContent = copy; gateError.hidden = false; }
+      };
+      window.__abyssMarkModuleReady = function () {
+        ready = true;
+        window.__abyssModuleReady = true;
+        if (timer) clearTimeout(timer);
+        if (gateError) gateError.hidden = true;
+        if (loading && loading.classList.contains('load-failed')) {
+          loading.textContent = original;
+          loading.classList.remove('load-failed');
+          loading.removeAttribute('role');
+          loading.removeAttribute('aria-live');
+        }
+      };
+      timer = setTimeout(window.__abyssModuleFallback, delay);
+    })();
+  </script>
 
   <!-- 音频解锁原语：parse-time classic script（立即执行，不等 app-club.js 这个 module 加载完）。
        在 #ep-enter 点击这个用户手势的同步调用栈内直接 new/resume AudioContext——这是 iOS/Chrome 移动端
@@ -89,7 +132,7 @@
        点确认那一下被丢弃"的竞态窗口。音频解锁原语已搬到上面的 parse-time inline script：#ep-enter 的
        click 手势本身在那里被同步捕获、ctx 已建好，不再依赖本 module 加载完成的时序（app-club.js 里
        通过 window.__abyssAudio 复用/补跑确认流程）。 -->
-  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" crossorigin>
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" crossorigin onerror="window.__abyssModuleFallback && window.__abyssModuleFallback('three-preload')">
 
   <script type="importmap">
   {
@@ -99,6 +142,6 @@
     }
   }
   </script>
-  <script type="module" src="app-club.js?v=n23"></script>
+  <script type="module" src="app-club.js?v=3806a4b6cc" onerror="window.__abyssModuleFallback && window.__abyssModuleFallback('app-module')"></script>
 </body>
 </html>

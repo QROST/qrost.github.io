@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#04050a" />
   <title>Data Abyss · 数渊</title>
   <meta name="description" content="A generative-art data cosmos fusing housing, industrial-software, pharma, and shelter-cat data into a Three.js star field driven by chaotic attractors, a self-organizing neural map, and generative data music." />
@@ -16,12 +16,14 @@
   <meta property="og:url" content="https://qrost.github.io/demos/visual-page/">
   <meta property="og:site_name" content="QROST">
   <meta property="og:image" content="https://qrost.github.io/demos/visual-page/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Data Abyss · 数渊">
   <meta name="twitter:description" content="A generative-art data cosmos fusing housing, industrial-software, pharma, and shelter-cat data into a Three.js star field.">
   <meta name="twitter:image" content="https://qrost.github.io/demos/visual-page/assets/og-image.png">
 
-  <link rel="stylesheet" href="style.css?v=cdae35f735" />
+  <link rel="stylesheet" href="style.css?v=e0420a79a4" />
 </head>
 <body>
   <div id="scene"></div>
@@ -46,9 +48,50 @@
       <h2 id="wg-title">Data Abyss · 数渊</h2>
       <p class="wg-en">A slowly breathing data cosmos. Best experienced with <strong>sound on</strong> — a generative lo-fi score is woven from the data you see.</p>
       <p class="wg-zh">一片缓缓呼吸的数据星海。建议<strong>开启声音</strong>——你会听到一首由眼前数据织成的生成式 lo-fi 配乐。</p>
+      <p id="module-error" class="module-error" role="alert" hidden>3D engine failed to load. Check the network and reload. · 3D 引擎加载失败，请检查网络后刷新。</p>
       <button id="wg-enter" type="button">Enter · 进入</button>
     </div>
   </div>
+
+  <!-- This classic watchdog does not depend on the ES module (or Three.js) executing. -->
+  <script id="module-watchdog">
+    (function () {
+      var ready = false;
+      var loading = document.getElementById('loading');
+      var gateError = document.getElementById('module-error');
+      var original = loading ? loading.textContent : '';
+      var configured = Number(window.__ABYSS_MODULE_TIMEOUT_MS);
+      var delay = configured > 0 ? configured : 15000;
+      var timer = null;
+      window.__abyssModuleReady = false;
+      window.__abyssModuleFallback = function () {
+        if (ready) return;
+        if (timer) clearTimeout(timer);
+        var copy = '3D engine failed to load. Check the network and reload. · 3D 引擎加载失败，请检查网络后刷新。';
+        if (loading) {
+          loading.textContent = copy;
+          loading.classList.remove('gone');
+          loading.classList.add('load-failed');
+          loading.setAttribute('role', 'alert');
+          loading.setAttribute('aria-live', 'assertive');
+        }
+        if (gateError) { gateError.textContent = copy; gateError.hidden = false; }
+      };
+      window.__abyssMarkModuleReady = function () {
+        ready = true;
+        window.__abyssModuleReady = true;
+        if (timer) clearTimeout(timer);
+        if (gateError) gateError.hidden = true;
+        if (loading && loading.classList.contains('load-failed')) {
+          loading.textContent = original;
+          loading.classList.remove('load-failed');
+          loading.removeAttribute('role');
+          loading.removeAttribute('aria-live');
+        }
+      };
+      timer = setTimeout(window.__abyssModuleFallback, delay);
+    })();
+  </script>
 
   <!-- Parse-time 音频解锁：classic script（不等 ES module 加载）在「Enter」的用户手势同步栈内
        创建 + 静音解锁 + resume AudioContext，并把它挂到 window.__abyssAudio 供 app.js 晚到时直接
@@ -92,7 +135,7 @@
 
   <!-- 提前并行拉取 three（模块顶部 import 的最大阻塞项）→ 缩短冷网下模块加载耗时；音频解锁本身已经不再
        依赖这条链路（见上方 parse-time inline script），这里只是纯粹的加载优化。 -->
-  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" crossorigin>
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" crossorigin onerror="window.__abyssModuleFallback && window.__abyssModuleFallback('three-preload')">
 
   <script type="importmap">
   {
@@ -102,6 +145,6 @@
     }
   }
   </script>
-  <script type="module" src="app.js?v=c19be28d30"></script>
+  <script type="module" src="app.js?v=78e6d5d875" onerror="window.__abyssModuleFallback && window.__abyssModuleFallback('app-module')"></script>
 </body>
 </html>

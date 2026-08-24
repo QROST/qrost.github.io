@@ -2,7 +2,10 @@
 <html lang="en"><head>
 <meta charset="utf-8"><title>Makoauto — Cart</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, follow">
 <meta name="description" content="Review your Makoauto custom license frame design, choose shipping, and complete checkout securely.">
+<link rel="canonical" href="https://qrost.github.io/demos/makoauto/cart.html">
+<script>(function(){try{var t=localStorage.getItem('pinned_theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
 <meta name="theme-color" content="#F5F0E3">
@@ -26,6 +29,7 @@
   .field label { display:block; font-family: 'JetBrains Mono',monospace; font-size: 11px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
   .field input, .field select { width: 100%; padding: 10px 14px; border: var(--border); border-radius: 10px; background: var(--bg); font-size: 14px; }
   .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .three { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; }
   .pay-methods { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; }
   .pay { padding: 14px; border: var(--border); border-radius: 12px; background: var(--paper); cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; }
   .pay.active { background: var(--ink); color: var(--bg); }
@@ -46,7 +50,7 @@
   @media (max-width: 720px) {
     .wrap { padding-left: max(20px, env(safe-area-inset-left, 0)); padding-right: max(20px, env(safe-area-inset-right, 0)); padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
     .stepper { flex-wrap: wrap; }
-    .two { grid-template-columns: 1fr; }
+    .two, .three { grid-template-columns: 1fr; }
     .pay-methods { grid-template-columns: 1fr; }
     .pay { min-height: 48px; }
     .cart-item { grid-template-columns: 100px 1fr; }
@@ -86,16 +90,20 @@
       <div class="card section">
         <h2 data-i18n="ship_to">Ship to</h2>
         <div class="two">
-          <div class="field"><label data-i18n="full_name">Full name</label><input value="Brian Chen"></div>
-          <div class="field"><label data-i18n="phone">Phone</label><input value="(415) 555-0142"></div>
+          <div class="field"><label for="ship-name" data-i18n="full_name">Full name</label><input id="ship-name" name="shipping-name" autocomplete="shipping name" value="Brian Chen"></div>
+          <div class="field"><label for="ship-email">Email</label><input id="ship-email" name="email" type="email" autocomplete="email" value="brian@example.com"></div>
         </div>
-        <div class="field"><label data-i18n="address">Address</label><input value="2814 Sunset Blvd"></div>
         <div class="two">
-          <div class="field"><label data-i18n="city">City</label><input value="Los Angeles"></div>
-          <div class="field"><label data-i18n="state_zip">State / ZIP</label><input value="CA 90026"></div>
+          <div class="field"><label for="ship-phone" data-i18n="phone">Phone</label><input id="ship-phone" name="shipping-phone" type="tel" autocomplete="shipping tel" value="(415) 555-0142"></div>
+          <div class="field"><label for="ship-address" data-i18n="address">Address</label><input id="ship-address" name="shipping-address" autocomplete="shipping street-address" value="2814 Sunset Blvd"></div>
         </div>
-        <div class="field"><label data-i18n="shipping">Shipping</label>
-          <select><option data-i18n="shipping_std">Standard — free · 3–5 business days</option><option data-i18n="shipping_exp">Express — $12 · 2 days</option><option data-i18n="shipping_intl">International DHL — $28 · 5–10 days</option></select>
+        <div class="three">
+          <div class="field"><label for="ship-city" data-i18n="city">City</label><input id="ship-city" name="shipping-city" autocomplete="shipping address-level2" value="Los Angeles"></div>
+          <div class="field"><label for="ship-state">State</label><input id="ship-state" name="shipping-state" autocomplete="shipping address-level1" value="CA"></div>
+          <div class="field"><label for="ship-postal">ZIP</label><input id="ship-postal" name="shipping-postal" autocomplete="shipping postal-code" inputmode="numeric" value="90026"></div>
+        </div>
+        <div class="field"><label for="shipping-method" data-i18n="shipping">Shipping</label>
+          <select id="shipping-method" name="shipping-method"><option data-i18n="shipping_std">Standard — free · 3–5 business days</option><option data-i18n="shipping_exp">Express — $12 · 2 days</option><option data-i18n="shipping_intl">International DHL — $28 · 5–10 days</option></select>
         </div>
       </div>
 
@@ -121,7 +129,7 @@
           <div class="line"><span data-i18n="price_video">AI preview video</span><span data-i18n="included">included</span></div>
           <div class="line"><span data-i18n="shipping">Shipping</span><span data-i18n="free">free</span></div>
           <div class="line"><span data-i18n="tax">Tax</span><span id="sum-tax">$3.12</span></div>
-          <div class="promo"><input data-i18n-placeholder="promo_ph" placeholder="Promo code"><button class="btn ghost" data-i18n="apply">Apply</button></div>
+          <div class="promo"><input name="promo-code" autocomplete="off" aria-label="Promo code" data-i18n-placeholder="promo_ph" placeholder="Promo code"><button class="btn ghost" data-i18n="apply">Apply</button></div>
           <div class="line total"><span data-i18n="total">Total</span><span id="sum-total">$42.12</span></div>
         </div>
         <button class="btn primary" id="place-order-btn" style="width:100%;margin-top:12px;justify-content:center" data-i18n="place_order">Place order →</button>
@@ -131,7 +139,7 @@
     </div>
   </div>
 </div>
-<script src="shared/i18n.js?v=14"></script>
+<script src="shared/i18n.js?v=f4621bbf15"></script>
 <script src="shared/pins.js?v=18"></script>
 <script src="shared/api.js?v=8"></script>
 <script>
@@ -195,14 +203,12 @@
 
   // ---------- Place order ----------
   function readFormAddress() {
-    const inputs = document.querySelectorAll('.card.section:nth-of-type(2) input, .card.section:nth-of-type(2) select');
-    const vals = [...inputs].map(i => i.value.trim());
-    // Order of fields in cart.html: Full name, Phone, Address, City, State/ZIP, Shipping method.
-    const [name, phone, street1, city, stateZip] = vals;
-    const parts = (stateZip || '').split(/\s+/);
-    const state = parts[0] || 'CA';
-    const postal_code = parts.slice(1).join(' ') || '90026';
-    return { name: name || 'Guest', phone, street1: street1 || '—', city: city || '—', state, postal_code, country: 'US' };
+    const value = id => (document.getElementById(id).value || '').trim();
+    return {
+      name: value('ship-name') || 'Guest', phone: value('ship-phone'),
+      street1: value('ship-address') || '—', city: value('ship-city') || '—',
+      state: value('ship-state') || 'CA', postal_code: value('ship-postal') || '90026', country: 'US',
+    };
   }
 
   async function ensureCloudDesign() {
@@ -243,8 +249,7 @@
         return;
       }
       const ship = readFormAddress();
-      // Prototype placeholder: no email field in Ship to form; use hardcoded default until backend captures customer email.
-      const email = 'brian@example.com';
+      const email = (document.getElementById('ship-email').value || '').trim();
       const out = await window.MakoautoAPI.createOrderStub({
         design_id,
         customer_email: email,

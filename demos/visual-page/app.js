@@ -16,9 +16,12 @@ import {
 } from './i18n.js?v=be92743a4a';
 import { Sonifier } from './audio.js?v=14058fe24f';   // 生成式数据音乐引擎（zero-dep Web Audio）
 
+if (window.__abyssMarkModuleReady) window.__abyssMarkModuleReady();
+
 const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 
 const IS_MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth < 820;
+const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DEBUG = new URLSearchParams(location.search).has('debug');
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -28,7 +31,7 @@ const CATS_DATA = '../shelter-cats/assets/data/';  // 第四个数据源：全�
 const TRAIL = IS_MOBILE ? 30 : 72;   // 轨迹历史采样数=最长尾上限（每点实际尾长由数据 tlen 决定，公式按 TRAIL 自动缩放）。加长：44→72（补偿 MOTION/呼吸半速后变短的世界尾长）
 const STRIDE = 20;                    // 每 STRIDE 帧采样一次 → 路径覆盖帧数 = TRAIL×STRIDE。10→20：免内存翻倍覆盖；因运动已半速，每段位移(snap=motion×STRIDE)≈原值 → 平滑度不降。合计最长尾世界距离 ≈ 原来的 1.6×
 const TR_GRACE = 3;                   // 拖尾重入迟滞：离屏 < TR_GRACE 个采样(掠过屏幕边缘) → 桥接续画不闪；≥ 则整 ring 重置防长拖影
-const MOTION = 0.5;                   // 全局运动降速系数（用户「整体降速 2×」）：缩放吸引子步长 + 系统自转 → 混沌轨迹/朝向不变，仅放慢演化速率；不动呼吸/明灭（那是氛围非位移）
+const MOTION = REDUCED_MOTION ? 0.05 : 0.5;  // 系统减少动态效果时降至常规运动的 10%
 const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞（呼吸吸气态）
 const FEAT_DIM = 28;                 // SOM 特征维度：字段 0..19 + 类型 one-hot 20..27（8 类：含医药 + 收容所猫）
 const SOM_L = [9, 7, 5];             // Kohonen 晶格维度 → 315 神经元
@@ -52,7 +55,7 @@ scene.fog = new THREE.FogExp2(0x05060e, 0.0019);
 const camera = new THREE.PerspectiveCamera(56, innerWidth / innerHeight, 0.1, 4000);
 camera.position.set(0, 44, 150);
 // 开场镜头：SOM 计算/呼气揭示期间，焦距从开场值缓慢 zoom out 到 100（ease-in-out → 起步柔、到点平缓停住）；用户手动缩放即取消
-let introZoom = true, introProg = 0;
+let introZoom = !REDUCED_MOTION, introProg = 0;
 const INTRO_DUR = 10, INTRO_FOV_START = camera.fov, INTRO_FOV_END = 100;
 
 let renderer;
@@ -1898,11 +1901,13 @@ const _narr = (() => {
 
 function animate() {
   requestAnimationFrame(animate);
-  const dt = Math.min(clock.getDelta(), 0.05); tElapsed += dt; U.uTime.value = tElapsed;
+  const dt = Math.min(clock.getDelta(), 0.05); tElapsed += dt;
   if (micActive && analyser) { analyser.getByteFrequencyData(micBuf); let s = 0; for (let i = 0; i < micBuf.length; i++) s += micBuf[i]; pulse = lerp(pulse, clamp(s / micBuf.length / 110, 0, 1), 0.2); }   // 律动模式：环境声 → 脉冲(加速整片宇宙)
   else pulse *= 0.95;                                                                                                                                                                            // 音乐模式：无麦克风采集 → 脉冲自然衰减
-  U.uPulse.value = pulse;
-  bgMat.uniforms.uTime.value = tElapsed; bgMat.uniforms.uPulse.value = pulse;
+  const visualTime = REDUCED_MOTION ? tElapsed * 0.05 : tElapsed;
+  const visualPulse = REDUCED_MOTION ? 0 : pulse;
+  U.uTime.value = visualTime; U.uPulse.value = visualPulse;
+  bgMat.uniforms.uTime.value = visualTime; bgMat.uniforms.uPulse.value = visualPulse;
   if (_flipDrift > 0.0005) {   // 翻面漂移：曝光轻微起伏 + 背景色相暖度微移，~4s 内平滑回落（不触碰任何 mesh/geometry）
     _flipDrift = Math.max(0, _flipDrift - dt / 4);
     const env = Math.sin(_flipDrift * Math.PI);   // 0→峰→0 的柔和包络（翻面瞬间最弱、中段最明显、结束归零）
@@ -1921,7 +1926,7 @@ function animate() {
 
   // 呼吸式自组织：CENTER(重叠混沌) ⇄ SOM 神经地图；mic 出声提速呼吸；smootherstep 在两端停留
   // SOM 就绪前不推进呼吸(breathT=0、bAmp=0 → 纯重叠混沌运动)；就绪后 bAmp 从 0 平滑 ramp → 从随机运动态连续呼气展开成神经地图，无瞬变
-  if (somReady) { breathT += dt * (0.065 + pulse * 0.15); bProg = Math.min(1, bProg + dt / BREATH_RAMP); bAmp = bProg * bProg * (3 - 2 * bProg); }   // 整体半速；每实体再 × bRate。bAmp = smootherstep(bProg) → 揭示首尾更柔、更平缓
+  if (somReady) { breathT += dt * ((REDUCED_MOTION ? 0.008 : 0.065) + visualPulse * 0.15); bProg = Math.min(1, bProg + dt / BREATH_RAMP); bAmp = bProg * bProg * (3 - 2 * bProg); }   // reduced-motion keeps only a very slow drift
   const oRaw = 0.5 - 0.5 * Math.cos(breathT);
   gOrg = oRaw * oRaw * (3 - 2 * oRaw) * bAmp;   // × bAmp：晶格随展开平滑显形（就绪前 = 0，不显）
   if (latticeObj) latticeMat.uniforms.uOrg.value = gOrg;   // 呼气时神经晶格显形
@@ -1956,7 +1961,7 @@ function animate() {
 
     // 几何体棱线：跟随混沌位置 + 各自缓慢自转 + 呼吸变径（CPU 变换合并 LineSegments）
     if (solidGroups.length) {
-      const sbreath = 1.0 + 0.22 * Math.sin(tElapsed * 0.7), ringBreath = 1.0 + 0.18 * Math.sin(tElapsed * 0.5 + 1.0);
+      const sbreath = 1.0 + 0.22 * Math.sin(visualTime * 0.7), ringBreath = 1.0 + 0.18 * Math.sin(visualTime * 0.5 + 1.0);
       const lodK = Math.tan(camera.fov * Math.PI / 360) * 0.013;   // morph-LOD 阈值随焦距：投影 <~5px 才冻结 4D 形变（子像素，看不出）
       for (let g = 0; g < solidGroups.length; g++) {
         const sg = solidGroups[g], lv = sg.lv, pos = sg.pos, inst = sg.inst;
@@ -1967,7 +1972,7 @@ function animate() {
           const sc = sg.cmplx * (0.05 + szCurve[gi] * 1.4) * (sg.ellipsoid ? ringBreath : sbreath) * vis;   // 数据量级(szCurve) × 复杂度 → 高维体更大
           if (sg.is4d) {                                          // 逐帧 nD 旋转→投影 3D；但投影 <~5px 时冻结 morph 用静态形（看不出，省 projectND）
             if (sc >= cwArr[gi] * lodK) {
-              projectND(sg.verts4, sg.n4, sg.dim, sg.wdist, sg.spd4[j] * tElapsed + sg.phase[j]);
+              projectND(sg.verts4, sg.n4, sg.dim, sg.wdist, sg.spd4[j] * visualTime + sg.phase[j]);
               for (let e2 = 0; e2 < sg.ne; e2++) { const u = sg.edgeIdx[e2 * 2] * 3, v2 = sg.edgeIdx[e2 * 2 + 1] * 3, o2 = e2 * 6;
                 _localDyn[o2] = _v3tmp[u]; _localDyn[o2 + 1] = _v3tmp[u + 1]; _localDyn[o2 + 2] = _v3tmp[u + 2];
                 _localDyn[o2 + 3] = _v3tmp[v2]; _localDyn[o2 + 4] = _v3tmp[v2 + 1]; _localDyn[o2 + 5] = _v3tmp[v2 + 2]; }
@@ -1984,8 +1989,8 @@ function animate() {
             sg.vdir[o3] = dx; sg.vdir[o3 + 1] = dy; sg.vdir[o3 + 2] = dz;
           }
           _v.set(dx, dy, dz);
-          if (sg.velAxis) { _q1.setFromUnitVectors(_UP, _v); _q2.setFromAxisAngle(_v, sg.speed[j] * tElapsed); _q.multiplyQuaternions(_q2, _q1); }   // 棱柱：长轴对齐 + 绕轴自旋（纺锤）
-          else { _q.setFromAxisAngle(_v, sg.speed[j] * tElapsed); }   // 其余：绕运动方向轻微自转
+          if (sg.velAxis) { _q1.setFromUnitVectors(_UP, _v); _q2.setFromAxisAngle(_v, sg.speed[j] * visualTime); _q.multiplyQuaternions(_q2, _q1); }   // 棱柱：长轴对齐 + 绕轴自旋（纺锤）
+          else { _q.setFromAxisAngle(_v, sg.speed[j] * visualTime); }   // 其余：绕运动方向轻微自转
           _dummy.position.set(posArr[o], posArr[o + 1], posArr[o + 2]);
           _dummy.quaternion.copy(_q);
           _dummy.scale.set(sc, sg.ellipsoid ? sc * 0.74 : sc, sc);
@@ -2068,7 +2073,7 @@ function animate() {
         const Bx = entMat[m] * bx + entMat[m + 4] * by + entMat[m + 8] * bz + entMat[m + 12];
         const By = entMat[m + 1] * bx + entMat[m + 5] * by + entMat[m + 9] * bz + entMat[m + 13];
         const Bz = entMat[m + 2] * bx + entMat[m + 6] * by + entMat[m + 10] * bz + entMat[m + 14];
-        const w = Math.min(MAXW, R.baseW * (1 + 0.22 * Math.sin(tElapsed * 0.7 + R.phase)) * beat);   // 呼吸 × beat 脉冲
+        const w = Math.min(MAXW, R.baseW * (1 + 0.22 * Math.sin(visualTime * 0.7 + R.phase)) * beat);   // 呼吸 × beat 脉冲
         for (let v = 0; v < 6; v++) { const e = base + v, e3 = e * 3, useA = beamEndTmpl[v] === 0;
           rp[e3] = useA ? Ax : Bx; rp[e3 + 1] = useA ? Ay : By; rp[e3 + 2] = useA ? Az : Bz;
           rd[e3] = useA ? Bx : Ax; rd[e3 + 1] = useA ? By : Ay; rd[e3 + 2] = useA ? Bz : Az;
@@ -2089,7 +2094,7 @@ function animate() {
     const dPitch = clamp(gyroSmPitch * GYRO_GAIN, -GYRO_MAX_STEP, GYRO_MAX_STEP);
     yaw += dYaw; pitch = clamp(pitch + dPitch, -1.45, 1.45);   // 低增益 + 限幅 → 松散、温和、不突跳的指向性导航
   }
-  else if (!dragging && focusIdx < 0) yaw += 0.00016;    // 极缓自动巡游（仅自由模式）
+  else if (!REDUCED_MOTION && !dragging && focusIdx < 0) yaw += 0.00016;    // 极缓自动巡游（仅自由模式）
   applyLook(dt);   // 焦点切换/退出由 applyLook 内的临界阻尼跟随处理（连贯不跳）
   if (focusActive) updateInspector();   // 详情面板逐帧刷新 trajectory 点 (x,y,z) + 有效步长 Δt
 
@@ -2204,10 +2209,13 @@ function buildPanel() {
 
 // ---------- boot ----------
 (async function main() {
-  let info = {}, pharma = {}, scats = {};
-  try { info = await buildIndustrial(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] industrial load failed (need http server):', err); }
-  try { pharma = await buildPharma(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] pharma load failed:', err); }
-  try { scats = await buildShelterCats(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] shelter-cats load failed:', err); }
+  const layers = await Promise.allSettled([buildIndustrial(), buildPharma(), buildShelterCats()]);
+  const info = layers[0].status === 'fulfilled' ? layers[0].value : {};
+  const pharma = layers[1].status === 'fulfilled' ? layers[1].value : {};
+  const scats = layers[2].status === 'fulfilled' ? layers[2].value : {};
+  if (DEBUG) layers.forEach((result, index) => {
+    if (result.status === 'rejected') console.warn(`[Data Abyss] optional data layer ${index + 1} failed:`, result.reason);
+  });
   const cities = buildHousing();
   bgMat.uniforms.uWarm.value = climWarm;
   // CPPN 背景：用数据聚合量确定性播种神经权重（这场梦由数据塑形）

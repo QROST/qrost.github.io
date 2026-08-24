@@ -6,6 +6,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 const checkOnly = process.argv.includes('--check');
 const audioURL = new URL('../audio.js', import.meta.url);
 const appURL = new URL('../app.js', import.meta.url);
+const styleURL = new URL('../style.css', import.meta.url);
 const indexURL = new URL('../index.html', import.meta.url);
 
 const digest = (bytes) => createHash('md5').update(bytes).digest('hex').slice(0, 10);
@@ -31,12 +32,19 @@ const stampedApp = replaceExactly(
 );
 
 const appVersion = digest(Buffer.from(stampedApp));
+const styleVersion = digest(await readFile(styleURL));
 const indexSource = await readFile(indexURL, 'utf8');
-const stampedIndex = replaceExactly(
+let stampedIndex = replaceExactly(
   indexSource,
   /(src="app\.js)(?:\?v=[^"]*)?(")/g,
   (_match, path, quote) => `${path}?v=${appVersion}${quote}`,
   'app.js',
+);
+stampedIndex = replaceExactly(
+  stampedIndex,
+  /(href="style\.css)(?:\?v=[^"]*)?(")/g,
+  (_match, path, quote) => `${path}?v=${styleVersion}${quote}`,
+  'style.css',
 );
 
 if (checkOnly) {
@@ -48,4 +56,4 @@ if (checkOnly) {
   if (stampedIndex !== indexSource) await writeFile(indexURL, stampedIndex);
 }
 
-console.log(`PASS: audio.js?v=${audioVersion} → app.js?v=${appVersion}${checkOnly ? ' (checked)' : ' (stamped)'}`);
+console.log(`PASS: style.css?v=${styleVersion} audio.js?v=${audioVersion} → app.js?v=${appVersion}${checkOnly ? ' (checked)' : ' (stamped)'}`);

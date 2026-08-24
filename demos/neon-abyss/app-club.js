@@ -12,12 +12,15 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import {
   applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, setLang, isZh,
-} from './i18n.js?v=n1';
-import { Sonifier } from './audio-club.js?v=n18';   // 生成式 Trance 音乐引擎（zero-dep Web Audio）+ beatPulse + groove-style(A/B/C) + DJ 呼吸弧 + 每宇宙调/速多样化
+} from './i18n.js?v=682e614a48';
+import { Sonifier } from './audio-club.js?v=1d94ad448e';   // 生成式 Trance 音乐引擎（zero-dep Web Audio）+ beatPulse + groove-style(A/B/C) + DJ 呼吸弧 + 每宇宙调/速多样化
+
+if (window.__abyssMarkModuleReady) window.__abyssMarkModuleReady();
 
 const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 
 const IS_MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth < 820;
+const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DEBUG = new URLSearchParams(location.search).has('debug');
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -27,7 +30,7 @@ const CATS_DATA = '../shelter-cats/assets/data/';  // 第四个数据源：全�
 const TRAIL = IS_MOBILE ? 30 : 72;   // 轨迹历史采样数=最长尾上限（每点实际尾长由数据 tlen 决定，公式按 TRAIL 自动缩放）。加长：44→72（补偿 MOTION/呼吸半速后变短的世界尾长）
 const STRIDE = 20;                    // 每 STRIDE 帧采样一次 → 路径覆盖帧数 = TRAIL×STRIDE。10→20：免内存翻倍覆盖；因运动已半速，每段位移(snap=motion×STRIDE)≈原值 → 平滑度不降。合计最长尾世界距离 ≈ 原来的 1.6×
 const TR_GRACE = 3;                   // 拖尾重入迟滞：离屏 < TR_GRACE 个采样(掠过屏幕边缘) → 桥接续画不闪；≥ 则整 ring 重置防长拖影
-const MOTION = 0.5;                   // 全局运动降速系数（用户「整体降速 2×」）：缩放吸引子步长 + 系统自转 → 混沌轨迹/朝向不变，仅放慢演化速率；不动呼吸/明灭（那是氛围非位移）
+const MOTION = REDUCED_MOTION ? 0.05 : 0.5;  // 系统减少动态效果时降至常规运动的 10%
 const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞（呼吸吸气态）
 const FEAT_DIM = 28;                 // SOM 特征维度：字段 0..19 + 类型 one-hot 20..27（8 类：含医药 + 收容所猫）
 const SOM_L = [9, 7, 5];             // Kohonen 晶格维度 → 315 神经元
@@ -64,7 +67,7 @@ scene.fog = new THREE.FogExp2(0x05060e, 0.0019);
 const camera = new THREE.PerspectiveCamera(56, innerWidth / innerHeight, 0.1, 4000);
 camera.position.set(0, 44, 150);
 // 开场镜头：SOM 计算/呼气揭示期间，焦距从开场值缓慢 zoom out 到 100（ease-in-out → 起步柔、到点平缓停住）；用户手动缩放即取消
-let introZoom = true, introProg = 0;
+let introZoom = !REDUCED_MOTION, introProg = 0;
 const INTRO_DUR = 10, INTRO_FOV_START = camera.fov, INTRO_FOV_END = 100;
 
 let renderer;
@@ -1995,6 +1998,7 @@ function animate() {
   // 脉冲来源：默认 = 生成音频引擎的 beatPulse（每个 kick → 1，引擎内每帧自衰减）。
   // 静音态下若用户开了「带上你自己的 DJ」mic 驱动，pulse 换成房间真实声音的振幅包络（updateMicPulse，零每帧分配）。
   pulse = micActive ? updateMicPulse() : (sonifier.started ? sonifier.beatPulse : (pulse * 0.9));
+  if (REDUCED_MOTION) pulse = 0;
   U.uPulse.value = pulse;
   bgMat.uniforms.uTime.value = tElapsed; bgMat.uniforms.uPulse.value = pulse;
 
@@ -2024,11 +2028,11 @@ function animate() {
   // 频闪：仅当用户已过光敏警示门（gateConfirmed）。生成音乐态 = drop 段每个 kick（pulse > 0.6）闪一下；
   // mic 驱动态 = 改为 onset 检测（updateMicPulse 里算好的 micOnset），与「原本的 drop 段」逻辑解耦——房间声音没有 drop 段概念。
   const strobeFire = micActive ? micOnset : (inDrop && pulse > 0.6);
-  if (strobeEl && gateConfirmed && strobeFire) { strobeEl.classList.add('strobe-on'); clearTimeout(strobeEl._t); strobeEl._t = setTimeout(() => strobeEl.classList.remove('strobe-on'), 70); }
+  if (strobeEl && gateConfirmed && strobeEnabled && !REDUCED_MOTION && strobeFire) { strobeEl.classList.add('strobe-on'); clearTimeout(strobeEl._t); strobeEl._t = setTimeout(() => strobeEl.classList.remove('strobe-on'), 70); }
 
   // 呼吸式自组织：CENTER(重叠混沌) ⇄ SOM 神经地图；mic 出声提速呼吸；smootherstep 在两端停留
   // SOM 就绪前不推进呼吸(breathT=0、bAmp=0 → 纯重叠混沌运动)；就绪后 bAmp 从 0 平滑 ramp → 从随机运动态连续呼气展开成神经地图，无瞬变
-  if (somReady) { breathT += dt * (0.065 + pulse * 0.15); bProg = Math.min(1, bProg + dt / BREATH_RAMP); bAmp = bProg * bProg * (3 - 2 * bProg); }   // 整体半速；每实体再 × bRate。bAmp = smootherstep(bProg) → 揭示首尾更柔、更平缓
+  if (somReady) { breathT += dt * ((REDUCED_MOTION ? 0.008 : 0.065) + pulse * 0.15); bProg = Math.min(1, bProg + dt / BREATH_RAMP); bAmp = bProg * bProg * (3 - 2 * bProg); }   // reduced-motion keeps a very slow drift without pulses
   const oRaw = 0.5 - 0.5 * Math.cos(breathT);
   gOrg = oRaw * oRaw * (3 - 2 * oRaw) * bAmp;   // × bAmp：晶格随展开平滑显形（就绪前 = 0，不显）
   if (latticeObj) latticeMat.uniforms.uOrg.value = gOrg;   // 呼气时神经晶格显形
@@ -2309,10 +2313,29 @@ function buildPanel() {
 
 // ---------- 光敏性警示门 + 频闪触发 ----------
 // gateConfirmed：用户点「我已知悉」后才为 true；此前 drop 段不触发 strobe（仍出声出画，只是不白闪）。
-let gateConfirmed = false;
+let gateConfirmed = false, strobeEnabled = false;
 const strobeEl = document.getElementById('strobe');
 const gate = document.getElementById('epilepsy-gate');
 const epEnter = document.getElementById('ep-enter');
+const strobeToggle = document.getElementById('strobe-toggle');
+function updateStrobeToggle() {
+  if (!strobeToggle) return;
+  if (REDUCED_MOTION) {
+    strobeToggle.textContent = 'No flashes (system setting) · 系统设置无频闪';
+    strobeToggle.setAttribute('aria-pressed', 'false');
+    strobeToggle.disabled = true;
+    return;
+  }
+  strobeToggle.textContent = strobeEnabled ? 'Strobe on · 频闪已开' : 'Strobe off · 频闪已关';
+  strobeToggle.setAttribute('aria-pressed', strobeEnabled ? 'true' : 'false');
+}
+if (strobeToggle) strobeToggle.addEventListener('click', () => {
+  if (!gateConfirmed || REDUCED_MOTION) return;
+  strobeEnabled = !strobeEnabled;
+  if (!strobeEnabled && strobeEl) strobeEl.classList.remove('strobe-on');
+  updateStrobeToggle();
+});
+updateStrobeToggle();
 function confirmGate() {                                    // 「我已知悉」确认后的统一流程；可能来自本模块的 click 监听，也可能是下面的冷网竞态兜底补跑
   if (gateConfirmed) return;
   gateConfirmed = true;
@@ -2332,10 +2355,13 @@ if (window.__abyssAudio && window.__abyssAudio.entered) confirmGate();
 // ---------- boot ----------
 
 (async function main() {
-  let info = {}, pharma = {}, scats = {};
-  try { info = await buildIndustrial(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] industrial load failed (need http server):', err); }
-  try { pharma = await buildPharma(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] pharma load failed:', err); }
-  try { scats = await buildShelterCats(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] shelter-cats load failed:', err); }
+  const layers = await Promise.allSettled([buildIndustrial(), buildPharma(), buildShelterCats()]);
+  const info = layers[0].status === 'fulfilled' ? layers[0].value : {};
+  const pharma = layers[1].status === 'fulfilled' ? layers[1].value : {};
+  const scats = layers[2].status === 'fulfilled' ? layers[2].value : {};
+  if (DEBUG) layers.forEach((result, index) => {
+    if (result.status === 'rejected') console.warn(`[Neon Abyss] optional data layer ${index + 1} failed:`, result.reason);
+  });
   const cities = buildHousing();
   COSMOS = {   // 数据规模快照 → 环境低语的数量槽（缺数据的层为 0，模板会自动跳过）
     cities, products: info.products || 0, kernels: info.kernels || 0,
