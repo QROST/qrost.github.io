@@ -14,6 +14,8 @@
   var rolesByCity = {}, orgsByCity = {}, facilitiesByCity = {}, statsByCity = {};
   var mediaByCity = {}, institutionsByCity = {};
   var instByOrg = {}, mediaByOrg = {}, childrenByParent = {}, plantCountByOrg = {};
+  var PLANT_FACILITY_TYPES = { vehicle_plant: 1, engine_plant: 1, battery_plant: 1, parts_plant: 1 };
+  var MANUFACTURING_ROLE_TYPES = { factory: 1, supplier_plant: 1 };
 
   async function fetchJson(path) {
     var sep = path.indexOf('?') === -1 ? '?' : '&';
@@ -55,7 +57,9 @@
     });
     store.facilities.forEach(function (f) {
       (facilitiesByCity[f.city_id] = facilitiesByCity[f.city_id] || []).push(f);
-      if (f.operator_id) plantCountByOrg[f.operator_id] = (plantCountByOrg[f.operator_id] || 0) + 1;
+      if (f.operator_id && PLANT_FACILITY_TYPES[f.facility_type]) {
+        plantCountByOrg[f.operator_id] = (plantCountByOrg[f.operator_id] || 0) + 1;
+      }
     });
     store.statistics.forEach(function (s) {
       (statsByCity[s.city_id] = statsByCity[s.city_id] || []).push(s);
@@ -121,6 +125,28 @@
       return r.from_id === id || r.to_id === id;
     });
   }
+  function plantFacilitiesForCity(id) {
+    return (facilitiesByCity[id] || []).filter(function (f) {
+      return !!PLANT_FACILITY_TYPES[f.facility_type];
+    });
+  }
+  function manufacturingRolesForCity(id) {
+    return (rolesByCity[id] || []).filter(function (r) {
+      return !!MANUFACTURING_ROLE_TYPES[r.role_type];
+    });
+  }
+  function manufacturingCountForCity(id) {
+    // Count explicit plant nodes individually, then use a city role only when
+    // no explicit plant already represents that operator in the same city.
+    var facilities = plantFacilitiesForCity(id);
+    var explicitOperators = {};
+    facilities.forEach(function (f) {
+      if (f.operator_id) explicitOperators[f.operator_id] = 1;
+    });
+    return facilities.length + manufacturingRolesForCity(id).filter(function (r) {
+      return !explicitOperators[r.entity_id];
+    }).length;
+  }
 
   window.CHINA_AUTO_DATA = {
     initCore: initCore,
@@ -132,6 +158,9 @@
     rolesForCity: function (id) { return rolesByCity[id] || []; },
     orgsForCity: function (id) { return orgsByCity[id] || []; },
     facilitiesForCity: function (id) { return facilitiesByCity[id] || []; },
+    plantFacilitiesForCity: plantFacilitiesForCity,
+    manufacturingRolesForCity: manufacturingRolesForCity,
+    manufacturingCountForCity: manufacturingCountForCity,
     statsForCity: statsForCity,
     stat2025: stat2025,
     mediaForCity: function (id) { return mediaByCity[id] || []; },

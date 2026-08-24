@@ -92,6 +92,9 @@ def main() -> int:
     rc = subprocess.call([sys.executable, str(ROOT / "tools" / "test_page_contract.py")])
     if rc != 0:
         return rc
+    rc = subprocess.call(["node", str(ROOT / "tools" / "test_cluster_graph.js")])
+    if rc != 0:
+        return rc
     print(f"build: {'check ' if args.check else ''}OK ({token})")
     return 0
 

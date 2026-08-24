@@ -234,7 +234,7 @@
             o.organization_type === 'supplier' || o.organization_type === 'software_company' ||
             o.organization_type === 'chip_company') hqN += 1;
         });
-        plantN += D.facilitiesForCity(c.id).length;
+        plantN += D.manufacturingCountForCity(c.id);
       });
       var note = I18N.pick(cl.output_note_zh, cl.output_note_en);
       var on = selected === cl.id;
@@ -264,7 +264,9 @@
       selectedClusterId: selected, layers: state.cluster.layers,
       getCluster: D.getCluster, getStat: D.stat2025, getOrg: D.getOrg, getFacility: D.getFacility,
       getCity: D.getCity, childrenOf: D.childrenOf,
-      orgsForCity: D.orgsForCity, facilitiesForCity: D.facilitiesForCity,
+      orgsForCity: D.orgsForCity, facilitiesForCity: D.plantFacilitiesForCity,
+      manufacturingRolesForCity: D.manufacturingRolesForCity,
+      manufacturingCountForCity: D.manufacturingCountForCity,
       mediaForCity: D.mediaForCity, institutionsForCity: D.institutionsForCity
     });
     CH.resizeAll();

@@ -30,6 +30,7 @@ GATES = (
     Gate("china-auto", "search contract", (sys.executable, "demos/china-auto/tools/test_search.py")),
     Gate("china-auto", "source-authority mutations", (sys.executable, "demos/china-auto/tools/test_provenance.py")),
     Gate("china-auto", "page contract", (sys.executable, "demos/china-auto/tools/test_page_contract.py")),
+    Gate("china-auto", "cluster graph projection", ("node", "demos/china-auto/tools/test_cluster_graph.js")),
     Gate("china-auto", "cache token and build contract", (sys.executable, "demos/china-auto/tools/build.py", "--check")),
     Gate("china-auto", "build idempotence", (sys.executable, "demos/china-auto/tools/test_build_idempotence.py")),
     Gate("architecture-history", "page/data projection contract", (sys.executable, "demos/architecture-history/tools/test_page_contract.py")),

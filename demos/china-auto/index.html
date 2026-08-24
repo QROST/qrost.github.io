@@ -30,13 +30,13 @@
         document.documentElement.classList.toggle('dark', dark);
       } catch (e) {}
     })();
-    window.CHINA_AUTO_DATA_VERSION = '1465b4ee78';
+    window.CHINA_AUTO_DATA_VERSION = '929030cc15';
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=1465b4ee78" />
-  <link rel="stylesheet" href="assets/css/china-auto.css?v=1465b4ee78" />
+  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=929030cc15" />
+  <link rel="stylesheet" href="assets/css/china-auto.css?v=929030cc15" />
   <style>
     #theme-toggle .sun-icon,
     #theme-toggle .moon-icon { transition: opacity 0.25s, transform 0.3s; }
@@ -170,18 +170,20 @@
 
     <section id="clusters" class="scroll-mt-20">
       <h2 class="section-title" data-i18n="clustersTitle">产业集群</h2>
-      <p class="text-sm text-muted mt-1" data-i18n="clustersSub">全国一张图：颜色是集群属性（同色即同一集群），形状区分城市 / 集团 / 品牌。跨城股权与协作边一并画出，不按地域切开。</p>
+      <p class="text-sm text-muted mt-1" data-i18n="clustersSub">全国一张图：颜色是集群属性，形状区分城市 / 集团 / 品牌 / 已建档工厂；点线补充候选制造关系，不把关系线伪装成实体工厂。</p>
       <div class="flex flex-wrap items-center gap-2 mt-4">
         <button type="button" id="cluster-reset" class="btn-ghost text-xs" data-i18n="clusterAll" aria-label="Show all clusters">全部集群</button>
         <div id="cluster-layers" class="seg" role="group" aria-label="Cluster graph layers">
           <button type="button" id="cluster-layer-hq" data-cluster-layer="hq" class="active" data-i18n="clusterLayerHq" aria-pressed="true">总部企业</button>
           <button type="button" id="cluster-layer-brands" data-cluster-layer="brands" class="active" data-i18n="clusterLayerBrands" aria-pressed="true">品牌</button>
-          <button type="button" id="cluster-layer-plants" data-cluster-layer="plants" class="active" data-i18n="clusterLayerPlants" aria-pressed="true">工厂</button>
+          <button type="button" id="cluster-layer-plants" data-cluster-layer="plants" class="active" data-i18n="clusterLayerPlants" aria-pressed="true">工厂 / 制造</button>
         </div>
       </div>
       <div class="panel mt-3">
         <div id="cluster-graph-head" class="panel-head"></div>
-        <div id="cluster-graph" class="chart-h-graph"></div>
+        <div id="cluster-graph" class="chart-h-graph" role="img"
+          aria-label="中国产业集群、城市、企业与制造关系图；候选制造关系以点线表示。"
+          data-i18n-aria-label="clusterGraphAria"></div>
         <div id="cluster-legend" class="map-legend"></div>
       </div>
       <div id="cluster-cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4"></div>
@@ -258,13 +260,13 @@
     </div>
   </div>
 
-  <script src="assets/data/china-geo.js?v=1465b4ee78"></script>
+  <script src="assets/data/china-geo.js?v=929030cc15"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.CHINA_AUTO_ECHARTS_FAILED=true"></script>
-  <script src="assets/js/i18n.js?v=1465b4ee78"></script>
-  <script src="assets/js/data-loader.js?v=1465b4ee78"></script>
-  <script src="assets/js/search.js?v=1465b4ee78"></script>
-  <script src="assets/js/charts.js?v=1465b4ee78"></script>
-  <script src="assets/js/map.js?v=1465b4ee78"></script>
-  <script src="assets/js/app.js?v=1465b4ee78"></script>
+  <script src="assets/js/i18n.js?v=929030cc15"></script>
+  <script src="assets/js/data-loader.js?v=929030cc15"></script>
+  <script src="assets/js/search.js?v=929030cc15"></script>
+  <script src="assets/js/charts.js?v=929030cc15"></script>
+  <script src="assets/js/map.js?v=929030cc15"></script>
+  <script src="assets/js/app.js?v=929030cc15"></script>
 </body>
 </html>

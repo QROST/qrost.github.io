@@ -15,6 +15,7 @@ def main() -> int:
     built_css_path = ROOT / "assets/css/tailwind-built.css"
     app = (ROOT / "assets/js/app.js").read_text(encoding="utf-8")
     charts = (ROOT / "assets/js/charts.js").read_text(encoding="utf-8")
+    loader = (ROOT / "assets/js/data-loader.js").read_text(encoding="utf-8")
 
     for token in ("auto-nav-links", "auto-nav-search", "auto-nav-controls"):
         require(html, token, "responsive nav")
@@ -41,6 +42,14 @@ def main() -> int:
     require(charts, "st && st.confidence <= 0.5 ? ' · ' + I18N.t('candidate')", "cluster tooltip candidate marker")
     require(html, 'data-i18n="thSupportScope"', "public source scope column")
     require(app, "(s.support_scope || {}).scope_zh", "public source scope rendering")
+    require(html, 'data-i18n-aria-label="clusterGraphAria"', "cluster graph accessible label")
+    require(app, "manufacturingRolesForCity: D.manufacturingRolesForCity", "manufacturing-role graph projection")
+    require(app, "manufacturingCountForCity: D.manufacturingCountForCity", "manufacturing count projection")
+    require(charts, "MANUFACTURING_ROLE_TYPES", "manufacturing role rendering")
+    require(charts, "PLANT_FACILITY_TYPES", "plant-only facility rendering")
+    require(loader, "f.operator_id && PLANT_FACILITY_TYPES[f.facility_type]", "plant-only organization count")
+    require(charts, "r.confidence <= 0.5", "candidate manufacturing disclosure")
+    require(charts, "window.innerWidth <= 520", "narrow graph label control")
 
     require(html, 'href="assets/css/tailwind-built.css?v=', "committed Tailwind CSS")
     assert "cdn.tailwindcss.com" not in html, "runtime Tailwind CDN must not be used"

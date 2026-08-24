@@ -3,7 +3,7 @@
   'use strict';
   var I18N = window.CHINA_AUTO_I18N;
   var instances = {};
-  var clusterGraphCache = { key: '', fitGen: 0 };
+  var clusterGraphCache = { key: '', fitGen: 0, opts: null, narrow: null };
 
   function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
   function palette() {
@@ -174,6 +174,8 @@
     cluster_adjacent: 1, owns: 1, operates: 1,
     historically_linked_to: 1, researches_with: 1, located_in: 1
   };
+  var PLANT_FACILITY_TYPES = { vehicle_plant: 1, engine_plant: 1, battery_plant: 1, parts_plant: 1 };
+  var MANUFACTURING_ROLE_TYPES = { factory: 1, supplier_plant: 1 };
 
   function fmtWan(val) {
     if (val == null) return '—';
@@ -204,6 +206,7 @@
 
   function renderClusterGraph(opts) {
     opts = opts || {};
+    clusterGraphCache.opts = opts;
     var cities = opts.cities || [];
     var relations = opts.relations || [];
     var clusters = opts.clusters || [];
@@ -215,6 +218,19 @@
     var getFacility = opts.getFacility;
     var orgsForCity = opts.orgsForCity || function () { return []; };
     var facilitiesForCity = opts.facilitiesForCity || function () { return []; };
+    var manufacturingRolesForCity = opts.manufacturingRolesForCity || function () { return []; };
+    var manufacturingCountForCity = opts.manufacturingCountForCity || function (cityId) {
+      var facilities = (facilitiesForCity(cityId) || []).filter(function (f) {
+        return !!PLANT_FACILITY_TYPES[f.facility_type];
+      });
+      var explicitOperators = {};
+      facilities.forEach(function (f) {
+        if (f.operator_id) explicitOperators[f.operator_id] = 1;
+      });
+      return facilities.length + (manufacturingRolesForCity(cityId) || []).filter(function (r) {
+        return !!MANUFACTURING_ROLE_TYPES[r.role_type] && !explicitOperators[r.entity_id];
+      }).length;
+    };
     var mediaForCity = opts.mediaForCity || function () { return []; };
     var institutionsForCity = opts.institutionsForCity || function () { return []; };
     var childrenOf = opts.childrenOf || function () { return []; };
@@ -234,9 +250,11 @@
     var seenLink = {};
 
     function addNode(n) {
-      if (!n.id || nodeIds[n.id]) return;
-      nodeIds[n.id] = 1;
+      if (!n.id) return null;
+      if (nodeIds[n.id]) return nodeIds[n.id];
+      nodeIds[n.id] = n;
       nodes.push(n);
+      return n;
     }
     function addLink(l) {
       if (!nodeIds[l.source] || !nodeIds[l.target] || l.source === l.target) return;
@@ -309,16 +327,23 @@
       }
       return '<b>' + I18N.name(o) + '</b><br/>' + extra.join('<br/>');
     }
-    function addOrg(o, attachCityId) {
+    function addOrg(o, attachCityId, clusterCityId) {
       if (!o) return;
       var visn = orgVisual(o);
       var hq = getCity ? getCity(o.headquarters_city_id) : null;
       var ids = clusterIdsForCity(hq);
-      addNode({
+      var clusterCity = clusterCityId && getCity ? getCity(clusterCityId) : null;
+      clusterIdsForCity(clusterCity).forEach(function (id) {
+        if (ids.indexOf(id) === -1) ids.push(id);
+      });
+      var node = addNode({
         id: 'org:' + o.id, name: I18N.name(o), symbol: visn.symbol, symbolSize: visn.size,
         itemStyle: clusterStyle(ids),
         label: { show: true, fontSize: visn.font, color: cssVar('--text'), formatter: function (p) { return truncLabel(p.name); } },
         _kind: 'org', _rawId: o.id, _clusterIds: ids, _tip: orgTip(o)
+      });
+      ids.forEach(function (id) {
+        if (node && node._clusterIds && node._clusterIds.indexOf(id) === -1) node._clusterIds.push(id);
       });
       if (attachCityId && nodeIds[attachCityId]) {
         addLink({
@@ -339,7 +364,7 @@
       var inCity = (orgsForCity(city.id) || []).filter(function (o) { return o.headquarters_city_id === city.id; });
       var oemN = inCity.filter(function (o) { return o.organization_type === 'automaker'; }).length;
       var brandN = inCity.filter(function (o) { return o.organization_type === 'brand'; }).length;
-      var plantN = (facilitiesForCity(city.id) || []).length;
+      var plantN = manufacturingCountForCity(city.id);
       var mediaN = (mediaForCity(city.id) || []).length;
       var uniN = (institutionsForCity(city.id) || []).length;
       var tip = [
@@ -406,7 +431,32 @@
     }
     if (layers.plants) {
       vis.forEach(function (city) {
-        (facilitiesForCity(city.id) || []).slice(0, 8).forEach(function (f) {
+        var facilities = (facilitiesForCity(city.id) || []).filter(function (f) {
+          return !!PLANT_FACILITY_TYPES[f.facility_type];
+        });
+        var explicitOperators = {};
+        facilities.forEach(function (f) {
+          if (f.operator_id) explicitOperators[f.operator_id] = 1;
+        });
+        (manufacturingRolesForCity(city.id) || []).filter(function (r) {
+          return !!MANUFACTURING_ROLE_TYPES[r.role_type];
+        }).forEach(function (r) {
+          var o = getOrg ? getOrg(r.entity_id) : null;
+          if (!o) return;
+          addOrg(o, '', city.id);
+          if (explicitOperators[r.entity_id]) return;
+          var desc = I18N.pick(r.description_zh, r.description_en);
+          addLink({
+            source: city.id, target: 'org:' + o.id, _rel: r.role_type,
+            lineStyle: relStyle(r.confidence <= 0.5 ? 'factory' : 'located_in'),
+            _tip: I18N.enumLabel('role_type', r.role_type) +
+              (r.confidence <= 0.5 ? ' · ' + I18N.t('candidate') : '') + '<br/>' +
+              I18N.name(o) + ' · ' + I18N.name(city) + (desc ? '<br/>' + desc : '')
+          });
+        });
+        facilities.forEach(function (f) {
+          var operator = f.operator_id && getOrg ? getOrg(f.operator_id) : null;
+          if (operator) addOrg(operator, '', city.id);
           addNode({
             id: 'fac:' + f.id, name: I18N.name(f), symbol: 'diamond',
             symbolSize: 12,
@@ -414,17 +464,20 @@
             label: { show: true, fontSize: 9, color: cssVar('--text'), formatter: function (p) { return truncLabel(p.name); } },
             _kind: 'facility', _rawId: f.id, _clusterIds: clusterIdsForCity(city),
             _tip: '<b>' + I18N.name(f) + '</b><br/>' + I18N.enumLabel('facility_type', f.facility_type) +
-              (f.operator_id && getOrg && getOrg(f.operator_id) ? '<br/>' + I18N.t('operator') + ': ' + I18N.name(getOrg(f.operator_id)) : '')
+              (f.confidence <= 0.5 ? ' · ' + I18N.t('candidate') : '') +
+              (operator ? '<br/>' + I18N.t('operator') + ': ' + I18N.name(operator) : '')
           });
           addLink({
-            source: city.id, target: 'fac:' + f.id, _rel: 'factory',
-            lineStyle: relStyle('factory'),
-            _tip: I18N.enumLabel('role_type', 'factory') + '<br/>' + I18N.name(f) + ' · ' + I18N.name(city)
+            source: city.id, target: 'fac:' + f.id, _rel: 'located_in',
+            lineStyle: relStyle('located_in'),
+            _tip: I18N.enumLabel('facility_type', f.facility_type) +
+              (f.confidence <= 0.5 ? ' · ' + I18N.t('candidate') : '') + '<br/>' +
+              I18N.name(f) + ' · ' + I18N.name(city)
           });
-          if (f.operator_id && nodeIds['org:' + f.operator_id]) {
+          if (operator && nodeIds['org:' + f.operator_id]) {
             addLink({
               source: 'org:' + f.operator_id, target: 'fac:' + f.id, _rel: 'operates',
-              lineStyle: relStyle('located_in'),
+              lineStyle: relStyle('operates'),
               _tip: I18N.enumLabel('relation_type', 'operates') + '<br/>' + endpointName('org:' + f.operator_id) + ' → ' + I18N.name(f)
             });
           }
@@ -487,12 +540,14 @@
       });
       if (!Object.keys(fitIds).length) fitIds = null;
     }
+    var narrow = window.innerWidth <= 520;
+    clusterGraphCache.narrow = narrow;
     nodes.forEach(function (n) {
       var ids = n._clusterIds || [];
       var hit = !selectedId || ids.indexOf(selectedId) !== -1;
       n.itemStyle = n.itemStyle || {};
       n.label = n.label || {};
-      n.label.show = true;
+      n.label.show = n._kind === 'city' || !narrow || (!!selectedId && hit);
       n.itemStyle.opacity = 1;
       if (selectedId && hit) {
         n.itemStyle.borderWidth = Math.max(n.itemStyle.borderWidth || 0, 2);
@@ -506,7 +561,8 @@
     });
 
     var key = (layers.hq ? '1' : '0') + (layers.brands ? '1' : '0') + (layers.plants ? '1' : '0') +
-      (I18N.isEn() ? 'e' : 'z') + (document.documentElement.classList.contains('dark') ? 'd' : 'l');
+      (I18N.isEn() ? 'e' : 'z') + (document.documentElement.classList.contains('dark') ? 'd' : 'l') +
+      (narrow ? 'n' : 'w');
     var rebuild = clusterGraphCache.key !== key || !instances['cluster-graph'];
     var c = graphChart(rebuild);
     if (!c) return;
@@ -521,6 +577,7 @@
     }
     clusterGraphCache.key = key;
     c.setOption({
+      aria: { enabled: true, description: I18N.t('clusterGraphAria') },
       textStyle: baseText(), tooltip: tooltip({
         formatter: function (p) {
           if (p.dataType === 'edge') return p.data && p.data._tip ? p.data._tip : '';
@@ -558,7 +615,13 @@
     });
   }
 
-  function resizeAll() { Object.keys(instances).forEach(function (k) { try { instances[k].resize(); } catch (e) {} }); }
+  function resizeAll() {
+    Object.keys(instances).forEach(function (k) { try { instances[k].resize(); } catch (e) {} });
+    var narrow = window.innerWidth <= 520;
+    if (clusterGraphCache.opts && clusterGraphCache.narrow !== narrow) {
+      renderClusterGraph(clusterGraphCache.opts);
+    }
+  }
   function setTheme() {
     /* re-init on theme change handled by app re-calling render* */
   }
