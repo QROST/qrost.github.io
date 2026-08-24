@@ -322,11 +322,12 @@ def ordered_qids(values: Iterable[str]) -> list[str]:
 def validate_person_seeds(seeds_payload: dict) -> list[dict]:
     """Validate the optional person-seed list.
 
-    Person seeds admit canonical architects whose works carry no usable
-    Wikidata P84 anchor: the fetcher pins the person record directly and the
-    importer's lineage machinery (architecture-occupation anchors) admits
-    them as people without work credits. Each seed needs only a QID and an
-    English label hint; the record itself must be a human instance.
+    Person seeds are the curation gate for people admitted without a usable
+    Wikidata P84 work credit: canonical architects missing work anchors, plus
+    explicitly selected theorists, historians, critics, and engineer-builders.
+    The fetcher pins each person record directly; the importer keeps those
+    QIDs even when P106 is not architect. Each seed needs a QID and an
+    English label hint; the record itself must be a human with some P106.
     """
     person_seeds = seeds_payload.get("person_seeds", [])
     if not isinstance(person_seeds, list):
@@ -458,6 +459,13 @@ def hydrate_snapshot(
             raise RuntimeError(
                 f"{seed['qid']}: seed person is not an instance of {PERSON_QID}; "
                 f"observed {sorted(instances)!r}"
+            )
+        # The person-seed list is itself the curation gate: theorists,
+        # historians, critics, and engineer-builders enter by explicit
+        # selection even without an architect occupation tag.
+        if not item_values(record, "P106"):
+            raise RuntimeError(
+                f"{seed['qid']}: seed person lacks any known occupation (P106)"
             )
 
     related_qids: set[str] = set()

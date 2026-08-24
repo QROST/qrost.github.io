@@ -99,8 +99,9 @@ def seed_people_by_policy(
     people: list[dict[str, Any]],
     works: list[dict[str, Any]],
     entity_records: dict[str, dict[str, Any]],
+    seeded_qids: set[str] | None = None,
 ) -> set[str]:
-    """Direct keeps: snapshot architect occupation or work credit."""
+    """Direct keeps: architect occupation, work credit, or person-seed curation."""
     people_by_id = {person["id"]: person for person in people}
     credited = credited_person_ids(works)
     seeds: set[str] = set()
@@ -110,6 +111,8 @@ def seed_people_by_policy(
         if record is not None and has_architecture_occupation(record):
             seeds.add(person_id)
         if person_id in credited:
+            seeds.add(person_id)
+        if isinstance(qid, str) and qid in (seeded_qids or set()):
             seeds.add(person_id)
     return seeds
 
@@ -138,13 +141,15 @@ def keep_people_by_policy(
     practices: list[dict[str, Any]],
     relations: list[dict[str, Any]],
     entity_records: dict[str, dict[str, Any]],
+    seeded_qids: set[str] | None = None,
 ) -> tuple[set[str], dict[str, int]]:
-    """Apply architect/credit seeds plus relation closure from architect/practice anchors."""
+    """Apply architect/credit/curated seeds plus relation closure from architect/practice anchors."""
     people_by_id = {person["id"]: person for person in people}
     seeds = seed_people_by_policy(
         people=people,
         works=works,
         entity_records=entity_records,
+        seeded_qids=seeded_qids,
     )
     anchors = relation_anchor_entities(
         people=people,
@@ -184,6 +189,7 @@ def prune_catalog_people(
     entity_records: dict[str, dict[str, Any]],
     *,
     sample_limit: int = 20,
+    seeded_qids: set[str] | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     people = catalog.get("people", [])
     works = catalog.get("works", [])
@@ -199,6 +205,7 @@ def prune_catalog_people(
         practices=practices,
         relations=relations,
         entity_records=entity_records,
+        seeded_qids=seeded_qids,
     )
     dropped_people = {
         person["id"]: person.get("external_ids", {}).get("wikidata")

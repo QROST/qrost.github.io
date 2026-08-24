@@ -40,6 +40,14 @@ def entity_records_from_snapshot(snapshot: dict) -> dict[str, dict]:
     return records
 
 
+def person_seed_qids_from_snapshot(snapshot: dict) -> set[str]:
+    return {
+        seed["qid"]
+        for seed in snapshot.get("person_seeds", [])
+        if isinstance(seed, dict) and isinstance(seed.get("qid"), str)
+    }
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -80,6 +88,7 @@ def main() -> int:
         catalog,
         records,
         sample_limit=args.sample_limit,
+        seeded_qids=person_seed_qids_from_snapshot(snapshot),
     )
 
     print(

@@ -1061,6 +1061,11 @@ class CatalogBuilder:
         self.snapshot_id = snapshot["snapshot_id"]
         self.accessed = snapshot["accessed"]
         self.entities = snapshot["entities"]
+        self.person_seed_qids = {
+            seed["qid"]
+            for seed in snapshot.get("person_seeds", [])
+            if isinstance(seed, dict) and isinstance(seed.get("qid"), str)
+        }
         self.seed_by_qid = {
             seed["qid"]: seed
             for seed in snapshot["seeds"]
@@ -1331,6 +1336,8 @@ class CatalogBuilder:
 
     def is_lineage_anchor_qid(self, qid: str) -> bool:
         if self.is_practice_qid(qid):
+            return True
+        if qid in self.person_seed_qids:
             return True
         return self.is_architecture_occupation(qid)
 
@@ -2346,7 +2353,11 @@ class CatalogBuilder:
             "relations": list(self.relations.values()),
             "claims": list(self.claims.values()),
         }
-        pruned, stats = prune_catalog_people(catalog, self.entity_records())
+        pruned, stats = prune_catalog_people(
+            catalog,
+            self.entity_records(),
+            seeded_qids=self.person_seed_qids,
+        )
         self.people = {person["id"]: person for person in pruned["people"]}
         self.relations = {relation["id"]: relation for relation in pruned["relations"]}
         self.claims = {claim["id"]: claim for claim in pruned["claims"]}
@@ -2364,6 +2375,16 @@ class CatalogBuilder:
             key=lambda item: qid_number(item["qid"]),
         ):
             self.add_work(seed)
+        for seed_qid in sorted(self.person_seed_qids, key=qid_number):
+            if seed_qid not in self.entities:
+                continue
+            record = self.entities[seed_qid]["record"]
+            if HUMAN_QID in set(item_values(record, "P31")):
+                self.ensure_person(
+                    seed_qid,
+                    role_from_credit=False,
+                    allow_non_architect=True,
+                )
         self.add_lineage_review_relations()
         self.prune_stats = self.apply_people_policy()
         catalog = {

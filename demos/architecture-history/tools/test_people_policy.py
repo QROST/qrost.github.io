@@ -139,6 +139,86 @@ class PeoplePolicyTests(unittest.TestCase):
         self.assertIn("person-wd-q5879", keep)
         self.assertNotIn("person-wd-q935", keep)
 
+    def test_seeded_qids_keep_historian_without_architect_occupation(self):
+        people = [
+            person("person-wd-q123143", "Q123143", name_en="Sigfried Giedion"),
+        ]
+        records = {
+            "Q123143": human_record("Q123143", occupations=[policy.HISTORIAN_QID]),
+        }
+        dropped, _ = policy.keep_people_by_policy(
+            people=people,
+            works=[],
+            practices=[],
+            relations=[],
+            entity_records=records,
+        )
+        kept, stats = policy.keep_people_by_policy(
+            people=people,
+            works=[],
+            practices=[],
+            relations=[],
+            entity_records=records,
+            seeded_qids={"Q123143"},
+        )
+        self.assertNotIn("person-wd-q123143", dropped)
+        self.assertIn("person-wd-q123143", kept)
+        self.assertEqual(stats["seed_people"], 1)
+
+    def test_seeded_historian_is_not_a_relation_anchor(self):
+        people = [
+            person("person-wd-q123143", "Q123143", name_en="Sigfried Giedion"),
+            person("person-wd-q9047", "Q9047", name_en="Voltaire"),
+        ]
+        records = {
+            "Q123143": human_record("Q123143", occupations=[policy.HISTORIAN_QID]),
+            "Q9047": human_record("Q9047", occupations=["Q4964182"]),
+        }
+        relations = [
+            {
+                "id": "relation-wd-influence-q9047-q123143",
+                "from_id": "person-wd-q9047",
+                "to_id": "person-wd-q123143",
+            }
+        ]
+        keep, _ = policy.keep_people_by_policy(
+            people=people,
+            works=[],
+            practices=[],
+            relations=relations,
+            entity_records=records,
+            seeded_qids={"Q123143"},
+        )
+        self.assertIn("person-wd-q123143", keep)
+        self.assertNotIn("person-wd-q9047", keep)
+
+    def test_prune_catalog_people_respects_seeded_qids(self):
+        catalog = {
+            "people": [
+                person("person-wd-q123143", "Q123143", name_en="Sigfried Giedion"),
+            ],
+            "works": [],
+            "practices": [],
+            "relations": [],
+            "claims": [
+                {"id": "claim-wd-q123143-name-en", "subject_id": "person-wd-q123143"},
+            ],
+        }
+        records = {
+            "Q123143": human_record("Q123143", occupations=[policy.HISTORIAN_QID]),
+        }
+        dropped, dropped_stats = policy.prune_catalog_people(catalog, records)
+        kept, kept_stats = policy.prune_catalog_people(
+            catalog,
+            records,
+            seeded_qids={"Q123143"},
+        )
+        self.assertEqual(dropped_stats["after"], 0)
+        self.assertEqual(dropped_stats["dropped_people"], 1)
+        self.assertEqual(kept_stats["after"], 1)
+        self.assertEqual(kept["people"][0]["id"], "person-wd-q123143")
+        self.assertEqual(len(kept["claims"]), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
