@@ -1,0 +1,13 @@
+{
+  "name": "qrost-china-housing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Tailwind build for the QROST China housing atlas.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind-input.css -o ./assets/css/tailwind-built.css --minify && node ./tools/stamp-cache.mjs",
+    "check:cache": "node ./tools/stamp-cache.mjs --check"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

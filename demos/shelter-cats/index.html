@@ -12,9 +12,14 @@
   <meta property="og:site_name" content="QROST" />
   <meta property="og:title" content="Shelter Cats · 全球收容所猫" />
   <meta property="og:description" content="Cached open-data shelter-cat records on one map, with filters, pixel avatars and source links for checking current availability." />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://qrost.github.io/assets/img/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="QROST research and interactive demos" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Shelter Cats · 全球收容所猫" />
   <meta name="twitter:description" content="Cached open-data shelter-cat records on one map, with filters, pixel avatars and source links for checking current availability." />
+  <meta name="twitter:image" content="https://qrost.github.io/assets/img/og-image.png" />
   <link rel="icon" href="../../favicon.svg" />
 
   <script>
@@ -26,16 +31,13 @@
       } catch (e) {}
     })();
     // Stamped by tools/build.py (content hash) → appended as ?v= to every data fetch.
-    window.SHELTERCATS_DATA_VERSION = '0c376690b7';
+    window.SHELTERCATS_DATA_VERSION = '43743e2076';
   </script>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
-  </script>
+  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=43743e2076" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/shelter-cats.css?v=0c376690b7" />
+  <link rel="stylesheet" href="assets/css/shelter-cats.css?v=43743e2076" />
   <style>
     /* Sun/moon theme-toggle animation — unified with QROST home */
     #theme-toggle .sun-icon,
@@ -48,6 +50,11 @@
 </head>
 
 <body class="bg-base text-base antialiased">
+  <div id="library-warning" class="hidden max-w-7xl mx-auto px-4 mt-4" role="status">
+    <div class="rounded-lg border border-amber-500/40 bg-amber-500/10 text-sm p-4">
+      地图组件未能加载；猫咪目录与来源链接仍可使用。 · The map could not load; the cat catalog and source links remain available.
+    </div>
+  </div>
   <nav class="sticky top-0 z-40 backdrop-blur border-b border-base bg-shell">
     <div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-4">
       <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] uppercase shrink-0 transition-colors">Qrost</a>
@@ -56,7 +63,7 @@
       <div class="ml-auto flex items-center gap-1 text-sm">
         <a href="#map" class="nav-link" data-i18n="navMap">Map</a>
         <a href="#browse" class="nav-link" data-i18n="navBrowse">Browse</a>
-        <a href="#about" class="nav-link" data-i18n="navAbout">About</a>
+        <a href="#about" class="nav-link hidden sm:inline-flex" data-i18n="navAbout">About</a>
         <button id="lang-toggle" class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all text-xs font-semibold shrink-0" title="中 / EN">中</button>
         <button id="theme-toggle" class="relative w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shrink-0" title="theme" aria-label="toggle theme">
           <svg class="sun-icon absolute w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -152,8 +159,8 @@
     </div>
   </footer>
 
-  <div id="cat-modal" class="modal-backdrop hidden">
-    <div class="modal-panel">
+  <div id="cat-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="cat-modal-title" aria-hidden="true">
+    <div class="modal-panel" tabindex="-1">
       <button class="modal-close" data-close-modal data-i18n-aria="mClose" aria-label="Close">&times;</button>
       <div id="cat-modal-body" class="modal-body"></div>
     </div>
@@ -164,13 +171,15 @@
        still sees i18n/data-loader/pixelcat/persona/map fully initialized. This lets the
        986KB vendored world-geo.js fetch off the main parse path instead of blocking the
        scripts queued after it. -->
-  <script src="assets/js/world-geo.js?v=0c376690b7" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" defer></script>
-  <script src="assets/js/i18n.js?v=0c376690b7" defer></script>
-  <script src="assets/js/data-loader.js?v=0c376690b7" defer></script>
-  <script src="assets/js/pixelcat.js?v=0c376690b7" defer></script>
-  <script src="assets/js/persona.js?v=0c376690b7" defer></script>
-  <script src="assets/js/map.js?v=0c376690b7" defer></script>
-  <script src="assets/js/app.js?v=0c376690b7" defer></script>
+  <script src="assets/js/world-geo.js?v=43743e2076" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
+    integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
+    crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.SHELTERCATS_ECHARTS_FAILED=true" defer></script>
+  <script src="assets/js/i18n.js?v=43743e2076" defer></script>
+  <script src="assets/js/data-loader.js?v=43743e2076" defer></script>
+  <script src="assets/js/pixelcat.js?v=43743e2076" defer></script>
+  <script src="assets/js/persona.js?v=43743e2076" defer></script>
+  <script src="assets/js/map.js?v=43743e2076" defer></script>
+  <script src="assets/js/app.js?v=43743e2076" defer></script>
 </body>
 </html>

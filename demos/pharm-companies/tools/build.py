@@ -23,7 +23,6 @@ import re
 import subprocess
 import sys
 from collections import Counter
-from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -31,6 +30,7 @@ DATA = ROOT / "assets" / "data"
 CATALOG = DATA / "catalog"
 RESEARCH = ROOT / "tmp" / "research"
 HTML = ROOT / "index.html"
+SNAPSHOT_DATE_KEYS = {"accessed", "last_verified", "as_of", "published_at", "first_seen", "last_fetch"}
 
 
 def load(path: Path):
@@ -61,6 +61,28 @@ def root_list(path: Path, *keys):
             if isinstance(data.get(k), list):
                 return data[k]
     return []
+
+
+def deterministic_build_time() -> str:
+    """Derive a stable snapshot time from source/provenance dates, never the wall clock."""
+    dates: list[str] = []
+
+    def visit(value, key=""):
+        if isinstance(value, dict):
+            for child_key, child in value.items():
+                visit(child, child_key)
+        elif isinstance(value, list):
+            for child in value:
+                visit(child, key)
+        elif key in SNAPSHOT_DATE_KEYS and isinstance(value, str):
+            match = re.match(r"^(\d{4}-\d{2}-\d{2})", value)
+            if match:
+                dates.append(match.group(1))
+
+    for path in sorted(DATA.rglob("*.json")):
+        if path.name != "manifest.json":
+            visit(load(path))
+    return (max(dates) if dates else "1970-01-01") + "T00:00:00Z"
 
 
 def merge_research() -> None:
@@ -363,7 +385,7 @@ def build_manifest() -> dict:
             region[c["region"]] += 1
 
     return {
-        "build_time": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "build_time": deterministic_build_time(),
         "data_version": "",  # filled by stamp_cache_bust()
         "total_companies": len(companies),
         "total_sites": len(sites),
@@ -423,11 +445,46 @@ def stamp_cache_bust(ver: str) -> list[str]:
     return log
 
 
-def run_validate() -> bool:
+def check_outputs(manifest: dict, ver: str) -> list[str]:
+    """Return stale-output errors without modifying the worktree."""
+    errors: list[str] = []
+    try:
+        current_manifest = load(DATA / "manifest.json")
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"manifest.json is unreadable: {exc}"]
+    expected_manifest = dict(manifest)
+    expected_manifest["data_version"] = ver
+    if current_manifest != expected_manifest:
+        errors.append("manifest.json differs from the deterministic build result")
+
+    try:
+        html = HTML.read_text(encoding="utf-8")
+    except OSError as exc:
+        errors.append(f"index.html is unreadable: {exc}")
+        return errors
+    refs = re.findall(
+        r'(?:src|href)="(assets/(?:js|data|css)/[^"?]+\.(?:js|css))(?:\?v=([^"&]+))?"',
+        html,
+    )
+    if not refs:
+        errors.append("index.html has no versioned local JS/CSS references")
+    for ref, token in refs:
+        if token != ver:
+            errors.append(f"stale cache token for {ref}: {token or '<missing>'} (expected {ver})")
+    inline = re.search(r"window\.PHARM_DATA_VERSION\s*=\s*['\"]([^'\"]+)['\"]", html)
+    if not inline or inline.group(1) != ver:
+        errors.append("window.PHARM_DATA_VERSION is missing or stale")
+    return errors
+
+
+def run_validate(show_warnings: bool = True) -> bool:
     r = subprocess.run([sys.executable, str(ROOT / "tools" / "validate.py")],
                        cwd=str(ROOT), capture_output=True, text=True)
     print(r.stdout, end="")
-    if r.stderr:
+    # The current catalog has thousands of acknowledged soft warnings. Keep
+    # normal build output exhaustive, but make the read-only aggregate gate
+    # concise unless validation actually fails; stdout retains the warning count.
+    if r.stderr and (show_warnings or r.returncode):
         print(r.stderr, end="", file=sys.stderr)
     return r.returncode == 0
 
@@ -436,7 +493,25 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Build pharma-atlas data layer.")
     ap.add_argument("--merge-research", action="store_true",
                     help="Union tmp/research/*.json into assets/data/ (research wins on id).")
+    ap.add_argument("--check", action="store_true",
+                    help="Read-only check that manifest and cache tokens match current inputs.")
     args = ap.parse_args()
+
+    if args.check and args.merge_research:
+        ap.error("--check cannot be combined with --merge-research")
+
+    if args.check:
+        manifest = build_manifest()
+        ver = content_hash()
+        errors = check_outputs(manifest, ver)
+        valid = run_validate(show_warnings=False)
+        if errors:
+            for error in errors:
+                print(f"  ! {error}", file=sys.stderr)
+        if errors or not valid:
+            return 1
+        print(f"build.py --check: manifest + cache tokens current ({ver}); no files written")
+        return 0
 
     if args.merge_research:
         print("build.py: merging research -> assets/data")

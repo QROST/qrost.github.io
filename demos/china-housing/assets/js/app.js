@@ -2338,6 +2338,23 @@
   // ---- per-listing modal: satellite / vicinity / climate -----------------
   const TILE_SAT = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
   const TILE_STREET = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  function wireTileFailure(layer, map) {
+    if (!layer || typeof layer.on !== 'function' || !map || typeof map.getContainer !== 'function') return;
+    let shown = false;
+    layer.on('tileerror', () => {
+      if (shown) return;
+      shown = true;
+      const host = map.getContainer();
+      if (!host || host.querySelector('.tile-load-warning')) return;
+      const warning = document.createElement('div');
+      warning.className = 'tile-load-warning';
+      warning.setAttribute('role', 'status');
+      warning.textContent = isEn()
+        ? 'Map tiles could not load; markers and listing details remain available.'
+        : '地图底图未能加载，标记与房源详情仍可使用。';
+      host.appendChild(warning);
+    });
+  }
   const POI_META_KEYS = {
     community: { labelKey: 'poiCommunity', fill: '#ffffff', stroke: '#334155' },
     metro: { labelKey: 'poiMetro', color: '#2563eb' }, train: { labelKey: 'poiTrain', color: '#7c3aed' },
@@ -2812,9 +2829,14 @@
     if (tab === 'sat') {
       if (!lmTabInit.sat) {
         lmTabInit.sat = true;
+        if (!window.L) {
+          document.getElementById('lm-sat-map').innerHTML = `<div class="h-full flex items-center justify-center p-6 text-center ${tcx().muted}">${isEn() ? 'The detail map library could not load. Other listing details remain available.' : '详情地图组件未能加载，其他房源信息仍可使用。'}</div>`;
+          return;
+        }
         setTimeout(() => {
           lmSatMap = L.map('lm-sat-map', { scrollWheelZoom: true }).setView([e.lat, e.lng], ZOOM_BY_LEVEL[e.geoLevel] || 14);
-          L.tileLayer(TILE_SAT, { maxZoom: 19, attribution: '© Esri World Imagery' }).addTo(lmSatMap);
+          const satTiles = L.tileLayer(TILE_SAT, { maxZoom: 19, attribution: '© Esri World Imagery' });
+          wireTileFailure(satTiles, lmSatMap); satTiles.addTo(lmSatMap);
           L.circleMarker([e.lat, e.lng], { radius: 9, color: '#fff', weight: 2, fillColor: '#059669', fillOpacity: 1 }).addTo(lmSatMap).bindPopup(d.loc);
           setTimeout(() => lmSatMap && lmSatMap.invalidateSize(), 180);
         }, 60);
@@ -2852,8 +2874,14 @@
 
   function lmInitNear(d) {
     const e = d.enr;
+    if (!window.L) {
+      document.getElementById('lm-near-map').innerHTML = `<div class="h-full flex items-center justify-center p-6 text-center ${tcx().muted}">${isEn() ? 'The nearby map could not load; the distance list remains available.' : '周边地图组件未能加载，距离清单仍可使用。'}</div>`;
+      lmRenderNearList(d);
+      return;
+    }
     lmNearMap = L.map('lm-near-map', { scrollWheelZoom: true }).setView([e.lat, e.lng], 11);
-    L.tileLayer(TILE_STREET, { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(lmNearMap);
+    const streetTiles = L.tileLayer(TILE_STREET, { maxZoom: 19, attribution: '© OpenStreetMap' });
+    wireTileFailure(streetTiles, lmNearMap); streetTiles.addTo(lmNearMap);
     const pts = [[e.lat, e.lng]];
     const locName = I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc;
     const pois = e.pois || {};
@@ -3550,6 +3578,10 @@
 
     wireThemeToggle();
     wireLangToggle();
+    if (!window.Chart || !window.echarts || !window.L || window.HOUSING_CHART_FAILED || window.HOUSING_ECHARTS_FAILED || window.HOUSING_LEAFLET_FAILED) {
+      const warning = document.getElementById('library-warning');
+      if (warning) warning.classList.remove('hidden');
+    }
     initMap();
 
     const tier1Toggle = document.getElementById('tier1-toggle');

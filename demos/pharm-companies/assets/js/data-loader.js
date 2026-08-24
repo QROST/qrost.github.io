@@ -1,4 +1,5 @@
-/* Fetch + index all data files (manifest-driven), cache-busted by window.PHARM_DATA_VERSION.
+/* Fetch + index the static data layer (manifest-driven), cache-busted by window.PHARM_DATA_VERSION.
+   Product catalog shards are deliberately lazy: initCore() never requests them.
    window.PHARM_DATA */
 (function () {
   'use strict';
@@ -13,6 +14,7 @@
   var groupMap = {}, childrenByParent = {}, companiesByGroup = {};
   var policyMap = {}, policiesByCompany = {};
   var dealMap = {}, dealsByCompany = {};
+  var corePromise = null, productsPromise = null, productsLoaded = false;
 
   async function fetchJson(path, optional) {
     var sep = path.indexOf('?') === -1 ? '?' : '&';
@@ -28,9 +30,8 @@
     return Array.isArray(data[key]) ? data[key] : [];
   }
 
-  async function initCore() {
+  async function initCoreImpl() {
     store.manifest = await fetchJson(BASE + 'manifest.json');
-    var shards = (store.manifest && store.manifest.shards) || [];
 
     var results = await Promise.all([
       fetchJson(BASE + 'companies.json', true),
@@ -43,7 +44,7 @@
       fetchJson(BASE + 'groups.json', true),
       fetchJson(BASE + 'policies.json', true),
       fetchJson(BASE + 'deals.json', true)
-    ].concat(shards.map(function (s) { return fetchJson(BASE + s.file, true); })));
+    ]);
 
     store.companies = arr(results[0], 'companies');
     store.sites = arr(results[1], 'sites');
@@ -55,8 +56,6 @@
     store.groups = arr(results[7], 'groups');
     store.policies = arr(results[8], 'policies');
     store.deals = arr(results[9], 'deals');
-    store.products = [];
-    for (var i = 10; i < results.length; i++) { store.products = store.products.concat(arr(results[i], 'products')); }
 
     store.groups.forEach(function (g) { groupMap[g.id] = g; });
     store.companies.forEach(function (c) {
@@ -66,7 +65,6 @@
     });
     store.modalities.forEach(function (m) { modalityMap[m.id] = m; });
     store.therapeuticAreas.forEach(function (t) { taMap[t.id] = t; });
-    store.products.forEach(function (p) { productMap[p.id] = p; });
     store.sites.forEach(function (s) {
       (sitesByCompany[s.company_id] = sitesByCompany[s.company_id] || []).push(s);
     });
@@ -89,6 +87,45 @@
       });
     });
     return store;
+  }
+
+  function initCore() {
+    if (!corePromise) corePromise = initCoreImpl();
+    return corePromise;
+  }
+
+  async function loadProductsImpl() {
+    await initCore();
+    var shards = (store.manifest && store.manifest.shards) || [];
+    var settled = await Promise.allSettled(shards.map(function (s) { return fetchJson(BASE + s.file); }));
+    var failed = [];
+    settled.forEach(function (result, index) {
+      if (result.status === 'rejected') failed.push(shards[index] && shards[index].file || ('shard ' + (index + 1)));
+    });
+    // Product state is atomic: never expose an incomplete catalog as a
+    // successful load. The rejected promise is cleared by loadProducts(), so
+    // a later user retry fetches every shard again from a clean state.
+    if (failed.length) throw new Error('product catalog failed to load: ' + failed.join(', '));
+    var nextProducts = [];
+    settled.forEach(function (result) { nextProducts = nextProducts.concat(arr(result.value, 'products')); });
+    var expected = store.manifest && store.manifest.total_products;
+    if (typeof expected === 'number' && nextProducts.length !== expected) {
+      throw new Error('product catalog count mismatch: expected ' + expected + ', got ' + nextProducts.length);
+    }
+    var nextProductMap = {};
+    nextProducts.forEach(function (p) { nextProductMap[p.id] = p; });
+    store.products = nextProducts;
+    productMap = nextProductMap;
+    productsLoaded = true;
+    return store.products;
+  }
+
+  function loadProducts() {
+    if (!productsPromise) productsPromise = loadProductsImpl().catch(function (error) {
+      productsPromise = null;
+      throw error;
+    });
+    return productsPromise;
   }
 
   function productsForCompany(id) { return store.products.filter(function (p) { return p.company_id === id; }); }
@@ -122,6 +159,7 @@
 
   window.PHARM_DATA = {
     initCore: initCore,
+    loadProducts: loadProducts,
     productsForCompany: productsForCompany,
     sitesForCompany: sitesForCompany,
     milestonesForCompany: milestonesForCompany,
@@ -150,6 +188,7 @@
     get pairs() { return store.pairs; },
     get groups() { return store.groups; },
     get policies() { return store.policies; },
-    get deals() { return store.deals; }
+    get deals() { return store.deals; },
+    get productsLoaded() { return productsLoaded; }
   };
 })();

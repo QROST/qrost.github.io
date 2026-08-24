@@ -14,12 +14,13 @@ Usage (from demos/shelter-cats/):  python tools/build.py
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
+import sqlite3
 import sys
 from collections import Counter, defaultdict
-from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -44,9 +45,26 @@ OUT_FIELDS = [
 KEEP_IF_FALSY = {"colors", "pattern", "coat_length", "name", "status", "sex"}
 
 
+def deterministic_build_time(values) -> str:
+    """Return a stable timestamp bound to the cached snapshot, not the build clock."""
+    dates = []
+    for value in values:
+        if not isinstance(value, str):
+            continue
+        match = re.match(r"^(\d{4}-\d{2}-\d{2})", value)
+        if match:
+            dates.append(match.group(1))
+    return (max(dates) if dates else "1970-01-01") + "T00:00:00Z"
+
+
 def write_json(path: Path, obj) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    path.write_bytes(json_bytes(obj))
+
+
+def json_bytes(obj) -> bytes:
+    """Serialize public JSON exactly once for both writes and read-only checks."""
+    return (json.dumps(obj, ensure_ascii=False, indent=1) + "\n").encode("utf-8")
 
 
 def cat_to_obj(row) -> dict:
@@ -69,9 +87,24 @@ def cat_to_obj(row) -> dict:
     return out
 
 
-def build() -> dict:
-    conn = db.connect(DB_PATH)
-    db.init_schema(conn)
+def build(write_outputs: bool = True, collect_projection: bool = False):
+    if write_outputs:
+        conn = db.connect(DB_PATH)
+        db.init_schema(conn)
+    else:
+        # `--check` must be genuinely read-only: bypass db.connect(), whose
+        # WAL pragma can touch sidecar files, and open SQLite in mode=ro.
+        wal_path = Path(str(DB_PATH) + "-wal")
+        if wal_path.exists() and wal_path.stat().st_size:
+            raise RuntimeError(
+                f"uncheckpointed SQLite WAL present ({wal_path.name}); "
+                "close the writer/checkpoint the DB before checking public outputs"
+            )
+        # `immutable=1` prevents SQLite from creating -wal/-shm sidecars while
+        # checking a committed snapshot. The non-empty WAL guard above prevents
+        # immutable mode from silently ignoring committed sidecar state.
+        conn = sqlite3.connect(f"file:{DB_PATH}?mode=ro&immutable=1", uri=True)
+        conn.row_factory = sqlite3.Row
     shelters = [dict(r) for r in conn.execute("SELECT * FROM shelters ORDER BY id")]
     region_by_shelter = {s["id"]: (s.get("region") or "north_america") for s in shelters}
 
@@ -82,23 +115,32 @@ def build() -> dict:
     for c in cats:
         by_region[region_by_shelter.get(c.get("shelter_id"), "north_america")].append(c)
 
-    if CATS_DIR.exists():
+    if write_outputs and CATS_DIR.exists():
         for old in CATS_DIR.glob("*.json"):
             old.unlink()
     shards = []
+    projection: dict[str, bytes] = {}
     for region, items in sorted(by_region.items()):
         fname = f"{region}.json"
-        write_json(CATS_DIR / fname, {"region": region, "cats": items})
-        shards.append({"region": region, "file": f"cats/{fname}", "count": len(items)})
+        rel = f"cats/{fname}"
+        projection[rel] = json_bytes({"region": region, "cats": items})
+        if write_outputs:
+            (DATA / rel).parent.mkdir(parents=True, exist_ok=True)
+            (DATA / rel).write_bytes(projection[rel])
+        shards.append({"region": region, "file": rel, "count": len(items)})
 
     # ---- shelters.json ----
     live_regions = sorted({region_by_shelter[s["id"]] for s in shelters})
-    write_json(DATA / "shelters.json", {"shelters": shelters})
+    projection["shelters.json"] = json_bytes({"shelters": shelters})
+    if write_outputs:
+        (DATA / "shelters.json").write_bytes(projection["shelters.json"])
 
     # ---- enums.json (+ which regions are live) ----
     en = enums.all_enums()
     en["regions_live"] = live_regions
-    write_json(DATA / "enums.json", en)
+    projection["enums.json"] = json_bytes(en)
+    if write_outputs:
+        (DATA / "enums.json").write_bytes(projection["enums.json"])
 
     # ---- counts ----
     def counts(key):
@@ -122,7 +164,9 @@ def build() -> dict:
         })
 
     manifest = {
-        "build_time": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "build_time": deterministic_build_time(
+            [c.get("first_seen", "") for c in cats] + [s.get("last_fetch", "") for s in source_meta]
+        ),
         "data_version": "",  # filled by stamp_cache_bust
         "generator": "tools/build.py",
         "total_cats": len(cats),
@@ -143,6 +187,9 @@ def build() -> dict:
         "enums_file": "enums.json",
         "sources": source_meta,
     }
+    conn.close()
+    if collect_projection:
+        return manifest, projection
     return manifest
 
 
@@ -184,9 +231,75 @@ def stamp_cache_bust(ver: str) -> list[str]:
     return log
 
 
+def check_outputs(manifest: dict, projection: dict[str, bytes], ver: str) -> list[str]:
+    """Return stale-output errors without modifying HTML, JSON, or SQLite."""
+    errors: list[str] = []
+    expected_shards = {DATA / rel for rel in projection if rel.startswith("cats/")}
+    actual_shards = set(CATS_DIR.glob("*.json")) if CATS_DIR.exists() else set()
+    for extra in sorted(actual_shards - expected_shards):
+        errors.append(f"unexpected stale cat shard: {extra.relative_to(DATA)}")
+    for rel, expected in sorted(projection.items()):
+        path = DATA / rel
+        try:
+            actual = path.read_bytes()
+        except OSError as exc:
+            errors.append(f"{rel} is unreadable: {exc}")
+            continue
+        if actual != expected:
+            errors.append(f"{rel} differs from the SQLite public projection")
+
+    try:
+        current_manifest = json.loads((DATA / "manifest.json").read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"manifest.json is unreadable: {exc}"]
+    expected_manifest = dict(manifest)
+    expected_manifest["data_version"] = ver
+    if current_manifest != expected_manifest:
+        errors.append("manifest.json differs from the deterministic build result")
+
+    try:
+        html = HTML.read_text(encoding="utf-8")
+    except OSError as exc:
+        errors.append(f"index.html is unreadable: {exc}")
+        return errors
+    refs = re.findall(
+        r'(?:src|href)="(assets/(?:js|data|css)/[^"?]+\.(?:js|css))(?:\?v=([^"&]+))?"',
+        html,
+    )
+    if not refs:
+        errors.append("index.html has no versioned local JS/CSS references")
+    for ref, token in refs:
+        if token != ver:
+            errors.append(f"stale cache token for {ref}: {token or '<missing>'} (expected {ver})")
+    inline = re.search(r"window\.SHELTERCATS_DATA_VERSION\s*=\s*['\"]([^'\"]+)['\"]", html)
+    if not inline or inline.group(1) != ver:
+        errors.append("window.SHELTERCATS_DATA_VERSION is missing or stale")
+    return errors
+
+
 def main() -> int:
+    ap = argparse.ArgumentParser(description="Build shelter-cats static data.")
+    ap.add_argument("--check", action="store_true",
+                    help="Read-only check that manifest and cache tokens match current inputs.")
+    args = ap.parse_args()
+
+    if args.check:
+        try:
+            manifest, projection = build(write_outputs=False, collect_projection=True)
+        except (OSError, RuntimeError, sqlite3.Error) as exc:
+            print(f"  ! read-only SQLite projection failed: {exc}", file=sys.stderr)
+            return 1
+        ver = content_hash()
+        errors = check_outputs(manifest, projection, ver)
+        if errors:
+            for error in errors:
+                print(f"  ! {error}", file=sys.stderr)
+            return 1
+        print(f"build.py --check: SQLite projection + manifest + cache tokens current ({ver}); no files written")
+        return 0
+
     print("build.py: SQLite -> static data layer")
-    manifest = build()
+    manifest = build(write_outputs=True)
     ver = content_hash()
     manifest["data_version"] = ver
     write_json(DATA / "manifest.json", manifest)

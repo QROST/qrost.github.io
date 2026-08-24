@@ -1,0 +1,12 @@
+{
+  "name": "qrost-pharm-companies",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Tailwind build for the QROST global pharma atlas.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind-input.css -o ./assets/css/tailwind-built.css --minify && python3 ./tools/build.py"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

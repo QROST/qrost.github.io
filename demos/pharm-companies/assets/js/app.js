@@ -12,7 +12,103 @@
     compare: [], countrySel: [], groupsFilter: '', policiesFilter: '', dealsFilter: ''
   };
   var companyModalities = {}, companyTAs = {}, companyPrimaryTA = {};
+  var productsLoadPromise = null, productLoadError = null, dialogReturnFocus = {};
+  var policyParentCompanyId = null, policyParentReturnFocus = null;
   var CAT_CAP = 400; // max catalog rows rendered at once (perf w/ large roster); refine via filters
+
+  function showDialog(id, returnFocus) {
+    var modal = $(id); if (!modal) return;
+    if (modal.classList.contains('hidden')) dialogReturnFocus[id] = returnFocus || document.activeElement;
+    modal.classList.remove('hidden'); modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    var target = modal.querySelector('.modal-close') || modal.querySelector('.modal-panel');
+    if (target) target.focus({ preventScroll: true });
+  }
+  function hideDialog(id, restore) {
+    var modal = $(id); if (!modal || modal.classList.contains('hidden')) return;
+    modal.classList.add('hidden'); modal.setAttribute('aria-hidden', 'true');
+    if (!document.querySelector('.modal-backdrop:not(.hidden)')) document.body.style.overflow = '';
+    var back = dialogReturnFocus[id]; delete dialogReturnFocus[id];
+    // Lazy product loading re-renders catalog rows while a company modal is
+    // open. Recover the replacement row before restoring keyboard focus.
+    if (back && !back.isConnected && back.getAttribute) {
+      var companyId = back.getAttribute('data-company');
+      if (companyId) back = Array.from(document.querySelectorAll('[data-company]')).find(function (node) {
+        return node.getAttribute('data-company') === companyId;
+      });
+    }
+    if (restore !== false && back && typeof back.focus === 'function') back.focus({ preventScroll: true });
+  }
+  function topDialog() {
+    return ['policy-modal', 'compare-modal', 'company-modal'].map($).filter(function (m) { return m && !m.classList.contains('hidden'); })[0] || null;
+  }
+  function trapDialogFocus(e) {
+    var modal = topDialog(); if (!modal || e.key !== 'Tab') return;
+    var nodes = modal.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])');
+    if (!nodes.length) return;
+    var first = nodes[0], last = nodes[nodes.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
+  function syncProductLoadError() {
+    var box = $('product-load-error'), copy = $('product-load-error-text');
+    if (!box || !copy) return;
+    copy.textContent = I18N.t('productLoadError');
+    box.classList.toggle('hidden', !productLoadError);
+  }
+  function showProductLoadError(error) {
+    productLoadError = error || new Error('product catalog failed to load');
+    syncProductLoadError();
+  }
+  function clearProductLoadError() {
+    productLoadError = null;
+    syncProductLoadError();
+  }
+
+  function productLoadingCopy() { return I18N.isEn() ? 'Product data loads when this section is opened.' : '药物明细将在打开本区时按需加载。'; }
+  function showProductPlaceholders() {
+    ['overview-chart', 'modality-sunburst', 'trend-phase', 'trend-ta', 'trend-modality'].forEach(function (id) {
+      var node = $(id); if (node && !node.firstChild) node.innerHTML = '<p class="loading">' + productLoadingCopy() + '</p>';
+    });
+  }
+  function renderProductViews() {
+    if (!D.productsLoaded) { showProductPlaceholders(); return; }
+    ['overview-chart', 'modality-sunburst', 'trend-phase', 'trend-ta', 'trend-modality'].forEach(function (id) {
+      var node = $(id); if (node && node.querySelector('.loading')) node.innerHTML = '';
+    });
+    CH.renderOverview(D.companies, D.products);
+    CH.renderModalitySunburst(D.products, D.modalities, function (modId) {
+      state.cat.modality = modId; $('cat-filter-modality').value = modId; renderCatalog();
+      document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+    });
+    CH.renderTrendPhase(D.products); CH.renderTrendTA(D.products, D.getTA);
+    CH.renderTrendModality(D.products, D.getModality);
+    renderBenchmarks(); renderMilestones();
+  }
+  function ensureProducts() {
+    if (D.productsLoaded) return Promise.resolve(D.products);
+    if (!productsLoadPromise) {
+      clearProductLoadError();
+      productsLoadPromise = D.loadProducts().then(function () {
+        buildIndexes(); fillSelects(); restoreFilterValues(); renderKpis(); renderMap(); renderCatalog(); renderProductViews();
+        if (openCompanyId) renderModalBodyFromOpen();
+        clearProductLoadError();
+        return D.products;
+      }).catch(function (error) {
+        productsLoadPromise = null; console.error(error); showProductLoadError(error); throw error;
+      });
+    }
+    return productsLoadPromise;
+  }
+  function observeProductSections() {
+    var ids = ['overview', 'map', 'catalog', 'modalities', 'trends', 'benchmarks', 'milestones'];
+    if (!('IntersectionObserver' in window)) return;
+    var observer = new IntersectionObserver(function (entries) {
+      if (entries.some(function (entry) { return entry.isIntersecting; })) { observer.disconnect(); ensureProducts().catch(function () {}); }
+    }, { rootMargin: '160px' });
+    ids.forEach(function (id) { var node = $(id); if (node) observer.observe(node); });
+  }
 
   // ---------- FX + money formatting ----------
   // Raw values stay in local currency (ground truth in the data); DISPLAY converts to the reader's
@@ -145,8 +241,8 @@
     $('kpi-companies').textContent = D.companies.length || '—';
     var ctys = uniq(D.companies.map(function (c) { return c.country; }));
     $('kpi-countries').textContent = ctys.length || '—';
-    $('kpi-products').textContent = D.products.length || '—';
-    $('kpi-blockbusters').textContent = D.products.filter(function (p) { return p.is_blockbuster; }).length || '0';
+    $('kpi-products').textContent = D.productsLoaded ? D.products.length : ((D.manifest && D.manifest.total_products) || '—');
+    $('kpi-blockbusters').textContent = D.productsLoaded ? D.products.filter(function (p) { return p.is_blockbuster; }).length : '—';
     $('kpi-sites').textContent = D.sites.length || '—';
   }
 
@@ -205,7 +301,7 @@
     var cols = [['name', 'thCompany'], ['country', 'thCountry'], ['exchange', 'thExchange'], ['type', 'thType'], ['revenue', 'thRevenue'], ['products', 'thProducts'], ['focus', 'thFocus']];
     $('catalog-head').innerHTML = cols.map(function (c) {
       var arrow = state.cat.sort === c[0] ? (state.cat.dir > 0 ? ' ▲' : ' ▼') : '';
-      return '<th data-sort="' + c[0] + '">' + I18N.t(c[1]) + arrow + '</th>';
+      return '<th data-sort="' + c[0] + '" tabindex="0" role="button">' + I18N.t(c[1]) + arrow + '</th>';
     }).join('');
     var list = filteredCompanies();
     var shown = list.slice(0, CAT_CAP);
@@ -217,13 +313,13 @@
       var listedBadge = roster ? ' <span class="badge" style="background:var(--bg-elev);color:var(--text-faint)">' + I18N.t('badgeListed') + '</span>' : '';
       var focus = roster ? esc(c.sub_sector || '')
         : esc((Array.from(companyTAs[c.id] || [])).slice(0, 3).map(function (ta) { var t = D.getTA(ta); return t ? I18N.name(t) : ta; }).join('、'));
-      return '<tr data-company="' + c.id + '">' +
+      return '<tr data-company="' + c.id + '" tabindex="0" role="button" aria-label="' + esc((I18N.isEn() ? 'View ' : '查看 ') + I18N.name(c)) + '">' +
         '<td>' + esc(I18N.name(c)) + listedBadge + '</td>' +
         '<td>' + esc(I18N.pick(c.country_display_zh, c.country_display_en) || c.country) + '</td>' +
         '<td class="text-faint">' + esc(exchOf(c)) + (tickerOf(c) ? ' <span style="opacity:.7">' + esc(tickerOf(c)) + '</span>' : '') + '</td>' +
         '<td>' + ctBadge(c) + '</td>' +
         '<td class="num">' + money(roster ? c.market_cap : c.revenue) + '</td>' +
-        '<td class="num">' + (roster ? '·' : D.productsForCompany(c.id).length) + '</td>' +
+        '<td class="num">' + (roster ? '·' : (D.productsLoaded ? D.productsForCompany(c.id).length : '…')) + '</td>' +
         '<td>' + focus + '</td>' +
       '</tr>';
     }).join('') || '<tr><td colspan="7" class="loading">' + I18N.t('noData') + '</td></tr>';
@@ -248,10 +344,14 @@
       return '<button class="modal-tab-btn ' + (t[0] === modalTab ? 'active' : '') + '" data-tab="' + t[0] + '">' + I18N.t(t[0]) + '</button>';
     }).join('');
     renderModalBody(c);
-    $('company-modal').classList.remove('hidden');
+    showDialog('company-modal');
   }
   function renderModalBody(c) {
     var b = $('company-modal-body'); var t = modalTab;
+    if (!D.productsLoaded && ['tabPipeline', 'tabFocus', 'tabBench', 'tabMilestones'].indexOf(t) !== -1) {
+      b.innerHTML = '<p class="loading">' + I18N.t('loading') + '</p>';
+      return;
+    }
     if (t === 'tabSummary') {
       var kv = [
         [I18N.t('thExchange'), esc(exchOf(c)) || '—'],
@@ -396,8 +496,8 @@
       rows.map(function (r) { return '<tr><td class="text-faint">' + I18N.t(r[0]) + '</td>' + cs.map(function (c) { return '<td>' + r[1](c) + '</td>'; }).join('') + '</tr>'; }).join('') +
       '</tbody></table><div class="mt-3"><button class="btn-ghost" id="compare-clear">' + I18N.t('reset') + '</button></div>';
     $('compare-body').innerHTML = html;
-    $('compare-clear').addEventListener('click', function () { state.compare = []; $('compare-badge').classList.add('hidden'); $('compare-modal').classList.add('hidden'); });
-    $('compare-modal').classList.remove('hidden');
+    $('compare-clear').addEventListener('click', function () { state.compare = []; $('compare-badge').classList.add('hidden'); hideDialog('compare-modal'); });
+    showDialog('compare-modal');
   }
 
   // ---------- groups (corporate-ownership graph) ----------
@@ -453,7 +553,17 @@
   }
   function openPolicyModal(id) {
     var p = D.getPolicy(id); if (!p) return;
-    $('company-modal').classList.add('hidden');  // avoid stacked modals
+    var fromCompany = !$('company-modal').classList.contains('hidden');
+    var fromPolicy = !$('policy-modal').classList.contains('hidden');
+    var policyReturn = document.activeElement;
+    if (fromCompany) {
+      policyParentCompanyId = openCompanyId;
+      policyParentReturnFocus = dialogReturnFocus['company-modal'] || null;
+      hideDialog('company-modal', false);  // avoid stacked modals
+    } else if (!fromPolicy) {
+      policyParentCompanyId = null;
+      policyParentReturnFocus = null;
+    }
     $('policy-modal-head').innerHTML =
       '<h3 class="text-xl font-semibold">' + esc(policyName(p)) + '</h3>' +
       '<div class="mt-1 flex flex-wrap items-center gap-2 text-sm">' + ptBadge(p) +
@@ -475,7 +585,31 @@
       affectedHtml(p) +
       (related.length ? '<h4 class="mt-4">' + I18N.t('polRelatedPolicies') + '</h4><div>' + related.map(polChip).join(' ') + '</div>' : '') +
       polSourcesHtml(p.sources);
-    $('policy-modal').classList.remove('hidden');
+    showDialog('policy-modal', policyReturn);
+  }
+  function closePolicyModal() {
+    var policyReturn = dialogReturnFocus['policy-modal'];
+    var parentId = policyParentCompanyId;
+    var parentReturn = policyParentReturnFocus;
+    hideDialog('policy-modal', false);
+    policyParentCompanyId = null;
+    policyParentReturnFocus = null;
+    if (parentId && openCompanyId === parentId) {
+      showDialog('company-modal', parentReturn);
+      // A lazy product completion can re-render the hidden company body while
+      // the policy dialog is open. Recover the matching replacement chip.
+      if (policyReturn && !policyReturn.isConnected && policyReturn.getAttribute) {
+        var policyId = policyReturn.getAttribute('data-policy-link');
+        if (policyId) policyReturn = Array.from($('company-modal').querySelectorAll('[data-policy-link]')).find(function (node) {
+          return node.getAttribute('data-policy-link') === policyId;
+        });
+      }
+      if (policyReturn && policyReturn.isConnected && typeof policyReturn.focus === 'function') {
+        policyReturn.focus({ preventScroll: true });
+      }
+    } else if (policyReturn && policyReturn.isConnected && typeof policyReturn.focus === 'function') {
+      policyReturn.focus({ preventScroll: true });
+    }
   }
   // reverse: policies affecting THIS company (shown in company modal summary)
   function relatedPoliciesHtml(c) {
@@ -549,16 +683,10 @@
   // ---------- render all dynamic ----------
   function renderAll() {
     renderKpis();
-    CH.renderOverview(D.companies, D.products);
     renderMap();
     renderCatalog();
-    CH.renderModalitySunburst(D.products, D.modalities, function (modId) {
-      state.cat.modality = modId; $('cat-filter-modality').value = modId; renderCatalog();
-      document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
-    });
-    CH.renderTrendPhase(D.products); CH.renderTrendTA(D.products, D.getTA);
-    CH.renderTrendModality(D.products, D.getModality); CH.renderTrendRegion(D.companies);
-    renderCountries(); renderBenchmarks(); renderMilestones(); renderGroups(); renderDeals(); renderPolicies();
+    renderProductViews(); CH.renderTrendRegion(D.companies);
+    renderCountries(); renderGroups(); renderDeals(); renderPolicies();
   }
 
   // ---------- theme ----------
@@ -573,12 +701,21 @@
   function bind() {
     $('lang-toggle').addEventListener('click', function () { I18N.toggleLang(); });
     $('theme-toggle').addEventListener('click', toggleTheme);
-    $('compare-btn').addEventListener('click', openCompare);
-    document.querySelectorAll('[data-close-modal]').forEach(function (b) { b.addEventListener('click', function () { $('company-modal').classList.add('hidden'); }); });
-    document.querySelectorAll('[data-close-compare]').forEach(function (b) { b.addEventListener('click', function () { $('compare-modal').classList.add('hidden'); }); });
-    document.querySelectorAll('[data-close-policy]').forEach(function (b) { b.addEventListener('click', function () { $('policy-modal').classList.add('hidden'); }); });
+    $('compare-btn').addEventListener('click', function () { ensureProducts().then(openCompare).catch(function () {}); });
+    document.querySelectorAll('[data-close-modal]').forEach(function (b) { b.addEventListener('click', function () { hideDialog('company-modal'); }); });
+    document.querySelectorAll('[data-close-compare]').forEach(function (b) { b.addEventListener('click', function () { hideDialog('compare-modal'); }); });
+    document.querySelectorAll('[data-close-policy]').forEach(function (b) { b.addEventListener('click', closePolicyModal); });
     [['company-modal'], ['compare-modal'], ['policy-modal']].forEach(function (m) {
-      $(m[0]).addEventListener('click', function (e) { if (e.target === this) this.classList.add('hidden'); });
+      $(m[0]).addEventListener('click', function (e) {
+        if (e.target === this) { if (m[0] === 'policy-modal') closePolicyModal(); else hideDialog(m[0]); }
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        var modal = topDialog();
+        if (modal) { if (modal.id === 'policy-modal') closePolicyModal(); else hideDialog(modal.id); }
+      }
+      else trapDialogFocus(e);
     });
 
     $('map-dims').addEventListener('click', function (e) {
@@ -592,7 +729,9 @@
     $('map-filter-ta').addEventListener('change', function (e) { state.map.ta = e.target.value; renderMap(); });
     $('map-reset').addEventListener('click', function () { state.map.region = state.map.modality = state.map.ta = ''; $('map-filter-region').value = ''; $('map-filter-modality').value = ''; $('map-filter-ta').value = ''; renderMap(); });
 
-    $('cat-search').addEventListener('input', function (e) { state.cat.search = e.target.value; renderCatalog(); });
+    $('cat-search').addEventListener('focus', function () { ensureProducts().catch(function () {}); }, { once: true });
+    $('product-load-retry').addEventListener('click', function () { ensureProducts().catch(function () {}); });
+    $('cat-search').addEventListener('input', function (e) { state.cat.search = e.target.value; if (D.productsLoaded) renderCatalog(); else ensureProducts().then(renderCatalog).catch(function () { renderCatalog(); }); });
     $('cat-filter-region').addEventListener('change', function (e) { state.cat.region = e.target.value; renderCatalog(); });
     $('cat-filter-type').addEventListener('change', function (e) { state.cat.type = e.target.value; renderCatalog(); });
     $('cat-filter-modality').addEventListener('change', function (e) { state.cat.modality = e.target.value; renderCatalog(); });
@@ -609,8 +748,16 @@
       if (state.cat.sort === k) state.cat.dir *= -1; else { state.cat.sort = k; state.cat.dir = 1; }
       renderCatalog();
     });
+    $('catalog-head').addEventListener('keydown', function (e) {
+      var th = e.target.closest('th[data-sort]'); if (!th || (e.key !== 'Enter' && e.key !== ' ')) return;
+      e.preventDefault(); th.click();
+    });
     $('catalog-body').addEventListener('click', function (e) {
       var tr = e.target.closest('tr[data-company]'); if (tr) { modalTab = 'tabSummary'; openCompanyModal(tr.getAttribute('data-company')); }
+    });
+    $('catalog-body').addEventListener('keydown', function (e) {
+      var tr = e.target.closest('tr[data-company]');
+      if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); modalTab = 'tabSummary'; openCompanyModal(tr.getAttribute('data-company')); }
     });
 
     $('company-modal-tabs').addEventListener('click', function (e) {
@@ -626,7 +773,13 @@
     });
     $('policy-modal-body').addEventListener('click', function (e) {
       var link = e.target.closest('[data-company-link]');
-      if (link) { $('policy-modal').classList.add('hidden'); modalTab = 'tabSummary'; openCompanyModal(link.getAttribute('data-company-link')); return; }
+      if (link) {
+        var returnFocus = policyParentReturnFocus || dialogReturnFocus['policy-modal'];
+        hideDialog('policy-modal', false); policyParentCompanyId = null; policyParentReturnFocus = null;
+        modalTab = 'tabSummary'; openCompanyModal(link.getAttribute('data-company-link'));
+        if (returnFocus) dialogReturnFocus['company-modal'] = returnFocus;
+        return;
+      }
       var pl = e.target.closest('[data-policy-link]'); if (pl) { openPolicyModal(pl.getAttribute('data-policy-link')); }
     });
 
@@ -644,13 +797,16 @@
       renderCountries();
     });
 
-    I18N.onChange(function () { fillSelects(); restoreFilterValues(); renderAll(); if (!$('company-modal').classList.contains('hidden')) renderModalBodyFromOpen(); });
+    I18N.onChange(function () { fillSelects(); restoreFilterValues(); renderAll(); syncProductLoadError(); if (!$('company-modal').classList.contains('hidden')) renderModalBodyFromOpen(); });
   }
   var openCompanyId = null;
   function renderModalBodyFromOpen() { if (openCompanyId) { var c = D.getCompany(openCompanyId); if (c) renderModalBody(c); } }
   // wrap openCompanyModal to track current id
   var _open = openCompanyModal;
-  openCompanyModal = function (id) { openCompanyId = id; _open(id); };
+  openCompanyModal = function (id) {
+    openCompanyId = id; _open(id);
+    ensureProducts().then(function () { if (openCompanyId === id) renderModalBodyFromOpen(); }).catch(function () {});
+  };
 
   function restoreFilterValues() {
     $('map-filter-region').value = state.map.region; $('map-filter-modality').value = state.map.modality; $('map-filter-ta').value = state.map.ta;
@@ -664,7 +820,8 @@
     var foot = $('foot-build');
     try {
       await Promise.all([D.initCore(), loadFx()]);
-      buildIndexes(); fillSelects(); bind(); renderAll();
+      buildIndexes(); fillSelects(); bind(); renderAll(); observeProductSections();
+      if (!window.echarts || window.PHARM_ECHARTS_FAILED) $('library-warning').classList.remove('hidden');
       if (D.manifest && foot) foot.textContent = 'build ' + (D.manifest.data_version || '') + ' · ' + (D.manifest.build_time || '');
     } catch (e) {
       console.error(e);

@@ -32,7 +32,6 @@
     <!-- Preconnect/dns-prefetch for external CDN origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://unpkg.com">
 
@@ -49,17 +48,12 @@
       })();
     </script>
 
-    <!-- ② Tailwind CDN (dark: utilities follow OS media — shell uses CSS vars + html.dark) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        content: ['index.html', './assets/js/app.js'],
-      };
-    </script>
+    <!-- ② Locally compiled Tailwind utilities (committed for deterministic GitHub Pages rendering) -->
+    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=b777244b37">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Leaflet — only used inside the per-listing satellite / vicinity modal -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIINfQ3ynhC+Qw0ldh8FwJoHfblLwvpM=" crossorigin="anonymous" />
     <style>
         :root {
             color-scheme: light;
@@ -190,6 +184,12 @@
         /* Leaflet dark-mode: darken OSM street tiles only — markers stay true colour to match legend */
         .dark #lm-near-map.leaflet-container .leaflet-tile-pane {
             filter: invert(92%) hue-rotate(180deg) contrast(92%) brightness(88%);
+        }
+        .tile-load-warning {
+            position: absolute; left: 50%; bottom: 28px; z-index: 1000; transform: translateX(-50%);
+            max-width: calc(100% - 24px); padding: 7px 10px; border-radius: 8px;
+            background: rgba(120, 53, 15, .92); color: #fff7ed; font-size: 12px; line-height: 1.35;
+            text-align: center; pointer-events: none;
         }
 
         /* Theme toggle button animation */
@@ -328,6 +328,12 @@
             </div>
         </div>
     </nav>
+
+    <div id="library-warning" class="hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full" role="status">
+        <div class="rounded-lg border border-amber-400/50 bg-amber-50 dark:bg-amber-950/30 text-amber-900 dark:text-amber-200 p-4 text-sm">
+            部分图表或详情地图组件未能加载；住房表格、筛选与来源信息仍可使用。 · Some charts or detail maps could not load; the housing table, filters and sources remain available.
+        </div>
+    </div>
 
     <header class="py-14 md:py-20 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -827,28 +833,31 @@
     </footer>
 
     <!-- data + libs + app (load order matters) -->
-    <script src="assets/data/listings.js?v=c108f2d4b9"></script>
+    <script src="assets/data/listings.js?v=ca455a7650"></script>
     <!-- China province boundaries, vendored locally (no runtime third-party fetch) -->
-    <script src="assets/data/china-geo.js?v=c108f2d4b9"></script>
+    <script src="assets/data/china-geo.js?v=ca455a7650"></script>
     <!-- Baked enrichment: geocode / climate / POIs / risk / elevation (tools/manage.py enrich → build) -->
-    <script src="assets/data/enriched.js?v=c108f2d4b9"></script>
+    <script src="assets/data/enriched.js?v=ca455a7650"></script>
     <!-- Curated province natural-hazard profile (tools/manage.py build) -->
-    <script src="assets/data/hazards.js?v=c108f2d4b9"></script>
-    <script src="assets/data/policy.js?v=c108f2d4b9"></script>
+    <script src="assets/data/hazards.js?v=ca455a7650"></script>
+    <script src="assets/data/policy.js?v=ca455a7650"></script>
     <!-- Multiple price offers per listing (一楼盘多价格挂牌) — tools/manage.py import-offers → build -->
-    <script src="assets/data/offers.js?v=c108f2d4b9"></script>
+    <script src="assets/data/offers.js?v=ca455a7650"></script>
     <!-- Gridded climate/elevation basemap field — isotherms / rainfall / DEM (tools/manage.py field → build) -->
-    <script src="assets/data/field.js?v=c108f2d4b9"></script>
-    <script src="assets/data/loc-pinyin.js?v=c108f2d4b9"></script>
-    <script src="assets/data/geo-en.js?v=c108f2d4b9"></script>
-    <script src="assets/js/i18n.js?v=c108f2d4b9"></script>
+    <script src="assets/data/field.js?v=ca455a7650"></script>
+    <script src="assets/data/loc-pinyin.js?v=ca455a7650"></script>
+    <script src="assets/data/geo-en.js?v=ca455a7650"></script>
+    <script src="assets/js/i18n.js?v=ca455a7650"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"
-        referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" crossorigin="anonymous"
-        referrerpolicy="no-referrer"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <script src="assets/js/app.js?v=c108f2d4b9"></script>
+        referrerpolicy="no-referrer" onerror="window.HOUSING_CHART_FAILED=true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
+        integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
+        crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.HOUSING_ECHARTS_FAILED=true"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"
+        onerror="window.HOUSING_LEAFLET_FAILED=true"></script>
+    <script src="assets/js/app.js?v=ca455a7650"></script>
 
 </body>
 

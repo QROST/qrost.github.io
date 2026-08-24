@@ -119,6 +119,7 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
 .select {
   padding: 0.35rem 0.6rem; border-radius: 0.5rem; font-size: 0.8rem;
   border: 1px solid var(--border); background: var(--bg-surface); color: var(--text);
+  max-width: 100%; min-width: 0;
 }
 .select:focus { outline: none; border-color: var(--accent); }
 .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 0.5rem; overflow: hidden; }
@@ -136,6 +137,9 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
 .data-table th:hover { color: var(--accent); }
 .data-table tbody tr { cursor: pointer; }
 .data-table tbody tr:hover { background: var(--accent-soft); }
+.data-table tbody tr[role="button"]:focus-visible,
+.data-table thead th[role="button"]:focus-visible,
+.modal-close:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .data-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 /* ---- map legend ---- */
@@ -241,6 +245,7 @@ html.dark .badge-dt-equity_stake { color: #c084fc; }
 
 /* ---- modal ---- */
 .modal-backdrop { position: fixed; inset: 0; z-index: 60; background: rgba(2, 6, 23, 0.6); backdrop-filter: blur(2px); display: flex; align-items: flex-start; justify-content: center; padding: 4vh 1rem; overflow-y: auto; }
+.modal-backdrop.hidden { display: none; }
 .modal-panel { position: relative; width: 100%; max-width: 880px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem 1.4rem 1.6rem; }
 .modal-close { position: absolute; top: 0.6rem; right: 0.9rem; font-size: 1.5rem; line-height: 1; color: var(--text-faint); background: none; border: none; cursor: pointer; }
 .modal-close:hover { color: var(--text); }
