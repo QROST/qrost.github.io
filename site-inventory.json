@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "origin": "https://qrost.github.io/",
+  "pages": [
+    {
+      "path": "index.html",
+      "kind": "home",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "404.html",
+      "kind": "utility",
+      "status": "current",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/404.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/architecture-history/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/architecture-history/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/cat-and-mouse/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/cat-and-mouse/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/china-auto/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/china-auto/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/china-housing/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/china-housing/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/china-industrial-software/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/china-industrial-software/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/makoauto/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/makoauto/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/neon-abyss/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/neon-abyss/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/pebble-beach-2027/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/pebble-beach-2027/",
+      "metadata": "social",
+      "sitemap": false
+    },
+    {
+      "path": "demos/pharm-companies/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/pharm-companies/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/shelter-cats/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/shelter-cats/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/visual-page/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/visual-page/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/wfoe-china/index.html",
+      "kind": "demo",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/wfoe-china/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/pebble-beach-2026/index.html",
+      "kind": "demo",
+      "status": "archive",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/demos/pebble-beach-2026/",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "demos/cat-and-mouse/tools/visual-harness.html",
+      "kind": "test-harness",
+      "status": "internal-tool",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/cat-and-mouse/tools/visual-harness.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/visual-page/tools/measure-harshness.html",
+      "kind": "test-harness",
+      "status": "internal-tool",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/visual-page/tools/measure-harshness.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/account.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/account.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/admin.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/admin.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/blog.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/blog.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/cart.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/cart.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/catalog.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/catalog.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/contact.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/contact.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/designer.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/designer.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/faq.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/faq.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/preview.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/preview.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/set.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/set.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/sitemap.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/sitemap.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "demos/makoauto/tracking.html",
+      "kind": "demo-support",
+      "status": "prototype",
+      "published": true,
+      "indexable": false,
+      "canonical": "https://qrost.github.io/demos/makoauto/tracking.html",
+      "metadata": "noindex",
+      "sitemap": false
+    },
+    {
+      "path": "pbcplanner/privacy.html",
+      "kind": "app-support",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/pbcplanner/privacy.html",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "pbcplanner/support.html",
+      "kind": "app-support",
+      "status": "current",
+      "published": true,
+      "indexable": true,
+      "canonical": "https://qrost.github.io/pbcplanner/support.html",
+      "metadata": "social",
+      "sitemap": true
+    },
+    {
+      "path": "_docs/music-engine-reference.html",
+      "kind": "internal-reference",
+      "status": "internal",
+      "published": false,
+      "indexable": false,
+      "canonical": null,
+      "metadata": "internal",
+      "sitemap": false
+    }
+  ]
+}

@@ -22,6 +22,14 @@
 - `https://curious-arc.com/` is the CuriousArc studio site. QROST remains its public lab and full experiment index.
 - Individual demos may later use ChatGPT Sites or another runtime host, while this repository remains the source, data, build, and validation authority. Do not change a demo's canonical URL until its migration and legacy-link compatibility are complete.
 
+## Public-page inventory
+
+- `site-inventory.json` is the tracked publication decision for every repository HTML file: current demo, frozen archive, supporting prototype page, test harness, app-support page, or internal-only reference.
+- The inventory records whether a page is published, indexable, canonical, eligible for the XML sitemap, and required to carry a full social-sharing card.
+- There are 12 current demo entry pages. `demos/pebble-beach-2026/` is the single frozen demo archive; the incomplete 2027 planning page remains `noindex,follow` until its year-specific facts are sufficiently complete.
+- `sitemap.xml` contains only published, indexable inventory entries. `robots.txt` deliberately permits crawling so per-page `noindex` directives can be observed.
+- QROST-authored briefs, summaries, and build notes are never external evidence for research claims. Public research records must cite an independently published source with an explicit support scope.
+
 ## URL note
 
 - The legacy root URL `/china-business.html` has been removed on purpose.
@@ -29,4 +37,10 @@
 
 ## Checks
 
-- Run `python3 tools/check_public_metadata.py` to verify that the root page and every linked public demo use one matching `qrost.github.io` canonical and Open Graph URL.
+- `npm ci --ignore-scripts` installs the single locked root build dependency (Tailwind CSS 3.4.17).
+- `npm run build:css && python3 tools/build.py` rebuilds the committed homepage CSS and refreshes content-addressed CSS/JavaScript cache tokens.
+- `npm run check:css` recompiles the root, Housing, Pharma, and Shelter Cats Tailwind outputs in a temporary directory and compares them byte-for-byte with the committed CSS.
+- `python3 tools/build.py --check` verifies root cache tokens without writing.
+- `python3 tools/check_public_metadata.py` verifies the complete inventory, canonical/robots decisions, OG/Twitter fields, local sharing-image dimensions, sitemap, robots policy, and homepage demo cards.
+- `python3 tools/test_public_metadata.py` runs mutation fixtures proving that missing fields, stray HTML, bad images, and sitemap/indexing contradictions fail closed.
+- `python3 tools/check_all.py` runs the stable root, research-data, public-demo cache/runtime, accessibility-contract, and repository-syntax gates used by GitHub Actions. Run it after `npm ci`; every gate must leave tracked content unchanged.

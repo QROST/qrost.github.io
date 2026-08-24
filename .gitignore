@@ -8,6 +8,11 @@ __pycache__/
 # (a single * stops at the next path segment and previously let that one slip through).
 demos/**/node_modules/
 demos/**/package-lock.json
+# These three demos own committed Tailwind builds and therefore track exact locks.
+!demos/china-housing/package-lock.json
+!demos/pharm-companies/package-lock.json
+!demos/shelter-cats/package-lock.json
+/node_modules/
 
 # Python virtualenv (china-housing pm25 tooling, etc.)
 .venv/

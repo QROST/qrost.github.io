@@ -1,0 +1,16 @@
+{
+  "name": "qrost-root-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deterministic root-page CSS and public-site checks for qrost.github.io.",
+  "scripts": {
+    "build:css": "tailwindcss -c ./assets/tailwind.config.js -i ./assets/css/home-input.css -o ./assets/css/home-built.css --minify",
+    "check:css": "node ./tools/check_committed_css.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

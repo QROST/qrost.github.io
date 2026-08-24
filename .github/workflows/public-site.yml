@@ -1,0 +1,44 @@
+name: Public site checks
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install locked root build dependency
+        run: npm ci --ignore-scripts
+
+      - name: Run read-only public-site gates
+        run: python3 tools/check_all.py
+
+      - name: Prove checks left the checkout clean
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain --untracked-files=all)"
