@@ -3,7 +3,7 @@
   'use strict';
   var I18N = window.CHINA_AUTO_I18N;
   var instances = {};
-  var clusterGraphCache = { key: '' };
+  var clusterGraphCache = { key: '', fitGen: 0 };
 
   function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
   function palette() {
@@ -35,6 +35,109 @@
       instances['cluster-graph'] = window.echarts.init(el, null, { renderer: 'canvas' });
     }
     return instances['cluster-graph'];
+  }
+  function layoutBBox(data, idMap) {
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity, n = 0;
+    (data || []).forEach(function (item) {
+      if (!item || item.x == null || item.y == null) return;
+      if (idMap && !idMap[item.id]) return;
+      minX = Math.min(minX, item.x);
+      maxX = Math.max(maxX, item.x);
+      minY = Math.min(minY, item.y);
+      maxY = Math.max(maxY, item.y);
+      n += 1;
+    });
+    if (!n || !isFinite(minX)) return null;
+    return { minX: minX, maxX: maxX, minY: minY, maxY: maxY };
+  }
+  function seriesData(chart) {
+    return ((((chart.getOption() || {}).series || [])[0] || {}).data) || [];
+  }
+  function collectLayouts(chart, fallback) {
+    var out = [];
+    try {
+      var sm = chart.getModel() && chart.getModel().getSeriesByIndex(0);
+      var graph = sm && sm.getGraph && sm.getGraph();
+      if (graph && graph.eachNode) {
+        graph.eachNode(function (node) {
+          var layout = node.getLayout();
+          var raw = (node.data && node.data.getRawDataItem(node.dataIndex)) || {};
+          if (!layout) return;
+          out.push({ id: raw.id != null ? raw.id : node.id, x: layout[0], y: layout[1] });
+        });
+      }
+      if (!out.length && sm && sm.getData) {
+        var data = sm.getData();
+        for (var i = 0; i < data.count(); i++) {
+          var layout2 = data.getItemLayout(i);
+          var raw2 = data.getRawDataItem(i) || {};
+          var x = layout2 ? layout2[0] : raw2.x;
+          var y = layout2 ? layout2[1] : raw2.y;
+          if (x == null || y == null) continue;
+          out.push({ id: raw2.id != null ? raw2.id : data.getName(i), x: x, y: y });
+        }
+      }
+    } catch (e) {}
+    if (out.length) return out;
+    if (fallback && fallback.length) return fallback;
+    return seriesData(chart);
+  }
+  function fitGraphToIds(chart, idMap, fallback) {
+    if (!chart) return;
+    if (!idMap) {
+      chart.setOption({ series: [{ layout: 'none', zoom: 1, center: ['50%', '50%'] }] });
+      return;
+    }
+    var data = collectLayouts(chart, fallback);
+    var all = layoutBBox(data, null);
+    var sel = layoutBBox(data, idMap);
+    if (!all || !sel) return;
+    var allW = Math.max(all.maxX - all.minX, 1);
+    var allH = Math.max(all.maxY - all.minY, 1);
+    var selW = Math.max(sel.maxX - sel.minX, 40) * 1.28;
+    var selH = Math.max(sel.maxY - sel.minY, 40) * 1.28;
+    var zoom = Math.min(allW / selW, allH / selH);
+    zoom = Math.max(1, Math.min(zoom, 8));
+    if (zoom <= 1.05) {
+      chart.setOption({ series: [{ layout: 'none', zoom: 1, center: ['50%', '50%'] }] });
+      return;
+    }
+    chart.setOption({
+      series: [{
+        layout: 'none',
+        zoom: zoom,
+        center: [(sel.minX + sel.maxX) / 2, (sel.minY + sel.maxY) / 2],
+        scaleLimit: { min: 0.3, max: 8 }
+      }]
+    });
+  }
+  function scheduleGraphFit(chart, idMap, waitLayout, fallback) {
+    clusterGraphCache.fitGen += 1;
+    var gen = clusterGraphCache.fitGen;
+    function run() {
+      if (gen !== clusterGraphCache.fitGen) return;
+      fitGraphToIds(chart, idMap, fallback);
+    }
+    if (!waitLayout) {
+      if (typeof requestAnimationFrame === 'function') requestAnimationFrame(run);
+      else setTimeout(run, 0);
+      return;
+    }
+    var tries = 0;
+    var last = '';
+    var stable = 0;
+    (function tick() {
+      if (gen !== clusterGraphCache.fitGen) return;
+      var laid = collectLayouts(chart, fallback);
+      var allBox = layoutBBox(laid, null);
+      var box = layoutBBox(laid, idMap);
+      var spread = allBox && (allBox.maxX - allBox.minX > 60) && (allBox.maxY - allBox.minY > 60);
+      var k = box ? [box.minX, box.maxX, box.minY, box.maxY].map(function (v) { return v.toFixed(0); }).join(',') : '';
+      if (k && k === last) stable += 1;
+      else { stable = 0; last = k; }
+      if ((spread && stable >= 4 && k) || tries++ > 30) run();
+      else setTimeout(tick, 40);
+    })();
   }
   function baseText() { return { color: textColor(), fontFamily: 'Inter, system-ui, sans-serif' }; }
   function tooltip(extra) {
@@ -374,6 +477,14 @@
       leg.innerHTML = kinds + (clItems ? '<span class="legend-sep" aria-hidden="true"></span>' + clItems : '');
     }
 
+    var fitIds = null;
+    if (selectedId) {
+      fitIds = {};
+      nodes.forEach(function (n) {
+        if ((n._clusterIds || []).indexOf(selectedId) !== -1) fitIds[n.id] = 1;
+      });
+      if (!Object.keys(fitIds).length) fitIds = null;
+    }
     nodes.forEach(function (n) {
       var ids = n._clusterIds || [];
       var hit = !selectedId || ids.indexOf(selectedId) !== -1;
@@ -398,9 +509,8 @@
     var c = graphChart(rebuild);
     if (!c) return;
     if (!rebuild) {
-      var prev = ((c.getOption().series || [])[0] || {}).data || [];
       var pos = {};
-      prev.forEach(function (n) {
+      collectLayouts(c).forEach(function (n) {
         if (n && n.id != null && n.x != null) pos[n.id] = { x: n.x, y: n.y };
       });
       nodes.forEach(function (n) {
@@ -418,11 +528,15 @@
       series: [{
         type: 'graph', layout: rebuild ? 'force' : 'none',
         data: nodes, links: links, roam: true, draggable: true,
+        scaleLimit: { min: 0.3, max: 8 },
         force: { repulsion: layers.brands ? 180 : 150, edgeLength: [36, 100], gravity: 0.045 },
         lineStyle: { opacity: 0.7, curveness: 0.1 },
         emphasis: { focus: 'adjacency' }
       }]
     }, rebuild);
+    if (fitIds) scheduleGraphFit(c, fitIds, rebuild, nodes);
+    else if (!rebuild) scheduleGraphFit(c, null, false, nodes);
+    else clusterGraphCache.fitGen += 1;
     c.off('click');
     c.on('click', function (p) {
       var app = window.CHINA_AUTO_APP;
