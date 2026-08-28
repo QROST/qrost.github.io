@@ -2,7 +2,7 @@
   "catalog_profile": {
     "evidence_by_source_family": {
       "editorial": 137,
-      "wikimedia": 14361
+      "wikimedia": 14581
     },
     "periods": {
       "1000_1499": {
@@ -49,32 +49,32 @@
         "works": 59
       },
       "central_west_asia": {
-        "entities": 107,
+        "entities": 109,
         "verified_entities": 17,
         "works": 87
       },
       "east_asia": {
-        "entities": 210,
-        "verified_entities": 64,
+        "entities": 227,
+        "verified_entities": 78,
         "works": 166
       },
       "europe": {
-        "entities": 1244,
-        "verified_entities": 172,
+        "entities": 1269,
+        "verified_entities": 175,
         "works": 375
       },
       "latin_america_caribbean": {
-        "entities": 132,
+        "entities": 137,
         "verified_entities": 31,
         "works": 91
       },
       "north_america": {
-        "entities": 295,
-        "verified_entities": 74,
+        "entities": 323,
+        "verified_entities": 75,
         "works": 161
       },
       "oceania": {
-        "entities": 77,
+        "entities": 79,
         "verified_entities": 7,
         "works": 56
       },
@@ -89,19 +89,19 @@
         "works": 75
       },
       "transregional": {
-        "entities": 43,
+        "entities": 48,
         "verified_entities": 17,
         "works": 0
       },
       "unknown": {
-        "entities": 100,
-        "verified_entities": 31,
+        "entities": 122,
+        "verified_entities": 32,
         "works": 0
       }
     },
     "verification": {
-      "candidate": 2927,
-      "verified": 481
+      "candidate": 3020,
+      "verified": 500
     },
     "work_type_mapping": {
       "ambiguous": 34,
@@ -110,17 +110,17 @@
     }
   },
   "counts": {
-    "candidate_entities_and_relations": 2927,
-    "claims": 13907,
+    "candidate_entities_and_relations": 3020,
+    "claims": 14214,
     "contested_entities_and_relations": 0,
     "declined_entities_and_relations": 0,
-    "people": 1197,
+    "people": 1303,
     "places": 57,
     "practices": 63,
-    "relations": 939,
+    "relations": 945,
     "reviewers": 2,
     "sources": 13,
-    "verified_entities_and_relations": 481,
+    "verified_entities_and_relations": 500,
     "works": 1152
   },
   "coverage": {
@@ -737,35 +737,35 @@
     "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "5f236aaf60a6d1ab6366eafa6e13dc385fbdab82de9c1ab999c67a14e7647ca3",
+  "data_version": "aa9d4e09885a46d393537fa1ce82a7d423d6b5bfa0349ec1bf183d60c4d91a52",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "61e52bc6663992b1457dbcb6c59f5a5d02c94062ae7a18d358cffca2f1c69f4f"
+      "sha256": "3bc48ca0fc91da74681c578f7264456dbc64e6fc8dd735d0f272f4c6fa45508e"
     },
     "claims.json": {
-      "count": 13907,
-      "sha256": "a812dcf76882631396e10cb0c1283f326080423003b335910fcd5f0f1219ff0a"
+      "count": 14214,
+      "sha256": "21216d290c4728a611dab5ab1f40f48495d5ddd2b6be8b7837803210c3dd1e7a"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
-      "sha256": "cdb9e6b4e48907e896fd540309a68a3ef266ad78d4411854c13b4ba44453f605"
+      "sha256": "c06f7d0af58a36df8bda6ae8b87872721d01bde60b2db25452e91f4d1645f5d4"
     },
     "people.json": {
-      "count": 1197,
-      "sha256": "891408684e5cd5f7f85ca0c21b99fefae5a3bc93cd57c32f905a4c9db67e3441"
+      "count": 1303,
+      "sha256": "62c8008e3e35bd8788f4a7b30da9e2a18bbd1fcf81f5f568ad022006ca293105"
     },
     "places.json": {
       "count": 57,
-      "sha256": "22ea4ffab54e311073d484d68c75da855f36a68b7a546518bbeec6a968e1dc3c"
+      "sha256": "a55a439aefbebf17c6ff3a3f51507c5567199b62f0ce2d3e2f151d2d22d05ec1"
     },
     "practices.json": {
       "count": 63,
-      "sha256": "83bf4693881652664b5b03a32ba2c1f4fb602422432f5be5d550fcdd1ecc25e4"
+      "sha256": "39fbf0b8d7cc47a55f49f0f09d354224a38b83584baccf17d8357b36a65aa305"
     },
     "relations.json": {
-      "count": 939,
-      "sha256": "c8007630833c5d622c863043d920076b030894cd6633cbf922feb2e2f573a4c7"
+      "count": 945,
+      "sha256": "27afda514e4081aa6b76f1c57f38f9b5ae53738a0ab30f18ca06d36dbb6fb994"
     },
     "reviewers.json": {
       "count": 2,
@@ -863,13 +863,21 @@
       "count": 1,
       "sha256": "834df02fcb388e1794b4789cdfbc53e15790daa37112ca22dad434daabf933a6"
     },
-    "source-snapshots/wikidata-work-type-authority-2026-08-23-8fa14c4a267f.json": {
+    "source-snapshots/wikidata-hydration-2026-08-27-35450fda33d3.json": {
       "count": 1,
-      "sha256": "6b92392dd027f2651de260d53d75c2f6d62f1081d7d72dcf952737e6c2a93dca"
+      "sha256": "a8addcf2dca926266127bbcedc2fffd73f04f725cfdd9fd5d2ebd50fe379d2a1"
+    },
+    "source-snapshots/wikidata-hydration-2026-08-27-f62729b925f7.json": {
+      "count": 1,
+      "sha256": "e2b201f145057d20ef1a5c4bbfbf108bd899275bc97e46fdc2adf87341e01b5c"
+    },
+    "source-snapshots/wikidata-work-type-authority-2026-08-27-6e5d25daa864.json": {
+      "count": 1,
+      "sha256": "afcefa828adafc3720c005c64207bfc85e7d072d8b843e4e38e2d0419f44704e"
     },
     "works.json": {
       "count": 1152,
-      "sha256": "b268e4b89dc44dffd1f400c2a592719f029c33473b94b9bd8a5183d725e97e52"
+      "sha256": "56132f28932538b8ab3ca00f0d30f8d99a6ff4593c47a7c4263d5e1e2d16b8f3"
     }
   },
   "hash_algorithm": "sha256",

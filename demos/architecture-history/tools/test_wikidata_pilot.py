@@ -223,7 +223,7 @@ def minimal_lineage_snapshot(
             "seed": "fixture",
             "seed_sha256": "fixture",
         },
-        "snapshot_id": "wikidata-hydration-2026-08-23-b2503cfa0a4c",
+        "snapshot_id": "wikidata-hydration-2026-08-27-f62729b925f7",
         "source_id": "wikidata",
     }
 

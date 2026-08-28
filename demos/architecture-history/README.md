@@ -20,7 +20,7 @@ zero `ulan` external ids. Agentic verification (`reviewer-agentic-cursor`,
 2026-08-23) currently covers all 57 country places, all 63 practices, 257
 people, and 104 works (481 verified entities and relations). Known-period works
 stay candidate because `field_period` is only indirectly evidenced from
-P571/P1619. All 939 relations remain `candidate` by design — Wikidata's
+P571/P1619. All 945 relations remain `candidate` by design — Wikidata's
 relationship dimension is `candidate`-authority, so verified lineage requires a
 stronger source (Getty ULAN relationships, academic literature) than Wikidata
 alone provides.
