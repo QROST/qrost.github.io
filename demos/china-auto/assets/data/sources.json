@@ -411,7 +411,8 @@
           "name_zh",
           "name_en",
           "operator_id",
-          "city_id"
+          "city_id",
+          "facility_type"
         ],
         "scope_zh": "官方联系页支持上海实体和所在地；不单独支持页面所列车型，故设施记录保持候选阈值。",
         "scope_en": "The official contact page supports the Shanghai entity and location, but not the listed model mix; the facility row therefore stays at the candidate threshold."
@@ -443,7 +444,8 @@
           "name_en",
           "operator_id",
           "city_id",
-          "status"
+          "status",
+          "facility_type"
         ],
         "scope_zh": "公司报道直接支持四川时代宜宾电池制造基地的身份和运行状态。",
         "scope_en": "The company report directly supports the identity and operating status of CATL's battery-manufacturing base in Yibin."
@@ -474,7 +476,8 @@
           "name_zh",
           "name_en",
           "operator_id",
-          "city_id"
+          "city_id",
+          "facility_type"
         ],
         "scope_zh": "公司全球制造页列出徐水工厂，支持设施身份与保定所在地。",
         "scope_en": "The company's manufacturing page lists the Xushui factory, supporting its identity and Baoding location."
@@ -664,6 +667,2313 @@
         ],
         "scope_zh": "学院官网支持院系名称与车辆工程定位；未用来证明特定企业合作。",
         "scope_en": "The school site supports the unit name and vehicle-engineering profile; it is not used to prove specific corporate partnerships."
+      }
+    },
+    {
+      "id": "src-beijing-benz-yizhuang",
+      "publisher_zh": "梅赛德斯-奔驰集团",
+      "publisher_en": "Mercedes-Benz Group",
+      "title_zh": "北京生产网络：亦庄工厂",
+      "title_en": "Beijing production network: Yizhuang plant",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://group.mercedes-benz.com/unternehmen/produktion/produktionsnetzwerk/produktionsnetzwerk-peking.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "group.mercedes-benz.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:beijing-benz-yizhuang"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-beijing-benz-shunyi",
+      "publisher_zh": "梅赛德斯-奔驰集团",
+      "publisher_en": "Mercedes-Benz Group",
+      "title_zh": "北京生产网络：顺义工厂",
+      "title_en": "Beijing production network: Shunyi plant",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://group.mercedes-benz.com/unternehmen/produktion/produktionsnetzwerk/produktionsnetzwerk-peking.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "group.mercedes-benz.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:beijing-benz-shunyi"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-li-auto-changzhou",
+      "publisher_zh": "理想汽车",
+      "publisher_en": "Li Auto",
+      "title_zh": "理想汽车2025年年度报告",
+      "title_en": "Li Auto 2025 annual report",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://ir.lixiang.com/system/files-encrypted/nasdaq_kms/assets/2026/04/10/6-28-41/2025%20Annual%20Report.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "ir.lixiang.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:li-auto-changzhou"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-li-auto-beijing",
+      "publisher_zh": "理想汽车",
+      "publisher_en": "Li Auto",
+      "title_zh": "理想汽车2025年年度报告",
+      "title_en": "Li Auto 2025 annual report",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://ir.lixiang.com/system/files-encrypted/nasdaq_kms/assets/2026/04/10/6-28-41/2025%20Annual%20Report.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "ir.lixiang.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:li-auto-beijing"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-nio-hefei",
+      "publisher_zh": "蔚来",
+      "publisher_en": "NIO",
+      "title_zh": "蔚来2025年Form 20-F",
+      "title_en": "NIO 2025 Form 20-F",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.sec.gov/Archives/edgar/data/1736541/000110465926041765/nio-20251231x20f.htm",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.sec.gov",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:nio-hefei"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-nio-hefei-f2",
+      "publisher_zh": "蔚来",
+      "publisher_en": "NIO",
+      "title_zh": "蔚来2025年Form 20-F",
+      "title_en": "NIO 2025 Form 20-F",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.sec.gov/Archives/edgar/data/1736541/000110465926041765/nio-20251231x20f.htm",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.sec.gov",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:nio-hefei-f2"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-sgmw-liuzhou",
+      "publisher_zh": "上汽通用五菱",
+      "publisher_en": "SAIC-GM-Wuling",
+      "title_zh": "上汽通用五菱企业介绍",
+      "title_en": "SGMW company profile",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.sgmw.com.cn/aboutUs",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.sgmw.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:sgmw-liuzhou"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-sgmw-liuzhou-baojun",
+      "publisher_zh": "上汽通用五菱",
+      "publisher_en": "SAIC-GM-Wuling",
+      "title_zh": "上汽通用五菱企业介绍",
+      "title_en": "SGMW company profile",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.sgmw.com.cn/aboutUs",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.sgmw.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:sgmw-liuzhou-baojun"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-dongfeng-liuzhou-commercial",
+      "publisher_zh": "东风柳州汽车",
+      "publisher_en": "Dongfeng Liuzhou Motor",
+      "title_zh": "东风柳汽公司简介",
+      "title_en": "Dongfeng Liuzhou Motor profile",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.dflzm.com.cn/index.php/about",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.dflzm.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:dongfeng-liuzhou-commercial"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-dongfeng-liuzhou-passenger",
+      "publisher_zh": "东风柳州汽车",
+      "publisher_en": "Dongfeng Liuzhou Motor",
+      "title_zh": "东风柳汽公司简介",
+      "title_en": "Dongfeng Liuzhou Motor profile",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.dflzm.com.cn/index.php/about",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.dflzm.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:dongfeng-liuzhou-passenger"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-gac-honda-huangpu",
+      "publisher_zh": "本田汽车",
+      "publisher_en": "Honda Motor",
+      "title_zh": "广汽本田新能源工厂投产",
+      "title_en": "GAC Honda NEV plant begins production",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://global.honda/en/newsroom/news/2024/c241223eng.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "global.honda",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:gac-honda-huangpu"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-gac-honda-zengcheng",
+      "publisher_zh": "本田汽车",
+      "publisher_en": "Honda Motor",
+      "title_zh": "广汽本田新能源工厂投产",
+      "title_en": "GAC Honda NEV plant begins production",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://global.honda/en/newsroom/news/2024/c241223eng.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "global.honda",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:gac-honda-zengcheng"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-gac-honda-nev",
+      "publisher_zh": "本田汽车",
+      "publisher_en": "Honda Motor",
+      "title_zh": "广汽本田新能源工厂投产",
+      "title_en": "GAC Honda NEV plant begins production",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://global.honda/en/newsroom/news/2024/c241223eng.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "global.honda",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:gac-honda-nev"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-dongfeng-nissan-huadu-1",
+      "publisher_zh": "东风日产",
+      "publisher_en": "Dongfeng Nissan",
+      "title_zh": "东风日产花都工厂",
+      "title_en": "Dongfeng Nissan Huadu plant",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://img.dongfeng-nissan.com.cn/Content/magazine/201902/webPC20190218/page17_view.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "img.dongfeng-nissan.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:dongfeng-nissan-huadu-1"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-dongfeng-nissan-huadu-2",
+      "publisher_zh": "东风日产",
+      "publisher_en": "Dongfeng Nissan",
+      "title_zh": "东风日产花都工厂",
+      "title_en": "Dongfeng Nissan Huadu plant",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://img.dongfeng-nissan.com.cn/Content/magazine/201902/webPC20190218/page17_view.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "img.dongfeng-nissan.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:dongfeng-nissan-huadu-2"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-bmw-brilliance-dadong",
+      "publisher_zh": "华晨宝马",
+      "publisher_en": "BMW Brilliance",
+      "title_zh": "华晨宝马公司概况",
+      "title_en": "BMW Brilliance company profile",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.bmw-brilliance.cn/cn/zh/pr/index.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.bmw-brilliance.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:bmw-brilliance-dadong"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-bmw-brilliance-tiexi",
+      "publisher_zh": "华晨宝马",
+      "publisher_en": "BMW Brilliance",
+      "title_zh": "华晨宝马公司概况",
+      "title_en": "BMW Brilliance company profile",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.bmw-brilliance.cn/cn/zh/pr/index.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.bmw-brilliance.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:bmw-brilliance-tiexi"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-saic-vw-anting",
+      "publisher_zh": "大众汽车集团（中国）",
+      "publisher_en": "Volkswagen Group China",
+      "title_zh": "大众汽车集团在华工厂",
+      "title_en": "Volkswagen Group plants in China",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://m.volkswagengroupchina.com.cn/zh-cn/volkswagengroupchina/plant1",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "m.volkswagengroupchina.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:saic-vw-anting"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-saic-vw-meb-shanghai",
+      "publisher_zh": "大众汽车集团（中国）",
+      "publisher_en": "Volkswagen Group China",
+      "title_zh": "大众汽车集团在华工厂",
+      "title_en": "Volkswagen Group plants in China",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://m.volkswagengroupchina.com.cn/zh-cn/volkswagengroupchina/plant1",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "m.volkswagengroupchina.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:saic-vw-meb-shanghai"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-saic-vw-ningbo",
+      "publisher_zh": "大众汽车集团（中国）",
+      "publisher_en": "Volkswagen Group China",
+      "title_zh": "大众汽车集团在华工厂",
+      "title_en": "Volkswagen Group plants in China",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://m.volkswagengroupchina.com.cn/zh-cn/volkswagengroupchina/plant1",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "m.volkswagengroupchina.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:saic-vw-ningbo"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-saic-vw-changsha",
+      "publisher_zh": "大众汽车集团（中国）",
+      "publisher_en": "Volkswagen Group China",
+      "title_zh": "大众汽车集团在华工厂",
+      "title_en": "Volkswagen Group plants in China",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://m.volkswagengroupchina.com.cn/zh-cn/volkswagengroupchina/plant1",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "m.volkswagengroupchina.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:saic-vw-changsha"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-saic-gm-shanghai",
+      "publisher_zh": "上汽通用",
+      "publisher_en": "SAIC-GM",
+      "title_zh": "上汽通用公司简介",
+      "title_en": "SAIC-GM company profile",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://gdpg.apps.saic-gm.com/MainPage.html?id=1&pid=1",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "gdpg.apps.saic-gm.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:saic-gm-shanghai"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-saic-gm-shenyang",
+      "publisher_zh": "上汽通用",
+      "publisher_en": "SAIC-GM",
+      "title_zh": "上汽通用公司简介",
+      "title_en": "SAIC-GM company profile",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://gdpg.apps.saic-gm.com/MainPage.html?id=1&pid=1",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "gdpg.apps.saic-gm.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:saic-gm-shenyang"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-saic-gm-wuhan",
+      "publisher_zh": "上汽通用",
+      "publisher_en": "SAIC-GM",
+      "title_zh": "上汽通用公司简介",
+      "title_en": "SAIC-GM company profile",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://gdpg.apps.saic-gm.com/MainPage.html?id=1&pid=1",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "gdpg.apps.saic-gm.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:saic-gm-wuhan"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-beijing-hyundai-plant",
+      "publisher_zh": "北京现代",
+      "publisher_en": "Beijing Hyundai",
+      "title_zh": "北京现代环境信息披露",
+      "title_en": "Beijing Hyundai environmental disclosure",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.beijing-hyundai.com.cn/MaterialFile/EnvImportFiles/20250213/d47a15da-7183-48b5-b229-06295a2a774e.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.beijing-hyundai.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:beijing-hyundai-plant"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-beijing-hyundai-yangzhen",
+      "publisher_zh": "北京现代",
+      "publisher_en": "Beijing Hyundai",
+      "title_zh": "北京现代环境信息披露",
+      "title_en": "Beijing Hyundai environmental disclosure",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.beijing-hyundai.com.cn/MaterialFile/EnvImportFiles/20250213/d47a15da-7183-48b5-b229-06295a2a774e.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.beijing-hyundai.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:beijing-hyundai-yangzhen"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-catl-ningde",
+      "publisher_zh": "宁德时代",
+      "publisher_en": "CATL",
+      "title_zh": "走近十三大电池生产基地",
+      "title_en": "Inside CATL battery production bases",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.catl.com/news/8368.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.catl.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:catl-ningde"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-catl-ningde-huxi",
+      "publisher_zh": "宁德时代",
+      "publisher_en": "CATL",
+      "title_zh": "走近十三大电池生产基地",
+      "title_en": "Inside CATL battery production bases",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.catl.com/news/8368.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.catl.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:catl-ningde-huxi"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-catl-ningde-jiaocheng",
+      "publisher_zh": "宁德时代",
+      "publisher_en": "CATL",
+      "title_zh": "走近十三大电池生产基地",
+      "title_en": "Inside CATL battery production bases",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.catl.com/news/8368.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.catl.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:catl-ningde-jiaocheng"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-catl-ningde-fuding",
+      "publisher_zh": "宁德时代",
+      "publisher_en": "CATL",
+      "title_zh": "走近十三大电池生产基地",
+      "title_en": "Inside CATL battery production bases",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.catl.com/news/8368.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.catl.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:catl-ningde-fuding"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-catl-ningde-z",
+      "publisher_zh": "宁德时代",
+      "publisher_en": "CATL",
+      "title_zh": "走近十三大电池生产基地",
+      "title_en": "Inside CATL battery production bases",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.catl.com/news/8368.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.catl.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:catl-ningde-z"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-catl-liyang",
+      "publisher_zh": "宁德时代",
+      "publisher_en": "CATL",
+      "title_zh": "CATL Liyang lighthouse factory",
+      "title_en": "CATL Liyang lighthouse factory",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.catl.com/en/news/6652.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.catl.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:catl-liyang"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-calb-changzhou",
+      "publisher_zh": "中创新航",
+      "publisher_en": "CALB",
+      "title_zh": "中创新航产业基地",
+      "title_en": "CALB industrial bases",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.calb-tech.com/AboutUs.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.calb-tech.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:calb-changzhou"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-calb-xiamen",
+      "publisher_zh": "中创新航",
+      "publisher_en": "CALB",
+      "title_zh": "中创新航产业基地",
+      "title_en": "CALB industrial bases",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.calb-tech.com/AboutUs.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.calb-tech.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:calb-xiamen"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-calb-chengdu",
+      "publisher_zh": "中创新航",
+      "publisher_en": "CALB",
+      "title_zh": "中创新航产业基地",
+      "title_en": "CALB industrial bases",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.calb-tech.com/AboutUs.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.calb-tech.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:calb-chengdu"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-calb-wuhan",
+      "publisher_zh": "中创新航",
+      "publisher_en": "CALB",
+      "title_zh": "中创新航产业基地",
+      "title_en": "CALB industrial bases",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.calb-tech.com/AboutUs.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.calb-tech.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:calb-wuhan"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-eve-huizhou-a",
+      "publisher_zh": "亿纬锂能",
+      "publisher_en": "EVE Energy",
+      "title_zh": "亿纬锂能全球布局",
+      "title_en": "EVE Energy global footprint",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.evebattery.com/en/about.htm",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.evebattery.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:eve-huizhou-a"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-eve-huizhou-b",
+      "publisher_zh": "亿纬锂能",
+      "publisher_en": "EVE Energy",
+      "title_zh": "亿纬锂能全球布局",
+      "title_en": "EVE Energy global footprint",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.evebattery.com/en/about.htm",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.evebattery.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:eve-huizhou-b"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-eve-huizhou-c",
+      "publisher_zh": "亿纬锂能",
+      "publisher_en": "EVE Energy",
+      "title_zh": "亿纬锂能全球布局",
+      "title_en": "EVE Energy global footprint",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.evebattery.com/en/about.htm",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.evebattery.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:eve-huizhou-c"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-seres-liangjiang",
+      "publisher_zh": "赛力斯集团",
+      "publisher_en": "SERES Group",
+      "title_zh": "赛力斯资产审核问询函回复",
+      "title_en": "SERES asset-review response",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://cdn-web.seres.cn/uploads/20250109/f65444b4e5c67a343892fcfd100d60bd.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "cdn-web.seres.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:seres-liangjiang"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-seres-phoenix",
+      "publisher_zh": "赛力斯集团",
+      "publisher_en": "SERES Group",
+      "title_zh": "赛力斯资产审核问询函回复",
+      "title_en": "SERES asset-review response",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://cdn-web.seres.cn/uploads/20250109/f65444b4e5c67a343892fcfd100d60bd.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "cdn-web.seres.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:seres-phoenix"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-seres-super",
+      "publisher_zh": "赛力斯集团",
+      "publisher_en": "SERES Group",
+      "title_zh": "赛力斯2025年半年度报告",
+      "title_en": "SERES 2025 interim report",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://cdn-web.seres.cn/uploads/20250902/16d86a4ef54310af944762148f4e9c3a.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "cdn-web.seres.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:seres-super"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-voyah-yunfeng",
+      "publisher_zh": "东风汽车",
+      "publisher_en": "Dongfeng Motor",
+      "title_zh": "岚图上市后体系能力报道",
+      "title_en": "VOYAH post-listing capability report",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://etp.dfmc.com.cn/xydt/002002/20260512/d0b316f1-098b-4b74-bf64-4bbb14f1d96.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "etp.dfmc.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:voyah-yunfeng"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-voyah-gold",
+      "publisher_zh": "东风汽车",
+      "publisher_en": "Dongfeng Motor",
+      "title_zh": "岚图上市后体系能力报道",
+      "title_en": "VOYAH post-listing capability report",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://etp.dfmc.com.cn/xydt/002002/20260512/d0b316f1-098b-4b74-bf64-4bbb14f1d96.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "etp.dfmc.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:voyah-gold"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-golden-dragon-haicang",
+      "publisher_zh": "金旅客车",
+      "publisher_en": "Golden Dragon Bus",
+      "title_zh": "Golden Dragon company history",
+      "title_en": "Golden Dragon company history",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.goldendragonbus.com/news/272973.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.goldendragonbus.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:golden-dragon-haicang"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-faw-toyota-tianjin",
+      "publisher_zh": "中新天津生态城",
+      "publisher_en": "Sino-Singapore Tianjin Eco-City",
+      "title_zh": "一汽丰田第1200万辆新车下线",
+      "title_en": "FAW Toyota 12 millionth vehicle",
+      "source_type": "government_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.eco-city.gov.cn/m1/tpxw/20250516/58517.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.eco-city.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:faw-toyota-tianjin"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-faw-toyota-changchun",
+      "publisher_zh": "吉林省人民政府",
+      "publisher_en": "Jilin Provincial Government",
+      "title_zh": "吉林工业经济高质量发展观察",
+      "title_en": "Jilin industrial economy report",
+      "source_type": "government_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.jl.gov.cn/yaowen/202510/t20251031_3508375.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.jl.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:faw-toyota-changchun"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-faw-toyota-chengdu",
+      "publisher_zh": "天津经济技术开发区",
+      "publisher_en": "TEDA",
+      "title_zh": "一汽丰田销售公司启动业务",
+      "title_en": "FAW Toyota sales company launch",
+      "source_type": "government_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.teda.gov.cn/contents/1262/89974.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.teda.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:faw-toyota-chengdu"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-xpeng-guangzhou",
+      "publisher_zh": "小鹏汽车",
+      "publisher_en": "XPENG",
+      "title_zh": "小鹏汽车2025年Form 20-F",
+      "title_en": "XPENG 2025 Form 20-F",
+      "source_type": "company_ir",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526157849/R11.htm",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.sec.gov",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:xpeng-guangzhou"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-xpeng-wuhan",
+      "publisher_zh": "小鹏汽车",
+      "publisher_en": "XPENG",
+      "title_zh": "小鹏汽车2025年Form 20-F",
+      "title_en": "XPENG 2025 Form 20-F",
+      "source_type": "company_ir",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526157849/R11.htm",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.sec.gov",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:xpeng-wuhan"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-volvo-chengdu",
+      "publisher_zh": "沃尔沃汽车",
+      "publisher_en": "Volvo Cars",
+      "title_zh": "Volvo Cars Chengdu plant renewable electricity",
+      "title_en": "Volvo Cars Chengdu plant renewable electricity",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.volvocars.com/intl/media/press-releases/A92B18442980B66D/",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.volvocars.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:volvo-chengdu"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-gac-aion-changsha",
+      "publisher_zh": "广汽集团",
+      "publisher_en": "GAC Group",
+      "title_zh": "广汽集团2024年年度报告",
+      "title_en": "GAC Group 2024 annual report",
+      "source_type": "company_ir",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0425/2025042502715.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.hkexnews.hk",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:gac-aion-changsha"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-avatr-chongqing",
+      "publisher_zh": "阿维塔科技",
+      "publisher_en": "Avatr Technology",
+      "title_zh": "长安汽车数智工厂揭幕",
+      "title_en": "Changan Digital Intelligence Factory opens",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.avatr.com/en/news?newsChId=a62d9f1b603e0f6ae2f9f47fca7a4059&newsEngId=",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.avatr.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:avatr-chongqing"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-lotus-wuhan",
+      "publisher_zh": "路特斯科技",
+      "publisher_en": "Lotus Technology",
+      "title_zh": "Lotus Technology Form 20-F",
+      "title_en": "Lotus Technology Form 20-F",
+      "source_type": "company_ir",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://ir.group-lotus.com/static-files/8ee8ff24-6249-4868-8e25-1794528ac521",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "ir.group-lotus.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:lotus-wuhan"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-tesla-shanghai-gigafactory",
+      "publisher_zh": "上海市人民政府",
+      "publisher_en": "Shanghai Municipal Government",
+      "title_zh": "Shanghai Gigafactory 2025 deliveries",
+      "title_en": "Shanghai Gigafactory 2025 deliveries",
+      "source_type": "government_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://english.shanghai.gov.cn/en-Latest-WhatsNew/20260107/4c2060e1dc874d40b56a3a8fa8baedf5.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "english.shanghai.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:tesla-shanghai-gigafactory"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-xiaomi-auto-beijing-factory",
+      "publisher_zh": "小米汽车",
+      "publisher_en": "Xiaomi Auto",
+      "title_zh": "小米汽车工厂",
+      "title_en": "Xiaomi Auto Factory",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.xiaomiauto.com/global/factory",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.xiaomiauto.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:xiaomi-auto-beijing-factory"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-jac-hefei-light-truck-super-factory",
+      "publisher_zh": "江汽集团",
+      "publisher_en": "JAC Group",
+      "title_zh": "江汽集团制造基地",
+      "title_en": "JAC Group manufacturing bases",
+      "source_type": "company_ir",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.jac.com.cn/u/cms/www/202411/011535268qqf.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.jac.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:jac-hefei-light-truck-super-factory"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-jac-hefei-zunjie-super-factory",
+      "publisher_zh": "江汽集团",
+      "publisher_en": "JAC Group",
+      "title_zh": "尊界S800批量投产",
+      "title_en": "Zunjie S800 enters mass production",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.jac.com.cn/news/20250618/6263.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.jac.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:jac-hefei-zunjie-super-factory"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-vw-anhui-hefei-meb-plant",
+      "publisher_zh": "大众汽车集团（中国）",
+      "publisher_en": "Volkswagen Group China",
+      "title_zh": "大众安徽",
+      "title_en": "Volkswagen Anhui",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.volkswagengroupchina.com.cn/zh-cn/partner/volkswagenanhui",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.volkswagengroupchina.com.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:vw-anhui-hefei-meb-plant"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-gac-toyota-nansha-lines-1-2-campus",
+      "publisher_zh": "广州市生态环境局",
+      "publisher_en": "Guangzhou Municipal Ecology and Environment Bureau",
+      "title_zh": "广汽丰田核技术利用建设项目环境影响报告表",
+      "title_en": "GAC Toyota environmental impact report",
+      "source_type": "regulator",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://sthjj.gz.gov.cn/attachment/7/7823/7823480/9974388.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "sthjj.gz.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:gac-toyota-nansha-lines-1-2-campus"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-gac-toyota-nansha-lines-3-4-campus",
+      "publisher_zh": "广州市生态环境局",
+      "publisher_en": "Guangzhou Municipal Ecology and Environment Bureau",
+      "title_zh": "广汽丰田核技术利用建设项目环境影响报告表",
+      "title_en": "GAC Toyota environmental impact report",
+      "source_type": "regulator",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://sthjj.gz.gov.cn/attachment/7/7823/7823480/9974388.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "sthjj.gz.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:gac-toyota-nansha-lines-3-4-campus"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-gac-toyota-nansha-line-5-plant",
+      "publisher_zh": "广汽集团",
+      "publisher_en": "GAC Group",
+      "title_zh": "广汽丰田新能源汽车扩能二期正式投产",
+      "title_en": "GAC Toyota NEV expansion phase II begins production",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.gacgroup.com/cn/news/detail?baseid=18517",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.gacgroup.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:gac-toyota-nansha-line-5-plant"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-saic-maxus-shanghai-lingang-plant",
+      "publisher_zh": "上海临港集团",
+      "publisher_en": "Shanghai Lingang Group",
+      "title_zh": "上汽大通临港分公司正式揭牌，EV31首台整车下线",
+      "title_en": "SAIC Maxus Lingang branch opens and first EV31 rolls off line",
+      "source_type": "company_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.shlingang.com/lg1/lingangjituan/xwzx/zcgx/201810/t20181015_16084.shtml",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.shlingang.com",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:saic-maxus-shanghai-lingang-plant"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-saic-maxus-shanghai-lingang-plant-current",
+      "publisher_zh": "上海市生态环境局",
+      "publisher_en": "Shanghai Municipal Bureau of Ecology and Environment",
+      "title_zh": "2024年度排污单位生态环境信用初步评价结果（临港）",
+      "title_en": "2024 preliminary environmental-credit results for regulated entities in Lingang",
+      "source_type": "regulator",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2024",
+      "url": "https://sthj.sh.gov.cn/cmsres/de/dec906ac573445c8ad21b090449ce6d8/aec43c86ea5986d2a561024a713e84d8.pdf",
+      "confidence": 0.9,
+      "notes_zh": "该监管名单用于确认上汽大通临港分公司在2024年度仍作为临港排污单位被评价。",
+      "notes_en": "This regulatory list confirms that the SAIC Maxus Lingang branch remained an evaluated Lingang regulated entity in 2024.",
+      "publisher_domain": "sthj.sh.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:saic-maxus-shanghai-lingang-plant"
+        ],
+        "fields": [
+          "operator_id",
+          "city_id",
+          "status"
+        ],
+        "scope_zh": "该监管名单用于确认上汽大通临港分公司在2024年度仍作为临港排污单位被评价。",
+        "scope_en": "This regulatory list confirms that the SAIC Maxus Lingang branch remained an evaluated Lingang regulated entity in 2024."
+      }
+    },
+    {
+      "id": "src-byd-xian-plant",
+      "publisher_zh": "西安高新区",
+      "publisher_en": "Xi'an High-tech Zone",
+      "title_zh": "比亚迪西安产业园",
+      "title_en": "BYD Xi'an industrial park",
+      "source_type": "government_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://xdz.xa.gov.cn/xwzx/gxyw/2008094583654723585.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "xdz.xa.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:byd-xian-plant"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-byd-hefei-plant",
+      "publisher_zh": "合肥市工业和信息化局",
+      "publisher_en": "Hefei Bureau of Industry and IT",
+      "title_zh": "比亚迪合肥基地",
+      "title_en": "BYD Hefei base",
+      "source_type": "government_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://gxj.hefei.gov.cn/gzdt/18623967.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "gxj.hefei.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:byd-hefei-plant"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-byd-zhengzhou-plant",
+      "publisher_zh": "郑州市人民政府",
+      "publisher_en": "Zhengzhou Municipal Government",
+      "title_zh": "比亚迪郑州基地",
+      "title_en": "BYD Zhengzhou base",
+      "source_type": "government_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.zhengzhou.gov.cn/news1/7050246.jhtml",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.zhengzhou.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:byd-zhengzhou-plant"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-byd-changsha-plant",
+      "publisher_zh": "湖南省工业和信息化厅",
+      "publisher_en": "Hunan Department of Industry and IT",
+      "title_zh": "比亚迪长沙基地",
+      "title_en": "BYD Changsha base",
+      "source_type": "government_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://gxt.hunan.gov.cn/xxgk_71033/gzdt/qyzx/202304/t20230414_29313457.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "gxt.hunan.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:byd-changsha-plant"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-byd-jinan-plant",
+      "publisher_zh": "济南新旧动能转换起步区",
+      "publisher_en": "Jinan Start-up Area",
+      "title_zh": "比亚迪济南基地",
+      "title_en": "BYD Jinan base",
+      "source_type": "government_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://jnxxq.jinan.gov.cn/col123348/art/2024/art_123348_4781830.html",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "jnxxq.jinan.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:byd-jinan-plant"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
+      }
+    },
+    {
+      "id": "src-byd-changzhou-plant",
+      "publisher_zh": "常州市人民政府",
+      "publisher_en": "Changzhou Municipal Government",
+      "title_zh": "比亚迪常州基地",
+      "title_en": "BYD Changzhou base",
+      "source_type": "government_site",
+      "grade": "A",
+      "published_at": null,
+      "accessed_at": "2026-08-31",
+      "fact_date": "2025",
+      "url": "https://www.changzhou.gov.cn/ns_news/17168718749666",
+      "confidence": 0.9,
+      "notes_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+      "notes_en": "This external official page supports only this facility's name, operator, city and current status.",
+      "publisher_domain": "www.changzhou.gov.cn",
+      "publisher_ownership": "external",
+      "support_scope": {
+        "entity_refs": [
+          "facility:byd-changzhou-plant"
+        ],
+        "fields": [
+          "name_zh",
+          "name_en",
+          "operator_id",
+          "city_id",
+          "status",
+          "facility_type"
+        ],
+        "scope_zh": "该外部官方页面仅用于确认此设施的名称、运营方、所在城市与当前状态。",
+        "scope_en": "This external official page supports only this facility's name, operator, city and current status."
       }
     }
   ]

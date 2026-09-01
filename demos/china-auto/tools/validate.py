@@ -21,6 +21,13 @@ FORBIDDEN_SOURCE_TERMS = (
     "self-authored",
     "自编",
 )
+ENRICHMENT_AVAILABILITY = {
+    "verified", "partial", "not_disclosed", "not_applicable",
+    "not_separately_listed", "unverified",
+}
+ENRICHMENT_FIELDS = {
+    "founded", "ownership", "listing", "employees", "vehicle_sales", "plants",
+}
 
 
 def load(name: str, key: str) -> list:
@@ -42,6 +49,23 @@ def is_external_http_url(value: object) -> bool:
     if parsed.scheme not in {"http", "https"} or not host:
         return False
     return host != "qrost.github.io" and not host.endswith(".qrost.github.io")
+
+
+def check_enrichment_source_urls(errors: list[str], entity_id: str, node: object, path: str = "") -> None:
+    """Reject self-authored/internal evidence anywhere in an enrichment row."""
+    if isinstance(node, dict):
+        for key, value in node.items():
+            here = f"{path}.{key}" if path else key
+            if key == "source_url":
+                if not is_external_http_url(value):
+                    errors.append(f"enrich {entity_id}: {here} needs external http(s) URL")
+                elif any(term.lower() in str(value).lower() for term in FORBIDDEN_SOURCE_TERMS):
+                    errors.append(f"enrich {entity_id}: {here} is self-authored/internal")
+            else:
+                check_enrichment_source_urls(errors, entity_id, value, here)
+    elif isinstance(node, list):
+        for index, value in enumerate(node):
+            check_enrichment_source_urls(errors, entity_id, value, f"{path}[{index}]")
 
 
 def provenance_key(kind: str, row: dict) -> str:
@@ -151,6 +175,7 @@ def main() -> int:
 
     city_ids = {c["id"] for c in cities}
     org_ids = {o["id"] for o in orgs}
+    org_by_id = {o["id"]: o for o in orgs}
     cluster_ids = {c["id"] for c in clusters}
     source_ids = {s["id"] for s in sources}
     source_by_id = {s["id"]: s for s in sources}
@@ -262,13 +287,65 @@ def main() -> int:
         if not isinstance(row, dict):
             errors.append(f"enrich {eid}: not an object")
             continue
+        check_enrichment_source_urls(errors, eid, row)
+        availability = row.get("availability")
+        if not isinstance(availability, dict):
+            errors.append(f"enrich {eid}: availability object required")
+            availability = {}
+        missing_availability = sorted(ENRICHMENT_FIELDS - set(availability))
+        if missing_availability:
+            errors.append(f"enrich {eid}: availability missing {missing_availability}")
+        for field, status in availability.items():
+            if field in ENRICHMENT_FIELDS and status not in ENRICHMENT_AVAILABILITY:
+                errors.append(f"enrich {eid}: bad availability {field}={status}")
         own = row.get("ownership")
         if own and own not in ENUMS["ownership"]:
             errors.append(f"enrich {eid}: bad ownership {own}")
+        if availability.get("ownership") in {"verified", "partial"}:
+            evidence = row.get("ownership_evidence")
+            if not isinstance(evidence, dict) or not is_external_http_url(evidence.get("source_url")):
+                errors.append(f"enrich {eid}: reviewed ownership needs ownership_evidence.source_url")
+        founded = row.get("founded")
+        if founded:
+            if not isinstance(founded, dict):
+                errors.append(f"enrich {eid}: founded must be an object")
+            else:
+                value = founded.get("value")
+                if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= 2100:
+                    errors.append(f"enrich {eid}: founded.value must be a plausible integer year")
+                if not is_external_http_url(founded.get("source_url")):
+                    errors.append(f"enrich {eid}: founded needs external source_url")
+                bare_year = org_by_id[eid].get("founded_year")
+                if bare_year is not None and value != bare_year:
+                    errors.append(
+                        f"enrich {eid}: founded.value {value} conflicts with organization founded_year {bare_year}"
+                    )
+        if availability.get("founded") == "verified" and not founded:
+            errors.append(f"enrich {eid}: verified founded needs founded evidence object")
         listing = row.get("listing")
         if listing:
             if listing.get("exchange") and listing["exchange"] not in ENUMS["exchange"]:
                 errors.append(f"enrich {eid}: bad exchange")
+            if not isinstance(listing.get("listed"), bool):
+                errors.append(f"enrich {eid}: listing.listed boolean required")
+            elif listing["listed"] and not listing.get("ticker"):
+                errors.append(f"enrich {eid}: listed entity needs ticker")
+            elif not listing["listed"] and (listing.get("ticker") is not None or listing.get("exchange") not in (None, "none")):
+                errors.append(f"enrich {eid}: unlisted entity cannot carry exchange/ticker")
+            venues = listing.get("venues") or []
+            if not isinstance(venues, list):
+                errors.append(f"enrich {eid}: listing.venues must be an array")
+                venues = []
+            for venue in venues:
+                if not isinstance(venue, dict):
+                    errors.append(f"enrich {eid}: listing venue must be an object")
+                    continue
+                if venue.get("exchange") not in {value for value in ENUMS["exchange"] if value != "none"}:
+                    errors.append(f"enrich {eid}: bad listing venue exchange {venue.get('exchange')}")
+                if not venue.get("ticker"):
+                    errors.append(f"enrich {eid}: listing venue needs ticker")
+            if availability.get("listing") in {"verified", "not_separately_listed"} and not is_external_http_url(listing.get("source_url")):
+                errors.append(f"enrich {eid}: reviewed listing needs external source_url")
         for tag in row.get("powertrain") or []:
             if tag not in ENUMS["powertrain"]:
                 errors.append(f"enrich {eid}: bad powertrain {tag}")
@@ -284,6 +361,8 @@ def main() -> int:
         for field in ("employees", "vehicle_sales"):
             m = row.get(field)
             if not m:
+                if availability.get(field) == "verified":
+                    errors.append(f"enrich {eid}: verified {field} needs a metric")
                 continue
             if not isinstance(m, dict) or m.get("value") is None:
                 errors.append(f"enrich {eid}: {field} needs value")
@@ -293,6 +372,14 @@ def main() -> int:
                 metric_url = str(m["source_url"]).lower()
                 if any(term.lower() in metric_url for term in FORBIDDEN_SOURCE_TERMS):
                     errors.append(f"enrich {eid}: {field} source_url is self-authored/internal")
+                if m.get("source_authority") not in (None, "primary", "secondary"):
+                    errors.append(f"enrich {eid}: {field} has invalid source_authority")
+            if availability.get(field) == "verified" and (not isinstance(m, dict) or m.get("value") is None):
+                errors.append(f"enrich {eid}: verified {field} needs a metric")
+
+    missing_enrich = sorted(org_ids - set(enrich))
+    if missing_enrich:
+        errors.append(f"org-enrichment.json: missing organizations {missing_enrich}")
 
     for f in facilities:
         if f.get("operator_id") not in org_ids:
@@ -303,6 +390,15 @@ def main() -> int:
             errors.append(f"facility {f['id']}: bad type")
         if f.get("status") not in ENUMS["facility_status"]:
             errors.append(f"facility {f['id']}: bad status")
+        if f.get("facility_type") in {"vehicle_plant", "engine_plant", "battery_plant", "parts_plant"} and f.get("confidence", 0) > 0.5:
+            ref = f"facility:{f['id']}"
+            type_supported = any(
+                ref in ((source_by_id.get(sid) or {}).get("support_scope") or {}).get("entity_refs", [])
+                and "facility_type" in ((source_by_id.get(sid) or {}).get("support_scope") or {}).get("fields", [])
+                for sid in f.get("source_ids") or []
+            )
+            if not type_supported:
+                errors.append(f"facility {f['id']}: counted verified plant needs source scope for facility_type")
 
     role_keys = set()
     for r in roles:

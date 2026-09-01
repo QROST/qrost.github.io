@@ -120,6 +120,7 @@
     "publisher_ownership": ["external"],
     "source_type": [
       "government_stats",
+      "government_site",
       "regulator",
       "company_ir",
       "company_site",
@@ -131,8 +132,8 @@
       "map_or_registry",
       "forum"
     ],
-    "ownership": ["soe", "private", "foreign", "jv", "public", "mixed", "unknown"],
-    "exchange": ["SSE", "SZSE", "HKEX", "NYSE", "NASDAQ", "none"],
+    "ownership": ["soe", "private", "foreign", "jv", "public", "nonprofit", "mixed", "unknown"],
+    "exchange": ["SSE", "SZSE", "HKEX", "HKEX-RMB", "NYSE", "NASDAQ", "SGX", "none"],
     "powertrain": ["ice", "hev", "phev", "bev", "reev", "fcev"],
     "segment": ["mass", "premium", "luxury", "commercial", "bus", "truck", "parts", "battery", "software", "education", "media", "testing"],
     "export_role": ["none", "some", "major", "unknown"],

@@ -142,10 +142,10 @@ BASE = {
     "truck-home": en(**PRIV, listing=L(False), segment=["media"], export_role="none"),
     "chinabuses": en(**PRIV, listing=L(False), segment=["media"], export_role="none"),
     "chinaspv": en(**PRIV, listing=L(False), segment=["media"], export_role="none"),
-    "caam": en(**SOE, listing=L(False), segment=["education"], export_role="none"),
-    "cada": en(**SOE, listing=L(False), segment=["education"], export_role="none"),
-    "sae-china": en(**SOE, listing=L(False), segment=["education"], export_role="none"),
-    "china-ev100": en(**SOE, listing=L(False), segment=["education"], export_role="none"),
+    "caam": en(ownership="nonprofit", listing=L(False), segment=["education"], export_role="none"),
+    "cada": en(ownership="nonprofit", listing=L(False), segment=["education"], export_role="none"),
+    "sae-china": en(ownership="nonprofit", listing=L(False), segment=["education"], export_role="none"),
+    "china-ev100": en(ownership="nonprofit", listing=L(False), segment=["education"], export_role="none"),
     "luobo-report": en(**PRIV, listing=L(False), segment=["media"], export_role="none"),
     "laosiji": en(**PRIV, listing=L(False), segment=["media"], export_role="none"),
     "review-38": en(**PRIV, listing=L(False), segment=["media"], export_role="none"),
@@ -220,10 +220,20 @@ def main() -> None:
         for k, v in prev.items():
             if k not in out:
                 out[k] = v
-            elif k in ("employees", "vehicle_sales") and v:
+            elif k in ("employees", "vehicle_sales", "founded", "availability", "ownership_evidence") and v:
+                out[k] = v
+            elif k == "listing" and isinstance(v, dict) and v.get("source_url"):
+                # A reviewed exact-entity listing (including an explicitly
+                # unlisted subsidiary/brand) must not be replaced by the
+                # categorical starter map on a later baseline refresh.
+                out[k] = v
+            elif k == "ownership" and isinstance(prev.get("ownership_evidence"), dict):
                 out[k] = v
         merged[eid] = out
-    OUT.write_text(json.dumps({"enrichment": merged}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    OUT.write_text(
+        json.dumps({"enrichment": merged}, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     print(f"wrote {OUT.relative_to(ROOT)} n={len(merged)}")
 
 

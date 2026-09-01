@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Static UI contracts for responsive navigation, dialogs and fallbacks."""
+import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -7,6 +9,36 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def require(text: str, token: str, label: str) -> None:
     assert token in text, f"{label}: missing {token!r}"
+
+
+def fact_scope_values() -> set[str]:
+    enrichment = json.loads(
+        (ROOT / "assets/data/org-enrichment.json").read_text(encoding="utf-8")
+    )["enrichment"]
+    values: set[str] = set()
+    for record in enrichment.values():
+        for field in ("founded", "ownership_evidence", "listing", "employees", "vehicle_sales"):
+            fact = record.get(field)
+            if not isinstance(fact, dict):
+                continue
+            for scope_key in ("scope", "scope_quality"):
+                scope = fact.get(scope_key)
+                if isinstance(scope, str) and scope:
+                    values.add(scope)
+    return values
+
+
+def fact_scope_labels(app: str) -> dict[str, list[str]]:
+    match = re.search(r"var FACT_SCOPE_LABELS = (\{.*?\n  \});", app, re.DOTALL)
+    assert match, "fact scope localization: FACT_SCOPE_LABELS JSON object is missing"
+    labels = json.loads(match.group(1))
+    for scope, localized in labels.items():
+        assert (
+            isinstance(localized, list)
+            and len(localized) == 2
+            and all(isinstance(label, str) and label.strip() for label in localized)
+        ), f"fact scope localization: {scope!r} must have non-empty zh/en labels"
+    return labels
 
 
 def main() -> int:
@@ -48,6 +80,26 @@ def main() -> int:
     require(charts, "MANUFACTURING_ROLE_TYPES", "manufacturing role rendering")
     require(charts, "PLANT_FACILITY_TYPES", "plant-only facility rendering")
     require(loader, "f.operator_id && PLANT_FACILITY_TYPES[f.facility_type]", "plant-only organization count")
+    require(loader, "candidatePlantCityOrg", "candidate manufacturing-site de-duplication")
+    require(loader, "plantCountDetail", "explicit and candidate plant breakdown")
+    require(app, "function availabilityOf", "field availability semantics")
+    require(app, "statusNotSeparatelyListed", "exact-entity listing status")
+    require(app, "function parentContext", "labeled parent-scope fallback")
+    require(app, "function ownershipContext", "verified parent ownership fallback")
+    require(app, "function plantCell", "plant count detail rendering")
+    require(app, "function familyPlantDetail", "subsidiary plant aggregation")
+    require(app, "scopeKey: kids.length ? 'childrenScope'", "subsidiary plant-scope labeling")
+    require(app, "d.verified + '+' + d.candidate", "candidate plant-count disclosure")
+    require(app, "detail + '<br>' + statusCell('partial')", "partial plant-count disclosure")
+    require(loader, "f.confidence > 0.5 && (f.source_ids || []).length", "low-confidence facility candidate accounting")
+    require(app, "m.qualifier === 'approximately'", "approximate metric disclosure")
+    require(app, "function factContext", "metric scope and note disclosure")
+    scope_labels = fact_scope_labels(app)
+    missing_scopes = sorted(fact_scope_values() - set(scope_labels))
+    assert not missing_scopes, f"fact scope localization: missing zh/en labels for {missing_scopes}"
+    require(app, "I18N.isEn() ? value.note_en : value.note_zh", "strict-language fact notes")
+    assert "String(scope || '').replace(/_/g, ' ')" not in app, "raw fact scope fallback must not be exposed"
+    require(app, "e.target.closest('a, button, input, select, textarea')", "evidence-link row-click isolation")
     require(charts, "r.confidence <= 0.5", "candidate manufacturing disclosure")
     require(charts, "window.innerWidth <= 520", "narrow graph label control")
 

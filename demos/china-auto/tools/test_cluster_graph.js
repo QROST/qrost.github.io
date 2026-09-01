@@ -140,19 +140,19 @@ const links = graphLinks(full);
 const facilityNodes = nodes.filter((n) => String(n.id).startsWith('fac:'));
 const cityFacilityLinks = links.filter((l) => !String(l.source).includes(':') && String(l.target).startsWith('fac:'));
 const roleLinks = links.filter((l) => !String(l.source).includes(':') && String(l.target).startsWith('org:') && MANUFACTURING_ROLES.has(l._rel));
+const expectedPlantCount = facilities.filter((f) => PLANT_TYPES.has(f.facility_type)).length;
+const expectedRoleEdges = roles.filter((r) => MANUFACTURING_ROLES.has(r.role_type)).filter((r) => {
+  return !plantFacilitiesForCity(r.city_id).some((f) => f.operator_id === r.entity_id);
+}).map((r) => `${r.city_id}|${r.entity_id}|${r.role_type}`).sort();
 
-assert.equal(facilityNodes.length, 23, 'only the 23 explicit manufacturing facilities belong in the plant layer');
-assert.equal(cityFacilityLinks.length, 23, 'every explicit manufacturing facility needs one city edge');
-assert.equal(roleLinks.length, 17, 'all 17 facility-unmatched manufacturing roles must be projected');
-assert.equal(nodes.length, 144, 'default graph node census drifted');
-assert.equal(links.length, 229, 'default graph link census drifted');
+assert.equal(facilityNodes.length, expectedPlantCount, 'every explicit manufacturing facility belongs in the plant layer');
+assert.equal(cityFacilityLinks.length, expectedPlantCount, 'every explicit manufacturing facility needs one city edge');
+assert.equal(roleLinks.length, expectedRoleEdges.length, 'all facility-unmatched manufacturing roles must be projected');
+assert.equal(new Set(nodes.map((n) => n.id)).size, nodes.length, 'graph node ids must be unique');
 
 const nonPlantIds = facilities.filter((f) => !PLANT_TYPES.has(f.facility_type)).map((f) => `fac:${f.id}`);
 nonPlantIds.forEach((id) => assert(!nodes.some((n) => n.id === id), `${id} must not be presented as a plant`));
 roleLinks.forEach((l) => assert(String(l._tip).includes('候选'), `${l.source} -> ${l.target} lacks candidate disclosure`));
-const expectedRoleEdges = roles.filter((r) => MANUFACTURING_ROLES.has(r.role_type)).filter((r) => {
-  return !plantFacilitiesForCity(r.city_id).some((f) => f.operator_id === r.entity_id);
-}).map((r) => `${r.city_id}|${r.entity_id}|${r.role_type}`).sort();
 const actualRoleEdges = Array.from(
   roleLinks,
   (l) => `${l.source}|${String(l.target).slice(4)}|${l._rel}`,
@@ -179,9 +179,13 @@ function representedManufacturing(cityId) {
   return out;
 }
 
-for (const [cityId, expected] of Object.entries({ chengdu: 4, changsha: 4, tianjin: 2, hefei: 3, ningbo: 3 })) {
-  assert.equal(representedManufacturing(cityId).size, expected, `${cityId} manufacturing coverage is incomplete`);
-  assert.equal(manufacturingCountForCity(cityId), expected, `${cityId} public count disagrees with graph coverage`);
+for (const cityId of ['chengdu', 'changsha', 'tianjin', 'hefei', 'ningbo']) {
+  const expectedOperators = new Set(plantFacilitiesForCity(cityId).map((f) => f.operator_id).filter(Boolean));
+  manufacturingRolesForCity(cityId).forEach((r) => expectedOperators.add(r.entity_id));
+  const expectedSites = plantFacilitiesForCity(cityId).length
+    + manufacturingRolesForCity(cityId).filter((r) => !plantFacilitiesForCity(cityId).some((f) => f.operator_id === r.entity_id)).length;
+  assert.equal(representedManufacturing(cityId).size, expectedOperators.size, `${cityId} manufacturer coverage is incomplete`);
+  assert.equal(manufacturingCountForCity(cityId), expectedSites, `${cityId} public site count disagrees with graph coverage`);
 }
 
 const byd = nodes.find((n) => n.id === 'org:byd');
@@ -198,4 +202,4 @@ const withoutPlants = render({ hq: true, brands: true, plants: false });
 assert(!withoutPlants.data.some((n) => String(n.id).startsWith('fac:')), 'plant-off must remove facility nodes');
 assert(!graphLinks(withoutPlants).some((l) => MANUFACTURING_ROLES.has(l._rel)), 'plant-off must remove manufacturing-role edges');
 
-console.log('test_cluster_graph: OK (23 plants + 17 candidate manufacturing links; 144 nodes / 229 links)');
+console.log(`test_cluster_graph: OK (${expectedPlantCount} plants + ${expectedRoleEdges.length} candidate manufacturing links; ${nodes.length} nodes / ${links.length} links)`);

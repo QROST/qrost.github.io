@@ -55,8 +55,8 @@
       zh: '中国汽车城市图谱 · 总部不等于产量',
     },
     cardAutoDesc: {
-      en: '28 Chinese auto cities (17 core + 11 specialist) and 168 companies/brands — HQ, plants, batteries, software, media, review-video KOLs and universities as separate roles. National auto media are grouped by beat (portals, desks, NEV, CV, trade, KOLs). Every org records a headquarters city. Pinyin / initials search, China map, cluster graph, sourced 2025 local output. Dark mode · EN/中文.',
-      zh: '28 座汽车城市（17 核心 + 11 专业）与 168 家企业/品牌，用角色标签分开总部、工厂、电池、软件、媒体、评测KOL和院校。全国汽车媒体按赛道分组（门户、频道、新能源、商用车、行业报、评测号）。每家企业均收录总部城市。支持拼音/首字母/简写搜索，中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
+      en: '28 Chinese auto cities (17 core + 11 specialist), 168 companies/brands and 80 source-linked facility records — HQ, plants, batteries, software, media, review-video KOLs and universities as separate roles. Every org has explicit founded, ownership, listing, headcount, sales and plant-availability states. Pinyin / initials search, China map, cluster graph, sourced 2025 local output. Dark mode · EN/中文.',
+      zh: '28 座汽车城市（17 核心 + 11 专业）、168 家企业/品牌与 80 条带来源的设施记录，用角色标签分开总部、工厂、电池、软件、媒体、评测KOL和院校。每家机构均明确展示成立、所有制、上市、员工、销量与工厂可得性状态。支持拼音/首字母/简写搜索，中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
     },
     cardPebbleTitle: {
       en: 'Pebble Beach 2027 · Monterey Car Week planning guide',

@@ -13,7 +13,7 @@
   var cityMap = {}, orgMap = {}, facilityMap = {}, clusterMap = {}, sourceMap = {};
   var rolesByCity = {}, orgsByCity = {}, facilitiesByCity = {}, statsByCity = {};
   var mediaByCity = {}, institutionsByCity = {};
-  var instByOrg = {}, mediaByOrg = {}, childrenByParent = {}, plantCountByOrg = {};
+  var instByOrg = {}, mediaByOrg = {}, childrenByParent = {}, plantCountByOrg = {}, plantDetailByOrg = {};
   var PLANT_FACILITY_TYPES = { vehicle_plant: 1, engine_plant: 1, battery_plant: 1, parts_plant: 1 };
   var MANUFACTURING_ROLE_TYPES = { factory: 1, supplier_plant: 1 };
 
@@ -33,7 +33,7 @@
     cityMap = {}; orgMap = {}; facilityMap = {}; clusterMap = {}; sourceMap = {};
     rolesByCity = {}; orgsByCity = {}; facilitiesByCity = {}; statsByCity = {};
     mediaByCity = {}; institutionsByCity = {};
-    instByOrg = {}; mediaByOrg = {}; childrenByParent = {}; plantCountByOrg = {};
+    instByOrg = {}; mediaByOrg = {}; childrenByParent = {}; plantCountByOrg = {}; plantDetailByOrg = {};
 
     store.cities.forEach(function (c) { cityMap[c.id] = c; });
     store.organizations.forEach(function (o) { orgMap[o.id] = o; });
@@ -55,11 +55,34 @@
       var list = orgsByCity[r.city_id] = orgsByCity[r.city_id] || [];
       if (list.indexOf(o) === -1) list.push(o);
     });
+    var explicitPlantCityOrg = {};
     store.facilities.forEach(function (f) {
       (facilitiesByCity[f.city_id] = facilitiesByCity[f.city_id] || []).push(f);
       if (f.operator_id && PLANT_FACILITY_TYPES[f.facility_type]) {
         plantCountByOrg[f.operator_id] = (plantCountByOrg[f.operator_id] || 0) + 1;
+        var detail = plantDetailByOrg[f.operator_id] = plantDetailByOrg[f.operator_id] || { total: 0, explicit: 0, verified: 0, candidate: 0 };
+        detail.explicit += 1;
+        if (f.confidence > 0.5 && (f.source_ids || []).length) detail.verified += 1;
+        else detail.candidate += 1;
+        explicitPlantCityOrg[f.city_id + '::' + f.operator_id] = 1;
       }
+    });
+    // A manufacturing city-role is useful evidence of a site relationship even
+    // when the individual facility record has not yet been cataloged. Count one
+    // candidate manufacturing site per organization/city, without double-counting
+    // an explicit plant in that same city.
+    var candidatePlantCityOrg = {};
+    store.cityRoles.forEach(function (r) {
+      if (!r.city_id || !r.entity_id || !MANUFACTURING_ROLE_TYPES[r.role_type]) return;
+      var key = r.city_id + '::' + r.entity_id;
+      if (explicitPlantCityOrg[key] || candidatePlantCityOrg[key]) return;
+      candidatePlantCityOrg[key] = 1;
+      plantCountByOrg[r.entity_id] = (plantCountByOrg[r.entity_id] || 0) + 1;
+      var detail = plantDetailByOrg[r.entity_id] = plantDetailByOrg[r.entity_id] || { total: 0, explicit: 0, verified: 0, candidate: 0 };
+      detail.candidate += 1;
+    });
+    Object.keys(plantDetailByOrg).forEach(function (id) {
+      plantDetailByOrg[id].total = plantDetailByOrg[id].verified + plantDetailByOrg[id].candidate;
     });
     store.statistics.forEach(function (s) {
       (statsByCity[s.city_id] = statsByCity[s.city_id] || []).push(s);
@@ -76,6 +99,7 @@
     store.organizations.forEach(function (o) {
       var en = store.orgEnrichment[o.id] || {};
       o.enrich = en;
+      if (!o.founded_year && en.founded && en.founded.value) o.founded_year = en.founded.value;
       if (!o.founded_year && en.founded_year) o.founded_year = en.founded_year;
       if (!o.website && en.website) o.website = en.website;
       if (!o.parent_id) return;
@@ -169,6 +193,7 @@
     mediaForOrg: function (id) { return mediaByOrg[id] || null; },
     childrenOf: function (id) { return childrenByParent[id] || []; },
     plantCount: function (id) { return plantCountByOrg[id] || 0; },
+    plantCountDetail: function (id) { return plantDetailByOrg[id] || { total: 0, explicit: 0, candidate: 0 }; },
     relationsFor: relationsFor,
     get manifest() { return store.manifest; },
     get cities() { return store.cities; },
