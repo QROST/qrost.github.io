@@ -376,6 +376,11 @@ def main() -> int:
                     errors.append(f"enrich {eid}: {field} has invalid source_authority")
             if availability.get(field) == "verified" and (not isinstance(m, dict) or m.get("value") is None):
                 errors.append(f"enrich {eid}: verified {field} needs a metric")
+            if field == "vehicle_sales" and isinstance(m, dict):
+                if m.get("non_additive") is not True:
+                    errors.append(f"enrich {eid}: vehicle_sales must be marked non_additive")
+                if m.get("aggregation_level") not in {"brand", "reported_entity_scope"}:
+                    errors.append(f"enrich {eid}: vehicle_sales has invalid aggregation_level")
 
     missing_enrich = sorted(org_ids - set(enrich))
     if missing_enrich:
@@ -384,6 +389,36 @@ def main() -> int:
     for f in facilities:
         if f.get("operator_id") not in org_ids:
             errors.append(f"facility {f['id']}: operator missing")
+        manufactures_for = f.get("manufactures_for_ids") or []
+        if not isinstance(manufactures_for, list) or any(org_id not in org_ids for org_id in manufactures_for):
+            errors.append(f"facility {f['id']}: manufactures_for_ids must resolve to organizations")
+        if len(manufactures_for) != len(set(manufactures_for)):
+            errors.append(f"facility {f['id']}: duplicate manufactures_for_ids")
+        if f.get("operator_id") in manufactures_for:
+            errors.append(f"facility {f['id']}: operator must not repeat as contract-manufacturing customer")
+        associated = f.get("associated_organization_ids") or []
+        if not isinstance(associated, list) or any(org_id not in org_ids for org_id in associated):
+            errors.append(f"facility {f['id']}: associated_organization_ids must resolve to organizations")
+        if len(associated) != len(set(associated)):
+            errors.append(f"facility {f['id']}: duplicate associated_organization_ids")
+        if f.get("operator_id") in associated:
+            errors.append(f"facility {f['id']}: operator must not repeat as associated organization")
+        boundary_match = f.get("operator_matches_entity_boundary")
+        if boundary_match not in (True, False, None):
+            errors.append(f"facility {f['id']}: operator_matches_entity_boundary must be true, false or null")
+        if boundary_match in (True, False) and not (
+            f.get("operator_legal_name_zh") and f.get("operator_legal_name_en")
+        ):
+            errors.append(f"facility {f['id']}: a resolved operator boundary needs exact bilingual legal names")
+        translation_flag = f.get("operator_legal_name_en_is_translation", False)
+        if not isinstance(translation_flag, bool):
+            errors.append(f"facility {f['id']}: operator_legal_name_en_is_translation must be boolean")
+        elif translation_flag and f.get("operator_matches_entity_boundary") is not False:
+            errors.append(f"facility {f['id']}: working operator translation requires a non-matching catalog boundary")
+        if bool(f.get("address_zh")) != bool(f.get("address_en")):
+            errors.append(f"facility {f['id']}: address must be bilingual")
+        if bool(f.get("site_scope_note_zh")) != bool(f.get("site_scope_note_en")):
+            errors.append(f"facility {f['id']}: site scope note must be bilingual")
         if f.get("city_id") not in city_ids:
             errors.append(f"facility {f['id']}: city missing")
         if f.get("facility_type") not in ENUMS["facility_type"]:
@@ -429,11 +464,37 @@ def main() -> int:
             if cid not in city_ids:
                 errors.append(f"cluster {cl['id']}: city {cid} missing")
 
+    if len(stats) != len(city_ids):
+        errors.append(f"expected one 2025 statistics audit row per city ({len(city_ids)}), found {len(stats)}")
+    stat_keys = [(st.get("city_id"), st.get("year")) for st in stats]
+    if len(stat_keys) != len(set(stat_keys)):
+        errors.append("statistics rows must be unique by city_id/year")
     for st in stats:
         if st["city_id"] not in city_ids:
             errors.append(f"stats {st['city_id']} {st['year']}: city missing")
         if not st.get("statistical_scope"):
             errors.append(f"stats {st['city_id']} {st['year']}: statistical_scope required")
+        availability = st.get("availability")
+        stat_fields = {"total_vehicle_output", "nev_output"}
+        if not isinstance(availability, dict) or set(availability) != stat_fields:
+            errors.append(f"stats {st['city_id']} {st['year']}: exact two-field availability required")
+            availability = {}
+        reviews = st.get("field_reviews")
+        if not isinstance(reviews, dict) or set(reviews) != stat_fields:
+            errors.append(f"stats {st['city_id']} {st['year']}: exact two-field reviews required")
+            reviews = {}
+        for field in stat_fields:
+            status = availability.get(field)
+            if status not in ENRICHMENT_AVAILABILITY:
+                errors.append(f"stats {st['city_id']} {st['year']}: bad {field} availability {status}")
+            if status == "verified" and st.get(field) is None:
+                errors.append(f"stats {st['city_id']} {st['year']}: verified {field} needs value")
+            review = reviews.get(field) if isinstance(reviews.get(field), dict) else {}
+            if status in {"verified", "partial"} and not is_external_http_url(review.get("source_url")):
+                # Legacy hand-reviewed rows may predate the compact review, but
+                # they still need a linked external registry source.
+                if not st.get("source_ids"):
+                    errors.append(f"stats {st['city_id']} {st['year']}: supported {field} needs external evidence")
 
     for m in media:
         if m["organization_id"] not in org_ids:

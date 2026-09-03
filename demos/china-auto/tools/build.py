@@ -98,6 +98,9 @@ def main() -> int:
     rc = subprocess.call([sys.executable, str(ROOT / "tools" / "test_enrichment_rebuild.py")])
     if rc != 0:
         return rc
+    rc = subprocess.call([sys.executable, str(ROOT / "tools" / "test_deep_audit.py")])
+    if rc != 0:
+        return rc
     rc = subprocess.call(["node", str(ROOT / "tools" / "test_cluster_graph.js")])
     if rc != 0:
         return rc

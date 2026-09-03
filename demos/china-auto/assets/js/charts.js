@@ -456,7 +456,20 @@
         });
         facilities.forEach(function (f) {
           var operator = f.operator_id && getOrg ? getOrg(f.operator_id) : null;
+          var boundaryResolved = f.operator_matches_entity_boundary === true || f.operator_matches_entity_boundary === false;
+          var operatorName = I18N.pick(f.operator_legal_name_zh, f.operator_legal_name_en);
+          if (I18N.isEn() && operatorName && f.operator_legal_name_en_is_translation) {
+            operatorName += ' ' + I18N.t('workingTranslation');
+          }
+          var associated = (f.associated_organization_ids || []).map(function (id) {
+            return getOrg ? getOrg(id) : null;
+          }).filter(Boolean);
+          var customers = (f.manufactures_for_ids || []).map(function (id) {
+            return getOrg ? getOrg(id) : null;
+          }).filter(Boolean);
           if (operator) addOrg(operator, '', city.id);
+          associated.forEach(function (organization) { addOrg(organization, '', city.id); });
+          customers.forEach(function (customer) { addOrg(customer, '', city.id); });
           addNode({
             id: 'fac:' + f.id, name: I18N.name(f), symbol: 'diamond',
             symbolSize: 12,
@@ -464,8 +477,14 @@
             label: { show: true, fontSize: 9, color: cssVar('--text'), formatter: function (p) { return truncLabel(p.name); } },
             _kind: 'facility', _rawId: f.id, _clusterIds: clusterIdsForCity(city),
             _tip: '<b>' + I18N.name(f) + '</b><br/>' + I18N.enumLabel('facility_type', f.facility_type) +
+              (f.status && f.status !== 'active' ? ' · ' + I18N.enumLabel('facility_status', f.status) : '') +
               (f.confidence <= 0.5 ? ' · ' + I18N.t('candidate') : '') +
-              (operator ? '<br/>' + I18N.t('operator') + ': ' + I18N.name(operator) : '')
+              (operatorName ? '<br/>' + I18N.t('operator') + ': ' + operatorName : '') +
+              (!boundaryResolved ? '<br/>' + I18N.t('operatorBoundaryPending') : '') +
+              (operator && f.operator_matches_entity_boundary === false ? '<br/>' + I18N.t('catalogRelation') + ': ' + I18N.name(operator) : '') +
+              (operator && !boundaryResolved ? '<br/>' + I18N.t('catalogRelation') + ': ' + I18N.name(operator) : '') +
+              (associated.length ? '<br/>' + I18N.t('associatedOrganizations') + ': ' + associated.map(I18N.name).join(I18N.isEn() ? ', ' : '、') : '') +
+              (customers.length ? '<br/>' + I18N.t('manufacturesFor') + ': ' + customers.map(I18N.name).join(I18N.isEn() ? ', ' : '、') : '')
           });
           addLink({
             source: city.id, target: 'fac:' + f.id, _rel: 'located_in',
@@ -475,12 +494,30 @@
               I18N.name(f) + ' · ' + I18N.name(city)
           });
           if (operator && nodeIds['org:' + f.operator_id]) {
+            var directOperator = f.operator_matches_entity_boundary === true;
+            var operatorRelationLabel = directOperator
+              ? I18N.enumLabel('relation_type', 'operates')
+              : (f.operator_matches_entity_boundary === false ? I18N.t('catalogRelation') : I18N.t('operatorBoundaryPending'));
             addLink({
               source: 'org:' + f.operator_id, target: 'fac:' + f.id, _rel: 'operates',
-              lineStyle: relStyle('operates'),
-              _tip: I18N.enumLabel('relation_type', 'operates') + '<br/>' + endpointName('org:' + f.operator_id) + ' → ' + I18N.name(f)
+              lineStyle: relStyle(directOperator ? 'operates' : 'factory'),
+              _tip: operatorRelationLabel + '<br/>' + endpointName('org:' + f.operator_id) + ' → ' + I18N.name(f)
             });
           }
+          associated.forEach(function (organization) {
+            addLink({
+              source: 'org:' + organization.id, target: 'fac:' + f.id, _rel: 'associated_with',
+              lineStyle: relStyle('factory'),
+              _tip: I18N.t('associatedOrganizations') + '<br/>' + I18N.name(organization) + ' → ' + I18N.name(f)
+            });
+          });
+          customers.forEach(function (customer) {
+            addLink({
+              source: 'fac:' + f.id, target: 'org:' + customer.id, _rel: 'manufactures_for',
+              lineStyle: relStyle('factory'),
+              _tip: I18N.t('manufacturesFor') + '<br/>' + I18N.name(f) + ' → ' + I18N.name(customer)
+            });
+          });
         });
       });
     }

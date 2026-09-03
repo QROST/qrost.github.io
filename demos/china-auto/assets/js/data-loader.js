@@ -14,8 +14,10 @@
   var rolesByCity = {}, orgsByCity = {}, facilitiesByCity = {}, statsByCity = {};
   var mediaByCity = {}, institutionsByCity = {};
   var instByOrg = {}, mediaByOrg = {}, childrenByParent = {}, plantCountByOrg = {}, plantDetailByOrg = {};
+  var explicitPlantCityOrg = {};
   var PLANT_FACILITY_TYPES = { vehicle_plant: 1, engine_plant: 1, battery_plant: 1, parts_plant: 1 };
   var MANUFACTURING_ROLE_TYPES = { factory: 1, supplier_plant: 1 };
+  var RETIRED_PLANT_STATUS = { closed: 1, converted: 1 };
 
   async function fetchJson(path) {
     var sep = path.indexOf('?') === -1 ? '?' : '&';
@@ -34,6 +36,7 @@
     rolesByCity = {}; orgsByCity = {}; facilitiesByCity = {}; statsByCity = {};
     mediaByCity = {}; institutionsByCity = {};
     instByOrg = {}; mediaByOrg = {}; childrenByParent = {}; plantCountByOrg = {}; plantDetailByOrg = {};
+    explicitPlantCityOrg = {};
 
     store.cities.forEach(function (c) { cityMap[c.id] = c; });
     store.organizations.forEach(function (o) { orgMap[o.id] = o; });
@@ -55,16 +58,16 @@
       var list = orgsByCity[r.city_id] = orgsByCity[r.city_id] || [];
       if (list.indexOf(o) === -1) list.push(o);
     });
-    var explicitPlantCityOrg = {};
     store.facilities.forEach(function (f) {
       (facilitiesByCity[f.city_id] = facilitiesByCity[f.city_id] || []).push(f);
       if (f.operator_id && PLANT_FACILITY_TYPES[f.facility_type]) {
+        explicitPlantCityOrg[f.city_id + '::' + f.operator_id] = 1;
+        if (RETIRED_PLANT_STATUS[f.status]) return;
         plantCountByOrg[f.operator_id] = (plantCountByOrg[f.operator_id] || 0) + 1;
         var detail = plantDetailByOrg[f.operator_id] = plantDetailByOrg[f.operator_id] || { total: 0, explicit: 0, verified: 0, candidate: 0 };
         detail.explicit += 1;
-        if (f.confidence > 0.5 && (f.source_ids || []).length) detail.verified += 1;
+        if (f.status === 'active' && f.confidence > 0.5 && (f.source_ids || []).length) detail.verified += 1;
         else detail.candidate += 1;
-        explicitPlantCityOrg[f.city_id + '::' + f.operator_id] = 1;
       }
     });
     // A manufacturing city-role is useful evidence of a site relationship even
@@ -151,25 +154,19 @@
   }
   function plantFacilitiesForCity(id) {
     return (facilitiesByCity[id] || []).filter(function (f) {
-      return !!PLANT_FACILITY_TYPES[f.facility_type];
+      return !!PLANT_FACILITY_TYPES[f.facility_type] && !RETIRED_PLANT_STATUS[f.status];
     });
   }
   function manufacturingRolesForCity(id) {
     return (rolesByCity[id] || []).filter(function (r) {
-      return !!MANUFACTURING_ROLE_TYPES[r.role_type];
+      return !!MANUFACTURING_ROLE_TYPES[r.role_type] && !explicitPlantCityOrg[id + '::' + r.entity_id];
     });
   }
   function manufacturingCountForCity(id) {
     // Count explicit plant nodes individually, then use a city role only when
     // no explicit plant already represents that operator in the same city.
     var facilities = plantFacilitiesForCity(id);
-    var explicitOperators = {};
-    facilities.forEach(function (f) {
-      if (f.operator_id) explicitOperators[f.operator_id] = 1;
-    });
-    return facilities.length + manufacturingRolesForCity(id).filter(function (r) {
-      return !explicitOperators[r.entity_id];
-    }).length;
+    return facilities.length + manufacturingRolesForCity(id).length;
   }
 
   window.CHINA_AUTO_DATA = {

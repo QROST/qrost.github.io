@@ -10,6 +10,7 @@ const ROOT = path.resolve(__dirname, '..');
 const DATA = path.join(ROOT, 'assets', 'data');
 const PLANT_TYPES = new Set(['vehicle_plant', 'engine_plant', 'battery_plant', 'parts_plant']);
 const MANUFACTURING_ROLES = new Set(['factory', 'supplier_plant']);
+const RETIRED_PLANT_STATUSES = new Set(['closed', 'converted']);
 
 function table(file, key) {
   return JSON.parse(fs.readFileSync(path.join(DATA, file), 'utf8'))[key];
@@ -50,11 +51,17 @@ roles.forEach((r) => {
 });
 
 function plantFacilitiesForCity(cityId) {
-  return (facilitiesByCity[cityId] || []).filter((f) => PLANT_TYPES.has(f.facility_type));
+  return (facilitiesByCity[cityId] || []).filter((f) => (
+    PLANT_TYPES.has(f.facility_type) && !RETIRED_PLANT_STATUSES.has(f.status)
+  ));
 }
 
 function manufacturingRolesForCity(cityId) {
-  return (rolesByCity[cityId] || []).filter((r) => MANUFACTURING_ROLES.has(r.role_type));
+  return (rolesByCity[cityId] || []).filter((r) => (
+    MANUFACTURING_ROLES.has(r.role_type) && !facilities.some((f) => (
+      f.city_id === cityId && f.operator_id === r.entity_id && PLANT_TYPES.has(f.facility_type)
+    ))
+  ));
 }
 
 function manufacturingCountForCity(cityId) {
@@ -140,7 +147,9 @@ const links = graphLinks(full);
 const facilityNodes = nodes.filter((n) => String(n.id).startsWith('fac:'));
 const cityFacilityLinks = links.filter((l) => !String(l.source).includes(':') && String(l.target).startsWith('fac:'));
 const roleLinks = links.filter((l) => !String(l.source).includes(':') && String(l.target).startsWith('org:') && MANUFACTURING_ROLES.has(l._rel));
-const expectedPlantCount = facilities.filter((f) => PLANT_TYPES.has(f.facility_type)).length;
+const expectedPlantCount = facilities.filter((f) => (
+  PLANT_TYPES.has(f.facility_type) && !RETIRED_PLANT_STATUSES.has(f.status)
+)).length;
 const expectedRoleEdges = roles.filter((r) => MANUFACTURING_ROLES.has(r.role_type)).filter((r) => {
   return !plantFacilitiesForCity(r.city_id).some((f) => f.operator_id === r.entity_id);
 }).map((r) => `${r.city_id}|${r.entity_id}|${r.role_type}`).sort();
@@ -152,6 +161,10 @@ assert.equal(new Set(nodes.map((n) => n.id)).size, nodes.length, 'graph node ids
 
 const nonPlantIds = facilities.filter((f) => !PLANT_TYPES.has(f.facility_type)).map((f) => `fac:${f.id}`);
 nonPlantIds.forEach((id) => assert(!nodes.some((n) => n.id === id), `${id} must not be presented as a plant`));
+const retiredPlantIds = facilities.filter((f) => (
+  PLANT_TYPES.has(f.facility_type) && RETIRED_PLANT_STATUSES.has(f.status)
+)).map((f) => `fac:${f.id}`);
+retiredPlantIds.forEach((id) => assert(!nodes.some((n) => n.id === id), `${id} must not be presented as a current plant`));
 roleLinks.forEach((l) => assert(String(l._tip).includes('候选'), `${l.source} -> ${l.target} lacks candidate disclosure`));
 const actualRoleEdges = Array.from(
   roleLinks,
@@ -165,6 +178,19 @@ cityFacilityLinks.filter((l) => facilityById[String(l.target).slice(4)].confiden
   .forEach((l) => assert(String(l._tip).includes('候选'), `${l.source} -> ${l.target} lacks candidate disclosure`));
 assert(cityFacilityLinks.every((l) => l._rel === 'located_in' && l.lineStyle.type === 'solid'), 'cataloged plant location edges must be solid');
 assert(roleLinks.every((l) => l.lineStyle.type === 'dotted'), 'candidate manufacturing-role edges must be dotted');
+
+const lotusPlant = facilityById['lotus-wuhan'];
+assert.equal(lotusPlant.operator_legal_name_zh, '浙江吉利汽车有限公司武汉分公司');
+assert.equal(lotusPlant.operator_matches_entity_boundary, false);
+assert.deepEqual(lotusPlant.manufactures_for_ids, ['lotus']);
+assert(links.some((l) => l.source === 'fac:lotus-wuhan' && l.target === 'org:lotus' && l._rel === 'manufactures_for'),
+  'Lotus contract-manufacturing relationship is missing');
+assert(links.some((l) => l.source === 'org:geely' && l.target === 'fac:lotus-wuhan' && l._rel === 'operates' && l.lineStyle.type === 'dotted'),
+  'broader catalog operator relationship must be disclosed as non-exact');
+assert(links.some((l) => l.source === 'org:hongqi' && l.target === 'fac:hongqi-changchun-fanrong' && l._rel === 'associated_with'),
+  'Hongqi brand-to-dedicated-campus association is missing');
+assert(links.some((l) => l.source === 'org:jiefang' && l.target === 'fac:jiefang-changchun-dongfeng-j7' && l._rel === 'associated_with'),
+  'Jiefang brand-to-dedicated-campus association is missing');
 
 function representedManufacturing(cityId) {
   const out = new Set();

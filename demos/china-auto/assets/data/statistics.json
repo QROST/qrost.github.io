@@ -1,47 +1,299 @@
 {
   "statistics": [
     {
+      "city_id": "beijing",
+      "year": 2025,
+      "total_vehicle_output": 1467100,
+      "nev_output": 699000,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "Beijing municipality, 2025 calendar year",
+          "as_of": "2025-12-31",
+          "note_zh": "公报披露全年汽车产量146.71万辆。",
+          "note_en": "The official bulletin reports 1.4671 million vehicles produced in 2025.",
+          "caveat_zh": "地方统计口径；不得解释为总部企业销量或全国城市统一可比排名。",
+          "caveat_en": "",
+          "source_url": "https://tjj.beijing.gov.cn/tjsj_31433/tjgb_31445/ndgb_31446/202603/t20260326_4566469.html",
+          "source_title": "北京市2025年国民经济和社会发展统计公报",
+          "source_publisher": "北京市统计局、国家统计局北京调查总队",
+          "source_date": "2025",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "Beijing municipality, 2025 calendar year",
+          "as_of": "2025-12-31",
+          "note_zh": "北京市统计局披露2025年新能源汽车产量69.9万辆，占全市汽车产量47.7%；后续市级政府稿件复核了同一数值。",
+          "note_en": "Beijing Statistics reported 699,000 NEVs in 2025, 47.7% of municipal vehicle output; a later municipal government release independently repeats the same value.",
+          "caveat_zh": "该值是产量，不是上牌量、销量或北京市企业全国交付量。",
+          "caveat_en": "",
+          "source_url": "https://tjj.beijing.gov.cn/zxfbu/202601/t20260121_4451731.html",
+          "source_title": "工业经济量质齐升 产业结构向新向优——2025年北京规模以上工业运行情况解读",
+          "source_publisher": "北京市统计局",
+          "source_date": "2025",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [
+        "src-stat-beijing-2025",
+        "src-stat-beijing-nev-2025"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "city_id": "shanghai",
+      "year": 2025,
+      "total_vehicle_output": 1772000,
+      "nev_output": 1161100,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "Shanghai above-designated-size industrial output, all automobiles",
+          "as_of": "2025-12-31",
+          "note_zh": "现有177.2万辆值可保留，并补齐同比和统计口径。",
+          "note_en": "The existing 1.772 million value can be retained, with the year-on-year change and statistical scope added.",
+          "caveat_zh": "不能与企业批发销量或工厂交付量直接相加或排序。",
+          "caveat_en": "It must not be directly added to or ranked against corporate wholesale sales or factory deliveries.",
+          "source_url": "https://tjj.sh.gov.cn/cmsres/ce/cefd770936f246859a2a2c98815bfbd6/923d43fda322e07968d504de2232bd12.xlsx",
+          "source_title": "2025年12月规模以上工业主要产品产量",
+          "source_publisher": "上海市统计局",
+          "source_date": "2026-01-21",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "Shanghai above-designated-size industrial output, new-energy automobiles",
+          "as_of": "2025-12-31",
+          "note_zh": "建议补入116.11万辆，并保留规上工业口径。",
+          "note_en": "Add 1.1611 million vehicles and retain the above-designated-size industrial scope.",
+          "caveat_zh": "不是按注册地或总部归属统计。",
+          "caveat_en": "This is not attributed by corporate registration or headquarters location.",
+          "source_url": "https://tjj.sh.gov.cn/cmsres/ce/cefd770936f246859a2a2c98815bfbd6/923d43fda322e07968d504de2232bd12.xlsx",
+          "source_title": "2025年12月规模以上工业主要产品产量",
+          "source_publisher": "上海市统计局",
+          "source_date": "2026-01-21",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [
+        "src-stat-shanghai-2025",
+        "src-stat-shanghai-nev-2025",
+        "src-audit-stat-shanghai-2025-total"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "city_id": "shenzhen",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "Shenzhen physical automobile output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "不能把29.4%的增加值增速误写成产量增速，也不能用比亚迪集团销量替代深圳产量。",
+          "note_en": "The 29.4% value-added growth rate cannot be relabeled as output growth, and BYD group sales cannot substitute for Shenzhen output.",
+          "caveat_zh": "已核对官方公报正文及表3图片；仍缺2025年全市汽车实物产量绝对值。",
+          "caveat_en": "The official text and Table 3 image were checked; an absolute 2025 city vehicle-output figure remains unavailable.",
+          "source_url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/tjsj/tjgb/content/post_12805133.html",
+          "source_title": "深圳市2025年国民经济和社会发展统计公报",
+          "source_publisher": "深圳市统计局、国家统计局深圳调查队",
+          "source_date": "2026-05-25",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "Shenzhen physical new-energy-vehicle output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "2024年的293万辆以上仅作历史背景，不可滚动为2025值。",
+          "note_en": "The 2024 figure of more than 2.93 million is historical context only and must not be rolled forward into 2025.",
+          "caveat_zh": "截至访问日未找到深圳统计部门发布的2025新能源汽车绝对产量表。",
+          "caveat_en": "No 2025 absolute NEV-output table from Shenzhen's statistics authority was located by the access date.",
+          "source_url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/tjsj/tjgb/content/post_12805133.html",
+          "source_title": "深圳市2025年国民经济和社会发展统计公报",
+          "source_publisher": "深圳市统计局、国家统计局深圳调查队",
+          "source_date": "2026-05-25",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "guangzhou",
+      "year": 2025,
+      "total_vehicle_output": 2409600,
+      "nev_output": 661900,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "2025 Guangzhou above-designated-size industrial automobile product output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "确认现有240.96万辆数值。",
+          "note_en": "Confirms the existing 2.4096 million value.",
+          "caveat_zh": "地方统计产品产量；不可与总部所在城市销量或其他城市的非同口径数字直接比较。",
+          "caveat_en": "This is local industrial product output and is not directly comparable with headquarters-attributed sales or city figures compiled under different scopes.",
+          "source_url": "https://tjj.gz.gov.cn/stats_newtjyw/tjsj/tjgb/qstjgb/content/post_10800227.html",
+          "source_title": "2025年广州市国民经济和社会发展统计公报",
+          "source_publisher": "广州市统计局、国家统计局广州调查队",
+          "source_date": "2026-05-10",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "2025 Guangzhou above-designated-size industrial new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "将缺失值补为661,900辆；按总产量计算占比约27.47%，与统计局公布的27.5%一致。",
+          "note_en": "Fills the missing value with 661,900 units; the calculated 27.47% share matches the bureau's rounded 27.5%.",
+          "caveat_zh": "新能源汽车定义和规模以上工业统计边界以广州市统计局为准。",
+          "caveat_en": "The NEV definition and above-designated-size industrial boundary follow the Guangzhou Statistics Bureau.",
+          "source_url": "https://tjj.gz.gov.cn/stats_newtjyw/sjjd/content/mpost_10669183.html",
+          "source_title": "基本盘活力彰显 实力盘潜能释放——2025年广州经济运行解读",
+          "source_publisher": "广州市统计局",
+          "source_date": "2026-01-30",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [
+        "src-stat-guangzhou-2025",
+        "src-stat-guangzhou-nev-2025"
+      ],
+      "confidence": 0.8
+    },
+    {
       "city_id": "chongqing",
       "year": 2025,
       "total_vehicle_output": 2787700,
       "nev_output": 1296100,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "official_city_release",
-      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
-      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "2025 Chongqing above-designated-size industrial automobile product output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "补入2,787,700辆。",
+          "note_en": "Adds 2,787,700 vehicles.",
+          "caveat_zh": "统计公报注明数据为初步统计，产品产量口径为规模以上工业。",
+          "caveat_en": "The bulletin labels figures preliminary and the product-output scope is above-designated-size industry.",
+          "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjjd_55469/202603/t20260326_15568538_wap.html",
+          "source_title": "2025年重庆市国民经济和社会发展统计公报",
+          "source_publisher": "重庆市统计局、国家统计局重庆调查总队",
+          "source_date": "2026-03-26",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "2025 Chongqing above-designated-size industrial new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "补入1,296,100辆。",
+          "note_en": "Adds 1,296,100 new-energy vehicles.",
+          "caveat_zh": "新能源汽车定义及统计边界遵循重庆市统计局；数值为初步统计。",
+          "caveat_en": "The NEV definition and statistical boundary follow the Chongqing Statistics Bureau; the figure is preliminary.",
+          "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjjd_55469/202603/t20260326_15568538_wap.html",
+          "source_title": "2025年重庆市国民经济和社会发展统计公报",
+          "source_publisher": "重庆市统计局、国家统计局重庆调查总队",
+          "source_date": "2026-03-26",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
       "source_ids": [
         "src-stat-chongqing-2025"
       ],
       "confidence": 0.8
     },
     {
-      "city_id": "guangzhou",
-      "year": 2025,
-      "total_vehicle_output": 2409600,
-      "nev_output": null,
-      "commercial_vehicle_output": null,
-      "passenger_vehicle_output": null,
-      "statistical_scope": "official_city_release",
-      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
-      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
-      "source_ids": [
-        "src-stat-guangzhou-2025"
-      ],
-      "confidence": 0.8
-    },
-    {
       "city_id": "hefei",
       "year": 2025,
-      "total_vehicle_output": 1872000,
+      "total_vehicle_output": null,
       "nev_output": 1371000,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "candidate_partial_external_support",
-      "scope_note_zh": "候选混合记录：外部政务页面只支持新能源汽车137.1万辆，不支持整车总量187.2万辆；整条记录保持候选。",
-      "scope_note_en": "Candidate mixed record: an external government page supports only 1.371M NEVs, not the 1.872M total-vehicle figure; the whole row stays candidate.",
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "partial"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "Hefei physical automobile output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "官方材料只给新能源汽车量，没有汽车总量。",
+          "note_en": "The official material gives the NEV amount but not all-vehicle output.",
+          "caveat_zh": "已查一手年度材料不足以形成可引用的2025年绝对量；找不到不等于统计机关未披露。",
+          "caveat_en": "The official annual material checked is insufficient for a citable 2025 absolute; failure to locate it is not proof that the authority never disclosed it.",
+          "source_url": "https://www.cppcc.gov.cn/dfzx/202608/t20260811_906348.html",
+          "source_title": "助推高质量发展中的政协智慧丨履职向‘新’ 聚势向‘高’——合肥市政协持续聚焦科技创新助力高质量发展",
+          "source_publisher": "中国人民政治协商会议全国委员会（合肥市政协供稿）",
+          "source_date": "2026-08-11",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "partial",
+          "scope": "Hefei citywide NEV output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "137.1万辆按官方原文换算为1,371,000辆。",
+          "note_en": "The official 1.371 million is normalized to 1,371,000 units.",
+          "caveat_zh": "政协稿引用市级产业数据而非统计公报产品表；不得与规上产品表口径自动等同。 该值来自政府机构公开材料，未达到统一城市统计公报产品表的可比口径。",
+          "caveat_en": "The CPPCC release cites municipal industry data rather than a communique product table and must not automatically be treated as the same universe. The value comes from a government-body release rather than a directly comparable municipal statistical-communique product table.",
+          "source_url": "https://www.cppcc.gov.cn/dfzx/202608/t20260811_906348.html",
+          "source_title": "助推高质量发展中的政协智慧丨履职向‘新’ 聚势向‘高’——合肥市政协持续聚焦科技创新助力高质量发展",
+          "source_publisher": "中国人民政治协商会议全国委员会（合肥市政协供稿）",
+          "source_date": "2026-08-11",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
       "source_ids": [
-        "src-stat-hefei-nev-2025"
+        "src-stat-hefei-nev-2025",
+        "src-audit-stat-hefei-2025-nev"
       ],
       "confidence": 0.45
     },
@@ -52,26 +304,46 @@
       "nev_output": 411000,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "official_city_release",
-      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
-      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "Wuhu above-designated-size industrial major-product automobile output",
+          "as_of": "2025-12-31",
+          "note_zh": "180.1万辆规范为1,801,000辆。",
+          "note_en": "The reported 1.801 million is normalized to 1,801,000 units.",
+          "caveat_zh": "这是规上工业主要产品口径，不应改写为所有法人或所有工厂的全口径。",
+          "caveat_en": "This is the above-designated-size major-product universe, not every entity or factory without qualification.",
+          "source_url": "https://tjj.wuhu.gov.cn/openness/public/6596741/41229766.html",
+          "source_title": "2025年芜湖市国民经济和社会发展统计公报",
+          "source_publisher": "芜湖市统计局、国家统计局芜湖调查队",
+          "source_date": "2026-04",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "Wuhu above-designated-size industrial major-product NEV output",
+          "as_of": "2025-12-31",
+          "note_zh": "41.1万辆规范为411,000辆。",
+          "note_en": "The reported 411 thousand is normalized to 411,000 units.",
+          "caveat_zh": "与汽车总量共享公报产品表口径。",
+          "caveat_en": "It shares the communique product-table universe with total automobiles.",
+          "source_url": "https://tjj.wuhu.gov.cn/openness/public/6596741/41229766.html",
+          "source_title": "2025年芜湖市国民经济和社会发展统计公报",
+          "source_publisher": "芜湖市统计局、国家统计局芜湖调查队",
+          "source_date": "2026-04",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
       "source_ids": [
-        "src-stat-wuhu-2025"
-      ],
-      "confidence": 0.8
-    },
-    {
-      "city_id": "shanghai",
-      "year": 2025,
-      "total_vehicle_output": 1772000,
-      "nev_output": null,
-      "commercial_vehicle_output": null,
-      "passenger_vehicle_output": null,
-      "statistical_scope": "official_city_release",
-      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
-      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
-      "source_ids": [
-        "src-stat-shanghai-2025"
+        "src-stat-wuhu-2025",
+        "src-audit-stat-wuhu-2025-total"
       ],
       "confidence": 0.8
     },
@@ -82,26 +354,45 @@
       "nev_output": 1051400,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "official_city_release",
-      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
-      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "2025 Xi'an above-designated-size industrial automobile output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "更新为1,482,700辆。",
+          "note_en": "Updates the value to 1,482,700 vehicles.",
+          "caveat_zh": "公报注明为初步统计；采用规模以上工业产品口径。",
+          "caveat_en": "The bulletin labels the figures preliminary; the scope is above-designated-size industrial products.",
+          "source_url": "https://tjj.xa.gov.cn/web_files/tjj/file/2026/05/15/202605151000219859531.pdf",
+          "source_title": "西安市2025年国民经济和社会发展统计公报",
+          "source_publisher": "西安市统计局、国家统计局西安调查队",
+          "source_date": "2026-05-15",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "2025 Xi'an above-designated-size industrial new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "更新为1,051,400辆。",
+          "note_en": "Updates the value to 1,051,400 NEVs.",
+          "caveat_zh": "新能源汽车分类沿用西安市统计局，数值为初步统计。",
+          "caveat_en": "The NEV definition follows the Xi'an Statistics Bureau and the figure is preliminary.",
+          "source_url": "https://tjj.xa.gov.cn/web_files/tjj/file/2026/05/15/202605151000219859531.pdf",
+          "source_title": "西安市2025年国民经济和社会发展统计公报",
+          "source_publisher": "西安市统计局、国家统计局西安调查队",
+          "source_date": "2026-05-15",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
       "source_ids": [
         "src-stat-xian-2025"
-      ],
-      "confidence": 0.8
-    },
-    {
-      "city_id": "beijing",
-      "year": 2025,
-      "total_vehicle_output": 1467100,
-      "nev_output": null,
-      "commercial_vehicle_output": null,
-      "passenger_vehicle_output": null,
-      "statistical_scope": "official_city_release",
-      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
-      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
-      "source_ids": [
-        "src-stat-beijing-2025"
       ],
       "confidence": 0.8
     },
@@ -109,42 +400,957 @@
       "city_id": "changchun",
       "year": 2025,
       "total_vehicle_output": 1461300,
-      "nev_output": null,
+      "nev_output": 183600,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "candidate_province_scope_mismatch",
-      "scope_note_zh": "候选错配值：146.13万辆能在吉林省级序列中定位，但尚无支持长春市同值的官方城市页面，不得作为长春市产量或城市排行依据。",
-      "scope_note_en": "Candidate scope mismatch: 1.4613M can be located in a Jilin provincial series, but no city release supports the same Changchun figure. Do not use it as Changchun output or in a city ranking.",
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "2025 Changchun above-designated-size industrial automobile output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "更新为1,461,300辆。",
+          "note_en": "Updates the value to 1,461,300 vehicles.",
+          "caveat_zh": "公报注明为初步统计，产品产量表口径为规模以上工业企业。",
+          "caveat_en": "The bulletin identifies the figures as preliminary and the product table covers above-designated-size industry.",
+          "source_url": "http://tjj.changchun.gov.cn/tjgb/202605/t20260509_3486019.html",
+          "source_title": "长春市2025年国民经济和社会发展统计公报",
+          "source_publisher": "长春市统计局",
+          "source_date": "2026-05-09",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "2025 Changchun above-designated-size industrial new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "更新为183,600辆。",
+          "note_en": "Updates the value to 183,600 new-energy vehicles.",
+          "caveat_zh": "采用长春市统计局的新能源汽车分类与规模以上工业口径。",
+          "caveat_en": "Uses the Changchun Statistics Bureau's NEV classification and above-designated-size scope.",
+          "source_url": "http://tjj.changchun.gov.cn/tjgb/202605/t20260509_3486019.html",
+          "source_title": "长春市2025年国民经济和社会发展统计公报",
+          "source_publisher": "长春市统计局",
+          "source_date": "2026-05-09",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
       "source_ids": [
-        "src-stat-jilin-province-2025"
-      ],
-      "confidence": 0.2
-    },
-    {
-      "city_id": "zhengzhou",
-      "year": 2025,
-      "total_vehicle_output": 1205000,
-      "nev_output": null,
-      "commercial_vehicle_output": null,
-      "passenger_vehicle_output": null,
-      "statistical_scope": "official_city_release",
-      "scope_note_zh": "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。",
-      "scope_note_en": "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking.",
-      "source_ids": [
-        "src-stat-zhengzhou-2025"
+        "src-audit-stat-changchun-2025-total"
       ],
       "confidence": 0.8
     },
     {
+      "city_id": "zhengzhou",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": 717200,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "partial",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "partial",
+          "scope": "Zhengzhou physical automobile output in calendar 2025; two unreconciled official universes",
+          "as_of": "2025-12-31",
+          "note_zh": "120.5万和127.7万均来自市级一手来源；在统计范围未解释前保留双值。",
+          "note_en": "Both 1.205 million and 1.277 million are municipal primary figures; both are retained until their statistical universes are explained.",
+          "caveat_zh": "不能通过相加、平均或择大消除官方口径差异。",
+          "caveat_en": "The official scope discrepancy cannot be resolved by addition, averaging, or simply selecting the larger value.",
+          "source_url": "https://tjj.zhengzhou.gov.cn/tjgb/10017864.jhtml",
+          "source_title": "2025年郑州市国民经济和社会发展统计公报",
+          "source_publisher": "郑州市统计局、国家统计局郑州调查队",
+          "source_date": "2026-04-24",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "Zhengzhou physical new-energy-vehicle output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "采用市工信局精确值71.72万辆；市政府71.7万辆为一致的四舍五入复核。",
+          "note_en": "The industry bureau's precise 717,200 is used; the city-government figure of 717,000 is a consistent rounding cross-check.",
+          "caveat_zh": "统计公报只披露新能源汽车产业增加值增速而未单列实物产量，因此绝对值来源于工信局行政答复。",
+          "caveat_en": "The statistics communique reports only NEV-industry value-added growth, so the absolute figure comes from the industry bureau's administrative response.",
+          "source_url": "https://public.zhengzhou.gov.cn/D1102X/10225726.jhtml",
+          "source_title": "郑州市政协十五届四次会议20260848号提案的答复",
+          "source_publisher": "郑州市工业和信息化局",
+          "source_date": "2026-08-31",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [
+        "src-stat-zhengzhou-2025",
+        "src-audit-stat-zhengzhou-2025-nev"
+      ],
+      "confidence": 0.45
+    },
+    {
       "city_id": "liuzhou",
       "year": 2025,
-      "total_vehicle_output": 1151900,
+      "total_vehicle_output": 1878000,
+      "nev_output": 1061000,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "2025 Liuzhou city vehicle production, units",
+          "as_of": "2025-12-31",
+          "note_zh": "更新为1,878,000辆。",
+          "note_en": "Updates the value to 1,878,000 vehicles.",
+          "caveat_zh": "“全市车企”是政府工作报告口径，不能与企业产量或销量再相加。",
+          "caveat_en": "The report's 'city automakers' scope must not be added again to company production or sales.",
+          "source_url": "https://www.liuzhou.gov.cn/zwgk/zcwj/lzf/202603/t20260317_3732497.shtml",
+          "source_title": "柳政发〔2026〕3号柳州市人民政府关于印发《政府工作报告》的通知",
+          "source_publisher": "柳州市人民政府",
+          "source_date": "2026-03-17",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "2025 Liuzhou city new-energy-vehicle production, units",
+          "as_of": "2025-12-31",
+          "note_zh": "更新为1,061,000辆。",
+          "note_en": "Updates the value to 1,061,000 NEVs.",
+          "caveat_zh": "这是生产量，不是104.5万辆新能源汽车销量。",
+          "caveat_en": "This is output, not the separately reported 1.045 million NEV sales.",
+          "source_url": "https://www.liuzhou.gov.cn/zwgk/zcwj/lzf/202603/t20260317_3732497.shtml",
+          "source_title": "柳政发〔2026〕3号柳州市人民政府关于印发《政府工作报告》的通知",
+          "source_publisher": "柳州市人民政府",
+          "source_date": "2026-03-17",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [
+        "src-audit-stat-liuzhou-2025-total"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "city_id": "wuhan",
+      "year": 2025,
+      "total_vehicle_output": null,
       "nev_output": null,
       "commercial_vehicle_output": null,
       "passenger_vehicle_output": null,
-      "statistical_scope": "candidate_local_compilation",
-      "scope_note_zh": "候选拼合值：尚未附上能直接支持本条数字的外部官方页面，不作为权威排行依据。",
-      "scope_note_en": "Candidate compilation value: no external official page directly supporting this record is attached yet; do not treat it as an authoritative ranking.",
+      "availability": {
+        "total_vehicle_output": "partial",
+        "nev_output": "partial"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "partial",
+          "scope": "Wuhan physical vehicle output in calendar 2025; two unreconciled official statistical universes",
+          "as_of": "2025-12-31",
+          "note_zh": "保留两套官方数字，不能把94.5万与81.1万当作同一口径互相覆盖。",
+          "note_en": "Both official figures are retained; 945,000 and 811,000 must not overwrite one another as though they shared one universe.",
+          "caveat_zh": "政府新闻未给出与统计公报产品表的桥接说明，故不能选出唯一全市可比值。",
+          "caveat_en": "The government article does not bridge its complete-vehicle universe to the communique product table, so one uniquely comparable city total cannot be selected.",
+          "source_url": "https://www.wuhan.gov.cn/sy/whyw/202601/t20260109_2709424.shtml",
+          "source_title": "新能源汽车占比首超全国平均水平，武汉实现‘油转电’历史跨越",
+          "source_publisher": "武汉市人民政府门户网站",
+          "source_date": "2026-01-09",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "partial",
+          "scope": "Wuhan citywide new-energy complete-vehicle output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "52.4万辆是精确到0.1万辆的市级报道值；经信局公示使用52万辆约数且增速略异，先保留差异。",
+          "note_en": "The municipal article gives 524,000 to the nearest thousand; the industry-bureau notice uses a rounded 520,000 and a slightly different growth rate, so the discrepancy is retained.",
+          "caveat_zh": "年度统计公报主要产品表没有单列新能源汽车，无法用同一统计表闭环核对。",
+          "caveat_en": "The annual statistics communique does not separately list NEVs in its major-product table, preventing a same-table reconciliation.",
+          "source_url": "https://www.wuhan.gov.cn/sy/whyw/202601/t20260109_2709424.shtml",
+          "source_title": "新能源汽车占比首超全国平均水平，武汉实现‘油转电’历史跨越",
+          "source_publisher": "武汉市人民政府门户网站",
+          "source_date": "2026-01-09",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [
+        "src-stat-wuhan-2025",
+        "src-stat-wuhan-nev-2025"
+      ],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "changsha",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "Changsha physical automobile output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "省级162.6万辆仅用于证明存在上位口径，不能分配给长沙。",
+          "note_en": "The provincial 1.626 million is retained only as evidence of a higher-level series and cannot be allocated to Changsha.",
+          "caveat_zh": "截至访问日未定位到长沙统计部门2025年产品产量表或同等一手绝对值。",
+          "caveat_en": "No 2025 product-output table or equivalent primary absolute figure from Changsha's statistics authority was located by the access date.",
+          "source_url": "https://tjj.hunan.gov.cn/hntj/tjfx/tjgb/szgb/zss_1/202605/t20260512_33975356.html",
+          "source_title": "长沙市2025年国民经济和社会发展统计公报",
+          "source_publisher": "长沙市统计局、国家统计局长沙调查队（湖南省统计局发布）",
+          "source_date": "2026-04-21",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "Changsha physical new-energy-vehicle output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "企业在长沙的基地信息和湖南省总量均不能替代城市年度产量。",
+          "note_en": "Neither company plant information nor the Hunan provincial total can substitute for a city annual-output figure.",
+          "caveat_zh": "未找到可验证的长沙市2025新能源汽车绝对产量。",
+          "caveat_en": "A verifiable Changsha 2025 absolute NEV-output figure remains unavailable.",
+          "source_url": "https://tjj.hunan.gov.cn/hntj/tjfx/tjgb/szgb/zss_1/202605/t20260512_33975356.html",
+          "source_title": "长沙市2025年国民经济和社会发展统计公报",
+          "source_publisher": "长沙市统计局、国家统计局长沙调查队（湖南省统计局发布）",
+          "source_date": "2026-04-21",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "tianjin",
+      "year": 2025,
+      "total_vehicle_output": 790400,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "2025 Tianjin above-designated-size industrial automobile output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "更新为790,400辆。",
+          "note_en": "Updates the value to 790,400 vehicles.",
+          "caveat_zh": "公报为初步统计，产品口径为规模以上工业企业。",
+          "caveat_en": "The bulletin is preliminary and the product scope is above-designated-size industry.",
+          "source_url": "https://www.tj.gov.cn/sq/tjgb/202603/t20260327_7271193.html",
+          "source_title": "2025年天津市国民经济和社会发展统计公报",
+          "source_publisher": "天津市统计局、国家统计局天津调查总队",
+          "source_date": "2026-03-27",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "2025 Tianjin new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "天津市2025统计公报的产品产量表未单列新能源汽车绝对量。",
+          "note_en": "Tianjin's 2025 statistical bulletin does not separately list an absolute NEV output figure.",
+          "caveat_zh": "不得用经开区新能源占比、企业产能或销量替代全市实物产量。",
+          "caveat_en": "Do not substitute TEDA's NEV share, company capacity, or sales for citywide physical output.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [
+        "src-audit-stat-tianjin-2025-total"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "city_id": "chengdu",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "2025 Chengdu above-designated-size industrial automobile product output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "成都市统计局2025年统计公报页面已定位，但截至访问日持续返回HTTP 412，无法核读原文；拒绝采用二手报道中相互冲突的93.2万与93.4万辆候选值。",
+          "note_en": "The Chengdu Statistics Bureau's 2025 bulletin was located but repeatedly returned HTTP 412 as of the access date, preventing source verification; conflicting secondary candidates of 932,000 and 934,000 were rejected.",
+          "caveat_zh": "在一手公报可访问前保持空值。",
+          "caveat_en": "Keep null until the primary bulletin can be accessed.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "2025 Chengdu above-designated-size industrial new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "同一官方公报不可访问；拒绝采用二手报道中23.2万与23.3万辆的冲突候选值。",
+          "note_en": "The same official bulletin was inaccessible; conflicting secondary candidates of 232,000 and 233,000 were rejected.",
+          "caveat_zh": "不得以新能源汽车保有量、销量或四川省产量替代。",
+          "caveat_en": "NEV parc, sales, or Sichuan-wide output must not be substituted.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "hangzhou",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "partial"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "Hangzhou physical automobile output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "官方半年稿没有汽车总产量绝对数。",
+          "note_en": "The official half-year release gives no absolute total-vehicle output.",
+          "caveat_zh": "已查一手年度材料不足以形成可引用的2025年绝对量；找不到不等于统计机关未披露。",
+          "caveat_en": "The official annual material checked is insufficient for a citable 2025 absolute; failure to locate it is not proof that the authority never disclosed it.",
+          "source_url": "https://tjj.hangzhou.gov.cn/art/2025/7/22/art_1229279240_4380768.html",
+          "source_title": "2025年上半年杭州经济运行情况",
+          "source_publisher": "杭州市统计局",
+          "source_date": "2025-07-22",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "partial",
+          "scope": "Hangzhou above-designated-size industrial NEV output, first half of 2025",
+          "as_of": "2025-06-30",
+          "note_zh": "只保留117.8%的半年增速，不反推绝对量或冒充全年。",
+          "note_en": "Only the 117.8% first-half growth rate is retained; no absolute is reverse-engineered or relabeled as full year.",
+          "caveat_zh": "缺少2025全年绝对产量及与全市口径的桥接。",
+          "caveat_en": "A full-year absolute and a bridge to a citywide universe are missing.",
+          "source_url": "https://tjj.hangzhou.gov.cn/art/2025/7/22/art_1229279240_4380768.html",
+          "source_title": "2025年上半年杭州经济运行情况",
+          "source_publisher": "杭州市统计局",
+          "source_date": "2025-07-22",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "shenyang",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "2025 Shenyang automobile output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "官方2025统计公报仅披露汽车制造业增加值下降10.3%，未披露汽车实物产量。",
+          "note_en": "The official 2025 bulletin discloses only a 10.3% fall in automobile-manufacturing value added, not physical vehicle output.",
+          "caveat_zh": "不得将工业增加值增速换算成辆数，也不采用华晨宝马产能或销量替代。",
+          "caveat_en": "Do not convert value-added growth into units or substitute BMW Brilliance capacity or sales.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "2025 Shenyang new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "沈阳市官方统计公报未单列新能源汽车实物产量。",
+          "note_en": "Shenyang's official statistical bulletin does not separately report physical NEV output.",
+          "caveat_zh": "保持空值，直到市统计部门发布可核读绝对量。",
+          "caveat_en": "Remain null until the municipal statistics authority publishes a verifiable absolute count.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "ningde",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "Ningde physical automobile output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "年度产业稿没有整车产量，电池产业数据不能替代。",
+          "note_en": "The annual industry release has no complete-vehicle output; battery metrics are not substitutes.",
+          "caveat_zh": "已查一手年度材料不足以形成可引用的2025年绝对量；找不到不等于统计机关未披露。",
+          "caveat_en": "The official annual material checked is insufficient for a citable 2025 absolute; failure to locate it is not proof that the authority never disclosed it.",
+          "source_url": "https://gxt.fujian.gov.cn/zwgk/xw/hydt/snhydt/202602/t20260202_7088048.htm",
+          "source_title": "2025年宁德GDP超4200亿元 增长7.5%",
+          "source_publisher": "福建省工业和信息化厅",
+          "source_date": "2026-02-02",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "Ningde physical NEV output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "年度产业稿没有新能源汽车整车产量。",
+          "note_en": "The annual industry release has no NEV complete-vehicle output.",
+          "caveat_zh": "已查一手年度材料不足以形成可引用的2025年绝对量；找不到不等于统计机关未披露。",
+          "caveat_en": "The official annual material checked is insufficient for a citable 2025 absolute; failure to locate it is not proof that the authority never disclosed it.",
+          "source_url": "https://gxt.fujian.gov.cn/zwgk/xw/hydt/snhydt/202602/t20260202_7088048.htm",
+          "source_title": "2025年宁德GDP超4200亿元 增长7.5%",
+          "source_publisher": "福建省工业和信息化厅",
+          "source_date": "2026-02-02",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "changzhou",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "Changzhou physical automobile output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "年度稿未披露汽车产量绝对值。",
+          "note_en": "The annual release does not disclose an absolute vehicle-output value.",
+          "caveat_zh": "已查一手年度材料不足以形成可引用的2025年绝对量；找不到不等于统计机关未披露。",
+          "caveat_en": "The official annual material checked is insufficient for a citable 2025 absolute; failure to locate it is not proof that the authority never disclosed it.",
+          "source_url": "https://tjj.changzhou.gov.cn/html/tjj/2026/OPOEMFCL_0130/28965.html",
+          "source_title": "2025年常州市国民经济运行情况",
+          "source_publisher": "常州市统计局",
+          "source_date": "2026-01-30",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "Changzhou physical NEV output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "年度稿未披露新能源汽车产量绝对值；不能沿用2024年近80万辆。",
+          "note_en": "The annual release gives no 2025 NEV absolute; the near-800,000 2024 figure cannot be carried forward.",
+          "caveat_zh": "已查一手年度材料不足以形成可引用的2025年绝对量；找不到不等于统计机关未披露。",
+          "caveat_en": "The official annual material checked is insufficient for a citable 2025 absolute; failure to locate it is not proof that the authority never disclosed it.",
+          "source_url": "https://tjj.changzhou.gov.cn/html/tjj/2026/OPOEMFCL_0130/28965.html",
+          "source_title": "2025年常州市国民经济运行情况",
+          "source_publisher": "常州市统计局",
+          "source_date": "2026-01-30",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "suzhou",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "2025 Suzhou city automobile output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "苏州市统计局2025统计公报未列汽车产品绝对产量。",
+          "note_en": "Suzhou's 2025 statistical bulletin does not list absolute automobile output.",
+          "caveat_zh": "2023经济普查的6.5万辆不能平移到2025年。",
+          "caveat_en": "The 65,000 figure in the 2023 economic census cannot be carried forward to 2025.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "2025 Suzhou city new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "2025统计公报未单列新能源汽车实物绝对产量。",
+          "note_en": "The 2025 bulletin does not separately report an absolute physical NEV output count.",
+          "caveat_zh": "保有量、上牌量和光束汽车等单厂数据均不是全市产量。",
+          "caveat_en": "Vehicle parc, registrations, and individual-factory figures such as Spotlight Automotive are not citywide output.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "ningbo",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "2025 Ningbo city automobile output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "宁波统计部门可核读的2025年度页面未披露汽车实物绝对产量。",
+          "note_en": "Readable 2025 pages from Ningbo's statistics authority do not disclose an absolute physical vehicle-output count.",
+          "caveat_zh": "不得用2025规划目标、吉利集团销量、零部件企业规模或口岸出口量推算。",
+          "caveat_en": "Do not infer the figure from a 2025 planning target, Geely group sales, component-company scale, or port exports.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "2025 Ningbo city new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "官方页面确认2024年新能源汽车产量39.5万辆，但未找到2025年绝对量。",
+          "note_en": "An official page confirms 395,000 NEVs for 2024, but no 2025 absolute count was found.",
+          "caveat_zh": "70万辆是产业规划中的2025目标，不是实际统计；保持空值。",
+          "caveat_en": "700,000 is a 2025 planning target rather than actual statistics; the value remains null.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "huizhou",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "Huizhou physical automobile output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "全年一手材料入口已定位，但正文无法稳定读取；不以二手转载或零售销量填补。",
+          "note_en": "The primary full-year release was located but its body could not be reliably retrieved; secondary mirrors and retail sales were not used to fill the gap.",
+          "caveat_zh": "“未核实”表示取证链不完整，不表示官方一定未披露。",
+          "caveat_en": "Unverified means the evidence chain is incomplete; it does not assert that the authority failed to disclose the metric.",
+          "source_url": "https://gxj.huizhou.gov.cn/zwgk/sjfb/index.html",
+          "source_title": "数据发布",
+          "source_publisher": "惠州市工业和信息化局",
+          "source_date": "2026-01-31",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "Huizhou physical new-energy-vehicle output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "明确拒绝把6.7万辆新能源汽车零售量误作惠州新能源汽车产量。",
+          "note_en": "The 67,000 NEV retail-sales figure is explicitly rejected as a proxy for Huizhou NEV output.",
+          "caveat_zh": "需取得全年工业运行正文或统计公报产品表后再决定。",
+          "caveat_en": "A decision requires the full-year industrial release body or a statistical-communique product table.",
+          "source_url": "https://gxj.huizhou.gov.cn/zwgk/sjfb/index.html",
+          "source_title": "数据发布",
+          "source_publisher": "惠州市工业和信息化局",
+          "source_date": null,
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "yibin",
+      "year": 2025,
+      "total_vehicle_output": 122500,
+      "nev_output": 24500,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "2025 Yibin above-designated-size industrial automobile output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "更新为122,500辆。",
+          "note_en": "Updates the value to 122,500 vehicles.",
+          "caveat_zh": "公报口径为规模以上工业主要产品且数据为初步统计；官方附件主机本次访问超时，合并前宜复点链接可用性。",
+          "caveat_en": "The bulletin covers major products of above-designated-size industry and is preliminary; the official attachment host timed out during this audit, so link availability should be rechecked before integration.",
+          "source_url": "https://www.yibin.gov.cn/xxgk/zdlyxxgk/tjxx/tjgb/202604/P020260416429904378257.pdf",
+          "source_title": "宜宾市2025年国民经济和社会发展统计公报",
+          "source_publisher": "宜宾市统计局",
+          "source_date": "2026-04",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "2025 Yibin above-designated-size industrial new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "更新为24,500辆。",
+          "note_en": "Updates the value to 24,500 NEVs.",
+          "caveat_zh": "沿用宜宾统计局产品分类和规模以上工业口径，不由总汽车量反推。",
+          "caveat_en": "Uses Yibin Statistics Bureau's product classification and above-designated-size scope; it is not inferred from total vehicle output.",
+          "source_url": "https://www.yibin.gov.cn/xxgk/zdlyxxgk/tjxx/tjgb/202604/P020260416429904378257.pdf",
+          "source_title": "宜宾市2025年国民经济和社会发展统计公报",
+          "source_publisher": "宜宾市统计局",
+          "source_date": "2026-04",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [
+        "src-audit-stat-yibin-2025-total"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "city_id": "baoding",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": 170000,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "partial",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "partial",
+          "scope": "Approximate 2025 Baoding automobile output derived as 170,000 / 31.6%, units",
+          "as_of": "2025-12-31",
+          "note_zh": "约538,000辆，为170,000÷31.6%的派生值。",
+          "note_en": "Approximately 538,000 vehicles, derived as 170,000 divided by 31.6%.",
+          "caveat_zh": "官方未直接给出总辆数；占比只保留一位小数，故反推结果必须展示为约数，不能伪装为精确统计。",
+          "caveat_en": "The government did not directly publish the total. Because the share is rounded to one decimal place, the inferred result must remain approximate.",
+          "source_url": "https://www.baoding.gov.cn/xwfbhcon-1061-538495.html",
+          "source_title": "保定市政府新闻办“2025年保定经济运行情况”新闻发布会实录",
+          "source_publisher": "保定市人民政府新闻办公室、保定市统计局",
+          "source_date": "2026-01-23",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "2025 Baoding new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "更新为170,000辆。",
+          "note_en": "Updates the value to 170,000 NEVs.",
+          "caveat_zh": "新闻发布会为市统计局官方年度运行发布，但不是完整统计公报表。",
+          "caveat_en": "This is the city statistics bureau's official annual operating briefing, not a full statistical-bulletin table.",
+          "source_url": "https://www.baoding.gov.cn/xwfbhcon-1061-538495.html",
+          "source_title": "保定市政府新闻办“2025年保定经济运行情况”新闻发布会实录",
+          "source_publisher": "保定市人民政府新闻办公室、保定市统计局",
+          "source_date": "2026-01-23",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [
+        "src-audit-stat-baoding-2025-nev"
+      ],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "jinan",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "2025 Jinan all-automobile output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "济南市2025统计公报只列载货汽车29.8万辆，未列全部汽车产量，因此拒绝把子类写成总量。",
+          "note_en": "Jinan's 2025 bulletin reports only 298,000 trucks, not all automobiles, so the subset is not entered as the total.",
+          "caveat_zh": "中国重汽销量、重卡产量或载货汽车子类均不得替代全市全部汽车产量。",
+          "caveat_en": "Sinotruk sales, heavy-truck output, and the truck subset cannot replace citywide all-automobile output.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "2025 Jinan new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "济南市官方统计公报与年度主要数据页未披露新能源汽车绝对产量。",
+          "note_en": "Neither Jinan's official bulletin nor its annual major-data page discloses absolute NEV output.",
+          "caveat_zh": "保持空值，不用新能源汽车产业产值、产能或保有量推算。",
+          "caveat_en": "Remain null; do not infer from NEV industrial value, capacity, or parc.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "shiyan",
+      "year": 2025,
+      "total_vehicle_output": 240307,
+      "nev_output": 51560,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "verified",
+        "nev_output": "verified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "verified",
+          "scope": "Shiyan major industrial product automobile output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "采用公报汽车行240307辆，不把另列的改装汽车78351辆相加。",
+          "note_en": "The communique automobile row of 240,307 is used; the separately listed 78,351 modified automobiles are not added.",
+          "caveat_zh": "若后续比较其他城市‘整车’口径，应继续保留十堰公报的主要工业产品范围标签。",
+          "caveat_en": "When comparing with other cities' complete-vehicle series, the Shiyan major-product scope label must remain attached.",
+          "source_url": "https://tjj.hubei.gov.cn/tjsj/tjgb/ndtjgb/sztjgb/202605/P020260508379027628693.pdf",
+          "source_title": "十堰市2025年国民经济和社会发展统计公报",
+          "source_publisher": "十堰市统计局、湖北省统计局十堰调查监测分局、国家统计局十堰调查队",
+          "source_date": "2026-05-08",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "verified",
+          "scope": "Shiyan major industrial product new-energy-vehicle output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "这是同一公报产品表中的新能源汽车实物量。",
+          "note_en": "This is the physical NEV count from the same communique product table.",
+          "caveat_zh": "不把新能源汽车产量与商用车公司销量或集团销量混用。",
+          "caveat_en": "The NEV output figure is not mixed with a commercial-vehicle company's sales or group sales.",
+          "source_url": "https://tjj.hubei.gov.cn/tjsj/tjgb/ndtjgb/sztjgb/202605/P020260508379027628693.pdf",
+          "source_title": "十堰市2025年国民经济和社会发展统计公报",
+          "source_publisher": "十堰市统计局、湖北省统计局十堰调查监测分局、国家统计局十堰调查队",
+          "source_date": "2026-05-08",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_official_city_output",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [
+        "src-stat-shiyan-2025"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "city_id": "xiamen",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "2025 Xiamen city automobile output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "可核读的厦门市统计局年度及经济运行页面未给出2025年汽车绝对产量。",
+          "note_en": "Readable Xiamen Statistics Bureau annual and operating pages do not provide an absolute 2025 vehicle-output figure.",
+          "caveat_zh": "金龙汽车集团5.2万辆集团销量包含厦门以外子公司且是销量，不能替代城市产量。",
+          "caveat_en": "King Long Motor Group's 52,000 sales include non-Xiamen subsidiaries and are sales, so they cannot replace city output.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "2025 Xiamen city new-energy-vehicle output, units",
+          "as_of": "2025-12-31",
+          "note_zh": "厦门市统计局上半年页面只披露新能源汽车产量同比增长10.6%，未披露全年绝对量。",
+          "note_en": "The Xiamen Statistics Bureau's half-year page reports only 10.6% growth in NEV output, not a full-year absolute count.",
+          "caveat_zh": "增速不能换算为绝对量，也不能用港口出口或客车集团销量替代。",
+          "caveat_en": "A growth rate cannot be converted without a valid base, and port exports or bus-group sales are not substitutes.",
+          "source_url": null,
+          "source_title": null,
+          "source_publisher": null,
+          "source_date": null,
+          "source_accessed_at": null
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
+      "source_ids": [],
+      "confidence": 0.45
+    },
+    {
+      "city_id": "jiaxing",
+      "year": 2025,
+      "total_vehicle_output": null,
+      "nev_output": null,
+      "commercial_vehicle_output": null,
+      "passenger_vehicle_output": null,
+      "availability": {
+        "total_vehicle_output": "unverified",
+        "nev_output": "unverified"
+      },
+      "field_reviews": {
+        "total_vehicle_output": {
+          "status": "unverified",
+          "scope": "Jiaxing physical automobile output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "一手普查只核实2023年13.53万辆，不能填入2025。",
+          "note_en": "The primary census verifies only 135,300 in 2023 and cannot populate 2025.",
+          "caveat_zh": "已查一手年度材料不足以形成可引用的2025年绝对量；找不到不等于统计机关未披露。",
+          "caveat_en": "The official annual material checked is insufficient for a citable 2025 absolute; failure to locate it is not proof that the authority never disclosed it.",
+          "source_url": "https://tjj.jiaxing.gov.cn/art/2025/5/22/art_1512322_59153365.html",
+          "source_title": "嘉兴市第五次全国经济普查公报（第三号）",
+          "source_publisher": "嘉兴市统计局",
+          "source_date": "2025-05-22",
+          "source_accessed_at": "2026-09-03"
+        },
+        "nev_output": {
+          "status": "unverified",
+          "scope": "Jiaxing physical NEV output in calendar 2025",
+          "as_of": "2025-12-31",
+          "note_zh": "一手普查只核实2023年13.19万辆，不能填入2025。",
+          "note_en": "The primary census verifies only 131,900 in 2023 and cannot populate 2025.",
+          "caveat_zh": "已查一手年度材料不足以形成可引用的2025年绝对量；找不到不等于统计机关未披露。",
+          "caveat_en": "The official annual material checked is insufficient for a citable 2025 absolute; failure to locate it is not proof that the authority never disclosed it.",
+          "source_url": "https://tjj.jiaxing.gov.cn/art/2025/5/22/art_1512322_59153365.html",
+          "source_title": "嘉兴市第五次全国经济普查公报（第三号）",
+          "source_publisher": "嘉兴市统计局",
+          "source_date": "2025-05-22",
+          "source_accessed_at": "2026-09-03"
+        }
+      },
+      "statistical_scope": "reviewed_no_verified_total",
+      "scope_note_zh": "逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+      "scope_note_en": "Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
       "source_ids": [],
       "confidence": 0.45
     }

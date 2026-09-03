@@ -1,22 +1,24 @@
 {
-  "data_version": "v1-2026-08-source-policy",
-  "generated_at": "2026-08-31",
-  "last_verified": "2026-08",
+  "data_version": "v1-2026-09-deep-audit",
+  "generated_at": "2026-09-03",
+  "last_verified": "2026-09",
   "counts": {
     "cities": 28,
     "organizations": 168,
-    "facilities": 80,
-    "city_roles": 195,
+    "facilities": 128,
+    "city_roles": 194,
     "relations": 580,
     "clusters": 13,
-    "statistics": 10,
+    "statistics": 28,
     "media": 56,
     "institutions": 12,
-    "sources": 92,
+    "sources": 171,
     "core_cities": 17,
-    "specialist_cities": 11
+    "specialist_cities": 11,
+    "organization_field_reviews": 1008,
+    "city_output_field_reviews": 56
   },
   "notes_zh": "V1：17座核心城 + 11座专业城。QROST自有简报不作为证据；外部一手来源可核实，二手来源标为部分核实，未逐条核验的数据保留为低置信候选。",
   "notes_en": "V1: 17 core + 11 specialist cities. QROST-authored briefs are not evidence; linked primary sources can verify a fact, secondary sources are marked partial, and unreviewed rows remain low-confidence candidates.",
-  "cache_token": "ea140af5f7"
+  "cache_token": "2fb5eee284"
 }

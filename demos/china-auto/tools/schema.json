@@ -133,7 +133,7 @@
       "forum"
     ],
     "ownership": ["soe", "private", "foreign", "jv", "public", "nonprofit", "mixed", "unknown"],
-    "exchange": ["SSE", "SZSE", "HKEX", "HKEX-RMB", "NYSE", "NASDAQ", "SGX", "none"],
+    "exchange": ["SSE", "SZSE", "HKEX", "HKEX-RMB", "NYSE", "NASDAQ", "SGX", "SIX", "NEEQ", "none"],
     "powertrain": ["ice", "hev", "phev", "bev", "reev", "fcev"],
     "segment": ["mass", "premium", "luxury", "commercial", "bus", "truck", "parts", "battery", "software", "education", "media", "testing"],
     "export_role": ["none", "some", "major", "unknown"],

@@ -1331,22 +1331,22 @@
       "source_ids": []
     },
     {
-      "id": "liuzhou__wuling__headquarters",
+      "id": "liuzhou__wuling__historical_origin",
       "city_id": "liuzhou",
       "entity_id": "wuling",
-      "role_type": "headquarters",
-      "description_zh": "五菱在liuzhou的headquarters角色",
-      "description_en": "Wuling headquarters role in liuzhou",
+      "role_type": "historical_origin",
+      "description_zh": "五菱在liuzhou的historical_origin角色",
+      "description_en": "Wuling historical_origin role in liuzhou",
       "confidence": 0.4,
       "source_ids": []
     },
     {
-      "id": "liuzhou__baojun__headquarters",
+      "id": "liuzhou__baojun__historical_origin",
       "city_id": "liuzhou",
       "entity_id": "baojun",
-      "role_type": "headquarters",
-      "description_zh": "宝骏在liuzhou的headquarters角色",
-      "description_en": "Baojun headquarters role in liuzhou",
+      "role_type": "historical_origin",
+      "description_zh": "宝骏在liuzhou的historical_origin角色",
+      "description_en": "Baojun historical_origin role in liuzhou",
       "confidence": 0.4,
       "source_ids": []
     },
@@ -1365,8 +1365,8 @@
       "city_id": "wuhan",
       "entity_id": "voyah",
       "role_type": "headquarters",
-      "description_zh": "岚图在wuhan的headquarters角色",
-      "description_en": "Voyah headquarters role in wuhan",
+      "description_zh": "岚图汽车在wuhan的headquarters角色",
+      "description_en": "VOYAH headquarters role in wuhan",
       "confidence": 0.4,
       "source_ids": []
     },
@@ -1385,8 +1385,8 @@
       "city_id": "wuhan",
       "entity_id": "aeolus",
       "role_type": "headquarters",
-      "description_zh": "奕派在wuhan的headquarters角色",
-      "description_en": "Aeolus headquarters role in wuhan",
+      "description_zh": "东风奕派在wuhan的headquarters角色",
+      "description_en": "Dongfeng eπ headquarters role in wuhan",
       "confidence": 0.4,
       "source_ids": []
     },
@@ -1415,8 +1415,8 @@
       "city_id": "wuhan",
       "entity_id": "lotus",
       "role_type": "headquarters",
-      "description_zh": "路特斯在wuhan的headquarters角色",
-      "description_en": "Lotus headquarters role in wuhan",
+      "description_zh": "路特斯科技在wuhan的headquarters角色",
+      "description_en": "Lotus Technology headquarters role in wuhan",
       "confidence": 0.4,
       "source_ids": []
     },
@@ -1757,16 +1757,6 @@
       "role_type": "factory",
       "description_zh": "吉利在ningbo的factory角色",
       "description_en": "Geely factory role in ningbo",
-      "confidence": 0.4,
-      "source_ids": []
-    },
-    {
-      "id": "ningbo__zeekr__factory",
-      "city_id": "ningbo",
-      "entity_id": "zeekr",
-      "role_type": "factory",
-      "description_zh": "极氪在ningbo的factory角色",
-      "description_en": "Zeekr factory role in ningbo",
       "confidence": 0.4,
       "source_ids": []
     },

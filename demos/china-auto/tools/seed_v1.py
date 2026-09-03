@@ -8,6 +8,7 @@ only when a specific external statistical release is available.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -16,17 +17,22 @@ from search_index import attach
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "assets" / "data"
 
-LV = "2026-08"
+LV = "2026-09"
 CANDIDATE_CONFIDENCE = 0.45
 SRC_STAT_CHONGQING_2025 = "src-stat-chongqing-2025"
 SRC_STAT_GUANGZHOU_2025 = "src-stat-guangzhou-2025"
+SRC_STAT_GUANGZHOU_NEV_2025 = "src-stat-guangzhou-nev-2025"
 SRC_STAT_WUHU_2025 = "src-stat-wuhu-2025"
 SRC_STAT_SHANGHAI_2025 = "src-stat-shanghai-2025"
+SRC_STAT_SHANGHAI_NEV_2025 = "src-stat-shanghai-nev-2025"
 SRC_STAT_XIAN_2025 = "src-stat-xian-2025"
 SRC_STAT_BEIJING_2025 = "src-stat-beijing-2025"
+SRC_STAT_BEIJING_NEV_2025 = "src-stat-beijing-nev-2025"
 SRC_STAT_ZHENGZHOU_2025 = "src-stat-zhengzhou-2025"
+SRC_STAT_WUHAN_2025 = "src-stat-wuhan-2025"
+SRC_STAT_WUHAN_NEV_2025 = "src-stat-wuhan-nev-2025"
+SRC_STAT_SHIYAN_2025 = "src-stat-shiyan-2025"
 SRC_STAT_HEFEI_NEV_2025 = "src-stat-hefei-nev-2025"
-SRC_STAT_JILIN_2025 = "src-stat-jilin-province-2025"
 SRC_NIO_ABOUT = "src-nio-about-2025"
 SRC_AUTOHOME_20F = "src-autohome-20f-2025"
 SRC_BAIDU_YOUJIA_PRIVACY = "src-baidu-youjia-privacy"
@@ -331,7 +337,7 @@ CITIES = [
         province_zh="广东省", province_en="Guangdong",
         admin_level="prefecture", admin_code="441300", lat=23.1115, lng=114.4162, tier="specialist",
         summary_zh="汽车电子、智能座舱和动力电池。德赛西威、华阳集团、亿纬锂能与深圳、广州形成电子与零部件协作。",
-        summary_en="Auto electronics, smart cockpit and batteries. Desay SV, Holosonics/HuaYang and EVE Energy collaborate with Shenzhen and Guangzhou.",
+        summary_en="Auto electronics, smart cockpit and batteries. Desay SV, Foryou/HuaYang and EVE Energy collaborate with Shenzhen and Guangzhou.",
         history_summary_zh="湾区电子制造外溢，使惠州成为座舱域控制器和电池的专业城市。",
         history_summary_en="Bay Area electronics overflow made Huizhou a specialist city for cockpit domain controllers and batteries.",
         role_tags=["auto_electronics", "battery", "parts"],
@@ -542,30 +548,32 @@ ORGS = [
         parent_id="faw", headquarters_city_id="changchun", focus_tags=["oem_manufacturing"]),
     org(id="yutong", legal_name_zh="宇通客车股份有限公司", legal_name_en="Yutong Bus Co., Ltd.",
         display_name_zh="宇通客车", display_name_en="Yutong", organization_type="automaker",
-        headquarters_city_id="zhengzhou", website="https://en.yutong.com/", focus_tags=["oem_manufacturing", "export_logistics"]),
+        headquarters_city_id="zhengzhou", website="https://en.yutong.com/", founded_year=1993,
+        focus_tags=["oem_manufacturing", "export_logistics"]),
     org(id="zhengzhou-nissan", legal_name_zh="郑州日产汽车有限公司", legal_name_en="Zhengzhou Nissan Automobile Co., Ltd.",
         display_name_zh="郑州日产", display_name_en="Zhengzhou Nissan", organization_type="automaker",
         headquarters_city_id="zhengzhou", focus_tags=["oem_manufacturing"]),
-    org(id="sgmw", legal_name_zh="上汽通用五菱汽车股份有限公司", legal_name_en="SAIC-GM-Wuling Automobile",
+    org(id="sgmw", legal_name_zh="上汽通用五菱汽车股份有限公司", legal_name_en="SAIC-GM-Wuling Automobile Co., Ltd.",
         display_name_zh="上汽通用五菱", display_name_en="SGMW", organization_type="automaker",
         parent_id="saic", headquarters_city_id="liuzhou", focus_tags=["oem_manufacturing"]),
     org(id="dongfeng-liuzhou", legal_name_zh="东风柳州汽车有限公司", legal_name_en="Dongfeng Liuzhou Motor Co., Ltd.",
         display_name_zh="东风柳汽", display_name_en="Dongfeng Liuzhou Motor", organization_type="automaker",
         parent_id="dongfeng", headquarters_city_id="liuzhou", focus_tags=["oem_manufacturing"]),
-    org(id="guangxi-auto", legal_name_zh="广西汽车集团", legal_name_en="Guangxi Automobile Group",
+    org(id="guangxi-auto", legal_name_zh="广西汽车集团有限公司", legal_name_en="Guangxi Automobile Group Co., Ltd.",
         display_name_zh="广西汽车集团", display_name_en="Guangxi Auto Group", organization_type="automaker",
         headquarters_city_id="liuzhou", focus_tags=["oem_manufacturing"]),
     org(id="dongfeng", legal_name_zh="东风汽车集团有限公司", legal_name_en="Dongfeng Motor Corporation",
         display_name_zh="东风集团", display_name_en="Dongfeng Motor", organization_type="automaker",
         headquarters_city_id="wuhan", website="https://www.dfmc.com.cn/", focus_tags=["headquarters", "oem_manufacturing", "auto_history"]),
-    org(id="voyah", legal_name_zh="岚图汽车", legal_name_en="Voyah",
-        display_name_zh="岚图", display_name_en="Voyah", organization_type="brand",
-        parent_id="dongfeng", headquarters_city_id="wuhan", focus_tags=["oem_manufacturing"]),
+    org(id="voyah", legal_name_zh="岚图汽车科技股份有限公司", legal_name_en="VOYAH Automotive Technology Co., Ltd.",
+        display_name_zh="岚图汽车", display_name_en="VOYAH", organization_type="automaker",
+        parent_id="dongfeng", headquarters_city_id="wuhan", founded_year=2021,
+        website="https://www.voyah.com.cn/", focus_tags=["oem_manufacturing"]),
     org(id="mengshi", legal_name_zh="猛士汽车", legal_name_en="Mengshi",
         display_name_zh="猛士", display_name_en="Mengshi", organization_type="brand",
         parent_id="dongfeng", headquarters_city_id="wuhan", focus_tags=["oem_manufacturing"]),
-    org(id="aeolus", legal_name_zh="东风奕派", legal_name_en="Aeolus (Voyah family / Dongfeng Aeolus)",
-        display_name_zh="奕派", display_name_en="Aeolus", organization_type="brand",
+    org(id="aeolus", legal_name_zh="东风奕派（eπ）", legal_name_en="Dongfeng eπ",
+        display_name_zh="东风奕派", display_name_en="Dongfeng eπ", organization_type="brand",
         parent_id="dongfeng", headquarters_city_id="wuhan", focus_tags=["oem_manufacturing"]),
     org(id="faw-toyota", legal_name_zh="一汽丰田", legal_name_en="FAW Toyota",
         display_name_zh="一汽丰田", display_name_en="FAW Toyota", organization_type="automaker",
@@ -595,22 +603,22 @@ ORGS = [
     org(id="eve-energy", legal_name_zh="亿纬锂能", legal_name_en="EVE Energy",
         display_name_zh="亿纬锂能", display_name_en="EVE Energy", organization_type="battery_company",
         headquarters_city_id="huizhou", focus_tags=["battery"]),
-    org(id="joyson", legal_name_zh="均胜电子", legal_name_en="Joyson Electronics",
+    org(id="joyson", legal_name_zh="宁波均胜电子股份有限公司", legal_name_en="Ningbo Joyson Electronic Corp.",
         display_name_zh="均胜电子", display_name_en="Joyson", organization_type="supplier",
         headquarters_city_id="ningbo", focus_tags=["auto_electronics", "parts"]),
-    org(id="tuopu", legal_name_zh="拓普集团", legal_name_en="Tuopu Group",
+    org(id="tuopu", legal_name_zh="宁波拓普集团股份有限公司", legal_name_en="Ningbo Tuopu Group Co., Ltd.",
         display_name_zh="拓普集团", display_name_en="Tuopu", organization_type="supplier",
         headquarters_city_id="ningbo", focus_tags=["parts"]),
-    org(id="minth", legal_name_zh="敏实集团", legal_name_en="Minth Group",
+    org(id="minth", legal_name_zh="敏实集团有限公司", legal_name_en="Minth Group Limited",
         display_name_zh="敏实集团", display_name_en="Minth", organization_type="supplier",
         headquarters_city_id="ningbo", focus_tags=["parts"]),
-    org(id="huaxiang", legal_name_zh="华翔集团", legal_name_en="Huaxiang Group",
+    org(id="huaxiang", legal_name_zh="华翔集团股份有限公司", legal_name_en="Huaxiang Group Co., Ltd.",
         display_name_zh="华翔集团", display_name_en="Huaxiang", organization_type="supplier",
         headquarters_city_id="ningbo", focus_tags=["parts"]),
     org(id="sinotruk", legal_name_zh="中国重型汽车集团有限公司", legal_name_en="China National Heavy Duty Truck Group",
         display_name_zh="中国重汽", display_name_en="Sinotruk", organization_type="automaker",
         headquarters_city_id="jinan", focus_tags=["headquarters", "oem_manufacturing"]),
-    org(id="king-long", legal_name_zh="厦门金龙联合汽车工业有限公司", legal_name_en="King Long United Automotive Industry Co., Ltd.",
+    org(id="king-long", legal_name_zh="厦门金龙联合汽车工业有限公司", legal_name_en="Xiamen King Long United Automotive Industry Co., Ltd.",
         display_name_zh="金龙客车", display_name_en="King Long", organization_type="automaker",
         headquarters_city_id="xiamen", focus_tags=["oem_manufacturing"]),
     org(id="golden-dragon", legal_name_zh="厦门金龙旅行车有限公司", legal_name_en="Xiamen Golden Dragon Bus Co., Ltd.",
@@ -911,7 +919,8 @@ ORGS = [
         parent_id="baic", headquarters_city_id="beijing", focus_tags=["oem_manufacturing"]),
     org(id="dongfeng-cv", legal_name_zh="东风商用车有限公司", legal_name_en="Dongfeng Commercial Vehicle Co., Ltd.",
         display_name_zh="东风商用车", display_name_en="Dongfeng Commercial Vehicles", organization_type="automaker",
-        parent_id="dongfeng", headquarters_city_id="shiyan", focus_tags=["oem_manufacturing", "auto_history"]),
+        parent_id="dongfeng", headquarters_city_id="shiyan", founded_year=2013,
+        focus_tags=["oem_manufacturing", "auto_history"]),
     # —— V1 城内补录：原 brief 点名或目录里明显缺席的整车/品牌 ——
     org(id="arcfox", legal_name_zh="北京蓝谷极狐汽车科技有限公司", legal_name_en="BAIC BluePark Arcfox",
         display_name_zh="极狐", display_name_en="Arcfox", organization_type="brand",
@@ -964,9 +973,10 @@ ORGS = [
     org(id="dongfeng-honda", legal_name_zh="东风本田汽车有限公司", legal_name_en="Dongfeng Honda Automobile Co., Ltd.",
         display_name_zh="东风本田", display_name_en="Dongfeng Honda", organization_type="automaker",
         parent_id="dongfeng", headquarters_city_id="wuhan", focus_tags=["oem_manufacturing"]),
-    org(id="lotus", legal_name_zh="路特斯科技有限公司", legal_name_en="Lotus Technology",
-        display_name_zh="路特斯", display_name_en="Lotus", organization_type="brand",
-        parent_id="geely", headquarters_city_id="wuhan", focus_tags=["oem_manufacturing"]),
+    org(id="lotus", legal_name_zh="Lotus Technology Inc.", legal_name_en="Lotus Technology Inc.",
+        display_name_zh="路特斯科技", display_name_en="Lotus Technology", organization_type="automaker",
+        parent_id="geely", headquarters_city_id="wuhan", founded_year=2021,
+        website="https://ir.group-lotus.com/", focus_tags=["oem_manufacturing"]),
     org(id="lynk-co", legal_name_zh="领克汽车", legal_name_en="Lynk & Co",
         display_name_zh="领克", display_name_en="Lynk & Co", organization_type="brand",
         parent_id="geely", headquarters_city_id="hangzhou", focus_tags=["oem_manufacturing"]),
@@ -1007,7 +1017,7 @@ ORGS = [
         display_name_zh="零跑汽车", display_name_en="Leapmotor", organization_type="automaker",
         headquarters_city_id="hangzhou", website="https://www.leapmotor.com/", focus_tags=["headquarters", "oem_manufacturing"],
         aliases=["零跑", "leapmotor", "lpqc"]),
-    org(id="neta", legal_name_zh="合众新能源汽车", legal_name_en="Hozon / Neta Auto",
+    org(id="neta", legal_name_zh="合众新能源汽车股份有限公司", legal_name_en="Hozon New Energy Automobile Co., Ltd.",
         display_name_zh="哪吒汽车", display_name_en="Neta", organization_type="automaker",
         headquarters_city_id="jiaxing", focus_tags=["headquarters", "oem_manufacturing"],
         aliases=["哪吒", "neta", "hozon", "合众"]),
@@ -1092,7 +1102,8 @@ ORG_ALIASES = {
     "dongfeng": ["东风", "东风集团", "dfmc", "dfm", "二汽"],
     "voyah": ["岚图", "voyah"],
     "mengshi": ["猛士", "mengshi"],
-    "aeolus": ["奕派", "aeolus", "风神"],
+    # Stable id retained for URLs/data joins; Aeolus/风神 is a different brand.
+    "aeolus": ["奕派", "东风奕派", "eπ", "yipai", "dongfeng epi"],
     "faw-toyota": ["一汽丰田", "tftm"],
     "gwm": ["长城", "长城汽车", "gwm", "greatwall"],
     "volvo-cars-chengdu": ["沃尔沃", "volvo"],
@@ -1100,7 +1111,8 @@ ORG_ALIASES = {
     "svolt": ["蜂巢", "svolt"],
     "calb": ["中创新航", "calb"],
     "desay-sv": ["德赛西威", "desay"],
-    "holosonics": ["华阳", "foryou"],
+    # Stable id retained for joins; the entity is Huizhou Foryou/HuaYang.
+    "holosonics": ["华阳", "华阳集团", "foryou", "huayang"],
     "eve-energy": ["亿纬", "eve"],
     "joyson": ["均胜", "joyson"],
     "tuopu": ["拓普", "tuopu"],
@@ -1272,6 +1284,10 @@ def fac(**kw):
     row = dict(
         district_zh=None, district_en=None, lat=city["lat"], lng=city["lng"],
         status="active", opened_at=None, current_products=[], technology_tags=[],
+        operator_legal_name_zh=None, operator_legal_name_en=None,
+        operator_legal_name_en_is_translation=False,
+        operator_matches_entity_boundary=None, associated_organization_ids=[],
+        manufactures_for_ids=[],
         last_verified=LV, confidence=0.40, source_ids=[],
         coord_note_zh="坐标暂用城市中心点，待工厂级地理编码。",
         coord_note_en="Coordinates currently use the city centroid pending plant-level geocoding.",
@@ -1307,36 +1323,39 @@ FACILITIES = [
         operator_id="li-auto", city_id="changzhou", facility_type="vehicle_plant", technology_tags=["nev"]),
     fac(id="catl-ningde", name_zh="宁德时代宁德基地", name_en="CATL Ningde base",
         operator_id="catl", city_id="ningde", facility_type="battery_plant", technology_tags=["battery"]),
-    fac(id="catl-yibin", name_zh="四川时代宜宾基地", name_en="CATL Sichuan Yibin base",
-        operator_id="catl", city_id="yibin", facility_type="battery_plant", technology_tags=["battery"]),
+    fac(id="catl-yibin", name_zh="四川时代宜宾生产基地", name_en="CATL-SC Yibin Production Base",
+        operator_id="catl", city_id="yibin", facility_type="battery_plant", technology_tags=["battery"],
+        operator_legal_name_zh="四川时代新能源科技有限公司",
+        operator_legal_name_en="Sichuan Contemporary Amperex Technology Limited",
+        operator_matches_entity_boundary=False),
     fac(id="gwm-xushui", name_zh="长城汽车徐水智慧工厂", name_en="GWM Xushui smart plant",
         operator_id="gwm", city_id="baoding", district_zh="徐水", district_en="Xushui",
         facility_type="vehicle_plant"),
     fac(id="sgmw-liuzhou", name_zh="上汽通用五菱柳州基地", name_en="SGMW Liuzhou base",
         operator_id="sgmw", city_id="liuzhou", facility_type="vehicle_plant"),
-    fac(id="yutong-zhengzhou", name_zh="宇通客车郑州基地", name_en="Yutong Zhengzhou base",
+    fac(id="yutong-zhengzhou", name_zh="宇通客车十八里河生产基地", name_en="Yutong Bus Shibalihe Production Base",
         operator_id="yutong", city_id="zhengzhou", facility_type="vehicle_plant", technology_tags=["bus"]),
-    fac(id="changan-chongqing", name_zh="长安汽车重庆整车基地", name_en="Changan Chongqing vehicle base",
-        operator_id="changan", city_id="chongqing", facility_type="vehicle_plant"),
     fac(id="nio-hefei", name_zh="蔚来合肥制造基地", name_en="NIO Hefei manufacturing base",
         operator_id="nio", city_id="hefei", facility_type="vehicle_plant", technology_tags=["nev"]),
-    fac(id="dongfeng-shiyan", name_zh="东风商用车十堰工厂", name_en="Dongfeng CV Shiyan plant",
+    fac(id="dongfeng-shiyan", name_zh="东风商用车十堰D600智慧工厂", name_en="Dongfeng CV Shiyan D600 Smart Factory",
         operator_id="dongfeng-cv", city_id="shiyan", facility_type="vehicle_plant", technology_tags=["commercial"]),
     fac(id="catarc-tianjin", name_zh="中汽中心天津检测基地", name_en="CATARC Tianjin testing campus",
         operator_id="catarc", city_id="tianjin", facility_type="testing_center", technology_tags=["testing"]),
-    fac(id="dongfeng-honda-wuhan", name_zh="东风本田武汉工厂", name_en="Dongfeng Honda Wuhan plant",
+    fac(id="dongfeng-honda-wuhan-first-factory", name_zh="东风本田第一工厂", name_en="Dongfeng Honda First Factory",
         operator_id="dongfeng-honda", city_id="wuhan", facility_type="vehicle_plant"),
     fac(id="saic-gm-shanghai", name_zh="上汽通用上海工厂", name_en="SAIC-GM Shanghai plant",
         operator_id="saic-gm", city_id="shanghai", facility_type="vehicle_plant"),
     fac(id="beijing-hyundai-plant", name_zh="北京现代整车工厂", name_en="Beijing Hyundai vehicle plant",
         operator_id="beijing-hyundai", city_id="beijing", facility_type="vehicle_plant"),
-    fac(id="avatr-chongqing", name_zh="阿维塔重庆工厂", name_en="Avatr Chongqing plant",
-        operator_id="avatr", city_id="chongqing", facility_type="vehicle_plant", technology_tags=["nev"]),
     fac(id="zeekr-ningbo", name_zh="极氪宁波杭州湾工厂", name_en="Zeekr Ningbo Hangzhou Bay plant",
         operator_id="zeekr", city_id="ningbo", district_zh="杭州湾", district_en="Hangzhou Bay",
         facility_type="vehicle_plant", technology_tags=["nev"]),
-    fac(id="lotus-wuhan", name_zh="路特斯武汉工厂", name_en="Lotus Wuhan plant",
-        operator_id="lotus", city_id="wuhan", facility_type="vehicle_plant", technology_tags=["nev"]),
+    fac(id="lotus-wuhan", name_zh="武汉路特斯纯电车型合同制造工厂", name_en="Wuhan contract-manufacturing plant for Lotus BEVs",
+        operator_id="geely", city_id="wuhan", facility_type="vehicle_plant", technology_tags=["nev"],
+        operator_legal_name_zh="浙江吉利汽车有限公司武汉分公司",
+        operator_legal_name_en="Zhejiang Geely Automobile Co., Ltd., Wuhan Branch",
+        operator_matches_entity_boundary=False,
+        manufactures_for_ids=["lotus"]),
 ]
 
 FACILITY_EVIDENCE = {
@@ -1362,12 +1381,19 @@ FACILITY_SOURCE_META = {}
 def verified_facility(fid, name_zh, name_en, operator_id, city_id, url, publisher_zh,
                       publisher_en, title_zh, title_en=None, facility_type="vehicle_plant",
                       source_type="company_site", fact_date="2025", district_zh=None,
-                      district_en=None, technology_tags=None):
+                      district_en=None, technology_tags=None, status="active",
+                      opened_at=None, operator_legal_name_zh=None,
+                      operator_legal_name_en=None, operator_legal_name_en_is_translation=False,
+                      operator_matches_entity_boundary=None,
+                      associated_organization_ids=None, manufactures_for_ids=None,
+                      confidence=0.85, support_fields=None, address_zh=None,
+                      address_en=None, site_scope_note_zh=None,
+                      site_scope_note_en=None):
     source_id = f"src-{fid}"
     patch = dict(
         id=fid, name_zh=name_zh, name_en=name_en, operator_id=operator_id,
-        city_id=city_id, facility_type=facility_type, status="active",
-        confidence=0.85, source_ids=[source_id], last_verified=LV,
+        city_id=city_id, facility_type=facility_type, status=status,
+        confidence=confidence, source_ids=[source_id], last_verified=LV,
     )
     if district_zh is not None:
         patch["district_zh"] = district_zh
@@ -1375,6 +1401,32 @@ def verified_facility(fid, name_zh, name_en, operator_id, city_id, url, publishe
         patch["district_en"] = district_en
     if technology_tags is not None:
         patch["technology_tags"] = technology_tags
+    if opened_at is not None:
+        patch["opened_at"] = opened_at
+    if address_zh is not None:
+        patch["address_zh"] = address_zh
+    if address_en is not None:
+        patch["address_en"] = address_en
+    if site_scope_note_zh is not None:
+        patch["site_scope_note_zh"] = site_scope_note_zh
+    if site_scope_note_en is not None:
+        patch["site_scope_note_en"] = site_scope_note_en
+    if operator_legal_name_zh is not None:
+        patch["operator_legal_name_zh"] = operator_legal_name_zh
+    if operator_legal_name_en is not None:
+        patch["operator_legal_name_en"] = operator_legal_name_en
+    patch["operator_legal_name_en_is_translation"] = operator_legal_name_en_is_translation
+    if operator_matches_entity_boundary is None and operator_legal_name_zh and operator_legal_name_en:
+        catalog = ORG_BY_ID.get(operator_id) or {}
+        operator_matches_entity_boundary = (
+            operator_legal_name_zh == catalog.get("legal_name_zh")
+            and operator_legal_name_en == catalog.get("legal_name_en")
+        )
+    patch["operator_matches_entity_boundary"] = operator_matches_entity_boundary
+    if associated_organization_ids is not None:
+        patch["associated_organization_ids"] = associated_organization_ids
+    if manufactures_for_ids is not None:
+        patch["manufactures_for_ids"] = manufactures_for_ids
     existing = next((row for row in FACILITIES if row["id"] == fid), None)
     if existing:
         patch["source_ids"] = list(dict.fromkeys((existing.get("source_ids") or []) + [source_id]))
@@ -1386,7 +1438,55 @@ def verified_facility(fid, name_zh, name_en, operator_id, city_id, url, publishe
         publisher_en=publisher_en, title_zh=title_zh,
         title_en=title_en or title_zh, source_type=source_type,
         fact_date=fact_date,
+        support_fields=support_fields or [
+            "name_zh", "name_en", "operator_id", "city_id", "status", "facility_type",
+            *(
+                ["operator_legal_name_zh", "operator_matches_entity_boundary"]
+                + ([] if operator_legal_name_en_is_translation else ["operator_legal_name_en"])
+                if operator_legal_name_zh or operator_legal_name_en else []
+            ),
+            *(["associated_organization_ids"] if associated_organization_ids else []),
+            *(["manufactures_for_ids"] if manufactures_for_ids else []),
+            *(["address_zh"] if address_zh else []),
+            *(["address_en"] if address_en else []),
+        ],
     )
+
+
+def supporting_facility_source(fid, suffix, url, publisher_zh, publisher_en,
+                               title_zh, title_en=None, source_type="company_site",
+                               fact_date="2025", support_fields=None, field_patch=None,
+                               scope_zh=None, scope_en=None):
+    """Attach a second exact source without pretending one page proves all fields."""
+    facility = next((row for row in FACILITIES if row["id"] == fid), None)
+    if facility is None:
+        raise SystemExit(f"supporting source references unknown facility: {fid}")
+    if field_patch:
+        facility.update(field_patch)
+    source_id = f"src-{fid}-{suffix}"
+    facility["source_ids"] = list(dict.fromkeys((facility.get("source_ids") or []) + [source_id]))
+    FACILITY_SOURCE_META[source_id] = dict(
+        facility_id=fid, url=url, publisher_zh=publisher_zh,
+        publisher_en=publisher_en, title_zh=title_zh,
+        title_en=title_en or title_zh, source_type=source_type,
+        fact_date=fact_date, support_fields=support_fields or [],
+        scope_zh=scope_zh,
+        scope_en=scope_en,
+    )
+
+
+supporting_facility_source(
+    "catl-yibin", "official-contact", "https://www.catl.com/en/contactus/",
+    "宁德时代", "CATL", "联系地址与子公司名录", "Contact and subsidiary directory",
+    support_fields=[
+        "operator_legal_name_en", "operator_matches_entity_boundary",
+        "address_zh", "address_en",
+    ],
+    field_patch={
+        "address_zh": "四川省宜宾市临港经济开发区产业大道1号",
+        "address_en": "No. 1 Industry Avenue, Lingang Economic Development Zone, Yibin, Sichuan",
+    },
+)
 
 
 LI_AUTO_AR = "https://ir.lixiang.com/system/files-encrypted/nasdaq_kms/assets/2026/04/10/6-28-41/2025%20Annual%20Report.pdf"
@@ -1461,11 +1561,219 @@ for args in [
     ("xpeng-wuhan", "小鹏汽车武汉制造基地", "XPENG Wuhan Manufacturing Base", "xpeng", "wuhan", XPENG_20F, "小鹏汽车", "XPENG", "小鹏汽车2025年Form 20-F", "XPENG 2025 Form 20-F", "vehicle_plant", "company_ir"),
     ("volvo-chengdu", "沃尔沃汽车成都工厂", "Volvo Cars Chengdu Plant", "volvo-cars-chengdu", "chengdu", "https://www.volvocars.com/intl/media/press-releases/A92B18442980B66D/", "沃尔沃汽车", "Volvo Cars", "Volvo Cars Chengdu plant renewable electricity", "Volvo Cars Chengdu plant renewable electricity"),
     ("gac-aion-changsha", "广汽埃安长沙智能生态工厂", "GAC AION Changsha Smart Eco-Factory", "gac-aion", "changsha", "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0425/2025042502715.pdf", "广汽集团", "GAC Group", "广汽集团2024年年度报告", "GAC Group 2024 annual report", "vehicle_plant", "company_ir"),
-    ("avatr-chongqing", "阿维塔数智工厂", "Avatr Digital Intelligence Factory", "avatr", "chongqing", "https://www.avatr.com/en/news?newsChId=a62d9f1b603e0f6ae2f9f47fca7a4059&newsEngId=", "阿维塔科技", "Avatr Technology", "长安汽车数智工厂揭幕", "Changan Digital Intelligence Factory opens"),
-    ("lotus-wuhan", "路特斯武汉纯电动汽车制造工厂", "Lotus Wuhan BEV Manufacturing Facility", "lotus", "wuhan", "https://ir.group-lotus.com/static-files/8ee8ff24-6249-4868-8e25-1794528ac521", "路特斯科技", "Lotus Technology", "Lotus Technology Form 20-F", "Lotus Technology Form 20-F", "vehicle_plant", "company_ir"),
-    ("tesla-shanghai-gigafactory", "特斯拉上海超级工厂", "Tesla Shanghai Gigafactory", "tesla-china", "shanghai", "https://english.shanghai.gov.cn/en-Latest-WhatsNew/20260107/4c2060e1dc874d40b56a3a8fa8baedf5.html", "上海市人民政府", "Shanghai Municipal Government", "Shanghai Gigafactory 2025 deliveries", "Shanghai Gigafactory 2025 deliveries", "vehicle_plant", "government_site"),
+    ("tesla-shanghai-gigafactory", "特斯拉上海超级工厂", "Tesla Shanghai Gigafactory", "tesla-china", "shanghai", "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm", "特斯拉 / 美国证券交易委员会", "Tesla / U.S. Securities and Exchange Commission", "Tesla 2025 Form 10-K: Gigafactory Shanghai", "Tesla 2025 Form 10-K: Gigafactory Shanghai", "vehicle_plant", "regulator"),
 ]:
     verified_facility(*args)
+
+verified_facility(
+    "lotus-wuhan", "武汉路特斯纯电车型合同制造工厂",
+    "Wuhan contract-manufacturing plant for Lotus BEVs", "geely", "wuhan",
+    "https://www.sec.gov/Archives/edgar/data/1962746/000110465923080197/filename10.htm",
+    "Lotus Technology / 美国证券交易委员会", "Lotus Technology / U.S. SEC",
+    "制造合作协议：武汉工厂运营主体",
+    "Manufacturing cooperation agreement: Wuhan plant operator",
+    source_type="regulator", technology_tags=["nev"],
+    operator_legal_name_zh="浙江吉利汽车有限公司武汉分公司",
+    operator_legal_name_en="Zhejiang Geely Automobile Co., Ltd., Wuhan Branch",
+    operator_matches_entity_boundary=False, manufactures_for_ids=["lotus"],
+)
+
+# Wuhan / Zhengzhou / Shiyan physical-site audit. Generic city-level plant
+# labels are narrowed to exact campuses; closed plants and production lines
+# inside one campus are not counted as separate current facilities.
+verified_facility(
+    "dongfeng-honda-wuhan-first-factory", "东风本田第一工厂",
+    "Dongfeng Honda First Factory", "dongfeng-honda", "wuhan",
+    "https://www.dongfeng-honda.com/first_factory.shtml", "东风本田",
+    "Dongfeng Honda", "第一工厂", "First Factory", fact_date="2004-04-01",
+    opened_at="2004-04-01",
+)
+verified_facility(
+    "dongfeng-honda-wuhan-third-factory", "东风本田第三工厂",
+    "Dongfeng Honda Third Factory", "dongfeng-honda", "wuhan",
+    "https://www.dongfeng-honda.com/third_factory.shtml", "东风本田",
+    "Dongfeng Honda", "第三工厂", "Third Factory", fact_date="2019-04-12",
+    opened_at="2019-04-12",
+)
+verified_facility(
+    "dongfeng-honda-wuhan-nev-factory", "东风本田新能源工厂",
+    "Dongfeng Honda New Energy Vehicle Factory", "dongfeng-honda", "wuhan",
+    "https://www.honda.com.cn/news/20241011.html", "本田中国", "Honda China",
+    "东风Honda新能源工厂正式投产", "Dongfeng Honda NEV factory begins production",
+    fact_date="2024-10-11", technology_tags=["nev"], opened_at="2024-10-11",
+)
+verified_facility(
+    "yutong-zhengzhou", "宇通客车十八里河生产基地",
+    "Yutong Bus Shibalihe Production Base", "yutong", "zhengzhou",
+    "https://gc.jiceng.zhengzhou.gov.cn/attachment/%E5%AE%87%E9%80%9A%E5%AE%A2%E8%BD%A6%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%E9%AB%98%E7%AB%AF%E7%94%B5%E5%8A%A8%E5%AE%A2%E8%BD%A6%E6%8A%80%E6%9C%AF%E5%B9%B3%E5%8F%B0%E7%A0%94%E5%8F%91%E8%83%BD%E5%8A%9B%E5%8F%8A%E7%94%9F%E4%BA%A7%E5%88%B6%E9%80%A0%E6%B0%B4%E5%B9%B3%E6%8F%90%E5%8D%87%E9%A1%B9%E7%9B%AE%E6%8A%A5%E5%91%8A%E8%A1%A8.pdf?dAa1ReeZxZY9Xkmpt4xs0LMf1bWr1Ek5PtZnxDLpDIu9WqM6hi9WF5VtqnvpvJLQaIbgwKawojStsL-XELX8DuxcRN5lGFjS=",
+    "郑州市管城回族区政府", "Guancheng District Government, Zhengzhou",
+    "宇通客车十八里河基地环境影响报告", "Yutong Shibalihe base EIA",
+    source_type="government_site", technology_tags=["bus"],
+)
+verified_facility(
+    "yutong-zhengzhou-new-energy-bus-base", "宇通新能源客车生产基地",
+    "Yutong New Energy Bus Production Base", "yutong", "zhengzhou",
+    "https://public.zzjkq.gov.cn/attachment/2025%E5%B9%B4%E5%AE%87%E9%80%9A%E6%96%B0%E8%83%BD%E6%BA%90%E5%AE%A2%E8%BD%A6%E5%88%86%E5%85%AC%E5%8F%B8%E5%9C%B0%E4%B8%8B%E6%B0%B4%E8%87%AA%E8%A1%8C%E7%9B%91%E6%B5%8B%E6%8A%A5%E5%91%8A.pdf?-ROeI8JlwUqpmPx2TJ_Evw6328Q-42bY4DhnkXpl9cJpe1jVY3VdCXhNM_tKjsg7SuF0xzhrpXv0h14SjwxmMJgJ8ymBqHWF2g=%3D",
+    "郑州经济技术开发区", "Zhengzhou Economic-Technological Development Zone",
+    "宇通新能源客车基地2025年监测报告", "Yutong NEV bus base 2025 monitoring report",
+    source_type="government_site", technology_tags=["bus", "nev"],
+)
+verified_facility(
+    "zhengzhou-nissan-zhengzhou-zhongmu-plant", "郑州日产中牟工厂",
+    "Zhengzhou Nissan Zhongmu Plant", "zhengzhou-nissan", "zhengzhou",
+    "https://www.zznissan.com/crafting-cars-with-ingenuity/", "郑州日产",
+    "Zhengzhou Nissan", "制造能力与新能源专长", "Manufacturing capabilities and NEV expertise",
+    district_zh="中牟", district_en="Zhongmu",
+)
+verified_facility(
+    "dongfeng-shiyan", "东风商用车十堰D600智慧工厂",
+    "Dongfeng Commercial Vehicle Shiyan D600 Smart Factory", "dongfeng-cv", "shiyan",
+    "https://www.dfcv.com.cn/cn/xwxq?newsId=104", "东风商用车",
+    "Dongfeng Commercial Vehicle", "D600智慧工厂正式投产",
+    "D600 smart factory begins production", fact_date="2026-01-24",
+    technology_tags=["commercial"], opened_at="2026-01-24",
+)
+
+# Northern-city physical-campus audit. Brand links remain associations when
+# the legal plant operator is a group company or subsidiary represented by a
+# broader catalog row.
+verified_facility(
+    "hongqi-changchun-fanrong", "红旗制造中心繁荣厂区",
+    "Hongqi Manufacturing Center Fanrong Campus", "faw", "changchun",
+    "https://gxt.jl.gov.cn/ztzl/zzyszhzx/sdsf/202303/t20230322_3531253.html",
+    "吉林省工业和信息化厅", "Jilin Department of Industry and Information Technology",
+    "一汽集团红旗繁荣工厂", "FAW Hongqi Fanrong Factory", source_type="government_site",
+    district_zh="汽车经济技术开发区", district_en="Automobile Economic and Technological Development Zone",
+    technology_tags=["nev"], operator_legal_name_zh="中国第一汽车股份有限公司",
+    operator_legal_name_en="China FAW Corporation Limited",
+    operator_matches_entity_boundary=False, associated_organization_ids=["hongqi"],
+)
+verified_facility(
+    "jiefang-changchun-dongfeng-j7", "一汽解放长春东风大街厂区（含J7整车智能工厂）",
+    "FAW Jiefang Changchun Dongfeng Avenue Campus (including J7 Smart Plant)",
+    "faw", "changchun", "https://gxt.jl.gov.cn/ztzl/zzyszhzx/sdsf/202303/t20230321_3531252.html",
+    "吉林省工业和信息化厅", "Jilin Department of Industry and Information Technology",
+    "一汽解放J7整车智能工厂", "FAW Jiefang J7 Smart Factory", source_type="government_site",
+    district_zh="汽车经济技术开发区", district_en="Automobile Economic and Technological Development Zone",
+    technology_tags=["commercial"], opened_at="2021-12-14",
+    operator_legal_name_zh="一汽解放汽车有限公司",
+    operator_legal_name_en="FAW Jiefang Automobile Co., Ltd.",
+    operator_matches_entity_boundary=False, associated_organization_ids=["jiefang"],
+)
+verified_facility(
+    "faw-vw-changchun-main", "一汽-大众长春主厂区",
+    "FAW-Volkswagen Changchun Main Campus", "faw-vw", "changchun",
+    "https://www.faw-vw.com/industry-tourism", "一汽-大众", "FAW-Volkswagen",
+    "品质之旅：长春基地", "Industry tour: Changchun base",
+    district_zh="汽车经济技术开发区", district_en="Automobile Economic and Technological Development Zone",
+)
+verified_facility(
+    "faw-vw-changchun-q-plant", "一汽-大众长春Q工厂",
+    "FAW-Volkswagen Changchun Q Plant", "faw-vw", "changchun",
+    "https://sthjt.jl.gov.cn/ywdt/gkgs/gszx/slgs/201708/P020230109658410278809.pdf",
+    "吉林省生态环境厅", "Jilin Department of Ecology and Environment",
+    "一汽-大众长春工厂结构更新项目环境影响报告", "FAW-Volkswagen Changchun restructuring EIA",
+    source_type="regulator", district_zh="汽车经济技术开发区", district_en="Automobile Economic and Technological Development Zone",
+)
+verified_facility(
+    "faw-vw-tianjin-huabei", "一汽-大众天津华北基地",
+    "FAW-Volkswagen Tianjin North China Base", "faw-vw", "tianjin",
+    "https://www.teda.gov.cn/szym/contents/2604/421.html", "天津经济技术开发区",
+    "Tianjin Economic-Technological Development Area", "一汽-大众天津分公司",
+    "FAW-Volkswagen Tianjin branch", source_type="government_site",
+    district_zh="宁河区", district_en="Ninghe District",
+)
+verified_facility(
+    "audi-faw-nev-changchun-ppe", "奥迪一汽新能源汽车长春PPE工厂",
+    "Audi FAW NEV Changchun PPE Plant", "audi-faw-nev", "changchun",
+    "https://www.audi.com/en/press-releases/audi-starts-production-of-electric-models-at-its-new-plant-in-china-16427",
+    "奥迪", "Audi", "奥迪一汽新能源工厂投产", "Audi FAW NEV plant starts production",
+    technology_tags=["nev"], opened_at="2024-12",
+)
+verified_facility(
+    "bmw-brilliance-dadong", "华晨宝马大东工厂", "BMW Brilliance Plant Dadong",
+    "bmw-brilliance", "shenyang", "https://www.bmw-brilliance.cn/cn/zh/pr/shenyang.html",
+    "华晨宝马", "BMW Brilliance", "沈阳生产基地", "Shenyang production base",
+    district_zh="大东区", district_en="Dadong District",
+)
+verified_facility(
+    "bmw-brilliance-tiexi", "华晨宝马铁西原厂区", "BMW Brilliance Original Tiexi Campus",
+    "bmw-brilliance", "shenyang", "https://www.bmw-brilliance.cn/cn/zh/pr/shenyang.html",
+    "华晨宝马", "BMW Brilliance", "沈阳生产基地", "Shenyang production base",
+    district_zh="铁西区", district_en="Tiexi District",
+)
+verified_facility(
+    "bmw-brilliance-lydia", "华晨宝马里达厂区", "BMW Brilliance Lydia Campus",
+    "bmw-brilliance", "shenyang", "https://www.bmw-brilliance.cn/cn/zh/pr/shenyang.html",
+    "华晨宝马", "BMW Brilliance", "沈阳生产基地：里达厂区", "Shenyang production base: Lydia",
+    district_zh="铁西区", district_en="Tiexi District", technology_tags=["nev"], opened_at="2022-06-23",
+)
+verified_facility(
+    "gwm-baoding-lianchi", "长城汽车保定莲池整车厂区", "GWM Baoding Lianchi Vehicle Campus",
+    "gwm", "baoding", "https://www.gwm.com.cn/globalBusiness.html", "长城汽车", "Great Wall Motor",
+    "全球布局：保定生产基地", "Global footprint: Baoding production base",
+    district_zh="莲池区", district_en="Lianchi District", opened_at="2003",
+)
+verified_facility(
+    "gwm-xushui", "长城汽车徐水智慧工厂园区", "GWM Xushui Smart Manufacturing Campus",
+    "gwm", "baoding", "https://www.gwm.com.cn/globalBusiness.html", "长城汽车", "Great Wall Motor",
+    "全球布局：徐水生产基地", "Global footprint: Xushui production base",
+    district_zh="徐水区", district_en="Xushui District",
+)
+verified_facility(
+    "gwm-tianjin-teda-west", "长城汽车天津生产基地", "GWM Tianjin Production Base",
+    "gwm", "tianjin", "https://www.teda.gov.cn/contents/2758/95385.html", "天津经济技术开发区",
+    "Tianjin Economic-Technological Development Area", "长城汽车全动力智能超级平台落地泰达",
+    "GWM full-powertrain intelligent platform in TEDA", source_type="government_site",
+    district_zh="滨海新区经开区西区", district_en="TEDA West, Binhai New Area",
+)
+verified_facility(
+    "faw-toyota-tianjin-teda", "一汽丰田天津经开区整车厂区（泰达/新一工厂）",
+    "FAW Toyota Tianjin TEDA Vehicle Campus (TEDA/New No. 1 Plants)", "faw-toyota", "tianjin",
+    "https://www.toyota.com.cn/about/profile/", "丰田中国", "Toyota China",
+    "丰田在中国：一汽丰田", "Toyota in China: FAW Toyota",
+    district_zh="滨海新区天津经济技术开发区", district_en="TEDA, Binhai New Area",
+)
+verified_facility(
+    "faw-toyota-tianjin", "一汽丰田新能源工厂（天津生态城）",
+    "FAW Toyota NEV Plant (Tianjin Eco-City)", "faw-toyota", "tianjin",
+    "https://www.eco-city.gov.cn/m1/stcxw/20250325/58208.html", "中新天津生态城",
+    "Sino-Singapore Tianjin Eco-City", "一汽丰田新能源工厂绿色制造实践",
+    "FAW Toyota NEV plant green manufacturing", source_type="government_site",
+    district_zh="滨海新区中新天津生态城", district_en="Sino-Singapore Tianjin Eco-City",
+    technology_tags=["nev"],
+)
+verified_facility(
+    "faw-toyota-changchun", "一汽丰田长春丰越工厂", "FAW Toyota Changchun Fengyue Plant",
+    "faw-toyota", "changchun", "https://www.toyota.com.cn/about/profile/", "丰田中国", "Toyota China",
+    "丰田在中国：长春丰越分公司", "Toyota in China: Changchun Fengyue branch",
+    district_zh="汽车经济技术开发区", district_en="Automobile Economic and Technological Development Zone",
+)
+verified_facility(
+    "catarc-tianjin", "中汽中心天津检测基地", "CATARC Tianjin Testing Campus",
+    "catarc", "tianjin", "https://www.catarc.ac.cn/zxjj_0", "中国汽车技术研究中心",
+    "China Automotive Technology and Research Center", "中心简介", "Center profile",
+    facility_type="testing_center", technology_tags=["testing"],
+)
+verified_facility(
+    "sinotruk-jinan-laiwu", "中国重汽济南卡车莱芜厂区", "Sinotruk Jinan Truck Laiwu Campus",
+    "sinotruk", "jinan", "https://www.miit.gov.cn/datainfo/dljdclscqyjcpgg/xcpgs404wdsdww/art/2026/art_a907c9c6c1374a9399c1886f03b3da5d.html",
+    "中华人民共和国工业和信息化部", "Ministry of Industry and Information Technology",
+    "道路机动车辆生产企业及产品公告", "Road-motor-vehicle manufacturer announcement",
+    source_type="regulator", district_zh="莱芜区", district_en="Laiwu District",
+    technology_tags=["commercial"], operator_legal_name_zh="中国重汽集团济南卡车股份有限公司",
+    operator_legal_name_en="Sinotruk Jinan Truck Co., Ltd.", operator_matches_entity_boundary=False,
+)
+verified_facility(
+    "sinotruk-jinan-zhangqiu", "中国重汽章丘圣井工业园整车厂区",
+    "Sinotruk Zhangqiu Shengjing Industrial Park Vehicle Campus", "sinotruk", "jinan",
+    "https://jnepb.jinan.gov.cn/module/download/downfile.jsp?classid=0&filename=53403f90fe684793b65dd7535569ba8e.pdf&showname=%E5%85%AC%E4%BC%97%E5%8F%82%E4%B8%8E%E8%AF%B4%E6%98%8E.pdf",
+    "济南市生态环境局", "Jinan Municipal Ecology and Environment Bureau",
+    "中国重汽章丘园区建设项目公众参与说明", "Sinotruk Zhangqiu project participation statement",
+    source_type="regulator", district_zh="章丘区圣井街道", district_en="Shengjing, Zhangqiu District",
+    technology_tags=["commercial"], operator_legal_name_zh="中国重汽集团济南商用车有限公司",
+    operator_legal_name_en="Sinotruk Jinan Commercial Vehicle Co., Ltd.", operator_matches_entity_boundary=False,
+)
 
 # Additional physical-facility pass. Production lines sharing one land parcel
 # remain one facility, so GAC Toyota's five lines resolve to three campuses.
@@ -1546,6 +1854,180 @@ FACILITY_SOURCE_META[_saic_lingang_current_source] = dict(
     scope_en="This regulatory list confirms that the SAIC Maxus Lingang branch remained an evaluated Lingang regulated entity in 2024.",
 )
 
+# Physical sites recovered by the September 2026 entity-by-entity audit.
+# Keep the Foton R&D/testing campus out of the manufacturing-plant count, and
+# classify Li Auto's SiC power-module site as an automotive parts plant.
+verified_facility(
+    "foton-changsha-super-truck-factory", "北汽福田长沙超级卡车工厂",
+    "BAIC Foton Changsha Super Truck Factory", "baic-foton", "changsha",
+    "https://static.cninfo.com.cn/finalpage/2026-04-25/1225194454.PDF",
+    "北汽福田", "BAIC Foton", "北汽福田2025年年度报告",
+    "BAIC Foton 2025 annual report", source_type="company_ir",
+    technology_tags=["commercial"],
+)
+verified_facility(
+    "foton-beijing-engineering-research-institute",
+    "北汽福田北京工程研究总院及试验园区",
+    "BAIC Foton Beijing Engineering Research Institute and Testing Campus",
+    "baic-foton", "beijing", "https://www.foton.com.cn/innovate.html",
+    "北汽福田", "BAIC Foton", "福田汽车科技创新与研发布局",
+    "Foton technology and R&D footprint", facility_type="testing_center",
+    fact_date="2026",
+)
+verified_facility(
+    "li-auto-suzhou-semiconductor-base", "理想汽车苏州半导体制造基地",
+    "Li Auto Suzhou Semiconductor Manufacturing Base", "li-auto", "suzhou",
+    LI_AUTO_AR, "理想汽车", "Li Auto", "理想汽车2025年年度报告",
+    "Li Auto 2025 annual report", facility_type="parts_plant",
+    source_type="company_ir", technology_tags=["semiconductor"],
+)
+
+# Shanghai and Guangzhou entity-boundary audit. These records distinguish
+# physical campuses from brands and from production lines inside one campus.
+NIO_ESG_2025 = "https://cdn-udp-public.eu.nio.com/www-nio/esg/2025/NIO-2025-ESG-Report-Simplified-Chinese.pdf"
+for args in [
+    ("nio-hefei", "蔚来先进制造合肥一工厂（F1）", "NIO Advanced Manufacturing Hefei Plant 1 (F1)"),
+    ("nio-hefei-f2", "蔚来先进制造新桥二工厂（F2）", "NIO Advanced Manufacturing Xinqiao Plant 2 (F2)"),
+    ("nio-hefei-f3", "蔚来先进制造新桥三工厂（F3）", "NIO Advanced Manufacturing Xinqiao Plant 3 (F3)"),
+]:
+    verified_facility(
+        args[0], args[1], args[2], "nio", "hefei", NIO_ESG_2025,
+        "蔚来", "NIO", "蔚来2025年环境、社会及管治报告",
+        "NIO 2025 ESG report", source_type="company_ir", technology_tags=["nev"],
+    )
+
+for args in [
+    (
+        "saic-passenger-vehicle-lingang", "上汽乘用车临港制造基地",
+        "SAIC Passenger Vehicle Lingang Manufacturing Base", "shanghai",
+        "https://sheitc.sh.gov.cn/zxxx/20250430/619996be762a4f278515ee677284f715.html",
+        "上海市经济和信息化委员会", "Shanghai Municipal Commission of Economy and Informatization",
+        "上汽集团与临港新片区签署深化合作协议",
+        "SAIC signs an expanded cooperation agreement with Lingang",
+    ),
+    (
+        "saic-passenger-vehicle-zhengzhou", "上汽乘用车郑州基地",
+        "SAIC Passenger Vehicle Zhengzhou Base", "zhengzhou",
+        "https://www.saicmotor.com/m/xwzx/xwk/2022/57846.shtml",
+        "上汽集团", "SAIC Motor",
+        "上汽乘用车郑州基地整车二厂正式投产",
+        "SAIC Passenger Vehicle Zhengzhou Plant 2 begins production",
+    ),
+    (
+        "saic-passenger-vehicle-ningde", "上汽乘用车福建宁德基地",
+        "SAIC Passenger Vehicle Fujian Ningde Base", "ningde",
+        "https://www.saicmotor.com/chinese/download/esg/2024.pdf",
+        "上汽集团", "SAIC Motor", "上汽集团2024年度环境、社会和公司治理报告",
+        "SAIC Motor 2024 environmental, social and governance report",
+    ),
+]:
+    verified_facility(
+        args[0], args[1], args[2], "saic", args[3], args[4], args[5], args[6],
+        args[7], args[8], source_type="government_site" if args[0] != "saic-passenger-vehicle-ningde" else "company_site",
+    )
+
+SAIC_VW_JIADING = "https://www.shanghai.gov.cn/nw15343/20250725/9becfc0d9c8d4c54a690397bcf68cee9.html"
+verified_facility(
+    "saic-vw-anting", "上汽大众安亭一厂（当前用途待核）",
+    "SAIC Volkswagen Anting Plant 1 (current use pending review)", "saic-vw", "shanghai",
+    SAIC_VW_JIADING, "上海市人民政府", "Shanghai Municipal Government",
+    "嘉定区调研上汽大众安亭生产基地", "Jiading review of SAIC Volkswagen's Anting production base",
+    source_type="government_site", status="unknown",
+)
+for fid, zh, en in [
+    ("saic-vw-anting-2", "上汽大众安亭二厂", "SAIC Volkswagen Anting Plant 2"),
+    ("saic-vw-anting-3", "上汽大众安亭三厂", "SAIC Volkswagen Anting Plant 3"),
+    ("saic-vw-meb-shanghai", "上汽大众安亭MEB工厂", "SAIC Volkswagen Anting MEB Plant"),
+]:
+    verified_facility(
+        fid, zh, en, "saic-vw", "shanghai", SAIC_VW_JIADING,
+        "上海市人民政府", "Shanghai Municipal Government",
+        "嘉定区调研上汽大众安亭生产基地", "Jiading review of SAIC Volkswagen's Anting production base",
+        source_type="government_site", technology_tags=["nev"] if "meb" in fid else None,
+    )
+
+# The last exact regulator record establishes that the Lingang branch existed
+# in 2024, but does not prove current 2025/26 vehicle production. Keep the site
+# visible without counting it as a confirmed active plant.
+_saic_lingang["status"] = "unknown"
+_saic_lingang["confidence"] = 0.75
+
+verified_facility(
+    "xpeng-wuhan", "小鹏汽车武汉零部件及混合制造基地",
+    "XPENG Wuhan Components and Mixed Manufacturing Base", "xpeng", "wuhan",
+    "https://www.whkfq.gov.cn/xwzx/yw/kfqyw/qnxw/202603/t20260309_2737179.html",
+    "武汉经济技术开发区", "Wuhan Economic & Technological Development Zone",
+    "小鹏汽车回“家乡”", "XPENG returns home to Wuhan", facility_type="parts_plant",
+    source_type="government_site", fact_date="2026", technology_tags=["components"],
+)
+
+for fid, zh, en, address_note in [
+    (
+        "gac-aion-guangzhou-first-smart-eco-factory", "广汽埃安第一智造中心",
+        "GAC Aion First Smart Manufacturing Center", "一厂",
+    ),
+    (
+        "gac-aion-guangzhou-second-smart-manufacturing-center", "广汽埃安第二智造中心",
+        "GAC Aion Second Smart Manufacturing Center", "第二智造中心",
+    ),
+]:
+    verified_facility(
+        fid, zh, en, "gac-aion", "guangzhou",
+        "https://sthjj.gz.gov.cn/ztlm/wryhjjgxxgk/hjzf/zmqd/content/post_10606583.html",
+        "广州市生态环境局", "Guangzhou Municipal Ecology and Environment Bureau",
+        f"2026年广州市生态环境监督执法正面清单：广汽埃安{address_note}",
+        f"2026 Guangzhou environmental positive list: GAC Aion {address_note}",
+        source_type="regulator", fact_date="2026", technology_tags=["nev"],
+    )
+
+NISSAN_ASIA = "https://www.nissan-global.com/EN/COMPANY/PROFILE/EN_ESTABLISHMENT/ASIA.html"
+for fid, zh, en, city_id in [
+    ("dongfeng-nissan-zhengzhou", "东风日产郑州整车生产基地", "Dongfeng Nissan Zhengzhou Vehicle Production Base", "zhengzhou"),
+    ("dongfeng-nissan-wuhan", "东风日产武汉整车生产基地", "Dongfeng Nissan Wuhan Vehicle Production Base", "wuhan"),
+]:
+    verified_facility(
+        fid, zh, en, "dongfeng-nissan", city_id, NISSAN_ASIA,
+        "日产汽车", "Nissan Motor", "日产汽车亚洲生产据点",
+        "Nissan production sites in Asia", source_type="company_site",
+    )
+
+# Nissan's establishment directory and Guangzhou regulator identify the exact
+# manufacturing legal entities. The catalog row remains the network anchor,
+# while the operator mismatch is explicitly disclosed.
+for _fid, _zh, _en in [
+    ("dongfeng-nissan-huadu-1", "东风日产花都一工厂", "Dongfeng Nissan Huadu Plant No. 1"),
+    ("dongfeng-nissan-huadu-2", "东风日产花都二工厂", "Dongfeng Nissan Huadu Plant No. 2"),
+]:
+    verified_facility(
+        _fid, _zh, _en, "dongfeng-nissan", "guangzhou",
+        "https://sthjj.gz.gov.cn/attachment/8/8006/8006643/10775547.pdf",
+        "广州市生态环境局", "Guangzhou Municipal Ecology and Environment Bureau",
+        "东风日产花都工厂VOCs改造及电池车间项目环评批复",
+        "Regulatory approval for Dongfeng Nissan Huadu plant upgrades",
+        source_type="regulator", technology_tags=["nev", "ice"],
+        operator_legal_name_zh="广州风神汽车有限公司",
+        operator_legal_name_en="Guangzhou Fengshen Automobile Co., Ltd.",
+        operator_matches_entity_boundary=False,
+    )
+verified_facility(
+    "dongfeng-nissan-zhengzhou", "东风日产郑州整车生产基地",
+    "Dongfeng Nissan Zhengzhou Vehicle Production Base", "dongfeng-nissan", "zhengzhou",
+    NISSAN_ASIA, "日产汽车", "Nissan Motor Co., Ltd.", "亚洲生产据点名录",
+    "Asia production-establishment directory", technology_tags=["nev", "ice"],
+    operator_legal_name_zh="广州风神汽车有限公司郑州分公司",
+    operator_legal_name_en="Guangzhou Fengshen Automobile Co., Ltd. Zhengzhou Branch",
+    operator_matches_entity_boundary=False,
+)
+verified_facility(
+    "dongfeng-nissan-wuhan", "东风日产武汉整车生产基地",
+    "Dongfeng Nissan Wuhan Vehicle Production Base", "dongfeng-nissan", "wuhan",
+    NISSAN_ASIA, "日产汽车", "Nissan Motor Co., Ltd.", "亚洲生产据点名录",
+    "Asia production-establishment directory", technology_tags=["nev", "ice"],
+    operator_legal_name_zh="东风汽车有限公司武汉分公司",
+    operator_legal_name_en="Dongfeng Motor Co., Ltd. Wuhan Branch",
+    operator_matches_entity_boundary=False,
+)
+
 # Government pages directly identify the active BYD bases.  Keep one physical
 # site per atlas city; headquarters/R&D remains a separate non-plant facility.
 for args in [
@@ -1558,6 +2040,479 @@ for args in [
 ]:
     verified_facility(*args, source_type="government_site", technology_tags=["nev"])
 
+# Shenzhen / Huizhou organization audit.  Preserve one record per physical
+# campus: brand/model lines do not become duplicate factories, while EVE's
+# separately named A/B/C/Xikeng sites remain distinct until address evidence
+# supports merging them.
+verified_facility(
+    "byd-shenshan-xiaomo-plant", "比亚迪深汕小漠工业园（深汕工厂）",
+    "BYD Shenshan Xiaomo Industrial Park (Shenshan Plant)", "byd", "shenzhen",
+    "https://www.byd.com/cn/news/2025/detail599", "比亚迪", "BYD",
+    "比亚迪第1300万辆新能源汽车下线", "BYD's 13 millionth NEV rolls off the line",
+    technology_tags=["nev"],
+)
+for args in [
+    (
+        "eve-huizhou-xikeng", "亿纬锂能惠州西坑生产基地",
+        "EVE Huizhou Xikeng Production Base", "huizhou",
+    ),
+    (
+        "eve-ningbo-production-base", "亿纬锂能宁波生产基地",
+        "EVE Ningbo Production Base", "ningbo",
+    ),
+]:
+    verified_facility(
+        args[0], args[1], args[2], "eve-energy", args[3],
+        "https://www.evebattery.com/cn/about.html", "亿纬锂能", "EVE Energy",
+        "亿纬锂能全球布局", "EVE Energy global footprint",
+        facility_type="battery_plant", technology_tags=["battery"],
+    )
+verified_facility(
+    "desay-sv-huizhou-huinan-industrial-park", "德赛西威惠南工业园智能工厂",
+    "Desay SV Huinan Industrial Park Smart Factory", "desay-sv", "huizhou",
+    "https://www.desaysv.com/newsDetails/366.html", "德赛西威", "Desay SV",
+    "德赛西威智能工厂二期正式启动", "Desay SV smart-factory phase II begins",
+    facility_type="parts_plant", technology_tags=["auto_electronics"],
+)
+verified_facility(
+    "foryou-huizhou-huayang-industrial-park", "华阳集团惠州华阳工业园",
+    "Foryou Huizhou Industrial Park", "holosonics", "huizhou",
+    "https://www.foryougroup.com/news/627.html", "华阳集团", "Foryou Group",
+    "华阳工业园制造活动", "Manufacturing at Foryou Industrial Park",
+    facility_type="parts_plant", technology_tags=["auto_electronics", "components"],
+)
+verified_facility(
+    "foryou-shanghai-new-production-base", "华阳集团上海新生产基地",
+    "Foryou New Shanghai Production Base", "holosonics", "shanghai",
+    "https://disc.static.szse.cn/disc/disk03/finalpage/2026-03-28/5505667f-a2a3-4dd2-867c-fcd4a87713c8.PDF",
+    "华阳集团／深圳证券交易所", "Foryou Group / Shenzhen Stock Exchange",
+    "华阳集团2025年年度报告", "Foryou Group 2025 annual report",
+    facility_type="parts_plant", source_type="company_ir",
+    technology_tags=["auto_electronics", "components"],
+)
+
+# Chongqing / Chengdu audit.  The former generic Changan point is split into
+# distinct addresses.  Avatr, Deepal and AITO model production stays attached
+# to the legal plant operator instead of being duplicated under brand rows.
+for args in [
+    (
+        "changan-yubei-yangfan", "长安汽车渝北工厂（扬帆基地）",
+        "Changan Yubei Plant (Yangfan Base)", "chongqing",
+        "https://sthjj.cq.gov.cn/zwgk_249/zfxxgkzl/fdzdgknr/hjyxpj/pzgcxx/scjsxmhpxxgs/202605/t20260525_15700847_wap.html",
+        "重庆市生态环境局", "Chongqing Ecology and Environment Bureau",
+        "长安渝北工厂产能转移环评", "EIA for Changan Yubei plant capacity transfer",
+        "渝北区", "Yubei District", "regulator", "unknown",
+    ),
+    (
+        "changan-yubei-digital", "长安汽车数智工厂", "Changan Automobile Digital Factory",
+        "chongqing", "https://sthjj.cq.gov.cn/zwgk_249/zfxxgkzl/fdzdgknr/hjyxpj/pzgcxx/scjsxmhpxxgs/202605/t20260525_15700847_wap.html",
+        "重庆市生态环境局", "Chongqing Ecology and Environment Bureau",
+        "长安数智工厂扩能环评", "EIA for Changan Digital Factory expansion",
+        "渝北区", "Yubei District", "regulator", "active",
+    ),
+    (
+        "changan-liangjiang-1", "长安汽车两江工厂一厂区", "Changan Liangjiang Plant Campus 1",
+        "chongqing", "https://sthjj.cq.gov.cn/zwxx_249/tzgg/202205/P020220507517792174187.pdf",
+        "重庆市生态环境局", "Chongqing Ecology and Environment Bureau",
+        "重庆市环境信息强制性披露企业名单", "Chongqing mandatory environmental-disclosure register",
+        "两江新区", "Liangjiang New Area", "regulator", "active",
+    ),
+    (
+        "changan-liangjiang-2", "长安汽车两江工厂二厂区", "Changan Liangjiang Plant Campus 2",
+        "chongqing", "https://sthjj.cq.gov.cn/zwxx_249/tzgg/202205/P020220507517792174187.pdf",
+        "重庆市生态环境局", "Chongqing Ecology and Environment Bureau",
+        "重庆市环境信息强制性披露企业名单", "Chongqing mandatory environmental-disclosure register",
+        "两江新区", "Liangjiang New Area", "regulator", "active",
+    ),
+    (
+        "changan-liangjiang-3", "长安汽车两江工厂三厂区", "Changan Liangjiang Plant Campus 3",
+        "chongqing", "https://sthjj.cq.gov.cn/zwgk_249/zfxxgkml/hjgl/qjscsh_1/202203/t20220321_10531512_wap.html",
+        "重庆市生态环境局", "Chongqing Ecology and Environment Bureau",
+        "重庆市清洁生产审核名单", "Chongqing clean-production audit register",
+        "两江新区", "Liangjiang New Area", "regulator", "active",
+    ),
+    (
+        "changan-lingyao-banan", "重庆铃耀巴南整车基地", "Chongqing Lingyao Banan Vehicle Base",
+        "chongqing", "https://www.cqbn.gov.cn/zwgk_252/fdzdgknr/zdxm/pzjgxx_1/202303/t20230307_11717607_wap.html",
+        "重庆市巴南区人民政府", "Banan District Government",
+        "重庆铃耀整车基地技改备案", "Chongqing Lingyao vehicle-base retrofit filing",
+        "巴南区", "Banan District", "government_site", "active",
+    ),
+    (
+        "changan-beijing", "北京长安汽车公司工厂", "Beijing Changan Automobile Plant",
+        "beijing", "https://jxj.beijing.gov.cn/jxdt/tzgg/202512/P020251224523067931768.pdf",
+        "北京市经济和信息化局", "Beijing Bureau of Economy and Information Technology",
+        "北京市绿色工厂名单", "Beijing green-factory register",
+        "房山区", "Fangshan District", "government_site", "active",
+    ),
+    (
+        "changan-hefei", "合肥长安汽车工厂", "Hefei Changan Automobile Plant",
+        "hefei", "https://www.miit.gov.cn/datainfo/dljdclscqyjcpgg/xcpgs402sduwe2e/art/2025/art_ea903ee176454eaabf57e7e312dab939.html",
+        "工业和信息化部", "Ministry of Industry and Information Technology",
+        "合肥长安车型申报", "Hefei Changan vehicle filing",
+        "高新区", "High-tech Zone", "government_site", "active",
+    ),
+]:
+    verified_facility(
+        args[0], args[1], args[2], "changan", args[3], args[4], args[5], args[6],
+        args[7], args[8], source_type=args[11], district_zh=args[9],
+        district_en=args[10], status=args[12],
+    )
+
+for args in [
+    (
+        "seres-shuangfu", "赛力斯双福工厂", "SERES Shuangfu Plant", "chongqing",
+        "https://sthjj.cq.gov.cn/zwgk_249/zfxxgkml/zcwj/qtwj/202404/t20240402_13102454.html",
+        "重庆市生态环境局", "Chongqing Ecology and Environment Bureau",
+        "重庆市2024年清洁生产审核名单", "Chongqing 2024 clean-production audit register",
+        "江津区", "Jiangjin District", "regulator",
+    ),
+    (
+        "seres-shiyan", "赛力斯汽车十堰工厂", "SERES Automobile Shiyan Plant", "shiyan",
+        "https://www.miit.gov.cn/datainfo/dljdclscqyjcpgg/xcpgs390ssew/art/2024/art_57a37c132cb44fd9b4b2870b5f9e9d10.html",
+        "工业和信息化部", "Ministry of Industry and Information Technology",
+        "赛力斯汽车（湖北）车型申报", "Seres Automobile Hubei vehicle filing",
+        "茅箭区", "Maojian District", "government_site",
+    ),
+]:
+    verified_facility(
+        args[0], args[1], args[2], "seres", args[3], args[4], args[5], args[6],
+        args[7], args[8], source_type=args[11], district_zh=args[9], district_en=args[10],
+        technology_tags=["nev"],
+    )
+
+verified_facility(
+    "caeri-kai-rui-special-vehicle-dazu", "重庆凯瑞特种车大足工厂",
+    "Chongqing Kai Rui Special Vehicle Dazu Plant", "caeri", "chongqing",
+    "https://caeri.com.cn/zgqy/zjzgqy/lxwm/", "中国汽车工程研究院", "CAERI",
+    "中国汽研联系我们", "CAERI contact and subsidiary locations",
+    facility_type="vehicle_plant", source_type="company_site",
+    district_zh="大足区双桥经开区", district_en="Dazu Shuangqiao Economic Development Zone",
+    technology_tags=["commercial", "special_purpose"],
+)
+verified_facility(
+    "qianli-ruilan-beibei", "睿蓝制造北碚工厂", "Ruilan Manufacturing Beibei Plant",
+    "qianli", "chongqing",
+    "https://www.beibei.gov.cn/bm/qsthjj/zwgk_58246/fdzdgknr_58248/qtfdzdgknr/202508/t20250806_14880437.html",
+    "重庆市北碚区人民政府", "Beibei District Government",
+    "北碚区2025年环境监管重点单位名录", "Beibei 2025 key environmental-regulation register",
+    source_type="regulator", district_zh="北碚区", district_en="Beibei District",
+)
+verified_facility(
+    "volvo-chengdu", "沃尔沃汽车成都工厂", "Volvo Cars Chengdu Plant",
+    "volvo-cars-chengdu", "chengdu", "https://www.volvocars.com.cn/zh-cn/l/volvo-experience-centers/",
+    "沃尔沃汽车中国", "Volvo Cars China", "体验沃尔沃汽车",
+    "Experience Volvo Cars", district_zh="龙泉驿区", district_en="Longquanyi District",
+)
+
+# Yangtze-region physical-campus audit. Subsidiary or branch operators are
+# named explicitly; their catalog parent remains only the graph anchor.
+verified_facility(
+    "jac-hefei-zunjie-super-factory", "尊界超级工厂", "Zunjie Super Factory", "jac", "hefei",
+    "https://www.jac.com.cn/news/20250618/6263.html", "江汽集团", "JAC Group",
+    "尊界S800正式批量投产", "Zunjie S800 enters mass production",
+    operator_legal_name_zh="安徽江淮汽车集团股份有限公司肥西新能源乘用车分公司",
+    operator_legal_name_en="Anhui Jianghuai Automobile Group Corp., Ltd. Feixi New Energy Passenger Vehicle Branch",
+    operator_legal_name_en_is_translation=True,
+    operator_matches_entity_boundary=False, technology_tags=["nev"], opened_at="2025-06-18",
+)
+verified_facility(
+    "vw-anhui-hefei-meb-plant", "大众安徽合肥MEB工厂", "Volkswagen Anhui Hefei MEB Plant",
+    "vw-anhui", "hefei", "https://www.volkswagengroupchina.com.cn/en/partner/volkswagenanhui",
+    "大众汽车集团（中国）", "Volkswagen Group China", "大众汽车（安徽）",
+    "Volkswagen Anhui", operator_legal_name_zh="大众汽车（安徽）有限公司",
+    operator_legal_name_en="Volkswagen (Anhui) Automotive Company Limited",
+    technology_tags=["nev"],
+)
+verified_facility(
+    "gotion-hefei-xinzhan-base", "国轩高科合肥新站动力电池基地",
+    "Gotion Hefei Xinzhan Battery Base", "gotion", "hefei",
+    "https://www.gotion.com.cn/news/announcementinfos/1529.html", "国轩高科", "Gotion High-tech",
+    "合肥国轩新站园区当前招标公告", "Current tender notice for Gotion's Xinzhan campus",
+    facility_type="battery_plant", operator_legal_name_zh="合肥国轩高科动力能源有限公司",
+    operator_legal_name_en="Hefei Gotion High-tech Power Energy Co., Ltd.",
+    operator_legal_name_en_is_translation=True,
+    operator_matches_entity_boundary=False, technology_tags=["battery"],
+)
+verified_facility(
+    "gotion-hefei-lujiang-battery-base", "国轩新能源庐江动力电池基地",
+    "Gotion Lujiang Battery Base", "gotion", "hefei",
+    "https://www.gotion.com.cn/news/companydetails/613.html", "国轩高科", "Gotion High-tech",
+    "国轩新能源（庐江）项目介绍", "Gotion New Energy Lujiang project",
+    facility_type="battery_plant", operator_legal_name_zh="国轩新能源（庐江）有限公司",
+    operator_legal_name_en="Gotion New Energy (Lujiang) Co., Ltd.",
+    operator_legal_name_en_is_translation=True,
+    operator_matches_entity_boundary=False, technology_tags=["battery"],
+)
+verified_facility(
+    "chery-wuhu-plant", "奇瑞芜湖长春路整车制造园区", "Chery Wuhu Changchun Road Vehicle Campus",
+    "chery", "wuhu", "https://weda.wuhu.gov.cn/zwgk/tzgg/18467752.html",
+    "芜湖经济技术开发区管理委员会", "Wuhu Economic and Technological Development Zone",
+    "奇瑞整车三工厂升级改造项目公示", "Chery Vehicle Plant No. 3 upgrade notice",
+    source_type="government_site", operator_legal_name_zh="奇瑞汽车股份有限公司",
+    operator_legal_name_en="Chery Automobile Co., Ltd.",
+)
+verified_facility(
+    "svolt-changzhou-jintan-campus", "蜂巢能源常州金坛生产基地",
+    "SVOLT Changzhou Jintan Production Base", "svolt", "changzhou",
+    "https://svolt.cn/news/229", "蜂巢能源", "SVOLT Energy",
+    "堡垒2.0电池在常州工厂量产下线", "Fortress 2.0 battery enters production in Changzhou",
+    facility_type="battery_plant", operator_legal_name_zh="蜂巢能源科技股份有限公司",
+    operator_legal_name_en="SVOLT Energy Technology Co., Ltd.", technology_tags=["battery"],
+)
+verified_facility(
+    "calb-changzhou", "中创新航常州基地", "CALB Changzhou Base", "calb", "changzhou",
+    "https://www.calb-tech.com/newsDetails/13.html", "中创新航", "CALB",
+    "中创新航常州基地获评国家级绿色工厂", "CALB Changzhou named a national green factory",
+    facility_type="battery_plant", operator_legal_name_zh="中创新航科技集团股份有限公司",
+    operator_legal_name_en="CALB Group Co., Ltd.", technology_tags=["battery"],
+)
+verified_facility(
+    "calb-hefei-base", "中创新航合肥基地", "CALB Hefei Base", "calb", "hefei",
+    "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0429/2026042900019.pdf",
+    "中创新航 / 香港交易所", "CALB / Hong Kong Stock Exchange",
+    "中创新航2025年年度报告", "CALB 2025 annual report", source_type="regulator",
+    facility_type="battery_plant", operator_legal_name_zh="中创新航科技（合肥）有限公司",
+    operator_legal_name_en="CALB Technology (Hefei) Co., Ltd.",
+    operator_legal_name_en_is_translation=True,
+    operator_matches_entity_boundary=False, technology_tags=["battery"],
+)
+verified_facility(
+    "catl-liyang", "宁德时代溧阳基地", "CATL Liyang Base", "catl", "changzhou",
+    "https://www.catl.com/news/8368.html", "宁德时代", "CATL",
+    "走近十三大电池生产基地", "Thirteen battery production bases",
+    facility_type="battery_plant", operator_legal_name_zh="江苏时代新能源科技有限公司",
+    operator_legal_name_en="Jiangsu Contemporary Amperex Technology Co., Ltd.",
+    operator_legal_name_en_is_translation=True,
+    operator_matches_entity_boundary=False, technology_tags=["battery"],
+)
+
+# Liuzhou, Xiamen and Ningbo physical-campus audit.  A catalog organization is
+# only a graph anchor when the official source names a subsidiary/operator;
+# brand rows never inherit their parent's facilities.
+verified_facility(
+    "sgmw-liuzhou", "上汽通用五菱柳州河西总部生产基地",
+    "SGMW Liuzhou Hexi Headquarters Production Base", "sgmw", "liuzhou",
+    "https://lu.sgmw.com.cn/portal/details.html?id=47418", "上汽通用五菱工会",
+    "SGMW labour union", "上汽通用五菱河西基地介绍", "SGMW Hexi base profile",
+    operator_legal_name_zh="上汽通用五菱汽车股份有限公司",
+    operator_legal_name_en="SAIC-GM-Wuling Automobile Co., Ltd.",
+    site_scope_note_zh="河西厂区按一个总部兼生产园区计数，不拆分园区内生产线。",
+    site_scope_note_en="The Hexi campus is counted once as a combined headquarters and production site; lines inside it are not split.",
+    support_fields=[
+        "name_zh", "name_en", "operator_id", "operator_legal_name_zh",
+        "operator_legal_name_en", "operator_matches_entity_boundary", "city_id",
+        "status", "facility_type", "site_scope_note_zh", "site_scope_note_en",
+    ],
+)
+supporting_facility_source(
+    "sgmw-liuzhou", "company-profile", "https://www.sgmw.com.cn/aboutUs",
+    "上汽通用五菱", "SAIC-GM-Wuling", "企业介绍", "Company profile",
+    support_fields=["operator_id", "operator_legal_name_zh", "operator_legal_name_en"],
+)
+verified_facility(
+    "sgmw-liuzhou-baojun", "上汽通用五菱柳州宝骏生产与研发试验基地",
+    "SGMW Liuzhou Baojun Production and R&D/Test Campus", "sgmw", "liuzhou",
+    "https://lu.sgmw.com.cn/portal/details.html?id=54294", "上汽通用五菱工会",
+    "SGMW labour union", "宝骏基地生产与研发试验设施介绍",
+    "Baojun campus production and R&D/test profile",
+    operator_legal_name_zh="上汽通用五菱汽车股份有限公司",
+    operator_legal_name_en="SAIC-GM-Wuling Automobile Co., Ltd.",
+    district_zh="鱼峰区雒容镇", district_en="Luorong Town, Yufeng District",
+    address_zh="广西壮族自治区柳州市鱼峰区雒容镇宝骏大道10号",
+    address_en="No. 10 Baojun Avenue, Luorong Town, Yufeng District, Liuzhou, Guangxi",
+    site_scope_note_zh="宝骏基地按一个物理园区计数，园区内生产、研发和试验设施不重复计数。",
+    site_scope_note_en="The Baojun campus is counted as one physical site; its production, R&D and test facilities are not counted separately.",
+    support_fields=[
+        "name_zh", "name_en", "operator_id", "operator_legal_name_zh",
+        "operator_legal_name_en", "operator_matches_entity_boundary", "city_id",
+        "status", "facility_type", "site_scope_note_zh", "site_scope_note_en",
+    ],
+)
+supporting_facility_source(
+    "sgmw-liuzhou-baojun", "laboratory-address",
+    "https://gxxnyqch.sgmw.com.cn/col30/171.html", "广西新能源汽车实验室",
+    "Guangxi New Energy Vehicle Laboratory", "实验室联系地址",
+    "Laboratory contact address", support_fields=[
+        "district_zh", "district_en", "address_zh", "address_en",
+    ],
+)
+verified_facility(
+    "dongfeng-liuzhou-passenger", "东风柳汽柳东乘用车生产基地",
+    "Dongfeng Liuzhou Liudong Passenger Vehicle Production Base",
+    "dongfeng-liuzhou", "liuzhou", "https://www.dflzm.com.cn/index.php/about",
+    "东风柳州汽车", "Dongfeng Liuzhou Motor", "公司简介", "Company profile",
+    operator_legal_name_zh="东风柳州汽车有限公司",
+    operator_legal_name_en="Dongfeng Liuzhou Motor Co., Ltd.",
+    district_zh="鱼峰区雒容镇", district_en="Luorong Town, Yufeng District",
+    site_scope_note_zh="该记录仅表示柳东乘用车物理基地；商用车基地另列，不新增含糊的综合点。",
+    site_scope_note_en="This row represents only the Liudong passenger-vehicle campus; the commercial-vehicle campus remains separate and no ambiguous composite point is added.",
+    support_fields=[
+        "name_zh", "name_en", "operator_id", "operator_legal_name_zh",
+        "operator_legal_name_en", "operator_matches_entity_boundary", "city_id",
+        "status", "facility_type", "site_scope_note_zh", "site_scope_note_en",
+    ],
+)
+supporting_facility_source(
+    "dongfeng-liuzhou-passenger", "address",
+    "https://www.dflzm.com.cn/index.php/about/purchase_detail/805", "东风柳州汽车",
+    "Dongfeng Liuzhou Motor", "柳东乘用车基地采购公告", "Liudong passenger-vehicle base procurement notice",
+    support_fields=["district_zh", "district_en", "address_zh", "address_en"],
+    field_patch={
+        "address_zh": "广西壮族自治区柳州市鱼峰区雒容镇博园大道6号",
+        "address_en": "No. 6 Boyuan Avenue, Luorong Town, Yufeng District, Liuzhou, Guangxi",
+    },
+)
+verified_facility(
+    "golden-dragon-haicang", "厦门金龙旅行车海沧生产基地",
+    "Xiamen Golden Dragon Haicang Production Base", "golden-dragon", "xiamen",
+    "https://www.goldendragonbus.com/news/272973.html", "厦门金龙旅行车",
+    "Xiamen Golden Dragon Bus", "金旅客车发展历程", "Golden Dragon company history",
+    operator_legal_name_zh="厦门金龙旅行车有限公司",
+    operator_legal_name_en="Xiamen Golden Dragon Bus Co., Ltd.",
+    district_zh="海沧区新阳工业区", district_en="Xinyang Industrial Zone, Haicang District",
+)
+supporting_facility_source(
+    "golden-dragon-haicang", "current-profile", "https://goldendragonbus.com/about.html",
+    "厦门金龙旅行车", "Xiamen Golden Dragon Bus", "企业简介", "Company profile",
+    support_fields=["operator_id", "operator_legal_name_zh", "operator_legal_name_en", "status"],
+)
+verified_facility(
+    "guangxi-auto-liuzhou-hexi-headquarters", "广西汽车集团柳州河西总部",
+    "Guangxi Automobile Group Liuzhou Hexi Headquarters", "guangxi-auto", "liuzhou",
+    "https://www.wuling.com.cn/", "广西汽车集团", "Guangxi Automobile Group",
+    "广西汽车集团官方网站", "Guangxi Automobile Group official website",
+    facility_type="headquarters_campus",
+    operator_legal_name_zh="广西汽车集团有限公司",
+    operator_legal_name_en="Guangxi Automobile Group Co., Ltd.",
+    district_zh="柳南区", district_en="Liunan District",
+    address_zh="广西壮族自治区柳州市河西路18号五菱大厦",
+    address_en="Wuling Building, No. 18 Hexi Road, Liuzhou, Guangxi",
+)
+verified_facility(
+    "king-long-xiamen-jimei-campus", "厦门金龙联合集美生产基地",
+    "Xiamen King Long Jimei Production Base", "king-long", "xiamen",
+    "https://www.xmklm.com.cn/info/1070/48331.htm", "厦门金龙联合汽车工业",
+    "Xiamen King Long", "金龙客车2025年生产报道", "King Long 2025 production report",
+    operator_legal_name_zh="厦门金龙联合汽车工业有限公司",
+    operator_legal_name_en="Xiamen King Long United Automotive Industry Co., Ltd.",
+    district_zh="集美区", district_en="Jimei District",
+    address_zh="福建省厦门市集美区金龙路9号",
+    address_en="No. 9 Jinlong Road, Jimei District, Xiamen, Fujian",
+    support_fields=[
+        "name_zh", "name_en", "operator_id", "operator_legal_name_zh",
+        "operator_legal_name_en", "operator_matches_entity_boundary", "city_id",
+        "status", "facility_type",
+    ],
+)
+supporting_facility_source(
+    "king-long-xiamen-jimei-campus", "contact", "https://www.king-long.com.cn/col126/index",
+    "厦门金龙联合汽车工业", "Xiamen King Long", "联系我们", "Contact us",
+    support_fields=["district_zh", "district_en", "address_zh", "address_en"],
+)
+verified_facility(
+    "joyson-ningbo-qingyi-campus", "均胜电子宁波清逸路总部",
+    "Joyson Ningbo Qingyi Road Headquarters", "joyson", "ningbo",
+    "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0421/2026042101442.pdf",
+    "均胜电子 / 香港交易所", "Joyson / Hong Kong Stock Exchange",
+    "均胜电子2025年年度报告", "Joyson 2025 annual report", source_type="regulator",
+    facility_type="headquarters_campus",
+    operator_legal_name_zh="宁波均胜电子股份有限公司",
+    operator_legal_name_en="Ningbo Joyson Electronic Corp.",
+    district_zh="鄞州区", district_en="Yinzhou District",
+    address_zh="浙江省宁波市鄞州区清逸路99号",
+    address_en="No. 99 Qingyi Road, Yinzhou District, Ningbo, Zhejiang",
+)
+verified_facility(
+    "tuopu-ningbo-yuwangshan-campus", "拓普集团宁波育王山路总部",
+    "Tuopu Ningbo Yuwangshan Road Headquarters", "tuopu", "ningbo",
+    "https://www.tuopu.com/wp-content/uploads/2026/03/%E6%8B%93%E6%99%AE%E9%9B%86%E5%9B%A22025%E5%B9%B4%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf",
+    "拓普集团", "Tuopu Group", "拓普集团2025年年度报告", "Tuopu 2025 annual report",
+    source_type="company_ir", facility_type="headquarters_campus",
+    operator_legal_name_zh="宁波拓普集团股份有限公司",
+    operator_legal_name_en="Ningbo Tuopu Group Co., Ltd.",
+    district_zh="北仑区", district_en="Beilun District",
+    address_zh="浙江省宁波市北仑区育王山路268号",
+    address_en="No. 268 Yuwangshan Road, Beilun District, Ningbo, Zhejiang",
+)
+verified_facility(
+    "minth-ningbo-chunxiao-campus", "宁波信泰春晓零部件生产基地",
+    "Ningbo Shintai Chunxiao Parts Production Base", "minth", "ningbo",
+    "https://sthjt.zj.gov.cn/module/download/downfile.jsp?classid=-1&filename=2406151827354466107.pdf",
+    "浙江省生态环境厅", "Zhejiang Department of Ecology and Environment",
+    "宁波信泰春晓厂区环境材料", "Ningbo Shintai Chunxiao site environmental filing",
+    source_type="regulator", facility_type="parts_plant",
+    operator_legal_name_zh="宁波信泰机械有限公司",
+    operator_legal_name_en="Ningbo Shintai Machines Co., Ltd.",
+    operator_matches_entity_boundary=False,
+    district_zh="北仑区春晓街道", district_en="Chunxiao Subdistrict, Beilun District",
+    site_scope_note_zh="按一个共址物理园区计数；不把园区内三家运营主体拆成三座工厂。",
+    site_scope_note_en="Counted as one co-located physical campus; its three operating entities are not split into three plants.",
+    support_fields=[
+        "name_zh", "name_en", "operator_id", "operator_legal_name_zh",
+        "operator_matches_entity_boundary", "city_id", "status", "facility_type",
+        "district_zh", "district_en", "site_scope_note_zh", "site_scope_note_en",
+    ],
+)
+supporting_facility_source(
+    "minth-ningbo-chunxiao-campus", "english-operator",
+    "https://www.minthgroup.com/ENG/upload/files/2026/4/e_00425ar-20260429.pdf",
+    "敏实集团", "Minth Group", "敏实集团2025年年度报告", "Minth 2025 annual report",
+    source_type="company_ir", support_fields=["operator_legal_name_en"],
+)
+supporting_facility_source(
+    "minth-ningbo-chunxiao-campus", "address",
+    "https://www-static.sf-express.com/uploads/24_7_c7ffe46d5f.pdf",
+    "顺丰速运", "SF Express", "服务网点目录", "Service-site directory",
+    source_type="company_site", support_fields=["address_zh", "address_en"],
+    field_patch={
+        "address_zh": "浙江省宁波市北仑区春晓观海路155号",
+        "address_en": "No. 155 Guanhai Road, Chunxiao, Beilun District, Ningbo, Zhejiang",
+    },
+)
+verified_facility(
+    "huaxiang-group-xizhou-zhenan-campus", "华翔集团西周镇安路总部",
+    "Huaxiang Group Xizhou Zhen'an Road Headquarters", "huaxiang", "ningbo",
+    "https://disc.static.szse.cn/disc/disk01/finalpage/2016-12-20/3f75a238-20fd-450b-96e7-7d39af21a6e2.PDF",
+    "深圳证券交易所", "Shenzhen Stock Exchange", "华翔集团相关交易披露",
+    "Huaxiang Group transaction disclosure", source_type="regulator",
+    fact_date="2016", facility_type="headquarters_campus", confidence=0.75,
+    operator_legal_name_zh="华翔集团股份有限公司",
+    operator_legal_name_en="Huaxiang Group Co., Ltd.",
+    district_zh="象山县西周镇", district_en="Xizhou Town, Xiangshan County",
+    address_zh="浙江省宁波市象山县西周镇镇安路104号",
+    address_en="No. 104 Zhen'an Road, Xizhou Town, Xiangshan County, Ningbo, Zhejiang",
+)
+supporting_facility_source(
+    "huaxiang-group-xizhou-zhenan-campus", "current-related-site",
+    "https://www.cn-huazhong.com/index.php?act=list&case=archive&catid=39",
+    "华众控股", "Huazhong In-Vehicle", "集团简介", "Group profile",
+    support_fields=["status"],
+    scope_zh="该关联公司官网仅用于交叉核对西周集团园区仍处于当前运营网络；不支持上市主体归属。",
+    scope_en="This related-company page is used only to cross-check that the Xizhou group campus remains in the current operating network; it does not support issuer ownership.",
+)
+
+# These physical locations are real research leads, but the current evidence
+# does not resolve their exact operating legal entity or current status. Keep
+# them in the audit ledger rather than publishing a false direct-operator edge.
+# The CATL Ningde page proves five place names/topology only; ZEEKR's own filing
+# says the factories it uses are not owned by the former issuer represented by
+# this row; the last first-party SAIC-GM page does not prove Shenyang's current
+# post-conversion state.
+WITHHELD_FACILITY_IDS = {
+    "zeekr-ningbo",
+    "saic-gm-shenyang",
+    "catl-ningde", "catl-ningde-huxi", "catl-ningde-jiaocheng",
+    "catl-ningde-fuding", "catl-ningde-z",
+}
+FACILITIES[:] = [
+    facility for facility in FACILITIES
+    if facility["id"] not in WITHHELD_FACILITY_IDS
+]
+for source_id, meta in list(FACILITY_SOURCE_META.items()):
+    if meta["facility_id"] in WITHHELD_FACILITY_IDS:
+        FACILITY_SOURCE_META.pop(source_id)
+
 
 def role(city_id, entity_id, role_type, zh, en):
     return dict(
@@ -1569,8 +2524,21 @@ def role(city_id, entity_id, role_type, zh, en):
 
 
 ROLES = []
+ROLE_TYPE_OVERRIDES = {
+    # Wuling and Baojun are brand lineages in Liuzhou; the SGMW legal entity is
+    # the operator of the city's physical plants.
+    ("liuzhou", "wuling"): "historical_origin",
+    ("liuzhou", "baojun"): "historical_origin",
+}
+ROLE_EXCLUSIONS = {
+    # ZEEKR's filing does not identify this catalog brand as the operator of a
+    # current Ningbo campus. Keep the research lead out of the public graph.
+    ("ningbo", "zeekr"),
+}
 for city_id, ids in FEATURED.items():
     for eid in ids:
+        if (city_id, eid) in ROLE_EXCLUSIONS:
+            continue
         o = ORG_BY_ID.get(eid)
         if not o:
             continue
@@ -1585,6 +2553,7 @@ for city_id, ids in FEATURED.items():
             rtype = "rd_center"
         elif o["organization_type"] in ("supplier", "battery_company") and o.get("headquarters_city_id") != city_id:
             rtype = "supplier_plant"
+        rtype = ROLE_TYPE_OVERRIDES.get((city_id, eid), rtype)
         ROLES.append(role(city_id, eid, rtype, f"{o['display_name_zh']}在{city_id}的{rtype}角色", f"{o['display_name_en']} {rtype} role in {city_id}"))
 
 # Extra BYD multi-city manufacturing roles
@@ -1795,11 +2764,14 @@ for relation in RELATIONS:
 
 STATS = []
 OUTPUT_2025 = {
-    "chongqing": 2787700, "guangzhou": 2409600, "hefei": 1872000, "wuhu": 1801000,
-    "shanghai": 1772000, "xian": 1482700, "beijing": 1467100, "changchun": 1461300,
-    "zhengzhou": 1205000, "liuzhou": 1151900,
+    "chongqing": 2787700, "guangzhou": 2409600, "wuhu": 1801000,
+    "shanghai": 1772000, "xian": 1482700, "beijing": 1467100,
+    "zhengzhou": 1205000, "wuhan": 811000, "shiyan": 240307,
 }
-NEV_2025 = {"chongqing": 1296100, "hefei": 1371000, "wuhu": 411000, "xian": 1051400}
+NEV_2025 = {
+    "chongqing": 1296100, "guangzhou": 661900, "hefei": 1371000, "wuhu": 411000, "xian": 1051400,
+    "shanghai": 1161100, "beijing": 699000, "wuhan": 520000, "shiyan": 51560,
+}
 STAT_SOURCE_BY_CITY = {
     "chongqing": SRC_STAT_CHONGQING_2025,
     "guangzhou": SRC_STAT_GUANGZHOU_2025,
@@ -1808,45 +2780,158 @@ STAT_SOURCE_BY_CITY = {
     "xian": SRC_STAT_XIAN_2025,
     "beijing": SRC_STAT_BEIJING_2025,
     "zhengzhou": SRC_STAT_ZHENGZHOU_2025,
+    "wuhan": SRC_STAT_WUHAN_2025,
+    "shiyan": SRC_STAT_SHIYAN_2025,
 }
-STAT_CONTEXT_SOURCE_BY_CITY = {
-    # These pages support only a subfield or disprove the city scope, so the
-    # complete record must remain at the candidate threshold.
+STAT_EXTRA_SOURCE_BY_CITY = {
+    # Extra pages may support one subfield or document a scope mismatch. A row
+    # remains verified only when STAT_SOURCE_BY_CITY has a city-level total.
+    "guangzhou": SRC_STAT_GUANGZHOU_NEV_2025,
+    "shanghai": SRC_STAT_SHANGHAI_NEV_2025,
+    "beijing": SRC_STAT_BEIJING_NEV_2025,
+    "wuhan": SRC_STAT_WUHAN_NEV_2025,
     "hefei": SRC_STAT_HEFEI_NEV_2025,
-    "changchun": SRC_STAT_JILIN_2025,
 }
-for cid, total in OUTPUT_2025.items():
+
+
+def reviewed_city_decisions() -> dict[str, dict]:
+    path = ROOT / "tools" / "reviewed_entity_audit_2026_09.json"
+    if not path.is_file():
+        return {}
+    blob = json.loads(path.read_text(encoding="utf-8"))
+    return {row["id"]: row.get("fields") or {} for row in blob.get("cities") or []}
+
+
+def reviewed_organization_decisions() -> dict[str, dict]:
+    path = ROOT / "tools" / "reviewed_entity_audit_2026_09.json"
+    if not path.is_file():
+        return {}
+    blob = json.loads(path.read_text(encoding="utf-8"))
+    return {row["id"]: row.get("fields") or {} for row in blob.get("organizations") or []}
+
+
+def reviewed_founded_year(decision: dict | None) -> int | None:
+    if not isinstance(decision, dict) or decision.get("status") != "verified":
+        return None
+    value = decision.get("value")
+    if isinstance(value, int) and not isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        match = re.search(r"(?:18|19|20)\d{2}", value)
+        if match:
+            return int(match.group(0))
+    if isinstance(value, dict):
+        # Prefer the date that matches the audited row boundary.  For example,
+        # JAC's 1999 issuer incorporation outranks its 1964 institutional
+        # lineage, while CAERI deliberately displays its 1965 lineage anchor.
+        for key in (
+            "incorporated", "legal_entity_established", "issuer_incorporated",
+            "current_group_established", "brand_launch_date", "date",
+            "institutional_origin", "current_joint_stock_company",
+        ):
+            match = re.search(r"(?:18|19|20)\d{2}", str(value.get(key) or ""))
+            if match:
+                return int(match.group(0))
+        for key in (
+            "year", "approximate_year", "legal_entity_established_year",
+            "joint_stock_company_established_year", "legal_company_created_year",
+            "brand_launch_year", "institutional_origin_year",
+            "earliest_lineage_year", "academy_lineage_year",
+            "brand_reorganization_year",
+        ):
+            candidate = value.get(key)
+            if isinstance(candidate, int) and not isinstance(candidate, bool):
+                return candidate
+    return None
+
+
+def reviewed_city_number(decision: dict | None) -> int | None:
+    """Read the supported integer from heterogeneous research receipts."""
+    if not isinstance(decision, dict):
+        return None
+    value = decision.get("value")
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        return int(value)
+    if isinstance(value, dict):
+        for key in ("count", "vehicles", "units", "value", "output", "total"):
+            candidate = value.get(key)
+            if isinstance(candidate, (int, float)) and not isinstance(candidate, bool):
+                return int(candidate)
+    return None
+
+
+def compact_city_review(decision: dict | None) -> dict:
+    decision = decision if isinstance(decision, dict) else {}
+    source = next(
+        (
+            item for item in decision.get("sources") or []
+            if str(item.get("url") or "").startswith(("http://", "https://"))
+        ),
+        {},
+    )
+    return {
+        "status": decision.get("status") or "unverified",
+        "scope": decision.get("scope"),
+        "as_of": decision.get("as_of"),
+        "note_zh": decision.get("note_zh") or "",
+        "note_en": decision.get("note_en") or "",
+        "caveat_zh": decision.get("caveat_zh") or "",
+        "caveat_en": decision.get("caveat_en") or "",
+        "source_url": source.get("url"),
+        "source_title": source.get("title"),
+        "source_publisher": source.get("publisher"),
+        "source_date": source.get("published_or_fact_date"),
+        "source_accessed_at": source.get("accessed_at"),
+    }
+
+
+_CITY_AUDIT = reviewed_city_decisions()
+_ORG_AUDIT = reviewed_organization_decisions()
+# Only an explicitly reviewed, directly reported partial may retain a public
+# number. Derived or mixed-boundary partials stay in the audit receipt as null
+# on the city card so they cannot enter rankings or look like city totals.
+CITY_PARTIAL_PUBLIC_VALUES = {("hefei", "nev_output")}
+for city in CITIES:
+    cid = city["id"]
     source_id = STAT_SOURCE_BY_CITY.get(cid)
-    context_source_id = STAT_CONTEXT_SOURCE_BY_CITY.get(cid)
+    context_source_id = STAT_EXTRA_SOURCE_BY_CITY.get(cid)
+    audited = _CITY_AUDIT.get(cid) or {}
+    total_review = audited.get("total_vehicle_output")
+    nev_review = audited.get("nev_output")
+    total_status = (
+        total_review.get("status") if isinstance(total_review, dict) else
+        "verified" if source_id and cid in OUTPUT_2025 else "unverified"
+    )
+    nev_status = (
+        nev_review.get("status") if isinstance(nev_review, dict) else
+        "verified" if cid in NEV_2025 and (source_id or context_source_id) else "unverified"
+    )
+    total = reviewed_city_number(total_review) if (
+        total_status == "verified" or (cid, "total_vehicle_output") in CITY_PARTIAL_PUBLIC_VALUES
+    ) else None
+    nev = reviewed_city_number(nev_review) if (
+        nev_status == "verified" or (cid, "nev_output") in CITY_PARTIAL_PUBLIC_VALUES
+    ) else None
+    if total is None and not total_review and total_status == "verified":
+        total = OUTPUT_2025.get(cid)
+    if nev is None and not nev_review and nev_status == "verified":
+        nev = NEV_2025.get(cid)
+    total_verified = total_status == "verified" and total is not None
     STATS.append(dict(
         city_id=cid, year=2025, total_vehicle_output=total,
-        nev_output=NEV_2025.get(cid), commercial_vehicle_output=None, passenger_vehicle_output=None,
-        statistical_scope=(
-            "official_city_release" if source_id else
-            "candidate_province_scope_mismatch" if cid == "changchun" else
-            "candidate_partial_external_support" if cid == "hefei" else
-            "candidate_local_compilation"
-        ),
-        scope_note_zh=(
-            "城市统计部门发布的规模以上工业主要产品产量；各城市口径仍不构成国家统一城市排行。"
-            if source_id else
-            "候选错配值：146.13万辆能在吉林省级序列中定位，但尚无支持长春市同值的官方城市页面，不得作为长春市产量或城市排行依据。"
-            if cid == "changchun" else
-            "候选混合记录：外部政务页面只支持新能源汽车137.1万辆，不支持整车总量187.2万辆；整条记录保持候选。"
-            if cid == "hefei" else
-            "候选拼合值：尚未附上能直接支持本条数字的外部官方页面，不作为权威排行依据。"
-        ),
-        scope_note_en=(
-            "Output of major above-scale industrial products in the city's official statistical release; city scopes still do not form a unified national ranking."
-            if source_id else
-            "Candidate scope mismatch: 1.4613M can be located in a Jilin provincial series, but no city release supports the same Changchun figure. Do not use it as Changchun output or in a city ranking."
-            if cid == "changchun" else
-            "Candidate mixed record: an external government page supports only 1.371M NEVs, not the 1.872M total-vehicle figure; the whole row stays candidate."
-            if cid == "hefei" else
-            "Candidate compilation value: no external official page directly supporting this record is attached yet; do not treat it as an authoritative ranking."
-        ),
+        nev_output=nev, commercial_vehicle_output=None, passenger_vehicle_output=None,
+        availability={"total_vehicle_output": total_status, "nev_output": nev_status},
+        field_reviews={
+            "total_vehicle_output": compact_city_review(total_review),
+            "nev_output": compact_city_review(nev_review),
+        },
+        statistical_scope="reviewed_official_city_output" if total_verified else "reviewed_no_verified_total",
+        scope_note_zh="逐字段核对2025年城市官方统计口径；只有已核实的城市总产量进入排序，未披露、口径不符或未核实项保留为空。各城市口径不构成国家统一排行。",
+        scope_note_en="Each 2025 city-output field is reviewed against official city statistics. Only verified total output enters the ranking; undisclosed, scope-mismatched or unverified fields stay empty. City scopes do not form a unified national ranking.",
         source_ids=srcs(source_id, context_source_id),
-        confidence=0.80 if source_id else 0.20 if cid == "changchun" else CANDIDATE_CONFIDENCE,
+        confidence=0.80 if total_verified else CANDIDATE_CONFIDENCE,
     ))
 # Qingdao is not in the V1 city-card set and is not promoted from an internal compilation.
 
@@ -2023,6 +3108,19 @@ SOURCES = [
         notes_en="The major above-scale industrial-products table reports 2.4096M vehicles; its city scope is not automatically comparable with other releases.",
     ),
     dict(
+        id=SRC_STAT_GUANGZHOU_NEV_2025,
+        publisher_zh="广州市统计局",
+        publisher_en="Guangzhou Municipal Bureau of Statistics",
+        title_zh="基本盘活力彰显 实力盘潜能释放——2025年广州经济运行解读",
+        title_en="Interpretation of Guangzhou's economic performance in 2025",
+        source_type="government_stats", grade="A", published_at="2026-01-30",
+        accessed_at="2026-09-03", fact_date="2025",
+        url="https://tjj.gz.gov.cn/stats_newtjyw/sjjd/content/mpost_10669183.html",
+        confidence=0.95,
+        notes_zh="广州市统计局直接披露2025年新能源汽车产量66.19万辆，同比增长21.6%，占汽车产量27.5%。",
+        notes_en="Guangzhou Statistics directly reports 661,900 NEVs in 2025, up 21.6% and equal to 27.5% of vehicle output.",
+    ),
+    dict(
         id=SRC_STAT_WUHU_2025,
         publisher_zh="芜湖市统计局、国家统计局芜湖调查队",
         publisher_en="Wuhu Municipal Bureau of Statistics and NBS Wuhu Survey Office",
@@ -2047,6 +3145,19 @@ SOURCES = [
         confidence=0.95,
         notes_zh="主要工业产品表列出汽车177.20万辆，按上海市公报口径记录。",
         notes_en="The major-industrial-products table reports 1.7720M vehicles under the Shanghai communiqué's scope.",
+    ),
+    dict(
+        id=SRC_STAT_SHANGHAI_NEV_2025,
+        publisher_zh="上海市统计局",
+        publisher_en="Shanghai Municipal Bureau of Statistics",
+        title_zh="2025年12月规模以上工业主要产品产量",
+        title_en="December 2025 output of major above-scale industrial products",
+        source_type="government_stats", grade="A", published_at="2026-01-14",
+        accessed_at="2026-09-03", fact_date="2025",
+        url="https://tjj.sh.gov.cn/ydsj36/20260114/345bd5c71dd04c9294a8a996309369c7.html",
+        confidence=0.95,
+        notes_zh="官方附表1—12月栏直接列出汽车177.20万辆，其中新能源汽车116.11万辆；统计范围为规模以上工业企业。",
+        notes_en="The official workbook's January–December column directly reports 1.7720M vehicles, including 1.1611M NEVs; scope is above-scale industrial enterprises.",
     ),
     dict(
         id=SRC_STAT_XIAN_2025,
@@ -2075,6 +3186,19 @@ SOURCES = [
         notes_en="The major above-scale industrial-products table reports 1.4671M vehicles under the Beijing communiqué's scope.",
     ),
     dict(
+        id=SRC_STAT_BEIJING_NEV_2025,
+        publisher_zh="北京市统计局",
+        publisher_en="Beijing Municipal Bureau of Statistics",
+        title_zh="工业经济量质齐升 产业结构向新向优——2025年北京规模以上工业运行情况解读",
+        title_en="Beijing above-scale industrial performance in 2025",
+        source_type="government_stats", grade="A", published_at="2026-01-21",
+        accessed_at="2026-09-03", fact_date="2025",
+        url="https://tjj.beijing.gov.cn/zxfbu/202601/t20260121_4451731.html",
+        confidence=0.95,
+        notes_zh="北京市统计局直接列出2025年新能源汽车产量69.9万辆，占全市汽车产量47.7%。",
+        notes_en="Beijing Statistics directly reports 699,000 NEVs in 2025, or 47.7% of municipal vehicle output.",
+    ),
+    dict(
         id=SRC_STAT_ZHENGZHOU_2025,
         publisher_zh="郑州市统计局、国家统计局郑州调查队",
         publisher_en="Zhengzhou Municipal Bureau of Statistics and NBS Zhengzhou Survey Office",
@@ -2088,6 +3212,45 @@ SOURCES = [
         notes_en="The communiqué directly reports 1.205M vehicles, up 9.6% year over year.",
     ),
     dict(
+        id=SRC_STAT_WUHAN_2025,
+        publisher_zh="武汉市统计局、国家统计局武汉调查队",
+        publisher_en="Wuhan Municipal Bureau of Statistics and NBS Wuhan Survey Office",
+        title_zh="2025年武汉市国民经济和社会发展统计公报",
+        title_en="2025 Wuhan statistical communiqué",
+        source_type="government_stats", grade="A", published_at="2026-04-09",
+        accessed_at="2026-09-03", fact_date="2025",
+        url="https://tjj.wuhan.gov.cn/tjfw/tjgb/202604/t20260408_2750693.shtml",
+        confidence=0.95,
+        notes_zh="表1直接列出规模以上工业汽车产量81.10万辆。",
+        notes_en="Table 1 directly reports 811,000 vehicles as above-scale industrial output.",
+    ),
+    dict(
+        id=SRC_STAT_WUHAN_NEV_2025,
+        publisher_zh="武汉市经济和信息化局",
+        publisher_en="Wuhan Municipal Bureau of Economy and Information Technology",
+        title_zh="武汉市2025年新能源汽车产量公开信息",
+        title_en="Wuhan 2025 NEV output disclosure",
+        source_type="government_stats", grade="A", published_at="2026-01-22",
+        accessed_at="2026-09-03", fact_date="2025",
+        url="https://jxj.wuhan.gov.cn/xwzx_9/tztg/202601/t20260122_2715936.html",
+        confidence=0.95,
+        notes_zh="市经信局页面直接列出2025年新能源汽车产量52万辆。",
+        notes_en="The municipal industry bureau directly reports 520,000 NEVs in 2025.",
+    ),
+    dict(
+        id=SRC_STAT_SHIYAN_2025,
+        publisher_zh="湖北省统计局（十堰市统计公报）",
+        publisher_en="Hubei Provincial Bureau of Statistics (Shiyan communiqué)",
+        title_zh="十堰市2025年国民经济和社会发展统计公报",
+        title_en="2025 Shiyan statistical communiqué",
+        source_type="government_stats", grade="A", published_at="2026-05-06",
+        accessed_at="2026-09-03", fact_date="2025",
+        url="https://tjj.hubei.gov.cn/tjsj/tjgb/ndtjgb/sztjgb/202605/P020260508379027628693.pdf",
+        confidence=0.95,
+        notes_zh="主要工业产品表直接列出汽车240307辆，其中新能源汽车51560辆。",
+        notes_en="The major-product table directly reports 240,307 vehicles, including 51,560 NEVs.",
+    ),
+    dict(
         id=SRC_STAT_HEFEI_NEV_2025,
         publisher_zh="合肥市政务网站", publisher_en="Hefei government website",
         title_zh="合肥新能源汽车产量信息", title_en="Hefei NEV output information",
@@ -2096,16 +3259,6 @@ SOURCES = [
         url="https://www.hfyaohai.gov.cn/zwdt/bmts/11485597.html", confidence=0.90,
         notes_zh="页面支持2025年新能源汽车137.1万辆，不支持整车总量187.2万辆；因此合肥统计行仍为候选。",
         notes_en="The page supports 1.371M NEVs in 2025, not the 1.872M total-vehicle figure; the Hefei statistics row therefore remains candidate.",
-    ),
-    dict(
-        id=SRC_STAT_JILIN_2025,
-        publisher_zh="吉林省统计局", publisher_en="Jilin Provincial Bureau of Statistics",
-        title_zh="2025年吉林省国民经济和社会发展统计公报", title_en="2025 Jilin provincial statistical communiqué",
-        source_type="government_stats", grade="A", published_at=None,
-        accessed_at="2026-08-24", fact_date="2025",
-        url="https://tjj.jl.gov.cn/tjsj/tjgb/ndgb/202604/t20260427_3627028.html", confidence=0.95,
-        notes_zh="146.13万辆是吉林省级口径，不是长春市口径；链接用于标记范围错配，不能支持城市排行。",
-        notes_en="The 1.4613M figure is provincial Jilin scope, not Changchun city scope; this link documents the mismatch and cannot support a city ranking.",
     ),
     dict(
         id=SRC_NIO_ABOUT,
@@ -2247,10 +3400,10 @@ for source_id, meta in FACILITY_SOURCE_META.items():
         publisher_zh=meta["publisher_zh"], publisher_en=meta["publisher_en"],
         title_zh=meta["title_zh"], title_en=meta["title_en"],
         source_type=meta["source_type"], grade="A", published_at=None,
-        accessed_at="2026-08-31", fact_date=meta["fact_date"],
+        accessed_at="2026-09-03", fact_date=meta["fact_date"],
         url=meta["url"], confidence=0.90,
-        notes_zh=meta.get("scope_zh", default_scope_zh),
-        notes_en=meta.get("scope_en", default_scope_en),
+        notes_zh=meta.get("scope_zh") or default_scope_zh,
+        notes_en=meta.get("scope_en") or default_scope_en,
     ))
 
 SOURCE_SUPPORT = {
@@ -2262,6 +3415,10 @@ SOURCE_SUPPORT = {
         "statistics:guangzhou:2025",
         ["total_vehicle_output", "statistical_scope"],
     ),
+    SRC_STAT_GUANGZHOU_NEV_2025: (
+        "statistics:guangzhou:2025",
+        ["nev_output"],
+    ),
     SRC_STAT_WUHU_2025: (
         "statistics:wuhu:2025",
         ["total_vehicle_output", "nev_output", "statistical_scope"],
@@ -2269,6 +3426,10 @@ SOURCE_SUPPORT = {
     SRC_STAT_SHANGHAI_2025: (
         "statistics:shanghai:2025",
         ["total_vehicle_output", "statistical_scope"],
+    ),
+    SRC_STAT_SHANGHAI_NEV_2025: (
+        "statistics:shanghai:2025",
+        ["nev_output"],
     ),
     SRC_STAT_XIAN_2025: (
         "statistics:xian:2025",
@@ -2278,17 +3439,29 @@ SOURCE_SUPPORT = {
         "statistics:beijing:2025",
         ["total_vehicle_output", "statistical_scope"],
     ),
+    SRC_STAT_BEIJING_NEV_2025: (
+        "statistics:beijing:2025",
+        ["nev_output"],
+    ),
     SRC_STAT_ZHENGZHOU_2025: (
         "statistics:zhengzhou:2025",
         ["total_vehicle_output", "statistical_scope"],
     ),
+    SRC_STAT_WUHAN_2025: (
+        "statistics:wuhan:2025",
+        ["total_vehicle_output", "statistical_scope"],
+    ),
+    SRC_STAT_WUHAN_NEV_2025: (
+        "statistics:wuhan:2025",
+        ["nev_output"],
+    ),
+    SRC_STAT_SHIYAN_2025: (
+        "statistics:shiyan:2025",
+        ["total_vehicle_output", "nev_output", "statistical_scope"],
+    ),
     SRC_STAT_HEFEI_NEV_2025: (
         "statistics:hefei:2025",
         ["nev_output", "scope_note_zh", "scope_note_en"],
-    ),
-    SRC_STAT_JILIN_2025: (
-        "statistics:changchun:2025",
-        ["statistical_scope", "scope_note_zh", "scope_note_en"],
     ),
     SRC_NIO_ABOUT: (
         "organization:nio",
@@ -2312,7 +3485,10 @@ SOURCE_SUPPORT = {
     ),
     SRC_CATL_YIBIN: (
         "facility:catl-yibin",
-        ["name_zh", "name_en", "operator_id", "city_id", "status", "facility_type"],
+        [
+            "name_zh", "name_en", "operator_id", "operator_legal_name_zh",
+            "city_id", "status", "facility_type",
+        ],
     ),
     SRC_GWM_GLOBAL: (
         "facility:gwm-xushui",
@@ -2353,6 +3529,47 @@ for source_id, meta in FACILITY_SOURCE_META.items():
         ),
     )
 
+# Promote each newly reviewed city statistic source into the public source
+# registry.  Existing hand-curated sources are reused by URL; otherwise a
+# deterministic field-specific record is generated from the checked-in audit.
+_source_by_id = {source["id"]: source for source in SOURCES}
+for stat in STATS:
+    for field in ("total_vehicle_output", "nev_output"):
+        review = (stat.get("field_reviews") or {}).get(field) or {}
+        if review.get("status") not in {"verified", "partial"} or stat.get(field) is None:
+            continue
+        url = review.get("source_url")
+        if not str(url or "").startswith(("http://", "https://")):
+            continue
+        existing = next(
+            (sid for sid in stat["source_ids"] if (_source_by_id.get(sid) or {}).get("url") == url),
+            None,
+        )
+        if existing:
+            continue
+        suffix = "total" if field == "total_vehicle_output" else "nev"
+        source_id = f"src-audit-stat-{stat['city_id']}-2025-{suffix}"
+        source = dict(
+            id=source_id,
+            publisher_zh=review.get("source_publisher") or "城市政府或统计部门",
+            publisher_en=review.get("source_publisher") or "Municipal government or statistics authority",
+            title_zh=review.get("source_title") or f"{stat['city_id']} 2025年城市产量官方材料",
+            title_en=review.get("source_title") or f"{stat['city_id']} official 2025 city-output release",
+            source_type="government_stats", grade="A",
+            published_at=review.get("source_date"),
+            accessed_at=review.get("source_accessed_at") or "2026-09-03",
+            fact_date="2025", url=url, confidence=0.90,
+            notes_zh=f"外部官方材料仅支持{stat['city_id']}的2025年{field}及其披露口径。",
+            notes_en=f"This external official release supports only {stat['city_id']}'s 2025 {field} and its disclosed scope.",
+        )
+        SOURCES.append(source)
+        _source_by_id[source_id] = source
+        stat["source_ids"].append(source_id)
+        SOURCE_SUPPORT[source_id] = (
+            f"statistics:{stat['city_id']}:2025",
+            [field, "statistical_scope"],
+        )
+
 if set(SOURCE_SUPPORT) != {source["id"] for source in SOURCES}:
     raise SystemExit("every public source must declare one exact support scope")
 
@@ -2378,9 +3595,16 @@ def main() -> None:
         attach(c, "name_zh", "name_en", "province_zh", "province_en", extra=aliases)
 
     for o in ORGS:
+        audited_year = reviewed_founded_year((_ORG_AUDIT.get(o["id"]) or {}).get("founded"))
+        if audited_year is not None:
+            o["founded_year"] = audited_year
         aliases = list(dict.fromkeys((o.get("aliases") or []) + ORG_ALIASES.get(o["id"], [])))
         o["aliases"] = aliases
         attach(o, "display_name_zh", "display_name_en", "legal_name_zh", "legal_name_en", extra=aliases)
+        if o["id"] in {"aeolus", "holosonics"}:
+            # These are compatibility-only IDs. Their historical English words
+            # name different companies/brands and must never behave as aliases.
+            o["search_keys"] = [key for key in o["search_keys"] if key != o["id"]]
 
     for f in FACILITIES:
         attach(f, "name_zh", "name_en")
@@ -2416,9 +3640,14 @@ def main() -> None:
         "core_cities": sum(1 for c in CITIES if c["tier"] == "core"),
         "specialist_cities": sum(1 for c in CITIES if c["tier"] == "specialist"),
     }
+    audit_path = ROOT / "tools" / "reviewed_entity_audit_2026_09.json"
+    if audit_path.is_file():
+        audit_meta = json.loads(audit_path.read_text(encoding="utf-8")).get("metadata") or {}
+        counts["organization_field_reviews"] = audit_meta.get("field_decision_count", 0)
+        counts["city_output_field_reviews"] = audit_meta.get("city_field_decision_count", 0)
     dump("manifest.json", {
-        "data_version": "v1-2026-08-source-policy",
-        "generated_at": "2026-08-31",
+        "data_version": "v1-2026-09-deep-audit",
+        "generated_at": "2026-09-03",
         "last_verified": LV,
         "counts": counts,
         "notes_zh": "V1：17座核心城 + 11座专业城。QROST自有简报不作为证据；外部一手来源可核实，二手来源标为部分核实，未逐条核验的数据保留为低置信候选。",

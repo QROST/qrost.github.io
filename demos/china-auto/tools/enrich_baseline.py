@@ -57,7 +57,8 @@ BASE = {
     "geely": en(**PRIV, listing=L(True, "HKEX", "0175"), segment=["mass", "premium"], powertrain=["ice", "hev", "phev", "bev"], export_role="major"),
     "faw": en(**SOE, segment=["mass", "premium", "luxury", "commercial"], powertrain=["ice", "bev", "phev"], export_role="some"),
     "hongqi": en(**SOE, segment=["premium", "luxury"], powertrain=["ice", "bev", "phev"], export_role="some"),
-    "jiefang": en(**SOE, listing=L(True, "SZSE", "000800"), segment=["truck", "commercial"], powertrain=["ice", "bev"], export_role="some"),
+    # This row is the Jiefang brand, not listed issuer FAW Jiefang Group Co., Ltd.
+    "jiefang": en(**SOE, segment=["truck", "commercial"], powertrain=["ice", "bev"], export_role="some"),
     "bestune": en(**SOE, segment=["mass"], powertrain=["ice", "bev"], export_role="none"),
     "faw-vw": en(**JV, segment=["mass", "premium"], powertrain=["ice", "phev", "bev"], export_role="some"),
     "audi-faw-nev": en(**JV, segment=["premium", "luxury"], powertrain=["bev"], export_role="unknown"),

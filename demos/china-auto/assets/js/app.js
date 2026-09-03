@@ -34,11 +34,44 @@
     else if (kind === 'people') s = I18N.isEn() ? n.toLocaleString() : (n >= 10000 ? fmtWan(n) + '万' : String(n));
     else s = String(n);
     if (m.qualifier === 'approximately') s = I18N.t('approxPrefix') + s;
+    if (m.qualifier === 'more_than') s = '>' + s;
     return m.year ? s + ' <span class="text-faint">(' + m.year + ')</span>' : s;
   }
   function dash() { return '<span class="text-faint">—</span>'; }
   function evidenceLink(url) {
     return url ? ' <a class="evidence-link" href="' + esc(url) + '" target="_blank" rel="noopener" aria-label="' + esc(I18N.t('openSource')) + '" title="' + esc(I18N.t('openSource')) + '">↗</a>' : '';
+  }
+  function reviewSourceMeta(review) {
+    review = review || {};
+    var inline = Array.isArray(review.sources) && review.sources.length ? review.sources[0] : {};
+    var url = review.source_url || inline.url || '';
+    var registered = null;
+    if (url) {
+      registered = (D.sources || []).filter(function (s) { return s.url === url; })[0] || null;
+    }
+    var title = I18N.pick(review.source_title_zh, review.source_title_en) || review.source_title ||
+      I18N.pick(inline.title_zh, inline.title_en) || inline.title ||
+      (registered ? I18N.pick(registered.title_zh, registered.title_en) : '');
+    var publisher = I18N.pick(review.source_publisher_zh, review.source_publisher_en) ||
+      I18N.pick(review.publisher_zh, review.publisher_en) || review.source_publisher || review.publisher ||
+      I18N.pick(inline.publisher_zh, inline.publisher_en) || inline.publisher ||
+      (registered ? I18N.pick(registered.publisher_zh, registered.publisher_en) : '');
+    var date = review.source_date || review.source_published_or_fact_date || review.published_or_fact_date || review.published_at || review.fact_date ||
+      inline.published_or_fact_date || inline.published_at || inline.fact_date ||
+      (registered ? (registered.published_at || registered.fact_date || '') : '');
+    return { url: url, title: title, publisher: publisher, date: date };
+  }
+  function reviewSourceHtml(review) {
+    var meta = reviewSourceMeta(review);
+    var parts = [];
+    if (meta.title || meta.url) {
+      var label = meta.title || I18N.t('openSource');
+      parts.push('<strong>' + esc(I18N.t('thSource')) + ':</strong> ' +
+        (meta.url ? '<a href="' + esc(meta.url) + '" target="_blank" rel="noopener">' + esc(label) + '</a>' : esc(label)));
+    }
+    if (meta.publisher) parts.push('<strong>' + esc(I18N.t('thPublisher')) + ':</strong> ' + esc(meta.publisher));
+    if (meta.date) parts.push('<strong>' + esc(I18N.t('thDate')) + ':</strong> ' + esc(meta.date));
+    return parts.length ? '<div class="text-faint">' + parts.join(' · ') + '</div>' : '';
   }
   function availabilityOf(o, field) {
     var en = enrichOf(o), a = en.availability || {};
@@ -49,8 +82,13 @@
     if (field === 'plants' && D.plantCount(o.id)) return 'partial';
     return 'unverified';
   }
-  function statusCell(status) {
+  function fieldReview(o, field) {
+    var reviews = (enrichOf(o).field_reviews || {});
+    return reviews[field] || null;
+  }
+  function statusCell(status, o, field) {
     var key = {
+      verified: 'statusVerified',
       not_disclosed: 'statusNotDisclosed',
       not_applicable: 'statusNotApplicable',
       not_separately_listed: 'statusNotSeparatelyListed',
@@ -58,7 +96,55 @@
       unverified: 'statusUnverified',
       partial: 'statusPartial'
     }[status] || 'statusUnverified';
-    return '<span class="field-status field-status-' + esc(status || 'unverified') + '">' + esc(I18N.t(key)) + '</span>';
+    var review = o && field ? fieldReview(o, field) : null;
+    var detail = review ? I18N.pick(review.note_zh, review.note_en) : '';
+    var caveat = review ? I18N.pick(review.caveat_zh, review.caveat_en) : '';
+    var title = [detail, caveat].filter(Boolean).join(' · ');
+    return '<span class="field-status field-status-' + esc(status || 'unverified') + '"' +
+      (title ? ' title="' + esc(title) + '"' : '') + '>' + esc(I18N.t(key)) + '</span>' +
+      (review ? evidenceLink(review.source_url) : '');
+  }
+  function statFieldCell(stat, field) {
+    if (!stat) return statusCell('unverified');
+    var status = ((stat.availability || {})[field]) || 'unverified';
+    var review = ((stat.field_reviews || {})[field]) || {};
+    var value = stat[field] == null ? '' : fmtWan(stat[field]);
+    var receipt = evidenceLink(review.source_url);
+    if (!value) return statusCell(status) + receipt;
+    return value + receipt + (status === 'verified' ? '' : '<br>' + statusCell(status));
+  }
+  function statReviewHtml(stat, field, label) {
+    var review = ((stat.field_reviews || {})[field]) || {};
+    var note = I18N.pick(review.note_zh, review.note_en);
+    var caveat = I18N.pick(review.caveat_zh, review.caveat_en);
+    if (!note && !caveat && !review.source_url) return '';
+    return '<p class="field-context"><strong>' + esc(label) + '</strong> · ' +
+      statusCell(((stat.availability || {})[field]) || 'unverified') +
+      (note ? '<br>' + esc(note) : '') + (caveat ? '<br>' + esc(caveat) : '') +
+      reviewSourceHtml(review) + '</p>';
+  }
+  function orgAuditHtml(o) {
+    var reviews = enrichOf(o).field_reviews || {};
+    var fields = [
+      ['founded', I18N.t('thFounded')], ['ownership', I18N.t('thOwnership')],
+      ['listing', I18N.t('thListing')], ['employees', I18N.t('thEmployees')],
+      ['vehicle_sales', I18N.t('thSales')], ['plants', I18N.t('thPlants')]
+    ];
+    if (!fields.some(function (item) { return !!reviews[item[0]]; })) return '';
+    return '<h4>' + (I18N.isEn() ? 'Six-field audit record' : '六字段调查记录') + '</h4><ul>' +
+      fields.map(function (item) {
+        var review = reviews[item[0]] || {};
+        var note = I18N.pick(review.note_zh, review.note_en);
+        var caveat = I18N.pick(review.caveat_zh, review.caveat_en);
+        var auditedCount = item[0] === 'plants' && Number.isInteger(review.audit_value_count) ?
+          ' <span class="text-faint">· ' + esc(I18N.t('auditScopeCount')) + ': ' + review.audit_value_count + '</span>' : '';
+        return '<li><strong>' + esc(item[1]) + '</strong> · ' + statusCell(review.status || 'unverified') +
+          (review.scope ? ' <span class="text-faint">· ' + esc(I18N.t('scopeShort')) + ': ' + esc(humanScope(review.scope)) + '</span>' : '') +
+          auditedCount +
+          (note ? '<br><span class="text-muted">' + esc(note) + '</span>' : '') +
+          (caveat ? '<br><span class="text-faint">' + esc(caveat) + '</span>' : '') +
+          reviewSourceHtml(review) + '</li>';
+      }).join('') + '</ul>';
   }
   function parentContext(o, getter) {
     var seen = {}, p = o;
@@ -78,7 +164,12 @@
   }
   function metricContext(o, field) {
     var own = enrichOf(o)[field];
+    var review = fieldReview(o, field);
+    if (review && review.status === 'not_applicable') return null;
     if (own && own.value != null) return { org: o, value: own, inherited: false };
+    // A complete entity-level audit is authoritative about absence and scope;
+    // never fill an audited gap with a parent company's workforce.
+    if (review) return null;
     if (field !== 'employees') return null;
     var p = parentContext(o, function (parent) {
       var m = enrichOf(parent)[field];
@@ -92,6 +183,7 @@
     if (own.ownership && (ownStatus === 'verified' || ownStatus === 'partial')) {
       return { org: o, value: own, inherited: false, status: ownStatus };
     }
+    if (fieldReview(o, 'ownership')) return null;
     var p = parentContext(o, function (parent) {
       var en = enrichOf(parent);
       var status = availabilityOf(parent, 'ownership');
@@ -115,8 +207,11 @@
   }
   function plantContext(o) {
     var kids = D.childrenOf(o.id);
-    var own = kids.length ? familyPlantDetail(o) : D.plantCountDetail(o.id);
-    if (own.total) return { org: o, value: own, inherited: !!kids.length, scopeKey: kids.length ? 'childrenScope' : '' };
+    var reviewed = fieldReview(o, 'plants');
+    if (reviewed && reviewed.status === 'not_applicable') return null;
+    var own = reviewed ? D.plantCountDetail(o.id) : (kids.length ? familyPlantDetail(o) : D.plantCountDetail(o.id));
+    if (own.total) return { org: o, value: own, inherited: !reviewed && !!kids.length, scopeKey: kids.length ? 'childrenScope' : '' };
+    if (reviewed) return null;
     var p = parentContext(o, function (parent) {
       var detail = familyPlantDetail(parent);
       return detail.total ? detail : null;
@@ -137,6 +232,7 @@
     "Xiaomi_EV_Inc": ["小米汽车有限公司", "Xiaomi EV Inc."],
     "association_legal_person": ["协会法人", "association legal entity"],
     "association_lineage": ["协会沿革", "association lineage"],
+    "association_secretariat_staff": ["协会秘书处在职人员", "association secretariat staff"],
     "brand": ["品牌销量", "brand sales"],
     "brand_birth": ["品牌诞生", "brand birth"],
     "brand_company_sales": ["品牌公司销量", "brand-company sales"],
@@ -145,20 +241,25 @@
     "brand_launch": ["品牌发布", "brand launch"],
     "brand_origin": ["品牌源起", "brand origin"],
     "brand_sales": ["品牌销量", "brand sales"],
+    "brand_sales_lower_bound": ["品牌销量下限", "brand sales lower bound"],
     "brand_sales_unaudited": ["品牌销量（未经审计）", "brand sales (unaudited)"],
     "bus_sales": ["客车销量", "bus sales"],
     "channel_launch": ["频道上线", "channel launch"],
     "china_domestic_sales": ["中国境内销量", "China domestic sales"],
     "company_JV_and_associates": ["公司、合营及联营口径销量", "company, joint-venture and associate sales"],
+    "company_and_controlled_subsidiaries": ["公司及控股子公司", "company and controlled subsidiaries"],
     "company_lineage": ["公司沿革", "company lineage"],
     "company_sales_unaudited": ["公司销量（未经审计）", "company sales (unaudited)"],
+    "company_vehicle_sales_excluding_motorcycles": ["公司汽车销量（不含摩托车）", "company automobile sales excluding motorcycles"],
     "company_wholesale": ["公司批发量", "company wholesale"],
     "continuous_educational_lineage": ["持续办学沿革", "continuous educational lineage"],
     "current_Cayman_listed_entity": ["当前开曼上市主体", "current Cayman listed entity"],
     "current_company": ["当前公司", "current company"],
+    "current_company_workforce_lower_bound": ["当前公司员工数下限", "current-company workforce lower bound"],
     "current_group": ["当前集团", "current group"],
     "current_group_lineage": ["现集团沿革", "current-group lineage"],
     "current_joint_venture": ["当前合资公司", "current joint venture"],
+    "current_legal_entity": ["当前法人实体", "current legal entity"],
     "current_legal_entity_lineage": ["现法人实体沿革", "current legal-entity lineage"],
     "current_listed_company": ["当前上市公司", "current listed company"],
     "current_listed_company_lineage": ["现上市公司沿革", "current listed-company lineage"],
@@ -170,18 +271,25 @@
     "group_lineage": ["集团沿革", "group lineage"],
     "group_sales": ["集团销量", "group sales"],
     "group_sales_including_foton_daimler": ["集团销量（含福田戴姆勒）", "group sales including Foton Daimler"],
+    "group_sales_including_reported_passenger_vehicles": ["公司总销量（含披露的乘用车）", "company total sales including reported passenger vehicles"],
+    "group_extended_scope_including_jv_associates": ["集团扩展口径（含合营及联营企业）", "extended group scope including joint ventures and associates"],
     "group_vehicle_sales": ["集团整车销量", "group vehicle sales"],
     "group_wholesale": ["集团批发量", "group wholesale"],
+    "heavy_truck_sales_lower_bound": ["重卡销量下限", "heavy-truck sales lower bound"],
     "holding_group_brand_aggregate": ["控股集团品牌合计", "holding-group brand aggregate"],
+    "holding_group_workforce_lower_bound": ["控股集团员工数下限", "holding-group workforce lower bound"],
     "holding_group_lineage": ["控股集团沿革", "holding-group lineage"],
     "independent_brand_launch": ["独立品牌发布", "independent brand launch"],
     "institution_lineage": ["院校沿革", "institution lineage"],
     "integrated_operating_system": ["一体化运营体系", "integrated operating system"],
     "internal_business_unit": ["内部业务单元", "internal business unit"],
     "joint_venture": ["合资公司", "joint venture"],
+    "joint_venture_associates": ["合资公司员工", "joint-venture associates"],
+    "joint_venture_retail_sales": ["合资公司零售销量", "joint-venture retail sales"],
     "joint_venture_wholesale": ["合资公司批发量", "joint-venture wholesale"],
     "jv_terminal": ["合资公司终端销量", "joint-venture terminal sales"],
     "listed_group": ["上市集团", "listed group"],
+    "listed_group_full_time_employees": ["上市集团全职员工", "listed-group full-time employees"],
     "listed_group_five_brands": ["上市集团五品牌口径", "listed-group five-brand scope"],
     "listed_group_legal_continuity": ["上市集团法人延续", "listed-group legal continuity"],
     "listed_group_lineage": ["上市集团沿革", "listed-group lineage"],
@@ -194,19 +302,24 @@
     "new_energy_vehicle_sales": ["新能源汽车销量", "new-energy vehicle sales"],
     "operating_group_lineage": ["运营集团沿革", "operating-group lineage"],
     "operating_legal_entity": ["运营法人实体", "operating legal entity"],
+    "platform_origin_approximate": ["平台起点（约）", "approximate platform origin"],
     "product_brand_launch": ["产品品牌发布", "product-brand launch"],
     "product_brand_sales_unaudited": ["产品品牌销量（未经审计）", "product-brand sales (unaudited)"],
     "product_launch": ["产品上线", "product launch"],
     "publication_launch": ["刊物创刊", "publication launch"],
     "qualified": ["限定口径（非精确实体）", "qualified scope (not exact-entity)"],
+    "rd_team_not_total": ["研发团队（非总员工）", "R&D team, not total headcount"],
+    "reviewed_exact_entity": ["逐实体审计口径", "reviewed exact-entity scope"],
+    "special_purpose_vehicle_sales": ["专用汽车销量", "special-purpose vehicle sales"],
     "vehicle_deliveries": ["车辆交付量", "vehicle deliveries"],
+    "university_staff_total": ["高校教职工总数", "university total staff"],
     "vehicles_and_chassis": ["整车及底盘销量", "vehicle and chassis sales"],
     "website_launch": ["网站上线", "website launch"],
     "wholesale_including_Venucia_and_Infiniti": ["批发量（含启辰与英菲尼迪）", "wholesale including Venucia and Infiniti"]
   };
   function humanScope(scope) {
     var known = FACT_SCOPE_LABELS[scope];
-    return known ? known[I18N.isEn() ? 1 : 0] : (I18N.isEn() ? 'Scope unavailable' : '口径信息暂缺');
+    return known ? known[I18N.isEn() ? 1 : 0] : I18N.t('scopeSeeAudit');
   }
   function factContext(value) {
     if (!value) return '';
@@ -214,24 +327,35 @@
     if (value.scope) parts.push(I18N.t('scopeShort') + ': ' + humanScope(value.scope));
     if (value.scope_quality) parts.push((I18N.isEn() ? 'Scope quality' : '口径质量') + ': ' + humanScope(value.scope_quality));
     if (value.source_authority === 'secondary') parts.push(I18N.t('secondarySource'));
+    if (value.non_additive) parts.push(I18N.t('nonAdditiveSales'));
     var note = I18N.isEn() ? value.note_en : value.note_zh;
     if (note) parts.push(note);
     return parts.length ? '<span class="field-context" title="' + esc(parts.join(' · ')) + '">' + esc(parts.join(' · ')) + '</span>' : '';
   }
+  function listingLabel(ticker, exchange) {
+    var label = String(ticker || '');
+    if (!exchange) return label;
+    label += '.' + exchange;
+    var localized = I18N.enumLabel('exchange', exchange);
+    return localized && localized !== exchange ? label + ' (' + localized + ')' : label;
+  }
   function metricCell(o, field, kind) {
     var ctx = metricContext(o, field);
-    if (!ctx) return statusCell(availabilityOf(o, field));
+    if (!ctx) return statusCell(availabilityOf(o, field), o, field);
     var value = fmtMetric(ctx.value, kind) + evidenceLink(ctx.value.source_url) + factContext(ctx.value);
     var status = availabilityOf(o, field);
-    if (ctx.inherited || status !== 'verified') value += '<br>' + statusCell(status);
+    if (ctx.inherited || status !== 'verified') value += '<br>' + statusCell(status, o, field);
     return scopedValue(value, ctx);
   }
   function plantCell(o) {
     var ctx = plantContext(o);
-    if (!ctx) return statusCell(availabilityOf(o, 'plants'));
+    if (!ctx) return statusCell(availabilityOf(o, 'plants'), o, 'plants');
     var d = ctx.value;
     var detail = d.candidate ? '<span class="text-faint" title="' + esc(I18N.t('candidatePlantNote')) + '"> (' + d.verified + '+' + d.candidate + '*)</span>' : '';
-    return scopedValue('<span class="num">' + d.total + '</span>' + detail + '<br>' + statusCell('partial'), ctx);
+    var status = availabilityOf(o, 'plants');
+    var value = '<span class="num">' + d.total + '</span>' + detail;
+    if (status !== 'verified') value += '<br>' + statusCell(status, o, 'plants');
+    return scopedValue(value, ctx);
   }
   function tinyBadges(vals, group) {
     if (!vals || !vals.length) return dash();
@@ -294,7 +418,8 @@
 
   function verifiedOutputStat(city) {
     var stat = city && D.stat2025(city.id);
-    return stat && stat.confidence > 0.5 && (stat.source_ids || []).length && stat.total_vehicle_output != null ? stat : null;
+    return stat && ((stat.availability || {}).total_vehicle_output === 'verified') &&
+      stat.confidence > 0.5 && (stat.source_ids || []).length && stat.total_vehicle_output != null ? stat : null;
   }
 
   function compareOutputCities(a, b, dir) {
@@ -410,8 +535,8 @@
         '<td>' + esc(I18N.name(c)) + '</td>' +
         '<td>' + esc(I18N.pick(c.province_zh, c.province_en)) + '</td>' +
         '<td>' + tierBadge(c.tier) + '</td>' +
-        '<td class="num">' + fmtWan(st && st.total_vehicle_output) + (st ? ' ' + confBadge(st.confidence) : '') + '</td>' +
-        '<td class="num">' + fmtWan(st && st.nev_output) + '</td>' +
+        '<td class="num">' + statFieldCell(st, 'total_vehicle_output') + (st && verifiedOutputStat(c) ? ' ' + confBadge(st.confidence) : '') + '</td>' +
+        '<td class="num">' + statFieldCell(st, 'nev_output') + '</td>' +
         '<td>' + tags + '</td>' +
         '<td class="num">' + orgCount(c.id) + '</td></tr>';
     }).join('') || '<tr><td colspan="7" class="loading">' + I18N.t('noData') + '</td></tr>';
@@ -596,31 +721,39 @@
     if (key === 'founded') {
       var fv = foundedValue(o), founded = en.founded || {};
       var foundedStatus = availabilityOf(o, 'founded');
-      return fv ? esc(fv) + evidenceLink(founded.source_url) + factContext(founded) + (foundedStatus === 'unverified' ? '<br>' + statusCell('unverified') : '') : statusCell(foundedStatus);
+      return fv ? esc(fv) + evidenceLink(founded.source_url) + factContext(founded) + (foundedStatus !== 'verified' ? '<br>' + statusCell(foundedStatus, o, 'founded') : '') : statusCell(foundedStatus, o, 'founded');
     }
     if (key === 'ownership') {
       var ownCtx = ownershipContext(o);
-      if (!ownCtx) return statusCell(availabilityOf(o, 'ownership'));
+      if (!ownCtx) return statusCell(availabilityOf(o, 'ownership'), o, 'ownership');
       var ownValue = ownCtx.value;
       var ownership = esc(I18N.enumLabel('ownership', ownValue.ownership)) + evidenceLink((ownValue.ownership_evidence || {}).source_url) + factContext(ownValue.ownership_evidence);
-      if (ownCtx.status !== 'verified') ownership += '<br>' + statusCell(ownCtx.status);
+      if (ownCtx.status !== 'verified') ownership += '<br>' + statusCell(ownCtx.status, o, 'ownership');
       return ownCtx.inherited ? scopedValue(ownership, ownCtx) : ownership;
     }
     if (key === 'listing') {
       var L = en.listing;
-      if (L && L.listed) {
-        var listed = esc((L.ticker || '') + (L.exchange ? '.' + L.exchange : '')) + evidenceLink(L.source_url);
-        listed += factContext(L);
-        return availabilityOf(o, 'listing') === 'unverified' ? listed + '<br>' + statusCell('unverified') : listed;
-      }
       var listingStatus = availabilityOf(o, 'listing');
-      var parentListing = parentContext(o, function (parent) {
+      if (fieldReview(o, 'listing') && listingStatus === 'not_applicable') {
+        return statusCell(listingStatus, o, 'listing');
+      }
+      if (L && L.quotation) {
+        var quotation = esc(listingLabel(L.quotation.ticker, L.quotation.exchange)) +
+          evidenceLink(L.source_url) + factContext(L);
+        return listingStatus === 'verified' ? quotation : quotation + '<br>' + statusCell(listingStatus, o, 'listing');
+      }
+      if (L && L.listed) {
+        var listed = esc(listingLabel(L.ticker, L.exchange)) + evidenceLink(L.source_url);
+        listed += factContext(L);
+        return listingStatus === 'verified' ? listed : listed + '<br>' + statusCell(listingStatus, o, 'listing');
+      }
+      var parentListing = fieldReview(o, 'listing') ? null : parentContext(o, function (parent) {
         var pl = enrichOf(parent).listing;
         return pl && pl.listed ? pl : null;
       });
-      var status = statusCell(listingStatus);
+      var status = statusCell(listingStatus, o, 'listing');
       if (parentListing) {
-        status += '<br><span class="text-faint scope-note">' + esc(I18N.t('parentListed')) + ' ' + esc((parentListing.value.ticker || '') + (parentListing.value.exchange ? '.' + parentListing.value.exchange : '')) + '</span>';
+        status += '<br><span class="text-faint scope-note">' + esc(I18N.t('parentListed')) + ' ' + esc(listingLabel(parentListing.value.ticker, parentListing.value.exchange)) + '</span>';
       }
       return status + factContext(L);
     }
@@ -778,9 +911,27 @@
     } else if (cityModalTab === 'tabFacilities') {
       var facs = D.facilitiesForCity(city.id);
       body = facs.length ? '<ul>' + facs.map(function (f) {
+        var operator = f.operator_id ? D.getOrg(f.operator_id) : null;
+        var operatorName = I18N.pick(f.operator_legal_name_zh, f.operator_legal_name_en) ||
+          (operator && f.operator_matches_entity_boundary === true ? I18N.name(operator) : '');
+        if (I18N.isEn() && f.operator_legal_name_en_is_translation) {
+          operatorName += ' ' + I18N.t('workingTranslation');
+        }
+        var associated = (f.associated_organization_ids || []).map(D.getOrg).filter(Boolean);
+        var customers = (f.manufactures_for_ids || []).map(D.getOrg).filter(Boolean);
+        var address = I18N.pick(f.address_zh, f.address_en);
+        var siteScope = I18N.pick(f.site_scope_note_zh, f.site_scope_note_en);
         return '<li><b>' + esc(I18N.pick(f.name_zh, f.name_en)) + '</b> — ' + esc(I18N.enumLabel('facility_type', f.facility_type)) +
           ' <span class="text-faint">(' + esc(I18N.enumLabel('facility_status', f.status)) + ')</span> ' +
-          confBadge(f.confidence) + sourceLinksHtml(f.source_ids) + '</li>';
+          confBadge(f.confidence) + sourceLinksHtml(f.source_ids) +
+          (operatorName ? '<br><span class="text-faint">' + esc(I18N.t('operator')) + ': ' + esc(operatorName) + '</span>' : '') +
+          (operator && f.operator_matches_entity_boundary !== true ? ' <span class="text-faint">· ' + esc(I18N.t('catalogRelation')) + ': ' + esc(I18N.name(operator)) + '</span>' : '') +
+          (f.operator_matches_entity_boundary == null ? ' <span class="text-faint">· ' + esc(I18N.t('operatorBoundaryPending')) + '</span>' : '') +
+          (associated.length ? '<br><span class="text-faint">' + esc(I18N.t('associatedOrganizations')) + ': ' + associated.map(function (o) { return esc(I18N.name(o)); }).join(I18N.isEn() ? ', ' : '、') + '</span>' : '') +
+          (customers.length ? '<br><span class="text-faint">' + esc(I18N.t('manufacturesFor')) + ': ' + customers.map(function (o) { return esc(I18N.name(o)); }).join(I18N.isEn() ? ', ' : '、') + '</span>' : '') +
+          (address ? '<br><span class="text-faint">' + esc(I18N.t('address')) + ': ' + esc(address) + '</span>' : '') +
+          (siteScope ? '<br><span class="text-faint">' + esc(I18N.t('siteScope')) + ': ' + esc(siteScope) + '</span>' : '') +
+          '</li>';
       }).join('') + '</ul>' : '<p class="text-faint">' + I18N.t('noData') + '</p>';
     } else if (cityModalTab === 'tabRelations') {
       var rels = D.relationsFor(city.id);
@@ -796,9 +947,11 @@
       var stats = D.statsForCity(city.id);
       body = stats.length ? '<table class="data-table"><thead><tr><th>' + I18N.t('stats') + '</th><th>' + I18N.t('thOutput') + '</th><th>' + I18N.t('nev') + '</th></tr></thead><tbody>' +
         stats.map(function (s) {
-          return '<tr><td>' + s.year + ' ' + confBadge(s.confidence) + '</td><td class="num">' + fmtWan(s.total_vehicle_output) + '</td><td class="num">' + fmtWan(s.nev_output) + '</td></tr>';
+          return '<tr><td>' + s.year + ' ' + confBadge(s.confidence) + '</td><td class="num">' + statFieldCell(s, 'total_vehicle_output') + '</td><td class="num">' + statFieldCell(s, 'nev_output') + '</td></tr>';
         }).join('') + '</tbody></table>' : '<p class="text-faint">' + I18N.t('noData') + '</p>';
       stats.forEach(function (s) {
+        body += statReviewHtml(s, 'total_vehicle_output', I18N.t('thOutput'));
+        body += statReviewHtml(s, 'nev_output', I18N.t('nev'));
         if (s.scope_note_zh || s.scope_note_en) {
           body += '<p class="warn-box mt-2"><strong>' + I18N.t('statisticalScope') + ' (' + s.year + ')</strong><br/>' +
             esc(I18N.pick(s.scope_note_zh, s.scope_note_en)) + '</p>';
@@ -822,7 +975,12 @@
     var inst = D.institutionForOrg(o.id);
     var media = D.mediaForOrg(o.id);
     var en = enrichOf(o);
-    var body = '<dl class="kv">' +
+    var auditBoundary = I18N.pick(en.audit_boundary_zh, en.audit_boundary_en);
+    var body = auditBoundary ? '<p class="warn-box"><strong>' +
+      (I18N.isEn() ? 'Audit boundary' : '审计边界') + '</strong><br>' + esc(auditBoundary) +
+      (en.audit_reviewed_at ? '<br><span class="text-faint">' + (I18N.isEn() ? 'Reviewed ' : '复核于 ') + esc(en.audit_reviewed_at) + '</span>' : '') +
+      '</p>' : '';
+    body += '<dl class="kv">' +
       '<dt>' + I18N.t('founded') + '</dt><dd>' + orgCell(o, 'founded') + '</dd>' +
       (hq ? '<dt>' + I18N.t('hqCity') + '</dt><dd><button type="button" class="chip-link" data-city-link="' + esc(hq.id) + '">' + esc(I18N.name(hq)) + '</button></dd>' : '<dt>' + I18N.t('hqCity') + '</dt><dd class="text-faint">' + I18N.t('hqUnknown') + '</dd>') +
       (parent ? '<dt>' + I18N.t('parentBrand') + '</dt><dd><button type="button" class="chip-link" data-org-link="' + esc(parent.id) + '">' + esc(I18N.name(parent)) + '</button></dd>' : '') +
@@ -838,6 +996,7 @@
       '<dt>' + I18N.t('thPlants') + '</dt><dd>' + orgCell(o, 'plants') + '</dd>' +
       (en.export_role ? '<dt>' + I18N.t('thExport') + '</dt><dd>' + esc(I18N.enumLabel('export_role', en.export_role)) + '</dd>' : '') +
       '</dl>';
+    body += orgAuditHtml(o);
     if (en.powertrain && en.powertrain.length) body += '<h4>' + I18N.t('thPowertrain') + '</h4><p>' + tinyBadges(en.powertrain, 'powertrain') + '</p>';
     if (en.segment && en.segment.length) body += '<h4>' + I18N.t('thSegment') + '</h4><p>' + tinyBadges(en.segment, 'segment') + '</p>';
     if (en.education_tags && en.education_tags.length) body += '<h4>' + I18N.t('school') + '</h4><p>' + tinyBadges(en.education_tags, 'education_tag') + '</p>';

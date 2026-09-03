@@ -55,8 +55,8 @@
       zh: '中国汽车城市图谱 · 总部不等于产量',
     },
     cardAutoDesc: {
-      en: '28 Chinese auto cities (17 core + 11 specialist), 168 companies/brands and 80 source-linked facility records — HQ, plants, batteries, software, media, review-video KOLs and universities as separate roles. Every org has explicit founded, ownership, listing, headcount, sales and plant-availability states. Pinyin / initials search, China map, cluster graph, sourced 2025 local output. Dark mode · EN/中文.',
-      zh: '28 座汽车城市（17 核心 + 11 专业）、168 家企业/品牌与 80 条带来源的设施记录，用角色标签分开总部、工厂、电池、软件、媒体、评测KOL和院校。每家机构均明确展示成立、所有制、上市、员工、销量与工厂可得性状态。支持拼音/首字母/简写搜索，中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
+      en: '28 Chinese auto cities (17 core + 11 specialist), 168 organizations and 128 facility records — HQ, plants, batteries, software, media, review-video KOLs and universities as separate roles. Every org has explicit founded, ownership, listing, headcount, sales and plant-availability states. Pinyin / initials search, China map, cluster graph, sourced 2025 local output. Dark mode · EN/中文.',
+      zh: '28 座汽车城市（17 核心 + 11 专业）、168 家机构与 128 条设施记录，用角色标签分开总部、工厂、电池、软件、媒体、评测KOL和院校。每家机构均明确展示成立、所有制、上市、员工、销量与工厂可得性状态。支持拼音/首字母/简写搜索，中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
     },
     cardPebbleTitle: {
       en: 'Pebble Beach 2027 · Monterey Car Week planning guide',
@@ -131,8 +131,8 @@
       zh: '一只俯视角插画小猫会盯梢、潜行并追逐化作小老鼠的指针；安静时则会蹲坐、揣手、侧躺、打滚或蜷卧。外观面板带实时预览，可用花纹芯片、真实配色色卡、毛长与浅色斑区域自定义猫咪，分类沿用 Shelter Cats 受控词表。关节化四相步态 · 深色模式 · 中英切换。',
     },
     footerUpdated: {
-      en: 'Last updated 2026-08. Nothing here is financial, legal or tax advice.',
-      zh: '最后更新 2026-08。本站内容不构成财务、法律或税务建议。',
+      en: 'Last updated 2026-09. Nothing here is financial, legal or tax advice.',
+      zh: '最后更新 2026-09。本站内容不构成财务、法律或税务建议。',
     },
     footerStudio: { en: 'CuriousArc studio', zh: 'CuriousArc 工作室' },
     footerCopyright: { en: '© 2026 QROST. All rights reserved.', zh: '© 2026 QROST. 保留所有权利。' },
