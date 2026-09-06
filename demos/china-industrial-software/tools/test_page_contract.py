@@ -39,6 +39,11 @@ def main() -> int:
     require(css, '.timeline-node[data-candidate="true"]', "candidate card style")
     require(css, ".badge-evidence-candidate", "candidate badge style")
     require(css, ":focus-visible", "visible keyboard focus")
+    require(css, "@media (max-width: 639px), (pointer: coarse), (any-pointer: coarse)", "coarse nested-scroll override")
+    assert "max-h-[600px]" not in html, "matrix container must not pin height with a Tailwind max-h utility"
+    assert css.rfind("max-height: none") > css.rfind("max-height: 550px"), (
+        "matrix-container mobile override must come after the 550px max-height"
+    )
 
     require(build, "def content_token", "content-hash cache token")
     require(build, "normalized_content", "cache hash cycle normalization")

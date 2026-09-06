@@ -1274,6 +1274,38 @@ button.policy-gantt-label:focus-visible {
         --policy-gantt-track-min: 22rem;
     }
 
+    .matrix-container {
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: visible;
+    }
+
+    .policy-gantt-scroll {
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: visible;
+        overscroll-behavior-x: contain;
+    }
+
+    .sticky-scroll,
+    .sticky-scroll--tall {
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: visible;
+        overscroll-behavior-x: contain;
+    }
+
+    .modal-tabs,
+    .site-nav .hidden.md\:flex {
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #compare-table {
+        overscroll-behavior-x: contain;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1717,3 +1749,19 @@ thead .matrix-sticky-col {
     display: flex;
 }
 .gap-coverage-bar > span { display: block; height: 100%; }
+
+/* Repeat after .matrix-container / .sticky-scroll definitions so this wins the cascade. */
+@media (max-width: 639px), (pointer: coarse), (any-pointer: coarse) {
+    .matrix-container,
+    .policy-gantt-scroll,
+    .sticky-scroll,
+    .sticky-scroll--tall {
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: visible;
+        overscroll-behavior-x: contain;
+    }
+    .chart-box-tall {
+        height: min(48dvh, 20rem);
+    }
+}
