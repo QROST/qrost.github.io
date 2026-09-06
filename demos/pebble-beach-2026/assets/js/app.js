@@ -235,6 +235,22 @@
     invalidatePlanMaps();
   }
 
+  let foldableViewportTimer = 0;
+  function scheduleFoldableViewport() {
+    window.clearTimeout(foldableViewportTimer);
+    foldableViewportTimer = window.setTimeout(() => invalidateVisibleMaps(), 100);
+  }
+
+  function coarsePointer() {
+    try {
+      if (typeof window.matchMedia === 'function') {
+        if (window.matchMedia('(any-pointer: coarse)').matches) return true;
+        if (window.matchMedia('(pointer: coarse)').matches) return true;
+      }
+    } catch (_) {}
+    return typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0;
+  }
+
   function applyTemporalSections() {
     const target = hashTargetElement();
     document.querySelectorAll('[data-temporal-section]').forEach((section) => {
@@ -1552,8 +1568,7 @@
       return;
     }
 
-    parkingTrafficState.coarsePointer = (typeof window.matchMedia === 'function' && window.matchMedia('(any-pointer: coarse)').matches)
-      || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
+    parkingTrafficState.coarsePointer = coarsePointer();
     root.innerHTML = '';
     const map = window.L.map(root, {
       crs: window.L.CRS.Simple,
@@ -1761,8 +1776,7 @@
       return;
     }
 
-    parkingGeographicState.coarsePointer = (typeof window.matchMedia === 'function' && window.matchMedia('(any-pointer: coarse)').matches)
-      || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
+    parkingGeographicState.coarsePointer = coarsePointer();
     root.innerHTML = '';
     const map = window.L.map(root, {
       minZoom: 11,
@@ -1986,14 +2000,13 @@
     if (!window.L || !planItem.route) return;
     const generation = planMapGeneration;
     const route = planItem.route;
-    const coarsePointer = (typeof window.matchMedia === 'function' && window.matchMedia('(any-pointer: coarse)').matches)
-      || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
+    const isCoarse = coarsePointer();
     const map = window.L.map(el, {
       scrollWheelZoom: false,
       zoomControl: true,
       attributionControl: true,
-      dragging: !coarsePointer,
-      touchZoom: !coarsePointer
+      dragging: !isCoarse,
+      touchZoom: !isCoarse
     });
     const markerLegPane = map.createPane('planMarkerLegs');
     markerLegPane.style.zIndex = '450';
@@ -2006,7 +2019,7 @@
       if (event.metaKey || event.ctrlKey) map.scrollWheelZoom.enable();
       else map.scrollWheelZoom.disable();
     }, { passive: true });
-    syncLeafletTouchAction(el, coarsePointer, false);
+    syncLeafletTouchAction(el, isCoarse, false);
 
     const layers = {
       markers: [],
@@ -2206,8 +2219,7 @@
       return;
     }
     if (!mapState.map) {
-      mapState.coarsePointer = (typeof window.matchMedia === 'function' && window.matchMedia('(any-pointer: coarse)').matches)
-        || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
+      mapState.coarsePointer = coarsePointer();
       mapState.map = window.L.map(root, {
         scrollWheelZoom: false,
         zoomControl: true,
@@ -2354,6 +2366,18 @@
     });
 
     window.addEventListener('scroll', lockParkingMapsOnPageScroll, { passive: true });
+    window.addEventListener('resize', scheduleFoldableViewport);
+    window.addEventListener('orientationchange', scheduleFoldableViewport);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', scheduleFoldableViewport);
+      window.visualViewport.addEventListener('scroll', scheduleFoldableViewport);
+    }
+    if (navigator.devicePosture && navigator.devicePosture.addEventListener) {
+      navigator.devicePosture.addEventListener('change', scheduleFoldableViewport);
+    }
+    if (screen.orientation && screen.orientation.addEventListener) {
+      screen.orientation.addEventListener('change', scheduleFoldableViewport);
+    }
     const hubTouchToggle = document.getElementById('hub-map-touch-toggle');
     if (hubTouchToggle) {
       hubTouchToggle.addEventListener('click', (event) => {

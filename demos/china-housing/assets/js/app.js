@@ -1633,6 +1633,11 @@
       onChange: function (interactive) {
         applyLeafletTouch(which === 'near' ? lmNearMap : lmSatMap, interactive);
       },
+      onViewport: function () {
+        const map = which === 'near' ? lmNearMap : lmSatMap;
+        if (!map) return;
+        try { map.invalidateSize(); } catch (e) { /* map already removed */ }
+      },
     });
   }
 

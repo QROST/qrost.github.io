@@ -32,7 +32,7 @@ body {
     /* Taller for ~24 horizontal bars */
 }
 
-@media (max-width: 720px) {
+@media (max-width: 720px), (pointer: coarse), (any-pointer: coarse) {
     .chart-container-tall {
         height: auto;
         min-height: 20rem;
@@ -51,6 +51,14 @@ body {
 
     .chart-container-tall {
         height: 920px;
+    }
+}
+
+@media (pointer: coarse), (any-pointer: coarse) {
+    .chart-container-tall {
+        height: auto;
+        min-height: 20rem;
+        max-height: none;
     }
 }
 

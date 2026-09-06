@@ -1,6 +1,7 @@
 /* Coarse-pointer map/graph gate.
  * Default: one-finger vertical page scroll (touch-action: pan-y, roam/drag off).
- * Explicit toggle unlocks pan/pinch. Window (or modal) scroll auto-relocks. */
+ * Explicit toggle unlocks pan/pinch. Window (or modal) scroll auto-relocks.
+ * Viewport watch covers fold/unfold, posture, and visualViewport (not just width). */
 (function (global) {
   'use strict';
 
@@ -12,6 +13,63 @@
       }
     } catch (e) {}
     return typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0;
+  }
+
+  var viewportFns = [];
+  var viewportHooked = false;
+  var viewportTimer = 0;
+
+  function flushViewport() {
+    viewportTimer = 0;
+    for (var i = 0; i < viewportFns.length; i++) {
+      try { viewportFns[i](); } catch (err) {}
+    }
+  }
+
+  function scheduleViewport() {
+    if (viewportTimer) global.clearTimeout(viewportTimer);
+    viewportTimer = global.setTimeout(flushViewport, 100);
+  }
+
+  function hookViewport() {
+    if (viewportHooked) return;
+    viewportHooked = true;
+    global.addEventListener('resize', scheduleViewport);
+    global.addEventListener('orientationchange', scheduleViewport);
+    var vv = global.visualViewport;
+    if (vv) {
+      vv.addEventListener('resize', scheduleViewport);
+      vv.addEventListener('scroll', scheduleViewport);
+    }
+    try {
+      if (global.matchMedia) {
+        ['(any-pointer: coarse)', '(pointer: coarse)'].forEach(function (query) {
+          var mq = global.matchMedia(query);
+          if (mq.addEventListener) mq.addEventListener('change', scheduleViewport);
+          else if (mq.addListener) mq.addListener(scheduleViewport);
+        });
+      }
+    } catch (e) {}
+    var posture = global.navigator && global.navigator.devicePosture;
+    if (posture && posture.addEventListener) posture.addEventListener('change', scheduleViewport);
+    var orientation = global.screen && global.screen.orientation;
+    if (orientation && orientation.addEventListener) orientation.addEventListener('change', scheduleViewport);
+  }
+
+  function watchViewport(fn) {
+    if (typeof fn !== 'function') return function () {};
+    hookViewport();
+    viewportFns.push(fn);
+    return function () {
+      var idx = viewportFns.indexOf(fn);
+      if (idx >= 0) viewportFns.splice(idx, 1);
+    };
+  }
+
+  function resizeChart(surface) {
+    if (!surface || !global.echarts || !global.echarts.getInstanceByDom) return;
+    var inst = global.echarts.getInstanceByDom(surface);
+    if (inst && typeof inst.resize === 'function') inst.resize();
   }
 
   function applySurfaceTouch(surface, interactive) {
@@ -130,6 +188,19 @@
       setActive: setActive,
     };
     surface._qrostGate = gate;
+    watchViewport(function () {
+      var next = coarsePointer();
+      if (next !== coarse) {
+        coarse = next;
+        gate.coarse = next;
+        active = false;
+        paint();
+      } else {
+        applySurfaceTouch(surface, interactive());
+      }
+      resizeChart(surface);
+      if (typeof options.onViewport === 'function') options.onViewport();
+    });
     paint();
     return gate;
   }
@@ -138,5 +209,6 @@
     coarsePointer: coarsePointer,
     attach: attach,
     applySurfaceTouch: applySurfaceTouch,
+    watchViewport: watchViewport,
   };
 })(typeof window !== 'undefined' ? window : this);

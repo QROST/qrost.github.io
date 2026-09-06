@@ -20,7 +20,7 @@ if (window.__abyssMarkModuleReady) window.__abyssMarkModuleReady();
 
 const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 
-const IS_MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth < 820;
+const IS_MOBILE = matchMedia('(any-pointer: coarse)').matches || matchMedia('(pointer: coarse)').matches || innerWidth < 820;
 const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DEBUG = new URLSearchParams(location.search).has('debug');
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));

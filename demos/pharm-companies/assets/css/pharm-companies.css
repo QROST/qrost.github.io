@@ -302,6 +302,6 @@ html.dark .badge-dt-equity_stake { color: #c084fc; }
 [class*="overflow-x-auto"] {
   overscroll-behavior-x: contain;
 }
-@media (max-width: 900px), (any-pointer: coarse) {
+@media (max-width: 900px), (pointer: coarse), (any-pointer: coarse) {
   .chart-h-lg { height: min(52dvh, 22rem); }
 }

@@ -205,7 +205,7 @@ body.audio-on #enable:focus-visible { opacity: 1; }                     /* hover
   white-space: normal; line-height: 1.6; letter-spacing: 0.04em; color: #ffd0eb;
 }
 .module-error { margin: 0 0 18px; color: #ffd0eb; font-size: 12px; line-height: 1.6; }
-@media (max-width: 820px) { #panel { font-size: 11px; padding: 8px 10px; gap: 1px; top: auto; bottom: 64px; transform: none; } }
+@media (max-width: 820px), (pointer: coarse), (any-pointer: coarse) { #panel { font-size: 11px; padding: 8px 10px; gap: 1px; top: auto; bottom: 64px; transform: none; } }
 
 @media (max-width: 820px) {
   #title { font-size: 21px; letter-spacing: 0.22em; }
