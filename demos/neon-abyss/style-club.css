@@ -3,6 +3,7 @@
 html, body {
   height: 100%; width: 100%;
   overflow: hidden;
+  overscroll-behavior: none;
   background: #04050a;
   color: #b8f0ff;   /* 霓虹青调（原 #dfe6f2 偏白蓝 → 偏青蓝更夜店）*/
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;

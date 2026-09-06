@@ -3,6 +3,7 @@
 html, body {
   height: 100%; width: 100%;
   overflow: hidden;
+  overscroll-behavior: none;
   background: #04050a;
   color: #dfe6f2;
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
