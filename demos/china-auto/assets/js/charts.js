@@ -3,6 +3,7 @@
   'use strict';
   var I18N = window.CHINA_AUTO_I18N;
   var instances = {};
+  var clusterGraphGate = null;
   var clusterGraphCache = { key: '', fitGen: 0, opts: null, narrow: null };
 
   function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
@@ -33,6 +34,20 @@
     }
     if (!instances['cluster-graph']) {
       instances['cluster-graph'] = window.echarts.init(el, null, { renderer: 'canvas' });
+      if (window.QrostTouchGate && !clusterGraphGate) {
+        clusterGraphGate = window.QrostTouchGate.attach(el, {
+          labels: function () {
+            return {
+              enable: I18N.t('graphTouchEnable'),
+              disable: I18N.t('graphTouchDisable'),
+            };
+          },
+          onChange: function (interactive) {
+            var ch = instances['cluster-graph'];
+            if (ch) ch.setOption({ series: [{ roam: interactive, draggable: interactive }] });
+          },
+        });
+      }
     }
     return instances['cluster-graph'];
   }
@@ -204,9 +219,15 @@
     return s;
   }
 
+  function graphInteractive() {
+    if (clusterGraphGate) return clusterGraphGate.isInteractive();
+    return !window.QrostTouchGate || !window.QrostTouchGate.coarsePointer();
+  }
+
   function renderClusterGraph(opts) {
     opts = opts || {};
     clusterGraphCache.opts = opts;
+    if (clusterGraphGate) clusterGraphGate.refresh();
     var cities = opts.cities || [];
     var relations = opts.relations || [];
     var clusters = opts.clusters || [];
@@ -623,13 +644,14 @@
       }),
       series: [{
         type: 'graph', layout: rebuild ? 'force' : 'none',
-        data: nodes, links: links, roam: true, draggable: true,
+        data: nodes, links: links, roam: graphInteractive(), draggable: graphInteractive(),
         scaleLimit: { min: 0.3, max: 8 },
         force: { repulsion: layers.brands ? 180 : 150, edgeLength: [36, 100], gravity: 0.045 },
         lineStyle: { opacity: 0.7, curveness: 0.1 },
         emphasis: { focus: 'adjacency' }
       }]
     }, rebuild);
+    if (clusterGraphGate) clusterGraphGate.syncSurface();
     if (fitIds) scheduleGraphFit(c, fitIds, rebuild, nodes);
     else if (!rebuild) scheduleGraphFit(c, null, false, nodes);
     else clusterGraphCache.fitGen += 1;

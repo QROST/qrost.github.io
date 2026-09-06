@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   var I18N = window.CHINA_AUTO_I18N;
-  var chart = null, registered = false, onClickCb = null, lastOpts = null;
+  var chart = null, gate = null, registered = false, onClickCb = null, lastOpts = null;
   var CLUSTER_PAL = ['--chart-1', '--chart-2', '--chart-3', '--chart-4', '--chart-5', '--chart-6', '--chart-7', '--chart-8'];
 
   function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
@@ -18,6 +18,19 @@
       chart.on('click', function (p) {
         if (p.data && p.data._id && onClickCb) onClickCb(p.data._id, p.data._kind);
       });
+      if (window.QrostTouchGate) {
+        gate = window.QrostTouchGate.attach(el, {
+          labels: function () {
+            return {
+              enable: I18N.t('mapTouchEnable'),
+              disable: I18N.t('mapTouchDisable'),
+            };
+          },
+          onChange: function (interactive) {
+            if (chart) chart.setOption({ geo: { roam: interactive } });
+          },
+        });
+      }
     }
     return chart;
   }
@@ -107,10 +120,16 @@
     return { points: points, legend: legend, outMin: outMin, outMax: outMax };
   }
 
+  function mapRoam() {
+    if (gate) return gate.isInteractive();
+    return !window.QrostTouchGate || !window.QrostTouchGate.coarsePointer();
+  }
+
   function render(opts) {
     lastOpts = opts;
     var c = ensure();
     if (!c) return;
+    if (gate) gate.refresh();
     onClickCb = opts.onClick || onClickCb;
     var built = buildPoints(opts);
     var points = built.points;
@@ -137,7 +156,7 @@
         }
       },
       geo: {
-        map: 'china', roam: true, scaleLimit: { min: 1, max: 12 },
+        map: 'china', roam: mapRoam(), scaleLimit: { min: 1, max: 12 },
         itemStyle: { areaColor: cssVar('--map-land'), borderColor: cssVar('--map-border'), borderWidth: 0.6 },
         emphasis: { itemStyle: { areaColor: cssVar('--accent-soft') }, label: { show: false } },
         label: { show: false }, silent: true
@@ -165,6 +184,7 @@
       option.series[0].data = points;
     }
     c.setOption(option, true);
+    if (gate) gate.syncSurface();
 
     var leg = document.getElementById('map-legend');
     if (leg) {

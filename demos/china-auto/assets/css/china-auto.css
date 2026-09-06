@@ -343,6 +343,43 @@ html.dark .search-pop { box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35); }
   .runtime-warning-shell { margin: 0.75rem 1rem 0; }
   .modal-backdrop { padding: 0.5rem; }
   .modal-panel { padding: 1rem 1rem 1.25rem; border-radius: 0.75rem; }
-  .chart-h-lg { height: 430px; }
-  .chart-h-graph { height: 480px; }
+}
+
+.qrost-touch-toggle {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 44px;
+  margin: 0.5rem 0 0;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.65rem;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.qrost-touch-toggle[hidden] { display: none !important; }
+.qrost-touch-toggle[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+}
+.is-touch-locked { touch-action: pan-y; }
+.is-touch-unlocked { touch-action: none; }
+.table-wrap, .list-scroll, .auto-nav-links, .nav-scroll {
+  overscroll-behavior-x: contain;
+}
+.auto-nav-links, .nav-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+@media (max-width: 900px), (pointer: coarse), (any-pointer: coarse) {
+  .list-scroll {
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+  .chart-h-lg { height: min(52dvh, 22rem); }
+  .chart-h-graph { height: min(56dvh, 24rem); }
 }
