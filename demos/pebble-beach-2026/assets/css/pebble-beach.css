@@ -128,7 +128,14 @@ svg { display: block; }
   font-weight: 800;
   letter-spacing: .36em;
 }
-.nav-links { display: flex; align-items: center; gap: 22px; margin-left: auto; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-left: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+}
 .nav-links a {
   min-height: 44px;
   display: flex;
@@ -937,6 +944,11 @@ html:not(.nav-ready) .parking-map-toolbar {
   font-weight: 800;
 }
 .parking-map-touch-toggle[aria-pressed="true"] { background: var(--blue); color: var(--surface); }
+.hub-map-touch-toggle {
+  width: calc(100% - 20px);
+  margin: 8px 10px 0;
+}
+html:not(.nav-ready) .hub-map-touch-toggle { display: none !important; }
 .parking-map-line-legend { display: flex; flex-wrap: wrap; gap: 7px 12px; padding: 10px 4px 2px; }
 .parking-map-line-legend span { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: .59rem; font-weight: 720; }
 .parking-line-swatch { display: inline-block; width: 28px; height: 4px; border-radius: 999px; background: #d5a900; }
@@ -1980,7 +1992,7 @@ html[lang="en"] .only-zh { display: none; }
   .temporal-section-summary { align-items: flex-start; flex-direction: column; }
   .parking-map-filter-button { flex: 1 1 calc(50% - 7px); }
   .parking-map-panel-heading { align-items: flex-start; flex-direction: column; }
-  .parking-traffic-map { height: 340px; min-height: 280px; }
+  .parking-traffic-map { height: min(42dvh, 20rem); min-height: 280px; }
   .parking-map-source-links, .parking-map-source-links a { width: 100%; }
   .parking-map-source-links a { justify-content: center; }
   .parking-geographic-map-actions { grid-template-columns: 1fr; }
@@ -2003,6 +2015,17 @@ html[lang="en"] .only-zh { display: none; }
   .select-grid { grid-template-columns: 1fr; }
   .select-arrow { padding: 0; transform: rotate(90deg); justify-self: center; }
   .time-comparison, .transport-tips { grid-template-columns: 1fr; }
+}
+
+@media (pointer: coarse), (any-pointer: coarse) {
+  .parking-traffic-map {
+    height: min(42dvh, 20rem);
+    min-height: 16rem;
+  }
+  .hub-map {
+    height: min(48dvh, 20rem);
+    min-height: 16rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -240,6 +240,7 @@ def validate() -> list[str]:
         'id="parking-map-list"': "parking-map accessible list",
         'id="parking-map-status"': "parking-map live status",
         'id="parking-map-touch-toggle"': "parking-map touch control",
+        'id="hub-map-touch-toggle"': "hub-map touch control",
         'id="parking-map-line-legend"': "parking-map line legend",
     }
     for snippet, label in parking_map_contract.items():
@@ -256,6 +257,7 @@ def validate() -> list[str]:
         "parking-map-list",
         "parking-map-status",
         "parking-map-touch-toggle",
+        "hub-map-touch-toggle",
         "parking-map-line-legend",
     ):
         renderer_lookup = f"getElementById('{root_id}')"
@@ -531,7 +533,7 @@ def validate() -> list[str]:
         if forbidden_live_control in html or forbidden_live_control in app_js:
             errors.append(f"archived schedule must not expose live control: {forbidden_live_control}")
     if not all(token in demo_css for token in (
-        "html:not(.nav-ready) .parking-view-tabs", "html:not(.nav-ready) .parking-geographic-map-actions", "html:not(.nav-ready) .parking-map-toolbar",
+        "html:not(.nav-ready) .parking-view-tabs", "html:not(.nav-ready) .parking-geographic-map-actions", "html:not(.nav-ready) .parking-map-toolbar", "html:not(.nav-ready) .hub-map-touch-toggle",
     )):
         errors.append("map-only controls must be hidden when JavaScript is unavailable")
     if "target.scrollIntoView" not in app_js:

@@ -128,7 +128,14 @@ svg { display: block; }
   font-weight: 800;
   letter-spacing: .36em;
 }
-.nav-links { display: flex; align-items: center; gap: 22px; margin-left: auto; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-left: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+}
 .nav-links a {
   min-height: 44px;
   display: flex;

@@ -371,6 +371,8 @@ window.PEBBLE_DATA = {
     parkingMapDirections: { zh: '官方停车、入口与接驳说明 ↗', en: 'Official parking, entry & shuttle guidance ↗' },
     parkingMapTouchEnable: { zh: '启用地图拖动', en: 'Enable map dragging' },
     parkingMapTouchDisable: { zh: '停用地图拖动', en: 'Disable map dragging' },
+    hubMapTouchEnable: { zh: '移动地图', en: 'Move map' },
+    hubMapTouchDisable: { zh: '锁定地图（可滚动页面）', en: 'Lock map (scroll page)' },
     parkingMapListKicker: { zh: '同步清单', en: 'Synchronized list' },
     parkingMapListTitle: { zh: '编号与状态清单', en: 'Codes and status list' },
     parkingMapStaticPortola: { zh: '按现场指引进入附近指定停车区', en: 'Follow onsite directions to nearby assigned parking' },

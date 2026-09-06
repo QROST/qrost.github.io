@@ -26,7 +26,7 @@
     from: 'monterey',
     to: 'pebble'
   };
-  const mapState = { map: null, layer: null, markers: [] };
+  const mapState = { map: null, layer: null, markers: [], touchActive: false, coarsePointer: false };
   const parkingTrafficState = {
     map: null,
     baseLayer: null,
@@ -1473,12 +1473,19 @@
     </div>`;
   }
 
+  function syncLeafletTouchAction(container, coarsePointer, touchActive) {
+    if (!container || !coarsePointer) return;
+    container.style.touchAction = touchActive ? 'none' : 'pan-y';
+  }
+
   function updateParkingTouchToggle() {
     const button = document.getElementById('parking-map-touch-toggle');
+    const root = document.getElementById('parking-traffic-map');
     if (!button) return;
     button.hidden = !parkingTrafficState.coarsePointer;
     button.setAttribute('aria-pressed', parkingTrafficState.touchActive ? 'true' : 'false');
     button.textContent = text(parkingTrafficState.touchActive ? 'parkingMapTouchDisable' : 'parkingMapTouchEnable');
+    syncLeafletTouchAction(root, parkingTrafficState.coarsePointer, parkingTrafficState.touchActive);
   }
 
   function parkingDiagramLatLng(mapX, mapY) {
@@ -1581,6 +1588,7 @@
       if (event.metaKey || event.ctrlKey) map.scrollWheelZoom.enable();
       else map.scrollWheelZoom.disable();
     }, { passive: true });
+    syncLeafletTouchAction(root, parkingTrafficState.coarsePointer, parkingTrafficState.touchActive);
     updateParkingTouchToggle();
     window.setTimeout(() => map.invalidateSize(), 40);
   }
@@ -1736,10 +1744,12 @@
 
   function updateParkingGeographicTouchToggle() {
     const button = document.getElementById('parking-geographic-touch-toggle');
+    const root = document.getElementById('parking-geographic-map');
     if (!button) return;
     button.hidden = !parkingGeographicState.coarsePointer;
     button.setAttribute('aria-pressed', parkingGeographicState.touchActive ? 'true' : 'false');
     button.textContent = text(parkingGeographicState.touchActive ? 'parkingGeoTouchDisable' : 'parkingGeoTouchEnable');
+    syncLeafletTouchAction(root, parkingGeographicState.coarsePointer, parkingGeographicState.touchActive);
   }
 
   function ensureParkingGeographicMap() {
@@ -1779,6 +1789,7 @@
       if (event.metaKey || event.ctrlKey) map.scrollWheelZoom.enable();
       else map.scrollWheelZoom.disable();
     }, { passive: true });
+    syncLeafletTouchAction(root, parkingGeographicState.coarsePointer, parkingGeographicState.touchActive);
     fitParkingGeographicBounds();
     updateParkingGeographicTouchToggle();
     window.setTimeout(() => map.invalidateSize(), 40);
@@ -1840,6 +1851,44 @@
       parkingGeographicState.map.touchZoom.disable();
     }
     updateParkingGeographicTouchToggle();
+  }
+
+  function lockParkingMapsOnPageScroll(event) {
+    const target = event && event.target;
+    const node = target && target.nodeType === 1 ? target : (target && target.parentElement);
+    if (parkingTrafficState.touchActive) {
+      const root = document.getElementById('parking-traffic-map');
+      if (!node || !root || !root.contains(node)) {
+        parkingTrafficState.touchActive = false;
+        if (parkingTrafficState.map) {
+          parkingTrafficState.map.dragging.disable();
+          parkingTrafficState.map.touchZoom.disable();
+        }
+        updateParkingTouchToggle();
+      }
+    }
+    if (parkingGeographicState.touchActive) {
+      const root = document.getElementById('parking-geographic-map');
+      if (!node || !root || !root.contains(node)) {
+        parkingGeographicState.touchActive = false;
+        if (parkingGeographicState.map) {
+          parkingGeographicState.map.dragging.disable();
+          parkingGeographicState.map.touchZoom.disable();
+        }
+        updateParkingGeographicTouchToggle();
+      }
+    }
+    if (mapState.touchActive) {
+      const root = document.getElementById('hub-map');
+      if (!node || !root || !root.contains(node)) {
+        mapState.touchActive = false;
+        if (mapState.map) {
+          mapState.map.dragging.disable();
+          mapState.map.touchZoom.disable();
+        }
+        updateHubTouchToggle();
+      }
+    }
   }
 
   function setParkingView(nextMode, focusTab) {
@@ -1944,7 +1993,7 @@
       zoomControl: true,
       attributionControl: true,
       dragging: !coarsePointer,
-      touchZoom: true
+      touchZoom: !coarsePointer
     });
     const markerLegPane = map.createPane('planMarkerLegs');
     markerLegPane.style.zIndex = '450';
@@ -1957,6 +2006,7 @@
       if (event.metaKey || event.ctrlKey) map.scrollWheelZoom.enable();
       else map.scrollWheelZoom.disable();
     }, { passive: true });
+    syncLeafletTouchAction(el, coarsePointer, false);
 
     const layers = {
       markers: [],
@@ -2125,6 +2175,29 @@
     }
   }
 
+  function updateHubTouchToggle() {
+    const button = document.getElementById('hub-map-touch-toggle');
+    const root = document.getElementById('hub-map');
+    if (!button) return;
+    button.hidden = !mapState.coarsePointer;
+    button.setAttribute('aria-pressed', mapState.touchActive ? 'true' : 'false');
+    button.textContent = text(mapState.touchActive ? 'hubMapTouchDisable' : 'hubMapTouchEnable');
+    syncLeafletTouchAction(root, mapState.coarsePointer, mapState.touchActive);
+  }
+
+  function toggleHubMapTouch() {
+    if (!mapState.map || !mapState.coarsePointer) return;
+    mapState.touchActive = !mapState.touchActive;
+    if (mapState.touchActive) {
+      mapState.map.dragging.enable();
+      mapState.map.touchZoom.enable();
+    } else {
+      mapState.map.dragging.disable();
+      mapState.map.touchZoom.disable();
+    }
+    updateHubTouchToggle();
+  }
+
   function ensureHubMap() {
     const root = document.getElementById('hub-map');
     if (!root) return;
@@ -2133,10 +2206,14 @@
       return;
     }
     if (!mapState.map) {
+      mapState.coarsePointer = (typeof window.matchMedia === 'function' && window.matchMedia('(any-pointer: coarse)').matches)
+        || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
       mapState.map = window.L.map(root, {
         scrollWheelZoom: false,
         zoomControl: true,
-        attributionControl: true
+        attributionControl: true,
+        dragging: !mapState.coarsePointer,
+        touchZoom: !mapState.coarsePointer
       });
       mapState.layer = window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -2146,12 +2223,14 @@
         if (event.metaKey || event.ctrlKey) mapState.map.scrollWheelZoom.enable();
         else mapState.map.scrollWheelZoom.disable();
       }, { passive: true });
+      updateHubTouchToggle();
       window.setTimeout(() => {
         mapState.map.invalidateSize();
         syncHubMapMarkers();
       }, 40);
     } else {
       syncHubMapMarkers();
+      updateHubTouchToggle();
       window.setTimeout(() => mapState.map && mapState.map.invalidateSize(), 40);
     }
   }
@@ -2273,6 +2352,15 @@
       updateSectionNavUi();
       if (sectionNavToggle) sectionNavToggle.focus();
     });
+
+    window.addEventListener('scroll', lockParkingMapsOnPageScroll, { passive: true });
+    const hubTouchToggle = document.getElementById('hub-map-touch-toggle');
+    if (hubTouchToggle) {
+      hubTouchToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        toggleHubMapTouch();
+      });
+    }
 
     if (parkingPanel) {
       parkingPanel.addEventListener('click', (event) => {
