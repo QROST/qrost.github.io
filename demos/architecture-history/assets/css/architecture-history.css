@@ -633,6 +633,7 @@ html.dark .primary-button {
   border-radius: 0.65rem;
   background: var(--surface);
   box-shadow: var(--shadow);
+  overscroll-behavior: contain;
 }
 
 .map-card {
@@ -645,6 +646,35 @@ html.dark .primary-button {
   background:
     radial-gradient(circle at 50% 45%, transparent 0 38%, color-mix(in srgb, var(--map-water) 70%, transparent) 100%),
     var(--map-water);
+}
+
+.qrost-touch-toggle {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 44px;
+  margin: 0;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--cobalt);
+  border-radius: 0;
+  background: var(--cobalt-soft);
+  color: var(--cobalt-dark);
+  font-size: 0.78rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.qrost-touch-toggle[hidden] { display: none !important; }
+.qrost-touch-toggle[aria-pressed="true"] {
+  background: var(--cobalt);
+  color: var(--surface-strong);
+}
+
+.is-touch-locked { touch-action: pan-y; }
+.is-touch-unlocked { touch-action: none; }
+
+[hidden] {
+  display: none !important;
 }
 
 .map-state,
@@ -2032,6 +2062,16 @@ html.dark .primary-button {
     margin: 0 auto;
     padding: 0 2rem 0.65rem;
     overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+  }
+
+  .world-map {
+    height: min(48dvh, 20rem);
+  }
+
+  .lineage-graph {
+    height: min(48dvh, 20rem);
   }
 
   .hero-grid {
@@ -2055,8 +2095,9 @@ html.dark .primary-button {
   }
 
   .lineage-list {
-    max-height: min(430px, calc(100vh - 12rem));
-    overflow-y: auto;
+    max-height: none;
+    overflow-y: visible;
+    contain: none;
   }
 
   .fixture-panel {
@@ -2172,9 +2213,9 @@ html.dark .primary-button {
   .catalog-card-list {
     display: grid;
     gap: 0.6rem;
-    max-height: min(520px, calc(100vh - 14rem));
-    overflow-y: auto;
-    contain: paint;
+    max-height: none;
+    overflow: visible;
+    contain: none;
     padding-right: 0.15rem;
   }
 
@@ -2232,10 +2273,6 @@ html.dark .primary-button {
     margin-top: 0.65rem;
     color: var(--ink-soft);
     font-size: 0.6rem;
-  }
-
-  .lineage-graph {
-    height: 430px;
   }
 
   .coverage-progress {
@@ -2311,6 +2348,25 @@ html.dark .primary-button {
 
 .lineage-edgeless .lineage-list {
   max-height: 300px;
+}
+
+@media (max-width: 900px), (pointer: coarse), (any-pointer: coarse) {
+  .world-map,
+  .lineage-graph {
+    height: min(48dvh, 20rem);
+  }
+  .lineage-list,
+  .lineage-edgeless .lineage-list {
+    max-height: none;
+    overflow-y: visible;
+    contain: none;
+  }
+  .catalog-table-wrap {
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: visible;
+    contain: none;
+  }
 }
 
 .lineage-edgeless-note {

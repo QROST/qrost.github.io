@@ -140,6 +140,7 @@ class PageContractTests(unittest.TestCase):
             "assets/js/world-geo.js",
             "https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js",
             "assets/js/i18n.js",
+            "assets/js/touch-gate.js",
             "assets/js/data-loader.js",
             "assets/js/maps.js",
             "assets/js/app.js",
@@ -412,6 +413,20 @@ class PageContractTests(unittest.TestCase):
             "html.dark #theme-toggle .sun-icon",
         ):
             self.assertIn(rule, self.css)
+
+    def test_coarse_pointer_nested_scroll_overrides_win_cascade(self) -> None:
+        self.assertIn(
+            "@media (max-width: 900px), (pointer: coarse), (any-pointer: coarse)",
+            self.css,
+        )
+        capped = self.css.rfind(".lineage-edgeless .lineage-list {\n  max-height: 300px;")
+        override = self.css.rfind(".lineage-edgeless .lineage-list {\n    max-height: none;")
+        self.assertGreater(capped, 0)
+        self.assertGreater(override, capped)
+        table_cap = self.css.rfind(".catalog-table-wrap {\n  max-height: min(520px")
+        table_override = self.css.rfind(".catalog-table-wrap {\n    max-height: none;")
+        self.assertGreater(table_cap, 0)
+        self.assertGreater(table_override, table_cap)
 
 
 if __name__ == "__main__":
