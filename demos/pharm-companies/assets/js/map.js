@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   var I18N = window.PHARM_I18N;
-  var chart = null, registered = false, onClickCb = null;
+  var chart = null, gate = null, registered = false, onClickCb = null;
 
   function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
 
@@ -35,8 +35,26 @@
     if (!chart) {
       chart = window.echarts.init(el, null, { renderer: 'canvas' });
       chart.on('click', function (p) { if (p.data && p.data._cid && onClickCb) onClickCb(p.data._cid); });
+      if (window.QrostTouchGate) {
+        gate = window.QrostTouchGate.attach(el, {
+          labels: function () {
+            return {
+              enable: I18N.t('mapTouchEnable'),
+              disable: I18N.t('mapTouchDisable'),
+            };
+          },
+          onChange: function (interactive) {
+            if (chart) chart.setOption({ geo: { roam: interactive } });
+          },
+        });
+      }
     }
     return chart;
+  }
+
+  function mapRoam() {
+    if (gate) return gate.isInteractive();
+    return !window.QrostTouchGate || !window.QrostTouchGate.coarsePointer();
   }
 
   // Returns {key,label,color} for a site under the chosen dimension.
@@ -63,6 +81,7 @@
   function render(opts) {
     var c = ensure();
     if (!c) return;
+    if (gate) gate.refresh();
     var dim = opts.dim || 'site_type';
     var sites = opts.sites || [];
     var getCompany = opts.getCompany;
@@ -111,7 +130,7 @@
         }
       },
       geo: {
-        map: 'world', roam: true, scaleLimit: { min: 1, max: 8 },
+        map: 'world', roam: mapRoam(), scaleLimit: { min: 1, max: 8 },
         itemStyle: { areaColor: cssVar('--map-land'), borderColor: cssVar('--map-border'), borderWidth: 0.5 },
         emphasis: { itemStyle: { areaColor: cssVar('--accent-soft') }, label: { show: false } },
         label: { show: false }, silent: true
@@ -126,6 +145,7 @@
         emphasis: { scale: 1.4 }, z: 5
       }]
     }, true);
+    if (gate) gate.syncSurface();
 
     // custom legend
     var leg = document.getElementById('map-legend');

@@ -78,6 +78,9 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
    the native scrollbar is hidden via .no-scrollbar). Fades the row's own
    right edge instead of adding an overlay element. */
 .nav-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
   -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent 100%);
   mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent 100%);
 }
@@ -272,3 +275,33 @@ html.dark .badge-dt-equity_stake { color: #c084fc; }
 .deal-card:last-child { margin-bottom: 0; }
 
 .loading { color: var(--text-faint); font-size: 0.85rem; padding: 1.5rem; text-align: center; }
+
+.qrost-touch-toggle {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 44px;
+  margin: 0.5rem 0 0;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.65rem;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.qrost-touch-toggle[hidden] { display: none !important; }
+.qrost-touch-toggle[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+}
+.is-touch-locked { touch-action: pan-y; }
+.is-touch-unlocked { touch-action: none; }
+.panel.overflow-x-auto,
+[class*="overflow-x-auto"] {
+  overscroll-behavior-x: contain;
+}
+@media (max-width: 900px), (any-pointer: coarse) {
+  .chart-h-lg { height: min(52dvh, 22rem); }
+}

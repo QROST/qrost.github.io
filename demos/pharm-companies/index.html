@@ -2,7 +2,7 @@
 <html lang="zh" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>全球医药行业图谱 · Global Pharma Atlas — QROST</title>
   <meta name="description" content="在全球语境中看中国医药：企业、子公司与厂区/研发站点的世界地图、旗舰药物与在研管线、药物模态与治疗领域分布、国家对比，以及中国对国际原研的突破。" />
   <link rel="canonical" href="https://qrost.github.io/demos/pharm-companies/" />
@@ -32,13 +32,13 @@
       } catch (e) {}
     })();
     // Stamped by tools/build.py (content hash) → appended as ?v= to every data fetch.
-    window.PHARM_DATA_VERSION = 'a6e60c77e6';
+    window.PHARM_DATA_VERSION = '987f572417';
   </script>
 
-  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=a6e60c77e6" />
+  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=987f572417" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/pharm-companies.css?v=a6e60c77e6" />
+  <link rel="stylesheet" href="assets/css/pharm-companies.css?v=987f572417" />
   <style>
     /* Sun/moon theme-toggle animation — unified with QROST home */
     #theme-toggle .sun-icon,
@@ -305,16 +305,17 @@
   </div>
 
   <!-- data + libs + app (load order matters) -->
-  <script src="assets/data/world-geo.js?v=a6e60c77e6"></script>
+  <script src="assets/data/world-geo.js?v=987f572417"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
     integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
     crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.PHARM_ECHARTS_FAILED=true"></script>
-  <script src="assets/js/i18n.js?v=a6e60c77e6"></script>
-  <script src="assets/js/data-loader.js?v=a6e60c77e6"></script>
-  <script src="assets/js/charts.js?v=a6e60c77e6"></script>
-  <script src="assets/js/map.js?v=a6e60c77e6"></script>
-  <script src="assets/js/groups-graph.js?v=a6e60c77e6"></script>
-  <script src="assets/js/deals-graph.js?v=a6e60c77e6"></script>
-  <script src="assets/js/app.js?v=a6e60c77e6"></script>
+  <script src="assets/js/i18n.js?v=987f572417"></script>
+  <script src="assets/js/touch-gate.js?v=987f572417"></script>
+  <script src="assets/js/data-loader.js?v=987f572417"></script>
+  <script src="assets/js/charts.js?v=987f572417"></script>
+  <script src="assets/js/map.js?v=987f572417"></script>
+  <script src="assets/js/groups-graph.js?v=987f572417"></script>
+  <script src="assets/js/deals-graph.js?v=987f572417"></script>
+  <script src="assets/js/app.js?v=987f572417"></script>
 </body>
 </html>

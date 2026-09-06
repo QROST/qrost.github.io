@@ -22,9 +22,34 @@
   function cssVar(n, f) { var v = getComputedStyle(document.documentElement).getPropertyValue(n); return (v && v.trim()) || f; }
   function usd(m) { return m == null ? '' : (m >= 1000 ? '$' + (m / 1000).toFixed(1) + 'B' : '$' + m + 'M'); }
 
+  function ensureGate(el, i18n) {
+    if (!window.QrostTouchGate || !el) return null;
+    if (el._qrostGate) return el._qrostGate;
+    return window.QrostTouchGate.attach(el, {
+      labels: function () {
+        var I = i18n || window.PHARM_I18N;
+        return {
+          enable: I.t('graphTouchEnable'),
+          disable: I.t('graphTouchDisable'),
+        };
+      },
+      onChange: function (interactive) {
+        var inst = window.echarts.getInstanceByDom(el);
+        if (inst) inst.setOption({ series: [{ roam: interactive, draggable: interactive }] });
+      },
+    });
+  }
+
+  function graphInteractive(el) {
+    if (el && el._qrostGate) return el._qrostGate.isInteractive();
+    return !window.QrostTouchGate || !window.QrostTouchGate.coarsePointer();
+  }
+
   function render(el, opts) {
     if (!window.echarts || !el) return null;
     opts = opts || {};
+    var gate = ensureGate(el, opts.i18n);
+    if (gate) gate.refresh();
     var isEn = !!opts.isEn, deals = opts.deals || [], filter = opts.filterType || '';
     var getCompany = opts.getCompany || function () { return null; };
     var label = function (c) { return isEn ? (c.name_en || c.id) : (c.name_zh || c.name_en || c.id); };
@@ -74,7 +99,7 @@
       },
       legend: [{ data: regions.map(regionName), textStyle: { color: faint }, type: 'scroll', top: 0, icon: 'circle' }],
       series: [{
-        type: 'graph', layout: 'force', roam: true, draggable: true, zoom: 1.05,
+        type: 'graph', layout: 'force', roam: graphInteractive(el), draggable: graphInteractive(el), zoom: 1.05,
         categories: regions.map(function (r) { return { name: regionName(r), itemStyle: { color: REGION_COLOR[r] || '#64748b' } }; }),
         force: { repulsion: filter ? 280 : 170, edgeLength: [50, 170], gravity: 0.06, friction: 0.22 },
         label: { show: true, position: 'right', color: textc, fontSize: 10, formatter: '{b}' },
@@ -86,6 +111,7 @@
 
     var inst = window.echarts.getInstanceByDom(el) || window.echarts.init(el);
     inst.setOption(option, true);
+    if (gate) gate.syncSurface();
     inst.off('click');
     inst.on('click', function (p) { if (p.dataType === 'node' && opts.onNodeClick) opts.onNodeClick(p.data._cid); });
     bound = inst;

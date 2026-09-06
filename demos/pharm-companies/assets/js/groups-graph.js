@@ -9,9 +9,34 @@
   var bound = null;
   function cssVar(n, f) { var v = getComputedStyle(document.documentElement).getPropertyValue(n); return (v && v.trim()) || f; }
 
+  function ensureGate(el, i18n) {
+    if (!window.QrostTouchGate || !el) return null;
+    if (el._qrostGate) return el._qrostGate;
+    return window.QrostTouchGate.attach(el, {
+      labels: function () {
+        var I = i18n || window.PHARM_I18N;
+        return {
+          enable: I.t('graphTouchEnable'),
+          disable: I.t('graphTouchDisable'),
+        };
+      },
+      onChange: function (interactive) {
+        var inst = window.echarts.getInstanceByDom(el);
+        if (inst) inst.setOption({ series: [{ roam: interactive, draggable: interactive }] });
+      },
+    });
+  }
+
+  function graphInteractive(el) {
+    if (el && el._qrostGate) return el._qrostGate.isInteractive();
+    return !window.QrostTouchGate || !window.QrostTouchGate.coarsePointer();
+  }
+
   function render(el, opts) {
     if (!window.echarts || !el) return null;
     opts = opts || {};
+    var gate = ensureGate(el, opts.i18n);
+    if (gate) gate.refresh();
     var isEn = !!opts.isEn, groups = opts.groups || [], companies = opts.companies || [];
     var filter = opts.filterGroupId || '';
     var label = function (c) { return isEn ? (c.name_en || c.id) : (c.name_zh || c.name_en || c.id); };
@@ -51,7 +76,7 @@
       },
       legend: [{ data: cats.map(gname), textStyle: { color: faint }, type: 'scroll', top: 0, icon: 'circle' }],
       series: [{
-        type: 'graph', layout: 'force', roam: true, draggable: true, zoom: 1.1,
+        type: 'graph', layout: 'force', roam: graphInteractive(el), draggable: graphInteractive(el), zoom: 1.1,
         categories: cats.map(function (g, i) { return { name: gname(g), itemStyle: { color: PALETTE[i % PALETTE.length] } }; }),
         force: { repulsion: filter ? 220 : 110, edgeLength: [40, 130], gravity: 0.07, friction: 0.2 },
         label: { show: true, position: 'right', color: textc, fontSize: 10, formatter: '{b}' },
@@ -64,6 +89,7 @@
 
     var inst = window.echarts.getInstanceByDom(el) || window.echarts.init(el);
     inst.setOption(option, true);
+    if (gate) gate.syncSurface();
     inst.off('click');
     inst.on('click', function (p) { if (p.dataType === 'node' && opts.onNodeClick) opts.onNodeClick(p.data._cid); });
     bound = inst;
