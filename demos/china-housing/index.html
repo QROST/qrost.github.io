@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>哪里既宜居又便宜 · 全国小城市住房宜居度可视化 | QROST</title>
     <meta name="description"
         content="249 套全国小城市 / 县城二手房样本，把价格与宜居度放在一起：气候舒适度、1月/7月气温、年降水、海拔、到医院/火车站/机场/海岸的距离，以及省级自然灾害概况。覆盖 26 省，帮你找到既便宜又住得舒服的地方。">
@@ -222,6 +222,7 @@
             max-height: min(72vh, 44rem);
             overflow: auto;
             -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
         }
         @media (min-width: 1024px) {
             #table-scroll {
@@ -270,7 +271,13 @@
         }
 
         /* Mobile: nav links scroll without a visible scrollbar; chips get taller tap targets */
-        .nav-links { scrollbar-width: none; }
+        .nav-links {
+            scrollbar-width: none;
+            overflow-x: auto;
+            overflow-y: hidden;
+            overscroll-behavior-x: contain;
+            -webkit-overflow-scrolling: touch;
+        }
         .nav-links::-webkit-scrollbar { display: none; }
         @media (max-width: 639px) {
             [data-rank], [data-prov], [data-dim], [data-base], [data-group], .lm-tab {
@@ -285,6 +292,65 @@
             #table-scroll table { display: none; }
             #table-cards { display: block; }
         }
+        @media (max-width: 639px), (pointer: coarse), (any-pointer: coarse) {
+            #table-scroll {
+                max-height: none;
+                overflow-x: auto;
+                overflow-y: visible;
+            }
+        }
+
+        .map-wrap {
+            display: flex;
+            flex-direction: column;
+            height: 72vh;
+            min-height: 460px;
+        }
+        .map-wrap #china-map {
+            flex: 1 1 auto;
+            min-height: 0;
+            height: auto;
+        }
+        @media (max-width: 639px), (pointer: coarse), (any-pointer: coarse) {
+            .map-wrap {
+                height: min(48dvh, 22rem);
+                min-height: 16rem;
+            }
+            #lm-sat-map { height: min(42dvh, 18rem) !important; min-height: 14rem !important; }
+            #lm-near-map { height: min(36dvh, 16rem) !important; min-height: 13rem !important; }
+        }
+        .qrost-touch-toggle {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 44px;
+            margin: 0.5rem 0 0;
+            padding: 0.55rem 0.85rem;
+            border: 1px solid #059669;
+            border-radius: 0.65rem;
+            background: rgba(5, 150, 105, 0.12);
+            color: #047857;
+            font-size: 0.78rem;
+            font-weight: 650;
+            cursor: pointer;
+        }
+        .dark .qrost-touch-toggle {
+            border-color: #34d399;
+            background: rgba(52, 211, 153, 0.12);
+            color: #6ee7b7;
+        }
+        .qrost-touch-toggle[hidden] { display: none !important; }
+        .qrost-touch-toggle[aria-pressed="true"] {
+            background: #059669;
+            color: #fff;
+        }
+        .dark .qrost-touch-toggle[aria-pressed="true"] {
+            background: #34d399;
+            color: #064e3b;
+        }
+        .is-touch-locked { touch-action: pan-y; }
+        .is-touch-unlocked { touch-action: none; }
+        nav.sticky { padding-top: env(safe-area-inset-top); }
     </style>
 </head>
 
@@ -379,7 +445,7 @@
                     = 越便宜</strong>，颜色按<strong class="text-emerald-700 dark:text-emerald-400">点·叠加维度</strong>变化（单价 / 总价 / 年温差 / 冬夏等温 / 年降水 / 海拔 /
                 突发灾害频率）。再叠一层<strong class="text-emerald-700 dark:text-emerald-400">连续底图</strong>——全国<strong class="text-slate-800 dark:text-slate-200">等温线 / 降水 /
                     海拔</strong>栅格场（全国 1°，放大到省内自动切换 0.25° ERA5 格点）。<strong class="text-slate-800 dark:text-slate-200">滚轮 / 双指捏合 / 右上角
-                    +−</strong> 缩放、拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
+                    +−</strong> 缩放。手机竖屏默认把单指滑动留给页面滚动，点「移动地图」后再拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="flex flex-wrap items-center gap-2 mb-3">
                     <span id="dim-overlay-label" class="text-xs font-medium text-slate-500 dark:text-slate-500 mr-1 self-center">点·叠加维度</span>
@@ -403,7 +469,7 @@
                     <button data-base="none" class="base-tab"></button>
                     <span id="base-legend" class="hidden items-center gap-2 ml-1 sm:ml-3" style="display:none"></span>
                 </div>
-                <div id="map-wrap" class="relative w-full" style="height: 72vh; min-height: 460px;">
+                <div id="map-wrap" class="relative w-full map-wrap">
                     <div id="china-map" class="w-full h-full"></div>
                     <div class="absolute top-3 right-3 z-[5] flex flex-col gap-1.5">
                         <button id="map-zoom-in" aria-label="放大"
@@ -833,21 +899,22 @@
     </footer>
 
     <!-- data + libs + app (load order matters) -->
-    <script src="assets/data/listings.js?v=ca455a7650"></script>
+    <script src="assets/data/listings.js?v=0368b77e05"></script>
     <!-- China province boundaries, vendored locally (no runtime third-party fetch) -->
-    <script src="assets/data/china-geo.js?v=ca455a7650"></script>
+    <script src="assets/data/china-geo.js?v=0368b77e05"></script>
     <!-- Baked enrichment: geocode / climate / POIs / risk / elevation (tools/manage.py enrich → build) -->
-    <script src="assets/data/enriched.js?v=ca455a7650"></script>
+    <script src="assets/data/enriched.js?v=0368b77e05"></script>
     <!-- Curated province natural-hazard profile (tools/manage.py build) -->
-    <script src="assets/data/hazards.js?v=ca455a7650"></script>
-    <script src="assets/data/policy.js?v=ca455a7650"></script>
+    <script src="assets/data/hazards.js?v=0368b77e05"></script>
+    <script src="assets/data/policy.js?v=0368b77e05"></script>
     <!-- Multiple price offers per listing (一楼盘多价格挂牌) — tools/manage.py import-offers → build -->
-    <script src="assets/data/offers.js?v=ca455a7650"></script>
+    <script src="assets/data/offers.js?v=0368b77e05"></script>
     <!-- Gridded climate/elevation basemap field — isotherms / rainfall / DEM (tools/manage.py field → build) -->
-    <script src="assets/data/field.js?v=ca455a7650"></script>
-    <script src="assets/data/loc-pinyin.js?v=ca455a7650"></script>
-    <script src="assets/data/geo-en.js?v=ca455a7650"></script>
-    <script src="assets/js/i18n.js?v=ca455a7650"></script>
+    <script src="assets/data/field.js?v=0368b77e05"></script>
+    <script src="assets/data/loc-pinyin.js?v=0368b77e05"></script>
+    <script src="assets/data/geo-en.js?v=0368b77e05"></script>
+    <script src="assets/js/i18n.js?v=0368b77e05"></script>
+    <script src="assets/js/touch-gate.js?v=0368b77e05"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"
         referrerpolicy="no-referrer" onerror="window.HOUSING_CHART_FAILED=true"></script>
@@ -857,7 +924,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"
         onerror="window.HOUSING_LEAFLET_FAILED=true"></script>
-    <script src="assets/js/app.js?v=ca455a7650"></script>
+    <script src="assets/js/app.js?v=0368b77e05"></script>
 
 </body>
 

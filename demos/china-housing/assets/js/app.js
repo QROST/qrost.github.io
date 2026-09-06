@@ -1227,6 +1227,7 @@
   };
   let dimKey = 'unitPrice';
   let echartsMap = null, mapReady = false, baseGeoOpt = null;
+  let mapTouchGate = null, lmSatTouchGate = null, lmNearTouchGate = null;
   const GEO_URL = 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json';
 
   // continuous basemap field — national 1° (field.js) + province-zoom 0.25° (field_hi_<key>.js
@@ -1533,6 +1534,7 @@
       },
       visualMap,
     }, { replaceMerge: ['series', 'visualMap'] });
+    if (mapTouchGate) mapTouchGate.syncSurface();
     renderBaseLegend();
   }
 
@@ -1594,6 +1596,46 @@
 
   // zoom helpers — read current zoom/center from the live option (roam writes
   // back to it) so the +/- buttons compose with wheel / pinch roam.
+  function mapTouchLabels() {
+    return { enable: t('mapTouchEnable'), disable: t('mapTouchDisable') };
+  }
+  function mapRoamEnabled() {
+    return !mapTouchGate || mapTouchGate.isInteractive();
+  }
+  function refreshTouchGates() {
+    if (mapTouchGate) mapTouchGate.refresh();
+    if (lmSatTouchGate) lmSatTouchGate.refresh();
+    if (lmNearTouchGate) lmNearTouchGate.refresh();
+  }
+  function applyLeafletTouch(map, interactive) {
+    if (!map) return;
+    try {
+      if (interactive) {
+        map.dragging.enable();
+        map.touchZoom.enable();
+        if (window.QrostTouchGate && QrostTouchGate.coarsePointer()) map.scrollWheelZoom.disable();
+        else map.scrollWheelZoom.enable();
+      } else {
+        map.dragging.disable();
+        map.touchZoom.disable();
+        map.scrollWheelZoom.disable();
+      }
+    } catch (e) { /* map already removed */ }
+  }
+  function listingModalScroller() {
+    return document.querySelector('#listing-modal .overflow-auto');
+  }
+  function attachLeafletGate(el, which) {
+    if (!window.QrostTouchGate || !el) return null;
+    return QrostTouchGate.attach(el, {
+      labels: mapTouchLabels,
+      scrollParent: listingModalScroller(),
+      onChange: function (interactive) {
+        applyLeafletTouch(which === 'near' ? lmNearMap : lmSatMap, interactive);
+      },
+    });
+  }
+
   function geoState() {
     try { const g = echartsMap.getOption().geo[0]; return { zoom: g.zoom || 1, center: g.center }; }
     catch (e) { return { zoom: 1, center: undefined }; }
@@ -1617,9 +1659,18 @@
       echarts.registerMap('china', geo);
       echartsMap = echarts.init(document.getElementById('china-map'));
       const dk = isDark();
+      if (window.QrostTouchGate) {
+        mapTouchGate = QrostTouchGate.attach(document.getElementById('china-map'), {
+          labels: mapTouchLabels,
+          onChange: function (interactive) {
+            if (!echartsMap) return;
+            echartsMap.setOption({ geo: [{ roam: interactive }] });
+          },
+        });
+      }
       echartsMap.setOption({
         geo: {
-          map: 'china', roam: true, zoom: 1, scaleLimit: { min: 1, max: 14 },
+          map: 'china', roam: mapRoamEnabled(), zoom: 1, scaleLimit: { min: 1, max: 14 },
           nameProperty: 'name',
           itemStyle: { areaColor: dk ? '#1e293b' : '#f8fafc', borderColor: dk ? '#334155' : '#cbd5e1', borderWidth: 0.6 },
           emphasis: { itemStyle: { areaColor: dk ? '#334155' : '#eef2f7' }, label: { show: false } },
@@ -1637,6 +1688,7 @@
       });
       echartsMap.on('georoam', scheduleFieldLodRefresh);
       window.addEventListener('resize', () => echartsMap && echartsMap.resize());
+      if (mapTouchGate) mapTouchGate.syncSurface();
     } catch (e) {
       console.error('[china-housing] initMap', e);
       mapFail(t('mapFailGeo'));
@@ -2834,10 +2886,14 @@
           return;
         }
         setTimeout(() => {
-          lmSatMap = L.map('lm-sat-map', { scrollWheelZoom: true }).setView([e.lat, e.lng], ZOOM_BY_LEVEL[e.geoLevel] || 14);
+          const coarse = window.QrostTouchGate && QrostTouchGate.coarsePointer();
+          lmSatMap = L.map('lm-sat-map', {
+            scrollWheelZoom: !coarse, dragging: !coarse, touchZoom: !coarse,
+          }).setView([e.lat, e.lng], ZOOM_BY_LEVEL[e.geoLevel] || 14);
           const satTiles = L.tileLayer(TILE_SAT, { maxZoom: 19, attribution: '© Esri World Imagery' });
           wireTileFailure(satTiles, lmSatMap); satTiles.addTo(lmSatMap);
           L.circleMarker([e.lat, e.lng], { radius: 9, color: '#fff', weight: 2, fillColor: '#059669', fillOpacity: 1 }).addTo(lmSatMap).bindPopup(d.loc);
+          lmSatTouchGate = attachLeafletGate(document.getElementById('lm-sat-map'), 'sat');
           setTimeout(() => lmSatMap && lmSatMap.invalidateSize(), 180);
         }, 60);
       } else { setTimeout(() => lmSatMap && lmSatMap.invalidateSize(), 60); }
@@ -2879,7 +2935,10 @@
       lmRenderNearList(d);
       return;
     }
-    lmNearMap = L.map('lm-near-map', { scrollWheelZoom: true }).setView([e.lat, e.lng], 11);
+    const coarseNear = window.QrostTouchGate && QrostTouchGate.coarsePointer();
+    lmNearMap = L.map('lm-near-map', {
+      scrollWheelZoom: !coarseNear, dragging: !coarseNear, touchZoom: !coarseNear,
+    }).setView([e.lat, e.lng], 11);
     const streetTiles = L.tileLayer(TILE_STREET, { maxZoom: 19, attribution: '© OpenStreetMap' });
     wireTileFailure(streetTiles, lmNearMap); streetTiles.addTo(lmNearMap);
     const pts = [[e.lat, e.lng]];
@@ -2900,6 +2959,7 @@
     });
     lmRenderNearList(d);
     if (pts.length > 1) lmNearMap.fitBounds(pts, { padding: [28, 28], maxZoom: 13 });
+    lmNearTouchGate = attachLeafletGate(document.getElementById('lm-near-map'), 'near');
     setTimeout(() => lmNearMap.invalidateSize(), 60);
   }
 
@@ -3448,6 +3508,7 @@
     safeRun('syncHeroCounts', syncHeroCounts);
     safeRun('refreshPolicySection', refreshPolicySection);
     applyThemeToCharts();
+    refreshTouchGates();
   }
 
   function applyThemeToCharts() {
