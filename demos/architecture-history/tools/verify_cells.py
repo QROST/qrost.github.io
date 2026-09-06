@@ -130,6 +130,9 @@ def main() -> int:
         region = roster.get("region") or path.stem.removesuffix("-roster")
         if args.region and region != args.region:
             continue
+        if roster.get("_partial"):
+            print(f"  (skipping {region}: roster is marked _partial)")
+            continue
         region_report = {"cells": {}, "notes": roster.get("notes", {})}
         for period in PERIODS:
             entries = roster.get("buckets", {}).get(period, [])
@@ -139,8 +142,23 @@ def main() -> int:
                 "missing": [],
                 "blocked": [],
                 "region_mismatch": [],
+                "missing_works": [],
             }
             for entry in entries:
+                for work in entry.get("key_works") or []:
+                    if not work.get("qid"):
+                        continue
+                    total["works_roster"] += 1
+                    if work["qid"] not in works_by_qid:
+                        total["works_missing"] += 1
+                        cell["missing_works"].append(
+                            {
+                                "name_en": work.get("name_en"),
+                                "qid": work["qid"],
+                                "owner_name_en": entry.get("name_en"),
+                                "owner_qid": entry.get("qid"),
+                            }
+                        )
                 person, how = match(entry, by_qid, by_name)
                 if person is not None:
                     cell["present"].append(
@@ -181,12 +199,6 @@ def main() -> int:
                     )
                     total["blocked"] += 1
                 total["roster"] += 1
-                for work in entry.get("key_works") or []:
-                    if not work.get("qid"):
-                        continue
-                    total["works_roster"] += 1
-                    if work["qid"] not in works_by_qid:
-                        total["works_missing"] += 1
             region_report["cells"][period] = cell
         report["regions"][region] = region_report
 
