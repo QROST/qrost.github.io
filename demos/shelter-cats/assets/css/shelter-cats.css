@@ -149,3 +149,34 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
 
 .loading { color: var(--text-faint); font-size: 0.85rem; padding: 1.5rem; text-align: center; }
 .count-pill { font-size: 0.72rem; color: var(--text-faint); }
+
+.qrost-touch-toggle {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 44px;
+  margin: 0.5rem 0 0;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.65rem;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.qrost-touch-toggle[hidden] { display: none !important; }
+.qrost-touch-toggle[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+}
+.is-touch-locked { touch-action: pan-y; }
+.is-touch-unlocked { touch-action: none; }
+.nav-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+}
+@media (max-width: 900px), (any-pointer: coarse) {
+  .chart-h-lg { height: min(52dvh, 22rem); }
+}

@@ -3,7 +3,7 @@
 (function () {
   'use strict';
   var I18N = window.SHELTERCATS_I18N;
-  var chart = null, registered = false, onClickCb = null;
+  var chart = null, gate = null, registered = false, onClickCb = null;
 
   function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
 
@@ -17,8 +17,26 @@
       chart.on('click', function (p) {
         if (p.data && p.data._sid && onClickCb) onClickCb(p.data._sid);
       });
+      if (window.QrostTouchGate) {
+        gate = window.QrostTouchGate.attach(el, {
+          labels: function () {
+            return {
+              enable: I18N.t('mapTouchEnable'),
+              disable: I18N.t('mapTouchDisable'),
+            };
+          },
+          onChange: function (interactive) {
+            if (chart) chart.setOption({ geo: { roam: interactive } });
+          },
+        });
+      }
     }
     return chart;
+  }
+
+  function mapRoam() {
+    if (gate) return gate.isInteractive();
+    return !window.QrostTouchGate || !window.QrostTouchGate.coarsePointer();
   }
 
   // size scale by cat count
@@ -27,6 +45,7 @@
   function render(opts) {
     var c = ensure();
     if (!c) return;
+    if (gate) gate.refresh();
     var shelters = opts.shelters || [];
     var countFor = opts.countFor || function () { return 0; };
     var liveRegions = opts.liveRegions || [];
@@ -70,7 +89,7 @@
         }
       },
       geo: {
-        map: 'world', roam: true, scaleLimit: { min: 1, max: 8 },
+        map: 'world', roam: mapRoam(), scaleLimit: { min: 1, max: 8 },
         center: opts.me ? [opts.me.lng, opts.me.lat] : [-30, 25],
         zoom: opts.me ? 3 : 1.1,
         itemStyle: { areaColor: cssVar('--map-land'), borderColor: cssVar('--map-border'), borderWidth: 0.5 },
@@ -83,6 +102,7 @@
         emphasis: { scale: 1.3 }, z: 5
       }].concat(meSeries)
     }, true);
+    if (gate) gate.syncSurface();
   }
 
   function resize() { if (chart) try { chart.resize(); } catch (e) {} }
