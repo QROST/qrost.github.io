@@ -1600,7 +1600,7 @@
     return { enable: t('mapTouchEnable'), disable: t('mapTouchDisable') };
   }
   function mapRoamEnabled() {
-    return !mapTouchGate || mapTouchGate.isInteractive();
+    return mapTouchGate ? mapTouchGate.isInteractive() : (!window.QrostTouchGate || !QrostTouchGate.coarsePointer());
   }
   function refreshTouchGates() {
     if (mapTouchGate) mapTouchGate.refresh();
@@ -1664,15 +1664,6 @@
       echarts.registerMap('china', geo);
       echartsMap = echarts.init(document.getElementById('china-map'));
       const dk = isDark();
-      if (window.QrostTouchGate) {
-        mapTouchGate = QrostTouchGate.attach(document.getElementById('china-map'), {
-          labels: mapTouchLabels,
-          onChange: function (interactive) {
-            if (!echartsMap) return;
-            echartsMap.setOption({ geo: [{ roam: interactive }] });
-          },
-        });
-      }
       echartsMap.setOption({
         geo: {
           map: 'china', roam: mapRoamEnabled(), zoom: 1, scaleLimit: { min: 1, max: 14 },
@@ -1683,6 +1674,18 @@
         },
         backgroundColor: dk ? '#0f172a' : 'transparent',
       });
+      // attach emits onChange synchronously, after geo.map has been initialized.
+      if (window.QrostTouchGate) {
+        mapTouchGate = QrostTouchGate.attach(document.getElementById('china-map'), {
+          labels: mapTouchLabels,
+          onChange: function (interactive) {
+            if (!echartsMap) return;
+            echartsMap.setOption({ geo: [{ roam: interactive }] });
+          },
+        });
+      }
+      // Mounting the touch toggle changes the flex surface height.
+      echartsMap.resize();
       baseGeoOpt = { center: echartsMap.getOption().geo[0].center };
       mapReady = true;
       safeRun('renderMap', renderMap);
@@ -2355,9 +2358,15 @@
   function exportCSV() {
     const cols = [
       ['序号', (d) => d.id], ['省份', (d) => d.prov], ['城市', (d) => d.city],
-      ['区/镇', (d) => d.dist], ['小区', (d) => d.loc], ['总价(万元)', (d) => d.priceYuan / 10000],
-      ['面积(㎡)', (d) => d.area], ['单价(元/㎡)', (d) => Math.round(d.unitPrice)],
-      ['月租(元)', (d) => d.rent],
+      ['区/镇', (d) => d.dist], ['小区', (d) => d.loc], ['总价(万元人民币 CNY)', (d) => d.priceYuan / 10000],
+      ['面积(㎡)', (d) => d.area], ['单价(人民币 CNY/㎡)', (d) => Math.round(d.unitPrice)],
+      ['月租(人民币 CNY/月)', (d) => d.rentCny],
+      ['原币种', (d) => I18N().getFxInfo(d.prov).currency],
+      ['总价(万原币)', (d) => d.priceWan], ['月租(原币/月)', (d) => d.rent],
+      ['原币兑CNY汇率', (d) => I18N().getFxInfo(d.prov).rate],
+      ['汇率来源', (d) => I18N().getFxInfo(d.prov).source],
+      ['汇率状态', (d) => I18N().getFxInfo(d.prov).status],
+      ['汇率日期', (d) => I18N().getFxInfo(d.prov).date],
       ['气候类型', (d) => d.climateType || ''], ['年温差(℃)', (d) => d.tempRange],
       ['1月均温(℃)', (d) => d.janTemp], ['7月均温(℃)', (d) => d.julTemp],
       ['历史最高温(℃)', (d) => d.histTempMax], ['历史最高温日期', (d) => d.histTempMaxDate || ''],

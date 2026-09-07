@@ -24,10 +24,10 @@ function el(dataset) {
     classList: { add() {}, remove() {}, toggle() {}, contains() { return false; } },
     addEventListener(t, fn) { (e._l[t] || (e._l[t] = [])).push(fn); },
     fire(t, ev) { (e._l[t] || []).forEach((fn) => fn(ev || {})); },
-    appendChild() {}, getContext() { return {}; }, getAttribute() { return null; },
+    click() { e.fire('click'); }, appendChild() {}, getContext() { return {}; }, getAttribute() { return null; },
     setAttribute() {}, set placeholder(v) { e._placeholder = v; },
     get placeholder() { return e._placeholder || ''; },
-    closest() { return null; }, querySelectorAll() { return []; },
+    closest() { return null; }, querySelector() { return null; }, querySelectorAll() { return []; }, focus() {},
   };
   Object.defineProperty(e, 'innerHTML', { get() { return e._html; }, set(v) { e._html = String(v); } });
   return e;
@@ -66,23 +66,33 @@ const document = {
 let lastChartCfg = null;
 function Chart(c, cfg) { lastChartCfg = cfg; JSON.stringify({ t: cfg && cfg.type }); this.destroy = () => {}; }
 Chart.defaults = { font: {}, color: '' };
-let lastMapVm = null;
+let lastMapVm = null, mapGeo = null, firstMapGeo = null;
+const coarseAtStart = process.env.QROST_SMOKE_COARSE === '1';
+const windowListeners = {};
+let exportedCsv = '';
 const chartStub = {
   setOption(o) {
+    const geo = o && (Array.isArray(o.geo) ? o.geo[0] : o.geo);
+    if (geo) {
+      if (!geo.map && !(mapGeo && mapGeo.map)) throw new Error('geo.map missing before incremental update');
+      if (!firstMapGeo) firstMapGeo = { ...geo };
+      mapGeo = { ...(mapGeo || {}), ...geo };
+    }
     if (o && o.visualMap) lastMapVm = o.visualMap;
     JSON.parse(JSON.stringify(o, (k, v) => (typeof v === 'function' ? null : v)));
     return chartStub;
   },
   on() {}, resize() {}, clear() {}, getOption() { return { geo: [{ zoom: 1, center: [104, 36] }] }; },
 };
-const echarts = { registerMap() {}, init() { return chartStub; } };
+const echarts = { registerMap() {}, init() { return chartStub; }, getInstanceByDom() { return chartStub; } };
 const L = { map() { return { setView() { return this; }, addTo() { return this; }, invalidateSize() {}, fitBounds() {}, remove() {} }; }, tileLayer() { return { addTo() { return this; } }; }, circleMarker() { return { addTo() { return this; }, bindPopup() { return this; } }; } };
 const store = {};
 const localStorage = { getItem(k) { return store[k] ?? null; }, setItem(k, v) { store[k] = String(v); } };
 const sessionStorage = { getItem() { return null; }, setItem() {} };
-const sandbox = { window: {}, document, Chart, echarts, L, console, setTimeout, JSON, Math, Object, Array, String, Number, Map, Set, parseInt, parseFloat, localStorage, sessionStorage, fetch: () => Promise.reject(new Error('offline')), Blob: function () {}, URL: { createObjectURL() { return ''; }, revokeObjectURL() {} } };
-sandbox.window.Chart = Chart; sandbox.window.echarts = echarts; sandbox.window.L = L; sandbox.window.addEventListener = () => {};
-sandbox.window.matchMedia = (q) => ({ matches: /max-width:\s*639px/.test(q), media: q, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} });
+const sandbox = { window: {}, document, Chart, echarts, L, console, setTimeout, JSON, Math, Object, Array, String, Number, Map, Set, parseInt, parseFloat, localStorage, sessionStorage, fetch: () => Promise.reject(new Error('offline')), Blob: function (parts) { this.text = parts.join(''); }, URL: { createObjectURL(blob) { exportedCsv = blob.text; return 'blob:test'; }, revokeObjectURL() {} } };
+sandbox.window.Chart = Chart; sandbox.window.echarts = echarts; sandbox.window.L = L; sandbox.window.addEventListener = (name, fn) => { (windowListeners[name] ||= []).push(fn); };
+sandbox.window.setTimeout = setTimeout; sandbox.window.clearTimeout = clearTimeout;
+sandbox.window.matchMedia = (q) => ({ matches: /pointer:\s*coarse/.test(q) ? coarseAtStart : /max-width:\s*639px/.test(q), media: q, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} });
 sandbox.globalThis = sandbox; vm.createContext(sandbox);
 const run = (f) => vm.runInContext(read(f), sandbox, { filename: f });
 ids['lang-toggle'] = el({ id: 'lang-toggle' });
@@ -100,6 +110,8 @@ const rankChart = el({ id: 'rank-chart' });
 rankChart.parentElement = rankWrap;
 rankChart.style = {};
 ids['rank-chart'] = rankChart;
+run('assets/js/touch-gate.js');
+sandbox.QrostTouchGate = sandbox.window.QrostTouchGate;
 ['assets/data/listings.js', 'assets/data/china-geo.js', 'assets/data/enriched.js', 'assets/data/hazards.js', 'assets/data/field.js', 'assets/data/loc-pinyin.js', 'assets/data/geo-en.js', 'assets/js/i18n.js', 'assets/js/app.js'].forEach(run);
 const zhRe = /[\u4e00-\u9fff]/;
 
@@ -117,6 +129,72 @@ setTimeout(() => {
   const w = sandbox.window; const checks = [];
   const T = (n, p) => checks.push([n, !!p]);
   T('listings 392', (w.HOUSING_LISTINGS || []).length === 392);
+  T('map initialized with complete geo before touch callbacks', firstMapGeo && firstMapGeo.map === 'china');
+  T('map initial pointer lock', firstMapGeo && firstMapGeo.roam === !coarseAtStart);
+  T('map surface pointer lock', ids['china-map'].style.touchAction === (coarseAtStart ? 'pan-y' : 'none'));
+  if (coarseAtStart && ids['china-map']._qrostGate) {
+    ids['china-map']._qrostGate.setActive(true);
+    T('map touch unlock', mapGeo.roam === true && ids['china-map'].style.touchAction === 'none');
+    (windowListeners.scroll || []).forEach(fn => fn({ target: null }));
+    T('map page scroll relocks', mapGeo.roam === false && ids['china-map'].style.touchAction === 'pan-y');
+  }
+  try {
+    // Exercise the actual export button and Blob payload with all currencies visible.
+    w.__setTier1On(true);
+    ids['csv-export'].fire('click');
+    function parseCSV(text) {
+      const rows = [], row = []; let value = '', quoted = false;
+      text = text.replace(/^\ufeff/, '');
+      for (let i = 0; i <= text.length; i++) {
+        const c = text[i];
+        if (c === '"') {
+          if (quoted && text[i + 1] === '"') { value += '"'; i++; }
+          else quoted = !quoted;
+        } else if ((c === ',' || c === '\n' || c === undefined) && !quoted) {
+          row.push(value); value = '';
+          if (c !== ',') { rows.push(row.splice(0)); }
+        } else value += c;
+      }
+      return rows;
+    }
+    const [head, ...rows] = parseCSV(exportedCsv);
+    const rentCol = head.indexOf('月租(人民币 CNY/月)');
+    const priceCol = head.indexOf('总价(万元人民币 CNY)');
+    const yieldCol = head.indexOf('毛回报(%)');
+    const byId = Object.fromEntries(rows.map(row => [row[0], row]));
+    T('CSV explicitly labels every money column in CNY', rentCol >= 0 && priceCol >= 0 && head.includes('单价(人民币 CNY/㎡)'));
+    T('CSV exports all visible listings', rows.length === w.HOUSING_LISTINGS.length);
+    T('CSV FX metadata reconstructs normalized money', rows.every(row => {
+      const isCny = row[head.indexOf('原币种')] === 'CNY';
+      const rate = +row[head.indexOf('原币兑CNY汇率')];
+      const rawPrice = +row[head.indexOf('总价(万原币)')];
+      const rawRent = row[head.indexOf('月租(原币/月)')];
+      return Math.abs(rawPrice * rate - +row[priceCol]) < 1e-7
+        && (rawRent === '' ? row[rentCol] === '' : Math.abs(+rawRent * rate - +row[rentCol]) < 1e-8)
+        && row[head.indexOf('汇率状态')] === (isCny ? 'not_required' : 'fallback')
+        && row[head.indexOf('汇率来源')] === (isCny ? 'identity' : 'bundled fallback')
+        && row[head.indexOf('汇率日期')] === (isCny ? '' : '2026-06-17');
+    }));
+    const factors = { '香港': 7 / 7.82, '台湾': 7 / 31, California: 7, '澳洲': 7 / 1.45 };
+    for (const prov of ['mainland', ...Object.keys(factors)]) {
+      const records = w.HOUSING_LISTINGS.filter(r => prov === 'mainland' ? !factors[r.prov] : r.prov === prov);
+      T('CSV rent normalized to CNY · ' + prov, records.length && records.every(raw => {
+        const row = byId[raw.id];
+        if (!row) return false;
+        if (!(raw.rent > 0)) return row[rentCol] === '';
+        const expected = raw.rent * (factors[raw.prov] || 1);
+        return Math.abs(+row[rentCol] - expected) < 1e-8
+          && Math.abs(+row[yieldCol] - (+row[rentCol] * 12 / (+row[priceCol] * 10000) * 100)) <= 0.051;
+      }));
+    }
+    const zhCsv = exportedCsv;
+    w.__setLang('en');
+    ids['csv-export'].fire('click');
+    T('CSV currency basis remains CNY in English UI', exportedCsv === zhCsv);
+    w.__setLang('zh');
+    w.__setTier1On(false);
+  } catch (e) { T('CSV export — ' + e.message, false); }
+
   T('loc no area suffix', (w.HOUSING_LISTINGS || []).every((r) => !/（\d+\.?\d*\s*㎡?）|\(\d+\.?\d*\s*㎡?\)|\d+\s*(m2|m²|㎡)/i.test(r.loc)));
   T('loc no slash combos', (w.HOUSING_LISTINGS || []).every((r) => !/\//.test(r.loc)));
   T('loc no pricing notes', (w.HOUSING_LISTINGS || []).every((r) => !/按套计价|非按㎡/.test(r.loc)));

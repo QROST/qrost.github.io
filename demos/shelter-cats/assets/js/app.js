@@ -4,13 +4,13 @@
   var D = window.SHELTERCATS_DATA, I18N = window.SHELTERCATS_I18N,
       MAP = window.SHELTERCATS_MAP, PX = window.SHELTERCATS_PIXELCAT,
       PERSONA = window.SHELTERCATS_PERSONA;
-  var RENDER_CAP = 200;
+  var PAGE_SIZE = 48;
 
   var state = {
     f: { search: '', region: '', color: '', pattern: '', coat: '', age: '', sex: '', includeAdopted: false, shelter: '' },
-    me: null, sort: 'newest'
+    me: null, sort: 'newest', page: 0
   };
-  var modalStop = null, modalReturnFocus = null;
+  var modalStop = null, modalReturnFocus = null, ready = false, loading = false;
 
   function $(id) { return document.getElementById(id); }
   function el(html) { var d = document.createElement('div'); d.innerHTML = html.trim(); return d.firstChild; }
@@ -61,19 +61,29 @@
   // ---------- render ----------
   function swatch(tok) { return '<span class="swatch" style="background:' + I18N.enumHex(tok) + '"></span>'; }
 
-  function renderGrid() {
+  function renderGrid(keepPage) {
+    if (!keepPage) state.page = 0;
     var list = filtered();
+    var pages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+    state.page = Math.max(0, Math.min(state.page, pages - 1));
+    var start = state.page * PAGE_SIZE, end = Math.min(start + PAGE_SIZE, list.length);
     var countText = list.length + (I18N.isEn() ? ' cats' : ' 只');
-    if (list.length > RENDER_CAP) {
-      countText += ' · ' + I18N.t('resultsCapped');
+    if (list.length) {
+      countText += ' · ' + I18N.t('resultsRange').replace('{start}', start + 1).replace('{end}', end);
     }
+    if (D.failedShards.length) countText += ' · ' + I18N.t('partialResults');
     $('result-count').textContent = countText;
+    $('cat-pagination').classList.toggle('hidden', pages === 1);
+    $('cat-prev').disabled = state.page === 0;
+    $('cat-next').disabled = state.page === pages - 1;
+    $('cat-page').textContent = I18N.t('pageRange').replace('{page}', state.page + 1).replace('{pages}', pages);
     var grid = $('cat-grid'), empty = $('cat-empty');
     grid.innerHTML = '';
+    empty.textContent = I18N.t(D.failedShards.length ? 'partialEmpty' : 'noResults');
     if (!list.length) { empty.classList.remove('hidden'); return; }
     empty.classList.add('hidden');
     var frag = document.createDocumentFragment();
-    list.slice(0, RENDER_CAP).forEach(function (cat) {
+    list.slice(start, end).forEach(function (cat) {
       var s = shelterOf(cat);
       var dist = distOf(cat);
       var meta = [cat.breed_primary, cat.age_text || I18N.enumLabel('age_bucket', cat.age_bucket), I18N.enumLabel('sex', cat.sex)].filter(Boolean).join(' · ');
@@ -122,7 +132,7 @@
       ['detAge', (cat.age_text || '') + (cat.age_bucket ? ' · ' + I18N.enumLabel('age_bucket', cat.age_bucket) : '')],
       ['detBirth', cat.birth_estimate || '—'],
       ['detSex', I18N.enumLabel('sex', cat.sex) + (cat.spayed_neutered ? (I18N.isEn() ? ' · fixed' : ' · 已绝育') : '')],
-      ['detColor', (cat.colors || []).map(function (c) { return swatch(c) + I18N.enumLabel('colors', c); }).join('  ')],
+      ['detColor', (cat.colors || []).map(function (c) { return swatch(c) + escapeHtml(I18N.enumLabel('colors', c)); }).join('  '), true],
       ['detPattern', I18N.enumLabel('patterns', cat.pattern)],
       ['detCoat', I18N.enumLabel('coat', cat.coat_length)],
       ['detSize', I18N.enumLabel('size', cat.size)],
@@ -130,7 +140,7 @@
       ['detShelter', s ? (s.name + (s.city ? ' — ' + s.city + ', ' + (s.state || s.country) : '')) : '—'],
       ['detSeen', (cat.first_seen || '').slice(0, 10)]
     ];
-    var kv = rows.map(function (r) { return '<dt>' + I18N.t(r[0]) + '</dt><dd>' + (r[1] || '—') + '</dd>'; }).join('');
+    var kv = rows.map(function (r) { return '<dt>' + I18N.t(r[0]) + '</dt><dd>' + (r[2] ? r[1] : escapeHtml(r[1] || '—')) + '</dd>'; }).join('');
     var goodLis = per.good.map(function (x) { return '<li>' + escapeHtml(x) + '</li>'; }).join('') || '<li class="text-faint">—</li>';
     var quirkLis = per.quirk.map(function (x) { return '<li>' + escapeHtml(x) + '</li>'; }).join('') || '<li class="text-faint">—</li>';
 
@@ -190,8 +200,11 @@
 
   // ---------- map ----------
   function renderMap() {
-    MAP.render({
-      shelters: D.shelters,
+    try {
+      if (!window.echarts || !window.WORLD_GEO || !MAP) throw new Error('Map library or geography unavailable');
+      var missingRegions = D.failedShards.map(function (shard) { return shard.region; });
+      MAP.render({
+      shelters: D.shelters.filter(function (shelter) { return missingRegions.indexOf(shelter.region) === -1; }),
       liveRegions: (D.enums && D.enums.regions_live) || [],
       me: state.me,
       countFor: function (id) { return D.catsForShelter(id).filter(function (c) { return state.f.includeAdopted || (c.status !== 'adopted' && c.status !== 'removed'); }).length; },
@@ -200,7 +213,12 @@
         renderShelterPill(); renderGrid();
         document.getElementById('browse').scrollIntoView({ behavior: 'smooth' });
       }
-    });
+      });
+      $('library-warning').classList.add('hidden');
+    } catch (error) {
+      $('library-warning').classList.remove('hidden');
+      console.warn('Shelter map unavailable', error);
+    }
   }
   function renderShelterPill() {
     var wrap = $('shelter-filter');
@@ -219,7 +237,8 @@
     var html = opt('', I18N.t(anyKey));
     tokens.forEach(function (t) { html += opt(t, I18N.enumLabel(group, t)); });
     sel.innerHTML = html;
-    sel.value = '';
+    var field = { 'f-region': 'region', 'f-color': 'color', 'f-pattern': 'pattern', 'f-coat': 'coat', 'f-age': 'age', 'f-sex': 'sex' }[id];
+    sel.value = state.f[field] || '';
   }
   function presentTokens(group, accessor) {
     var counts = (D.manifest && D.manifest[group]) || null;
@@ -244,11 +263,14 @@
   // ---------- KPIs / about / footer ----------
   function renderMeta() {
     var m = D.manifest || {};
-    $('kpi-cats').textContent = m.total_cats || D.cats.length;
-    $('kpi-adoptable').textContent = m.total_adoptable != null ? m.total_adoptable : '—';
-    $('kpi-shelters').textContent = m.total_shelters || D.shelters.length;
+    $('kpi-cats').textContent = D.cats.length;
+    $('kpi-adoptable').textContent = D.cats.filter(function (cat) { return cat.status === 'adoptable'; }).length;
+    $('kpi-shelters').textContent = D.shelters.length;
     $('kpi-regions').textContent = (m.regions_live || []).length;
-    $('kpi-photos').textContent = m.with_thumb != null ? m.with_thumb : '—';
+    $('kpi-photos').textContent = D.cats.filter(function (cat) { return cat.thumb_path; }).length;
+    $('data-warning').classList.toggle('hidden', D.failedShards.length === 0);
+    $('data-warning-text').textContent = I18N.t('partialData').replace('{loaded}', D.cats.length).replace('{total}', m.total_cats) +
+      ' ' + D.failedShards.map(function (s) { return I18N.enumLabel('regions', s.region); }).join(' · ');
     $('foot-updated').textContent = (m.build_time || '').slice(0, 10);
     $('foot-build').textContent = 'build ' + (m.data_version || 'dev');
 
@@ -278,7 +300,7 @@
       state.sort = 'distance';
       btn.textContent = '📍 ' + I18N.t('nearMe'); btn.classList.add('active');
       buildFilters(); renderMap(); renderGrid();
-      MAP.focus(state.me.lng, state.me.lat, 3);
+      try { if (MAP) MAP.focus(state.me.lng, state.me.lat, 3); } catch (_) {}
     }, function () {
       btn.textContent = I18N.t('nearMe');
       alert(I18N.isEn() ? 'Location permission denied.' : '定位权限被拒绝。');
@@ -287,6 +309,15 @@
 
   // ---------- bind ----------
   function bind() {
+    function changePage(delta) {
+      state.page += delta; renderGrid(true);
+      $('result-count').focus({ preventScroll: true });
+      $('browse').scrollIntoView({ block: 'start' });
+    }
+    $('cat-prev').addEventListener('click', function () { changePage(-1); });
+    $('cat-next').addEventListener('click', function () { changePage(1); });
+    $('data-retry').addEventListener('click', boot);
+    $('init-retry').addEventListener('click', boot);
     $('f-search').addEventListener('input', function (e) { state.f.search = e.target.value; renderGrid(); });
     [['f-region', 'region'], ['f-color', 'color'], ['f-pattern', 'pattern'], ['f-coat', 'coat'], ['f-age', 'age'], ['f-sex', 'sex']].forEach(function (p) {
       $(p[0]).addEventListener('change', function (e) { state.f[p[1]] = e.target.value; renderGrid(); });
@@ -309,28 +340,38 @@
       var dark = !document.documentElement.classList.contains('dark');
       document.documentElement.classList.toggle('dark', dark);
       try { localStorage.setItem('shelter-cats-theme', dark ? 'dark' : 'light'); } catch (e) {}
-      renderMap();
+      if (ready) renderMap();
     });
     $('lang-toggle').addEventListener('click', function () { I18N.toggleLang(); });
-    I18N.onChange(function () { buildFilters(); renderMeta(); renderShelterPill(); renderMap(); renderGrid(); });
+    I18N.onChange(function () { if (ready) { buildFilters(); renderMeta(); renderShelterPill(); renderMap(); renderGrid(true); } });
   }
 
   // ---------- boot ----------
   async function boot() {
+    if (loading) return;
+    loading = true;
+    $('data-retry').disabled = $('init-retry').disabled = true;
+    $('browse').setAttribute('aria-busy', 'true');
     I18N.apply();
     try {
       await D.init();
     } catch (e) {
       $('init-error').classList.remove('hidden');
-      console.error('data load failed', e);
+      console.warn('Shelter data load failed', e);
       return;
+    } finally {
+      loading = false;
+      $('data-retry').disabled = $('init-retry').disabled = false;
+      $('browse').setAttribute('aria-busy', 'false');
     }
-    if (!window.echarts || window.SHELTERCATS_ECHARTS_FAILED) $('library-warning').classList.remove('hidden');
-    buildFilters(); bind();
-    renderMeta(); renderMap(); renderShelterPill(); renderGrid();
+    ready = true;
+    $('init-error').classList.add('hidden');
+    buildFilters();
+    renderMeta(); renderShelterPill(); renderGrid(); renderMap();
     I18N.apply();
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  function start() { bind(); boot(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
   window.SHELTERCATS_APP = { state: state, renderGrid: renderGrid };
 })();

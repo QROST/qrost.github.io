@@ -15,47 +15,94 @@
   var policyMap = {}, policiesByCompany = {};
   var dealMap = {}, dealsByCompany = {};
   var corePromise = null, productsPromise = null, productsLoaded = false;
+  var layerErrors = {};
 
-  async function fetchJson(path, optional) {
+  async function fetchJson(path) {
     var sep = path.indexOf('?') === -1 ? '?' : '&';
+    var controller = typeof AbortController === 'function' ? new AbortController() : null, timer;
+    var request = fetch(path + sep + 'v=' + ver(), controller ? { signal: controller.signal } : {}).then(function (response) {
+      if (!response.ok) throw new Error('fetch ' + path + ': ' + response.status);
+      return response.json();
+    });
+    // Bound both the response and its JSON body, including optional layers and
+    // product shards. A stalled connection cannot leave initialization pending.
     try {
-      var r = await fetch(path + sep + 'v=' + ver());
-      if (!r.ok) { if (optional) return null; throw new Error('fetch ' + path + ': ' + r.status); }
-      return await r.json();
-    } catch (e) { if (optional) return null; throw e; }
+      return await Promise.race([request, new Promise(function (_, reject) {
+        timer = setTimeout(function () {
+          if (controller) controller.abort();
+          reject(new Error('fetch ' + path + ': timed out'));
+        }, 12000);
+      })]);
+    } finally { clearTimeout(timer); }
   }
   function arr(data, key) {
-    if (!data) return [];
-    if (Array.isArray(data)) return data;
-    return Array.isArray(data[key]) ? data[key] : [];
+    var rows = Array.isArray(data) ? data : data && data[key];
+    if (!Array.isArray(rows)) throw new Error('invalid ' + key + ' table');
+    var seen = new Set();
+    rows.forEach(function (row) {
+      var id = row && (key === 'countries' ? row.country : key === 'pairs'
+        ? [row.pair_type, row.domestic_id, row.international_id, row.dimension].join('|') : row.id);
+      if (!row || typeof row !== 'object' || typeof id !== 'string' || !id || seen.has(id)) {
+        throw new Error('invalid or duplicate record in ' + key);
+      }
+      if (key === 'pairs' && (typeof row.domestic_id !== 'string' || typeof row.international_id !== 'string')) {
+        throw new Error('invalid benchmark endpoints');
+      }
+      var nested = key === 'policies' ? row.affected_companies : key === 'deals' ? row.parties : null;
+      if (nested != null && !Array.isArray(nested)) throw new Error('invalid relations in ' + key);
+      seen.add(id);
+    });
+    return rows;
   }
 
   async function initCoreImpl() {
-    store.manifest = await fetchJson(BASE + 'manifest.json');
-
-    var results = await Promise.all([
-      fetchJson(BASE + 'companies.json', true),
-      fetchJson(BASE + 'sites.json', true),
-      fetchJson(BASE + 'modalities.json', true),
-      fetchJson(BASE + 'therapeutic-areas.json', true),
-      fetchJson(BASE + 'country-stats.json', true),
-      fetchJson(BASE + 'breakthroughs.json', true),
-      fetchJson(BASE + 'comparisons/benchmark-pairs.json', true),
-      fetchJson(BASE + 'groups.json', true),
-      fetchJson(BASE + 'policies.json', true),
-      fetchJson(BASE + 'deals.json', true)
-    ]);
-
-    store.companies = arr(results[0], 'companies');
-    store.sites = arr(results[1], 'sites');
-    store.modalities = arr(results[2], 'modalities');
-    store.therapeuticAreas = arr(results[3], 'therapeutic_areas');
-    store.countries = arr(results[4], 'countries');
-    store.milestones = arr(results[5], 'milestones');
-    store.pairs = arr(results[6], 'pairs');
-    store.groups = arr(results[7], 'groups');
-    store.policies = arr(results[8], 'policies');
-    store.deals = arr(results[9], 'deals');
+    var manifest = await fetchJson(BASE + 'manifest.json');
+    if (!manifest || typeof manifest !== 'object' || !Array.isArray(manifest.shards)) {
+      throw new Error('invalid manifest');
+    }
+    if (window.PHARM_DATA_VERSION && window.PHARM_DATA_VERSION !== 'dev' && manifest.data_version !== window.PHARM_DATA_VERSION) {
+      throw new Error('manifest version mismatch; reload to obtain a consistent snapshot');
+    }
+    // These tables define the catalog and the identities referenced by products.
+    // Additional research layers can fail independently, but must expose that state.
+    var tables = [
+      ['companies', 'companies.json', 'companies', true],
+      ['sites', 'sites.json', 'sites', true],
+      ['modalities', 'modalities.json', 'modalities', true],
+      ['therapeuticAreas', 'therapeutic-areas.json', 'therapeutic_areas', true],
+      ['countries', 'country-stats.json', 'countries'],
+      ['milestones', 'breakthroughs.json', 'milestones'],
+      ['pairs', 'comparisons/benchmark-pairs.json', 'pairs'],
+      ['groups', 'groups.json', 'groups'],
+      ['policies', 'policies.json', 'policies'],
+      ['deals', 'deals.json', 'deals']
+    ];
+    var next = {}, errors = {};
+    await Promise.all(tables.map(async function (table) {
+      try {
+        var rows = arr(await fetchJson(BASE + table[1]), table[2]);
+        var expected = manifest['total_' + table[2]];
+        if (typeof expected === 'number' && rows.length !== expected) {
+          throw new Error(table[1] + ' count mismatch: expected ' + expected + ', got ' + rows.length);
+        }
+        next[table[0]] = rows;
+      } catch (error) {
+        if (table[3]) throw error;
+        next[table[0]] = [];
+        errors[table[0]] = String(error.message || error);
+      }
+    }));
+    var companyIds = new Set(next.companies.map(function (c) { return c.id; }));
+    if (next.sites.some(function (site) { return !companyIds.has(site.company_id); })) {
+      throw new Error('sites reference a missing company');
+    }
+    // Commit a complete core only after validation; retries never duplicate indexes.
+    store.manifest = manifest;
+    Object.keys(next).forEach(function (key) { store[key] = next[key]; });
+    layerErrors = errors;
+    companyMap = {}; modalityMap = {}; taMap = {}; sitesByCompany = {};
+    groupMap = {}; childrenByParent = {}; companiesByGroup = {};
+    policyMap = {}; policiesByCompany = {}; dealMap = {}; dealsByCompany = {};
 
     store.groups.forEach(function (g) { groupMap[g.id] = g; });
     store.companies.forEach(function (c) {
@@ -90,7 +137,10 @@
   }
 
   function initCore() {
-    if (!corePromise) corePromise = initCoreImpl();
+    if (!corePromise) corePromise = initCoreImpl().catch(function (error) {
+      corePromise = null;
+      throw error;
+    });
     return corePromise;
   }
 
@@ -189,6 +239,7 @@
     get groups() { return store.groups; },
     get policies() { return store.policies; },
     get deals() { return store.deals; },
-    get productsLoaded() { return productsLoaded; }
+    get productsLoaded() { return productsLoaded; },
+    get layerErrors() { return layerErrors; }
   };
 })();

@@ -18,19 +18,6 @@
       chart.on('click', function (p) {
         if (p.data && p.data._id && onClickCb) onClickCb(p.data._id, p.data._kind);
       });
-      if (window.QrostTouchGate) {
-        gate = window.QrostTouchGate.attach(el, {
-          labels: function () {
-            return {
-              enable: I18N.t('mapTouchEnable'),
-              disable: I18N.t('mapTouchDisable'),
-            };
-          },
-          onChange: function (interactive) {
-            if (chart) chart.setOption({ geo: { roam: interactive } });
-          },
-        });
-      }
     }
     return chart;
   }
@@ -128,8 +115,7 @@
   function render(opts) {
     lastOpts = opts;
     var c = ensure();
-    if (!c) return;
-    if (gate) gate.refresh();
+    if (!c) return false;
     onClickCb = opts.onClick || onClickCb;
     var built = buildPoints(opts);
     var points = built.points;
@@ -184,7 +170,21 @@
       option.series[0].data = points;
     }
     c.setOption(option, true);
-    if (gate) gate.syncSurface();
+    // attach/refresh emits onChange synchronously; geo must already exist.
+    if (!gate && window.QrostTouchGate) {
+      gate = window.QrostTouchGate.attach(document.getElementById('china-map'), {
+        labels: function () {
+          return {
+            enable: I18N.t('mapTouchEnable'),
+            disable: I18N.t('mapTouchDisable'),
+          };
+        },
+        onChange: function (interactive) {
+          if (chart) chart.setOption({ geo: { roam: interactive } });
+        },
+      });
+    }
+    if (gate) { gate.refresh(); gate.syncSurface(); }
 
     var leg = document.getElementById('map-legend');
     if (leg) {
@@ -197,6 +197,7 @@
         }).join('');
       }
     }
+    return true;
   }
 
   function resize() { if (chart) try { chart.resize(); } catch (e) {} }

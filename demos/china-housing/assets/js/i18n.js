@@ -18,6 +18,7 @@
   const FALLBACK_CNY_PER_HKD = 7 / 7.82;
   const FALLBACK_CNY_PER_TWD = 7 / 31.0;
   const FALLBACK_CNY_PER_AUD = 7 / 1.45;
+  const FALLBACK_FX_DATE = '2026-06-17';
   const FX_API = 'https://api.frankfurter.app/latest?from=USD&to=CNY,HKD,TWD,AUD';
   const PROV_CURRENCY = { '香港': 'HKD', '台湾': 'TWD', California: 'USD', '澳洲': 'AUD' };
   const GITHUB_COMMITS_API = 'https://api.github.com/repos/QROST/qrost.github.io/commits?path=demos/china-housing&per_page=1';
@@ -29,6 +30,13 @@
   let cnyPerTwd = FALLBACK_CNY_PER_TWD;
   let cnyPerAud = FALLBACK_CNY_PER_AUD;
   let rateSource = 'fallback';
+  const fxMeta = {};
+  function resetFxMeta() {
+    ['USD', 'HKD', 'TWD', 'AUD'].forEach(currency => {
+      fxMeta[currency] = { source: 'bundled fallback', status: 'fallback', date: FALLBACK_FX_DATE };
+    });
+  }
+  resetFxMeta();
   let lastCommitIso = null;
   let onChangeCb = null;
 
@@ -863,6 +871,14 @@ methodDataTitle: 'Data sources & integration',
     return 1;
   }
 
+  function getFxInfo(prov) {
+    const currency = listingCurrency(prov);
+    const metadata = currency === 'CNY'
+      ? { source: 'identity', status: 'not_required', date: '' }
+      : fxMeta[currency];
+    return { currency, rate: cnyPerLocalUnit(currency), ...metadata };
+  }
+
   function localWanToCnyYuan(wan, prov) {
     if (wan == null || !Number.isFinite(wan)) return null;
     if (!listingNeedsFx(prov)) return wan * 10000;
@@ -1171,13 +1187,20 @@ methodDataTitle: 'Data sources & integration',
     updateFxNote();
   }
 
-  function applyFxRates(rates, source) {
+  function applyFxRates(rates, source, date) {
     if (!rates || !(rates.CNY > 0)) return false;
     cnyPerUsd = rates.CNY;
     if (rates.HKD > 0) cnyPerHkd = rates.CNY / rates.HKD;
     if (rates.TWD > 0) cnyPerTwd = rates.CNY / rates.TWD;
     if (rates.AUD > 0) cnyPerAud = rates.CNY / rates.AUD;
     rateSource = source;
+    const rateDate = typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : '';
+    ['USD', 'HKD', 'TWD', 'AUD'].forEach(currency => {
+      // A missing cross-rate retains its existing value and its own provenance.
+      if (currency === 'USD' || rates[currency] > 0) {
+        fxMeta[currency] = { source: 'Frankfurter', status: source, date: rateDate };
+      }
+    });
     updateFxNote();
     return true;
   }
@@ -1190,10 +1213,10 @@ methodDataTitle: 'Data sources & integration',
       if (timer) clearTimeout(timer);
       if (!res.ok) throw new Error('http ' + res.status);
       const data = await res.json();
-      if (data.rates && applyFxRates(data.rates, 'live')) {
+      if (data.rates && applyFxRates(data.rates, 'live', data.date)) {
         try {
           sessionStorage.setItem(FX_CACHE_KEY, JSON.stringify({
-            rate: cnyPerUsd, cnyPerHkd, cnyPerTwd, cnyPerAud, at: Date.now(),
+            rate: cnyPerUsd, cnyPerHkd, cnyPerTwd, cnyPerAud, at: Date.now(), fxMeta,
           }));
         } catch (e) { /* */ }
         if (onChangeCb) onChangeCb();
@@ -1208,6 +1231,14 @@ methodDataTitle: 'Data sources & integration',
         if (cached.cnyPerTwd > 0) cnyPerTwd = cached.cnyPerTwd;
         if (cached.cnyPerAud > 0) cnyPerAud = cached.cnyPerAud;
         rateSource = 'cached';
+        const cachedRates = { USD: cached.rate, HKD: cached.cnyPerHkd, TWD: cached.cnyPerTwd, AUD: cached.cnyPerAud };
+        Object.keys(cachedRates).forEach(currency => {
+          if (!(cachedRates[currency] > 0)) return;
+          const metadata = cached.fxMeta && cached.fxMeta[currency];
+          fxMeta[currency] = metadata
+            ? { ...metadata, status: metadata.status === 'fallback' ? 'fallback' : 'cached' }
+            : { source: 'unknown (legacy cache)', status: 'cached', date: '' };
+        });
         updateFxNote();
         return;
       }
@@ -1217,6 +1248,7 @@ methodDataTitle: 'Data sources & integration',
     cnyPerTwd = FALLBACK_CNY_PER_TWD;
     cnyPerAud = FALLBACK_CNY_PER_AUD;
     rateSource = 'fallback';
+    resetFxMeta();
     updateFxNote();
   }
 
@@ -1245,7 +1277,7 @@ methodDataTitle: 'Data sources & integration',
     displayHazardType, displayFreqShort, displayFreqLabel, displayFreqCommonness, displaySeismic, displayTyphoon,
     displayGeoLabel, displayHeadline, displayHazardNote, displayHeatingNote, displayFieldLabel,
     displayRiskSummary, formatDoy, hasChinese, MONTH_EN,
-    getRate, getRateSource, getCnyPerHkd, getCnyPerTwd,
+    getRate, getRateSource, getFxInfo, getCnyPerHkd, getCnyPerTwd,
     SQM_TO_SQFT, KM_TO_MI, M_TO_FT, MM_TO_IN, FALLBACK_CNY_PER_USD,
     FALLBACK_CNY_PER_HKD, FALLBACK_CNY_PER_TWD, PROV_CURRENCY, FX_API,
   };

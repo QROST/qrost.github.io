@@ -5,7 +5,7 @@
   'use strict';
   var KEY = 'shelter-cats-lang';
   var lang = 'en';
-  try { lang = localStorage.getItem(KEY) || 'en'; } catch (e) {}
+  try { lang = localStorage.getItem(KEY) === 'zh' ? 'zh' : 'en'; } catch (e) {}
   var listeners = [];
 
   var L = {
@@ -30,8 +30,11 @@
       detName: '名字', detBreed: '品种', detAge: '年龄', detBirth: '出生(估)', detSex: '性别', detColor: '颜色',
       detPattern: '花纹', detCoat: '毛长', detSize: '体型', detStatus: '状态', detShelter: '收容所', detSeen: '收录时间',
       noResults: '没有符合条件的猫咪。', loading: '加载中…',
-      resultsCapped: '仅显示前 200 只。请缩小筛选范围。',
-      errTitle: '数据加载失败', errBody: '本页通过 fetch 读取 JSON，需经 HTTP(S) 提供（不能用 file:// 直接打开）。请用本地服务器访问。',
+      resultsRange: '显示 {start}–{end}', pageRange: '第 {page} / {pages} 页',
+      previous: '上一页', next: '下一页', pagination: '猫咪目录分页', retry: '重试',
+      partialResults: '仅含已加载记录', partialEmpty: '已加载的记录中没有匹配项；部分地区尚未加载，请重试。',
+      partialData: '当前已加载 {loaded} / {total} 条猫咪记录。猫咪数量与筛选结果仅含已加载记录；收容所与覆盖地区数量来自完整快照目录。地图暂不显示下列未加载地区的收容所：',
+      errTitle: '数据加载失败', errBody: '目录未能加载。请检查网络后重试；已显示的记录会继续保留。',
       footUpdated: '快照构建', footDisclaimer: '基于真实开放数据的演示 · 非官方领养渠道',
       coverageLive: '已覆盖地区：', coverageNote: '更多地区将通过新增数据源适配器逐步接入。',
       yes: '是', no: '否', unknown: '未知',
@@ -57,8 +60,11 @@
       detName: 'Name', detBreed: 'Breed', detAge: 'Age', detBirth: 'Born (est.)', detSex: 'Sex', detColor: 'Color',
       detPattern: 'Pattern', detCoat: 'Coat', detSize: 'Size', detStatus: 'Status', detShelter: 'Shelter', detSeen: 'First seen',
       noResults: 'No cats match these filters.', loading: 'Loading…',
-      resultsCapped: 'Showing first 200. Narrow your filters.',
-      errTitle: 'Data failed to load', errBody: 'This page reads JSON via fetch, which needs HTTP(S) (not file://). Please use a local server.',
+      resultsRange: 'Showing {start}–{end}', pageRange: 'Page {page} / {pages}',
+      previous: 'Previous', next: 'Next', pagination: 'Cat pages', retry: 'Retry',
+      partialResults: 'Loaded records only', partialEmpty: 'No matches in the loaded records. Some regions have not loaded; please retry.',
+      partialData: 'Loaded {loaded} / {total} cat records. Cat counts and search results include loaded records only; shelter and region counts describe the full snapshot directory. Shelters in these unloaded regions are omitted from the map:',
+      errTitle: 'Data failed to load', errBody: 'The catalog could not load. Check your connection and retry; any records already displayed remain available.',
       footUpdated: 'Snapshot built', footDisclaimer: 'Demo on real open data · not an official adoption channel',
       coverageLive: 'Covered regions: ', coverageNote: 'More regions are added incrementally via new source adapters.',
       yes: 'Yes', no: 'No', unknown: 'Unknown',

@@ -17,19 +17,6 @@
       chart.on('click', function (p) {
         if (p.data && p.data._sid && onClickCb) onClickCb(p.data._sid);
       });
-      if (window.QrostTouchGate) {
-        gate = window.QrostTouchGate.attach(el, {
-          labels: function () {
-            return {
-              enable: I18N.t('mapTouchEnable'),
-              disable: I18N.t('mapTouchDisable'),
-            };
-          },
-          onChange: function (interactive) {
-            if (chart) chart.setOption({ geo: { roam: interactive } });
-          },
-        });
-      }
     }
     return chart;
   }
@@ -45,7 +32,6 @@
   function render(opts) {
     var c = ensure();
     if (!c) return;
-    if (gate) gate.refresh();
     var shelters = opts.shelters || [];
     var countFor = opts.countFor || function () { return 0; };
     var liveRegions = opts.liveRegions || [];
@@ -102,7 +88,21 @@
         emphasis: { scale: 1.3 }, z: 5
       }].concat(meSeries)
     }, true);
-    if (gate) gate.syncSurface();
+    // attach/refresh emits onChange synchronously; geo must already exist.
+    if (!gate && window.QrostTouchGate) {
+      gate = window.QrostTouchGate.attach(document.getElementById('world-map'), {
+        labels: function () {
+          return {
+            enable: I18N.t('mapTouchEnable'),
+            disable: I18N.t('mapTouchDisable'),
+          };
+        },
+        onChange: function (interactive) {
+          if (chart) chart.setOption({ geo: { roam: interactive } });
+        },
+      });
+    }
+    if (gate) { gate.refresh(); gate.syncSurface(); }
   }
 
   function resize() { if (chart) try { chart.resize(); } catch (e) {} }

@@ -8,13 +8,32 @@
 
   var state = {
     map: { dim: 'site_type', region: '', modality: '', ta: '' },
-    cat: { search: '', region: '', type: '', modality: '', ta: '', tier: '', sort: 'name', dir: 1 },
+    cat: { search: '', region: '', type: '', modality: '', ta: '', tier: '', sort: 'name', dir: 1, page: 1 },
     compare: [], countrySel: [], groupsFilter: '', policiesFilter: '', dealsFilter: ''
   };
   var companyModalities = {}, companyTAs = {}, companyPrimaryTA = {};
   var productsLoadPromise = null, productLoadError = null, dialogReturnFocus = {};
   var policyParentCompanyId = null, policyParentReturnFocus = null;
-  var CAT_CAP = 400; // max catalog rows rendered at once (perf w/ large roster); refine via filters
+  var CAT_PAGE_SIZE = 100, bound = false, coreReady = false;
+
+  // A failed visualization or optional layer must not interrupt healthy sections.
+  function safeSection(id, render, layer) {
+    var host = $(id), errorId = id + '-render-error', prior = $(errorId);
+    if (prior) prior.remove();
+    try {
+      if (layer && D.layerErrors && D.layerErrors[layer]) throw new Error(D.layerErrors[layer]);
+      return render();
+    } catch (error) {
+      console.error(id + ':', error);
+      if (host) {
+        var notice = el('p', 'text-sm text-muted'); notice.id = errorId; notice.setAttribute('role', 'status');
+        notice.textContent = I18N.t(layer && D.layerErrors && D.layerErrors[layer] ? 'layerLoadError' : 'sectionRenderError');
+        var retry = el('button', 'btn-ghost'); retry.type = 'button'; retry.textContent = I18N.t('retry');
+        retry.addEventListener('click', function () { window.location.reload(); }); notice.appendChild(retry);
+        host.prepend(notice);
+      }
+    }
+  }
 
   function showDialog(id, returnFocus) {
     var modal = $(id); if (!modal) return;
@@ -77,14 +96,15 @@
     ['overview-chart', 'modality-sunburst', 'trend-phase', 'trend-ta', 'trend-modality'].forEach(function (id) {
       var node = $(id); if (node && node.querySelector('.loading')) node.innerHTML = '';
     });
-    CH.renderOverview(D.companies, D.products);
-    CH.renderModalitySunburst(D.products, D.modalities, function (modId) {
-      state.cat.modality = modId; $('cat-filter-modality').value = modId; renderCatalog();
+    safeSection('overview-chart', function () { CH.renderOverview(D.companies, D.products); });
+    safeSection('modality-sunburst', function () { CH.renderModalitySunburst(D.products, D.modalities, function (modId) {
+      state.cat.modality = modId; state.cat.page = 1; $('cat-filter-modality').value = modId; renderCatalog();
       document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
-    });
-    CH.renderTrendPhase(D.products); CH.renderTrendTA(D.products, D.getTA);
-    CH.renderTrendModality(D.products, D.getModality);
-    renderBenchmarks(); renderMilestones();
+    }); });
+    safeSection('trend-phase', function () { CH.renderTrendPhase(D.products); });
+    safeSection('trend-ta', function () { CH.renderTrendTA(D.products, D.getTA); });
+    safeSection('trend-modality', function () { CH.renderTrendModality(D.products, D.getModality); });
+    safeSection('benchmarks', renderBenchmarks, 'pairs'); safeSection('milestones', renderMilestones, 'milestones');
   }
   function ensureProducts() {
     if (D.productsLoaded) return Promise.resolve(D.products);
@@ -113,7 +133,7 @@
   // ---------- FX + money formatting ----------
   // Raw values stay in local currency (ground truth in the data); DISPLAY converts to the reader's
   // currency — ¥ CNY in 中文, $ USD in English — so amounts are comparable/sortable across markets.
-  // Rates = units per 1 USD; fetched live from open.er-api.com with a hardcoded ~2026 fallback.
+  // Rates = units per 1 USD; provider, cached, and undated reference estimates are labeled separately.
   var CUR = { USD: '$', CNY: '¥', EUR: '€', JPY: '¥', CHF: 'CHF ', GBP: '£', DKK: 'kr ', KRW: '₩',
     INR: '₹', AUD: 'A$', SGD: 'S$', HKD: 'HK$', TWD: 'NT$', BRL: 'R$', CAD: 'C$', ILS: '₪', SEK: 'kr ',
     PLN: 'zł ', TRY: '₺', SAR: 'SAR ', NOK: 'kr ', HUF: 'Ft ', MXN: 'MX$', IDR: 'Rp ', MYR: 'RM ',
@@ -124,19 +144,50 @@
     TRY: 33.3, SAR: 3.75, CAD: 1.37, NOK: 10.9, HUF: 357, MXN: 20, IDR: 16100, MYR: 4.55, THB: 34.5,
     SGD: 1.35, ZAR: 18.2, EGP: 50, AED: 3.67, JOD: 0.709, PKR: 278, RUB: 91, BDT: 110, VND: 25400,
     PHP: 58, NZD: 1.65, CZK: 23.3, RON: 4.6, ARS: 1200 };
-  var FX = { rates: Object.assign({}, FX_FALLBACK), live: false };
-  async function loadFx() {
-    try {
-      var r = await fetch('https://open.er-api.com/v6/latest/USD');
-      if (r.ok) {
-        var j = await r.json();
-        if (j && j.rates && j.rates.CNY) { Object.assign(FX.rates, j.rates); FX.live = true; }
-      }
-    } catch (e) {}
+  var FX_CACHE_KEY = 'pharm-companies-fx-v1';
+  var FX = { rates: Object.assign({}, FX_FALLBACK), status: 'estimate', updated: null, pending: true };
+  function validRates(rates) {
+    return rates && rates.USD === 1 && typeof rates.CNY === 'number' && rates.CNY > 0 &&
+      Object.keys(rates).every(function (key) { return typeof rates[key] === 'number' && Number.isFinite(rates[key]) && rates[key] > 0; });
   }
-  function fxRate(cur) { return FX.rates[(cur || 'USD').toUpperCase()] || FX.rates.USD || 1; }
-  function toUSD(m) { return (m && m.value != null) ? m.value / fxRate(m.currency) : null; }
-  function usdVal(m) { var u = toUSD(m); return u == null ? -1 : u; }  // for sorting (missing -> bottom)
+  try {
+    var cached = JSON.parse(localStorage.getItem(FX_CACHE_KEY) || 'null');
+    if (cached && validRates(cached.rates)) FX = { rates: cached.rates, status: 'cached', updated: cached.updated || null, pending: true };
+  } catch (error) {}
+  function renderFxNote() {
+    var node = $('fx-note'); if (!node) return;
+    var status = I18N.t(FX.status === 'live' ? 'fxLive' : FX.status === 'cached' ? 'fxCached' : 'fxEstimate');
+    node.textContent = I18N.t('fxNote') + ' ' + status +
+      (FX.updated ? ' · ' + I18N.t('fxRateTime') + ' ' + FX.updated : ' · ' + I18N.t('fxUndated')) +
+      (FX.pending ? ' · ' + I18N.t('fxPending') : '');
+    if (FX.status !== 'estimate') {
+      var link = el('a'); link.href = 'https://www.exchangerate-api.com/'; link.target = '_blank'; link.rel = 'noopener';
+      link.textContent = ' · ExchangeRate-API'; node.appendChild(link);
+    }
+  }
+  async function loadFx() {
+    FX.pending = true; renderFxNote();
+    var controller = typeof AbortController === 'function' ? new AbortController() : null, timer;
+    try {
+      var request = fetch('https://open.er-api.com/v6/latest/USD', controller ? { signal: controller.signal } : {}).then(function (response) {
+        if (!response.ok) throw new Error('FX request failed');
+        return response.json();
+      });
+      var payload = await Promise.race([request, new Promise(function (_, reject) {
+        timer = setTimeout(function () { if (controller) controller.abort(); reject(new Error('FX request timed out')); }, 5000);
+      })]);
+      if (!payload || !validRates(payload.rates)) throw new Error('invalid FX rates');
+      var updated = typeof payload.time_last_update_unix === 'number' && Number.isFinite(payload.time_last_update_unix)
+        ? new Date(payload.time_last_update_unix * 1000).toISOString() : null;
+      FX = { rates: payload.rates, status: 'live', updated: updated, pending: false };
+      try { localStorage.setItem(FX_CACHE_KEY, JSON.stringify({ rates: FX.rates, updated: updated })); } catch (error) {}
+    } catch (error) {
+      // Cached/reference estimates remain explicitly labeled. Local data does not wait for FX.
+    } finally { clearTimeout(timer); FX.pending = false; renderFxNote(); }
+  }
+  function fxRate(cur) { return FX.rates[(cur || 'USD').toUpperCase()] || null; }
+  function toUSD(m) { var rate = m && fxRate(m.currency); return rate && m.value != null ? m.value / rate : null; }
+  function usdVal(m) { var u = toUSD(m); return u == null ? -1 : u; }
   function fmtNum(v) {
     var a = Math.abs(v);
     if (a >= 1e9) return (v / 1e9).toFixed(a >= 1e10 ? 0 : 1) + 'B';
@@ -146,10 +197,11 @@
   }
   function money(m, withOrig) {
     if (!m || m.value == null) return '—';
-    var usd = toUSD(m); if (usd == null) return '—';
+    var usd = toUSD(m);
+    if (usd == null) return esc(m.currency || '') + ' ' + fmtNum(m.value) + (m.year ? ' (' + m.year + ')' : '');
     var en = I18N.isEn();
     var disp = en ? usd : usd * fxRate('CNY');
-    var out = (en ? '$' : '¥') + fmtNum(disp) + (m.year ? ' (' + m.year + ')' : '');
+    var out = (m.currency && m.currency.toUpperCase() !== (en ? 'USD' : 'CNY') ? '≈' : '') + (en ? '$' : '¥') + fmtNum(disp) + (m.year ? ' (' + m.year + ')' : '');
     var dcur = en ? 'USD' : 'CNY';
     if (withOrig && m.currency && String(m.currency).toUpperCase() !== dcur) {
       out += ' <span class="text-faint" style="font-size:.85em">· ' + I18N.t('origCur') + ' '
@@ -258,11 +310,11 @@
     });
   }
   function renderMap() {
-    MAP.render({
+    safeSection('map', function () { MAP.render({
       dim: state.map.dim, sites: filteredSites(), getCompany: D.getCompany,
       getPrimaryTA: getPrimaryTA, taName: function (id) { var t = D.getTA(id); return t ? I18N.name(t) : id; },
       onClick: openCompanyModal
-    });
+    }); });
   }
 
   // ---------- catalog ----------
@@ -289,7 +341,11 @@
       if (k === 'country') { va = a.country || ''; vb = b.country || ''; return va.localeCompare(vb) * dir; }
       if (k === 'type') { va = a.company_type || ''; vb = b.company_type || ''; return va.localeCompare(vb) * dir; }
       if (k === 'exchange') { va = exchOf(a); vb = exchOf(b); return va.localeCompare(vb) * dir; }
-      if (k === 'revenue') { return (usdVal(a.revenue) - usdVal(b.revenue)) * dir; }
+      if (k === 'revenue') {
+        va = toUSD(a.revenue); vb = toUSD(b.revenue);
+        if (va == null || vb == null) return va == null ? (vb == null ? 0 : 1) : -1;
+        return (va - vb) * dir;
+      }
       if (k === 'products') { va = D.productsForCompany(a.id).length; vb = D.productsForCompany(b.id).length; return (va - vb) * dir; }
       return 0;
     });
@@ -301,25 +357,29 @@
     var cols = [['name', 'thCompany'], ['country', 'thCountry'], ['exchange', 'thExchange'], ['type', 'thType'], ['revenue', 'thRevenue'], ['products', 'thProducts'], ['focus', 'thFocus']];
     $('catalog-head').innerHTML = cols.map(function (c) {
       var arrow = state.cat.sort === c[0] ? (state.cat.dir > 0 ? ' ▲' : ' ▼') : '';
-      return '<th data-sort="' + c[0] + '" tabindex="0" role="button">' + I18N.t(c[1]) + arrow + '</th>';
+      if (c[0] === 'focus') return '<th scope="col">' + I18N.t(c[1]) + '</th>';
+      return '<th scope="col" aria-sort="' + (state.cat.sort === c[0] ? (state.cat.dir > 0 ? 'ascending' : 'descending') : 'none') + '"><button type="button" class="btn-ghost" data-sort="' + c[0] + '">' + I18N.t(c[1]) + arrow + '</button></th>';
     }).join('');
     var list = filteredCompanies();
-    var shown = list.slice(0, CAT_CAP);
-    $('cat-count').textContent = list.length === shown.length
-      ? list.length + ' / ' + D.companies.length
-      : I18N.t('catCapped').replace('{n}', CAT_CAP).replace('{m}', list.length);
+    var pages = Math.max(1, Math.ceil(list.length / CAT_PAGE_SIZE));
+    state.cat.page = Math.min(Math.max(1, state.cat.page), pages);
+    var start = (state.cat.page - 1) * CAT_PAGE_SIZE;
+    var shown = list.slice(start, start + CAT_PAGE_SIZE);
+    $('cat-count').textContent = list.length + ' / ' + D.companies.length;
+    $('cat-page-status').textContent = I18N.t('catPageStatus').replace('{p}', state.cat.page).replace('{pages}', pages)
+      .replace('{start}', list.length ? start + 1 : 0).replace('{end}', start + shown.length).replace('{total}', list.length);
+    $('cat-prev').disabled = state.cat.page === 1; $('cat-next').disabled = state.cat.page === pages;
     $('catalog-body').innerHTML = shown.map(function (c) {
       var roster = c.tier === 'roster';
       var listedBadge = roster ? ' <span class="badge" style="background:var(--bg-elev);color:var(--text-faint)">' + I18N.t('badgeListed') + '</span>' : '';
-      var focus = roster ? esc(c.sub_sector || '')
-        : esc((Array.from(companyTAs[c.id] || [])).slice(0, 3).map(function (ta) { var t = D.getTA(ta); return t ? I18N.name(t) : ta; }).join('、'));
+      var focus = esc((Array.from(companyTAs[c.id] || [])).slice(0, 3).map(function (ta) { var t = D.getTA(ta); return t ? I18N.name(t) : ta; }).join('、')) || esc(c.sub_sector || '');
       return '<tr data-company="' + c.id + '" tabindex="0" role="button" aria-label="' + esc((I18N.isEn() ? 'View ' : '查看 ') + I18N.name(c)) + '">' +
         '<td>' + esc(I18N.name(c)) + listedBadge + '</td>' +
         '<td>' + esc(I18N.pick(c.country_display_zh, c.country_display_en) || c.country) + '</td>' +
         '<td class="text-faint">' + esc(exchOf(c)) + (tickerOf(c) ? ' <span style="opacity:.7">' + esc(tickerOf(c)) + '</span>' : '') + '</td>' +
         '<td>' + ctBadge(c) + '</td>' +
-        '<td class="num">' + money(roster ? c.market_cap : c.revenue) + '</td>' +
-        '<td class="num">' + (roster ? '·' : (D.productsLoaded ? D.productsForCompany(c.id).length : '…')) + '</td>' +
+        '<td class="num">' + money(c.revenue) + '</td>' +
+        '<td class="num">' + (D.productsLoaded ? D.productsForCompany(c.id).length : '…') + '</td>' +
         '<td>' + focus + '</td>' +
       '</tr>';
     }).join('') || '<tr><td colspan="7" class="loading">' + I18N.t('noData') + '</td></tr>';
@@ -335,10 +395,8 @@
       '<span class="badge" style="background:var(--bg-elev)">' + I18N.enumLabel('region', c.region) + '</span>' +
       '<span class="text-muted">' + esc(I18N.pick(c.country_display_zh, c.country_display_en)) + ' · ' + esc(c.hq_city || '') + '</span>' +
       confBadge(c.confidence) + '</div>';
-    if (c.tier === 'roster') modalTab = 'tabSummary';
-    var tabs = c.tier === 'roster' ? [['tabSummary', 1]]
-      : [['tabSummary', 1], ['tabSites', 1], ['tabPipeline', 1], ['tabFocus', 1], ['tabBench', 1], ['tabMilestones', 1]];
-    if (c.tier !== 'roster' && D.dealsForCompany(c.id).length) tabs.splice(4, 0, ['tabDeals', 1]);  // after Focus
+    var tabs = [['tabSummary', 1], ['tabSites', 1], ['tabPipeline', 1], ['tabFocus', 1], ['tabBench', 1], ['tabMilestones', 1]];
+    if (D.dealsForCompany(c.id).length) tabs.splice(4, 0, ['tabDeals', 1]);  // after Focus
     if (modalTab === 'tabDeals' && !D.dealsForCompany(c.id).length) modalTab = 'tabSummary';
     $('company-modal-tabs').innerHTML = tabs.map(function (t) {
       return '<button class="modal-tab-btn ' + (t[0] === modalTab ? 'active' : '') + '" data-tab="' + t[0] + '">' + I18N.t(t[0]) + '</button>';
@@ -348,6 +406,8 @@
   }
   function renderModalBody(c) {
     var b = $('company-modal-body'); var t = modalTab;
+    var layer = { tabBench: 'pairs', tabMilestones: 'milestones', tabDeals: 'deals' }[t];
+    if (layer && D.layerErrors && D.layerErrors[layer]) { b.textContent = I18N.t('layerLoadError'); return; }
     if (!D.productsLoaded && ['tabPipeline', 'tabFocus', 'tabBench', 'tabMilestones'].indexOf(t) !== -1) {
       b.innerHTML = '<p class="loading">' + I18N.t('loading') + '</p>';
       return;
@@ -424,7 +484,7 @@
         '<td>' + esc(c.regulator || '') + '</td>' +
         '<td class="text-faint">' + esc(strengths.slice(0, 2).join('、')) + '</td></tr>';
     }).join('') || '<tr><td colspan="6" class="loading">' + I18N.t('noData') + '</td></tr>';
-    CH.renderCountryRadar(D.countries, state.countrySel);
+    safeSection('country-radar', function () { CH.renderCountryRadar(D.countries, state.countrySel); });
   }
 
   // ---------- benchmarks ----------
@@ -682,11 +742,11 @@
 
   // ---------- render all dynamic ----------
   function renderAll() {
-    renderKpis();
-    renderMap();
-    renderCatalog();
-    renderProductViews(); CH.renderTrendRegion(D.companies);
-    renderCountries(); renderGroups(); renderDeals(); renderPolicies();
+    renderKpis(); renderFxNote();
+    renderCatalog(); renderMap();
+    renderProductViews(); safeSection('trend-region', function () { CH.renderTrendRegion(D.companies); });
+    safeSection('countries', renderCountries, 'countries'); safeSection('groups', renderGroups, 'groups');
+    safeSection('deals', renderDeals, 'deals'); safeSection('policies', renderPolicies, 'policies');
   }
 
   // ---------- theme ----------
@@ -694,11 +754,13 @@
     var dark = !document.documentElement.classList.contains('dark');
     document.documentElement.classList.toggle('dark', dark);
     try { localStorage.setItem('pharm-companies-theme', dark ? 'dark' : 'light'); } catch (e) {}
-    renderAll();
+    if (coreReady) renderAll();
   }
 
   // ---------- events ----------
   function bind() {
+    if (bound) return; bound = true;
+    $('core-load-retry').addEventListener('click', init);
     $('lang-toggle').addEventListener('click', function () { I18N.toggleLang(); });
     $('theme-toggle').addEventListener('click', toggleTheme);
     $('compare-btn').addEventListener('click', function () { ensureProducts().then(openCompare).catch(function () {}); });
@@ -729,28 +791,28 @@
     $('map-filter-ta').addEventListener('change', function (e) { state.map.ta = e.target.value; renderMap(); });
     $('map-reset').addEventListener('click', function () { state.map.region = state.map.modality = state.map.ta = ''; $('map-filter-region').value = ''; $('map-filter-modality').value = ''; $('map-filter-ta').value = ''; renderMap(); });
 
+    $('cat-prev').addEventListener('click', function () { state.cat.page--; renderCatalog(); });
+    $('cat-next').addEventListener('click', function () { state.cat.page++; renderCatalog(); });
     $('cat-search').addEventListener('focus', function () { ensureProducts().catch(function () {}); }, { once: true });
     $('product-load-retry').addEventListener('click', function () { ensureProducts().catch(function () {}); });
-    $('cat-search').addEventListener('input', function (e) { state.cat.search = e.target.value; if (D.productsLoaded) renderCatalog(); else ensureProducts().then(renderCatalog).catch(function () { renderCatalog(); }); });
-    $('cat-filter-region').addEventListener('change', function (e) { state.cat.region = e.target.value; renderCatalog(); });
-    $('cat-filter-type').addEventListener('change', function (e) { state.cat.type = e.target.value; renderCatalog(); });
-    $('cat-filter-modality').addEventListener('change', function (e) { state.cat.modality = e.target.value; renderCatalog(); });
-    if ($('cat-filter-ta')) $('cat-filter-ta').addEventListener('change', function (e) { state.cat.ta = e.target.value; renderCatalog(); });
-    $('cat-filter-tier').addEventListener('change', function (e) { state.cat.tier = e.target.value; renderCatalog(); });
+    $('cat-search').addEventListener('input', function (e) { state.cat.search = e.target.value; state.cat.page = 1; if (D.productsLoaded) renderCatalog(); else ensureProducts().then(renderCatalog).catch(function () { renderCatalog(); }); });
+    $('cat-filter-region').addEventListener('change', function (e) { state.cat.region = e.target.value; state.cat.page = 1; renderCatalog(); });
+    $('cat-filter-type').addEventListener('change', function (e) { state.cat.type = e.target.value; state.cat.page = 1; renderCatalog(); });
+    $('cat-filter-modality').addEventListener('change', function (e) { state.cat.modality = e.target.value; state.cat.page = 1; renderCatalog(); });
+    if ($('cat-filter-ta')) $('cat-filter-ta').addEventListener('change', function (e) { state.cat.ta = e.target.value; state.cat.page = 1; renderCatalog(); });
+    $('cat-filter-tier').addEventListener('change', function (e) { state.cat.tier = e.target.value; state.cat.page = 1; renderCatalog(); });
     $('cat-reset').addEventListener('click', function () {
+      state.cat.page = 1;
       state.cat.search = state.cat.region = state.cat.type = state.cat.modality = state.cat.ta = state.cat.tier = '';
       $('cat-search').value = ''; $('cat-filter-region').value = ''; $('cat-filter-type').value = ''; $('cat-filter-modality').value = '';
       if ($('cat-filter-ta')) $('cat-filter-ta').value = ''; $('cat-filter-tier').value = ''; renderCatalog();
     });
     $('catalog-head').addEventListener('click', function (e) {
-      var th = e.target.closest('th[data-sort]'); if (!th) return;
+      var th = e.target.closest('button[data-sort]'); if (!th) return;
       var k = th.getAttribute('data-sort');
       if (state.cat.sort === k) state.cat.dir *= -1; else { state.cat.sort = k; state.cat.dir = 1; }
-      renderCatalog();
-    });
-    $('catalog-head').addEventListener('keydown', function (e) {
-      var th = e.target.closest('th[data-sort]'); if (!th || (e.key !== 'Enter' && e.key !== ' ')) return;
-      e.preventDefault(); th.click();
+      state.cat.page = 1; renderCatalog();
+      if (k === 'products' && !D.productsLoaded) ensureProducts().catch(function () {});
     });
     $('catalog-body').addEventListener('click', function (e) {
       var tr = e.target.closest('tr[data-company]'); if (tr) { modalTab = 'tabSummary'; openCompanyModal(tr.getAttribute('data-company')); }
@@ -783,8 +845,8 @@
       var pl = e.target.closest('[data-policy-link]'); if (pl) { openPolicyModal(pl.getAttribute('data-policy-link')); }
     });
 
-    $('groups-filter').addEventListener('change', function (e) { state.groupsFilter = e.target.value; renderGroups(); });
-    $('deals-filter').addEventListener('change', function (e) { state.dealsFilter = e.target.value; renderDeals(); });
+    $('groups-filter').addEventListener('change', function (e) { state.groupsFilter = e.target.value; safeSection('groups', renderGroups, 'groups'); });
+    $('deals-filter').addEventListener('change', function (e) { state.dealsFilter = e.target.value; safeSection('deals', renderDeals, 'deals'); });
     $('policies-filter').addEventListener('change', function (e) { state.policiesFilter = e.target.value; renderPolicies(); });
     $('policies-grid').addEventListener('click', function (e) {
       var b = e.target.closest('[data-policy]'); if (b) openPolicyModal(b.getAttribute('data-policy'));
@@ -797,7 +859,7 @@
       renderCountries();
     });
 
-    I18N.onChange(function () { fillSelects(); restoreFilterValues(); renderAll(); syncProductLoadError(); if (!$('company-modal').classList.contains('hidden')) renderModalBodyFromOpen(); });
+    I18N.onChange(function () { if (!coreReady) { if (window.location.protocol === 'file:') $('core-load-error-text').textContent = I18N.t('errFileBody'); return; } fillSelects(); restoreFilterValues(); renderAll(); syncProductLoadError(); if (!$('company-modal').classList.contains('hidden')) renderModalBodyFromOpen(); });
   }
   var openCompanyId = null;
   function renderModalBodyFromOpen() { if (openCompanyId) { var c = D.getCompany(openCompanyId); if (c) renderModalBody(c); } }
@@ -818,17 +880,24 @@
   async function init() {
     I18N.applyLangToUI();
     var foot = $('foot-build');
+    bind(); renderFxNote(); $('init-error').classList.add('hidden');
+    $('core-load-retry').disabled = true;
+    var fxRequest = loadFx();
     try {
-      await Promise.all([D.initCore(), loadFx()]);
-      buildIndexes(); fillSelects(); bind(); renderAll(); observeProductSections();
+      await D.initCore(); coreReady = true;
+      buildIndexes(); fillSelects(); renderAll(); observeProductSections();
+      fxRequest.then(function () {
+        if (!coreReady) return;
+        renderCatalog(); safeSection('countries', renderCountries, 'countries');
+        if (openCompanyId) renderModalBodyFromOpen();
+      });
       if (!window.echarts || window.PHARM_ECHARTS_FAILED) $('library-warning').classList.remove('hidden');
       if (D.manifest && foot) foot.textContent = 'build ' + (D.manifest.data_version || '') + ' · ' + (D.manifest.build_time || '');
     } catch (e) {
       console.error(e);
       $('init-error').classList.remove('hidden');
-      // still bind toggles so the page isn't dead
-      try { bind(); } catch (e2) {}
-    }
+      if (window.location.protocol === 'file:') $('core-load-error-text').textContent = I18N.t('errFileBody');
+    } finally { $('core-load-retry').disabled = false; }
   }
   window.PHARM_APP = { init: init, openCompanyModal: function (id) { openCompanyModal(id); } };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();

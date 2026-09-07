@@ -15,6 +15,7 @@
   var openCityId = null;
   var openOrgId = null;
   var dialogReturnFocus = null;
+  var chartFailures = {};
 
   function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[m]; }); }
   function uniq(a) { var o = {}; a.forEach(function (x) { if (x) o[x] = 1; }); return Object.keys(o); }
@@ -400,18 +401,32 @@
     var messages = [];
     var noEcharts = !!window.CHINA_AUTO_ECHARTS_FAILED || !window.echarts;
     if (noEcharts) messages.push(I18N.t('echartsFallback'));
+    else if (Object.keys(chartFailures).length) messages.push(I18N.t('chartRenderFallback'));
     var warning = $('runtime-warning');
     if (warning) {
       warning.classList.toggle('hidden', !messages.length);
       $('runtime-warning-title').textContent = messages.length ? I18N.t('runtimeWarnTitle') : '';
       $('runtime-warning-body').textContent = messages.join(' ');
     }
-    if (noEcharts) {
-      ['overview-chart', 'china-map', 'cluster-graph'].forEach(function (id) {
-        var el = $(id);
-        if (el) el.innerHTML = '<p class="runtime-chart-fallback">' + esc(I18N.t('chartUnavailable')) + '</p>';
-      });
+    ['overview-chart', 'china-map', 'cluster-graph'].forEach(function (id) {
+      var note = $(id + '-error');
+      if (!note) return;
+      var unavailable = noEcharts || !!chartFailures[id];
+      note.classList.toggle('hidden', !unavailable);
+      note.textContent = unavailable ? I18N.t('chartUnavailable') : '';
+    });
+  }
+
+  // Optional visualizations cannot stop catalog, filter, detail or source rendering.
+  function renderChart(id, draw) {
+    try {
+      if (draw() === false) throw new Error('Visualization resources unavailable');
+      delete chartFailures[id];
+    } catch (error) {
+      chartFailures[id] = true;
+      console.error('[china-auto] ' + id, error);
     }
+    renderRuntimeFallbacks();
   }
 
   function orgCount(cityId) { return D.orgsForCity(cityId).length; }
@@ -480,18 +495,22 @@
   }
 
   function renderMap() {
-    MAP.render({
-      dim: state.map.dim, layer: state.map.layer,
-      cities: filteredCities(), facilities: filteredFacilities(), clusters: D.clusters,
-      getCity: D.getCity, getStat: D.stat2025,
-      clusterName: function (id) { var cl = D.getCluster(id); return cl ? I18N.name(cl) : id; },
-      onClick: function (id, kind) {
-        if (kind === 'city') openCityModal(id);
-        else {
-          var f = D.getFacility(id);
-          if (f && f.city_id) openCityModal(f.city_id);
+    renderChart('china-map', function () {
+      var rendered = MAP.render({
+        dim: state.map.dim, layer: state.map.layer,
+        cities: filteredCities(), facilities: filteredFacilities(), clusters: D.clusters,
+        getCity: D.getCity, getStat: D.stat2025,
+        clusterName: function (id) { var cl = D.getCluster(id); return cl ? I18N.name(cl) : id; },
+        onClick: function (id, kind) {
+          if (kind === 'city') openCityModal(id);
+          else {
+            var f = D.getFacility(id);
+            if (f && f.city_id) openCityModal(f.city_id);
+          }
         }
-      }
+      });
+      MAP.resize();
+      return rendered;
     });
   }
 
@@ -581,17 +600,19 @@
     });
     if (resetBtn) resetBtn.disabled = !selected;
 
-    CH.renderClusterGraph({
-      cities: D.cities, relations: D.relations, clusters: D.clusters,
-      selectedClusterId: selected, layers: state.cluster.layers,
-      getCluster: D.getCluster, getStat: D.stat2025, getOrg: D.getOrg, getFacility: D.getFacility,
-      getCity: D.getCity, childrenOf: D.childrenOf,
-      orgsForCity: D.orgsForCity, facilitiesForCity: D.plantFacilitiesForCity,
-      manufacturingRolesForCity: D.manufacturingRolesForCity,
-      manufacturingCountForCity: D.manufacturingCountForCity,
-      mediaForCity: D.mediaForCity, institutionsForCity: D.institutionsForCity
+    renderChart('cluster-graph', function () {
+      CH.renderClusterGraph({
+        cities: D.cities, relations: D.relations, clusters: D.clusters,
+        selectedClusterId: selected, layers: state.cluster.layers,
+        getCluster: D.getCluster, getStat: D.stat2025, getOrg: D.getOrg, getFacility: D.getFacility,
+        getCity: D.getCity, childrenOf: D.childrenOf,
+        orgsForCity: D.orgsForCity, facilitiesForCity: D.plantFacilitiesForCity,
+        manufacturingRolesForCity: D.manufacturingRolesForCity,
+        manufacturingCountForCity: D.manufacturingCountForCity,
+        mediaForCity: D.mediaForCity, institutionsForCity: D.institutionsForCity
+      });
+      CH.resizeAll();
     });
-    CH.resizeAll();
   }
 
   function selectCluster(id, opts) {
@@ -805,14 +826,12 @@
 
   function renderAll() {
     renderKpis();
-    CH.renderOverview(D.cities, D.stat2025);
+    renderChart('overview-chart', function () { CH.renderOverview(D.cities, D.stat2025); });
     renderMap();
     renderCatalog();
     renderClusters();
     renderOrgs();
     renderMethodology();
-    MAP.resize();
-    CH.resizeAll();
     renderRuntimeFallbacks();
   }
 
@@ -1058,8 +1077,6 @@
     document.documentElement.classList.toggle('dark', dark);
     try { localStorage.setItem('china-auto-theme', dark ? 'dark' : 'light'); } catch (e) {}
     renderAll();
-    MAP.setTheme();
-    CH.setTheme();
   }
 
   function restoreFilters() {

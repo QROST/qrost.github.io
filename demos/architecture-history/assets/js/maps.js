@@ -52,20 +52,6 @@
           worldClick(params.data.entityId);
         }
       });
-      if (window.QrostTouchGate) {
-        worldGate = window.QrostTouchGate.attach(element, {
-          labels: function () {
-            const i18n = window.ARCH_I18N;
-            return {
-              enable: i18n.t('mapTouchEnable'),
-              disable: i18n.t('mapTouchDisable'),
-            };
-          },
-          onChange: function (interactive) {
-            if (worldChart) worldChart.setOption({ geo: { roam: interactive } });
-          },
-        });
-      }
     }
     return worldChart;
   }
@@ -74,7 +60,6 @@
     try {
       const chart = ensureWorld();
       if (!chart) return false;
-      if (worldGate) worldGate.refresh();
       const i18n = window.ARCH_I18N;
       const entitiesById = context.entitiesById || {};
       worldClick = context.onClick || worldClick;
@@ -132,7 +117,7 @@
       },
       geo: {
         map: 'architecture-world',
-        roam: worldGate ? worldGate.isInteractive() : true,
+        roam: worldGate ? worldGate.isInteractive() : (!window.QrostTouchGate || !window.QrostTouchGate.coarsePointer()),
         scaleLimit: { min: 1, max: 8 },
         zoom: 1.08,
         itemStyle: {
@@ -158,7 +143,22 @@
         emphasis: { scale: 1.55 },
       }],
       }, true);
-      if (worldGate) worldGate.syncSurface();
+      // The touch gate emits onChange synchronously; initialize the full chart first.
+      if (!worldGate && window.QrostTouchGate) {
+        worldGate = window.QrostTouchGate.attach(document.getElementById('world-map'), {
+          labels: function () {
+            const i18n = window.ARCH_I18N;
+            return {
+              enable: i18n.t('mapTouchEnable'),
+              disable: i18n.t('mapTouchDisable'),
+            };
+          },
+          onChange: function (interactive) {
+            if (worldChart) worldChart.setOption({ geo: { roam: interactive } });
+          },
+        });
+      }
+      if (worldGate) { worldGate.refresh(); worldGate.syncSurface(); }
       return true;
     } catch (error) {
       if (worldChart) {
@@ -187,22 +187,6 @@
           lineageEdgeClick(params.data.relationId);
         }
       });
-      if (window.QrostTouchGate) {
-        lineageGate = window.QrostTouchGate.attach(element, {
-          labels: function () {
-            const i18n = window.ARCH_I18N;
-            return {
-              enable: i18n.t('graphTouchEnable'),
-              disable: i18n.t('graphTouchDisable'),
-            };
-          },
-          onChange: function (interactive) {
-            if (lineageChart) {
-              lineageChart.setOption({ series: [{ roam: interactive, draggable: interactive }] });
-            }
-          },
-        });
-      }
     }
     return lineageChart;
   }
@@ -211,7 +195,6 @@
     try {
       const chart = ensureLineage();
       if (!chart) return false;
-      if (lineageGate) lineageGate.refresh();
       const i18n = window.ARCH_I18N;
       const entitiesById = context.entitiesById || {};
       lineageClick = context.onClick || lineageClick;
@@ -280,8 +263,8 @@
       series: [{
         type: 'graph',
         layout: 'force',
-        roam: lineageGate ? lineageGate.isInteractive() : true,
-        draggable: lineageGate ? lineageGate.isInteractive() : true,
+        roam: lineageGate ? lineageGate.isInteractive() : (!window.QrostTouchGate || !window.QrostTouchGate.coarsePointer()),
+        draggable: lineageGate ? lineageGate.isInteractive() : (!window.QrostTouchGate || !window.QrostTouchGate.coarsePointer()),
         data: nodes,
         links: links,
         edgeSymbol: ['none', 'arrow'],
@@ -304,7 +287,24 @@
         },
       }],
       }, true);
-      if (lineageGate) lineageGate.syncSurface();
+      // The touch gate emits onChange synchronously; initialize the full chart first.
+      if (!lineageGate && window.QrostTouchGate) {
+        lineageGate = window.QrostTouchGate.attach(document.getElementById('lineage-graph'), {
+          labels: function () {
+            const i18n = window.ARCH_I18N;
+            return {
+              enable: i18n.t('graphTouchEnable'),
+              disable: i18n.t('graphTouchDisable'),
+            };
+          },
+          onChange: function (interactive) {
+            if (lineageChart) {
+              lineageChart.setOption({ series: [{ roam: interactive, draggable: interactive }] });
+            }
+          },
+        });
+      }
+      if (lineageGate) { lineageGate.refresh(); lineageGate.syncSurface(); }
       return true;
     } catch (error) {
       if (lineageChart) {

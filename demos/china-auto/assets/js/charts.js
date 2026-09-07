@@ -34,20 +34,6 @@
     }
     if (!instances['cluster-graph']) {
       instances['cluster-graph'] = window.echarts.init(el, null, { renderer: 'canvas' });
-      if (window.QrostTouchGate && !clusterGraphGate) {
-        clusterGraphGate = window.QrostTouchGate.attach(el, {
-          labels: function () {
-            return {
-              enable: I18N.t('graphTouchEnable'),
-              disable: I18N.t('graphTouchDisable'),
-            };
-          },
-          onChange: function (interactive) {
-            var ch = instances['cluster-graph'];
-            if (ch) ch.setOption({ series: [{ roam: interactive, draggable: interactive }] });
-          },
-        });
-      }
     }
     return instances['cluster-graph'];
   }
@@ -227,7 +213,6 @@
   function renderClusterGraph(opts) {
     opts = opts || {};
     clusterGraphCache.opts = opts;
-    if (clusterGraphGate) clusterGraphGate.refresh();
     var cities = opts.cities || [];
     var relations = opts.relations || [];
     var clusters = opts.clusters || [];
@@ -651,7 +636,22 @@
         emphasis: { focus: 'adjacency' }
       }]
     }, rebuild);
-    if (clusterGraphGate) clusterGraphGate.syncSurface();
+    // The touch gate emits onChange synchronously; create the graph series first.
+    if (window.QrostTouchGate && !clusterGraphGate) {
+      clusterGraphGate = window.QrostTouchGate.attach(document.getElementById('cluster-graph'), {
+        labels: function () {
+          return {
+            enable: I18N.t('graphTouchEnable'),
+            disable: I18N.t('graphTouchDisable'),
+          };
+        },
+        onChange: function (interactive) {
+          var ch = instances['cluster-graph'];
+          if (ch) ch.setOption({ series: [{ roam: interactive, draggable: interactive }] });
+        },
+      });
+    }
+    if (clusterGraphGate) { clusterGraphGate.refresh(); clusterGraphGate.syncSurface(); }
     if (fitIds) scheduleGraphFit(c, fitIds, rebuild, nodes);
     else if (!rebuild) scheduleGraphFit(c, null, false, nodes);
     else clusterGraphCache.fitGen += 1;

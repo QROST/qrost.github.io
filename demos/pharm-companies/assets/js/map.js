@@ -35,19 +35,6 @@
     if (!chart) {
       chart = window.echarts.init(el, null, { renderer: 'canvas' });
       chart.on('click', function (p) { if (p.data && p.data._cid && onClickCb) onClickCb(p.data._cid); });
-      if (window.QrostTouchGate) {
-        gate = window.QrostTouchGate.attach(el, {
-          labels: function () {
-            return {
-              enable: I18N.t('mapTouchEnable'),
-              disable: I18N.t('mapTouchDisable'),
-            };
-          },
-          onChange: function (interactive) {
-            if (chart) chart.setOption({ geo: { roam: interactive } });
-          },
-        });
-      }
     }
     return chart;
   }
@@ -81,7 +68,6 @@
   function render(opts) {
     var c = ensure();
     if (!c) return;
-    if (gate) gate.refresh();
     var dim = opts.dim || 'site_type';
     var sites = opts.sites || [];
     var getCompany = opts.getCompany;
@@ -145,7 +131,21 @@
         emphasis: { scale: 1.4 }, z: 5
       }]
     }, true);
-    if (gate) gate.syncSurface();
+    // attach/refresh emits onChange synchronously; geo must already exist.
+    if (!gate && window.QrostTouchGate) {
+      gate = window.QrostTouchGate.attach(document.getElementById('world-map'), {
+        labels: function () {
+          return {
+            enable: I18N.t('mapTouchEnable'),
+            disable: I18N.t('mapTouchDisable'),
+          };
+        },
+        onChange: function (interactive) {
+          if (chart) chart.setOption({ geo: { roam: interactive } });
+        },
+      });
+    }
+    if (gate) { gate.refresh(); gate.syncSurface(); }
 
     // custom legend
     var leg = document.getElementById('map-legend');

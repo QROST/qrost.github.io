@@ -64,6 +64,8 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
 .nav-link:hover { background: var(--bg-elev); color: var(--text); }
 .btn-ghost { padding: 0.35rem 0.7rem; border-radius: 0.5rem; font-size: 0.8rem; border: 1px solid var(--border); color: var(--text-muted); background: transparent; transition: all .15s; cursor: pointer; }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.btn-ghost:disabled { opacity: .45; cursor: default; border-color: var(--border); color: var(--text-muted); }
+.btn-ghost:focus-visible, .btn-accent:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .btn-accent { padding: 0.4rem 0.8rem; border-radius: 0.5rem; font-size: 0.8rem; border: 1px solid var(--accent); background: var(--accent-soft); color: var(--accent-strong); cursor: pointer; font-weight: 600; }
 .btn-accent:hover { background: var(--accent); color: #fff; }
 
