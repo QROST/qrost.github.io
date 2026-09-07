@@ -33,6 +33,7 @@ GATES = (
     Gate("china-auto", "page contract", (sys.executable, "demos/china-auto/tools/test_page_contract.py")),
     Gate("china-auto", "cluster graph projection", ("node", "demos/china-auto/tools/test_cluster_graph.js")),
     Gate("china-auto", "runtime chart failure isolation", ("node", "demos/china-auto/tools/test_runtime_fallback.js")),
+    Gate("china-auto", "quantitative map scale and missing output", ("node", "demos/china-auto/tools/test_map_semantics.js")),
     Gate("china-auto", "cache token and build contract", (sys.executable, "demos/china-auto/tools/build.py", "--check")),
     Gate("china-auto", "build idempotence", (sys.executable, "demos/china-auto/tools/test_build_idempotence.py")),
     Gate("architecture-history", "page/data projection contract", (sys.executable, "demos/architecture-history/tools/test_page_contract.py")),
@@ -55,6 +56,7 @@ GATES = (
     Gate("shelter-cats", "SQLite projection mutation", (sys.executable, "demos/shelter-cats/tools/test_build_check.py")),
     Gate("shelter-cats", "data validation", (sys.executable, "demos/shelter-cats/tools/validate.py")),
     Gate("shelter-cats", "atomic headers and partial shard retry", ("node", "demos/shelter-cats/tools/test_data_loader.js")),
+    Gate("shelter-cats", "map count scale and status semantics", ("node", "demos/shelter-cats/tools/test_map_semantics.js")),
     Gate("wfoe-china", "content hashes", (sys.executable, "demos/wfoe-china/tools/build.py", "--check")),
     Gate("wfoe-china", "build mutation tests", (sys.executable, "-m", "unittest", "discover", "-s", "demos/wfoe-china/tests", "-p", "test_*.py")),
     Gate("pebble-beach-2026", "guide contract and cache tokens", (sys.executable, "demos/pebble-beach-2026/tools/build.py", "--check")),
@@ -62,6 +64,7 @@ GATES = (
     Gate("visual-page", "cache tokens", ("node", "demos/visual-page/tools/stamp-cache.mjs", "--check")),
     Gate("neon-abyss", "cache tokens", ("node", "demos/neon-abyss/tools/stamp-cache.mjs", "--check")),
     Gate("generative-art", "pre-module fallback and reduced motion", ("node", "demos/visual-page/tools/check-module-watchdog.mjs")),
+    Gate("generative-art", "shared housing currency and visual units", ("node", "demos/visual-page/tools/check-housing.mjs")),
     Gate("makoauto", "multi-page contract", (sys.executable, "demos/makoauto/tools/test_page_contract.py")),
     Gate("repository", "Python and JavaScript syntax", (sys.executable, "tools/check_syntax.py")),
 )
