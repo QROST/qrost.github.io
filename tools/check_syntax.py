@@ -24,7 +24,7 @@ def files(pattern: str) -> list[str]:
 def main() -> int:
     failures: list[tuple[str, str]] = []
     python_files = files("*.py")
-    javascript_files = sorted(set(files("*.js") + files("*.mjs")))
+    javascript_files = sorted(set(files("*.js") + files("*.mjs") + files("*.cjs")))
     with tempfile.TemporaryDirectory(prefix="qrost-pycache-") as cache:
         env = os.environ.copy()
         env["PYTHONPYCACHEPREFIX"] = cache

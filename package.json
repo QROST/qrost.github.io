@@ -5,9 +5,13 @@
   "description": "Deterministic root-page CSS and public-site checks for qrost.github.io.",
   "scripts": {
     "build:css": "tailwindcss -c ./assets/tailwind.config.js -i ./assets/css/home-input.css -o ./assets/css/home-built.css --minify",
-    "check:css": "node ./tools/check_committed_css.mjs"
+    "check:css": "node ./tools/check_committed_css.mjs",
+    "test:browser": "playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "chart.js": "4.4.7",
+    "echarts": "5.5.1",
     "tailwindcss": "3.4.17"
   },
   "engines": {

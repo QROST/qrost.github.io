@@ -37,10 +37,11 @@
 
 ## Checks
 
-- `npm ci --ignore-scripts` installs the single locked root build dependency (Tailwind CSS 3.4.17).
+- `npm ci --ignore-scripts` installs the locked Tailwind compiler, Playwright, and same-version chart fixtures used by offline browser tests.
 - `npm run build:css && python3 tools/build.py` rebuilds the committed homepage CSS and refreshes content-addressed CSS/JavaScript cache tokens.
-- `npm run check:css` recompiles the root, China Auto, Housing, Pharma, and Shelter Cats Tailwind outputs in a temporary directory and compares them byte-for-byte with the committed CSS.
+- `npm run check:css` recompiles the root, China Auto, Housing, Pharma, Shelter Cats, and WFOE Tailwind outputs in a temporary directory and compares them byte-for-byte with the committed CSS.
 - `python3 tools/build.py --check` verifies root cache tokens without writing.
 - `python3 tools/check_public_metadata.py` verifies the complete inventory, canonical/robots decisions, OG/Twitter fields, local sharing-image dimensions, sitemap, robots policy, and homepage demo cards.
 - `python3 tools/test_public_metadata.py` runs mutation fixtures proving that missing fields, stray HTML, bad images, and sitemap/indexing contradictions fail closed.
 - `python3 tools/check_all.py` runs the stable root, research-data, public-demo cache/runtime, accessibility-contract, and repository-syntax gates used by GitHub Actions. Run it after `npm ci`; every gate must leave tracked content unchanged.
+- `npx playwright install chromium` prepares the browser; `npm run test:browser` checks desktop and touch maps, catalogs, retries, and calculator fallbacks against a local fixture server. External requests are intercepted; these tests do not verify current provider data or production deployment. To use installed Chrome locally, set `PLAYWRIGHT_CHANNEL=chrome`.

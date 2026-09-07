@@ -32,11 +32,28 @@ jobs:
           node-version: '20'
           cache: npm
 
-      - name: Install locked root build dependency
+      - name: Install locked build and browser dependencies
         run: npm ci --ignore-scripts
 
       - name: Run read-only public-site gates
         run: python3 tools/check_all.py
+
+      - name: Install Chromium for UI regressions
+        run: npx playwright install --with-deps chromium
+
+      - name: Run offline desktop and touch browser regressions
+        run: npm run test:browser
+
+      - name: Preserve browser failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-failures
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+          if-no-files-found: ignore
 
       - name: Prove checks left the checkout clean
         run: |

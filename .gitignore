@@ -14,6 +14,8 @@ demos/**/package-lock.json
 !demos/pharm-companies/package-lock.json
 !demos/shelter-cats/package-lock.json
 /node_modules/
+/test-results/
+/playwright-report/
 
 # Python virtualenv (china-housing pm25 tooling, etc.)
 .venv/
