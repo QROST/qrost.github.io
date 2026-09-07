@@ -202,7 +202,7 @@
     }
 
     function loadAndRender() {
-        const wfoePromise = fetch('assets/data/wfoe-steps.json')
+        const wfoePromise = fetch('assets/data/wfoe-steps.json?v=88f6b61ce319')
             .then(function (r) { if (!r.ok) throw new Error('wfoe-steps ' + r.status); return r.json(); })
             .then(function (steps) {
                 renderInto('wfoe-steps-mount', buildStepFlow(steps, wfoeRowHtml, 'wfoe-'));
@@ -212,7 +212,7 @@
                 renderFailureNotice('wfoe-steps-mount', 'WFOE setup steps');
             });
 
-        const domesticPromise = fetch('assets/data/domestic-steps.json')
+        const domesticPromise = fetch('assets/data/domestic-steps.json?v=1a713e6e64ba')
             .then(function (r) { if (!r.ok) throw new Error('domestic-steps ' + r.status); return r.json(); })
             .then(function (steps) {
                 renderInto('domestic-steps-mount', buildStepFlow(steps, domesticRowHtml, 'domestic-'));
@@ -222,7 +222,7 @@
                 renderFailureNotice('domestic-steps-mount', 'domestic LLC steps');
             });
 
-        const jvPromise = fetch('assets/data/joint-venture-steps.json')
+        const jvPromise = fetch('assets/data/joint-venture-steps.json?v=1c74ee05f0c4')
             .then(function (r) { if (!r.ok) throw new Error('joint-venture-steps ' + r.status); return r.json(); })
             .then(function (steps) {
                 renderInto('jv-steps-mount', buildStepFlow(steps, jvRowHtml, 'jv-'));

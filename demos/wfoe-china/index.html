@@ -35,12 +35,12 @@
     <meta name="twitter:image" content="https://qrost.github.io/demos/wfoe-china/assets/img/wfoe-china-og.png">
 
     <!-- Tailwind: built from src/tailwind-input.css via local tailwindcss CLI.
-         To regenerate: cd demos/wfoe-china && npm install && npm run build:css
+         To regenerate: cd demos/wfoe-china && npm install && npm run build
          The CDN script is intentionally NOT loaded here in production; if you
          need to rapid-prototype new utility classes, temporarily re-add
          <script src="https://cdn.tailwindcss.com"></script> below this link,
-         confirm the visual, then re-run npm run build:css and remove it again. -->
-    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=20260702dm1">
+         confirm the visual, then remove it again, then re-run npm run build. -->
+    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=f538a05fdb28">
     <!-- Chart.js pinned to 4.4.7 (jsDelivr) with sha384 SRI; bump version + SRI together. -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
@@ -48,7 +48,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Chosen Palette: Slate and Emerald -->
-    <link rel="stylesheet" href="assets/css/china-business.css?v=20260702dm1">
+    <link rel="stylesheet" href="assets/css/china-business.css?v=1391f2c2eb4c">
 </head>
 
 <body class="antialiased scroll-smooth">
@@ -812,7 +812,7 @@
 
                 <!-- Master Chart (Horizontal Bar for readability) -->
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 w-full">
-                    <p class="text-xs text-slate-500 mb-4 leading-relaxed border-l-2 border-amber-300 pl-3" data-i18n="dash.macro_disclaimer">Cross-city bars compare <strong>annual employment cost</strong> under each jurisdiction’s payroll rules—mainland cities use 五险一金-style loads; Hong Kong/Macau use MPF/FSS (not mainland social insurance). SAR and international bars are <strong>not</strong> substitutes for a mainland entity when you need onshore staff or mainland fapiao.</p>
+                    <p class="text-xs text-slate-500 mb-4 leading-relaxed border-l-2 border-amber-300 pl-3" data-i18n="dash.macro_disclaimer">Cross-city bars compare <strong>modeled annual employment cost</strong> using planning assumptions—mainland cities use illustrative 五险一金-style loads; Hong Kong/Macau use MPF/FSS (not mainland social insurance). SAR and international bars are <strong>not</strong> substitutes for a mainland entity when you need onshore staff or mainland fapiao.</p>
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800"><span data-i18n="dash.macro_prefix">Annual Macro Comparison:</span> <span
                             id="macro-title-role" class="text-emerald-600">Junior CAD</span></h3>
                     <p class="text-xs text-center text-slate-500 mb-6"><span id="macro-cost-label">Total Annual Cost
@@ -821,14 +821,15 @@
                     <div class="chart-container-tall">
                         <canvas id="barChartAllCities"></canvas>
                     </div>
+                    <div id="macro-data-fallback" class="hidden mt-4"></div>
                 </div>
 
                 <!-- Detail Chart (Doughnut) -->
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 sticky top-24">
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800"><span data-i18n="dash.micro_prefix">Annual Micro Breakdown:</span> <span
                             id="micro-title-city" class="text-emerald-600">Shanghai</span></h3>
-                    <p class="text-xs text-center text-slate-500 mb-6"><span id="micro-breakdown-label">Annual Base vs.
-                            Employer "5 Insurances & 1 Fund"</span> <span id="micro-contrib-pct-wrap">(<span
+                    <p class="text-xs text-center text-slate-500 mb-6"><span id="micro-breakdown-label">Annual base vs.
+                            modeled employer contributions</span> <span id="micro-contrib-pct-wrap">(<span
                                 id="micro-contrib-pct"></span>)</span></p>
                     <div class="chart-container">
                         <canvas id="doughnutCityDetail"></canvas>
@@ -840,8 +841,7 @@
                     </div>
 
                     <div class="mt-6 text-sm text-slate-600 bg-white p-4 rounded border border-slate-200">
-                        <p id="micro-desc-text"><strong>Mainland Contributions:</strong> Employer statutory
-                            contributions include Pension, Medical (9% in this model—maternity often merged into medical in many cities), Unemployment, Work Injury, and Housing Fund. Rates fluctuate by municipality; donut slices are illustrative.</p>
+                        <p id="micro-desc-text"><strong>Mainland planning assumptions:</strong> Every mainland city uses the same illustrative split: pension 16%, medical 9%, unemployment 0.5%, and work injury 0.5%. Housing fund is the remainder of the city’s modeled total contribution rate. These are not verified current local rates; contribution-base floors/caps and policy variations are not implemented.</p>
                     </div>
                 </div>
             </div>
@@ -888,9 +888,9 @@
         </div>
     </footer>
 
-    <script src="assets/js/steps-render.js?v=20260702dm1"></script>
-    <script src="assets/js/i18n-china-business.js?v=20260702dm1"></script>
-    <script src="assets/js/china-business.js?v=20260702dm1"></script>
+    <script src="assets/js/steps-render.js?v=5fe0b0121907"></script>
+    <script src="assets/js/i18n-china-business.js?v=273d268b99f7"></script>
+    <script src="assets/js/china-business.js?v=3aa769154e0d"></script>
 </body>
 
 </html>

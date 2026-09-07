@@ -1,4 +1,25 @@
-# wfoe-china — Phase 1 + 2 + 3 + 4 implementation notes
+# WFOE China change notes
+
+## 2026-09-07 — audit repairs
+
+- **G03:** Numeric costs and step fees render before optional charts. A missing,
+  broken or later-failing Chart.js layer shows a bilingual notice and a city
+  total table. City, role, currency, headcount, overhead, language and independent
+  FX updates continue. Sorting uses consistent per-person costs; displayed
+  component rounding now agrees across bars, donut slices and itemized totals.
+- **G05 (short-term):** Mainland contribution labels and the visible explanation
+  identify uniform model percentages and the housing-fund remainder as planning
+  assumptions. Current local rates and contribution-base floors/caps remain
+  unverified and unimplemented; no underlying city input or legal fact was updated.
+- **G08:** `npm run build` rebuilds the locked Tailwind CSS and stamps every local
+  CSS/JS URL plus all three step JSON requests with content hashes. JSON changes
+  propagate into the renderer hash and page reference. `npm run check` checks
+  stamps without writes and tests drift, dependency propagation and idempotence.
+- `npm run test:browser` uses the root Playwright setup. Its offline fixtures cover
+  missing charts, constructor/update failure, both FX outcomes, controls, bilingual
+  notices, and numeric agreement across all 24 China/SAR cities.
+
+## Earlier Phase 1 + 2 + 3 + 4 implementation notes
 
 Implements the colleague's full plan (Phase 1 UX, Phase 2 Tech-light,
 Phase 3 Tailwind CLI build, Phase 4 big-file split) under the

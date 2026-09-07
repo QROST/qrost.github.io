@@ -313,8 +313,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const contrib = employerContribAnnualRMB(cityKey, base);
                 const overheadAnnual = overheadAnnualTotalRMB(c);
                 const empTotalRMB = base + contrib;
-                const overheadTotalRMB = state.includeOverhead ? overheadAnnual * state.headcount : 0;
+                const overheadTotalRMB = state.includeOverhead ? overheadAnnual : 0;
                 const totalRMB = empTotalRMB + overheadTotalRMB;
+                // Sum the displayed overhead components so chart/table totals
+                // agree even when currency conversion rounds individual items.
+                const displayOverhead = state.includeOverhead
+                    ? Object.values(overheadPartsForCity(cityKey)).reduce(function (sum, value) { return sum + convert(value); }, 0)
+                    : 0;
                 return {
                     baseRMB: base,
                     contribRMB: contrib,
@@ -322,8 +327,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     totalRMB,
                     base: convert(base),
                     contrib: convert(contrib),
-                    overhead: state.includeOverhead ? convert(overheadAnnual) : 0,
-                    total: convert(base) + convert(contrib) + (state.includeOverhead ? convert(overheadAnnual) : 0)
+                    overhead: displayOverhead,
+                    total: convert(base) + convert(contrib) + displayOverhead
                 };
             }
 
@@ -441,8 +446,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 });
-
-                updateVisuals();
             }
 
             function updateVisuals() {
@@ -468,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const chartHost = document.querySelector('.chart-container-tall');
                 if (chartHost) {
                     const barCount = getDashboardCityKeys().length;
-                    chartHost.style.height = Math.max(720, barCount * 32) + 'px';
+                    chartHost.style.height = barChart ? Math.max(720, barCount * 32) + 'px' : 'auto';
                 }
 
                 // Sort dashboard cities by total cost descending
@@ -495,24 +498,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                barChart.data.labels = labels;
-                barChart.data.datasets[0].data = baseData;
-                barChart.data.datasets[0].backgroundColor = baseColors;
-                barChart.data.datasets[1].data = contribData;
-                barChart.data.datasets[1].backgroundColor = contribColors;
-                barChart.data.datasets[2].data = overheadData;
-                barChart.data.datasets[2].backgroundColor = overheadColors;
-                barChart.data.datasets[0].label = tr('chart.base', 'Annual Base Salary');
-                barChart.data.datasets[1].label = tr('chart.contrib', 'Employer Contributions');
-                barChart.data.datasets[2].label = tr('chart.overhead', 'Overhead (modeled)');
-                if (barChart.options.plugins.legend.labels) {
-                    barChart.options.plugins.legend.labels.filter = function (legendItem) {
-                        if (legendItem.datasetIndex === 2 && !state.includeOverhead) return false;
-                        return true;
-                    };
-                }
-                barChart.update();
-
                 // Update Doughnut Chart Detail (5 Insurances & 1 Fund Breakdown)
                 const selectedCityObj = cityData[state.city];
                 const selectedCost = getCostData(state.city, state.role);
@@ -530,11 +515,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     donutLabels = [
                         tr('donut.base', 'Annual Base Salary'),
-                        tr('donut.pension', '1. Pension (16%)'),
-                        tr('donut.medical', '2. Medical (9%)'),
-                        tr('donut.unemp', '3. Unemployment (0.5%)'),
-                        tr('donut.injury', '4. Work Injury (0.5%)'),
-                        tr('donut.housing', '5. Housing Fund ({pct}%)').replace(/\{pct\}/g, (hPct * 100).toFixed(1))
+                        tr('donut.pension', '1. Pension (model: 16%)'),
+                        tr('donut.medical', '2. Medical (model: 9%)'),
+                        tr('donut.unemp', '3. Unemployment (model: 0.5%)'),
+                        tr('donut.injury', '4. Work Injury (model: 0.5%)'),
+                        tr('donut.housing', '5. Housing Fund (model remainder: {pct}%)').replace(/\{pct\}/g, (hPct * 100).toFixed(1))
                     ];
 
                     donutData = [
@@ -542,9 +527,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         convert(selectedCost.baseRMB * pPct),
                         convert(selectedCost.baseRMB * mPct),
                         convert(selectedCost.baseRMB * uPct),
-                        convert(selectedCost.baseRMB * iPct),
-                        convert(selectedCost.baseRMB * hPct)
+                        convert(selectedCost.baseRMB * iPct)
                     ];
+                    // Housing is a model remainder, including display rounding,
+                    // so itemized contributions always sum to the city total.
+                    donutData.push(selectedCost.contrib - donutData.slice(1).reduce(function (sum, value) { return sum + value; }, 0));
 
                     donutColors = ['#0f172a', '#047857', '#065f46', '#059669', '#10b981', '#34d399'];
 
@@ -630,11 +617,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                doughnutChart.data.labels = donutLabels;
-                doughnutChart.data.datasets[0].data = donutData;
-                doughnutChart.data.datasets[0].backgroundColor = donutColors;
-                doughnutChart.update();
-
                 // Populate the detailed itemized list below the pie chart
                 let listHTML = '';
                 let totalAnnualAmt = 0;
@@ -690,7 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (breakdownLbl) {
                         breakdownLbl.textContent = selectedType === 'international'
                             ? tr('dash.micro.intl_sub2', 'Annual Base vs. local employer statutory load')
-                            : tr('dash.micro.sub2', 'Annual Base vs. Employer "5 Insurances & 1 Fund"');
+                            : tr('dash.micro.sub2', 'Annual base vs. modeled employer contributions');
                     }
                     if (pctWrap) pctWrap.style.display = 'inline';
                     if (pctEl) {
@@ -732,7 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     descText.innerHTML = intlHtml;
                 } else {
                     alertBox.classList.add('hidden');
-                    let mainlandDesc = tr('desc.mainland', '<strong>Mainland Contributions:</strong> Employer statutory contributions include Pension, Medical (9% in this model—maternity often merged into medical in many cities), Unemployment, Work Injury, and Housing Fund. Rates fluctuate by municipality; donut slices are illustrative.');
+                    let mainlandDesc = tr('desc.mainland', '<strong>Mainland planning assumptions:</strong> Every mainland city uses the same illustrative split: pension 16%, medical 9%, unemployment 0.5%, and work injury 0.5%. Housing fund is the remainder of the city’s modeled total contribution rate. These are not verified current local rates; contribution-base floors/caps and policy variations are not implemented.');
                     if (state.includeOverhead) {
                         mainlandDesc += ' ' + tr('desc.mainland_oh', '<strong>Overhead:</strong> Rent, utilities, hardware amortization, and AEC software stack are modeled per employee-year (see methodology above).');
                     }
@@ -745,6 +727,79 @@ document.addEventListener('DOMContentLoaded', () => {
                 refreshDomesticFees();
                 refreshWfoeMoney();
                 refreshJvMoney();
+
+                // All numeric/text UI is rendered before the optional Chart.js layer.
+                updateOptionalCharts(sortedCityKeys, {
+                    labels: labels,
+                    data: [baseData, contribData, overheadData],
+                    colors: [baseColors, contribColors, overheadColors]
+                }, { labels: donutLabels, data: donutData, colors: donutColors });
+            }
+
+            function showChartFallback() {
+                [barChart, doughnutChart].forEach(function (chart) {
+                    try { if (chart) chart.destroy(); } catch (e) { /* already unusable */ }
+                });
+                barChart = null;
+                doughnutChart = null;
+                ['barChartAllCities', 'doughnutCityDetail'].forEach(function (id) {
+                    const canvas = document.getElementById(id);
+                    if (!canvas) return;
+                    canvas.style.display = 'none';
+                    const wrap = canvas.parentNode;
+                    wrap.style.height = 'auto';
+                    wrap.style.minHeight = '0';
+                    if (!wrap.querySelector('[data-chart-unavailable]')) {
+                        const note = document.createElement('p');
+                        note.setAttribute('role', 'status');
+                        note.setAttribute('data-chart-unavailable', '');
+                        note.className = 'text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded p-3';
+                        wrap.appendChild(note);
+                    }
+                });
+            }
+
+            function renderChartFallback(sortedCityKeys) {
+                document.querySelectorAll('[data-chart-unavailable]').forEach(function (note) {
+                    note.textContent = tr('chart.cdn_unavailable',
+                        'Charts unavailable. The city totals and itemized costs below still update with every control and exchange-rate change. Refresh to retry charts.');
+                });
+                const table = document.getElementById('macro-data-fallback');
+                if (!table) return;
+                table.classList.remove('hidden');
+                let rows = '';
+                sortedCityKeys.forEach(function (key) {
+                    rows += '<tr><th scope="row" class="text-left py-2 font-medium">' + cityDisplayName(key)
+                        + '</th><td class="text-right py-2">' + getSymbol() + getCostData(key, state.role).total.toLocaleString() + '</td></tr>';
+                });
+                table.innerHTML = '<table class="w-full text-xs text-slate-700"><caption class="sr-only">'
+                    + tr('chart.city_totals', 'Annual modeled cost by city') + '</caption><thead><tr><th scope="col" class="text-left py-2">'
+                    + tr('dash.city_select', 'City focus') + '</th><th scope="col" class="text-right py-2">'
+                    + tr('chart.total_annual_cost', 'Total Annual Cost') + '</th></tr></thead><tbody>' + rows + '</tbody></table>';
+            }
+
+            function updateOptionalCharts(sortedCityKeys, bars, donut) {
+                if (barChart && doughnutChart) {
+                    try {
+                        const datasetLabels = [tr('chart.base', 'Annual Base Salary'),
+                            tr('chart.contrib', 'Employer Contributions (modeled)'), tr('chart.overhead', 'Overhead (modeled)')];
+                        barChart.data.labels = bars.labels;
+                        barChart.data.datasets.forEach(function (dataset, i) {
+                            dataset.data = bars.data[i];
+                            dataset.backgroundColor = bars.colors[i];
+                            dataset.label = datasetLabels[i];
+                        });
+                        barChart.update();
+                        doughnutChart.data.labels = donut.labels;
+                        doughnutChart.data.datasets[0].data = donut.data;
+                        doughnutChart.data.datasets[0].backgroundColor = donut.colors;
+                        doughnutChart.update();
+                        return;
+                    } catch (e) {
+                        showChartFallback();
+                    }
+                }
+                renderChartFallback(sortedCityKeys);
             }
 
             /** RMB-first fee bands; USD = RMB ÷ rate (EN only — ZH cost column is RMB-only). */
@@ -1203,11 +1258,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 return document.documentElement.classList.contains('dark');
             }
             function applyChartTheme() {
-                if (typeof Chart === 'undefined') return;
-                Chart.defaults.color = isDarkMode() ? '#94a3b8' : '#475569';
-                [barChart, doughnutChart].forEach(function (c) {
-                    if (c) c.update();
-                });
+                if (typeof Chart === 'undefined' || !barChart || !doughnutChart) return;
+                try {
+                    Chart.defaults.color = isDarkMode() ? '#94a3b8' : '#475569';
+                    [barChart, doughnutChart].forEach(function (c) {
+                        if (c) c.update();
+                    });
+                } catch (e) {
+                    showChartFallback();
+                    updateVisuals();
+                }
             }
             function setDarkMode(dark) {
                 document.documentElement.classList.toggle('dark', dark);
@@ -1351,33 +1411,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.addEventListener('afterprint', restoreAll);
             })();
 
-            /* ----------------------------------------------------------------
-               Phase 2.3 safety — if the Chart.js CDN fails (network, SRI
-               mismatch, ad blocker), surface a single inline notice instead
-               of leaving two silent blank canvases. We do not try to swap in
-               an alternative library; the page text + tables still work.
-               ---------------------------------------------------------------- */
+            // Charts enhance the calculator; loading or rendering failure never
+            // skips the numeric dashboard, step fees, or independent FX request.
             if (typeof Chart === 'undefined') {
-                const barHost = document.getElementById('barChartAllCities');
-                const donutHost = document.getElementById('doughnutCityDetail');
-                function placeNotice(canvas) {
-                    if (!canvas || !canvas.parentNode) return;
-                    const wrap = canvas.closest('.chart-container, .chart-container-tall') || canvas.parentNode;
-                    const note = document.createElement('div');
-                    note.setAttribute('role', 'status');
-                    note.className = 'text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded p-3';
-                    note.textContent = tr('chart.cdn_unavailable',
-                        'Chart visualisation unavailable (Chart.js failed to load). Salary and contribution numbers are unaffected; refresh to retry.');
-                    wrap.appendChild(note);
-                    canvas.style.display = 'none';
+                showChartFallback();
+            } else {
+                try {
+                    initCharts();
+                    applyChartTheme();
+                } catch (e) {
+                    showChartFallback();
                 }
-                placeNotice(barHost);
-                placeNotice(donutHost);
-                return; // Skip chart init; rest of page (tabs, i18n, fees) still works.
             }
-
-            initCharts();
-            applyChartTheme(); // pick up html.dark set pre-paint by the bootstrap script, if any
+            updateVisuals();
             updateFxLabel();
             loadExchangeRate();
 
