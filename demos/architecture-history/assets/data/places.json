@@ -15,7 +15,7 @@
         "wikidata": "Q1008"
       },
       "id": "place-wd-q1008",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Ivory Coast",
@@ -39,7 +39,7 @@
         "wikidata": "Q1028"
       },
       "id": "place-wd-q1028",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Morocco",
@@ -63,7 +63,7 @@
         "wikidata": "Q1029"
       },
       "id": "place-wd-q1029",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Mozambique",
@@ -87,7 +87,7 @@
         "wikidata": "Q114"
       },
       "id": "place-wd-q114",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Kenya",
@@ -111,7 +111,7 @@
         "wikidata": "Q115"
       },
       "id": "place-wd-q115",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Ethiopia",
@@ -135,7 +135,7 @@
         "wikidata": "Q117"
       },
       "id": "place-wd-q117",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Ghana",
@@ -159,7 +159,7 @@
         "wikidata": "Q142"
       },
       "id": "place-wd-q142",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "France",
@@ -183,7 +183,7 @@
         "wikidata": "Q145"
       },
       "id": "place-wd-q145",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "United Kingdom",
@@ -207,7 +207,7 @@
         "wikidata": "Q148"
       },
       "id": "place-wd-q148",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "People's Republic of China",
@@ -231,7 +231,7 @@
         "wikidata": "Q155"
       },
       "id": "place-wd-q155",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Brazil",
@@ -255,7 +255,7 @@
         "wikidata": "Q159"
       },
       "id": "place-wd-q159",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Russia",
@@ -279,7 +279,7 @@
         "wikidata": "Q16"
       },
       "id": "place-wd-q16",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Canada",
@@ -303,7 +303,7 @@
         "wikidata": "Q17"
       },
       "id": "place-wd-q17",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Japan",
@@ -327,12 +327,108 @@
         "wikidata": "Q183"
       },
       "id": "place-wd-q183",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Germany",
       "name_native": null,
       "name_zh": "德国",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q189-name-en",
+        "claim-wd-q189-name-zh",
+        "claim-wd-q189-country-code",
+        "claim-wd-q189-region",
+        "claim-wd-q189-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "IS",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q189"
+      },
+      "id": "place-wd-q189",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Iceland",
+      "name_native": null,
+      "name_zh": "冰岛",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q191-name-en",
+        "claim-wd-q191-name-zh",
+        "claim-wd-q191-country-code",
+        "claim-wd-q191-region",
+        "claim-wd-q191-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "EE",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q191"
+      },
+      "id": "place-wd-q191",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Estonia",
+      "name_native": null,
+      "name_zh": "爱沙尼亚",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q20-name-en",
+        "claim-wd-q20-name-zh",
+        "claim-wd-q20-country-code",
+        "claim-wd-q20-region",
+        "claim-wd-q20-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "NO",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q20"
+      },
+      "id": "place-wd-q20",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Norway",
+      "name_native": null,
+      "name_zh": "挪威",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q212-name-en",
+        "claim-wd-q212-name-zh",
+        "claim-wd-q212-country-code",
+        "claim-wd-q212-region",
+        "claim-wd-q212-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "UA",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q212"
+      },
+      "id": "place-wd-q212",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Ukraine",
+      "name_native": null,
+      "name_zh": "乌克兰",
       "region": "europe",
       "verification_status": "verified"
     },
@@ -351,12 +447,36 @@
         "wikidata": "Q213"
       },
       "id": "place-wd-q213",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Czech Republic",
       "name_native": null,
       "name_zh": "捷克",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q215-name-en",
+        "claim-wd-q215-name-zh",
+        "claim-wd-q215-country-code",
+        "claim-wd-q215-region",
+        "claim-wd-q215-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "SI",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q215"
+      },
+      "id": "place-wd-q215",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Slovenia",
+      "name_native": null,
+      "name_zh": "斯洛文尼亚",
       "region": "europe",
       "verification_status": "verified"
     },
@@ -375,12 +495,108 @@
         "wikidata": "Q218"
       },
       "id": "place-wd-q218",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Romania",
       "name_native": null,
       "name_zh": "罗马尼亚",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q219060-name-en",
+        "claim-wd-q219060-name-zh",
+        "claim-wd-q219060-country-code",
+        "claim-wd-q219060-region",
+        "claim-wd-q219060-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "PS",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q219060"
+      },
+      "id": "place-wd-q219060",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Palestine",
+      "name_native": null,
+      "name_zh": "巴勒斯坦",
+      "region": "central_west_asia",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q224-name-en",
+        "claim-wd-q224-name-zh",
+        "claim-wd-q224-country-code",
+        "claim-wd-q224-region",
+        "claim-wd-q224-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "HR",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q224"
+      },
+      "id": "place-wd-q224",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Croatia",
+      "name_native": null,
+      "name_zh": "克罗地亚",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q230-name-en",
+        "claim-wd-q230-name-zh",
+        "claim-wd-q230-country-code",
+        "claim-wd-q230-region",
+        "claim-wd-q230-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "GE",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q230"
+      },
+      "id": "place-wd-q230",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Georgia",
+      "name_native": null,
+      "name_zh": "格鲁吉亚",
+      "region": "central_west_asia",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q235-name-en",
+        "claim-wd-q235-name-zh",
+        "claim-wd-q235-country-code",
+        "claim-wd-q235-region",
+        "claim-wd-q235-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "MC",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q235"
+      },
+      "id": "place-wd-q235",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Monaco",
+      "name_native": null,
+      "name_zh": "摩纳哥",
       "region": "europe",
       "verification_status": "verified"
     },
@@ -399,7 +615,7 @@
         "wikidata": "Q237"
       },
       "id": "place-wd-q237",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Vatican City",
@@ -423,7 +639,7 @@
         "wikidata": "Q252"
       },
       "id": "place-wd-q252",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Indonesia",
@@ -447,7 +663,7 @@
         "wikidata": "Q258"
       },
       "id": "place-wd-q258",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "South Africa",
@@ -471,7 +687,7 @@
         "wikidata": "Q262"
       },
       "id": "place-wd-q262",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Algeria",
@@ -495,7 +711,7 @@
         "wikidata": "Q28"
       },
       "id": "place-wd-q28",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Hungary",
@@ -519,7 +735,7 @@
         "wikidata": "Q29"
       },
       "id": "place-wd-q29",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Spain",
@@ -543,7 +759,7 @@
         "wikidata": "Q298"
       },
       "id": "place-wd-q298",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Chile",
@@ -567,7 +783,7 @@
         "wikidata": "Q30"
       },
       "id": "place-wd-q30",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "United States",
@@ -591,7 +807,7 @@
         "wikidata": "Q31"
       },
       "id": "place-wd-q31",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Belgium",
@@ -615,7 +831,7 @@
         "wikidata": "Q33"
       },
       "id": "place-wd-q33",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Finland",
@@ -639,7 +855,7 @@
         "wikidata": "Q334"
       },
       "id": "place-wd-q334",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Singapore",
@@ -663,7 +879,7 @@
         "wikidata": "Q34"
       },
       "id": "place-wd-q34",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Sweden",
@@ -687,7 +903,7 @@
         "wikidata": "Q35"
       },
       "id": "place-wd-q35",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Denmark",
@@ -711,7 +927,7 @@
         "wikidata": "Q36"
       },
       "id": "place-wd-q36",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Poland",
@@ -735,7 +951,7 @@
         "wikidata": "Q38"
       },
       "id": "place-wd-q38",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Italy",
@@ -759,13 +975,37 @@
         "wikidata": "Q39"
       },
       "id": "place-wd-q39",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Switzerland",
       "name_native": null,
       "name_zh": "瑞士",
       "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q399-name-en",
+        "claim-wd-q399-name-zh",
+        "claim-wd-q399-country-code",
+        "claim-wd-q399-region",
+        "claim-wd-q399-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "AM",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q399"
+      },
+      "id": "place-wd-q399",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Armenia",
+      "name_native": null,
+      "name_zh": "亚美尼亚",
+      "region": "central_west_asia",
       "verification_status": "verified"
     },
     {
@@ -783,12 +1023,36 @@
         "wikidata": "Q40"
       },
       "id": "place-wd-q40",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Austria",
       "name_native": null,
       "name_zh": "奥地利",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q403-name-en",
+        "claim-wd-q403-name-zh",
+        "claim-wd-q403-country-code",
+        "claim-wd-q403-region",
+        "claim-wd-q403-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "RS",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q403"
+      },
+      "id": "place-wd-q403",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Serbia",
+      "name_native": null,
+      "name_zh": "塞尔维亚",
       "region": "europe",
       "verification_status": "verified"
     },
@@ -807,7 +1071,7 @@
         "wikidata": "Q408"
       },
       "id": "place-wd-q408",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Australia",
@@ -831,7 +1095,7 @@
         "wikidata": "Q41"
       },
       "id": "place-wd-q41",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Greece",
@@ -855,7 +1119,7 @@
         "wikidata": "Q414"
       },
       "id": "place-wd-q414",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Argentina",
@@ -879,7 +1143,7 @@
         "wikidata": "Q419"
       },
       "id": "place-wd-q419",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Peru",
@@ -903,7 +1167,7 @@
         "wikidata": "Q424"
       },
       "id": "place-wd-q424",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Cambodia",
@@ -927,7 +1191,7 @@
         "wikidata": "Q43"
       },
       "id": "place-wd-q43",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Turkey",
@@ -951,7 +1215,7 @@
         "wikidata": "Q45"
       },
       "id": "place-wd-q45",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Portugal",
@@ -975,7 +1239,7 @@
         "wikidata": "Q55"
       },
       "id": "place-wd-q55",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Netherlands",
@@ -999,7 +1263,7 @@
         "wikidata": "Q664"
       },
       "id": "place-wd-q664",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "New Zealand",
@@ -1023,7 +1287,7 @@
         "wikidata": "Q668"
       },
       "id": "place-wd-q668",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "India",
@@ -1047,7 +1311,7 @@
         "wikidata": "Q717"
       },
       "id": "place-wd-q717",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Venezuela",
@@ -1071,7 +1335,7 @@
         "wikidata": "Q739"
       },
       "id": "place-wd-q739",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Colombia",
@@ -1095,7 +1359,7 @@
         "wikidata": "Q77"
       },
       "id": "place-wd-q77",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Uruguay",
@@ -1119,7 +1383,7 @@
         "wikidata": "Q774"
       },
       "id": "place-wd-q774",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Guatemala",
@@ -1143,7 +1407,7 @@
         "wikidata": "Q79"
       },
       "id": "place-wd-q79",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Egypt",
@@ -1167,12 +1431,60 @@
         "wikidata": "Q794"
       },
       "id": "place-wd-q794",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Iran",
       "name_native": null,
       "name_zh": "伊朗",
+      "region": "central_west_asia",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q796-name-en",
+        "claim-wd-q796-name-zh",
+        "claim-wd-q796-country-code",
+        "claim-wd-q796-region",
+        "claim-wd-q796-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "IQ",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q796"
+      },
+      "id": "place-wd-q796",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Iraq",
+      "name_native": null,
+      "name_zh": "伊拉克",
+      "region": "central_west_asia",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q801-name-en",
+        "claim-wd-q801-name-zh",
+        "claim-wd-q801-country-code",
+        "claim-wd-q801-region",
+        "claim-wd-q801-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "IL",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q801"
+      },
+      "id": "place-wd-q801",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Israel",
+      "name_native": null,
+      "name_zh": "以色列",
       "region": "central_west_asia",
       "verification_status": "verified"
     },
@@ -1191,7 +1503,7 @@
         "wikidata": "Q819"
       },
       "id": "place-wd-q819",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Laos",
@@ -1215,7 +1527,7 @@
         "wikidata": "Q833"
       },
       "id": "place-wd-q833",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Malaysia",
@@ -1239,7 +1551,7 @@
         "wikidata": "Q836"
       },
       "id": "place-wd-q836",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Myanmar",
@@ -1263,7 +1575,7 @@
         "wikidata": "Q843"
       },
       "id": "place-wd-q843",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Pakistan",
@@ -1287,7 +1599,7 @@
         "wikidata": "Q851"
       },
       "id": "place-wd-q851",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Saudi Arabia",
@@ -1311,7 +1623,7 @@
         "wikidata": "Q854"
       },
       "id": "place-wd-q854",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Sri Lanka",
@@ -1335,7 +1647,7 @@
         "wikidata": "Q865"
       },
       "id": "place-wd-q865",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Taiwan",
@@ -1359,7 +1671,7 @@
         "wikidata": "Q869"
       },
       "id": "place-wd-q869",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Thailand",
@@ -1383,7 +1695,7 @@
         "wikidata": "Q878"
       },
       "id": "place-wd-q878",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "United Arab Emirates",
@@ -1407,7 +1719,7 @@
         "wikidata": "Q881"
       },
       "id": "place-wd-q881",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Vietnam",
@@ -1431,13 +1743,37 @@
         "wikidata": "Q884"
       },
       "id": "place-wd-q884",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "South Korea",
       "name_native": null,
       "name_zh": "大韩民国",
       "region": "east_asia",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q889-name-en",
+        "claim-wd-q889-name-zh",
+        "claim-wd-q889-country-code",
+        "claim-wd-q889-region",
+        "claim-wd-q889-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "AF",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q889"
+      },
+      "id": "place-wd-q889",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Afghanistan",
+      "name_native": null,
+      "name_zh": "阿富汗",
+      "region": "south_asia",
       "verification_status": "verified"
     },
     {
@@ -1455,7 +1791,7 @@
         "wikidata": "Q902"
       },
       "id": "place-wd-q902",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Bangladesh",
@@ -1479,13 +1815,37 @@
         "wikidata": "Q912"
       },
       "id": "place-wd-q912",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Mali",
       "name_native": null,
       "name_zh": "马里",
       "region": "africa",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q928-name-en",
+        "claim-wd-q928-name-zh",
+        "claim-wd-q928-country-code",
+        "claim-wd-q928-region",
+        "claim-wd-q928-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "PH",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q928"
+      },
+      "id": "place-wd-q928",
+      "last_verified": "2026-09-07",
+      "lat": null,
+      "lng": null,
+      "name_en": "Philippines",
+      "name_native": null,
+      "name_zh": "菲律宾",
+      "region": "southeast_asia",
       "verification_status": "verified"
     },
     {
@@ -1503,7 +1863,7 @@
         "wikidata": "Q948"
       },
       "id": "place-wd-q948",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Tunisia",
@@ -1527,7 +1887,7 @@
         "wikidata": "Q954"
       },
       "id": "place-wd-q954",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Zimbabwe",
@@ -1551,7 +1911,7 @@
         "wikidata": "Q96"
       },
       "id": "place-wd-q96",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Mexico",
@@ -1575,7 +1935,7 @@
         "wikidata": "Q986"
       },
       "id": "place-wd-q986",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-07",
       "lat": null,
       "lng": null,
       "name_en": "Eritrea",
