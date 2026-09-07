@@ -498,7 +498,7 @@
     renderChart('china-map', function () {
       var rendered = MAP.render({
         dim: state.map.dim, layer: state.map.layer,
-        cities: filteredCities(), facilities: filteredFacilities(), clusters: D.clusters,
+        cities: filteredCities(), allCities: D.cities, facilities: filteredFacilities(), clusters: D.clusters,
         getCity: D.getCity, getStat: D.stat2025,
         clusterName: function (id) { var cl = D.getCluster(id); return cl ? I18N.name(cl) : id; },
         onClick: function (id, kind) {

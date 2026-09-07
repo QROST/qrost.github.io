@@ -1,5 +1,5 @@
 /* World map of shelters (ECharts geo + scatter, vendored WORLD_GEO, no API key).
-   Shelters sized by cat count; live regions shaded. window.SHELTERCATS_MAP */
+   Shelters sized by cached cat count. window.SHELTERCATS_MAP */
 (function () {
   'use strict';
   var I18N = window.SHELTERCATS_I18N;
@@ -26,15 +26,17 @@
     return !window.QrostTouchGate || !window.QrostTouchGate.coarsePointer();
   }
 
-  // size scale by cat count
-  function symSize(n) { return Math.max(8, Math.min(36, 8 + Math.sqrt(n) * 4)); }
+  // Square-root scale with a visible minimum; the full snapshot sets its domain.
+  function symSize(n, max) { return Math.sqrt(8 * 8 + (36 * 36 - 8 * 8) * n / max); }
 
   function render(opts) {
     var c = ensure();
     if (!c) return;
     var shelters = opts.shelters || [];
     var countFor = opts.countFor || function () { return 0; };
-    var liveRegions = opts.liveRegions || [];
+    var snapshotMax = typeof opts.sizeMax === 'number' && isFinite(opts.sizeMax) && opts.sizeMax >= 0
+      ? opts.sizeMax : Math.max.apply(null, [0].concat(shelters.map(function (s) { return countFor(s.id); })));
+    var sizeMax = Math.max(1, snapshotMax);
     onClickCb = opts.onClick || onClickCb;
     var accent = cssVar('--accent');
 
@@ -44,7 +46,7 @@
       var n = countFor(s.id);
       return {
         name: s.name, value: [s.lng, s.lat],
-        symbolSize: symSize(n),
+        symbolSize: symSize(n, sizeMax),
         itemStyle: { color: accent, borderColor: 'rgba(255,255,255,.6)', borderWidth: 1, opacity: 0.92 },
         _sid: s.id, _shelter: s, _n: n
       };
@@ -79,7 +81,6 @@
         center: opts.me ? [opts.me.lng, opts.me.lat] : [-30, 25],
         zoom: opts.me ? 3 : 1.1,
         itemStyle: { areaColor: cssVar('--map-land'), borderColor: cssVar('--map-border'), borderWidth: 0.5 },
-        regions: liveRegions.length ? [] : [],
         emphasis: { itemStyle: { areaColor: cssVar('--accent-soft') }, label: { show: false } },
         label: { show: false }, silent: true
       },
@@ -103,6 +104,15 @@
       });
     }
     if (gate) { gate.refresh(); gate.syncSurface(); }
+    var legend = document.getElementById('map-legend');
+    if (legend) {
+      var samples = snapshotMax > 0 ? [Math.max(1, Math.round(sizeMax / 4)), Math.max(1, Math.round(sizeMax / 2)), sizeMax] : [0];
+      samples = samples.filter(function (n, i) { return samples.indexOf(n) === i; });
+      legend.innerHTML = '<span class="size-legend-title">' + I18N.t('mapSizeLegend') + '</span>' + samples.map(function (n) {
+        var size = symSize(n, sizeMax);
+        return '<span class="size-legend-item" data-legend-value="' + n + '"><span aria-hidden="true" class="size-legend-dot" style="width:' + size + 'px;height:' + size + 'px"></span>' + n + '</span>';
+      }).join('') + '<span class="size-legend-note">' + I18N.t(opts.includeAdopted ? 'mapCountAll' : 'mapCountActive') + ' ' + I18N.t('mapSizeNote') + '</span>';
+    }
   }
 
   function resize() { if (chart) try { chart.resize(); } catch (e) {} }

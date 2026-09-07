@@ -205,7 +205,8 @@
       var missingRegions = D.failedShards.map(function (shard) { return shard.region; });
       MAP.render({
       shelters: D.shelters.filter(function (shelter) { return missingRegions.indexOf(shelter.region) === -1; }),
-      liveRegions: (D.enums && D.enums.regions_live) || [],
+      sizeMax: Math.max.apply(null, [0].concat(D.shelters.map(function (shelter) { return D.catsForShelter(shelter.id).length; }))),
+      includeAdopted: state.f.includeAdopted,
       me: state.me,
       countFor: function (id) { return D.catsForShelter(id).filter(function (c) { return state.f.includeAdopted || (c.status !== 'adopted' && c.status !== 'removed'); }).length; },
       onClick: function (sid) {

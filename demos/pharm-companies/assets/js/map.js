@@ -6,7 +6,7 @@
 
   function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
 
-  var SITE_SIZE = { HQ: 12, RD: 9, manufacturing: 9, commercial: 6, JV: 8 };
+  var SITE_SIZE = 9; // Each marker is one site; size does not encode company scale.
   // CSS site vars are lowercase (--site-hq / --site-rd / --site-jv …) but data site_type is HQ/RD/JV.
   function siteColor(type) { return cssVar('--site-' + String(type).toLowerCase()) || cssVar('--chart-1'); }
   var TYPE_COLORS = ['--chart-1','--chart-2','--chart-3','--chart-4','--chart-5','--chart-6','--chart-7','--chart-8'];
@@ -73,15 +73,14 @@
     var getCompany = opts.getCompany;
     onClickCb = opts.onClick || onClickCb;
 
-    // stable color maps for country / company_type / therapeutic_area
-    var countries = [], types = [], areas = [];
-    sites.forEach(function (s) {
-      var co = getCompany(s.company_id);
-      if (co && co.country && countries.indexOf(co.country) === -1) countries.push(co.country);
-      if (co && co.company_type && types.indexOf(co.company_type) === -1) types.push(co.company_type);
-      var ta = opts.getPrimaryTA && opts.getPrimaryTA(s.company_id);
-      if (ta && areas.indexOf(ta) === -1) areas.push(ta);
+    // Color domains come from the complete catalog, not the filtered markers.
+    // This also keeps TA colors stable when the lazy product layer is loaded.
+    var countries = [], types = [];
+    (opts.companies || []).forEach(function (co) {
+      if (co.country && countries.indexOf(co.country) === -1) countries.push(co.country);
+      if (co.company_type && types.indexOf(co.company_type) === -1) types.push(co.company_type);
     });
+    var areas = (opts.therapeuticAreas || []).map(function (ta) { return ta.id; });
     var pal = TYPE_COLORS.map(cssVar);
     var countryColorMap = {}; countries.sort().forEach(function (co, i) { countryColorMap[co] = FLAG_COLOR[co] || catColor(i, pal); });
     var typeColorMap = {}; types.sort().forEach(function (t, i) { typeColorMap[t] = catColor(i, pal); });
@@ -95,7 +94,7 @@
       return {
         name: co ? I18N.name(co) : s.company_id,
         value: [s.lng, s.lat],
-        symbolSize: SITE_SIZE[s.site_type] || 7,
+        symbolSize: SITE_SIZE,
         itemStyle: { color: cat.color, borderColor: 'rgba(0,0,0,.25)', borderWidth: 0.5, opacity: 0.9 },
         _cid: s.company_id, _site: s, _co: co
       };
@@ -150,7 +149,7 @@
     // custom legend
     var leg = document.getElementById('map-legend');
     if (leg) {
-      leg.innerHTML = Object.keys(legend).map(function (k) {
+      leg.innerHTML = '<span>' + I18N.t('mapMarkerKey') + '</span>' + Object.keys(legend).sort().map(function (k) {
         return '<span><span class="dot" style="background:' + legend[k].color + '"></span>' + legend[k].label + '</span>';
       }).join('');
     }

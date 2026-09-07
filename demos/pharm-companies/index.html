@@ -32,13 +32,13 @@
       } catch (e) {}
     })();
     // Stamped by tools/build.py (content hash) → appended as ?v= to every data fetch.
-    window.PHARM_DATA_VERSION = '942c278b75';
+    window.PHARM_DATA_VERSION = 'c6ded3ef70';
   </script>
 
-  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=942c278b75" />
+  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=c6ded3ef70" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/pharm-companies.css?v=942c278b75" />
+  <link rel="stylesheet" href="assets/css/pharm-companies.css?v=c6ded3ef70" />
   <style>
     /* Sun/moon theme-toggle animation — unified with QROST home */
     #theme-toggle .sun-icon,
@@ -135,7 +135,7 @@
     <!-- ============ WORLD MAP ============ -->
     <section id="map" class="scroll-mt-20">
       <h2 class="section-title" data-i18n="mapTitle">全球站点地图</h2>
-      <p class="text-sm text-muted mt-1" data-i18n="mapSub">每个标记是一处企业站点（总部 / 研发 / 生产 / 商业）。按维度着色、按地区或模态筛选，点击查看企业。</p>
+      <p class="text-sm text-muted mt-1" data-i18n="mapSub">每个圆点是一处企业站点（总部 / 研发 / 生产 / 商业 / 合资）。颜色按所选维度区分类别，同一类别筛选前后保持同色；点击查看企业。</p>
       <div class="flex flex-wrap items-center gap-2 mt-3">
         <div id="map-dims" class="seg"></div>
         <select id="map-filter-region" class="select" aria-label="地图地区筛选 / Map region filter"></select>
@@ -145,7 +145,7 @@
       </div>
       <div class="panel mt-3">
         <div id="world-map" class="chart-h-lg"></div>
-        <div id="map-legend" class="map-legend"></div>
+        <div id="map-legend" class="map-legend"><span data-i18n="mapMarkerKey">等大圆点 = 一处站点，大小不表示企业规模；颜色 = 当前维度类别。</span></div>
       </div>
     </section>
 
@@ -311,17 +311,17 @@
   </div>
 
   <!-- data + libs + app (load order matters) -->
-  <script src="assets/data/world-geo.js?v=942c278b75"></script>
+  <script src="assets/data/world-geo.js?v=c6ded3ef70"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
     integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
     crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.PHARM_ECHARTS_FAILED=true"></script>
-  <script src="assets/js/i18n.js?v=942c278b75"></script>
-  <script src="assets/js/touch-gate.js?v=942c278b75"></script>
-  <script src="assets/js/data-loader.js?v=942c278b75"></script>
-  <script src="assets/js/charts.js?v=942c278b75"></script>
-  <script src="assets/js/map.js?v=942c278b75"></script>
-  <script src="assets/js/groups-graph.js?v=942c278b75"></script>
-  <script src="assets/js/deals-graph.js?v=942c278b75"></script>
-  <script src="assets/js/app.js?v=942c278b75"></script>
+  <script src="assets/js/i18n.js?v=c6ded3ef70"></script>
+  <script src="assets/js/touch-gate.js?v=c6ded3ef70"></script>
+  <script src="assets/js/data-loader.js?v=c6ded3ef70"></script>
+  <script src="assets/js/charts.js?v=c6ded3ef70"></script>
+  <script src="assets/js/map.js?v=c6ded3ef70"></script>
+  <script src="assets/js/groups-graph.js?v=c6ded3ef70"></script>
+  <script src="assets/js/deals-graph.js?v=c6ded3ef70"></script>
+  <script src="assets/js/app.js?v=c6ded3ef70"></script>
 </body>
 </html>

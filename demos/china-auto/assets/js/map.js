@@ -22,10 +22,26 @@
     return chart;
   }
 
-  function outputSize(val) {
-    if (val == null || val <= 0) return 10;
-    var w = Math.sqrt(val / 10000);
-    return Math.max(8, Math.min(36, 6 + w * 2.2));
+  function verifiedOutput(stat) {
+    var value = stat && stat.total_vehicle_output;
+    return stat && stat.confidence > 0.5 && typeof value === 'number' && isFinite(value) && value >= 0 ? value : null;
+  }
+
+  function outputDomain(opts) {
+    var max = 0;
+    (opts.allCities || opts.cities || []).forEach(function (city) {
+      var value = verifiedOutput(opts.getStat && opts.getStat(city.id));
+      if (value != null) max = Math.max(max, value);
+    });
+    if (!max) return 1;
+    var step = Math.pow(10, Math.floor(Math.log10(max)));
+    return Math.ceil(max / step) * step;
+  }
+
+  function outputSize(val, max) {
+    if (val == null) return 10;
+    // A small visible minimum, then square-root scaling over the complete dataset.
+    return Math.sqrt(8 * 8 + (36 * 36 - 8 * 8) * val / max);
   }
 
   function primaryRole(city) {
@@ -49,7 +65,7 @@
     (opts.clusters || []).forEach(function (cl, i) { clusterColors[cl.id] = catColor(i, pal); });
     var legend = {};
     var points = [];
-    var outMin = Infinity, outMax = -Infinity;
+    var outMax = outputDomain(opts);
 
     function addPoint(id, kind, lat, lng, label, color, size, extra) {
       if (typeof lat !== 'number' || typeof lng !== 'number') return;
@@ -86,9 +102,8 @@
 
     (opts.cities || []).forEach(function (city) {
       var stat = opts.getStat && opts.getStat(city.id);
-      var verified = stat && stat.confidence > 0.5;
-      var out = verified && stat.total_vehicle_output;
-      if (out != null) { outMin = Math.min(outMin, out); outMax = Math.max(outMax, out); }
+      var out = verifiedOutput(stat);
+      var verified = out != null;
       var color = cssVar('--accent');
       if (dim === 'output') {
         color = verified ? cssVar('--chart-1') : cssVar('--text-faint');
@@ -101,10 +116,17 @@
         color = roleColor(pr);
         legend[pr] = { label: pr === '_none' ? '—' : I18N.enumLabel('role_tag', pr), color: color };
       }
-      addPoint(city.id, 'city', city.lat, city.lng, I18N.name(city), color, outputSize(out), { city: city, stat: stat });
+      addPoint(city.id, 'city', city.lat, city.lng, I18N.name(city), color, outputSize(out, outMax), { city: city, stat: stat });
+      var point = points[points.length - 1];
+      if (point && point._id === city.id) {
+        point.value[2] = out;
+        if (!verified) {
+          point.symbol = 'emptyCircle';
+          point.itemStyle.borderWidth = 1.5;
+        }
+      }
     });
-    if (!isFinite(outMin)) { outMin = 0; outMax = 1; }
-    return { points: points, legend: legend, outMin: outMin, outMax: outMax };
+    return { points: points, legend: legend, outMin: 0, outMax: outMax };
   }
 
   function mapRoam() {
@@ -135,8 +157,8 @@
           if (ex && ex.city) {
             var st = ex.stat;
             var out = st && st.total_vehicle_output != null ? (st.total_vehicle_output / 10000).toFixed(2) : '—';
-            var candidate = st && st.confidence <= 0.5 ? ' · ' + I18N.t('candidate') : '';
-            return '<b>' + I18N.name(ex.city) + '</b><br/>2025: ' + out + (I18N.isEn() ? ' 10k' : ' 万辆') + candidate;
+            var candidate = verifiedOutput(st) == null ? ' · ' + I18N.t('mapOutputUnknown') : '';
+            return '<b>' + I18N.name(ex.city) + '</b><br/>2025: ' + out + (I18N.isEn() ? ' 10k vehicles' : ' 万辆') + candidate;
           }
           return p.name || '';
         }
@@ -152,7 +174,14 @@
         emphasis: { scale: 1.35 }, z: 5
       }]
     };
-    if (dim === 'output' && (opts.layer || 'cities') === 'cities' && points.length) {
+    if ((opts.layer || 'cities') === 'cities') {
+      // Keep unknown output outside the numerical color scale, including its lower bound.
+      option.series[0].data = points.filter(function (point) { return point.value[2] != null; });
+      option.series.push({ type: 'scatter', coordinateSystem: 'geo', progressive: 0,
+        data: points.filter(function (point) { return point.value[2] == null; }),
+        emphasis: { scale: 1.35 }, z: 6 });
+    }
+    if (dim === 'output' && (opts.layer || 'cities') === 'cities' && option.series[0].data.length) {
       option.visualMap = {
         show: true, min: built.outMin, max: built.outMax, calculable: true, orient: 'horizontal',
         left: 'center', bottom: 8, itemWidth: 14, itemHeight: 80,
@@ -162,12 +191,6 @@
         seriesIndex: 0, dimension: 2,
         formatter: function (v) { return (v / 10000).toFixed(2); }
       };
-      points.forEach(function (pt, i) {
-        var st = pt._extra && pt._extra.stat;
-        pt.value[2] = st && st.confidence > 0.5 && st.total_vehicle_output != null ? st.total_vehicle_output : null;
-        points[i] = pt;
-      });
-      option.series[0].data = points;
     }
     c.setOption(option, true);
     // attach/refresh emits onChange synchronously; geo must already exist.
@@ -188,13 +211,21 @@
 
     var leg = document.getElementById('map-legend');
     if (leg) {
-      if (dim === 'output' && (opts.layer || 'cities') === 'cities') {
-        leg.innerHTML = '<span><span class="dot" style="background:' + cssVar('--chart-1') + '"></span>' +
-          I18N.t('dimOutput') + ' · visualMap</span>';
-      } else {
-        leg.innerHTML = Object.keys(built.legend).map(function (k) {
+      var categories = Object.keys(built.legend).map(function (k) {
           return '<span><span class="dot" style="background:' + built.legend[k].color + '"></span>' + built.legend[k].label + '</span>';
         }).join('');
+      if ((opts.layer || 'cities') === 'cities') {
+        var samples = built.outMax > 1 ? [built.outMax / 4, built.outMax / 2, built.outMax] : [];
+        leg.innerHTML = '<span class="size-legend-title">' + I18N.t('mapSizeLegend') + '</span>' +
+          samples.map(function (value) {
+            var size = outputSize(value, built.outMax);
+            return '<span class="size-legend-item" data-legend-value="' + value + '"><span aria-hidden="true" class="size-legend-dot" style="width:' + size + 'px;height:' + size + 'px"></span>' +
+              (value / 10000).toLocaleString(I18N.isEn() ? 'en-US' : 'zh-CN', { maximumFractionDigits: 2 }) + '</span>';
+          }).join('') + '<span class="size-legend-item"><span aria-hidden="true" class="size-legend-dot is-unknown"></span>' + I18N.t('mapOutputUnknown') + '</span>' +
+          (categories ? '<span class="size-legend-categories">' + categories + '</span>' : '') +
+          '<span class="size-legend-note">' + I18N.t('mapSizeNote') + '</span>';
+      } else {
+        leg.innerHTML = categories + '<span class="size-legend-note">' + I18N.t('mapFacilityNote') + '</span>';
       }
     }
     return true;

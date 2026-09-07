@@ -312,6 +312,7 @@
   function renderMap() {
     safeSection('map', function () { MAP.render({
       dim: state.map.dim, sites: filteredSites(), getCompany: D.getCompany,
+      companies: D.companies, therapeuticAreas: D.therapeuticAreas,
       getPrimaryTA: getPrimaryTA, taName: function (id) { var t = D.getTA(id); return t ? I18N.name(t) : id; },
       onClick: openCompanyModal
     }); });

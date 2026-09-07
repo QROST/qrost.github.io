@@ -94,6 +94,9 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
 /* map legend */
 .map-legend { display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 0.6rem 0.9rem; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--text-muted); }
 .map-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.map-legend .size-legend-title, .map-legend .size-legend-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+.map-legend .size-legend-dot { display: inline-block; flex: none; border-radius: 50%; background: var(--accent); border: 1px solid var(--text-muted); box-sizing: border-box; }
+.map-legend .size-legend-note { flex-basis: 100%; }
 
 /* cat grid */
 .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 0.85rem; }
