@@ -1354,11 +1354,30 @@
     return mix(hexRgb(cs[i]), hexRgb(cs[i + 1]), f);
   };
 
-  // cheaper homes render larger so affordable options pop (scale to visible set)
-  function dotSizeOf(d) {
-    const vals = viewGeocoded().map((x) => x.priceYuan / 10000);
-    const pMin = Math.min(...vals), pMax = Math.max(...vals);
-    return 8 + (1 - clamp((d.priceYuan / 10000 - pMin) / (pMax - pMin || 1), 0, 1)) * 12;
+  // Size always encodes total asking price, independently of the colour layer.
+  // Interpolate area with a readable minimum; compute the range once per render.
+  function mapPriceDomain(listings) {
+    const prices = listings.map((d) => d.priceYuan).filter((p) => Number.isFinite(p) && p > 0);
+    return prices.length ? [Math.min(...prices), Math.max(...prices)] : null;
+  }
+
+  function dotSizeOf(price, domain) {
+    if (!domain || !Number.isFinite(price) || price <= 0) return 8;
+    const [min, max] = domain;
+    const fraction = max === min ? 0.5 : clamp((price - min) / (max - min), 0, 1);
+    return Math.sqrt(8 * 8 + fraction * (24 * 24 - 8 * 8));
+  }
+
+  function renderMapSizeLegend(domain) {
+    const legend = document.getElementById('map-size-legend');
+    if (!legend) return;
+    if (!domain) { legend.hidden = true; return; }
+    legend.hidden = false;
+    const [min, max] = domain;
+    const samples = min === max ? [min] : [min, (min + max) / 2, max];
+    legend.innerHTML = `<span>${t('mapSizeLabel')}</span>` + samples.map((price) =>
+      `<span class="map-size-sample" data-price-yuan="${price}"><i aria-hidden="true" style="width:${dotSizeOf(price, domain)}px;height:${dotSizeOf(price, domain)}px"></i>${disp().formatCnyYuan(price)}</span>`
+    ).join('') + `<span class="map-size-note">${t('mapSizeNote')}</span>`;
   }
 
   function mapFail(msg) {
@@ -1368,12 +1387,12 @@
     if (fb) { fb.classList.remove('hidden'); fb.style.display = 'flex'; fb.textContent = msg; }
   }
 
-  function mapSeriesData() {
+  function mapSeriesData(listings, priceDomain) {
     const dim = mapDim(dimKey);
     if (!dim) return [];
-    return viewGeocoded().filter((d) => dim.get(d) != null).map((d) => {
+    return listings.filter((d) => dim.get(d) != null).map((d) => {
       const v = dim.get(d);
-      const pt = { value: [d.enr.lng, d.enr.lat, v], size: dotSizeOf(d), d };
+      const pt = { value: [d.enr.lng, d.enr.lat, v], size: dotSizeOf(d.priceYuan, priceDomain), d };
       if (dimKey === 'builtAge' && v < 0) pt.itemStyle = { color: AGE_FUTURE };
       return pt;
     });
@@ -1420,7 +1439,10 @@
     if (!mapReady || !echartsMap) return;
     const dim = mapDim(dimKey);
     if (!dim) return;
-    const data = mapSeriesData();
+    const listings = viewGeocoded();
+    const priceDomain = mapPriceDomain(listings);
+    const data = mapSeriesData(listings, priceDomain);
+    renderMapSizeLegend(priceDomain);
     const vals = data.map((p) => p.value[2]);
     if (!vals.length) return;
     let vmin = Math.min(...vals), vmax = Math.max(...vals);

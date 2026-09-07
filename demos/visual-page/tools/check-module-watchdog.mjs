@@ -83,7 +83,25 @@ for (const demo of demos) {
   if (timed.gateError.hidden || !timed.loading._classes.has('load-failed')) {
     throw new Error(`${demo.name}: timeout fault injection did not become visible`);
   }
-  console.log(`OK: ${demo.name} pre-module error + timeout watchdog`);
+  const rendererInit = app.match(/let renderer;([\s\S]*?)renderer\.setSize/)?.[1];
+  if (!rendererInit) throw new Error(`${demo.name}: renderer startup block missing`);
+  const webglLoading = element('original loading'), webglGate = element();
+  let rendererFailed = false;
+  try {
+    vm.runInNewContext(rendererInit, {
+      IS_MOBILE: false,
+      THREE: { WebGLRenderer: class { constructor() { throw new Error('WebGL fault injection'); } } },
+      document: { getElementById: id => id === 'loading' ? webglLoading : id === 'module-error' ? webglGate : null },
+    });
+  } catch (error) {
+    if (error.message !== 'WebGL fault injection') throw error;
+    rendererFailed = true;
+  }
+  if (!rendererFailed || webglGate.hidden || !/WebGL not available/.test(webglGate.textContent)
+      || webglGate.textContent !== webglLoading.textContent) {
+    throw new Error(`${demo.name}: WebGL failure is hidden by the entry gate`);
+  }
+  console.log(`OK: ${demo.name} pre-module error + timeout watchdog + visible WebGL failure`);
 }
 
 const visualRoot = demos[0].root;

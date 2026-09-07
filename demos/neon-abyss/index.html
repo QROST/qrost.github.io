@@ -23,7 +23,7 @@
   <meta name="twitter:description" content="A nightclub-grade generative data cosmos — Data Abyss reimagined with a 138 BPM Trance engine and beat-synced bloom.">
   <meta name="twitter:image" content="https://qrost.github.io/demos/neon-abyss/assets/og-image.png">
 
-  <link rel="stylesheet" href="style-club.css?v=ac0372904f" />
+  <link rel="stylesheet" href="style-club.css?v=cd36e91a12" />
 </head>
 <body>
   <div id="scene"></div>
@@ -123,6 +123,9 @@
     })();
   </script>
 
+  <!-- Shared bundled FX only: do not call its live-rate or page-update fetchers. -->
+  <script src="../china-housing/assets/js/i18n.js?v=be1a280f69"></script>
+
   <!-- china-housing baked globals (classic scripts run before the module) -->
   <script src="../china-housing/assets/data/listings.js"></script>
   <script src="../china-housing/assets/data/enriched.js"></script>
@@ -142,6 +145,6 @@
     }
   }
   </script>
-  <script type="module" src="app-club.js?v=534582d608" onerror="window.__abyssModuleFallback && window.__abyssModuleFallback('app-module')"></script>
+  <script type="module" src="app-club.js?v=0d1865d2af" onerror="window.__abyssModuleFallback && window.__abyssModuleFallback('app-module')"></script>
 </body>
 </html>

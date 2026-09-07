@@ -1,6 +1,6 @@
 # 数渊 · Data Abyss
 
-一件交互式新媒体 / generative-art 网页：把 **china-housing**（347 座城的气候·海拔·灾害·房价）、**china-industrial-software**（325 产品 / 43 内核 / 269 突破 / 123 政策 / 220 厂商 / 对标）、**pharm-companies**（全球医药：128 公司 / 305 站点 / 219 药物 / 21 模态 / 65 突破 / 对标）与 **shelter-cats**（全球收容所：5 家收容所 / 数百只在册猫，实时 fetch）四套真实数据，全部生灵化成漂浮在三维数渊中的发光星体。Three.js WebGL + 雾景深。手机端 full-bleed，可接入陀螺仪 / 麦克风。
+一件交互式新媒体 / generative-art 网页：把 **china-housing**（房源样本的气候·海拔·灾害·房价）、**china-industrial-software**（325 产品 / 43 内核 / 269 突破 / 123 政策 / 220 厂商 / 对标）、**pharm-companies**（全球医药：128 公司 / 305 站点 / 219 药物 / 21 模态 / 65 突破 / 对标）与 **shelter-cats**（全球收容所：5 家收容所 / 数百只在册猫，实时 fetch）四套真实数据，全部生灵化成漂浮在三维数渊中的发光星体。Three.js WebGL + 雾景深。手机端 full-bleed，可接入陀螺仪 / 麦克风。
 
 ## 结构
 
@@ -12,7 +12,7 @@
 - `style.css` — full-bleed / overlay UI
 
 数据来自**同仓库的四个兄弟 demo**（相对路径引用，不复制）：
-- housing：`<script src="../china-housing/assets/data/{listings,enriched,hazards}.js">` → `window.HOUSING_*`
+- housing：`<script src="../china-housing/assets/data/{listings,enriched,hazards}.js">` → `window.HOUSING_*`；换汇复用 `../china-housing/assets/js/i18n.js` 的公开数值函数。艺术页只使用 Housing 内置的有日期汇率，不调用实时汇率服务。
 - industrial：runtime `fetch('../china-industrial-software/assets/data/...')`（`buildIndustrial`）
 - pharma：runtime `fetch('../pharm-companies/assets/data/...')`（`buildPharma`）→ **第 7 个数据层「医药」（group 6）**：
   manifest→shards(catalog/*) + companies/sites/modalities/breakthroughs/benchmark-pairs；
@@ -27,11 +27,11 @@
 
 ## 通感编码语法（映射不必符合逻辑，但把数据用满）
 
-**气候层（下层 · 悬浮的中国浮雕）— 每座城一颗星**
+**住房气候层 — 每套有坐标房源一颗星**
 | 字段 | 视觉通道 |
 |---|---|
 | 经度 / 纬度 / 海拔 | 混沌系统初始条件（播种位置，见下「运动」节） |
-| 单价 priceWan·area | 星体大小 |
+| 人民币单价（原币总价经 Housing 内置汇率换算后 ÷ 实际面积） | 基础星体大小，越高越大，上限封顶；缺值用中性尺寸并标明 |
 | 宜居天数 comfortDayCount | 色相（蓝少→暖绿多） |
 | 年温差 tempRange | 饱和度（大陆性越强越浓） |
 | 日照 sunshineHours | 亮度 |
@@ -188,6 +188,7 @@ GitHub Pages 上直接访问 `/demos/visual-page/` 即可，sensors 自动可用
 node demos/visual-page/tools/check-lofi.mjs
 node demos/visual-page/tools/check-scheduler.mjs
 node demos/visual-page/tools/check-felt-piano.mjs
+node demos/visual-page/tools/check-housing.mjs
 node demos/visual-page/tools/stamp-cache.mjs
 node demos/visual-page/tools/stamp-cache.mjs --check
 ```
@@ -198,3 +199,5 @@ node demos/visual-page/tools/stamp-cache.mjs --check
 - 「可热插拔的皮」：滑块实时重映射字段→通道
 - 时间轴 scrub：拖年份让突破逐年点亮、版图变色
 - 性能：347+ 同屏已用 GPU points + 单 draw call；如需更密可加 LOD / 视锥裁剪
+
+房源详情显示 CNY/㎡；跨币种样本同时标明内置汇率日期和非实时性质。缓存戳先由 Housing 的构建工具生成，再运行本页 stamp 工具同步共享模块版本。

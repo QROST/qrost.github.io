@@ -21,15 +21,19 @@ function replaceExactly(source, pattern, replacement, label) {
   return result;
 }
 
+const i18nVersion = digest(await readFile(new URL('../i18n.js', import.meta.url)));
 const audioBytes = await readFile(audioURL);
 const audioVersion = digest(audioBytes);
 const appSource = await readFile(appURL, 'utf8');
-const stampedApp = replaceExactly(
+let stampedApp = replaceExactly(
   appSource,
   /(\.\/audio\.js)(?:\?v=[^']*)?(')/g,
   (_match, path, quote) => `${path}?v=${audioVersion}${quote}`,
   'audio.js',
 );
+
+stampedApp = replaceExactly(stampedApp, /(\.\/i18n\.js)(?:\?v=[^']*)?(')/g,
+  (_match, path, quote) => `${path}?v=${i18nVersion}${quote}`, 'i18n.js');
 
 const appVersion = digest(Buffer.from(stampedApp));
 const styleVersion = digest(await readFile(styleURL));
@@ -46,6 +50,13 @@ stampedIndex = replaceExactly(
   (_match, path, quote) => `${path}?v=${styleVersion}${quote}`,
   'style.css',
 );
+
+// Keep the shared FX module on the exact token produced by Housing's build.
+const housingIndex = await readFile(new URL('../../china-housing/index.html', import.meta.url), 'utf8');
+const housingVersion = housingIndex.match(/src="assets\/js\/i18n\.js\?v=([a-f0-9]+)"/)?.[1];
+if (!housingVersion) throw new Error('Housing i18n cache token missing; stamp Housing first');
+stampedIndex = replaceExactly(stampedIndex, /(src="\.\.\/china-housing\/assets\/js\/i18n\.js)(?:\?v=[^"]*)?(")/g,
+  (_m, path, quote) => `${path}?v=${housingVersion}${quote}`, 'Housing i18n.js');
 
 if (checkOnly) {
   if (stampedApp !== appSource || stampedIndex !== indexSource) {

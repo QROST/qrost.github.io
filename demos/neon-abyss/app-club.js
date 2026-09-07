@@ -11,8 +11,8 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import {
-  applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, setLang, isZh,
-} from './i18n.js?v=682e614a48';
+  applyUi, registerPanelNode, renderCardHtml, housingPriceNote, sensorBtnLabel, setLang, isZh,
+} from './i18n.js?v=ee27434ff1';
 import { Sonifier } from './audio-club.js?v=1d94ad448e';   // 生成式 Trance 音乐引擎（zero-dep Web Audio）+ beatPulse + groove-style(A/B/C) + DJ 呼吸弧 + 每宇宙调/速多样化
 
 if (window.__abyssMarkModuleReady) window.__abyssMarkModuleReady();
@@ -77,7 +77,10 @@ try {
   // WebGL 完全不可用（设置关闭/古董浏览器/受限环境）：构造函数同步抛出 → 后续所有顶层代码都会执行失败。
   // 把"Igniting the abyss…"换成明确文案，而不是让 loading 遮罩永远卡住、不给任何反馈；随后照常向外抛出以停止本模块剩余的初始化。
   const ld = document.getElementById('loading');
-  if (ld) ld.textContent = 'WebGL not available in this browser · 此浏览器不支持 WebGL';
+  const failure = 'WebGL not available in this browser · 此浏览器不支持 WebGL';
+  if (ld) ld.textContent = failure;
+  const gateError = document.getElementById('module-error');
+  if (gateError) { gateError.textContent = failure; gateError.hidden = false; }
   throw err;
 }
 renderer.setSize(innerWidth, innerHeight);
@@ -326,6 +329,7 @@ const angleFor = (k) => (k in _ang ? _ang[k] : (_ang[k] = (_ai++) * 2.3999632));
 function buildHousing() {
   const listings = window.HOUSING_LISTINGS || [];
   const enriched = window.HOUSING_ENRICHED || {};
+  const housingFx = window.HOUSING_I18N; // Shared bundled rates; this artwork never requests live FX.
   let n = 0, cs = 0, cn = 0;
   for (const ls of listings) {
     const e = enriched[String(ls.id)] || enriched[ls.id];
@@ -337,8 +341,14 @@ function buildHousing() {
     const pm = e.pm25Annual ?? 35;
     const elev = e.elevation ?? 60;
     const burden = (e.hazard?.hazards || []).reduce((s, h) => s + Math.pow(2, (h.freq || 1) - 1), 0);
-    const unit = (ls.priceWan * 10000) / (ls.area || 60);
-    const yld = ls.rent > 0 ? (ls.rent * 12) / (ls.priceWan * 10000) : 0;
+    const fx = housingFx?.getFxInfo(ls.prov) || null;
+    const priceCny = housingFx?.localWanToCnyYuan(ls.priceWan, ls.prov);
+    const unit = Number.isFinite(priceCny) && priceCny > 0 && Number.isFinite(ls.area) && ls.area > 0
+      ? priceCny / ls.area : null;
+    // Missing prices retain a neutral visual weight instead of becoming cheap homes.
+    const priceSignal = unit == null ? 0.5 : clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1);
+    const yld = Number.isFinite(ls.rent) && ls.rent >= 0 && Number.isFinite(ls.priceWan) && ls.priceWan > 0
+      ? (ls.rent * 12) / (ls.priceWan * 10000) : null;
     const outflow = e.demographics?.popChangePct ?? 0;
     const cf = clamp(comfort / 365, 0, 1);
     // —— 这轮 enrich 的新字段 → 更多元的动态通道 ——
@@ -359,7 +369,7 @@ function buildHousing() {
     const hue = 220 - cf * 162;
     const sat = (0.44 + clamp(tRange / 45, 0, 1) * 0.5) * (1 - clamp(snow / 150, 0, 1) * 0.28);   // 多雪→略去色（雪国发白）
     const light = (0.45 + clamp(sun / 3500, 0, 1) * 0.2) * (outflow < 0 ? 0.78 : 1) * (1 - aging * 0.3) * (1 + comfortGap * 0.08);   // 老龄→略暗；体感比日历更舒适→略亮
-    const size = 1.6 + clamp(Math.log10(unit + 1) - 2.2, 0, 3) * 1.7;
+    const size = 1.6 + priceSignal * 3 * 1.7;
     const tw = 0.22 + clamp(burden / 40, 0, 1) * 0.42 + nuisance * 0.34 + seismic * 0.04;   // 灾害 + 厌恶设施邻近 + 地震 → 越发颤动
     const hz = clamp(pm / 85, 0, 1) * 0.62 + clamp(humid / 100, 0, 1) * 0.42;               // 雾霾 + 潮湿 → 雾晕
     const agit = (1 + clamp(extreme / 120, 0, 1) * 0.5 + clamp(wind / 120, 0, 1) * 0.3) * (1 - aging * 0.35);   // 极端/多风→躁动，老龄→沉缓
@@ -372,18 +382,18 @@ function buildHousing() {
     if (annualMean < 8) { csys = 0; canc = CENTER; cscl = 7; cbh = 0.0025; cseed = [(e.lng - 104) * 0.05, -(e.lat - 35) * 0.05, elev * 0.0006]; }
     else if (annualMean < 18) { canc = CENTER; cscl = 9; cbh = 0.00113; if (sun > 2200) { csys = 14; cseed = [(Math.random() - 0.5), (Math.random() - 0.5), (Math.random() - 0.5)]; } else { csys = 7; cseed = [(Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5]; } }
     else { csys = 8; canc = CENTER; cscl = 8; cbh = 0.00113; cseed = [(Math.random() - 0.5), 1 + (Math.random() - 0.5), 1 + (Math.random() - 0.5)]; }
-    const ctail = 4 + (clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1) * 0.6 + conn * 0.4) * (TRAIL - 5);   // 越贵 + 越连通(近高铁/机场/医院) → 彗尾越长
+    const ctail = 4 + (priceSignal * 0.6 + conn * 0.4) * (TRAIL - 5);   // 越贵 + 越连通(近高铁/机场/医院) → 彗尾越长
     const ci = addStar(csys, canc, cscl, cbh, b, spd, cseed, hue, sat, light, size, tw, hz, {
       id: ls.id,
       kind: 'CITY',
       nameZh: ls.loc || ls.city,
       nameEn: ls.loc || ls.city,
-      raw: { city: ls.city, prov: ls.prov, unit, comfort, elev, hazard: e.hazard?.top?.[0] || '' },
+      raw: { city: ls.city, prov: ls.prov, unit, fx, comfort, elev, hazard: e.hazard?.top?.[0] || '' },
     }, null, ctail);
     const fv = makeFeat(0);   // 城市气候/房价 → 特征槽 0..9
     fv[0] = cf; fv[1] = clamp(tRange / 45, 0, 1); fv[2] = clamp(sun / 3500, 0, 1); fv[3] = clamp(pm / 85, 0, 1);
-    fv[4] = clamp(elev / 4000, 0, 1); fv[5] = clamp(burden / 40, 0, 1); fv[6] = clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1);
-    fv[7] = clamp(yld / 0.05, 0, 1); fv[8] = clamp((outflow + 30) / 60, 0, 1); fv[9] = clamp((annualMean + 10) / 40, 0, 1);
+    fv[4] = clamp(elev / 4000, 0, 1); fv[5] = clamp(burden / 40, 0, 1); fv[6] = priceSignal;
+    fv[7] = yld == null ? 0.5 : clamp(yld / 0.05, 0, 1); fv[8] = clamp((outflow + 30) / 60, 0, 1); fv[9] = clamp((annualMean + 10) / 40, 0, 1);
     D.feat[ci] = fv; D.shape[ci] = 0;   // 城市=发光点（密集星场背景）
     D.op[ci] = clamp((builtY - 1980) / 60, 0, 1);   // 呼吸/明灭相位 ← 楼龄：同龄楼群同步脉动（涌现时间结构）
     n++;
@@ -1621,7 +1631,7 @@ const ATTRACTORS = {
 };
 // 数据→通道编码语法（每实体型固定）：[通道id, 中文数据源, 英文数据源]
 const ENC = {
-  city: [['eq', '宜居度 − 大陆性温差', 'livability − continental range'], ['speed', '钱(收益/宜居)×气候躁动(极端/多风)×老龄', 'money × climate agitation × aging'], ['scale', '气候带(冷/温/热)选吸引子族', 'climate zone picks attractor family'], ['size', '房价 ¥/㎡', 'housing price /m²'], ['hue', '宜居天数(冷蓝→热红)', 'livable days'], ['tw', '灾害+厌恶设施邻近+地震', 'hazards + LULU proximity + seismic'], ['hz', 'PM2.5 + 湿度', 'PM2.5 + humidity'], ['trail', '房价 + 便利连通度', 'price + amenity connectivity']],
+  city: [['eq', '宜居度 − 大陆性温差', 'livability − continental range'], ['speed', '钱(收益/宜居)×气候躁动(极端/多风)×老龄', 'money × climate agitation × aging'], ['scale', '气候带(冷/温/热)选吸引子族', 'climate zone picks attractor family'], ['size', '人民币单价（越高越大，上限封顶）', 'CNY/m² (higher = larger, capped)'], ['hue', '宜居天数(冷蓝→热红)', 'livable days'], ['tw', '灾害+厌恶设施邻近+地震', 'hazards + LULU proximity + seismic'], ['hz', 'PM2.5 + 湿度', 'PM2.5 + humidity'], ['trail', '房价 + 便利连通度', 'price + amenity connectivity']],
   ind_kernel: [['eq', '固定常数', 'fixed constant'], ['size', '被产品使用数', '# products using it'], ['hue', '出身(国产/开源/国外)', 'origin'], ['beam', '→ 使用它的产品', '→ products using it']],
   ind_product: [['hue', '出身', 'origin'], ['size', '成熟度', 'maturity'], ['speed', '成熟度(越熟越稳)', 'maturity (mature=calmer)'], ['hz', '本地化深度', 'localization depth'], ['trail', '置信度', 'confidence'], ['beam', '→ 所用内核 / 国外对标', '→ kernel / intl benchmark']],
   ind_milestone: [['hue', '替代在位产品数', '# incumbents displaced'], ['size', '证据级别(审计/案例)', 'evidence level'], ['speed', '年份', 'year'], ['beam', '→ 被替代的在位产品', '→ displaced incumbents']],
@@ -1751,6 +1761,7 @@ function openInspector(i) {
     `<div class="ins-eq"><div class="ins-eqh">${A.n}<span class="ins-sys"> · sys ${s}</span>${dv ? ` · <b>${dv}</b> = ${prm[i].toFixed(2)}` : ''}</div>${odeHtml}</div>` +
     `<div class="ins-state">x <i data-l="x">·</i> y <i data-l="y">·</i> z <i data-l="z">·</i> <span class="ins-dt">Δt <i data-l="h">·</i></span></div>` +
     `<div class="ins-rows">${rows}</div>` +
+    (m.kind === 'CITY' ? `<p class="ins-housing">${housingPriceNote(m.raw)}</p>` : '') +
     (np ? `<div class="ins-np">${np}</div>` : '') +   // 斜体低亮低语：不解释代码，只把此刻声音与这颗星的真实数据相连
     `<div class="ins-meta"><span class="ins-name">${nm}</span></div>`;   // id 隐藏（多为名称 slug 的重述，冗余）；脚注仅留极淡名字
   card.classList.remove('hidden');

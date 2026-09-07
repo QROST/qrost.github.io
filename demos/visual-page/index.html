@@ -23,7 +23,7 @@
   <meta name="twitter:description" content="A generative-art data cosmos fusing housing, industrial-software, pharma, and shelter-cat data into a Three.js star field.">
   <meta name="twitter:image" content="https://qrost.github.io/demos/visual-page/assets/og-image.png">
 
-  <link rel="stylesheet" href="style.css?v=fc875512b1" />
+  <link rel="stylesheet" href="style.css?v=8437f1eec8" />
 </head>
 <body>
   <div id="scene"></div>
@@ -128,6 +128,9 @@
     })();
   </script>
 
+  <!-- Shared bundled FX only: do not call its live-rate or page-update fetchers. -->
+  <script src="../china-housing/assets/js/i18n.js?v=be1a280f69"></script>
+
   <!-- china-housing baked globals (classic scripts run before the module) -->
   <script src="../china-housing/assets/data/listings.js"></script>
   <script src="../china-housing/assets/data/enriched.js"></script>
@@ -145,6 +148,6 @@
     }
   }
   </script>
-  <script type="module" src="app.js?v=888cd046f9" onerror="window.__abyssModuleFallback && window.__abyssModuleFallback('app-module')"></script>
+  <script type="module" src="app.js?v=aeb6931785" onerror="window.__abyssModuleFallback && window.__abyssModuleFallback('app-module')"></script>
 </body>
 </html>

@@ -83,8 +83,19 @@ export function originLabel(o) {
 }
 
 export function pricePerSqm(unit) {
-  if (lang === 'zh') return `¥${(unit / 10000).toFixed(1)}万/㎡`;
-  return `¥${Math.round(unit).toLocaleString('en-US')}/m²`;
+  if (!Number.isFinite(unit) || unit <= 0) return lang === 'zh' ? '单价未知' : 'Price unavailable';
+  if (lang === 'zh') return `${Math.round(unit).toLocaleString('zh-CN')} 人民币/㎡`;
+  return `${Math.round(unit).toLocaleString('en-US')} CNY/m²`;
+}
+
+export function housingPriceNote(raw) {
+  const r = raw || {};
+  const price = pricePerSqm(r.unit);
+  if (!Number.isFinite(r.unit) || r.unit <= 0) {
+    return price + (lang === 'zh' ? ' · 尺寸采用中性值' : ' · neutral size');
+  }
+  if (!r.fx || r.fx.currency === 'CNY') return price;
+  return `${price} · ${lang === 'zh' ? 'Housing 内置汇率' : 'Housing bundled FX'} ${r.fx.date || '—'} · ${lang === 'zh' ? '非实时' : 'not live'}`;
 }
 
 export function kindLabel(kind) {
@@ -177,6 +188,7 @@ export function registerPanelNode(type, key, el) {
 }
 
 export function applyUi(opts = {}) {
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
   const { cardMeta, cardEl } = opts;
   document.title = t('pageTitle');
   const sub = document.getElementById('sub');

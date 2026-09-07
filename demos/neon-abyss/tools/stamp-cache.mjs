@@ -31,6 +31,13 @@ let stampedIndex = replaceOne(indexSource, /(href="style-club\.css)(?:\?v=[^"]*)
 stampedIndex = replaceOne(stampedIndex, /(src="app-club\.js)(?:\?v=[^"]*)?(")/g,
   (_m, name, quote) => `${name}?v=${appVersion}${quote}`, 'app-club.js');
 
+// Keep the shared FX module on the exact token produced by Housing's build.
+const housingIndex = await readFile(new URL('../../china-housing/index.html', import.meta.url), 'utf8');
+const housingVersion = housingIndex.match(/src="assets\/js\/i18n\.js\?v=([a-f0-9]+)"/)?.[1];
+if (!housingVersion) throw new Error('Housing i18n cache token missing; stamp Housing first');
+stampedIndex = replaceOne(stampedIndex, /(src="\.\.\/china-housing\/assets\/js\/i18n\.js)(?:\?v=[^"]*)?(")/g,
+  (_m, path, quote) => `${path}?v=${housingVersion}${quote}`, 'Housing i18n.js');
+
 if (checkOnly && (stampedApp !== appSource || stampedIndex !== indexSource)) throw new Error('cache tokens stale; run tools/stamp-cache.mjs');
 if (!checkOnly) {
   if (stampedApp !== appSource) await writeFile(appURL, stampedApp);

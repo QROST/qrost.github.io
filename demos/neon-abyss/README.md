@@ -20,8 +20,8 @@ Same chaotic-attractor cosmos, same data-driven self-organizing map — re-score
 | **Mic / gyro** | mic rhythm mode + gyro nav | removed (pure generative music) |
 
 The two projects are **fully independent forks** — editing one does not touch the other.
-They share no code at runtime; the `demos/china-housing/assets/data/*.js` globals and
-the Three.js importmap are the only cross-references (both read-only).
+They share no application code with each other at runtime. Both reuse the sibling datasets
+and the public Housing conversion module (`../china-housing/assets/js/i18n.js`) read-only.
 
 ## Files
 
@@ -66,7 +66,12 @@ Reuses the same baked globals as Data Abyss, sourced from the sibling sub-sites:
 - Pharma (companies / sites / drugs / modalities) — `../pharm-companies/assets/data/`
 - Shelter cats (cats / shelters) — `../shelter-cats/assets/data/`
 
-None of those source files are modified by this project.
+None of those source files are modified by this project. Housing size and price labels use
+CNY/m² after conversion with Housing’s bundled, dated rates; no live FX request is made.
+Larger base sizes mean higher unit prices, capped for display. Missing price or area uses
+a neutral size and an explicit unavailable label. Cross-currency details show the rate date
+and “not live” note. Run `node demos/visual-page/tools/check-housing.mjs` to verify both forks.
+Stamp Housing first, then this page, to keep the shared conversion module cache token in sync.
 
 ## Dev
 
