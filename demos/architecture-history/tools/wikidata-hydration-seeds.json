@@ -14,6 +14,16 @@
   {
    "expected_country_code": "FR",
    "expected_country_qid": "Q142",
+   "label_hint_en": "Stade de Gerland",
+   "qid": "Q1980",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
    "label_hint_en": "Palace of Versailles",
    "qid": "Q2946",
    "region": "europe",
@@ -30,6 +40,16 @@
    "risk_tags": [
     "restoration",
     "multi_phase"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Canberra",
+   "qid": "Q3114",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -158,6 +178,16 @@
    "risk_tags": [
     "multi_phase",
     "expansion_wings"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Grand Trianon",
+   "qid": "Q8049",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -412,6 +442,26 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Palazzo Carignano",
+   "qid": "Q19829",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Palazzina di caccia of Stupinigi",
+   "qid": "Q19834",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "KR",
    "expected_country_qid": "Q884",
    "label_hint_en": "63 Building",
@@ -420,6 +470,16 @@
    "risk_tags": [
     "skyscraper",
     "team_credit"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Musée d'Orsay",
+   "qid": "Q23402",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -603,6 +663,16 @@
    ]
   },
   {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Hilversum town hall",
+   "qid": "Q39082",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "GB",
    "expected_country_qid": "Q145",
    "label_hint_en": "Stonehenge",
@@ -712,6 +782,16 @@
    ]
   },
   {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Ulm Minster",
+   "qid": "Q44562",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "AU",
    "expected_country_qid": "Q408",
    "label_hint_en": "Sydney Opera House",
@@ -810,6 +890,16 @@
    ]
   },
   {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Amsterdam Central station",
+   "qid": "Q50719",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IT",
    "expected_country_qid": "Q38",
    "label_hint_en": "Galleria Vittorio Emanuele II",
@@ -828,6 +918,16 @@
    "risk_tags": [
     "architect_expansion",
     "architect_calatrava"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Santa Maria della Salute",
+   "qid": "Q52531",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -1054,6 +1154,26 @@
    ]
   },
   {
+   "expected_country_code": "AT",
+   "expected_country_qid": "Q40",
+   "label_hint_en": "Kunsthistorisches Museum",
+   "qid": "Q95569",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "PL",
+   "expected_country_qid": "Q36",
+   "label_hint_en": "Sejm of the Republic of Poland",
+   "qid": "Q98964",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IT",
    "expected_country_qid": "Q38",
    "label_hint_en": "Pantheon",
@@ -1108,6 +1228,16 @@
    ]
   },
   {
+   "expected_country_code": "TH",
+   "expected_country_qid": "Q869",
+   "label_hint_en": "Hua Lamphong railway station",
+   "qid": "Q125929",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "DE",
    "expected_country_qid": "Q183",
    "label_hint_en": "Semperoper",
@@ -1116,6 +1246,16 @@
    "risk_tags": [
     "rebuild_after_fire",
     "multi_phase"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Allianz Arena",
+   "qid": "Q127429",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -1222,6 +1362,16 @@
    ]
   },
   {
+   "expected_country_code": "CA",
+   "expected_country_qid": "Q16",
+   "label_hint_en": "CN Tower",
+   "qid": "Q134883",
+   "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "AT",
    "expected_country_qid": "Q40",
    "label_hint_en": "Spittelau Viaducts Housing Project",
@@ -1233,6 +1383,16 @@
    ]
   },
   {
+   "expected_country_code": "ID",
+   "expected_country_qid": "Q252",
+   "label_hint_en": "National Monument of Indonesia",
+   "qid": "Q145151",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "JP",
    "expected_country_qid": "Q17",
    "label_hint_en": "Nara National Museum",
@@ -1241,6 +1401,36 @@
    "risk_tags": [
     "museum",
     "meiji_era"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Tsaritsyno Park + palace",
+   "qid": "Q147994",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Sanssouci Palace",
+   "qid": "Q151330",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Fernsehturm Berlin",
+   "qid": "Q151356",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -1280,12 +1470,52 @@
   {
    "expected_country_code": "DE",
    "expected_country_qid": "Q183",
+   "label_hint_en": "Freie Universität Berlin",
+   "qid": "Q153006",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Kaiser-Wilhelm-Gedächtniskirche",
+   "qid": "Q153951",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IQ",
+   "expected_country_qid": "Q796",
+   "label_hint_en": "Al-Kadhimiya Mosque",
+   "qid": "Q154116",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
    "label_hint_en": "Berlin Cathedral",
    "qid": "Q154563",
    "region": "europe",
    "risk_tags": [
     "sacred",
     "neo_renaissance"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Alte Pinakothek",
+   "qid": "Q154568",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -1311,10 +1541,40 @@
   {
    "expected_country_code": "DE",
    "expected_country_qid": "Q183",
+   "label_hint_en": "Würzburg Residence",
+   "qid": "Q156316",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Altes Museum",
+   "qid": "Q156722",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
    "label_hint_en": "Jewish Museum Berlin",
    "qid": "Q157003",
    "region": "europe",
    "risk_tags": []
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Neues Museum",
+   "qid": "Q157316",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
   },
   {
    "expected_country_code": "US",
@@ -1322,6 +1582,16 @@
    "label_hint_en": "Metropolitan Museum of Art",
    "qid": "Q160236",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Villa Schminke",
+   "qid": "Q160385",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -1357,6 +1627,16 @@
    ]
   },
   {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Glyptothek",
+   "qid": "Q162077",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Pruitt–Igoe",
@@ -1385,6 +1665,16 @@
    "qid": "Q167863",
    "region": "europe",
    "risk_tags": []
+  },
+  {
+   "expected_country_code": "SG",
+   "expected_country_qid": "Q334",
+   "label_hint_en": "St Andrew's Cathedral",
+   "qid": "Q168806",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
   },
   {
    "expected_country_code": "TR",
@@ -1430,6 +1720,16 @@
    ]
   },
   {
+   "expected_country_code": "PS",
+   "expected_country_qid": "Q219060",
+   "label_hint_en": "Dome of the Rock",
+   "qid": "Q172077",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "GB",
    "expected_country_qid": "Q145",
    "label_hint_en": "London Stadium",
@@ -1469,6 +1769,16 @@
    "risk_tags": [
     "monastery",
     "gothic"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Ortaköy Mosque",
+   "qid": "Q176380",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -1575,6 +1885,16 @@
    "risk_tags": [
     "tower",
     "steel_lattice"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Basilica of Saint-Denis",
+   "qid": "Q184407",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -1804,6 +2124,16 @@
    "risk_tags": []
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Royal Observatory",
+   "qid": "Q192988",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "FR",
    "expected_country_qid": "Q142",
    "label_hint_en": "Sainte Chapelle",
@@ -1811,6 +2141,16 @@
    "region": "europe",
    "risk_tags": [
     "multi_phase"
+   ]
+  },
+  {
+   "expected_country_code": "CZ",
+   "expected_country_qid": "Q213",
+   "label_hint_en": "Prague Castle",
+   "qid": "Q193369",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -1847,6 +2187,16 @@
    ]
   },
   {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Cathedral of Christ the Saviour",
+   "qid": "Q194474",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "HU",
    "expected_country_qid": "Q28",
    "label_hint_en": "Széchenyi thermal bath",
@@ -1855,6 +2205,26 @@
    "risk_tags": [
     "eclectic",
     "thermal_bath"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Cathedral of Ani",
+   "qid": "Q196161",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "SIS Building",
+   "qid": "Q198536",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -1901,6 +2271,26 @@
    ]
   },
   {
+   "expected_country_code": "SE",
+   "expected_country_qid": "Q34",
+   "label_hint_en": "The House of Culture",
+   "qid": "Q204298",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "CZ",
+   "expected_country_qid": "Q213",
+   "label_hint_en": "Charles Bridge",
+   "qid": "Q204871",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "ES",
    "expected_country_qid": "Q29",
    "label_hint_en": "Cathedral of Santiago de Compostela",
@@ -1922,6 +2312,16 @@
    ]
   },
   {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Abteiberg Museum",
+   "qid": "Q206346",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "SE",
    "expected_country_qid": "Q34",
    "label_hint_en": "Turning Torso",
@@ -1930,6 +2330,16 @@
    "risk_tags": [
     "skyscraper",
     "twisted_form"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Reims Cathedral",
+   "qid": "Q206823",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -2015,6 +2425,26 @@
     "qajar_core",
     "unesco",
     "later_additions_19th_c"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Trajan's Forum",
+   "qid": "Q211295",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Park Güell",
+   "qid": "Q212867",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -2134,6 +2564,16 @@
    ]
   },
   {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Mauritshuis",
+   "qid": "Q221092",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "JP",
    "expected_country_qid": "Q17",
    "label_hint_en": "Kiyomizu-dera",
@@ -2199,6 +2639,16 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Tuileries Palace",
+   "qid": "Q234364",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IN",
    "expected_country_qid": "Q668",
    "label_hint_en": "Chhatrapati Shivaji Maharaj Terminus",
@@ -2225,6 +2675,16 @@
    "label_hint_en": "United States Holocaust Memorial Museum",
    "qid": "Q238990",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "BE",
+   "expected_country_qid": "Q31",
+   "label_hint_en": "Stoclet Palace",
+   "qid": "Q239028",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -2374,6 +2834,16 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Stadio Artemio Franchi",
+   "qid": "Q270474",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "JP",
    "expected_country_qid": "Q17",
    "label_hint_en": "Kinkaku-ji",
@@ -2381,6 +2851,16 @@
    "region": "east_asia",
    "risk_tags": [
     "reconstruction"
+   ]
+  },
+  {
+   "expected_country_code": "IS",
+   "expected_country_qid": "Q189",
+   "label_hint_en": "Hallgrímskirkja",
+   "qid": "Q271466",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -2403,6 +2883,16 @@
    "risk_tags": [
     "classic_maya",
     "unesco"
+   ]
+  },
+  {
+   "expected_country_code": "PT",
+   "expected_country_qid": "Q45",
+   "label_hint_en": "Jerónimos Monastery",
+   "qid": "Q272781",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -2447,6 +2937,16 @@
     "chimu",
     "adobe_city",
     "unesco"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Albert Memorial",
+   "qid": "Q281465",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -2542,6 +3042,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Natural History Museum",
+   "qid": "Q309388",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "EG",
    "expected_country_qid": "Q79",
    "label_hint_en": "Ramesseum",
@@ -2562,6 +3072,26 @@
    "risk_tags": [
     "islamic",
     "multi_phase"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Berlin State Opera",
+   "qid": "Q312576",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Artists' Colony in Darmstadt",
+   "qid": "Q314730",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -2590,6 +3120,16 @@
    "label_hint_en": "Estadio Azteca",
    "qid": "Q320454",
    "region": "latin_america_caribbean",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Walhalla memorial",
+   "qid": "Q321240",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -2696,6 +3236,16 @@
    ]
   },
   {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Netherlands Architecture Institute",
+   "qid": "Q361792",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "PT",
    "expected_country_qid": "Q45",
    "label_hint_en": "University of Coimbra",
@@ -2767,6 +3317,26 @@
    ]
   },
   {
+   "expected_country_code": "SE",
+   "expected_country_qid": "Q34",
+   "label_hint_en": "Universeum",
+   "qid": "Q388667",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Cité de Carcassonne",
+   "qid": "Q389269",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "KR",
    "expected_country_qid": "Q884",
    "label_hint_en": "Gyeongju National Museum",
@@ -2795,6 +3365,16 @@
    "label_hint_en": "Université de Montréal",
    "qid": "Q392189",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IL",
+   "expected_country_qid": "Q801",
+   "label_hint_en": "Israeli Supreme Court",
+   "qid": "Q399798",
+   "region": "central_west_asia",
    "risk_tags": [
     "cell_verification"
    ]
@@ -2916,6 +3496,16 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Paris Observatory, PSL University",
+   "qid": "Q461340",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "ES",
    "expected_country_qid": "Q29",
    "label_hint_en": "Casa Batllo",
@@ -2935,6 +3525,16 @@
    "risk_tags": [
     "team_credit",
     "opening_vs_completion"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Velodrom",
+   "qid": "Q464179",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -3105,6 +3705,16 @@
    "risk_tags": [
     "burmese",
     "temple"
+   ]
+  },
+  {
+   "expected_country_code": "TH",
+   "expected_country_qid": "Q869",
+   "label_hint_en": "Ananta Samakhom Throne Hall",
+   "qid": "Q485954",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -3291,6 +3901,36 @@
    ]
   },
   {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Casa Amatller",
+   "qid": "Q506814",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Hospital de Sant Pau",
+   "qid": "Q507282",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Royal National Theatre",
+   "qid": "Q511108",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CA",
    "expected_country_qid": "Q16",
    "label_hint_en": "Union Station",
@@ -3427,6 +4067,26 @@
    ]
   },
   {
+   "expected_country_code": "IL",
+   "expected_country_qid": "Q801",
+   "label_hint_en": "Heichal HaTarbut",
+   "qid": "Q555316",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IL",
+   "expected_country_qid": "Q801",
+   "label_hint_en": "Azrieli Center",
+   "qid": "Q555350",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "PK",
    "expected_country_qid": "Q843",
    "label_hint_en": "Alhamra Arts Council",
@@ -3469,6 +4129,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Queen's House",
+   "qid": "Q564981",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IN",
    "expected_country_qid": "Q668",
    "label_hint_en": "TIDEL Park, Coimbatore",
@@ -3476,6 +4146,16 @@
    "region": "south_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Großes Schauspielhaus",
+   "qid": "Q566365",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -3512,6 +4192,16 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Biblioteca Nazionale Marciana",
+   "qid": "Q578460",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "LA",
    "expected_country_qid": "Q819",
    "label_hint_en": "Vat Phou",
@@ -3521,6 +4211,16 @@
     "multi_phase",
     "site_vs_single_work",
     "ruins"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Château d'Ancy-le-Franc",
+   "qid": "Q579961",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -3546,6 +4246,16 @@
    ]
   },
   {
+   "expected_country_code": "GR",
+   "expected_country_qid": "Q41",
+   "label_hint_en": "National Theatre of Greece - Ziller Building",
+   "qid": "Q583039",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "KH",
    "expected_country_qid": "Q424",
    "label_hint_en": "Phimeanakas",
@@ -3558,6 +4268,16 @@
    ]
   },
   {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Palace of the Soviets",
+   "qid": "Q585060",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Biltmore Estate",
@@ -3565,6 +4285,26 @@
    "region": "north_america",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Santa Maria presso San Satiro",
+   "qid": "Q589462",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Laleli Mosque",
+   "qid": "Q590900",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -3599,6 +4339,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Eden Project",
+   "qid": "Q596642",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "AT",
    "expected_country_qid": "Q40",
    "label_hint_en": "Kunsthaus Graz",
@@ -3614,6 +4364,26 @@
    "region": "africa",
    "risk_tags": [
     "unmapped_work_type"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Villa Farnese",
+   "qid": "Q597957",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "MLC Centre",
+   "qid": "Q599363",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -3671,6 +4441,16 @@
    ]
   },
   {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Nusretiye Mosque",
+   "qid": "Q614237",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "EG",
    "expected_country_qid": "Q79",
    "label_hint_en": "Cairo Tower",
@@ -3707,6 +4487,16 @@
    "label_hint_en": "Aqua",
    "qid": "Q622895",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "National Library of Australia",
+   "qid": "Q623578",
+   "region": "oceania",
    "risk_tags": [
     "cell_verification"
    ]
@@ -3773,6 +4563,16 @@
    ]
   },
   {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Istanbul Archaeology Museums",
+   "qid": "Q636978",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "FR",
    "expected_country_qid": "Q142",
    "label_hint_en": "Notre Dame du Haut",
@@ -3816,6 +4616,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Banqueting House",
+   "qid": "Q642039",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "ET",
    "expected_country_qid": "Q115",
    "label_hint_en": "Monolithic churches in Lalibela",
@@ -3834,6 +4644,26 @@
    "risk_tags": [
     "safavid",
     "aka_imam_mosque"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "place Vendôme",
+   "qid": "Q643520",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Hufeisensiedlung",
+   "qid": "Q644490",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -3869,6 +4699,16 @@
    ]
   },
   {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "St James’ Church, Sydney",
+   "qid": "Q648182",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "SE",
    "expected_country_qid": "Q34",
    "label_hint_en": "Stockholm City Hall",
@@ -3895,6 +4735,16 @@
    "label_hint_en": "Humana Building",
    "qid": "Q650028",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Castel Béranger",
+   "qid": "Q650308",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -3933,6 +4783,16 @@
    ]
   },
   {
+   "expected_country_code": "IL",
+   "expected_country_qid": "Q801",
+   "label_hint_en": "Rehavia",
+   "qid": "Q654128",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IT",
    "expected_country_qid": "Q38",
    "label_hint_en": "Certosa di Pavia",
@@ -3951,6 +4811,36 @@
    "region": "europe",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Elizabeth Bay House",
+   "qid": "Q656521",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Church of San Lorenzo, Turin",
+   "qid": "Q657635",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AT",
+   "expected_country_qid": "Q40",
+   "label_hint_en": "Melk Abbey",
+   "qid": "Q660082",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -4069,6 +4959,16 @@
    "risk_tags": []
   },
   {
+   "expected_country_code": "CH",
+   "expected_country_qid": "Q39",
+   "label_hint_en": "Therme Vals",
+   "qid": "Q675081",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "PE",
    "expected_country_qid": "Q419",
    "label_hint_en": "Machu Picchu",
@@ -4077,6 +4977,16 @@
    "risk_tags": [
     "inca",
     "unesco"
+   ]
+  },
+  {
+   "expected_country_code": "SI",
+   "expected_country_qid": "Q215",
+   "label_hint_en": "Triple Bridge",
+   "qid": "Q676315",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -4167,6 +5077,26 @@
   {
    "expected_country_code": "DE",
    "expected_country_qid": "Q183",
+   "label_hint_en": "Basilica of the Fourteen Holy Helpers",
+   "qid": "Q694252",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AT",
+   "expected_country_qid": "Q40",
+   "label_hint_en": "Looshaus",
+   "qid": "Q694760",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
    "label_hint_en": "Oberbaum Bridge",
    "qid": "Q695082",
    "region": "europe",
@@ -4206,11 +5136,41 @@
    ]
   },
   {
+   "expected_country_code": "AT",
+   "expected_country_qid": "Q40",
+   "label_hint_en": "Schloss Hof",
+   "qid": "Q696851",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "TW",
    "expected_country_qid": "Q865",
    "label_hint_en": "National Dr. Sun Yat-sen Memorial Hall​",
    "qid": "Q697314",
    "region": "east_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AT",
+   "expected_country_qid": "Q40",
+   "label_hint_en": "Haas House",
+   "qid": "Q697572",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AT",
+   "expected_country_qid": "Q40",
+   "label_hint_en": "Wiener Stadthalle",
+   "qid": "Q698140",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -4222,6 +5182,26 @@
    "qid": "Q699614",
    "region": "europe",
    "risk_tags": []
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Konzerthaus Berlin",
+   "qid": "Q702548",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Art Gallery of New South Wales",
+   "qid": "Q705551",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
   },
   {
    "expected_country_code": "DE",
@@ -4263,6 +5243,16 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Church of the Gesù",
+   "qid": "Q719794",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "GB",
    "expected_country_qid": "Q145",
    "label_hint_en": "St Pancras railway station",
@@ -4285,11 +5275,31 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Théâtre des Champs-Élysées",
+   "qid": "Q726531",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Folger Shakespeare Library",
    "qid": "Q728116",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Smolny Institute",
+   "qid": "Q728971",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -4316,6 +5326,16 @@
     "multi_phase",
     "ancient_egypt",
     "no_completion_date_in_p1619_p571"
+   ]
+  },
+  {
+   "expected_country_code": "IL",
+   "expected_country_qid": "Q801",
+   "label_hint_en": "Ben-Gurion University of the Negev",
+   "qid": "Q737332",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -4350,6 +5370,16 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Vaux-le-Vicomte",
+   "qid": "Q739976",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "ES",
    "expected_country_qid": "Q29",
    "label_hint_en": "Burgos Cathedral",
@@ -4371,11 +5401,61 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Cathedral of Our Lady of Strasbourg",
+   "qid": "Q745460",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Lovell Beach House",
    "qid": "Q746490",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Castle Drogo",
+   "qid": "Q746819",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Glasgow School of Art",
+   "qid": "Q748106",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "rue Mallet-Stevens",
+   "qid": "Q749204",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Évry Cathedral",
+   "qid": "Q749525",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -4463,6 +5543,16 @@
     "el_tajin_culture",
     "unesco",
     "niche_pyramid"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "St Mark's Campanile",
+   "qid": "Q754194",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -4635,6 +5725,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Waterloo International railway station",
+   "qid": "Q795678",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "John Hancock Tower",
@@ -4643,6 +5743,16 @@
    "risk_tags": [
     "architect_expansion",
     "architect_pei"
+   ]
+  },
+  {
+   "expected_country_code": "DK",
+   "expected_country_qid": "Q35",
+   "label_hint_en": "Bagsværd Church",
+   "qid": "Q800141",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -4656,11 +5766,31 @@
    ]
   },
   {
+   "expected_country_code": "PT",
+   "expected_country_qid": "Q45",
+   "label_hint_en": "Gare do Oriente",
+   "qid": "Q801115",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Bailey House",
    "qid": "Q803799",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Balfron Tower",
+   "qid": "Q804926",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -4687,6 +5817,16 @@
    ]
   },
   {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Church of St. Anthony of Padua",
+   "qid": "Q810122",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Beinecke Rare Book & Manuscript Library",
@@ -4702,6 +5842,16 @@
    "label_hint_en": "Basilica of Our Lady of Peace of Yamoussoukro",
    "qid": "Q815584",
    "region": "africa",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DK",
+   "expected_country_qid": "Q35",
+   "label_hint_en": "Bellevue Teatret",
+   "qid": "Q815963",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -4803,6 +5953,16 @@
    ]
   },
   {
+   "expected_country_code": "DK",
+   "expected_country_qid": "Q35",
+   "label_hint_en": "Copenhagen Opera House",
+   "qid": "Q838297",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "FR",
    "expected_country_qid": "Q142",
    "label_hint_en": "Maison de Verre",
@@ -4840,6 +6000,16 @@
    "label_hint_en": "High Line",
    "qid": "Q843869",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Australian National Maritime Museum",
+   "qid": "Q844329",
+   "region": "oceania",
    "risk_tags": [
     "cell_verification"
    ]
@@ -4885,6 +6055,16 @@
    ]
   },
   {
+   "expected_country_code": "RS",
+   "expected_country_qid": "Q403",
+   "label_hint_en": "Trajan's Bridge",
+   "qid": "Q849786",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "NL",
    "expected_country_qid": "Q55",
    "label_hint_en": "Beurs van Berlage",
@@ -4903,6 +6083,16 @@
    "region": "central_west_asia",
    "risk_tags": [
     "ottoman"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Kocatepe Mosque",
+   "qid": "Q853935",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -4956,6 +6146,16 @@
    "qid": "Q860188",
    "region": "east_asia",
    "risk_tags": []
+  },
+  {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Museu Nacional d'Art de Catalunya",
+   "qid": "Q861252",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
   },
   {
    "expected_country_code": "JP",
@@ -5026,6 +6226,36 @@
    ]
   },
   {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Fundació Joan Miró",
+   "qid": "Q867072",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Saint Charles at the Four Fountains",
+   "qid": "Q867329",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AT",
+   "expected_country_qid": "Q40",
+   "label_hint_en": "Sanatorium Purkersdorf",
+   "qid": "Q873309",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "TH",
    "expected_country_qid": "Q869",
    "label_hint_en": "Grand Palace Bangkok",
@@ -5048,11 +6278,31 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "piazza Venezia",
+   "qid": "Q874832",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Oakland Museum of California",
    "qid": "Q877714",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "German Architecture Museum",
+   "qid": "Q885179",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -5068,6 +6318,16 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Monte Amiata Housing",
+   "qid": "Q890463",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "PL",
    "expected_country_qid": "Q36",
    "label_hint_en": "Aleja Gwiazd w Łodzi",
@@ -5075,6 +6335,26 @@
    "region": "europe",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "SE",
+   "expected_country_qid": "Q34",
+   "label_hint_en": "Bonde Palace",
+   "qid": "Q892231",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Bonnefanten Museum",
+   "qid": "Q892727",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -5095,6 +6375,16 @@
    "region": "north_america",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Olympic Theatre",
+   "qid": "Q902532",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -5121,6 +6411,36 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Domus Augustana",
+   "qid": "Q908472",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Palazzo Medici Riccardi",
+   "qid": "Q911047",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "New Mosque",
+   "qid": "Q911720",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "NL",
    "expected_country_qid": "Q55",
    "label_hint_en": "Rietveld Schroder House",
@@ -5128,6 +6448,28 @@
    "region": "europe",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "EG",
+   "expected_country_qid": "Q79",
+   "label_hint_en": "Mosque of Ibn Tulun",
+   "qid": "Q915413",
+   "region": "africa",
+   "risk_tags": [
+    "islamic",
+    "single_phase",
+    "no_completion_date_in_p1619_p571"
+   ]
+  },
+  {
+   "expected_country_code": "NZ",
+   "expected_country_qid": "Q664",
+   "label_hint_en": "Museum of New Zealand Te Papa Tongarewa",
+   "qid": "Q915603",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -5182,6 +6524,16 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Palazzo Rucellai",
+   "qid": "Q923702",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "BR",
    "expected_country_qid": "Q155",
    "label_hint_en": "Estádio Serra Dourada",
@@ -5189,6 +6541,16 @@
    "region": "latin_america_caribbean",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Pera Palace Hotel",
+   "qid": "Q924603",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -5210,6 +6572,16 @@
    "risk_tags": [
     "single_phase",
     "restoration"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Kremlin Senate",
+   "qid": "Q930376",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -5352,6 +6724,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Reform Club",
+   "qid": "Q962177",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "ZA",
    "expected_country_qid": "Q258",
    "label_hint_en": "Voortrekker Monument",
@@ -5402,6 +6784,16 @@
     "vietnamese",
     "pagoda",
     "no_completion_date_in_p1619_p571"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Collège des Quatre-Nations",
+   "qid": "Q979600",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -5521,6 +6913,46 @@
    ]
   },
   {
+   "expected_country_code": "NZ",
+   "expected_country_qid": "Q664",
+   "label_hint_en": "Canterbury Museum",
+   "qid": "Q1033769",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Cardiff Castle",
+   "qid": "Q1035742",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "FI",
+   "expected_country_qid": "Q33",
+   "label_hint_en": "Helsinki Central Railway Station",
+   "qid": "Q1044613",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Carré d'art",
+   "qid": "Q1045385",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "MX",
    "expected_country_qid": "Q96",
    "label_hint_en": "Luis Barragán House and Studio",
@@ -5584,6 +7016,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Castle Howard",
+   "qid": "Q1049514",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Prospect Park",
@@ -5605,6 +7047,26 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Ca' Rezzonico",
+   "qid": "Q1052171",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Sydney Football Stadium",
+   "qid": "Q1053447",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "FR",
    "expected_country_qid": "Q142",
    "label_hint_en": "Centre Pompidou-Metz",
@@ -5623,6 +7085,16 @@
    "region": "east_asia",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Royal Palace of Amsterdam",
+   "qid": "Q1056152",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -5682,6 +7154,16 @@
    "label_hint_en": "MACBA Barcelona Museum of Contemporary Art",
    "qid": "Q1067140",
    "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "ID",
+   "expected_country_qid": "Q252",
+   "label_hint_en": "Gelora Bung Karno Stadium",
+   "qid": "Q1068044",
+   "region": "southeast_asia",
    "risk_tags": [
     "cell_verification"
    ]
@@ -5772,6 +7254,36 @@
    ]
   },
   {
+   "expected_country_code": "NZ",
+   "expected_country_qid": "Q664",
+   "label_hint_en": "Christ Church Cathedral",
+   "qid": "Q1077977",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "St Andrew's Cathedral",
+   "qid": "Q1088015",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "VN",
+   "expected_country_qid": "Q881",
+   "label_hint_en": "Bút Tháp Temple",
+   "qid": "Q1091048",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Carpenters' Hall",
@@ -5790,6 +7302,16 @@
    "risk_tags": [
     "team_credit",
     "modernist"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Regent Street",
+   "qid": "Q1123106",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -5825,6 +7347,16 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Palazzo Barberini",
+   "qid": "Q1136614",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "TR",
    "expected_country_qid": "Q43",
    "label_hint_en": "Rüstem Pasha Mosque",
@@ -5854,6 +7386,16 @@
    "region": "north_america",
    "risk_tags": [
     "multi_phase"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "St Patrick's Cathedral",
+   "qid": "Q1138670",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -5916,6 +7458,26 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Via della Conciliazione",
+   "qid": "Q1140395",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "MY",
+   "expected_country_qid": "Q833",
+   "label_hint_en": "Sultan Abdul Samad Jamek Mosque",
+   "qid": "Q1143296",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Wainwright Building",
@@ -5944,6 +7506,16 @@
    "risk_tags": [
     "complex_vs_single_work",
     "multi_phase"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Basilica of Superga",
+   "qid": "Q1145261",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6050,6 +7622,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "De La Warr Pavilion",
+   "qid": "Q1180081",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "DE",
    "expected_country_qid": "Q183",
    "label_hint_en": "Atrium Tower",
@@ -6063,6 +7645,16 @@
   {
    "expected_country_code": "VN",
    "expected_country_qid": "Q881",
+   "label_hint_en": "Hanoi Opera House",
+   "qid": "Q1186043",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "VN",
+   "expected_country_qid": "Q881",
    "label_hint_en": "One Pillar Pagoda",
    "qid": "Q1186292",
    "region": "southeast_asia",
@@ -6070,6 +7662,16 @@
     "vietnamese",
     "pagoda",
     "no_completion_date_in_p1619_p571"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Alexandrinsky Theatre",
+   "qid": "Q1186567",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6113,6 +7715,16 @@
    "region": "europe",
    "risk_tags": [
     "team_credit"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Sant'Agnese in Agone",
+   "qid": "Q1192577",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6198,6 +7810,26 @@
    ]
   },
   {
+   "expected_country_code": "HU",
+   "expected_country_qid": "Q28",
+   "label_hint_en": "Former building of Postal Savings Bank Budapest",
+   "qid": "Q1239733",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Dulwich Picture Gallery",
+   "qid": "Q1241163",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "EG",
    "expected_country_qid": "Q79",
    "label_hint_en": "Temple of Kom Ombo",
@@ -6210,6 +7842,36 @@
    ]
   },
   {
+   "expected_country_code": "SE",
+   "expected_country_qid": "Q34",
+   "label_hint_en": "Stockholm Public Library",
+   "qid": "Q1246991",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "EE",
+   "expected_country_qid": "Q191",
+   "label_hint_en": "Tallinn Song Festival Grounds",
+   "qid": "Q1253709",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "PH",
+   "expected_country_qid": "Q928",
+   "label_hint_en": "Far Eastern University",
+   "qid": "Q1254897",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IR",
    "expected_country_qid": "Q794",
    "label_hint_en": "Jameh Mosque of Isfahan",
@@ -6219,6 +7881,16 @@
     "seljuk_foundation",
     "unesco",
     "multiple_phases"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Hospital of Innocents",
+   "qid": "Q1257947",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6264,6 +7936,16 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Tempio Malatestiano",
+   "qid": "Q1268593",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "RU",
    "expected_country_qid": "Q159",
    "label_hint_en": "Novgorod Kremlin",
@@ -6295,6 +7977,26 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Fondation Cartier pour l'art contemporain",
+   "qid": "Q1284688",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "PH",
+   "expected_country_qid": "Q928",
+   "label_hint_en": "San Agustin Church",
+   "qid": "Q1306513",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IN",
    "expected_country_qid": "Q668",
    "label_hint_en": "Tomb of I'timād-ud-Daulah",
@@ -6317,11 +8019,31 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Sant'Ivo alla Sapienza",
+   "qid": "Q1324617",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Sullivan Center",
    "qid": "Q1324863",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "ID",
+   "expected_country_qid": "Q252",
+   "label_hint_en": "Savoy Homann Bidakara Hotel",
+   "qid": "Q1330669",
+   "region": "southeast_asia",
    "risk_tags": [
     "cell_verification"
    ]
@@ -6358,6 +8080,16 @@
    ]
   },
   {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Kropotkinskaya",
+   "qid": "Q1341676",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CA",
    "expected_country_qid": "Q16",
    "label_hint_en": "Place Ville Marie",
@@ -6377,6 +8109,16 @@
    "risk_tags": [
     "team_credit",
     "campus"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Sant'Andrea al Quirinale",
+   "qid": "Q1354667",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6460,6 +8202,16 @@
    "region": "latin_america_caribbean",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Grand Kremlin Palace",
+   "qid": "Q1370087",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6547,6 +8299,26 @@
    ]
   },
   {
+   "expected_country_code": "FI",
+   "expected_country_qid": "Q33",
+   "label_hint_en": "National Museum of Finland",
+   "qid": "Q1418136",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "NZ",
+   "expected_country_qid": "Q664",
+   "label_hint_en": "First Church of Otago",
+   "qid": "Q1419311",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "TH",
    "expected_country_qid": "Q869",
    "label_hint_en": "Klai Kangwon Palace",
@@ -6568,6 +8340,26 @@
    ]
   },
   {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Hochhaus an der Weberwiese",
+   "qid": "Q1428812",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Nuruosmaniye Mosque",
+   "qid": "Q1430090",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "EG",
    "expected_country_qid": "Q79",
    "label_hint_en": "Mosque-Madrassa of Sultan Hassan",
@@ -6586,6 +8378,16 @@
    "region": "latin_america_caribbean",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Kazansky railway station",
+   "qid": "Q1432585",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6611,6 +8413,16 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "San Michele in Isola",
+   "qid": "Q1449262",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IR",
    "expected_country_qid": "Q794",
    "label_hint_en": "Jameh Mosque of Yazd",
@@ -6619,6 +8431,16 @@
    "risk_tags": [
     "multi_phase",
     "islamic"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "National Gallery of Victoria",
+   "qid": "Q1464509",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6661,6 +8483,26 @@
    "risk_tags": [
     "skyscraper",
     "postmodern"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Garkau Estate",
+   "qid": "Q1494492",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Kunstmuseum Den Haag",
+   "qid": "Q1499958",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6715,6 +8557,26 @@
    ]
   },
   {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Alexander Palace",
+   "qid": "Q1519034",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "SI",
+   "expected_country_qid": "Q215",
+   "label_hint_en": "National and University Library of Slovenia",
+   "qid": "Q1520466",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CA",
    "expected_country_qid": "Q16",
    "label_hint_en": "Jameson House",
@@ -6734,6 +8596,36 @@
    "risk_tags": [
     "ancient_egypt",
     "no_completion_date_in_p1619_p571"
+   ]
+  },
+  {
+   "expected_country_code": "SG",
+   "expected_country_qid": "Q334",
+   "label_hint_en": "Raffles Hotel",
+   "qid": "Q1538837",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Government House",
+   "qid": "Q1540458",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GE",
+   "expected_country_qid": "Q230",
+   "label_hint_en": "Bank of Georgia headquarters",
+   "qid": "Q1544120",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6765,6 +8657,16 @@
    "label_hint_en": "Loews Philadelphia Hotel",
    "qid": "Q1548457",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Bursa Green Mosque",
+   "qid": "Q1549086",
+   "region": "central_west_asia",
    "risk_tags": [
     "cell_verification"
    ]
@@ -6802,6 +8704,16 @@
    ]
   },
   {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Yıldız Hamidi Mosque",
+   "qid": "Q1573438",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "FR",
    "expected_country_qid": "Q142",
    "label_hint_en": "Villa Noailles",
@@ -6810,6 +8722,26 @@
    "risk_tags": [
     "residential",
     "robert_mallet_stevens"
+   ]
+  },
+  {
+   "expected_country_code": "MC",
+   "expected_country_qid": "Q235",
+   "label_hint_en": "Opéra de Monte-Carlo",
+   "qid": "Q1577048",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Hyde Park Barracks",
+   "qid": "Q1577600",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6829,6 +8761,16 @@
    "label_hint_en": "Harkness Tower",
    "qid": "Q1585431",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Central railway station",
+   "qid": "Q1585639",
+   "region": "oceania",
    "risk_tags": [
     "cell_verification"
    ]
@@ -6854,6 +8796,16 @@
    ]
   },
   {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Holy Cross Minster",
+   "qid": "Q1594984",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "NL",
    "expected_country_qid": "Q55",
    "label_hint_en": "Het Schip",
@@ -6861,6 +8813,36 @@
    "region": "europe",
    "risk_tags": [
     "multi_phase"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Kolumba",
+   "qid": "Q1621165",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IR",
+   "expected_country_qid": "Q794",
+   "label_hint_en": "National Museum of Iran",
+   "qid": "Q1631008",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Sant'Andrea della Valle",
+   "qid": "Q1631593",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6896,6 +8878,16 @@
    ]
   },
   {
+   "expected_country_code": "PH",
+   "expected_country_qid": "Q928",
+   "label_hint_en": "Manila Metropolitan Theatre",
+   "qid": "Q1639613",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "TH",
    "expected_country_qid": "Q869",
    "label_hint_en": "King Power Mahanakhon",
@@ -6922,6 +8914,26 @@
    "risk_tags": [
     "modern_sacred",
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "PT",
+   "expected_country_qid": "Q45",
+   "label_hint_en": "Igreja de Nossa Senhora de Fátima (Lisbon)",
+   "qid": "Q1657856",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GR",
+   "expected_country_qid": "Q41",
+   "label_hint_en": "Iliou Melathron",
+   "qid": "Q1658537",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -6952,6 +8964,16 @@
    "label_hint_en": "Nebraska State Capitol",
    "qid": "Q1683354",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Multihalle",
+   "qid": "Q1687547",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -6995,6 +9017,26 @@
    "risk_tags": [
     "architect_expansion",
     "architect_koolhaas"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "postal bank",
+   "qid": "Q1714055",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IL",
+   "expected_country_qid": "Q801",
+   "label_hint_en": "Nahalal",
+   "qid": "Q1724338",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -7042,11 +9084,81 @@
   {
    "expected_country_code": "IT",
    "expected_country_qid": "Q38",
+   "label_hint_en": "University of Calabria",
+   "qid": "Q1752540",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
    "label_hint_en": "Pisa Cathedral",
    "qid": "Q1754247",
    "region": "europe",
    "risk_tags": [
     "multi_phase"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Küçüksu Pavillion",
+   "qid": "Q1755906",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IR",
+   "expected_country_qid": "Q794",
+   "label_hint_en": "Tehran Museum of Contemporary Art",
+   "qid": "Q1756399",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Portcullis House",
+   "qid": "Q1757027",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "NZ",
+   "expected_country_qid": "Q664",
+   "label_hint_en": "Larnach Castle",
+   "qid": "Q1759455",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Palazzo dei Congressi",
+   "qid": "Q1764496",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Kollhoff Tower",
+   "qid": "Q1779433",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -7114,6 +9226,16 @@
    ]
   },
   {
+   "expected_country_code": "BE",
+   "expected_country_qid": "Q31",
+   "label_hint_en": "Hôtel van Eetvelde",
+   "qid": "Q1818182",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CN",
    "expected_country_qid": "Q148",
    "label_hint_en": "Beijing Television Cultural Center",
@@ -7162,6 +9284,16 @@
    "risk_tags": [
     "inception_vs_opening",
     "team_credit"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Thiepval Memorial",
+   "qid": "Q1861419",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -7245,6 +9377,16 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Musée National d'Art Moderne",
+   "qid": "Q1895953",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "VN",
    "expected_country_qid": "Q881",
    "label_hint_en": "Saint Joseph Cathedral",
@@ -7316,6 +9458,16 @@
    ]
   },
   {
+   "expected_country_code": "ID",
+   "expected_country_qid": "Q252",
+   "label_hint_en": "Jakarta Kota railway station",
+   "qid": "Q1975437",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "DE",
    "expected_country_qid": "Q183",
    "label_hint_en": "Nevigeser Wallfahrtsdom",
@@ -7358,6 +9510,26 @@
    ]
   },
   {
+   "expected_country_code": "BE",
+   "expected_country_qid": "Q31",
+   "label_hint_en": "Horta Museum",
+   "qid": "Q1995367",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "PH",
+   "expected_country_qid": "Q928",
+   "label_hint_en": "Manila Central Post Office",
+   "qid": "Q1997093",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CA",
    "expected_country_qid": "Q16",
    "label_hint_en": "Notre-Dame Basilica-Cathedral",
@@ -7388,6 +9560,26 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Palazzetto dello Sport",
+   "qid": "Q2033373",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "State Kremlin Palace",
+   "qid": "Q2033910",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Vanna Venturi House",
@@ -7396,6 +9588,16 @@
    "risk_tags": [
     "postmodern",
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Sir John Soane's Museum",
+   "qid": "Q2060860",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -7440,6 +9642,16 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Château de Maisons",
+   "qid": "Q2092716",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "MM",
    "expected_country_qid": "Q836",
    "label_hint_en": "Thatbyinnyu Temple",
@@ -7477,6 +9689,16 @@
    "label_hint_en": "Museo Soumaya",
    "qid": "Q2097646",
    "region": "latin_america_caribbean",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Syon House",
+   "qid": "Q2121329",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -7542,11 +9764,41 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Casa Malaparte",
+   "qid": "Q2165447",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "TH",
+   "expected_country_qid": "Q869",
+   "label_hint_en": "Wat Benchamabophit",
+   "qid": "Q2165719",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Sheats Goldstein Residence",
    "qid": "Q2178401",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "De Rots",
+   "qid": "Q2200376",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -7717,6 +9969,16 @@
    ]
   },
   {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Smolny Convent",
+   "qid": "Q2330130",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "BR",
    "expected_country_qid": "Q155",
    "label_hint_en": "Palácio da Alvorada",
@@ -7750,6 +10012,16 @@
    ]
   },
   {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Sydney Hospital",
+   "qid": "Q2373707",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "JP",
    "expected_country_qid": "Q17",
    "label_hint_en": "Teshima Art Museum",
@@ -7765,6 +10037,16 @@
    "region": "africa",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "main building of Moscow State University",
+   "qid": "Q2387534",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -7798,11 +10080,31 @@
    ]
   },
   {
+   "expected_country_code": "ID",
+   "expected_country_qid": "Q252",
+   "label_hint_en": "Villa Isola",
+   "qid": "Q2430151",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "DZ",
    "expected_country_qid": "Q262",
    "label_hint_en": "cathédrale du Sacré-Cœur d'Oran",
    "qid": "Q2440344",
    "region": "africa",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Kedleston Hall",
+   "qid": "Q2443707",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -7838,6 +10140,16 @@
    "risk_tags": [
     "team_credit",
     "foreign_architect"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Rusakov Workers' Club",
+   "qid": "Q2465440",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -7923,6 +10235,16 @@
    ]
   },
   {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "New Arbat Avenue",
+   "qid": "Q2545285",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Washington Square Arch",
@@ -7933,11 +10255,41 @@
    ]
   },
   {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Casa de les Punxes",
+   "qid": "Q2561516",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Yavuz Selim Mosque",
+   "qid": "Q2565329",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Tennessee State Capitol",
    "qid": "Q2570396",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Manchester Town Hall",
+   "qid": "Q2578415",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -7974,6 +10326,16 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Église du Val-de-Grâce",
+   "qid": "Q2601262",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "PE",
    "expected_country_qid": "Q419",
    "label_hint_en": "Nazca Lines",
@@ -7981,6 +10343,16 @@
    "region": "latin_america_caribbean",
    "risk_tags": [
     "geoglyph"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "General Staff Building, Saint Petersburg",
+   "qid": "Q2622043",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -8045,6 +10417,16 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Basilica of San Gaudenzio",
+   "qid": "Q2639843",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Gehry Residence",
@@ -8056,11 +10438,51 @@
    ]
   },
   {
+   "expected_country_code": "SG",
+   "expected_country_qid": "Q334",
+   "label_hint_en": "Armenian Church of Saint Gregory the Illuminator",
+   "qid": "Q2660779",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CI",
    "expected_country_qid": "Q1008",
    "label_hint_en": "Fondation Félix-Houphouët-Boigny",
    "qid": "Q2680941",
    "region": "africa",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Castell Coch",
+   "qid": "Q2704850",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "FI",
+   "expected_country_qid": "Q33",
+   "label_hint_en": "Villa Mairea",
+   "qid": "Q2706241",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "CZ",
+   "expected_country_qid": "Q213",
+   "label_hint_en": "House of the Black Madonna",
+   "qid": "Q2717859",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -8082,6 +10504,16 @@
    "label_hint_en": "Wire Opera House",
    "qid": "Q2719464",
    "region": "latin_america_caribbean",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Cathedral of Valladolid",
+   "qid": "Q2722123",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -8131,6 +10563,16 @@
    ]
   },
   {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Zonnestraal",
+   "qid": "Q2743329",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "GB",
    "expected_country_qid": "Q145",
    "label_hint_en": "Scottish Parliament Building",
@@ -8160,6 +10602,16 @@
     "java",
     "buddhist",
     "no_completion_date_in_p1619_p571"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "The Economist Group (including Office Tower, Residential Block, Former Bank And Podium)",
+   "qid": "Q2803160",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -8216,6 +10668,16 @@
    ]
   },
   {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Australia Square",
+   "qid": "Q2872154",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "MX",
    "expected_country_qid": "Q96",
    "label_hint_en": "Museo Experimental el Eco",
@@ -8226,11 +10688,31 @@
    ]
   },
   {
+   "expected_country_code": "IL",
+   "expected_country_qid": "Q801",
+   "label_hint_en": "Dizengoff Square",
+   "qid": "Q2889910",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CO",
    "expected_country_qid": "Q739",
    "label_hint_en": "Spain Library (Medellín)",
    "qid": "Q2901246",
    "region": "latin_america_caribbean",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "PH",
+   "expected_country_qid": "Q928",
+   "label_hint_en": "EDSA Shrine",
+   "qid": "Q2914138",
+   "region": "southeast_asia",
    "risk_tags": [
     "cell_verification"
    ]
@@ -8276,6 +10758,16 @@
     "java",
     "buddhist",
     "no_completion_date_in_p1619_p571"
+   ]
+  },
+  {
+   "expected_country_code": "AM",
+   "expected_country_qid": "Q399",
+   "label_hint_en": "Yerevan Cascade",
+   "qid": "Q2940844",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -8372,6 +10864,26 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Louvre Colonnade",
+   "qid": "Q2984289",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "FI",
+   "expected_country_qid": "Q33",
+   "label_hint_en": "Dipoli",
+   "qid": "Q3029170",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "PE",
    "expected_country_qid": "Q419",
    "label_hint_en": "Q3033412",
@@ -8452,6 +10964,16 @@
    ]
   },
   {
+   "expected_country_code": "MY",
+   "expected_country_qid": "Q833",
+   "label_hint_en": "Kuala Lumpur railway station",
+   "qid": "Q3096708",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "BR",
    "expected_country_qid": "Q155",
    "label_hint_en": "Ginásio do Ibirapuera",
@@ -8506,6 +11028,16 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Hôtel Guimard",
+   "qid": "Q3145517",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "IAC Building",
@@ -8542,6 +11074,16 @@
    ]
   },
   {
+   "expected_country_code": "MY",
+   "expected_country_qid": "Q833",
+   "label_hint_en": "Ubudiah Mosque",
+   "qid": "Q3237806",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CN",
    "expected_country_qid": "Q148",
    "label_hint_en": "Linked Hybrid",
@@ -8557,6 +11099,16 @@
    "region": "east_asia",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Église Notre-Dame du Raincy",
+   "qid": "Q3246466",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -8621,11 +11173,31 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "55 Broadway",
+   "qid": "Q3286924",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "330 West 42nd Street",
    "qid": "Q3303658",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "MY",
+   "expected_country_qid": "Q833",
+   "label_hint_en": "KOMTAR",
+   "qid": "Q3305737",
+   "region": "southeast_asia",
    "risk_tags": [
     "cell_verification"
    ]
@@ -8650,6 +11222,26 @@
    "risk_tags": [
     "architect_expansion",
     "architect_calatrava"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Mirail",
+   "qid": "Q3315859",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Ayazma Mosque",
+   "qid": "Q3324894",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -8688,6 +11280,16 @@
    "label_hint_en": "Torres de Satélite",
    "qid": "Q3353239",
    "region": "latin_america_caribbean",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Petrovsky Palace, Moscow",
+   "qid": "Q3360905",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -8740,6 +11342,26 @@
    "qid": "Q3378907",
    "region": "europe",
    "risk_tags": []
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Garden Palace",
+   "qid": "Q3381137",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "PH",
+   "expected_country_qid": "Q928",
+   "label_hint_en": "Coconut Palace",
+   "qid": "Q3384923",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
   },
   {
    "expected_country_code": "ES",
@@ -8841,6 +11463,16 @@
    "region": "north_america",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "BE",
+   "expected_country_qid": "Q31",
+   "label_hint_en": "Théâtre de Liège",
+   "qid": "Q3527705",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -9075,6 +11707,16 @@
   {
    "expected_country_code": "IT",
    "expected_country_qid": "Q38",
+   "label_hint_en": "Teatro del Mondo",
+   "qid": "Q3982278",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
    "label_hint_en": "Brion tomb",
    "qid": "Q3992600",
    "region": "europe",
@@ -9111,6 +11753,16 @@
    "risk_tags": [
     "architect_expansion",
     "architect_libeskind"
+   ]
+  },
+  {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Torres Blancas",
+   "qid": "Q3995702",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -9162,6 +11814,16 @@
    "risk_tags": [
     "avant_garde",
     "residential"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Zuev Workers' Club",
+   "qid": "Q4165516",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -9222,6 +11884,16 @@
    "label_hint_en": "Sterling Memorial Library",
    "qid": "Q4290192",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Ryabushinsky House",
+   "qid": "Q4338224",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -9299,6 +11971,16 @@
    ]
   },
   {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Ethnography Museum of Ankara",
+   "qid": "Q4533056",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "15 Central Park West",
@@ -9336,6 +12018,16 @@
    "region": "south_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "FI",
+   "expected_country_qid": "Q33",
+   "label_hint_en": "Myyrmäki church",
+   "qid": "Q4677222",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -9400,6 +12092,16 @@
    ]
   },
   {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Ankara Palas",
+   "qid": "Q4765980",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "BD",
    "expected_country_qid": "Q902",
    "label_hint_en": "Faculty of Fine Arts, University of Dhaka",
@@ -9428,6 +12130,16 @@
    "region": "europe",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Hilton Istanbul Bosphorus",
+   "qid": "Q4806513",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -9493,11 +12205,31 @@
    ]
   },
   {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Booloominbah",
+   "qid": "Q4943367",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Boston Avenue Methodist Church",
    "qid": "Q4947741",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Café De Unie",
+   "qid": "Q4989606",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -9511,6 +12243,26 @@
    "risk_tags": [
     "museum",
     "oscar_niemeyer"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Bundanon",
+   "qid": "Q4997504",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Burnham Beeches",
+   "qid": "Q4999739",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -9555,6 +12307,16 @@
    ]
   },
   {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Cameron Offices, Belconnen",
+   "qid": "Q5026324",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Campbell Sports Center",
@@ -9571,6 +12333,26 @@
    "label_hint_en": "Canadian Clay and Glass Gallery",
    "qid": "Q5029867",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "SI",
+   "expected_country_qid": "Q215",
+   "label_hint_en": "Cankar Hall",
+   "qid": "Q5032503",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Capitol Theatre",
+   "qid": "Q5035939",
+   "region": "oceania",
    "risk_tags": [
     "cell_verification"
    ]
@@ -9667,6 +12449,26 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Christ Church, Spitalfields",
+   "qid": "Q5108714",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "NZ",
+   "expected_country_qid": "Q664",
+   "label_hint_en": "Christchurch Town Hall",
+   "qid": "Q5109102",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Church of the Ascension, Episcopal",
@@ -9684,6 +12486,16 @@
    "region": "north_america",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "VN",
+   "expected_country_qid": "Q881",
+   "label_hint_en": "Citadel of Saigon (1790)",
+   "qid": "Q5122391",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -9723,6 +12535,16 @@
    "label_hint_en": "Connemara Public Library",
    "qid": "Q5161767",
    "region": "south_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Cragside",
+   "qid": "Q5180627",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -9776,6 +12598,16 @@
    "region": "north_america",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "MY",
+   "expected_country_qid": "Q833",
+   "label_hint_en": "Dayabumi Complex",
+   "qid": "Q5243009",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -9841,6 +12673,16 @@
    ]
   },
   {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Embassy of Germany, Saint Petersburg",
+   "qid": "Q5369699",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CL",
    "expected_country_qid": "Q298",
    "label_hint_en": "Estación Mapocho Cultural Center",
@@ -9879,6 +12721,16 @@
    "region": "latin_america_caribbean",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Featherston House",
+   "qid": "Q5439639",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -9939,6 +12791,16 @@
    "region": "south_asia",
    "risk_tags": [
     "single_phase"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "General Post Office, Sydney",
+   "qid": "Q5532119",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -10076,6 +12938,16 @@
    ]
   },
   {
+   "expected_country_code": "NO",
+   "expected_country_qid": "Q20",
+   "label_hint_en": "Domkirkeodden",
+   "qid": "Q5697531",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "MX",
    "expected_country_qid": "Q96",
    "label_hint_en": "Heroica Escuela Naval Militar",
@@ -10136,6 +13008,26 @@
    ]
   },
   {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Villanueva building",
+   "qid": "Q5818335",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Monastery and Site of the Escurial, Madrid",
+   "qid": "Q5821857",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "PE",
    "expected_country_qid": "Q419",
    "label_hint_en": "Estadio Joel Gutiérrez",
@@ -10156,11 +13048,61 @@
    ]
   },
   {
+   "expected_country_code": "IR",
+   "expected_country_qid": "Q794",
+   "label_hint_en": "Sepahsalar Mosque",
+   "qid": "Q5945207",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IR",
+   "expected_country_qid": "Q794",
+   "label_hint_en": "Avicenna Mausoleum",
+   "qid": "Q5952145",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Hyatt Regency Atlanta",
    "qid": "Q5952861",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IR",
+   "expected_country_qid": "Q794",
+   "label_hint_en": "Nader Shah Mausoleum",
+   "qid": "Q5957084",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IR",
+   "expected_country_qid": "Q794",
+   "label_hint_en": "Niavaran Cultural Center",
+   "qid": "Q5959034",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "La Pagoda",
+   "qid": "Q5968635",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -10216,6 +13158,16 @@
    ]
   },
   {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Bebek Mosque",
+   "qid": "Q6049880",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "ES",
    "expected_country_qid": "Q29",
    "label_hint_en": "Palacio de Exposiciones y Congresos Ciudad de Oviedo",
@@ -10244,6 +13196,26 @@
    "region": "central_west_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Istanbul Main Post Office",
+   "qid": "Q6084421",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Istanbul 4th Vakıf Han",
+   "qid": "Q6088564",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -10346,6 +13318,16 @@
    "label_hint_en": "Kaufmann Desert House",
    "qid": "Q6378695",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Keeling House",
+   "qid": "Q6382807",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -10472,11 +13454,31 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Lord's Media Centre",
+   "qid": "Q6678851",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Lovell House",
    "qid": "Q6692217",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "NZ",
+   "expected_country_qid": "Q664",
+   "label_hint_en": "Lyttelton Road Tunnel Administration Building",
+   "qid": "Q6710391",
+   "region": "oceania",
    "risk_tags": [
     "cell_verification"
    ]
@@ -10500,6 +13502,16 @@
    "risk_tags": [
     "modern_sacred",
     "aalto"
+   ]
+  },
+  {
+   "expected_country_code": "PH",
+   "expected_country_qid": "Q928",
+   "label_hint_en": "University of Santo Tomas Main Building",
+   "qid": "Q6735943",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -10614,6 +13626,16 @@
    ]
   },
   {
+   "expected_country_code": "NZ",
+   "expected_country_qid": "Q664",
+   "label_hint_en": "New Zealand Parliament Buildings",
+   "qid": "Q7015565",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "AU",
    "expected_country_qid": "Q408",
    "label_hint_en": "Newman College",
@@ -10624,11 +13646,41 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Norman Shaw Buildings",
+   "qid": "Q7052782",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Northland Center",
    "qid": "Q7059505",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "NZ",
+   "expected_country_qid": "Q664",
+   "label_hint_en": "Old Government Buildings, Wellington",
+   "qid": "Q7084116",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Old Treasury Building",
+   "qid": "Q7085326",
+   "region": "oceania",
    "risk_tags": [
     "cell_verification"
    ]
@@ -10709,11 +13761,31 @@
    ]
   },
   {
+   "expected_country_code": "PH",
+   "expected_country_qid": "Q928",
+   "label_hint_en": "Parish of the Holy Sacrifice",
+   "qid": "Q7137447",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "BR",
    "expected_country_qid": "Q155",
    "label_hint_en": "Passeio Público",
    "qid": "Q7142572",
    "region": "latin_america_caribbean",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "SG",
+   "expected_country_qid": "Q334",
+   "label_hint_en": "People's Park Complex",
+   "qid": "Q7165657",
+   "region": "southeast_asia",
    "risk_tags": [
     "cell_verification"
    ]
@@ -10734,6 +13806,16 @@
    "region": "oceania",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "IL",
+   "expected_country_qid": "Q801",
+   "label_hint_en": "Engel House",
+   "qid": "Q7185427",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -10767,6 +13849,16 @@
    ]
   },
   {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Preshil, The Margaret Lyttle Memorial School",
+   "qid": "Q7241076",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "SA",
    "expected_country_qid": "Q851",
    "label_hint_en": "Prince Salman Bin Abdulaziz Sport City Stadium",
@@ -10774,6 +13866,26 @@
    "region": "central_west_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Princess Theatre",
+   "qid": "Q7244850",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Queensland Art Gallery",
+   "qid": "Q7270900",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -10797,6 +13909,16 @@
    ]
   },
   {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "RMIT Building 8",
+   "qid": "Q7277002",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "ZA",
    "expected_country_qid": "Q258",
    "label_hint_en": "Red Location Museum",
@@ -10812,6 +13934,16 @@
    "label_hint_en": "Redwood Library and Athenaeum",
    "qid": "Q7306511",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "SI",
+   "expected_country_qid": "Q215",
+   "label_hint_en": "Republic Square, Ljubljana",
+   "qid": "Q7314417",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -10833,6 +13965,16 @@
    "label_hint_en": "Robert R. Blacker House",
    "qid": "Q7349089",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Robin Hood Gardens",
+   "qid": "Q7352508",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -10879,6 +14021,16 @@
    ]
   },
   {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Schocken Department Store, Stuttgart",
+   "qid": "Q7431933",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "GB",
    "expected_country_qid": "Q145",
    "label_hint_en": "Selfridges Building, Birmingham",
@@ -10897,11 +14049,31 @@
    ]
   },
   {
+   "expected_country_code": "SG",
+   "expected_country_qid": "Q334",
+   "label_hint_en": "Singapore Conference Hall",
+   "qid": "Q7522937",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "PK",
    "expected_country_qid": "Q843",
    "label_hint_en": "Sir Ganga Ram Hospital",
    "qid": "Q7526819",
    "region": "south_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Smithdon High School",
+   "qid": "Q7545452",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -10947,6 +14119,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "St Peter's Square",
+   "qid": "Q7595336",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "AU",
    "expected_country_qid": "Q408",
    "label_hint_en": "State Savings Bank building",
@@ -10964,6 +14146,16 @@
    "region": "south_asia",
    "risk_tags": [
     "unmapped_work_type"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Sydney Opera House Trust",
+   "qid": "Q7660072",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -11194,6 +14386,16 @@
   {
    "expected_country_code": "TR",
    "expected_country_qid": "Q43",
+   "label_hint_en": "Yeşil Türbe",
+   "qid": "Q8053362",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
    "label_hint_en": "Şeref Stadium",
    "qid": "Q8082488",
    "region": "central_west_asia",
@@ -11242,6 +14444,26 @@
    ]
   },
   {
+   "expected_country_code": "PT",
+   "expected_country_qid": "Q45",
+   "label_hint_en": "Casa das Histórias Paula Rego",
+   "qid": "Q9698241",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "PT",
+   "expected_country_qid": "Q45",
+   "label_hint_en": "Casa de Chá da Boa Nova",
+   "qid": "Q9698266",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IT",
    "expected_country_qid": "Q38",
    "label_hint_en": "Historic Centre of San Gimignano",
@@ -11268,6 +14490,16 @@
    "label_hint_en": "Rede Sarah",
    "qid": "Q10298471",
    "region": "latin_america_caribbean",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "SE",
+   "expected_country_qid": "Q34",
+   "label_hint_en": "Villa Myrdal",
+   "qid": "Q10715504",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -11520,6 +14752,36 @@
    "risk_tags": []
   },
   {
+   "expected_country_code": "CZ",
+   "expected_country_qid": "Q213",
+   "label_hint_en": "Hotel Avion",
+   "qid": "Q12020398",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "CZ",
+   "expected_country_qid": "Q213",
+   "label_hint_en": "Nová scéna",
+   "qid": "Q12041282",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "CZ",
+   "expected_country_qid": "Q213",
+   "label_hint_en": "Crematorium Pardubice",
+   "qid": "Q12043818",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IN",
    "expected_country_qid": "Q668",
    "label_hint_en": "Nakhoda Masjid",
@@ -11613,6 +14875,26 @@
    ]
   },
   {
+   "expected_country_code": "TH",
+   "expected_country_qid": "Q869",
+   "label_hint_en": "Phra Chuthathut Palace",
+   "qid": "Q13017342",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "SG",
+   "expected_country_qid": "Q334",
+   "label_hint_en": "Horsburgh Lighthouse",
+   "qid": "Q13372528",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "TW",
    "expected_country_qid": "Q865",
    "label_hint_en": "Lanyang Museum",
@@ -11648,6 +14930,16 @@
    "label_hint_en": "Hassan Fathy Village",
    "qid": "Q14218502",
    "region": "africa",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "CH",
+   "expected_country_qid": "Q39",
+   "label_hint_en": "ETH Zurich main building",
+   "qid": "Q14565994",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -11739,6 +15031,16 @@
    "qid": "Q14862239",
    "region": "east_asia",
    "risk_tags": []
+  },
+  {
+   "expected_country_code": "SG",
+   "expected_country_qid": "Q334",
+   "label_hint_en": "Golden Mile Complex",
+   "qid": "Q14874437",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
   },
   {
    "expected_country_code": "CA",
@@ -11893,6 +15195,16 @@
    ]
   },
   {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Kunstgewerbeschulbau",
+   "qid": "Q15824602",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CN",
    "expected_country_qid": "Q148",
    "label_hint_en": "Nanjing International Youth Cultural Centre",
@@ -11929,6 +15241,16 @@
    "region": "southeast_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "HR",
+   "expected_country_qid": "Q224",
+   "label_hint_en": "Jasenovac Memorial Site",
+   "qid": "Q16087601",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -12043,6 +15365,16 @@
    "region": "north_america",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Mitchell House",
+   "qid": "Q16948116",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -12261,6 +15593,16 @@
    ]
   },
   {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Kiefhoek House Museum",
+   "qid": "Q18286335",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "MM",
    "expected_country_qid": "Q836",
    "label_hint_en": "Kyaut Tie Stadium",
@@ -12330,6 +15672,16 @@
    ]
   },
   {
+   "expected_country_code": "IL",
+   "expected_country_qid": "Q801",
+   "label_hint_en": "Spiral House",
+   "qid": "Q19471959",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "NZ",
    "expected_country_qid": "Q664",
    "label_hint_en": "Te Wharewaka o Pōneke",
@@ -12345,6 +15697,16 @@
    "label_hint_en": "500 Park Tower",
    "qid": "Q19759763",
    "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "UA",
+   "expected_country_qid": "Q212",
+   "label_hint_en": "Pashkov House",
+   "qid": "Q19766179",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -12367,6 +15729,16 @@
    "region": "central_west_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "RU",
+   "expected_country_qid": "Q159",
+   "label_hint_en": "Narkomzem Building",
+   "qid": "Q19857972",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -12429,6 +15801,16 @@
    "region": "europe",
    "risk_tags": [
     "institution_typed"
+   ]
+  },
+  {
+   "expected_country_code": "SA",
+   "expected_country_qid": "Q851",
+   "label_hint_en": "Palace of Government",
+   "qid": "Q20396425",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -12506,6 +15888,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Royal College of Physicians",
+   "qid": "Q21279760",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "The Spiral",
@@ -12533,6 +15925,16 @@
    "region": "central_west_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "TR",
+   "expected_country_qid": "Q43",
+   "label_hint_en": "Sancaklar mosque",
+   "qid": "Q21526905",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -12771,6 +16173,16 @@
    ]
   },
   {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Vitra Fire Station",
+   "qid": "Q25455138",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CA",
    "expected_country_qid": "Q16",
    "label_hint_en": "Maison Benjamin-Tremain",
@@ -12832,6 +16244,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "The Old Bank of England",
+   "qid": "Q26487354",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "UY",
    "expected_country_qid": "Q77",
    "label_hint_en": "Church of Cristo Obrero y Nuestra Señora de Lourdes",
@@ -12839,6 +16261,16 @@
    "region": "latin_america_caribbean",
    "risk_tags": [
     "multi_phase"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Shine Dome",
+   "qid": "Q27493197",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -12880,6 +16312,16 @@
    "risk_tags": []
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "cemetery of San Cataldo",
+   "qid": "Q28017523",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "FR",
    "expected_country_qid": "Q142",
    "label_hint_en": "Pathé Foundation",
@@ -12911,11 +16353,31 @@
    ]
   },
   {
+   "expected_country_code": "PH",
+   "expected_country_qid": "Q928",
+   "label_hint_en": "Quezon Institute",
+   "qid": "Q28402069",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "LK",
    "expected_country_qid": "Q854",
    "label_hint_en": "Lunuganga",
    "qid": "Q28403376",
    "region": "south_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Joint Committee on the Palace of Westminster",
+   "qid": "Q28404218",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -12994,6 +16456,16 @@
    ]
   },
   {
+   "expected_country_code": "PH",
+   "expected_country_qid": "Q928",
+   "label_hint_en": "Cultural Center of the Philippines Complex",
+   "qid": "Q30590052",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "CN",
    "expected_country_qid": "Q148",
    "label_hint_en": "Shanghai Planetarium",
@@ -13021,6 +16493,16 @@
    "region": "central_west_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Nordic pavilion",
+   "qid": "Q31890235",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -13057,6 +16539,16 @@
    ]
   },
   {
+   "expected_country_code": "AT",
+   "expected_country_qid": "Q40",
+   "label_hint_en": "Villa Tugendhat",
+   "qid": "Q38032725",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "TR",
    "expected_country_qid": "Q43",
    "label_hint_en": "Q38252188",
@@ -13064,6 +16556,26 @@
    "region": "central_west_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "NL",
+   "expected_country_qid": "Q55",
+   "label_hint_en": "Cube Houses",
+   "qid": "Q42153772",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "BE",
+   "expected_country_qid": "Q31",
+   "label_hint_en": "Maison de Verre",
+   "qid": "Q42432530",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -13263,6 +16775,16 @@
    ]
   },
   {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "Ospedale Maggiore",
+   "qid": "Q55138952",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "AU",
    "expected_country_qid": "Q408",
    "label_hint_en": "Gobbagombalin Bridge",
@@ -13293,6 +16815,16 @@
    ]
   },
   {
+   "expected_country_code": "SA",
+   "expected_country_qid": "Q851",
+   "label_hint_en": "Imam Turki bin Abdullah Mosque",
+   "qid": "Q55614335",
+   "region": "central_west_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "AU",
    "expected_country_qid": "Q408",
    "label_hint_en": "Q55615156",
@@ -13311,6 +16843,26 @@
    "risk_tags": [
     "architect_expansion",
     "architect_koolhaas"
+   ]
+  },
+  {
+   "expected_country_code": "BE",
+   "expected_country_qid": "Q31",
+   "label_hint_en": "Openluchtschool Sint-Lutgardis",
+   "qid": "Q56087977",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "IT",
+   "expected_country_qid": "Q38",
+   "label_hint_en": "College",
+   "qid": "Q56258367",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -13336,6 +16888,16 @@
    ]
   },
   {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Glyndebourne Opera House",
+   "qid": "Q58181522",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "FR",
    "expected_country_qid": "Q142",
    "label_hint_en": "Tour La Marseillaise",
@@ -13344,6 +16906,36 @@
    "risk_tags": [
     "architect_expansion",
     "architect_nouvel"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "Brambuk - The National Park & Cultural Centre",
+   "qid": "Q59616975",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "AU",
+   "expected_country_qid": "Q408",
+   "label_hint_en": "City Mutual Life Assurance Building",
+   "qid": "Q60055196",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "chapel of château d'Anet",
+   "qid": "Q60342335",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -13456,6 +17048,16 @@
    "label_hint_en": "ECLAC headquarters",
    "qid": "Q64212355",
    "region": "latin_america_caribbean",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "GB",
+   "expected_country_qid": "Q145",
+   "label_hint_en": "Embankment Place",
+   "qid": "Q64692677",
+   "region": "europe",
    "risk_tags": [
     "cell_verification"
    ]
@@ -13581,6 +17183,16 @@
    ]
   },
   {
+   "expected_country_code": "PT",
+   "expected_country_qid": "Q45",
+   "label_hint_en": "Serralves museum library",
+   "qid": "Q71606833",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "ES",
    "expected_country_qid": "Q29",
    "label_hint_en": "El Palauet",
@@ -13672,6 +17284,16 @@
    ]
   },
   {
+   "expected_country_code": "AF",
+   "expected_country_qid": "Q889",
+   "label_hint_en": "Gawhar Shad Mausoleum",
+   "qid": "Q85762853",
+   "region": "south_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IT",
    "expected_country_qid": "Q38",
    "label_hint_en": "Campus Bocconi University",
@@ -13690,6 +17312,16 @@
    "region": "east_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "AT",
+   "expected_country_qid": "Q40",
+   "label_hint_en": "Upper Belvedere",
+   "qid": "Q87193291",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -13720,6 +17352,26 @@
    "region": "north_america",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "ES",
+   "expected_country_qid": "Q29",
+   "label_hint_en": "Alamillo Bridge tower",
+   "qid": "Q96078341",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
+   "expected_country_code": "DE",
+   "expected_country_qid": "Q183",
+   "label_hint_en": "Berlin-Siemensstadt railway station",
+   "qid": "Q96080453",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -14081,6 +17733,16 @@
    ]
   },
   {
+   "expected_country_code": "NZ",
+   "expected_country_qid": "Q664",
+   "label_hint_en": "Auckland Railway Station",
+   "qid": "Q107571723",
+   "region": "oceania",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "IT",
    "expected_country_qid": "Q38",
    "label_hint_en": "Rocca di Frassinello",
@@ -14254,6 +17916,16 @@
    ]
   },
   {
+   "expected_country_code": "MY",
+   "expected_country_qid": "Q833",
+   "label_hint_en": "The Datai Langkawi",
+   "qid": "Q111403937",
+   "region": "southeast_asia",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "MX",
    "expected_country_qid": "Q96",
    "label_hint_en": "Camino Real Polanco Mexico",
@@ -14281,6 +17953,16 @@
    "region": "south_asia",
    "risk_tags": [
     "coverage_promotion"
+   ]
+  },
+  {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "Cité de la musique",
+   "qid": "Q111713330",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
    ]
   },
   {
@@ -14895,6 +18577,16 @@
    ]
   },
   {
+   "expected_country_code": "FR",
+   "expected_country_qid": "Q142",
+   "label_hint_en": "barrière de la Villette",
+   "qid": "Q124629114",
+   "region": "europe",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "US",
    "expected_country_qid": "Q30",
    "label_hint_en": "Oceanside Civic Center",
@@ -15226,18 +18918,6 @@
    ]
   },
   {
-   "expected_country_code": "EG",
-   "expected_country_qid": "Q79",
-   "label_hint_en": "Mosque of Ibn Tulun",
-   "qid": "Q915413",
-   "region": "africa",
-   "risk_tags": [
-    "islamic",
-    "single_phase",
-    "no_completion_date_in_p1619_p571"
-   ]
-  },
-  {
    "expected_country_code": "PE",
    "expected_country_qid": "Q419",
    "label_hint_en": "Complejo Juan Pablo II",
@@ -15305,16 +18985,56 @@
    "label_hint_en": "Konstantin Melnikov"
   },
   {
+   "qid": "Q8867",
+   "label_hint_en": "Gae Aulenti"
+  },
+  {
+   "qid": "Q12750",
+   "label_hint_en": "Josep Puig i Cadafalch"
+  },
+  {
+   "qid": "Q17919",
+   "label_hint_en": "Charles Prosper Wolff Schoemaker"
+  },
+  {
+   "qid": "Q47163",
+   "label_hint_en": "Vitruvius"
+  },
+  {
    "qid": "Q49031",
    "label_hint_en": "Julia King"
+  },
+  {
+   "qid": "Q51129",
+   "label_hint_en": "Vasily Bazhenov"
+  },
+  {
+   "qid": "Q60163",
+   "label_hint_en": "Leo von Klenze"
+  },
+  {
+   "qid": "Q60694",
+   "label_hint_en": "Günter Behnisch"
   },
   {
    "qid": "Q61259",
    "label_hint_en": "Theodor Fischer"
   },
   {
+   "qid": "Q61349",
+   "label_hint_en": "Balthasar Neumann"
+  },
+  {
+   "qid": "Q61622",
+   "label_hint_en": "Ernst May"
+  },
+  {
    "qid": "Q61682",
    "label_hint_en": "Nikolaus Pevsner"
+  },
+  {
+   "qid": "Q62598",
+   "label_hint_en": "Ludwig Hilberseimer"
   },
   {
    "qid": "Q64094",
@@ -15325,12 +19045,48 @@
    "label_hint_en": "Mathias Goeritz"
   },
   {
+   "qid": "Q65803",
+   "label_hint_en": "Egon Eiermann"
+  },
+  {
+   "qid": "Q65901",
+   "label_hint_en": "Georg Wenzeslaus von Knobelsdorff"
+  },
+  {
+   "qid": "Q66108",
+   "label_hint_en": "Ernst Ziller"
+  },
+  {
+   "qid": "Q66490",
+   "label_hint_en": "Hermann Henselmann"
+  },
+  {
+   "qid": "Q67316",
+   "label_hint_en": "Oswald Mathias Ungers"
+  },
+  {
+   "qid": "Q68116",
+   "label_hint_en": "Hans Kollhoff"
+  },
+  {
+   "qid": "Q72604",
+   "label_hint_en": "Richard Kaufmann"
+  },
+  {
+   "qid": "Q75298",
+   "label_hint_en": "Alexander Baerwald"
+  },
+  {
    "qid": "Q75843",
    "label_hint_en": "Dominikus Böhm"
   },
   {
    "qid": "Q75949",
    "label_hint_en": "Adolf Behne"
+  },
+  {
+   "qid": "Q76368",
+   "label_hint_en": "Konstantin Thon"
   },
   {
    "qid": "Q76573",
@@ -15349,12 +19105,36 @@
    "label_hint_en": "Victor Gruen"
   },
   {
+   "qid": "Q78710",
+   "label_hint_en": "Jakob Prandtauer"
+  },
+  {
    "qid": "Q84312",
    "label_hint_en": "Richard Neutra"
   },
   {
+   "qid": "Q84507",
+   "label_hint_en": "Johann Lukas von Hildebrandt"
+  },
+  {
+   "qid": "Q84673",
+   "label_hint_en": "Roland Rainer"
+  },
+  {
+   "qid": "Q85897",
+   "label_hint_en": "Ulrich von Ensingen"
+  },
+  {
    "qid": "Q90407",
    "label_hint_en": "Richard Krautheimer"
+  },
+  {
+   "qid": "Q92241",
+   "label_hint_en": "Heinrich Parler"
+  },
+  {
+   "qid": "Q93987",
+   "label_hint_en": "Camillo Sitte"
   },
   {
    "qid": "Q94005",
@@ -15369,8 +19149,24 @@
    "label_hint_en": "Leopoldo Rother"
   },
   {
+   "qid": "Q101791",
+   "label_hint_en": "Sep Ruf"
+  },
+  {
+   "qid": "Q103704",
+   "label_hint_en": "Karl Siegfried Döhring"
+  },
+  {
    "qid": "Q106108",
    "label_hint_en": "Bruno Möhring"
+  },
+  {
+   "qid": "Q113553",
+   "label_hint_en": "Ernst Egli"
+  },
+  {
+   "qid": "Q117448",
+   "label_hint_en": "Luigi Snozzi"
   },
   {
    "qid": "Q122123",
@@ -15393,8 +19189,24 @@
    "label_hint_en": "Bernard Tschumi"
   },
   {
+   "qid": "Q128169",
+   "label_hint_en": "Mario Tamagno"
+  },
+  {
+   "qid": "Q128623",
+   "label_hint_en": "Giacomo Quarenghi"
+  },
+  {
    "qid": "Q131171",
    "label_hint_en": "Imhotep"
+  },
+  {
+   "qid": "Q131914",
+   "label_hint_en": "Matvey Kazakov"
+  },
+  {
+   "qid": "Q137934",
+   "label_hint_en": "Suger"
   },
   {
    "qid": "Q150465",
@@ -15405,8 +19217,16 @@
    "label_hint_en": "Robert A. M. Stern"
   },
   {
+   "qid": "Q167816",
+   "label_hint_en": "Boris Iofan"
+  },
+  {
    "qid": "Q170411",
    "label_hint_en": "Charles Eames"
+  },
+  {
+   "qid": "Q176938",
+   "label_hint_en": "Paolo Portoghesi"
   },
   {
    "qid": "Q177256",
@@ -15421,8 +19241,24 @@
    "label_hint_en": "Leon Battista Alberti"
   },
   {
+   "qid": "Q201854",
+   "label_hint_en": "Szymon Syrkus"
+  },
+  {
+   "qid": "Q202267",
+   "label_hint_en": "Jacopo Sansovino"
+  },
+  {
+   "qid": "Q202497",
+   "label_hint_en": "Benjamin Mountfort"
+  },
+  {
    "qid": "Q225927",
    "label_hint_en": "Jacob van Rijs"
+  },
+  {
+   "qid": "Q231371",
+   "label_hint_en": "Zvi Hecker"
   },
   {
    "qid": "Q234335",
@@ -15431,6 +19267,14 @@
   {
    "qid": "Q235063",
    "label_hint_en": "Maya Lin"
+  },
+  {
+   "qid": "Q245879",
+   "label_hint_en": "Porfírio Pardal Monteiro"
+  },
+  {
+   "qid": "Q253145",
+   "label_hint_en": "Bohuslav Fuchs"
   },
   {
    "qid": "Q254662",
@@ -15453,8 +19297,32 @@
    "label_hint_en": "Eugène Viollet-le-Duc"
   },
   {
+   "qid": "Q277444",
+   "label_hint_en": "Heydar Ghiai"
+  },
+  {
+   "qid": "Q294065",
+   "label_hint_en": "Ödön Lechner"
+  },
+  {
+   "qid": "Q295929",
+   "label_hint_en": "Inigo Jones"
+  },
+  {
    "qid": "Q298926",
    "label_hint_en": "Lúcio Costa"
+  },
+  {
+   "qid": "Q304412",
+   "label_hint_en": "Prince Narisara Nuvadtivongs"
+  },
+  {
+   "qid": "Q304768",
+   "label_hint_en": "Will Alsop"
+  },
+  {
+   "qid": "Q312635",
+   "label_hint_en": "Robert Adam"
   },
   {
    "qid": "Q312847",
@@ -15469,8 +19337,20 @@
    "label_hint_en": "Michael Graves"
   },
   {
+   "qid": "Q316422",
+   "label_hint_en": "Hector Guimard"
+  },
+  {
+   "qid": "Q318319",
+   "label_hint_en": "Herman Hertzberger"
+  },
+  {
    "qid": "Q322953",
    "label_hint_en": "Aldo Rossi"
+  },
+  {
+   "qid": "Q323281",
+   "label_hint_en": "Guarino Guarini"
   },
   {
    "qid": "Q325325",
@@ -15489,8 +19369,24 @@
    "label_hint_en": "Kazuo Shinohara"
   },
   {
+   "qid": "Q333398",
+   "label_hint_en": "John Vanbrugh"
+  },
+  {
    "qid": "Q333509",
    "label_hint_en": "Glenn Murcutt"
+  },
+  {
+   "qid": "Q338824",
+   "label_hint_en": "Imre Makovecz"
+  },
+  {
+   "qid": "Q339830",
+   "label_hint_en": "Alfred Waterhouse"
+  },
+  {
+   "qid": "Q348036",
+   "label_hint_en": "Adalberto Libera"
   },
   {
    "qid": "Q350006",
@@ -15499,6 +19395,10 @@
   {
    "qid": "Q351898",
    "label_hint_en": "Francisco Eduardo Tresguerras"
+  },
+  {
+   "qid": "Q352843",
+   "label_hint_en": "Peter Celsing"
   },
   {
    "qid": "Q354634",
@@ -15521,8 +19421,28 @@
    "label_hint_en": "Antoine Predock"
   },
   {
+   "qid": "Q363914",
+   "label_hint_en": "Juan de Herrera"
+  },
+  {
+   "qid": "Q366502",
+   "label_hint_en": "Villard de Honnecourt"
+  },
+  {
+   "qid": "Q366674",
+   "label_hint_en": "Nicholas Hawksmoor"
+  },
+  {
    "qid": "Q370420",
    "label_hint_en": "Samuel McIntire"
+  },
+  {
+   "qid": "Q377633",
+   "label_hint_en": "Juha Leiviskä"
+  },
+  {
+   "qid": "Q379178",
+   "label_hint_en": "Vann Molyvann"
   },
   {
    "qid": "Q379714",
@@ -15561,12 +19481,44 @@
    "label_hint_en": "Alexander Jackson Davis"
   },
   {
+   "qid": "Q434218",
+   "label_hint_en": "Henri Labrouste"
+  },
+  {
+   "qid": "Q434425",
+   "label_hint_en": "Francesco di Giorgio Martini"
+  },
+  {
+   "qid": "Q434946",
+   "label_hint_en": "Alar Kotli"
+  },
+  {
+   "qid": "Q436649",
+   "label_hint_en": "John Andrews"
+  },
+  {
+   "qid": "Q440053",
+   "label_hint_en": "Philibert de l'Orme"
+  },
+  {
    "qid": "Q444257",
    "label_hint_en": "Jeanne Gang"
   },
   {
+   "qid": "Q444571",
+   "label_hint_en": "Aldo van Eyck"
+  },
+  {
    "qid": "Q445298",
    "label_hint_en": "Itsuko Hasegawa"
+  },
+  {
+   "qid": "Q449961",
+   "label_hint_en": "Filarete"
+  },
+  {
+   "qid": "Q452318",
+   "label_hint_en": "Sebastiano Serlio"
   },
   {
    "qid": "Q455076",
@@ -15575,6 +19527,10 @@
   {
    "qid": "Q457718",
    "label_hint_en": "Denise Scott Brown"
+  },
+  {
+   "qid": "Q458881",
+   "label_hint_en": "Terry Farrell"
   },
   {
    "qid": "Q466400",
@@ -15609,6 +19565,14 @@
    "label_hint_en": "Kim Swoo-geun"
   },
   {
+   "qid": "Q504358",
+   "label_hint_en": "Dominique Perrault"
+  },
+  {
+   "qid": "Q506594",
+   "label_hint_en": "Jan Kotěra"
+  },
+  {
    "qid": "Q513374",
    "label_hint_en": "Greg Lynn"
   },
@@ -15625,12 +19589,28 @@
    "label_hint_en": "Mary Colter"
   },
   {
+   "qid": "Q528902",
+   "label_hint_en": "Genia Averbuch"
+  },
+  {
+   "qid": "Q536951",
+   "label_hint_en": "Jacob van Campen"
+  },
+  {
    "qid": "Q541040",
    "label_hint_en": "Kobori Enshu (Kobori Masakazu)"
   },
   {
+   "qid": "Q542546",
+   "label_hint_en": "Marion Mahony Griffin"
+  },
+  {
    "qid": "Q547004",
    "label_hint_en": "Caroline Bos"
+  },
+  {
+   "qid": "Q549786",
+   "label_hint_en": "John Soane"
   },
   {
    "qid": "Q549968",
@@ -15665,12 +19645,28 @@
    "label_hint_en": "Nader Khalili"
   },
   {
+   "qid": "Q587928",
+   "label_hint_en": "Mimar Kemaleddin"
+  },
+  {
+   "qid": "Q597639",
+   "label_hint_en": "Gert Wingårdh"
+  },
+  {
    "qid": "Q601339",
    "label_hint_en": "Juan Navarro Baldeweg"
   },
   {
    "qid": "Q604608",
    "label_hint_en": "Antonio Rivas Mercado"
+  },
+  {
+   "qid": "Q605186",
+   "label_hint_en": "Lorenzo Maitani"
+  },
+  {
+   "qid": "Q619584",
+   "label_hint_en": "Carlo Rossi"
   },
   {
    "qid": "Q631455",
@@ -15693,6 +19689,10 @@
    "label_hint_en": "Charles Follen McKim"
   },
   {
+   "qid": "Q663351",
+   "label_hint_en": "Aris Konstantinidis"
+  },
+  {
    "qid": "Q671960",
    "label_hint_en": "Mario Pani"
   },
@@ -15711,6 +19711,10 @@
   {
    "qid": "Q696759",
    "label_hint_en": "C. Y. Lee (Li Zu-yuan)"
+  },
+  {
+   "qid": "Q700592",
+   "label_hint_en": "Bogdan Bogdanović"
   },
   {
    "qid": "Q704609",
@@ -15749,8 +19753,20 @@
    "label_hint_en": "Gregori Warchavchik"
   },
   {
+   "qid": "Q727197",
+   "label_hint_en": "Robert Lawson"
+  },
+  {
+   "qid": "Q734053",
+   "label_hint_en": "Mauro Codussi"
+  },
+  {
    "qid": "Q742608",
    "label_hint_en": "Fernand Pouillon"
+  },
+  {
+   "qid": "Q764794",
+   "label_hint_en": "Josef Gočár"
   },
   {
    "qid": "Q766293",
@@ -15759,6 +19775,18 @@
   {
    "qid": "Q767114",
    "label_hint_en": "José Villagrán García"
+  },
+  {
+   "qid": "Q770062",
+   "label_hint_en": "Suad Amiry"
+  },
+  {
+   "qid": "Q771145",
+   "label_hint_en": "Kamran Diba"
+  },
+  {
+   "qid": "Q829991",
+   "label_hint_en": "Jo Coenen"
   },
   {
    "qid": "Q835890",
@@ -15771,6 +19799,14 @@
   {
    "qid": "Q859940",
    "label_hint_en": "Bijoy Jain"
+  },
+  {
+   "qid": "Q890756",
+   "label_hint_en": "Bohdan Pniewski"
+  },
+  {
+   "qid": "Q923236",
+   "label_hint_en": "Pavel Janák"
   },
   {
    "qid": "Q923927",
@@ -15805,12 +19841,24 @@
    "label_hint_en": "Massimiliano Fuksas"
   },
   {
+   "qid": "Q970544",
+   "label_hint_en": "Francis Greenway"
+  },
+  {
    "qid": "Q982097",
    "label_hint_en": "Ivan Rerberg"
   },
   {
+   "qid": "Q1035625",
+   "label_hint_en": "Hermodorus of Salamis"
+  },
+  {
    "qid": "Q1041315",
    "label_hint_en": "Carl von Diebitsch"
+  },
+  {
+   "qid": "Q1041868",
+   "label_hint_en": "Carlo Aymonino"
   },
   {
    "qid": "Q1043102",
@@ -15819,6 +19867,14 @@
   {
    "qid": "Q1050457",
    "label_hint_en": "Ito Chuta"
+  },
+  {
+   "qid": "Q1064881",
+   "label_hint_en": "Charles Holden"
+  },
+  {
+   "qid": "Q1066309",
+   "label_hint_en": "Charles Vandenhove"
   },
   {
    "qid": "Q1096098",
@@ -15853,6 +19909,14 @@
    "label_hint_en": "Elizabeth Diller"
   },
   {
+   "qid": "Q1226039",
+   "label_hint_en": "Dimitris Pikionis"
+  },
+  {
+   "qid": "Q1238310",
+   "label_hint_en": "Guðjón Samúelsson"
+  },
+  {
    "qid": "Q1247826",
    "label_hint_en": "John McComb Jr."
   },
@@ -15877,12 +19941,28 @@
    "label_hint_en": "Enrique Yáñez"
   },
   {
+   "qid": "Q1347657",
+   "label_hint_en": "Giancarlo De Carlo"
+  },
+  {
+   "qid": "Q1348044",
+   "label_hint_en": "Nicholas Grimshaw"
+  },
+  {
    "qid": "Q1352623",
    "label_hint_en": "Kiyonori Kikutake"
   },
   {
    "qid": "Q1356269",
    "label_hint_en": "Winy Maas"
+  },
+  {
+   "qid": "Q1363098",
+   "label_hint_en": "Juan Bautista de Toledo"
+  },
+  {
+   "qid": "Q1374863",
+   "label_hint_en": "Richard Norman Shaw"
   },
   {
    "qid": "Q1376819",
@@ -15893,12 +19973,32 @@
    "label_hint_en": "Henning Larsen"
   },
   {
+   "qid": "Q1377708",
+   "label_hint_en": "Ivan Fomin"
+  },
+  {
+   "qid": "Q1377712",
+   "label_hint_en": "Georges Candilis"
+  },
+  {
    "qid": "Q1380014",
    "label_hint_en": "Laurie Baker"
   },
   {
+   "qid": "Q1382978",
+   "label_hint_en": "Marcello Piacentini"
+  },
+  {
    "qid": "Q1386188",
    "label_hint_en": "Lebbeus Woods"
+  },
+  {
+   "qid": "Q1397864",
+   "label_hint_en": "Piet Blom"
+  },
+  {
+   "qid": "Q1404189",
+   "label_hint_en": "Odile Decq"
   },
   {
    "qid": "Q1422362",
@@ -15919,6 +20019,18 @@
   {
    "qid": "Q1509035",
    "label_hint_en": "Georges Parcq"
+  },
+  {
+   "qid": "Q1525473",
+   "label_hint_en": "Giorgio Grassi"
+  },
+  {
+   "qid": "Q1562243",
+   "label_hint_en": "Stjepan Planić"
+  },
+  {
+   "qid": "Q1605703",
+   "label_hint_en": "Edvard Ravnikar"
   },
   {
    "qid": "Q1608828",
@@ -15953,6 +20065,10 @@
    "label_hint_en": "Spiro Kostof"
   },
   {
+   "qid": "Q1777577",
+   "label_hint_en": "Arne Korsmo"
+  },
+  {
    "qid": "Q1797462",
    "label_hint_en": "Ruy Ohtake"
   },
@@ -15969,12 +20085,24 @@
    "label_hint_en": "Li Jie"
   },
   {
+   "qid": "Q1882538",
+   "label_hint_en": "Juan M. Arellano"
+  },
+  {
    "qid": "Q1891751",
    "label_hint_en": "Manuel Toussaint"
   },
   {
    "qid": "Q1894016",
    "label_hint_en": "Marcos Acayaba"
+  },
+  {
+   "qid": "Q1931256",
+   "label_hint_en": "Ernest Hébrard"
+  },
+  {
+   "qid": "Q1942781",
+   "label_hint_en": "Mohamed Makiya"
   },
   {
    "qid": "Q1972516",
@@ -15993,6 +20121,10 @@
    "label_hint_en": "Norma Merrick Sklarek"
   },
   {
+   "qid": "Q2017807",
+   "label_hint_en": "Isidore the Younger"
+  },
+  {
    "qid": "Q2066635",
    "label_hint_en": "Richard Upjohn"
   },
@@ -16001,12 +20133,24 @@
    "label_hint_en": "Marian Peretyatkovich"
   },
   {
+   "qid": "Q2079131",
+   "label_hint_en": "Henri Maclaine Pont"
+  },
+  {
    "qid": "Q2140435",
    "label_hint_en": "Mick Pearce"
   },
   {
+   "qid": "Q2166558",
+   "label_hint_en": "Cosman Citroen"
+  },
+  {
    "qid": "Q2181682",
    "label_hint_en": "Wu Liangyong"
+  },
+  {
+   "qid": "Q2196637",
+   "label_hint_en": "Leandro V. Locsin"
   },
   {
    "qid": "Q2234596",
@@ -16025,6 +20169,10 @@
    "label_hint_en": "Stanley Tigerman"
   },
   {
+   "qid": "Q2336053",
+   "label_hint_en": "Frans Johan Louwrens Ghijsels"
+  },
+  {
    "qid": "Q2395533",
    "label_hint_en": "Tatiana Bilbao"
   },
@@ -16033,12 +20181,28 @@
    "label_hint_en": "Ilya Golosov"
   },
   {
+   "qid": "Q2429525",
+   "label_hint_en": "Juan de Villanueva"
+  },
+  {
    "qid": "Q2433909",
    "label_hint_en": "George Washington Smith"
   },
   {
+   "qid": "Q2441511",
+   "label_hint_en": "Pablo S. Antonio"
+  },
+  {
+   "qid": "Q2442892",
+   "label_hint_en": "Kasım Ağa"
+  },
+  {
    "qid": "Q2450186",
    "label_hint_en": "Francisco Javier Sáenz de Oíza"
+  },
+  {
+   "qid": "Q2455450",
+   "label_hint_en": "Tomás Mapúa"
   },
   {
    "qid": "Q2471129",
@@ -16069,12 +20233,20 @@
    "label_hint_en": "Viktor Vesnin"
   },
   {
+   "qid": "Q2563244",
+   "label_hint_en": "Juan F. Nakpil"
+  },
+  {
    "qid": "Q2578751",
    "label_hint_en": "William F. Lamb"
   },
   {
    "qid": "Q2582922",
    "label_hint_en": "Reima Pietilä"
+  },
+  {
+   "qid": "Q2589897",
+   "label_hint_en": "Eva Jiřičná"
   },
   {
    "qid": "Q2604850",
@@ -16085,12 +20257,24 @@
    "label_hint_en": "Víctor Meano"
   },
   {
+   "qid": "Q2638404",
+   "label_hint_en": "Raimondo D'Aronco"
+  },
+  {
+   "qid": "Q2647238",
+   "label_hint_en": "Alison Smithson"
+  },
+  {
    "qid": "Q2721790",
    "label_hint_en": "Piloo Mody"
   },
   {
    "qid": "Q2723428",
    "label_hint_en": "Manfredo Tafuri"
+  },
+  {
+   "qid": "Q2725529",
+   "label_hint_en": "Y. B. Mangunwijaya"
   },
   {
    "qid": "Q2739984",
@@ -16119,6 +20303,10 @@
   {
    "qid": "Q2831314",
    "label_hint_en": "Albert Laprade"
+  },
+  {
+   "qid": "Q2834105",
+   "label_hint_en": "Alexander Vallaury"
   },
   {
    "qid": "Q2834123",
@@ -16153,8 +20341,24 @@
    "label_hint_en": "Héctor Velarde"
   },
   {
+   "qid": "Q2904017",
+   "label_hint_en": "Dov Karmi"
+  },
+  {
    "qid": "Q2905059",
    "label_hint_en": "Max Herz"
+  },
+  {
+   "qid": "Q2909469",
+   "label_hint_en": "Ram Karmi"
+  },
+  {
+   "qid": "Q2909474",
+   "label_hint_en": "Avraham Yasky"
+  },
+  {
+   "qid": "Q2910136",
+   "label_hint_en": "Arieh Sharon"
   },
   {
    "qid": "Q2916797",
@@ -16167,6 +20371,10 @@
   {
    "qid": "Q3002011",
    "label_hint_en": "Craig Ellwood"
+  },
+  {
+   "qid": "Q3028687",
+   "label_hint_en": "Diogo de Boitaca"
   },
   {
    "qid": "Q3048218",
@@ -16209,12 +20417,24 @@
    "label_hint_en": "Henri Prost"
   },
   {
+   "qid": "Q3132184",
+   "label_hint_en": "Henry Yevele"
+  },
+  {
+   "qid": "Q3142634",
+   "label_hint_en": "Hugues Libergier"
+  },
+  {
    "qid": "Q3154610",
    "label_hint_en": "Irving Gill"
   },
   {
    "qid": "Q3155639",
    "label_hint_en": "Yoshida Isoya"
+  },
+  {
+   "qid": "Q3156994",
+   "label_hint_en": "Jaafar Tuqan"
   },
   {
    "qid": "Q3161311",
@@ -16233,8 +20453,20 @@
    "label_hint_en": "Pierre de Meuron"
   },
   {
+   "qid": "Q3175229",
+   "label_hint_en": "Jean d'Orbais"
+  },
+  {
+   "qid": "Q3181776",
+   "label_hint_en": "John Horbury Hunt"
+  },
+  {
    "qid": "Q3185319",
    "label_hint_en": "Joseph Marrast"
+  },
+  {
+   "qid": "Q3293422",
+   "label_hint_en": "George Drumgoole Coleman"
   },
   {
    "qid": "Q3293774",
@@ -16243,6 +20475,14 @@
   {
    "qid": "Q3311238",
    "label_hint_en": "Michel Écochard"
+  },
+  {
+   "qid": "Q3314962",
+   "label_hint_en": "Miguel Fisac"
+  },
+  {
+   "qid": "Q3341668",
+   "label_hint_en": "Nikolai Markov"
   },
   {
    "qid": "Q3350730",
@@ -16263,6 +20503,14 @@
   {
    "qid": "Q3391665",
    "label_hint_en": "Julio Cano Lasso"
+  },
+  {
+   "qid": "Q3409247",
+   "label_hint_en": "Rabirius"
+  },
+  {
+   "qid": "Q3417665",
+   "label_hint_en": "Albert Aalbers"
   },
   {
    "qid": "Q3418307",
@@ -16291,6 +20539,10 @@
   {
    "qid": "Q3568996",
    "label_hint_en": "William Thomas"
+  },
+  {
+   "qid": "Q3594364",
+   "label_hint_en": "Zeev Rechter"
   },
   {
    "qid": "Q3609433",
@@ -16341,6 +20593,14 @@
    "label_hint_en": "Yeheidie'erding"
   },
   {
+   "qid": "Q4143115",
+   "label_hint_en": "Jim Torosyan"
+  },
+  {
+   "qid": "Q4163556",
+   "label_hint_en": "Nikola Dobrović"
+  },
+  {
    "qid": "Q4196379",
    "label_hint_en": "Illarion Ivanov-Schitz"
   },
@@ -16353,8 +20613,16 @@
    "label_hint_en": "Ivan Kuznetsov"
   },
   {
+   "qid": "Q4374109",
+   "label_hint_en": "Mikhail Posokhin"
+  },
+  {
    "qid": "Q4380947",
    "label_hint_en": "Joseph Lyman Silsbee"
+  },
+  {
+   "qid": "Q4678270",
+   "label_hint_en": "Ada Karmi-Melamede"
   },
   {
    "qid": "Q4739531",
@@ -16367,6 +20635,14 @@
   {
    "qid": "Q4775527",
    "label_hint_en": "Antoine Picon"
+  },
+  {
+   "qid": "Q4782265",
+   "label_hint_en": "Aptullah Kuran"
+  },
+  {
+   "qid": "Q4790539",
+   "label_hint_en": "Arif Hikmet Koyunoğlu"
   },
   {
    "qid": "Q4800276",
@@ -16417,8 +20693,20 @@
    "label_hint_en": "Cristián Undurraga"
   },
   {
+   "qid": "Q5226191",
+   "label_hint_en": "Daryl Jackson"
+  },
+  {
    "qid": "Q5255093",
    "label_hint_en": "Demas Nwoko"
+  },
+  {
+   "qid": "Q5303861",
+   "label_hint_en": "Doğan Kuban"
+  },
+  {
+   "qid": "Q5339292",
+   "label_hint_en": "Edmund Blacket"
   },
   {
    "qid": "Q5342473",
@@ -16427,6 +20715,14 @@
   {
    "qid": "Q5347601",
    "label_hint_en": "Efraín Recinos"
+  },
+  {
+   "qid": "Q5371446",
+   "label_hint_en": "Emil Sodersten"
+  },
+  {
+   "qid": "Q5385226",
+   "label_hint_en": "Ercole Manfredi"
   },
   {
    "qid": "Q5392799",
@@ -16445,6 +20741,14 @@
    "label_hint_en": "Francisco Antonio Guerrero y Torres"
   },
   {
+   "qid": "Q5483688",
+   "label_hint_en": "Francisco Mañosa"
+  },
+  {
+   "qid": "Q5498659",
+   "label_hint_en": "Frederick Romberg"
+  },
+  {
    "qid": "Q5499109",
    "label_hint_en": "Frederick William Stevens"
   },
@@ -16461,6 +20765,10 @@
    "label_hint_en": "George Anselevicius"
   },
   {
+   "qid": "Q5606827",
+   "label_hint_en": "Gregory Burgess"
+  },
+  {
    "qid": "Q5636772",
    "label_hint_en": "Habib Fida Ali"
   },
@@ -16473,12 +20781,20 @@
    "label_hint_en": "Hanif Kara"
   },
   {
+   "qid": "Q5660480",
+   "label_hint_en": "Harold Desbrowe-Annear"
+  },
+  {
    "qid": "Q5676395",
    "label_hint_en": "Yoshida Tetsuro"
   },
   {
    "qid": "Q5688816",
    "label_hint_en": "He Jingtang"
+  },
+  {
+   "qid": "Q5722389",
+   "label_hint_en": "Qawam al-Din Shirazi"
   },
   {
    "qid": "Q5724414",
@@ -16513,12 +20829,32 @@
    "label_hint_en": "Giancarlo Mazzanti"
   },
   {
+   "qid": "Q5898542",
+   "label_hint_en": "Houshang Seyhoun"
+  },
+  {
+   "qid": "Q5930168",
+   "label_hint_en": "Hugh Buhrich"
+  },
+  {
    "qid": "Q5932619",
    "label_hint_en": "Fray Jodoco Ricke"
   },
   {
+   "qid": "Q5941211",
+   "label_hint_en": "Mirza Mehdi Khan Shaqaqi"
+  },
+  {
    "qid": "Q5950628",
    "label_hint_en": "Juan Kurchan"
+  },
+  {
+   "qid": "Q5951051",
+   "label_hint_en": "Mohsen Foroughi"
+  },
+  {
+   "qid": "Q5952269",
+   "label_hint_en": "Vartan Hovanessian"
   },
   {
    "qid": "Q5979087",
@@ -16533,6 +20869,46 @@
    "label_hint_en": "Iain Borden"
   },
   {
+   "qid": "Q5980798",
+   "label_hint_en": "Ian Athfield"
+  },
+  {
+   "qid": "Q6055915",
+   "label_hint_en": "Han Tümertekin"
+  },
+  {
+   "qid": "Q6055988",
+   "label_hint_en": "Cengiz Bektaş"
+  },
+  {
+   "qid": "Q6065893",
+   "label_hint_en": "Behruz Çinici"
+  },
+  {
+   "qid": "Q6070070",
+   "label_hint_en": "Sarkis Balyan"
+  },
+  {
+   "qid": "Q6071757",
+   "label_hint_en": "Hacı İvaz"
+  },
+  {
+   "qid": "Q6084316",
+   "label_hint_en": "Krikor Amira Balyan"
+  },
+  {
+   "qid": "Q6094368",
+   "label_hint_en": "Hüsrev Tayla"
+  },
+  {
+   "qid": "Q6100577",
+   "label_hint_en": "Iwan Iwanoff"
+  },
+  {
+   "qid": "Q6129804",
+   "label_hint_en": "James Birrell"
+  },
+  {
    "qid": "Q6134465",
    "label_hint_en": "James Gamble Rogers"
   },
@@ -16543,6 +20919,10 @@
   {
    "qid": "Q6138720",
    "label_hint_en": "George Howe"
+  },
+  {
+   "qid": "Q6145086",
+   "label_hint_en": "James Walter Chapman-Taylor"
   },
   {
    "qid": "Q6170159",
@@ -16561,8 +20941,24 @@
    "label_hint_en": "John Begg"
   },
   {
+   "qid": "Q6224985",
+   "label_hint_en": "John Campbell"
+  },
+  {
+   "qid": "Q6241522",
+   "label_hint_en": "John James Clark"
+  },
+  {
    "qid": "Q6245867",
    "label_hint_en": "John M. Lyle"
+  },
+  {
+   "qid": "Q6261423",
+   "label_hint_en": "John Turnbull Thomson"
+  },
+  {
+   "qid": "Q6261930",
+   "label_hint_en": "John Verge"
   },
   {
    "qid": "Q6263028",
@@ -16613,8 +21009,20 @@
    "label_hint_en": "Kate Otten"
   },
   {
+   "qid": "Q6388721",
+   "label_hint_en": "Ken Woolley"
+  },
+  {
    "qid": "Q6394544",
    "label_hint_en": "Kerry Hill"
+  },
+  {
+   "qid": "Q6394766",
+   "label_hint_en": "Kerstin Thompson"
+  },
+  {
+   "qid": "Q6395862",
+   "label_hint_en": "Kevin Borland"
   },
   {
    "qid": "Q6408981",
@@ -16635,6 +21043,10 @@
   {
    "qid": "Q6530777",
    "label_hint_en": "Leslie E. Robertson"
+  },
+  {
+   "qid": "Q6687346",
+   "label_hint_en": "Louis Hay"
   },
   {
    "qid": "Q6688185",
@@ -16665,6 +21077,10 @@
    "label_hint_en": "Michael Ulrich Hensel"
   },
   {
+   "qid": "Q6851573",
+   "label_hint_en": "Miles Warren"
+  },
+  {
    "qid": "Q6863188",
    "label_hint_en": "Minard Lafever"
   },
@@ -16685,8 +21101,16 @@
    "label_hint_en": "Murray Fraser"
   },
   {
+   "qid": "Q6941817",
+   "label_hint_en": "Olivier de Puymanel"
+  },
+  {
    "qid": "Q6965904",
    "label_hint_en": "Nari Gandhi"
+  },
+  {
+   "qid": "Q7049251",
+   "label_hint_en": "Nonda Katsalidis"
   },
   {
    "qid": "Q7130356",
@@ -16705,6 +21129,22 @@
    "label_hint_en": "Percy Brown"
   },
   {
+   "qid": "Q7172738",
+   "label_hint_en": "Peter Beaven"
+  },
+  {
+   "qid": "Q7175790",
+   "label_hint_en": "Peter McIntyre"
+  },
+  {
+   "qid": "Q7175983",
+   "label_hint_en": "Peter Muller"
+  },
+  {
+   "qid": "Q7183384",
+   "label_hint_en": "Philip Cox"
+  },
+  {
    "qid": "Q7184227",
    "label_hint_en": "Philip Powell"
   },
@@ -16719,6 +21159,10 @@
   {
    "qid": "Q7283604",
    "label_hint_en": "Rahul Mehrotra"
+  },
+  {
+   "qid": "Q7285569",
+   "label_hint_en": "Raja ibn Hayweh"
   },
   {
    "qid": "Q7287147",
@@ -16741,8 +21185,16 @@
    "label_hint_en": "Ricardo Malachowski"
   },
   {
+   "qid": "Q7327339",
+   "label_hint_en": "Richard Leplastrier"
+  },
+  {
    "qid": "Q7329387",
    "label_hint_en": "Richard Taliaferro"
+  },
+  {
+   "qid": "Q7333210",
+   "label_hint_en": "Rifat Chadirji"
   },
   {
    "qid": "Q7342909",
@@ -16755,6 +21207,18 @@
   {
    "qid": "Q7352265",
    "label_hint_en": "Robin Boyd"
+  },
+  {
+   "qid": "Q7352415",
+   "label_hint_en": "Robin Gibson"
+  },
+  {
+   "qid": "Q7359078",
+   "label_hint_en": "Roger Walker"
+  },
+  {
+   "qid": "Q7366798",
+   "label_hint_en": "Roque Ruaño"
   },
   {
    "qid": "Q7412727",
@@ -16793,6 +21257,10 @@
    "label_hint_en": "Thomas Fuller"
   },
   {
+   "qid": "Q7793646",
+   "label_hint_en": "Thomas Rowe"
+  },
+  {
    "qid": "Q7807335",
    "label_hint_en": "Timothy Pflueger"
   },
@@ -16807,6 +21275,10 @@
   {
    "qid": "Q7928193",
    "label_hint_en": "Vidyadhar Bhattacharya"
+  },
+  {
+   "qid": "Q7965451",
+   "label_hint_en": "Walter Liberty Vernon"
   },
   {
    "qid": "Q7965714",
@@ -16825,12 +21297,36 @@
    "label_hint_en": "William Buckland"
   },
   {
+   "qid": "Q8006874",
+   "label_hint_en": "William Clayton"
+  },
+  {
    "qid": "Q8008597",
    "label_hint_en": "William Emerson"
   },
   {
+   "qid": "Q8012015",
+   "label_hint_en": "William Gummer"
+  },
+  {
    "qid": "Q8013314",
    "label_hint_en": "William J. R. Curtis"
+  },
+  {
+   "qid": "Q8015217",
+   "label_hint_en": "William Mason"
+  },
+  {
+   "qid": "Q8016932",
+   "label_hint_en": "William Pitt"
+  },
+  {
+   "qid": "Q8017900",
+   "label_hint_en": "William Lim Siew Wai"
+  },
+  {
+   "qid": "Q8020020",
+   "label_hint_en": "William Wardell"
   },
   {
    "qid": "Q8020605",
@@ -16903,6 +21399,10 @@
   {
    "qid": "Q10325246",
    "label_hint_en": "Marcio Kogan"
+  },
+  {
+   "qid": "Q10329451",
+   "label_hint_en": "Michael Hopkins"
   },
   {
    "qid": "Q10340504",
@@ -16989,8 +21489,20 @@
    "label_hint_en": "Dong Dayou"
   },
   {
+   "qid": "Q11706780",
+   "label_hint_en": "Andrés Luna de San Pedro"
+  },
+  {
    "qid": "Q11864637",
    "label_hint_en": "Ilmari Niemeläinen"
+  },
+  {
+   "qid": "Q12028477",
+   "label_hint_en": "Karel Prager"
+  },
+  {
+   "qid": "Q12053101",
+   "label_hint_en": "James Barnet"
   },
   {
    "qid": "Q12217558",
@@ -17005,12 +21517,28 @@
    "label_hint_en": "Seung H-sang"
   },
   {
+   "qid": "Q12810881",
+   "label_hint_en": "Davud Ağa"
+  },
+  {
    "qid": "Q13035654",
    "label_hint_en": "Norman Eaton"
   },
   {
+   "qid": "Q13425862",
+   "label_hint_en": "George Chakhava"
+  },
+  {
+   "qid": "Q15056051",
+   "label_hint_en": "Peter Smithson"
+  },
+  {
    "qid": "Q15429753",
    "label_hint_en": "Natalie Griffin de Blois"
+  },
+  {
+   "qid": "Q15453328",
+   "label_hint_en": "Walter Bunning"
   },
   {
    "qid": "Q15713956",
@@ -17045,6 +21573,18 @@
    "label_hint_en": "Hamed Khosravi"
   },
   {
+   "qid": "Q15997650",
+   "label_hint_en": "Arthur Benison Hubback"
+  },
+  {
+   "qid": "Q15998720",
+   "label_hint_en": "Pieter Adriaan Jacobus Moojen"
+  },
+  {
+   "qid": "Q16004085",
+   "label_hint_en": "Harry Norris"
+  },
+  {
    "qid": "Q16018030",
    "label_hint_en": "Aditya Prakash"
   },
@@ -17057,12 +21597,20 @@
    "label_hint_en": "Henry Irwin"
   },
   {
+   "qid": "Q16167102",
+   "label_hint_en": "Andra Matin"
+  },
+  {
    "qid": "Q16195649",
    "label_hint_en": "C.J. Lim"
   },
   {
    "qid": "Q16197354",
    "label_hint_en": "Kazys Varnelis"
+  },
+  {
+   "qid": "Q16218141",
+   "label_hint_en": "Ivan Mercep"
   },
   {
    "qid": "Q16499856",
@@ -17085,6 +21633,10 @@
    "label_hint_en": "Michael Rotondi"
   },
   {
+   "qid": "Q17422011",
+   "label_hint_en": "Leslie Wilkinson"
+  },
+  {
    "qid": "Q18285074",
    "label_hint_en": "Anne Lacaton"
   },
@@ -17097,6 +21649,10 @@
    "label_hint_en": "Vincent Esch"
   },
   {
+   "qid": "Q18639793",
+   "label_hint_en": "Hijjas Kasturi"
+  },
+  {
    "qid": "Q18729524",
    "label_hint_en": "Eliana Bormida"
   },
@@ -17105,8 +21661,24 @@
    "label_hint_en": "Federico Campagna"
   },
   {
+   "qid": "Q19561233",
+   "label_hint_en": "Liu Thai Ker"
+  },
+  {
+   "qid": "Q19574363",
+   "label_hint_en": "Félix Roxas y Arroyo"
+  },
+  {
    "qid": "Q19661641",
    "label_hint_en": "Hasmukh C. Patel"
+  },
+  {
+   "qid": "Q20111210",
+   "label_hint_en": "Nader Ardalan"
+  },
+  {
+   "qid": "Q20197529",
+   "label_hint_en": "Emre Arolat"
   },
   {
    "qid": "Q20643094",
@@ -17115,6 +21687,10 @@
   {
    "qid": "Q20687524",
    "label_hint_en": "Vo Trong Nghia"
+  },
+  {
+   "qid": "Q20985552",
+   "label_hint_en": "Robert Morris-Nunn"
   },
   {
    "qid": "Q20986594",
@@ -17189,6 +21765,14 @@
    "label_hint_en": "Habib Rahman"
   },
   {
+   "qid": "Q25983042",
+   "label_hint_en": "Regent Alfred John Bidwell"
+  },
+  {
+   "qid": "Q26712362",
+   "label_hint_en": "Lim Chong Keat"
+  },
+  {
    "qid": "Q27044024",
    "label_hint_en": "Ahmed Mito"
   },
@@ -17201,8 +21785,16 @@
    "label_hint_en": "Marina Tabassum"
   },
   {
+   "qid": "Q27881442",
+   "label_hint_en": "Soejoedi Wirjoatmodjo"
+  },
+  {
    "qid": "Q28223306",
    "label_hint_en": "Oluwole Olumuyiwa"
+  },
+  {
+   "qid": "Q28409407",
+   "label_hint_en": "Chuyết Công"
   },
   {
    "qid": "Q28940971",
@@ -17215,6 +21807,10 @@
   {
    "qid": "Q29050625",
    "label_hint_en": "Arturo Mezzedimi"
+  },
+  {
+   "qid": "Q29508194",
+   "label_hint_en": "Ali Akbar Isfahani"
   },
   {
    "qid": "Q29914068",
@@ -17255,6 +21851,10 @@
   {
    "qid": "Q42701739",
    "label_hint_en": "Patricia Patkau"
+  },
+  {
+   "qid": "Q43472959",
+   "label_hint_en": "Francisco de Oliveira Passos"
   },
   {
    "qid": "Q47074862",
@@ -17321,6 +21921,10 @@
    "label_hint_en": "Wu Lusheng"
   },
   {
+   "qid": "Q63253341",
+   "label_hint_en": "Enrico Taglietti"
+  },
+  {
    "qid": "Q63336576",
    "label_hint_en": "Frei Vicente das Chagas"
   },
@@ -17335,6 +21939,10 @@
   {
    "qid": "Q63847179",
    "label_hint_en": "Fu Xinqi"
+  },
+  {
+   "qid": "Q65685745",
+   "label_hint_en": "Tay Kheng Soon"
   },
   {
    "qid": "Q65922243",
@@ -17377,6 +21985,10 @@
    "label_hint_en": "Robert Goodman"
   },
   {
+   "qid": "Q97959236",
+   "label_hint_en": "Edward Billson"
+  },
+  {
    "qid": "Q98558422",
    "label_hint_en": "Chiara Toscani"
   },
@@ -17399,6 +22011,10 @@
   {
    "qid": "Q104191321",
    "label_hint_en": "Brett Steele"
+  },
+  {
+   "qid": "Q104213976",
+   "label_hint_en": "Gabriel Poole"
   },
   {
    "qid": "Q104398068",
@@ -17453,6 +22069,10 @@
    "label_hint_en": "Lydia Kallipoliti"
   },
   {
+   "qid": "Q110633771",
+   "label_hint_en": "Jimmy Lim"
+  },
+  {
    "qid": "Q111285373",
    "label_hint_en": "David Mutiso"
   },
@@ -17489,6 +22109,14 @@
    "label_hint_en": "Guo Daiheng"
   },
   {
+   "qid": "Q116099205",
+   "label_hint_en": "Dalgıç Ahmed Ağa"
+  },
+  {
+   "qid": "Q116615995",
+   "label_hint_en": "Simeon Kalfa"
+  },
+  {
    "qid": "Q116659497",
    "label_hint_en": "Kate Davies"
   },
@@ -17511,6 +22139,10 @@
   {
    "qid": "Q124855431",
    "label_hint_en": "Uttam C. Jain"
+  },
+  {
+   "qid": "Q125267532",
+   "label_hint_en": "Ian McKay"
   },
   {
    "qid": "Q128878769",
@@ -17559,10 +22191,6 @@
   {
    "qid": "Q141107060",
    "label_hint_en": "A. G. Krishna Menon"
-  },
-  {
-   "qid": "Q43472959",
-   "label_hint_en": "Francisco de Oliveira Passos"
   }
  ],
  "person_seeds_basis": "canon blocked from work-seeding by missing Wikidata P84 anchors, plus explicitly curated theorists, historians, critics, engineer-builders, and cell-verification roster intake (region x period canonical completeness pass, 2026-08)"
