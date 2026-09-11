@@ -277,123 +277,10 @@
     if (activeFilter) setSunburstHighlight(activeFilter);
   }
 
-  function productRadarScore(p) {
-    const mat = { experimental: 2, mid: 5, high: 7, mission_critical: 9 };
-    const loc = { none: 1, pilot: 3, partial: 6, core: 9 };
-    const price = { free: 9, low: 7, mid: 5, high: 3, quote: 4 };
-    const eco = Math.min(10, (p.international_benchmarks || []).length * 2 + (p.sources || []).length);
-    return {
-      function: mat[p.maturity] || 5,
-      ecosystem: Math.min(10, eco),
-      maturity: mat[p.maturity] || 5,
-      localization: loc[p.localization_depth] || 3,
-      price: price[p.pricing] || 5,
-    };
-  }
-
-  function renderCompareRadar(el, products) {
-    if (!echartsReady || !el || !products.length) return;
-    destroy('compareRadar');
-    const inst = window.echarts.init(el);
-    charts.compareRadar = inst;
-    const dims = [
-      { key: 'function', zh: '功能', en: 'Function' },
-      { key: 'ecosystem', zh: '生态', en: 'Ecosystem' },
-      { key: 'maturity', zh: '成熟度', en: 'Maturity' },
-      { key: 'localization', zh: '国产化', en: 'Localization' },
-      { key: 'price', zh: '性价比', en: 'Value' },
-    ];
-    const indicator = dims.map((d) => ({
-      name: isEn() ? d.en : d.zh,
-      max: 10,
-    }));
-    const series = products.map((p) => {
-      const s = productRadarScore(p);
-      return {
-        name: isEn() ? p.name_en : p.name_zh,
-        value: dims.map((d) => s[d.key]),
-      };
-    });
-    const colors = chartPalette().slice(0, 4);
-    const splitLine = cssVar('--color-chart-split-line', 'rgba(148, 163, 184, 0.15)');
-    inst.setOption({
-      color: colors,
-      tooltip: {
-        trigger: 'item',
-      },
-      radar: {
-        indicator,
-        radius: '65%',
-        splitNumber: 5,
-        axisName: {
-          color: cssVar('--color-chart-axis'),
-          fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-          fontWeight: 500,
-          fontSize: 12,
-        },
-        splitLine: {
-          lineStyle: {
-            color: splitLine,
-            width: 1,
-          },
-        },
-        splitArea: {
-          areaStyle: {
-            color: [
-              cssVar('--color-chart-split-a'),
-              cssVar('--color-chart-split-b'),
-            ],
-          },
-        },
-        axisLine: {
-          lineStyle: {
-            color: splitLine,
-          },
-        },
-      },
-      series: [{
-        type: 'radar',
-        data: series.map((s, idx) => ({
-          ...s,
-          symbol: 'circle',
-          symbolSize: 6,
-          lineStyle: {
-            width: 2,
-            color: colors[idx % colors.length],
-          },
-          areaStyle: {
-            color: colors[idx % colors.length],
-            opacity: 0.08,
-          },
-          itemStyle: {
-            color: colors[idx % colors.length],
-          },
-        })),
-      }],
-      legend: {
-        bottom: 0,
-        type: 'scroll',
-        textStyle: {
-          color: cssVar('--color-chart-legend'),
-          fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-          fontSize: 11,
-        },
-        itemWidth: 10,
-        itemHeight: 10,
-        itemGap: 16,
-      },
-    });
-  }
-
   function resizeAll() {
     Object.values(charts).forEach((c) => {
       if (c.resize) c.resize();
     });
-  }
-
-  function resizeCompareRadar() {
-    const c = charts.compareRadar;
-    if (c && c.resize) c.resize();
   }
 
   window.INDUSTRIAL_CHARTS = {
@@ -403,10 +290,7 @@
     resetSunburstView,
     clearSunburstVisual,
     isSunburstAtRoot,
-    renderCompareRadar,
-    productRadarScore,
     resizeAll,
-    resizeCompareRadar,
     destroy,
     chartPalette,
     categoryL1Color,

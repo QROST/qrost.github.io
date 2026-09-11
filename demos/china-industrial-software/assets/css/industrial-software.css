@@ -11,7 +11,7 @@
  *   Lane E  --color-success/warning/danger/info         aliases → semantic primaries where applicable
  *   Lane F  --color-evidence-*                         source-quality badges (indigo/violet/slate)
  *   Lane G  --color-loc-*                               localization depth (indigo/violet, not taxonomy)
- *   Lane H  --color-chart-1..8                          non-taxonomy chart palette (compare radar, etc.)
+ *   Lane H  --color-chart-1..8                          non-taxonomy chart palette
  *
  *   --color-bg-* / --color-border-* / --color-text-*    neutral surfaces & typography
  */
@@ -127,7 +127,7 @@
     --color-policy-bar-ongoing: #0891b2;
     --color-policy-bar-ongoing-ring: #67e8f9;
 
-    /* Lane G: non-taxonomy chart palette (compare radar, misc series) */
+    /* Lane G: non-taxonomy chart palette */
     --color-chart-1: var(--color-brand);
     --color-chart-2: #6366f1;
     --color-chart-3: #d97706;
@@ -1323,6 +1323,10 @@ button.policy-gantt-label:focus-visible {
 }
 
 .vendor-card:hover { border-color: var(--color-border-strong); }
+
+.compare-fields th[scope="row"] { min-width: 7rem; }
+.compare-fields th[scope="col"]:not(:first-child),
+.compare-fields td { min-width: 10rem; overflow-wrap: anywhere; }
 
 .compare-slot {
     border: 1.5px dashed var(--color-border-emphasis);

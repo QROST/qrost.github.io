@@ -45,6 +45,17 @@ def main() -> int:
         "matrix-container mobile override must come after the 550px max-height"
     )
 
+    charts = (ROOT / "assets" / "js" / "charts.js").read_text(encoding="utf-8")
+    compare = (ROOT / "assets" / "js" / "compare.js").read_text(encoding="utf-8")
+    assert 'compare-radar-chart' not in html, "comparison must expose recorded fields, not inferred ratings"
+    for removed in ('productRadarScore', 'renderCompareRadar', 'resizeCompareRadar'):
+        assert removed not in charts and removed not in app, f"unsupported comparison score remains: {removed}"
+    require(compare, "I18N().pricingLabel(p.pricing)", "source pricing enum")
+    require(compare, 'scope="row"', "comparison row headers")
+    require(compare, 'scope="col"', "comparison product headers")
+    require(compare, "rm.setAttribute('aria-label'", "named remove controls")
+    require(html, 'aria-labelledby="compare-fields-title"', "keyboard-scrollable comparison region")
+
     require(build, "def content_token", "content-hash cache token")
     require(build, "normalized_content", "cache hash cycle normalization")
     assert "datetime.now" not in build and "timezone.utc" not in build, "build must not use wall clock"

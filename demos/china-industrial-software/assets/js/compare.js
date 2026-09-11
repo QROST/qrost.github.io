@@ -1,5 +1,5 @@
 /**
- * Product compare: 2–4 slots, radar + field table.
+ * Product compare: 2–4 slots with recorded fields, without derived scores.
  */
 (function () {
   'use strict';
@@ -9,7 +9,7 @@
 
   const I18N = () => window.INDUSTRIAL_I18N || {};
   const t = (k) => (I18N().t ? I18N().t(k) : k);
-  const isEn = () => I18N().isEn && I18N().isEn();
+  const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 
   function getSlots() {
     return slots.slice();
@@ -50,10 +50,14 @@
         rm.type = 'button';
         rm.className = 'ml-2 text-slate-400 hover-danger font-bold px-1 rounded hover:bg-slate-100 transition-colors no-print';
         rm.textContent = '×';
+        rm.setAttribute('aria-label', `${t('removeCompare')} ${p ? I18N().productName(p) : slots[i]}`);
         rm.addEventListener('click', (e) => {
           e.stopPropagation();
           removeProduct(slots[i]);
           window.INDUSTRIAL_APP && window.INDUSTRIAL_APP.refreshCompare();
+          const buttons = container.querySelectorAll('button');
+          const next = buttons[Math.min(i, buttons.length - 1)] || document.getElementById('compare-search');
+          if (next) next.focus();
         });
         div.appendChild(rm);
       } else {
@@ -75,6 +79,7 @@
       { label: t('colOrigin'), fn: (p) => I18N().originLabel(p.origin) },
       { label: t('colMaturity'), fn: (p) => I18N().maturityLabel(p.maturity) },
       { label: t('colLocDepth'), fn: (p) => I18N().locLabel(p.localization_depth) },
+      { key: 'pricing', label: t('comparePricing'), fn: (p) => I18N().pricingLabel(p.pricing) },
       { label: t('kernelLabel'), fn: (p) => {
         const CAT = window.INDUSTRIAL_CATALOG;
         return CAT && CAT.productKernelLabel ? CAT.productKernelLabel(p) : (p.kernel || '');
@@ -83,15 +88,15 @@
       { label: t('limitations'), fn: (p) => I18N().listField(p, 'limitations_zh', 'limitations_en').join('；') },
       { label: t('industries'), fn: (p) => (p.industries || []).join(', ') },
     ];
-    let html = '<table class="w-full text-sm border-collapse"><thead><tr><th class="text-left p-2 border-b border-slate-200"></th>';
+    let html = `<table class="compare-fields w-full text-sm border-collapse"><caption class="sr-only">${escapeHtml(t('compareTable'))}</caption><thead><tr><th scope="col" class="text-left p-2 border-b border-slate-200"></th>`;
     products.forEach((p) => {
-      html += `<th class="text-left p-2 border-b border-slate-200 font-medium">${I18N().productName(p)}</th>`;
+      html += `<th scope="col" class="text-left p-2 border-b border-slate-200 font-medium">${escapeHtml(I18N().productName(p))}</th>`;
     });
     html += '</tr></thead><tbody>';
     rows.forEach((row) => {
-      html += `<tr><td class="p-2 border-b border-slate-100 text-slate-500">${row.label}</td>`;
+      html += `<tr${row.key ? ` data-field="${row.key}"` : ''}><th scope="row" class="p-2 border-b border-slate-100 text-slate-500 text-left font-normal">${escapeHtml(row.label)}</th>`;
       products.forEach((p) => {
-        html += `<td class="p-2 border-b border-slate-100">${row.fn(p)}</td>`;
+        html += `<td class="p-2 border-b border-slate-100">${escapeHtml(row.fn(p) || '—')}</td>`;
       });
       html += '</tr>';
     });

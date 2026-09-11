@@ -1121,14 +1121,6 @@
     if (!document.getElementById('product-modal')?.classList.contains('hidden')) closeModal();
     refreshCompare();
     showDialog(backdrop, 'compare-modal-close');
-    setTimeout(() => {
-      CHARTS().resizeCompareRadar();
-      const prods = CMP().getSelectedProducts();
-      if (prods.length) {
-        CHARTS().renderCompareRadar(document.getElementById('compare-radar-chart'), prods);
-        CHARTS().resizeCompareRadar();
-      }
-    }, 80);
   }
 
   function closeCompareModal() {
@@ -1364,11 +1356,6 @@
     CMP().renderSlots(document.getElementById('compare-slots'));
     const prods = CMP().getSelectedProducts();
     CMP().renderTable(document.getElementById('compare-table'), prods);
-    const radarEl = document.getElementById('compare-radar-chart');
-    const compareOpen = !document.getElementById('compare-modal')?.classList.contains('hidden');
-    if (compareOpen && radarEl) {
-      CHARTS().renderCompareRadar(radarEl, prods);
-    }
     updateCompareFab();
     if (modalProductId) updateProductModalCompareBtn();
     renderCatalogTable();
@@ -1533,9 +1520,8 @@
         a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
       });
     }
-    // Theme toggle: flip html.dark, persist, and re-render ECharts so they
-    // pick up the new CSS-var colors (sunburst + compare radar read tokens at
-    // render time and don't auto-refresh on a class change).
+    // Theme toggle: persist the preference and refresh the sunburst
+    // because its CSS-var colors are read at render time.
     const themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
   }
@@ -1543,7 +1529,7 @@
   const THEME_STORAGE_KEY = 'industrial-software-theme';
   function isDark() { return document.documentElement.classList.contains('dark'); }
   function applyTheme() {
-    // Re-render the two ECharts that read CSS-var colors at render time.
+    // Re-render the sunburst that reads CSS-var colors at render time.
     renderSunburstChart();
     refreshCompare();
   }

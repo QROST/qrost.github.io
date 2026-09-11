@@ -239,7 +239,14 @@ def run_contract_tests() -> bool:
             print(completed.stderr, end="", file=sys.stderr)
         if completed.returncode != 0:
             return False
-    return True
+    comparison = subprocess.run(
+        ["node", str(ROOT / "tools" / "test_compare.cjs")], cwd=str(ROOT),
+        capture_output=True, text=True,
+    )
+    print(comparison.stdout, end="")
+    if comparison.stderr:
+        print(comparison.stderr, end="", file=sys.stderr)
+    return comparison.returncode == 0
 
 
 def _dir_max_mtime(directory: Path, pattern: str = "*.json") -> float:

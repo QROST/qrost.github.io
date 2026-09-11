@@ -35,9 +35,9 @@
       })();
     </script>
 
-    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=a433a631d4e4">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=00ed228a312d">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/industrial-software.css?v=a433a631d4e4">
+    <link rel="stylesheet" href="assets/css/industrial-software.css?v=00ed228a312d">
 </head>
 
 <body class="antialiased scroll-smooth">
@@ -382,7 +382,7 @@
             <div class="flex justify-between items-start gap-4 pb-4 border-b border-slate-100">
                 <div class="min-w-0">
                     <h3 id="compare-modal-title" class="text-xl font-semibold text-slate-900" data-i18n="compareModalTitle">对标对比</h3>
-                    <p class="text-sm text-slate-500 mt-1" data-i18n="compareModalDesc"></p>
+                    <p class="text-sm text-slate-500 mt-1" data-i18n="compareModalDesc">选择 2–4 款产品，逐项并排查看来源记录的字段。定价仅显示记录的方式或档位；询价和未知均不评分。可从目录「加入对比」或下方选择添加。</p>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
                     <button type="button" id="compare-clear" class="text-xs font-medium border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-600 hover:bg-slate-50" data-i18n="compareClear">清空对比</button>
@@ -391,22 +391,18 @@
             </div>
             <div id="compare-slots" class="grid grid-cols-2 md:grid-cols-4 gap-3 my-4"></div>
             <div class="flex flex-wrap gap-3 mb-6 no-print">
-                <select id="compare-search" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[16rem] flex-1" aria-label="Search products to compare"></select>
+                <select id="compare-search" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[16rem] flex-1" aria-label="选择对比产品 / Choose products to compare"></select>
             </div>
-            <h4 class="font-medium text-slate-800 mb-3" data-i18n="compareRadar">能力雷达</h4>
-            <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 mb-8">
-                <div id="compare-radar-chart" class="w-full" style="min-height:300px;height:320px"></div>
-            </div>
-            <h4 class="font-medium text-slate-800 mb-3" data-i18n="compareTable">字段对比</h4>
-            <div id="compare-table" class="bg-slate-50 rounded-xl border border-slate-100 p-4 overflow-x-auto"></div>
+            <h4 id="compare-fields-title" class="font-medium text-slate-800 mb-3" data-i18n="compareTable">字段对比</h4>
+            <div id="compare-table" role="region" tabindex="0" aria-labelledby="compare-fields-title" class="bg-slate-50 rounded-xl border border-slate-100 p-4 overflow-x-auto"></div>
         </div>
     </div>
 
-    <script src="assets/js/i18n.js?v=a433a631d4e4"></script>
-    <script src="assets/js/catalog-loader.js?v=a433a631d4e4"></script>
-    <script src="assets/js/charts.js?v=a433a631d4e4"></script>
-    <script src="assets/js/compare.js?v=a433a631d4e4"></script>
-    <script src="assets/js/matrix.js?v=a433a631d4e4"></script>
-    <script src="assets/js/app.js?v=a433a631d4e4"></script>
+    <script src="assets/js/i18n.js?v=00ed228a312d"></script>
+    <script src="assets/js/catalog-loader.js?v=00ed228a312d"></script>
+    <script src="assets/js/charts.js?v=00ed228a312d"></script>
+    <script src="assets/js/compare.js?v=00ed228a312d"></script>
+    <script src="assets/js/matrix.js?v=00ed228a312d"></script>
+    <script src="assets/js/app.js?v=00ed228a312d"></script>
 </body>
 </html>

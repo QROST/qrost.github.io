@@ -148,10 +148,12 @@
       locPartial: '部分',
       locCore: '核心',
       pricingFree: '免费',
-      pricingLow: '低',
-      pricingMid: '中',
-      pricingHigh: '高',
+      pricingLow: '低价位',
+      pricingMid: '中价位',
+      pricingHigh: '高价位',
       pricingQuote: '询价',
+      pricingUnknown: '未知',
+      comparePricing: '定价方式 / 档位',
       footerBuilt: '数据版本',
       footerDisclaimer: '© 2026 QROST. 本页为研究笔记，不构成投资或采购建议；国产化率口径因研报而异，详见方法论。',
       methodDisclaimerTitle: '免责声明',
@@ -193,10 +195,9 @@
       compareClear: '清空对比',
       compareOpenCta: '对标对比',
       compareModalTitle: '对标对比',
-      compareModalDesc: '选择 2–4 款产品：雷达图 + 字段并排表。可从目录「加入对比」或下方搜索添加。',
+      compareModalDesc: '选择 2–4 款产品，逐项并排查看来源记录的字段。定价仅显示记录的方式或档位；询价和未知均不评分。可从目录「加入对比」或下方选择添加。',
       compareFab: '对标对比 ({n})',
       compareNeedTwo: '再选 1 款即可对比（最多 4 款）',
-      compareRadar: '能力雷达',
       compareTable: '字段对比',
       dimFunction: '功能',
       dimEcosystem: '生态',
@@ -340,7 +341,9 @@
       pricingLow: 'Low',
       pricingMid: 'Mid',
       pricingHigh: 'High',
-      pricingQuote: 'Quote',
+      pricingQuote: 'Contact for quote',
+      pricingUnknown: 'Unknown',
+      comparePricing: 'Pricing model / tier',
       footerBuilt: 'Data version',
       footerDisclaimer: '© 2026 QROST. Research notes only — not investment or procurement advice.',
       methodDisclaimerTitle: 'Disclaimer',
@@ -382,10 +385,9 @@
       compareClear: 'Clear compare',
       compareOpenCta: 'Benchmark compare',
       compareModalTitle: 'Benchmark compare',
-      compareModalDesc: 'Pick 2–4 products: radar chart + side-by-side fields. Add from catalog or search below.',
+      compareModalDesc: 'Pick 2–4 products to compare recorded fields side by side. Pricing shows the recorded model or tier; quotes and unknown values are unscored. Add from the catalog or selector below.',
       compareFab: 'Compare ({n})',
       compareNeedTwo: 'Pick one more to compare (max 4)',
-      compareRadar: 'Capability radar',
       compareTable: 'Field compare',
       dimFunction: 'Function',
       dimEcosystem: 'Ecosystem',
@@ -491,6 +493,11 @@
     return (LOC_LABELS[lang] && LOC_LABELS[lang][l]) || l;
   }
 
+  function pricingLabel(value) {
+    const keys = { free: 'pricingFree', low: 'pricingLow', mid: 'pricingMid', high: 'pricingHigh', quote: 'pricingQuote' };
+    return t(Object.prototype.hasOwnProperty.call(keys, value) ? keys[value] : 'pricingUnknown');
+  }
+
   function kernelLicenseLabel(m) {
     return (KERNEL_LICENSE_LABELS[lang] && KERNEL_LICENSE_LABELS[lang][m]) || m;
   }
@@ -552,7 +559,7 @@
 
   window.INDUSTRIAL_I18N = {
     t, isEn, lang: () => lang, setLang, toggleLang, applyLangToUI, onChange,
-    productName, vendorName, originLabel, maturityLabel, locLabel,
+    productName, vendorName, originLabel, maturityLabel, locLabel, pricingLabel,
     kernelLicenseLabel, productTypeLabel, tagLabel, labelForKernelField, listField,
   };
 
