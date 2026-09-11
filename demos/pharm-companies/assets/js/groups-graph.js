@@ -6,6 +6,7 @@
   var PALETTE = ['#6366f1', '#14b8a6', '#f59e0b', '#ef4444', '#a855f7', '#0ea5e9',
     '#22c55e', '#ec4899', '#f97316', '#84cc16', '#06b6d4', '#eab308',
     '#8b5cf6', '#10b981', '#fb7185', '#3b82f6', '#d946ef', '#0891b2', '#f43f5e', '#65a30d'];
+  var ROLE_SIZES = { 'group-holdco': 34, 'flagship-listco': 24, other: 17 };
   var bound = null;
   function cssVar(n, f) { var v = getComputedStyle(document.documentElement).getPropertyValue(n); return (v && v.trim()) || f; }
 
@@ -45,12 +46,24 @@
 
     var members = companies.filter(function (c) { return c.group_id && (!filter || c.group_id === filter); });
     var idset = {}; members.forEach(function (c) { idset[c.id] = 1; });
-    var present = {}; members.forEach(function (c) { present[c.group_id] = 1; });
-    var cats = groups.filter(function (g) { return present[g.id]; });
+    // The full catalog fixes both category order and colors, independent of the filter or language.
+    var present = {}; companies.forEach(function (c) { if (c.group_id) present[c.group_id] = 1; });
+    var cats = groups.filter(function (g) { return present[g.id]; })
+      .sort(function (a, b) { return a.id.localeCompare(b.id); });
+    var groupColors = {}; cats.forEach(function (g, i) {
+      groupColors[g.id] = i < PALETTE.length ? PALETTE[i] : 'hsl(' + Math.round(i * 137.508 % 360) + ',62%,56%)';
+    });
     var catIndex = {}; cats.forEach(function (g, i) { catIndex[g.id] = i; });
 
     function size(c) {
-      return c.group_role === 'group-holdco' ? 34 : (c.group_role === 'flagship-listco' ? 24 : 17);
+      return ROLE_SIZES[c.group_role] || ROLE_SIZES.other;
+    }
+    if (opts.roleLegend && opts.i18n) {
+      opts.roleLegend.innerHTML = '<span class="graph-legend-title">' + opts.i18n.t('grpSizeTitle') + '</span>' +
+        Object.keys(ROLE_SIZES).map(function (role) {
+          var label = role === 'other' ? opts.i18n.t('grpOtherMember') : groupRoleLabel(role);
+          return '<span class="graph-legend-item" data-group-role="' + role + '"><span aria-hidden="true" class="graph-role-dot" style="width:' + ROLE_SIZES[role] + 'px;height:' + ROLE_SIZES[role] + 'px"></span>' + label + '</span>';
+        }).join('') + '<span class="graph-legend-note">' + opts.i18n.t('grpSizeNote') + '</span>';
     }
     var nodes = members.map(function (c) {
       return { id: c.id, name: label(c), category: catIndex[c.group_id], symbolSize: size(c), _cid: c.id };
@@ -77,7 +90,7 @@
       legend: [{ data: cats.map(gname), textStyle: { color: faint }, type: 'scroll', top: 0, icon: 'circle' }],
       series: [{
         type: 'graph', layout: 'force', roam: graphInteractive(el), draggable: graphInteractive(el), zoom: 1.1,
-        categories: cats.map(function (g, i) { return { name: gname(g), itemStyle: { color: PALETTE[i % PALETTE.length] } }; }),
+        categories: cats.map(function (g) { return { name: gname(g), itemStyle: { color: groupColors[g.id] } }; }),
         force: { repulsion: filter ? 220 : 110, edgeLength: [40, 130], gravity: 0.07, friction: 0.2 },
         label: { show: true, position: 'right', color: textc, fontSize: 10, formatter: '{b}' },
         edgeSymbol: ['none', 'arrow'], edgeSymbolSize: 7,

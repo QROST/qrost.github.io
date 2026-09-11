@@ -32,13 +32,13 @@
       } catch (e) {}
     })();
     // Stamped by tools/build.py (content hash) → appended as ?v= to every data fetch.
-    window.PHARM_DATA_VERSION = 'c6ded3ef70';
+    window.PHARM_DATA_VERSION = 'e57a751037';
   </script>
 
-  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=c6ded3ef70" />
+  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=e57a751037" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/pharm-companies.css?v=c6ded3ef70" />
+  <link rel="stylesheet" href="assets/css/pharm-companies.css?v=e57a751037" />
   <style>
     /* Sun/moon theme-toggle animation — unified with QROST home */
     #theme-toggle .sun-icon,
@@ -186,6 +186,7 @@
       </div>
       <div class="panel mt-3">
         <div id="groups-graph" class="chart-h-lg"></div>
+        <div id="groups-role-legend" class="map-legend"></div>
       </div>
     </section>
 
@@ -195,9 +196,10 @@
       <p class="text-sm text-muted mt-1" data-i18n="dealsSub">把企业通过授权、并购、合资、合作、股权联系起来——尤其是中国创新药"出海"的对外授权与跨国并购。连线颜色代表交易类型，节点颜色代表企业总部地区。点击节点查看企业，悬停连线看交易。</p>
       <div class="flex flex-wrap items-center gap-2 mt-3">
         <select id="deals-filter" class="select" aria-label="交易类型筛选 / Deal type filter"></select>
-        <span id="deals-count" class="text-xs text-faint ml-auto"></span>
+        <span id="deals-count" class="text-xs text-faint ml-auto" role="status"></span>
       </div>
       <div class="panel mt-3">
+        <p id="deals-note" class="text-xs text-muted p-4" role="status">仅绘制当前筛选中至少两家目录企业参与的交易；未入图记录仍计入收录与筛选总数。</p>
         <div id="deals-graph" class="chart-h-lg"></div>
         <div id="deals-legend" class="map-legend"></div>
       </div>
@@ -311,17 +313,17 @@
   </div>
 
   <!-- data + libs + app (load order matters) -->
-  <script src="assets/data/world-geo.js?v=c6ded3ef70"></script>
+  <script src="assets/data/world-geo.js?v=e57a751037"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
     integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
     crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.PHARM_ECHARTS_FAILED=true"></script>
-  <script src="assets/js/i18n.js?v=c6ded3ef70"></script>
-  <script src="assets/js/touch-gate.js?v=c6ded3ef70"></script>
-  <script src="assets/js/data-loader.js?v=c6ded3ef70"></script>
-  <script src="assets/js/charts.js?v=c6ded3ef70"></script>
-  <script src="assets/js/map.js?v=c6ded3ef70"></script>
-  <script src="assets/js/groups-graph.js?v=c6ded3ef70"></script>
-  <script src="assets/js/deals-graph.js?v=c6ded3ef70"></script>
-  <script src="assets/js/app.js?v=c6ded3ef70"></script>
+  <script src="assets/js/i18n.js?v=e57a751037"></script>
+  <script src="assets/js/touch-gate.js?v=e57a751037"></script>
+  <script src="assets/js/data-loader.js?v=e57a751037"></script>
+  <script src="assets/js/charts.js?v=e57a751037"></script>
+  <script src="assets/js/map.js?v=e57a751037"></script>
+  <script src="assets/js/groups-graph.js?v=e57a751037"></script>
+  <script src="assets/js/deals-graph.js?v=e57a751037"></script>
+  <script src="assets/js/app.js?v=e57a751037"></script>
 </body>
 </html>

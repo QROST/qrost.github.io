@@ -573,7 +573,7 @@
     $('groups-count').textContent = I18N.t('grpCountTpl').replace('{g}', gs.length).replace('{n}', grouped.length);
     GROUPS_GRAPH.render($('groups-graph'), {
       companies: D.companies, groups: D.groups, isEn: I18N.isEn(),
-      filterGroupId: state.groupsFilter || '',
+      filterGroupId: state.groupsFilter || '', roleLegend: $('groups-role-legend'),
       getCompany: D.getCompany, getGroup: D.getGroup, i18n: I18N,
       onNodeClick: function (id) { modalTab = 'tabSummary'; openCompanyModal(id); }
     });
@@ -696,7 +696,6 @@
   }
 
   // ---------- deal / partnership network ----------
-  var DEAL_COLORS = { license_out: '#14b8a6', license_in: '#3b82f6', m_and_a: '#ef4444', collaboration: '#94a3b8', jv: '#22c55e', equity_stake: '#a855f7' };
   function dtBadge(d) { return '<span class="badge badge-dt-' + (d.deal_type || 'collaboration') + '">' + I18N.enumLabel('deal_type', d.deal_type) + '</span>'; }
   function usdM(m) { return m == null ? '' : (m >= 1000 ? '$' + (m / 1000).toFixed(1) + 'B' : '$' + m + 'M'); }
   function dealCounterparties(d, selfId) {
@@ -729,16 +728,20 @@
     var types = uniq(deals.map(function (d) { return d.deal_type; }));
     $('deals-filter').innerHTML = opt('', I18N.t('allDealTypes')) + types.sort().map(function (t) { return opt(t, I18N.enumLabel('deal_type', t)); }).join('');
     $('deals-filter').value = state.dealsFilter || '';
-    var res = DEALS_GRAPH.render($('deals-graph'), {
-      deals: deals, getCompany: D.getCompany, isEn: I18N.isEn(),
+    var network = DEALS_GRAPH.buildNetwork(deals, D.getCompany, state.dealsFilter);
+    $('deals-count').textContent = I18N.t('dealsCountTpl').replace('{total}', network.totalDeals)
+      .replace('{matched}', network.matchedDeals).replace('{shown}', network.drawableDeals).replace('{companies}', network.nodeIds.length);
+    $('deals-note').textContent = I18N.t(network.matchedDeals === 0 ? 'dealsNoMatch' : network.drawableDeals === 0 ? 'dealsNoDrawable' : 'dealsCoverage');
+    var leg = $('deals-legend');
+    if (leg) leg.innerHTML = types.sort().map(function (type) {
+      var style = DEALS_GRAPH.styleForType(type);
+      return '<span class="graph-legend-item" data-deal-type="' + type + '"><span aria-hidden="true" class="deal-line-sample" style="border-top:' + style.width + 'px ' + style.type + ' ' + style.color + '"></span>' + I18N.enumLabel('deal_type', type) + '</span>';
+    }).join('') + '<span class="graph-legend-note">' + I18N.t('dealsLegendNote') + '</span>';
+    DEALS_GRAPH.render($('deals-graph'), {
+      network: network, getCompany: D.getCompany, isEn: I18N.isEn(),
       filterType: state.dealsFilter || '', i18n: I18N,
       onNodeClick: function (id) { modalTab = 'tabSummary'; openCompanyModal(id); }
-    }) || {};
-    $('deals-count').textContent = I18N.t('dealsCountTpl').replace('{n}', deals.length).replace('{c}', res.nodes || 0);
-    var leg = $('deals-legend');
-    if (leg) leg.innerHTML = types.sort().map(function (t) {
-      return '<span><span class="dot" style="background:' + (DEAL_COLORS[t] || '#64748b') + '"></span>' + I18N.enumLabel('deal_type', t) + '</span>';
-    }).join('');
+    });
   }
 
   // ---------- render all dynamic ----------

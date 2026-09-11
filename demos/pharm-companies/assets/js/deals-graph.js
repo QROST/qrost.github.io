@@ -45,6 +45,38 @@
     return !window.QrostTouchGate || !window.QrostTouchGate.coarsePointer();
   }
 
+  function styleForType(type) { return DEAL_STYLE[type] || DEAL_STYLE.collaboration; }
+
+  // A deal is an event; its pairwise graph links are a separate representation.
+  function buildNetwork(deals, getCompany, filterType) {
+    var seenDeals = new Set();
+    var unique = (deals || []).filter(function (deal) {
+      if (seenDeals.has(deal.id)) return false;
+      seenDeals.add(deal.id); return true;
+    });
+    var matched = unique.filter(function (deal) { return !filterType || deal.deal_type === filterType; });
+    var memberships = new Map(), edges = [], drawableDeals = 0;
+    matched.forEach(function (deal) {
+      var parties = Array.from(new Set((deal.parties || []).map(function (party) { return party.company_id; })
+        .filter(function (id) { return id && getCompany(id); })));
+      if (parties.length < 2) return;
+      drawableDeals++;
+      parties.forEach(function (id) {
+        if (!memberships.has(id)) memberships.set(id, new Set());
+        memberships.get(id).add(deal.id);
+      });
+      for (var a = 0; a < parties.length; a++) {
+        for (var b = a + 1; b < parties.length; b++) {
+          edges.push({ source: parties[a], target: parties[b], _deal: deal });
+        }
+      }
+    });
+    var dealCounts = Object.create(null);
+    memberships.forEach(function (ids, id) { dealCounts[id] = ids.size; });
+    return { totalDeals: unique.length, matchedDeals: matched.length, drawableDeals: drawableDeals,
+      nodeIds: Array.from(memberships.keys()), dealCounts: dealCounts, edges: edges };
+  }
+
   function render(el, opts) {
     if (!window.echarts || !el) return null;
     opts = opts || {};
@@ -55,21 +87,8 @@
     var label = function (c) { return isEn ? (c.name_en || c.id) : (c.name_zh || c.name_en || c.id); };
     var regionName = function (r) { return opts.i18n ? opts.i18n.enumLabel('region', r) : r; };
 
-    // edges = deals (filtered) with >= 2 parties resolvable to atlas companies
-    var fdeals = deals.filter(function (d) { return !filter || d.deal_type === filter; });
-    var deg = {}, edges = [];
-    fdeals.forEach(function (d) {
-      var pis = (d.parties || []).filter(function (p) { return p.company_id && getCompany(p.company_id); })
-        .map(function (p) { return p.company_id; });
-      pis = pis.filter(function (x, i) { return pis.indexOf(x) === i; });
-      for (var a = 0; a < pis.length; a++) {
-        for (var b = a + 1; b < pis.length; b++) {
-          edges.push({ source: pis[a], target: pis[b], _deal: d });
-          deg[pis[a]] = (deg[pis[a]] || 0) + 1; deg[pis[b]] = (deg[pis[b]] || 0) + 1;
-        }
-      }
-    });
-    var nodeIds = Object.keys(deg);
+    var network = opts.network || buildNetwork(deals, getCompany, filter);
+    var dealCounts = network.dealCounts, edges = network.edges, nodeIds = network.nodeIds;
     var regions = [];
     nodeIds.forEach(function (id) { var c = getCompany(id); var r = (c && c.region) || 'other_apac'; if (regions.indexOf(r) === -1) regions.push(r); });
     var catIndex = {}; regions.forEach(function (r, i) { catIndex[r] = i; });
@@ -77,10 +96,10 @@
     var nodes = nodeIds.map(function (id) {
       var c = getCompany(id) || { id: id, name_zh: id };
       var r = (c && c.region) || 'other_apac';
-      return { id: id, name: label(c), category: catIndex[r], symbolSize: Math.min(12 + (deg[id] || 1) * 3, 42), _cid: id };
+      return { id: id, name: label(c), category: catIndex[r], symbolSize: Math.min(12 + dealCounts[id] * 3, 42), value: dealCounts[id], _cid: id };
     });
     var links = edges.map(function (e) {
-      var st = DEAL_STYLE[e._deal.deal_type] || DEAL_STYLE.collaboration;
+      var st = styleForType(e._deal.deal_type);
       return { source: e.source, target: e.target, _deal: e._deal,
         lineStyle: { color: st.color, width: st.width, type: st.type, opacity: 0.72, curveness: 0.12 } };
     });
@@ -91,10 +110,11 @@
         confine: true,
         formatter: function (p) {
           if (p.dataType === 'edge') {
-            var d = p.data._deal; var v = d.total_usd_m != null ? (' · ' + usd(d.total_usd_m)) : '';
+            var d = p.data._deal; var amountLabel = opts.i18n ? opts.i18n.t('dealTotal') : (isEn ? 'Total (incl. milestones)' : '潜在总额');
+            var v = d.total_usd_m != null ? (' · ' + amountLabel + ' ' + usd(d.total_usd_m)) : '';
             return '<b>' + (isEn ? (d.headline_en || '') : (d.headline_zh || '')) + '</b><br><span style="opacity:.7">' + (d.date || '') + v + '</span>';
           }
-          return '<b>' + p.name + '</b><br><span style="opacity:.7">' + (deg[p.data._cid] || 0) + (isEn ? ' deals' : ' 笔交易') + '</span>';
+          return '<b>' + p.name + '</b><br><span style="opacity:.7">' + (dealCounts[p.data._cid] || 0) + (isEn ? ' distinct displayed deals' : ' 笔当前入图独立交易') + '</span>';
         }
       },
       legend: [{ data: regions.map(regionName), textStyle: { color: faint }, type: 'scroll', top: 0, icon: 'circle' }],
@@ -115,9 +135,9 @@
     inst.off('click');
     inst.on('click', function (p) { if (p.dataType === 'node' && opts.onNodeClick) opts.onNodeClick(p.data._cid); });
     bound = inst;
-    return { nodes: nodes.length, edges: links.length };
+    return { nodes: nodes.length, edges: links.length, drawableDeals: network.drawableDeals };
   }
 
   window.addEventListener('resize', function () { if (bound) bound.resize(); });
-  window.DEALS_GRAPH = { render: render };
+  window.DEALS_GRAPH = { render: render, buildNetwork: buildNetwork, styleForType: styleForType };
 })();
