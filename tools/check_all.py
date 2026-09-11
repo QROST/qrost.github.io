@@ -23,6 +23,7 @@ class Gate:
 
 GATES = (
     Gate("root", "cache tokens", (sys.executable, "tools/build.py", "--check")),
+    Gate("root", "manifest-backed homepage summaries", (sys.executable, "tools/test_home_summaries.py")),
     Gate("root", "committed Tailwind CSS", ("npm", "run", "check:css")),
     Gate("root", "public metadata inventory", (sys.executable, "tools/check_public_metadata.py")),
     Gate("root", "metadata mutation tests", (sys.executable, "tools/test_public_metadata.py")),
@@ -39,6 +40,7 @@ GATES = (
     Gate("architecture-history", "page/data projection contract", (sys.executable, "demos/architecture-history/tools/test_page_contract.py")),
     Gate("architecture-history", "lazy verified loader", ("node", "demos/architecture-history/tools/test_data_loader.js")),
     Gate("architecture-history", "people display/lineage boundary", (sys.executable, "demos/architecture-history/tools/test_people_policy.py")),
+    Gate("architecture-history", "candidate relation counts and stable size scale", ("node", "demos/architecture-history/tools/test_lineage_semantics.js")),
     Gate("china-industrial-software", "data/schema provenance", (sys.executable, "demos/china-industrial-software/tools/validate.py")),
     Gate("china-industrial-software", "source-authority mutations", (sys.executable, "demos/china-industrial-software/tools/test_provenance.py")),
     Gate("china-industrial-software", "deterministic migration", (sys.executable, "demos/china-industrial-software/tools/test_breakthrough_migration.py")),
@@ -52,6 +54,7 @@ GATES = (
     Gate("pharm-companies", "manifest/cache/data check", (sys.executable, "demos/pharm-companies/tools/build.py", "--check")),
     Gate("pharm-companies", "atomic lazy product loader", ("node", "demos/pharm-companies/tools/test_data_loader.js")),
     Gate("pharm-companies", "lazy UI contract", ("node", "demos/pharm-companies/tools/test_lazy_ui_contract.js")),
+    Gate("pharm-companies", "group roles and distinct deal counts", ("node", "demos/pharm-companies/tools/test_graph_semantics.js")),
     Gate("shelter-cats", "manifest/cache check", (sys.executable, "demos/shelter-cats/tools/build.py", "--check")),
     Gate("shelter-cats", "SQLite projection mutation", (sys.executable, "demos/shelter-cats/tools/test_build_check.py")),
     Gate("shelter-cats", "data validation", (sys.executable, "demos/shelter-cats/tools/validate.py")),

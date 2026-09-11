@@ -46,21 +46,15 @@ records (18 requiring conversion), bilingual details, narrow screens, a failed
 conversion module, and visible WebGL failure notices. These art checks used
 software WebGL and do not establish physical-device GPU performance.
 
-The following review findings remain separate work items:
+The Industrial Software comparison, Pharma group/deal semantics and Architecture
+History candidate-count scale were subsequently repaired in the
+[2026-09-10 follow-up](2026-09-10-comparison-and-detail-repairs.md). That record
+describes the resulting behavior, additional regressions and remaining work.
 
-- **Industrial Software:** its comparison radar derives both “function” and
-  “maturity” from the same label, and infers “ecosystem” from reference counts.
-  Replace the capability interpretation with clearly defined independent measures
-  or a factual comparison view; do not invent measurement evidence.
-- **Pharma groups and deals:** explain categorical size emphasis in the group
-  graph. The transaction-count implementation needs a multi-party synthetic
-  regression before changing its pair-edge counting; current public data does not
-  demonstrate that multi-party overcount.
-- **Architecture History:** explain that relationship-node size reflects links in
-  the current filtered graph, not architectural importance or evidence confidence.
-- **Research comparisons:** continue checking financial years, source coverage,
-  freshness, and field-level provenance. Correct visual encoding does not validate
-  the underlying market, listing, or provider facts.
+Research comparisons still need checks of financial years, source coverage,
+freshness and field-level provenance. Correct visual encoding does not validate
+the underlying market, listing or provider facts. Capability and historical-importance
+scores require independent definitions and admissible evidence.
 
 This document records local design and verification scope. Public deployment
 status is established separately by the release run and live-page checks.
