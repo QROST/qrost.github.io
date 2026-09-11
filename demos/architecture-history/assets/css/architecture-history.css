@@ -1172,6 +1172,30 @@ html.dark .primary-button {
   height: 520px;
 }
 
+.lineage-size-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+}
+
+.lineage-size-title,
+.lineage-size-note { flex-basis: 100%; }
+.lineage-size-note { line-height: 1.6; }
+.lineage-size-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+.lineage-size-dot {
+  display: inline-block;
+  flex: none;
+  box-sizing: border-box;
+  border: 2px solid var(--surface-strong);
+  border-radius: 50%;
+  background: var(--cobalt);
+}
+
 .lineage-list {
   max-height: 520px;
   margin: 0;

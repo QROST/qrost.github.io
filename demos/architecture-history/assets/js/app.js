@@ -559,6 +559,7 @@
     try {
       ok = Boolean(maps && maps.renderLineage(graphRelations, {
         entitiesById: state.entitiesById,
+        allRelations: personLineageReviewRelations(),
         onClick: openDetail,
         onRelationClick: openRelationDetail,
       }));

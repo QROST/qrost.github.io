@@ -191,6 +191,50 @@
     return lineageChart;
   }
 
+  function uniquePersonRelations(relations, entitiesById) {
+    const byId = new Map();
+    relations.forEach(function (relation) {
+      const from = entitiesById[relation.from_id];
+      const to = entitiesById[relation.to_id];
+      if (!relation.id || !from || from.entity_type !== 'person' || !to || to.entity_type !== 'person') return;
+      if (!byId.has(relation.id)) byId.set(relation.id, relation);
+    });
+    return Array.from(byId.values());
+  }
+
+  function relationCounts(relations) {
+    const counts = new Map();
+    relations.forEach(function (relation) {
+      // One relation ID counts once per person, including a self-reference.
+      new Set([relation.from_id, relation.to_id]).forEach(function (id) {
+        counts.set(id, (counts.get(id) || 0) + 1);
+      });
+    });
+    return counts;
+  }
+
+  function lineageSize(count, maximum) {
+    // Keep small nodes selectable, then use a square-root scale without a count cap.
+    return Math.sqrt(24 * 24 + (56 * 56 - 24 * 24) * count / Math.max(1, maximum));
+  }
+
+  function renderLineageLegend(maximum) {
+    const legend = document.getElementById('lineage-size-legend');
+    if (!legend) return;
+    const i18n = window.ARCH_I18N;
+    const samples = maximum > 0
+      ? Array.from(new Set([1, Math.max(1, Math.round(maximum / 4)), Math.max(1, Math.round(maximum / 2)), maximum]))
+      : [];
+    legend.innerHTML = '<span class="lineage-size-title">' + escapeHtml(i18n.t('lineageSizeTitle')) + '</span>' +
+      samples.map(function (count) {
+        const diameter = lineageSize(count, maximum);
+        return '<span class="lineage-size-item" data-relation-count="' + count + '">' +
+          '<span class="lineage-size-dot" aria-hidden="true" style="width:' + diameter + 'px;height:' + diameter + 'px"></span>' +
+          escapeHtml(i18n.t('lineageRecordCount', { count: count })) + '</span>';
+      }).join('') +
+      '<span class="lineage-size-note">' + escapeHtml(i18n.t('lineageSizeNote')) + '</span>';
+  }
+
   function renderLineage(relations, context) {
     try {
       const chart = ensureLineage();
@@ -199,41 +243,40 @@
       const entitiesById = context.entitiesById || {};
       lineageClick = context.onClick || lineageClick;
       lineageEdgeClick = context.onRelationClick || lineageEdgeClick;
-      const ids = [];
-      const degree = {};
-      relations.forEach(function (relation) {
-        const from = entitiesById[relation.from_id];
-        const to = entitiesById[relation.to_id];
-        if (!from || from.entity_type !== 'person' || !to || to.entity_type !== 'person') return;
-        [relation.from_id, relation.to_id].forEach(function (id) {
-          if (!ids.includes(id)) ids.push(id);
-          degree[id] = (degree[id] || 0) + 1;
-        });
+      // The app supplies the complete person-to-person study/influence candidate
+      // collection independently of search and relation-type filters.
+      const allRelations = uniquePersonRelations(context.allRelations || relations, entitiesById);
+      const allIds = new Set(allRelations.map(function (relation) { return relation.id; }));
+      const visibleRelations = uniquePersonRelations(relations, entitiesById).filter(function (relation) {
+        return allIds.has(relation.id);
       });
-      const nodes = ids.map(function (id) {
+      const allCounts = relationCounts(allRelations);
+      const visibleCounts = relationCounts(visibleRelations);
+      const maximum = Math.max(0, ...allCounts.values());
+      const nodes = Array.from(visibleCounts.keys()).map(function (id) {
       const entity = entitiesById[id] || { name_en: id };
+      const totalCount = allCounts.get(id) || 0;
       return {
         id: id,
         entityId: id,
         name: i18n.name(entity),
-        value: degree[id],
-        symbolSize: 25 + Math.min(degree[id], 5) * 5,
+        value: totalCount,
+        totalRelationCount: totalCount,
+        visibleRelationCount: visibleCounts.get(id),
+        symbolSize: lineageSize(totalCount, maximum),
         itemStyle: {
-          color: degree[id] > 2 ? cssVar('--terracotta') : cssVar('--cobalt'),
+          color: cssVar('--cobalt'),
           borderColor: cssVar('--surface-strong'),
           borderWidth: 2,
         },
       };
       });
-      const links = relations.filter(function (relation) {
-        const from = entitiesById[relation.from_id];
-        const to = entitiesById[relation.to_id];
-        return from && from.entity_type === 'person' && to && to.entity_type === 'person';
-      }).map(function (relation) {
+      const links = visibleRelations.map(function (relation) {
         return {
           source: relation.from_id,
           target: relation.to_id,
           relationId: relation.id,
+          relationType: relation.relation_type,
           lineStyle: {
             color: cssVar('--terracotta'),
             type: 'dashed',
@@ -252,12 +295,18 @@
         backgroundColor: cssVar('--surface-strong'),
         borderColor: cssVar('--line'),
         textStyle: { color: cssVar('--ink'), fontSize: 12 },
+        extraCssText: 'max-width:min(320px, calc(100vw - 48px));white-space:normal;overflow-wrap:anywhere;',
         formatter: function (params) {
           if (params.dataType === 'node') {
             return '<strong>' + escapeHtml(params.data.name) + '</strong><br>' +
+              escapeHtml(i18n.t('lineageTotalCount', { count: params.data.totalRelationCount })) + '<br>' +
+              escapeHtml(i18n.t('lineageVisibleCount', { count: params.data.visibleRelationCount })) + '<br>' +
+              escapeHtml(i18n.t('lineageCountMeaning')) + '<br>' +
               escapeHtml(i18n.t('relationReviewOnly'));
           }
-          return escapeHtml(i18n.t('rawRelation'));
+          return escapeHtml(i18n.enumLabel('relation_type', params.data.relationType)) + '<br>' +
+            escapeHtml(i18n.t('relationType')) + ': ' + escapeHtml(params.data.relationType) + '<br>' +
+            escapeHtml(i18n.t('relationReviewOnly')) + '<br>' + escapeHtml(i18n.t('lineageOpenEvidence'));
         },
       },
       series: [{
@@ -287,6 +336,7 @@
         },
       }],
       }, true);
+      renderLineageLegend(maximum);
       // The touch gate emits onChange synchronously; initialize the full chart first.
       if (!lineageGate && window.QrostTouchGate) {
         lineageGate = window.QrostTouchGate.attach(document.getElementById('lineage-graph'), {
