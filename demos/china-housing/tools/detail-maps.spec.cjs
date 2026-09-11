@@ -31,6 +31,70 @@ async function expectMapLayout(page, selector, count) {
   }
 }
 
+test('housing detail maps: rapid close and reopen cannot initialize the previous listing', async ({ page }, testInfo) => {
+  await offline(page);
+  await page.route(/^https:\/\/(server\.arcgisonline\.com|[abc]\.tile\.openstreetmap\.org)\//, route =>
+    route.fulfill({ contentType: 'image/svg+xml', body: tile }));
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/demos/china-housing/');
+  await expect(page.locator('#table-body [data-open="2"]')).toBeAttached();
+  // One event-loop turn reproduces clicks that outrun deferred map startup.
+  await page.evaluate(() => {
+    document.querySelector('#table-body [data-open="1"]').click();
+    document.querySelector('[data-lm-tab="near"]').click();
+    document.querySelector('#lm-close').click();
+    document.querySelector('#table-body [data-open="2"]').click();
+    document.querySelector('[data-lm-tab="near"]').click();
+  });
+  await expect(page.locator('#lm-title')).toContainText('双鸭山');
+  await expect(page.locator('#lm-near-list')).toContainText('黑龙江龙煤矿业集团四方台矿医院');
+  await expectMapLayout(page, '#lm-near-map', 11);
+  expect(errors).toEqual([]);
+  if (testInfo.project.name === 'touch') {
+    const gate = page.locator('[data-touch-for="lm-near-map"]');
+    await gate.click();
+    await expect(gate).toHaveAttribute('aria-pressed', 'true');
+    await page.locator('#lm-close').click();
+    await page.evaluate(() => {
+      document.querySelector('#table-body [data-open="1"]').click();
+      document.querySelector('[data-lm-tab="near"]').click();
+    });
+    await expect(page.locator('#lm-near-list')).toContainText('鹤岗市人民医院');
+    await expect(gate).toHaveAttribute('aria-pressed', 'false');
+  }
+  await page.locator('#lm-close').click();
+  await expect(page.locator('#listing-modal .leaflet-map-pane')).toHaveCount(0);
+});
+
+test('housing detail maps: imported offer and POI text remains literal, with web-only source links', async ({ page }) => {
+  await offline(page);
+  const literal = 'A & B <b>东院</b> "转角"';
+  const updated = '2026-09 <em>待核验</em>';
+  const validURL = 'https://example.com/offer?q=A&B=%22corner%22';
+  await page.goto('/demos/china-housing/');
+  await expect(page.locator('#table-body [data-open="1"]')).toBeAttached();
+  await page.evaluate(({ literal, updated, validURL }) => {
+    window.HOUSING_OFFERS['1'] = [validURL, 'javascript:void(0)', 'data:text/html,test'].map(sourceUrl => ({
+      area: 60, priceWan: 2, unitPrice: 333, layout: literal, updated, sourceUrl,
+    }));
+    window.HOUSING_ENRICHED['1'].pois.hospital.name = literal;
+    document.querySelector('#table-body [data-open="1"]').click();
+  }, { literal, updated, validURL });
+  await page.locator('#lm-offers summary').click();
+  await expect(page.locator('#lm-offers tbody tr')).toHaveCount(3);
+  await expect(page.locator('#lm-offers tbody tr').first()).toContainText(literal);
+  await expect(page.locator('#lm-offers tbody tr').first()).toContainText(updated);
+  await expect(page.locator('#lm-offers tbody b, #lm-offers tbody em')).toHaveCount(0);
+  await expect(page.locator('#lm-offers a')).toHaveCount(1);
+  await expect(page.locator('#lm-offers a')).toHaveAttribute('href', validURL);
+  await page.locator('[data-lm-tab="near"]').click();
+  await expect(page.locator('#lm-near-list')).toContainText(literal);
+  await page.locator('#lm-near-map path[fill="#dc2626"]').dispatchEvent('click');
+  await expect(page.locator('#lm-near-map .leaflet-popup-content')).toContainText(literal);
+  await expect(page.locator('#lm-near-map .leaflet-popup-content b')).toHaveCount(0);
+});
+
 for (const listing of [
   { id: 1, lang: 'zh', dark: false, hospital: '鹤岗市人民医院' },
   { id: 50, lang: 'en', dark: true, hospital: '肥城市人民医院' },

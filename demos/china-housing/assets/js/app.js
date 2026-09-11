@@ -2468,7 +2468,20 @@
     ? { radius: 8, color: m.stroke, weight: 2, fillColor: m.fill, fillOpacity: 1 }
     : { radius: 6, color: '#fff', weight: 1.5, fillColor: m.color, fillOpacity: 0.95 };
   const ZOOM_BY_LEVEL = { loc: 16, dist: 14, city: 12, prefecture: 11 };
+  const escapeText = (value) => String(value == null ? '' : value).replace(/[&<>"']/g,
+    (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+  function sourceURL(value) {
+    try {
+      const url = new URL(value);
+      return /^https?:$/.test(url.protocol) ? url.href : null;
+    } catch (_) { return null; }
+  }
   let lmCurrent = null, lmActiveTab = 'sat', lmSatMap = null, lmNearMap = null, lmClimateChart = null, lmTabInit = {};
+  let lmEpoch = 0;
+  function deferListing(fn, delay) {
+    const epoch = lmEpoch;
+    setTimeout(() => { if (epoch === lmEpoch && lmCurrent) fn(); }, delay);
+  }
   let modalReturnFocus = null; // element to restore focus to when a dialog closes (a11y)
 
   // ---- minimal a11y focus trap for #listing-modal / #cmp-modal dialogs ----
@@ -2837,15 +2850,16 @@
     const tc = tcx();
     const rows = offers.map((o) => {
       const info = [o.layout, o.orientation, o.floorNote].filter(Boolean).join(' · ');
-      const src = o.sourceUrl
-        ? ` <a href="${o.sourceUrl}" target="_blank" rel="noopener" class="text-emerald-600 dark:text-emerald-400 hover:underline" title="${t('offersSource')}">↗</a>`
+      const url = sourceURL(o.sourceUrl);
+      const src = url
+        ? ` <a href="${escapeText(url)}" target="_blank" rel="noopener" class="text-emerald-600 dark:text-emerald-400 hover:underline" title="${t('offersSource')}" aria-label="${t('offersSource')}">↗</a>`
         : '';
       return `<tr class="border-t border-slate-100 dark:border-slate-700/60">`
         + `<td class="py-1 pr-3 ${tc.strong} whitespace-nowrap font-medium">${fmtWan(o.priceWan, d.prov)}</td>`
         + `<td class="py-1 pr-3 ${tc.body} whitespace-nowrap">${fmtArea(o.area)}</td>`
         + `<td class="py-1 pr-3 ${tc.body} whitespace-nowrap">${fmtUnit(o.unitPrice)}</td>`
-        + `<td class="py-1 pr-3 ${tc.muted}">${info || '—'}</td>`
-        + `<td class="py-1 ${tc.muted} whitespace-nowrap text-right">${o.updated || ''}${src}</td></tr>`;
+        + `<td class="py-1 pr-3 ${tc.muted}">${escapeText(info) || '—'}</td>`
+        + `<td class="py-1 ${tc.muted} whitespace-nowrap text-right">${escapeText(o.updated)}${src}</td></tr>`;
     }).join('');
     box.classList.remove('hidden');
     box.innerHTML = `<details class="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/40">`
@@ -2880,6 +2894,9 @@
   function openListing(id) {
     const d = DATA.find((x) => x.id === id);
     if (!d || !d.enr) return;
+    lmEpoch += 1; // Discard queued startup/resize work from an earlier modal.
+    if (lmSatTouchGate) lmSatTouchGate.setActive(false);
+    if (lmNearTouchGate) lmNearTouchGate.setActive(false);
     // tear down any maps/chart from a previously-open listing — otherwise re-init on an
     // already-initialized Leaflet container is a no-op and the stale map (prior listing's
     // location) lingers. closeModal does this on close; do it on (re)open too.
@@ -2921,21 +2938,21 @@
           document.getElementById('lm-sat-map').innerHTML = `<div class="h-full flex items-center justify-center p-6 text-center ${tcx().muted}">${isEn() ? 'The detail map library could not load. Other listing details remain available.' : '详情地图组件未能加载，其他房源信息仍可使用。'}</div>`;
           return;
         }
-        setTimeout(() => {
+        deferListing(() => {
           const coarse = window.QrostTouchGate && QrostTouchGate.coarsePointer();
           lmSatMap = L.map('lm-sat-map', {
             scrollWheelZoom: !coarse, dragging: !coarse, touchZoom: !coarse,
           }).setView([e.lat, e.lng], ZOOM_BY_LEVEL[e.geoLevel] || 14);
           const satTiles = L.tileLayer(TILE_SAT, { maxZoom: 19, attribution: '© Esri World Imagery' });
           wireTileFailure(satTiles, lmSatMap); satTiles.addTo(lmSatMap);
-          L.circleMarker([e.lat, e.lng], { radius: 9, color: '#fff', weight: 2, fillColor: '#059669', fillOpacity: 1 }).addTo(lmSatMap).bindPopup(d.loc);
+          L.circleMarker([e.lat, e.lng], { radius: 9, color: '#fff', weight: 2, fillColor: '#059669', fillOpacity: 1 }).addTo(lmSatMap).bindPopup(escapeText(d.loc));
           lmSatTouchGate = attachLeafletGate(document.getElementById('lm-sat-map'), 'sat');
-          setTimeout(() => lmSatMap && lmSatMap.invalidateSize(), 180);
+          deferListing(() => lmSatMap && lmSatMap.invalidateSize(), 180);
         }, 60);
-      } else { setTimeout(() => lmSatMap && lmSatMap.invalidateSize(), 60); }
+      } else { deferListing(() => lmSatMap && lmSatMap.invalidateSize(), 60); }
     } else if (tab === 'near') {
-      if (!lmTabInit.near) { lmTabInit.near = true; setTimeout(() => lmInitNear(d), 60); }
-      else { setTimeout(() => lmNearMap && lmNearMap.invalidateSize(), 60); }
+      if (!lmTabInit.near) { lmTabInit.near = true; deferListing(() => lmInitNear(d), 60); }
+      else { deferListing(() => lmNearMap && lmNearMap.invalidateSize(), 60); }
     } else if (tab === 'climate') {
       lmRenderClimate(d);
     } else if (tab === 'policy') {
@@ -2951,7 +2968,7 @@
       if (cat === 'community') {
         // Overseas zip convention (loc === dist === 邮编): "小区 4006" reads oddly → 邮编/Postcode.
         const cmLabel = (d.loc && d.dist && d.loc === d.dist) ? t('poiPostcode') : m.label;
-        return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${cmLabel}</b> ${locName}</span></div>`;
+        return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${cmLabel}</b> ${escapeText(locName)}</span></div>`;
       }
       const p = cat === 'hospital' ? hospitalPoi(e) : pois[cat];
       if (!p) return `<div class="flex items-center gap-2 ${tcx().muted}">${nearPoiSwatch(m)}${m.label}: —</div>`;
@@ -2959,7 +2976,7 @@
       const tag = p.source === 'research' ? ` <span class="text-[10px] text-amber-500 dark:text-amber-400" title="${t('poiResearch')}">${t('poiResearch')}</span>` : '';
       const tk = cat === 'train' ? trainKindTag(p) : '';
       const noPin = (p.lat == null && p.distKm == null && p.name) ? ` <span class="text-[10px] ${tcx().muted}">${t('poiUnlocated')}</span>` : '';
-      return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${m.label}</b> ${p.name || ''}${tk} <span class="${tcx().muted}">${dk}</span>${tag}${noPin}</span></div>`;
+      return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${m.label}</b> ${escapeText(p.name)}${tk} <span class="${tcx().muted}">${dk}</span>${tag}${noPin}</span></div>`;
     });
     document.getElementById('lm-near-list').innerHTML = items.join('');
   }
@@ -2984,19 +3001,19 @@
       const m = poiMeta(cat);
       if (cat === 'community') {
         const cmLabel = (d.loc && d.dist && d.loc === d.dist) ? t('poiPostcode') : m.label;
-        L.circleMarker([e.lat, e.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${cmLabel}: ${locName}`);
+        L.circleMarker([e.lat, e.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${cmLabel}: ${escapeText(locName)}`);
         return;
       }
       const p = cat === 'hospital' ? hospitalPoi(e) : pois[cat];
       if (p && p.lat != null && p.lng != null) {
         pts.push([p.lat, p.lng]);
-        L.circleMarker([p.lat, p.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${m.label}: ${p.name || ''}${p.trainKind ? ' (' + (p.trainKind === 'highspeed' ? t('poiTrainHSR') : t('poiTrainRegular')) + ')' : ''}<br/>${fmtKm(p.distKm)}`);
+        L.circleMarker([p.lat, p.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${m.label}: ${escapeText(p.name)}${p.trainKind ? ' (' + (p.trainKind === 'highspeed' ? t('poiTrainHSR') : t('poiTrainRegular')) + ')' : ''}<br/>${fmtKm(p.distKm)}`);
       }
     });
     lmRenderNearList(d);
     if (pts.length > 1) lmNearMap.fitBounds(pts, { padding: [28, 28], maxZoom: 13 });
     lmNearTouchGate = attachLeafletGate(document.getElementById('lm-near-map'), 'near');
-    setTimeout(() => lmNearMap.invalidateSize(), 60);
+    deferListing(() => lmNearMap && lmNearMap.invalidateSize(), 60);
   }
 
   // 9-band daily-mean temperature strip (WeatherSpark-style), drawn above the
@@ -3081,7 +3098,7 @@
     const facts = document.getElementById('lm-facts');
     if (facts) {
       facts.innerHTML = lmFactsHtml(d);
-      setTimeout(() => safeRun('drawBandStrip', () => drawBandStrip(d)), 0);
+      deferListing(() => safeRun('drawBandStrip', () => drawBandStrip(d)), 0);
     }
     const histLine = (d.histTempMax != null || d.histTempMin != null)
       ? `<div class="mt-2 text-sm ${tc.body}"><span class="font-medium ${tc.strong}">${t('histTempTitle')}</span>: `
@@ -3187,6 +3204,9 @@
   }
 
   function closeModal() {
+    lmEpoch += 1;
+    if (lmSatTouchGate) lmSatTouchGate.setActive(false);
+    if (lmNearTouchGate) lmNearTouchGate.setActive(false);
     const modalEl = document.getElementById('listing-modal');
     const wasOpen = modalEl && !modalEl.classList.contains('hidden');
     if (modalEl) modalEl.classList.add('hidden');
