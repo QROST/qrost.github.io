@@ -39,8 +39,8 @@
       zh: '建筑谱系 · 全球建筑史证据图谱',
     },
     cardArchitectureDesc: {
-      en: 'A source-first bilingual browser for 1,846 revision-pinned works, 2,099 people, 88 practices and 81 places — searchable map, field-level evidence, raw relation review and a 9 × 8 coverage ledger, with 837 verified records.',
-      zh: '来源优先的双语浏览器：1,846 件固定修订作品、2,099 位人物、88 家事务所与 81 个地点；可搜索地图、字段级证据、原始关系复核及 9 × 8 覆盖账本，已核验 837 条记录。',
+      en: "A source-first bilingual browser for 1,846 revision-pinned works, 2,099 people, 88 practices and 81 places — searchable map, field-level evidence, raw relation review and a 9 × 8 coverage ledger, with 837 verified entity/relationship records.",
+      zh: "来源优先的双语浏览器：1,846 件固定修订作品、2,099 位人物、88 家事务所与 81 个地点；可搜索地图、字段级证据、原始关系复核及 9 × 8 覆盖账本，已核验 837 条实体/关系记录。",
     },
     cardHousingTitle: {
       en: 'Where to live well — and cheap · China small-city housing',
@@ -55,8 +55,8 @@
       zh: '中国汽车城市图谱 · 总部不等于产量',
     },
     cardAutoDesc: {
-      en: '28 Chinese auto cities (17 core + 11 specialist), 168 organizations and 128 facility records — HQ, plants, batteries, software, media, review-video KOLs and universities as separate roles. Every org has explicit founded, ownership, listing, headcount, sales and plant-availability states. Pinyin / initials search, China map, cluster graph, sourced 2025 local output. Dark mode · EN/中文.',
-      zh: '28 座汽车城市（17 核心 + 11 专业）、168 家机构与 128 条设施记录，用角色标签分开总部、工厂、电池、软件、媒体、评测KOL和院校。每家机构均明确展示成立、所有制、上市、员工、销量与工厂可得性状态。支持拼音/首字母/简写搜索，中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。',
+      en: "28 Chinese auto cities (17 core + 11 specialist), 168 organizations and 128 facility records — HQ, plants, batteries, software, media, review-video KOLs and universities as separate roles. Every org has explicit founded, ownership, listing, headcount, sales and plant-availability states. Pinyin / initials search, China map, cluster graph, sourced 2025 local output. Dark mode · EN/中文.",
+      zh: "28 座汽车城市（17 核心 + 11 专业）、168 家机构与 128 条设施记录，用角色标签分开总部、工厂、电池、软件、媒体、评测KOL和院校。每家机构均明确展示成立、所有制、上市、员工、销量与工厂可得性状态。支持拼音/首字母/简写搜索，中国地图、产业集群图、带来源的 2025 年地方产量拼合。深色模式 · 中英切换。",
     },
     cardPebbleTitle: {
       en: 'Pebble Beach 2027 · Monterey Car Week planning guide',

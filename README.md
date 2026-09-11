@@ -2,10 +2,10 @@
 
 ## Demo structure
 
-- `demos/architecture-history/` — 建筑谱系 · Architecture Lineages, a bilingual source-first architectural-history evidence browser with revision-pinned candidate records, searchable map/catalog, field-level provenance, raw relation review, and an explicit 9-region × 8-period coverage ledger.
+- `demos/architecture-history/` — 建筑谱系 · Architecture Lineages. A source-first bilingual browser for 1,846 revision-pinned works, 2,099 people, 88 practices and 81 places — searchable map, field-level evidence, raw relation review and a 9 × 8 coverage ledger, with 837 verified entity/relationship records.
 - `demos/wfoe-china/` contains the China WFOE + hiring costs interactive page.
 - `demos/china-housing/` — small-city housing & rent data visualization.
-- `demos/china-auto/` — China auto city atlas: 28 cities (17 core + 11 specialist), 168 companies/brands, 80 facility records, and 56 auto media titles (including national review-video KOLs) grouped by beat; every org has a headquarters city, explicit founded/ownership/listing/headcount/sales/plant states, pinyin/initials search, HQ vs plant vs battery/software roles, clusters and sourced 2025 local output figures.
+- `demos/china-auto/` — China auto city atlas: 28 cities (17 core + 11 specialist), 168 organizations, 128 facility records, and 56 auto media titles (including national review-video KOLs) grouped by beat; every org has a headquarters city, explicit founded/ownership/listing/headcount/sales/plant states, pinyin/initials search, HQ vs plant vs battery/software roles, clusters and sourced 2025 local output figures.
 - `demos/pebble-beach-2027/` — Pebble Beach 2027 · current bilingual planning guide. Seven official signature-event date ranges are recorded, including Concours Sunday on August 15; schedules, prices, routes, maps, brand programs, lodging, and travel details stay visibly partial or pending until year-specific sources are verified.
 - `demos/pebble-beach-2026/` — Pebble Beach 2026 · frozen historical archive of the complete public guide. Its itinerary, prices, Tour route, parking diagrams, brand programs, and travel judgments apply to that edition only and are not carried into 2027.
 - `demos/china-industrial-software/` — China industrial software survey.
@@ -38,9 +38,9 @@
 ## Checks
 
 - `npm ci --ignore-scripts` installs the locked Tailwind compiler, Playwright, and same-version chart fixtures used by offline browser tests.
-- `npm run build:css && python3 tools/build.py` rebuilds the committed homepage CSS and refreshes content-addressed CSS/JavaScript cache tokens.
+- `npm run build:css && python3 tools/build.py` rebuilds the committed homepage CSS, generates the Architecture History and China Auto summaries from their public manifests, and refreshes content-addressed CSS/JavaScript cache tokens.
 - `npm run check:css` recompiles the root, China Auto, Housing, Pharma, Shelter Cats, and WFOE Tailwind outputs in a temporary directory and compares them byte-for-byte with the committed CSS.
-- `python3 tools/build.py --check` verifies root cache tokens without writing.
+- `python3 tools/build.py --check` verifies manifest-backed summaries across homepage HTML, both languages and this README, plus root cache tokens, without writing.
 - `python3 tools/check_public_metadata.py` verifies the complete inventory, canonical/robots decisions, OG/Twitter fields, local sharing-image dimensions, sitemap, robots policy, and homepage demo cards.
 - `python3 tools/test_public_metadata.py` runs mutation fixtures proving that missing fields, stray HTML, bad images, and sitemap/indexing contradictions fail closed.
 - `python3 tools/check_all.py` runs the stable root, research-data, public-demo cache/runtime, accessibility-contract, and repository-syntax gates used by GitHub Actions. Run it after `npm ci`; every gate must leave tracked content unchanged.

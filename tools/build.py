@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
-"""Stamp content-addressed cache tokens for root-page static assets."""
+"""Project manifest-backed homepage summaries, then stamp asset content hashes."""
 
 from __future__ import annotations
 
 import argparse
 import hashlib
 import re
+import sys
 from pathlib import Path
+
+# Keep --check read-only, including when the helper has not been imported before.
+sys.dont_write_bytecode = True
+from home_summaries import project
 
 
 ROOT = Path(__file__).resolve().parents[1]
-INDEX = ROOT / "index.html"
 HOME_I18N = ROOT / "assets/js/home-i18n.js"
 HOME_CSS = ROOT / "assets/css/home-built.css"
 
 
-def content_version(path: Path) -> str:
-    return hashlib.sha1(path.read_bytes()).hexdigest()[:10]
-
-
-def stamp(html: str, asset: Path, url: str) -> tuple[str, str]:
-    version = content_version(asset)
+def stamp(html: str, asset: Path, url: str, content: bytes | None = None) -> tuple[str, str]:
+    version = hashlib.sha1(asset.read_bytes() if content is None else content).hexdigest()[:10]
     pattern = rf'((?:src|href)="{re.escape(url)})(?:\?v=[^"]*)?(")'
     stamped, count = re.subn(pattern, rf"\g<1>?v={version}\g<2>", html)
     if count != 1:
@@ -33,21 +33,27 @@ def main() -> None:
     parser.add_argument(
         "--check",
         action="store_true",
-        help="fail on stale tokens without modifying index.html",
+        help="verify generated summaries and cache tokens without writing any files",
     )
     args = parser.parse_args()
 
-    html = INDEX.read_text(encoding="utf-8")
     try:
-        stamped, js_version = stamp(html, HOME_I18N, "assets/js/home-i18n.js")
+        projected = project(ROOT)
+        stamped, js_version = stamp(projected["index.html"], HOME_I18N, "assets/js/home-i18n.js",
+                                    projected["assets/js/home-i18n.js"].encode("utf-8"))
         stamped, css_version = stamp(stamped, HOME_CSS, "assets/css/home-built.css")
-    except ValueError as exc:
+        projected["index.html"] = stamped
+    except (ValueError, KeyError, OSError) as exc:
         raise SystemExit(str(exc)) from exc
 
-    if args.check and stamped != html:
-        raise SystemExit("root build: stale cache token(s); run python3 tools/build.py")
-    if not args.check and stamped != html:
-        INDEX.write_text(stamped, encoding="utf-8")
+    changed = [name for name, content in projected.items()
+               if (ROOT / name).read_text(encoding="utf-8") != content]
+    if args.check and changed:
+        raise SystemExit("root build: stale summaries/cache tokens in " + ", ".join(changed) +
+                         "; run python3 tools/build.py")
+    if not args.check:
+        for name in changed:
+            (ROOT / name).write_text(projected[name], encoding="utf-8")
     print(
         "root build: OK "
         f"(home-i18n.js?v={js_version}, home-built.css?v={css_version}, "
