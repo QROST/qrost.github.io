@@ -1,17 +1,8 @@
 const { test, expect } = require('@playwright/test');
 const { offline } = require('../../../tools/browser/offline.cjs');
-const fs = require('node:fs');
-const echarts = fs.readFileSync(require.resolve('echarts/dist/echarts.min.js'), 'utf8');
 
 async function prepare(page) {
   await offline(page);
-  // Seed the unrelated sunburst with the locked local 5.5.1 build at normal
-  // script time: ECharts needs documentElement, so addInitScript is too early.
-  // Production retains its 5.5.0 CDN/SRI; comparison itself no longer uses it.
-  await page.route('**/china-industrial-software/assets/js/charts.js?*', async route => {
-    const response = await route.fetch();
-    await route.fulfill({ response, body: echarts + '\n' + await response.text() });
-  });
   await page.addInitScript(() => {
     localStorage.setItem('industrial-software-lang', 'zh');
     localStorage.setItem('industrial-software-theme', 'light');

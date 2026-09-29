@@ -24,7 +24,7 @@ async function offline(page) {
       return route.continue();
     }
     const headers = { 'access-control-allow-origin': '*' };
-    if (url.pathname.includes('echarts@5.5.1/')) return route.fulfill({ contentType: 'application/javascript', body: echarts, headers });
+    if (url.pathname.includes('echarts@6.1.0/')) return route.fulfill({ contentType: 'application/javascript', body: echarts, headers });
     if (url.pathname.includes('chart.js@4.4.7/')) return route.fulfill({ contentType: 'application/javascript', body: chart, headers });
     if (url.pathname.endsWith('/leaflet.js')) return route.fulfill({ contentType: 'application/javascript', body: leaflet, headers });
     if (url.pathname.endsWith('/leaflet.css')) return route.fulfill({ contentType: 'text/css', body: leafletCSS, headers });

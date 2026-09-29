@@ -126,11 +126,11 @@ class PageContractTests(unittest.TestCase):
         script = matches[0]
         self.assertEqual(
             script["src"],
-            "https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js",
+            "https://cdn.jsdelivr.net/npm/echarts@6.1.0/dist/echarts.min.js",
         )
         self.assertEqual(
             script.get("integrity"),
-            "sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR",
+            "sha384-C2iskrW/uPW46KzOjrvJIQo4YkV8lkD+QS0CrDN18IIPIpT/g2USu8bTP3nvmIAD",
         )
         self.assertEqual(script.get("crossorigin"), "anonymous")
 
@@ -138,7 +138,7 @@ class PageContractTests(unittest.TestCase):
         sources = [script.get("src", "").split("?", 1)[0] for script in self.parser.scripts]
         expected = [
             "assets/js/world-geo.js",
-            "https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js",
+            "https://cdn.jsdelivr.net/npm/echarts@6.1.0/dist/echarts.min.js",
             "assets/js/i18n.js",
             "assets/js/touch-gate.js",
             "assets/js/data-loader.js",

@@ -17,7 +17,7 @@ async function openAtlas(page, { delayedFx = false, failedFx = false, cachedFx =
   }, { cachedFx });
   await page.route('https://**/*', async route => {
     const url = route.request().url();
-    if (url.includes('echarts@5.5.1/dist/echarts.min.js')) return route.fulfill({ path: require.resolve('echarts/dist/echarts.min.js'), contentType: 'application/javascript' });
+    if (url.includes('echarts@6.1.0/dist/echarts.min.js')) return route.fulfill({ path: require.resolve('echarts/dist/echarts.min.js'), contentType: 'application/javascript' });
     if (url.includes('open.er-api.com')) {
       await gate;
       return route.fulfill({ status: failedFx ? 503 : 200, contentType: 'application/json', body: JSON.stringify({ rates: { USD: 1, CNY: 8, EUR: 0.9 }, time_last_update_unix: 1767225600 }) });
