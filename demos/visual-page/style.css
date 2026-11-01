@@ -21,7 +21,7 @@ html, body {
 }
 #home-link {
   position: fixed; right: 22px; top: max(env(safe-area-inset-top), 16px);
-  z-index: 5; font-size: 10px; font-weight: 300; letter-spacing: 0.28em;
+  z-index: 5; font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
   color: #cfe0ff; opacity: 0.32; text-decoration: none;
   transition: opacity 0.3s ease;
 }

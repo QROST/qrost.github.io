@@ -1,6 +1,6 @@
 # Architecture Lineages / 建筑谱系
 
-`architecture-history` is QROST's bilingual, source-first atlas of architects,
+`architecture-history` is the CuriousArc lab's bilingual, source-first atlas of architects,
 practices, built works, places, credits, and documented knowledge-transfer
 relationships.
 
@@ -35,9 +35,9 @@ it. See `tools/README.md` for the complete edit flow and the Wikidata re-hydrate
 path.
 
 Evidence is accepted only from publishers registered as
-`independent_external`. QROST's own research briefs are never an information
+`independent_external`. Research briefs written by qrost are never an information
 source or evidence authority. / 证据只接受登记为 `independent_external`
-的独立外部发布者；QROST 自写研究简报不作为信息来源或证据权威。
+的独立外部发布者；qrost 自写研究简报不作为信息来源或证据权威。
 
 The public data graph lives in `assets/data/`:
 

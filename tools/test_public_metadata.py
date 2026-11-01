@@ -32,7 +32,7 @@ def html(canonical: str = ORIGIN, width: int = 1200, height: int = 630) -> str:
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fixture page</title><meta name="description" content="Fixture description">
 <link rel="canonical" href="{canonical}">
-<meta property="og:type" content="website"><meta property="og:site_name" content="QROST">
+<meta property="og:type" content="website"><meta property="og:site_name" content="CuriousArc">
 <meta property="og:title" content="Fixture page"><meta property="og:description" content="Fixture description">
 <meta property="og:url" content="{ORIGIN}"><meta property="og:image" content="{image}">
 <meta property="og:image:width" content="{width}"><meta property="og:image:height" content="{height}">

@@ -1,6 +1,6 @@
 /* Shelter Cats — theme tokens (light + dark) + components.
    Used alongside Tailwind CDN utilities. Custom classes avoid Tailwind opacity
-   modifiers. Component class names intentionally mirror the other QROST demos. */
+   modifiers. Component class names intentionally mirror the other lab demos. */
 
 :root {
   --bg-base: #f7f5f1;

@@ -313,8 +313,8 @@ class PageContractTests(unittest.TestCase):
     def test_public_methodology_excludes_qrost_self_authored_briefs(self) -> None:
         for phrase in (
             "independent_external",
-            "QROST 自写研究简报不作为信息来源或证据",
-            "research briefs authored by QROST are never an information source",
+            "qrost 自写研究简报不作为信息来源或证据",
+            "research briefs written by qrost are never an information source",
         ):
             self.assertIn(phrase, self.html + self.i18n)
 
@@ -403,7 +403,7 @@ class PageContractTests(unittest.TestCase):
     def test_site_header_matches_qrost_research_shell(self) -> None:
         self.assertRegex(
             self.html,
-            r'<a class="brand"[^>]*>Qrost</a>',
+            r'<a class="brand"[^>]*>CuriousArc</a>',
         )
         self.assertNotIn("brand-mark", self.html + self.css)
         for rule in (

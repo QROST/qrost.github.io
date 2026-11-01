@@ -142,12 +142,11 @@ summary,
 .brand {
   flex: 0 0 auto;
   color: var(--ink);
-  font-size: 0.65rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.35em;
+  letter-spacing: -0.03em;
   line-height: 1;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 .desktop-nav {

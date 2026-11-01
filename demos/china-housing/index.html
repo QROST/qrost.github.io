@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>哪里既宜居又便宜 · 全国小城市住房宜居度可视化 | QROST</title>
+    <title>哪里既宜居又便宜 · 全国小城市住房宜居度可视化 | CuriousArc</title>
     <meta name="description"
         content="249 套全国小城市 / 县城二手房样本，把价格与宜居度放在一起：气候舒适度、1月/7月气温、年降水、海拔、到医院/火车站/机场/海岸的距离，以及省级自然灾害概况。覆盖 26 省，帮你找到既便宜又住得舒服的地方。">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -15,7 +15,7 @@
     <meta property="og:title" content="哪里既宜居又便宜 · 全国小城市住房宜居度可视化">
     <meta property="og:description" content="249 套小城市二手房样本，价格 × 宜居（气候/海拔/基础设施距离/自然灾害风险）横向对比，覆盖 26 省。找到便宜又住得舒服的地方。">
     <meta property="og:url" content="https://qrost.github.io/demos/china-housing/">
-    <meta property="og:site_name" content="QROST">
+    <meta property="og:site_name" content="CuriousArc">
     <meta property="og:image" content="https://qrost.github.io/demos/china-housing/assets/img/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -49,7 +49,7 @@
     </script>
 
     <!-- ② Locally compiled Tailwind utilities (committed for deterministic GitHub Pages rendering) -->
-    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=9f3f6c3aef">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=dba2d4baf0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Leaflet — only used inside the per-listing satellite / vicinity modal -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -135,7 +135,7 @@
             background-color: var(--control-hover) !important;
         }
         #table-search::placeholder { color: var(--placeholder) !important; }
-        nav a[aria-label="返回 QROST 首页"] { color: var(--heading) !important; }
+        #nav-home { color: var(--heading) !important; }
         nav .flex.items-center.gap-4 { color: var(--text-muted) !important; }
         nav .flex.items-center.gap-4 a:hover { color: var(--heading) !important; }
         header h1 { color: var(--heading) !important; }
@@ -383,8 +383,8 @@
         <div class="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
             <div class="flex justify-between h-14 items-center gap-2 sm:gap-4">
                 <a href="../../index.html" id="nav-home"
-                    class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 dark:text-slate-100 uppercase shrink-0 transition-colors duration-300"
-                    aria-label="返回 QROST 首页">Qrost</a>
+                    class="text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-100 shrink-0 transition-colors duration-300"
+                    aria-label="返回 CuriousArc 实验室">CuriousArc</a>
                 <div class="nav-links flex items-center gap-3 md:gap-8 text-xs sm:text-sm text-slate-500 dark:text-slate-400 overflow-x-auto">
                     <a href="#geo" id="nav-geo" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">宜居地图</a>
                     <a href="#rankings" id="nav-rankings" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">排行</a>
@@ -695,7 +695,7 @@
                         <div id="method-data-body"><p>挂牌与旅居信息种子来自小红书博主「FIRE规划师」与「包子全是水」<strong
                                 class="font-medium text-slate-700 dark:text-slate-300">无偿分享</strong>的房产 / 旅居笔记——前者主要对应其 <strong
                                 class="text-slate-700 dark:text-slate-300">2026-04</strong> 系列帖子，后者主要对应其 <strong
-                                class="text-slate-700 dark:text-slate-300">2025-06</strong> 系列帖子。经整合后，QROST 联网补充了若干样本，并独立计算气候 / 海拔 / 基础设施距离 / 灾害频率等宜居维度（Open-Meteo、OpenStreetMap 及公开史料）。</p></div>
+                                class="text-slate-700 dark:text-slate-300">2025-06</strong> 系列帖子。经整合后，qrost 联网补充了若干样本，并独立计算气候 / 海拔 / 基础设施距离 / 灾害频率等宜居维度（Open-Meteo、OpenStreetMap 及公开史料）。</p></div>
                     </div>
                     <div class="grid md:grid-cols-2 gap-5">
                 <div
@@ -906,9 +906,9 @@
         <div class="max-w-6xl mx-auto px-4 text-center text-slate-500 dark:text-slate-500 text-xs space-y-2">
             <p id="page-built-at" class="tabular-nums">网页更新于 …</p>
             <p id="footer-thanks">数据来源 · 致谢：感谢 <strong class="font-medium text-slate-500 dark:text-slate-400">小红书 @FIRE规划师</strong>、<strong class="font-medium text-slate-500 dark:text-slate-400">小红书 @包子全是水</strong> 提供的原始信息与样本线索；后续扩充与全部宜居 enrich 由
-                QROST 独立调研整理，建成年代等附可核查来源（点击表格行查看）。</p>
+                qrost 独立调研整理，建成年代等附可核查来源（点击表格行查看）。</p>
             <p class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-                <span id="footer-disclaimer">&copy; 2026 QROST. 本页不构成任何投资、法律或税务建议。</span>
+                <span id="footer-disclaimer">&copy; 2026 CuriousArc LLC. 本页不构成任何投资、法律或税务建议。</span>
                 <label class="inline-flex items-center gap-1.5 text-slate-400/80 dark:text-slate-500/80 cursor-pointer select-none shrink-0">
                     <input type="checkbox" id="tier1-toggle"
                         class="rounded border-slate-300 dark:border-slate-600 text-emerald-600 focus:ring-emerald-500/30 scale-90">
@@ -919,22 +919,22 @@
     </footer>
 
     <!-- data + libs + app (load order matters) -->
-    <script src="assets/data/listings.js?v=555560fa6b"></script>
+    <script src="assets/data/listings.js?v=593774e1bf"></script>
     <!-- China province boundaries, vendored locally (no runtime third-party fetch) -->
-    <script src="assets/data/china-geo.js?v=555560fa6b"></script>
+    <script src="assets/data/china-geo.js?v=593774e1bf"></script>
     <!-- Baked enrichment: geocode / climate / POIs / risk / elevation (tools/manage.py enrich → build) -->
-    <script src="assets/data/enriched.js?v=555560fa6b"></script>
+    <script src="assets/data/enriched.js?v=593774e1bf"></script>
     <!-- Curated province natural-hazard profile (tools/manage.py build) -->
-    <script src="assets/data/hazards.js?v=555560fa6b"></script>
-    <script src="assets/data/policy.js?v=555560fa6b"></script>
+    <script src="assets/data/hazards.js?v=593774e1bf"></script>
+    <script src="assets/data/policy.js?v=593774e1bf"></script>
     <!-- Multiple price offers per listing (一楼盘多价格挂牌) — tools/manage.py import-offers → build -->
-    <script src="assets/data/offers.js?v=555560fa6b"></script>
+    <script src="assets/data/offers.js?v=593774e1bf"></script>
     <!-- Gridded climate/elevation basemap field — isotherms / rainfall / DEM (tools/manage.py field → build) -->
-    <script src="assets/data/field.js?v=555560fa6b"></script>
-    <script src="assets/data/loc-pinyin.js?v=555560fa6b"></script>
-    <script src="assets/data/geo-en.js?v=555560fa6b"></script>
-    <script src="assets/js/i18n.js?v=555560fa6b"></script>
-    <script src="assets/js/touch-gate.js?v=555560fa6b"></script>
+    <script src="assets/data/field.js?v=593774e1bf"></script>
+    <script src="assets/data/loc-pinyin.js?v=593774e1bf"></script>
+    <script src="assets/data/geo-en.js?v=593774e1bf"></script>
+    <script src="assets/js/i18n.js?v=593774e1bf"></script>
+    <script src="assets/js/touch-gate.js?v=593774e1bf"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"
         referrerpolicy="no-referrer" onerror="window.HOUSING_CHART_FAILED=true"></script>
@@ -944,7 +944,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"
         onerror="window.HOUSING_LEAFLET_FAILED=true"></script>
-    <script src="assets/js/app.js?v=555560fa6b"></script>
+    <script src="assets/js/app.js?v=593774e1bf"></script>
 
 </body>
 

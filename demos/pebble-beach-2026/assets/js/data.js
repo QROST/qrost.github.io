@@ -4,7 +4,7 @@
  * rechecked on 2026-08-13. Multi-day brand drives and private-hospitality access
  * notes were rechecked on 2026-08-14;
  * other selected dynamic facts were checked through 2026-08-10. Editorial
- * scores, field reports and commute bands are QROST planning judgments, not
+ * scores, field reports and commute bands are qrost's planning judgments, not
  * organizer guarantees.
  */
 const planText = (zh, en) => ({ zh, en });
@@ -163,8 +163,8 @@ window.PEBBLE_DATA = {
 
   labels: {
     pageTitle: {
-      zh: '2026 圆石滩车展公众指南 · 历史存档 | QROST',
-      en: '2026 Pebble Beach Public Guide · Historical Archive | QROST'
+      zh: '2026 圆石滩车展公众指南 · 历史存档 | CuriousArc',
+      en: '2026 Pebble Beach Public Guide · Historical Archive | CuriousArc'
     },
     metaDescription: {
       zh: '2026 Monterey Car Week 与 Pebble Beach Concours 公众指南历史存档：保留当届逐日活动、票价快照、Tour 路线、停车图、品牌活动、住宿和通勤判断，不作为 2027 出行建议。',

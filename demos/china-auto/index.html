@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>中国汽车城市图谱 · China Auto City Atlas — QROST</title>
+  <title>中国汽车城市图谱 · China Auto City Atlas — CuriousArc</title>
   <meta name="description" content="以城市为节点看中国汽车产业：产量、产业集群、总部与研发、工厂供应链、高校院所与汽车媒体。V1 覆盖 28 城样本，每家企业均收录总部城市。" />
   <link rel="canonical" href="https://qrost.github.io/demos/china-auto/" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="中国汽车城市图谱 · China Auto City Atlas" />
   <meta property="og:description" content="Cities as nodes in China's auto industry — output, clusters, HQ/R&D, plants, universities and media on one map." />
   <meta property="og:url" content="https://qrost.github.io/demos/china-auto/" />
-  <meta property="og:site_name" content="QROST" />
+  <meta property="og:site_name" content="CuriousArc" />
   <meta property="og:image" content="https://qrost.github.io/demos/china-auto/assets/img/china-auto-og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="QROST — 中国汽车城市图谱 China Auto City Atlas" />
+  <meta property="og:image:alt" content="CuriousArc — 中国汽车城市图谱 China Auto City Atlas" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="中国汽车城市图谱 · China Auto City Atlas" />
   <meta name="twitter:description" content="Cities as nodes in China's auto industry — output, clusters, HQ/R&D, plants, universities and media." />
@@ -30,13 +30,13 @@
         document.documentElement.classList.toggle('dark', dark);
       } catch (e) {}
     })();
-    window.CHINA_AUTO_DATA_VERSION = '49f28a6ff4';
+    window.CHINA_AUTO_DATA_VERSION = '62547054f2';
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=49f28a6ff4" />
-  <link rel="stylesheet" href="assets/css/china-auto.css?v=49f28a6ff4" />
+  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=62547054f2" />
+  <link rel="stylesheet" href="assets/css/china-auto.css?v=62547054f2" />
   <style>
     #theme-toggle .sun-icon,
     #theme-toggle .moon-icon { transition: opacity 0.25s, transform 0.3s; }
@@ -53,7 +53,7 @@
   <nav class="sticky top-0 z-40 backdrop-blur border-b border-base bg-shell" aria-label="Primary" data-i18n-aria-label="primaryNav">
     <div class="auto-nav max-w-7xl mx-auto px-4">
       <div class="auto-nav-brand">
-        <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] uppercase shrink-0 transition-colors" title="QROST">Qrost</a>
+        <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-tight shrink-0 transition-colors" title="CuriousArc Lab">CuriousArc</a>
         <span class="text-muted auto-nav-brand-name">/</span>
         <span class="text-sm text-muted auto-nav-brand-name" data-i18n="navBrand">汽车城市图谱</span>
       </div>
@@ -218,7 +218,7 @@
       <h2 class="section-title" data-i18n="meTitle">方法与来源</h2>
       <details class="panel mt-3 p-4 text-sm leading-relaxed text-muted" open>
         <summary class="cursor-pointer text-base font-medium text-base" data-i18n="meSummary">数据范围、统计口径与来源分级</summary>
-        <p class="warn-box mt-3" data-i18n="meScopeWarn">只接受可解析的外部来源；QROST 自有研究简报不作为证据。产量口径因城市而异，候选记录不进入已核实排行。</p>
+        <p class="warn-box mt-3" data-i18n="meScopeWarn">只接受可解析的外部来源；qrost 自写研究简报不作为证据。产量口径因城市而异，候选记录不进入已核实排行。</p>
         <p class="mt-3" data-i18n="meStatusGuide">六字段逐项采用六种审计状态：已核实、部分核实、未找到独立披露、不适用、未单独上市、待核。状态表达当前证据结论，不用推测补空。</p>
         <p class="mt-2" data-i18n="meAxesGuide">行级的实体身份置信度与字段级审计状态是两条独立轴：候选身份不等于六个字段全部待核，高置信实体也可以有未披露字段。</p>
         <p class="warn-box mt-2" data-i18n="meSalesGuard">销量行可分别采用集团、上市主体、品牌、批发或交付口径，并可嵌套或重叠；因此不得跨行相加，也不用于推导城市产量。</p>
@@ -267,14 +267,14 @@
     </div>
   </div>
 
-  <script src="assets/data/china-geo.js?v=49f28a6ff4"></script>
+  <script src="assets/data/china-geo.js?v=62547054f2"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@6.1.0/dist/echarts.min.js" integrity="sha384-C2iskrW/uPW46KzOjrvJIQo4YkV8lkD+QS0CrDN18IIPIpT/g2USu8bTP3nvmIAD" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.CHINA_AUTO_ECHARTS_FAILED=true"></script>
-  <script src="assets/js/i18n.js?v=49f28a6ff4"></script>
-  <script src="assets/js/data-loader.js?v=49f28a6ff4"></script>
-  <script src="assets/js/search.js?v=49f28a6ff4"></script>
-  <script src="assets/js/touch-gate.js?v=49f28a6ff4"></script>
-  <script src="assets/js/charts.js?v=49f28a6ff4"></script>
-  <script src="assets/js/map.js?v=49f28a6ff4"></script>
-  <script src="assets/js/app.js?v=49f28a6ff4"></script>
+  <script src="assets/js/i18n.js?v=62547054f2"></script>
+  <script src="assets/js/data-loader.js?v=62547054f2"></script>
+  <script src="assets/js/search.js?v=62547054f2"></script>
+  <script src="assets/js/touch-gate.js?v=62547054f2"></script>
+  <script src="assets/js/charts.js?v=62547054f2"></script>
+  <script src="assets/js/map.js?v=62547054f2"></script>
+  <script src="assets/js/app.js?v=62547054f2"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /**
- * QROST homepage — EN default · toggle 中文 · dark mode
+ * CuriousArc lab homepage — EN default · toggle 中文 · dark mode
  * Persists lang → `qrost-home-lang`, theme → `qrost-home-theme`.
  */
 (function () {
@@ -8,20 +8,20 @@
 
   const STR = {
     pageTitle: {
-      en: 'QROST — research notes & interactive data atlases',
-      zh: 'QROST — 研究笔记与交互式数据图谱',
+      en: 'CuriousArc Lab — notes by qrost',
+      zh: 'CuriousArc 实验室 — qrost 的笔记',
     },
     metaDescription: {
-      en: 'QROST is a public lab for interactive research, data atlases, generative art, and product prototypes. Bilingual EN/中文.',
-      zh: 'QROST 是一个公开实验室，收录交互研究、数据图谱、生成艺术与产品原型。中英双语。',
+      en: 'The CuriousArc lab, written and built by qrost: interactive research, data atlases, generative art, and product prototypes. Bilingual EN/中文.',
+      zh: 'CuriousArc 实验室，由 qrost 写作与制作：交互研究、数据图谱、生成艺术与产品原型。中英双语。',
     },
     ogDescription: {
-      en: 'A public lab for interactive research, data atlases, generative art, and product prototypes. Bilingual EN/中文.',
-      zh: '一个收录交互研究、数据图谱、生成艺术与产品原型的公开实验室。中英双语。',
+      en: 'The CuriousArc lab, written and built by qrost: interactive research, data atlases, generative art, and product prototypes.',
+      zh: 'CuriousArc 实验室，由 qrost 写作与制作：交互研究、数据图谱、生成艺术与产品原型。',
     },
     navResearch: { en: 'Research', zh: '研究' },
     navDemos: { en: 'Demos', zh: '演示' },
-    heroEyebrow: { en: 'QROST Public Lab', zh: 'QROST 公开实验室' },
+    heroEyebrow: { en: 'by qrost', zh: 'qrost' },
     heroH1: { en: 'I build and write.', zh: '我在实践中记录。' },
     heroLead: {
       en: 'Notes and build logs — a few <strong class="font-medium text-slate-800 dark:text-slate-200">interactive data atlases</strong>: a global view seen through Chinese eyes, plus occasional product prototypes. A small public shelf — take what\'s useful.',
@@ -134,8 +134,8 @@
       en: 'Last updated 2026-09. Nothing here is financial, legal or tax advice.',
       zh: '最后更新 2026-09。本站内容不构成财务、法律或税务建议。',
     },
-    footerStudio: { en: 'CuriousArc studio', zh: 'CuriousArc 工作室' },
-    footerCopyright: { en: '© 2026 QROST. All rights reserved.', zh: '© 2026 QROST. 保留所有权利。' },
+    footerStudio: { en: 'Studio site', zh: '工作室网站' },
+    footerCopyright: { en: '© 2026 CuriousArc LLC. All rights reserved.', zh: '© 2026 CuriousArc LLC. 保留所有权利。' },
     langToggleAria: { en: 'Switch to 中文', zh: 'Switch to English' },
     themeToggleAriaDark: { en: 'Switch to dark mode', zh: '切换深色模式' },
     themeToggleAriaLight: { en: 'Switch to light mode', zh: '切换浅色模式' },

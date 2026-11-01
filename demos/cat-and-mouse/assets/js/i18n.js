@@ -9,7 +9,7 @@
       zh: '一只俯视角的小猫会观察、潜行和追逐化作小老鼠的指针，安静时也会蹲坐、侧躺、打滚或蜷卧。',
       en: 'A top-down cat watches, stalks and chases your pointer-as-mouse, then sits, loafs, rolls or curls up when left alone.',
     },
-    homeAria: { zh: '返回 QROST 首页', en: 'Back to QROST home' },
+    homeAria: { zh: '返回 CuriousArc 实验室', en: 'Back to CuriousArc Lab' },
     pageControlsAria: { zh: '页面控件', en: 'Page controls' },
     displayOptionsAria: { zh: '显示选项', en: 'Display options' },
     appearanceToggleAria: { zh: '定制猫咪外观', en: 'Customize the cat' },

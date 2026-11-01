@@ -18,8 +18,8 @@
 
 ## Public identity and hosting
 
-- QROST's current canonical origin is `https://qrost.github.io/`; this project does not own or use `qrost.com`.
-- `https://curious-arc.com/` is the CuriousArc studio site. QROST remains its public lab and full experiment index.
+- This lab's canonical origin is `https://qrost.github.io/`. The project does not own or use `qrost.com`.
+- CuriousArc is the brand. This repository is its public lab and experiment index. qrost is the maker credit. `https://curious-arc.com/` is the studio site.
 - Individual demos may later use ChatGPT Sites or another runtime host, while this repository remains the source, data, build, and validation authority. Do not change a demo's canonical URL until its migration and legacy-link compatibility are complete.
 
 ## Public-page inventory
@@ -28,7 +28,7 @@
 - The inventory records whether a page is published, indexable, canonical, eligible for the XML sitemap, and required to carry a full social-sharing card.
 - There are 12 current demo entry pages. `demos/pebble-beach-2026/` is the single frozen demo archive; the incomplete 2027 planning page remains `noindex,follow` until its year-specific facts are sufficiently complete.
 - `sitemap.xml` contains only published, indexable inventory entries. `robots.txt` deliberately permits crawling so per-page `noindex` directives can be observed.
-- QROST-authored briefs, summaries, and build notes are never external evidence for research claims. Public research records must cite an independently published source with an explicit support scope.
+- Briefs, summaries, and build notes written by qrost are never external evidence for research claims. Public research records must cite an independently published source with an explicit support scope.
 
 ## URL note
 

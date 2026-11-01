@@ -409,7 +409,7 @@
       : 'OpenStreetMap basemap with real coordinates for Pebble Beach, Carmel, Carmel Valley, Pacific Grove, Monterey, Seaside and Laguna Seca.';
 
     const wordmark = document.querySelector('.wordmark');
-    if (wordmark) wordmark.setAttribute('aria-label', state.lang === 'zh' ? '返回 QROST 首页' : 'Back to QROST home');
+    if (wordmark) wordmark.setAttribute('aria-label', state.lang === 'zh' ? '返回 CuriousArc 实验室' : 'Back to CuriousArc Lab');
     const backToTop = document.getElementById('back-to-top');
     if (backToTop) {
       backToTop.setAttribute('aria-label', text('navBackTop'));

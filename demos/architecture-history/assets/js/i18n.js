@@ -6,13 +6,13 @@
   const THEME_KEY = 'qrost-architecture-history-theme';
 
   const STRINGS = {
-    pageTitle: { zh: '建筑谱系 · Architecture Lineages — QROST', en: 'Architecture Lineages · 建筑谱系 — QROST' },
+    pageTitle: { zh: '建筑谱系 · Architecture Lineages — CuriousArc', en: 'Architecture Lineages · 建筑谱系 — CuriousArc' },
     metaDescription: {
       zh: '一个来源优先、候选与核验分离的全球建筑史双语浏览器：建筑、建筑师、事务所、地点与待审知识传递线索。',
       en: 'A bilingual, source-first browser for global architectural history: works, architects, practices, places, and knowledge-transfer clues kept separate from verified facts.',
     },
     skipToContent: { zh: '跳到主要内容', en: 'Skip to main content' },
-    homeLabel: { zh: 'QROST 首页', en: 'QROST home' },
+    homeLabel: { zh: 'CuriousArc 实验室', en: 'CuriousArc Lab' },
     brandSub: { zh: '建筑谱系', en: 'Architecture lineages' },
     mainNavLabel: { zh: '主要导航', en: 'Main navigation' },
     sectionNavLabel: { zh: '章节导航', en: 'Section navigation' },
@@ -200,7 +200,7 @@
       en: 'The source registry separates candidate discovery, publishable fields, relationship authority, and coverage utility. Adapter readiness is also tracked separately from source authority.',
     },
     methodOneTitle: { zh: '先接权威聚合', en: 'Start with established aggregators' },
-    methodOneCopy: { zh: '优先接入 Wikidata、Getty Vocabularies、Archnet、GAHTC 等已登记的外部知识组织。证据只接受 independent_external 发布者；QROST 自写研究简报不作为信息来源或证据。', en: 'Prioritize registered external knowledge organizations such as Wikidata, Getty Vocabularies, Archnet, and GAHTC. Evidence accepts only independent_external publishers; research briefs authored by QROST are never an information source or evidence authority.' },
+    methodOneCopy: { zh: '优先接入 Wikidata、Getty Vocabularies、Archnet、GAHTC 等已登记的外部知识组织。证据只接受 independent_external 发布者；qrost 自写研究简报不作为信息来源或证据。', en: 'Prioritize registered external knowledge organizations such as Wikidata, Getty Vocabularies, Archnet, and GAHTC. Evidence accepts only independent_external publishers; research briefs written by qrost are never an information source or evidence authority.' },
     methodTwoTitle: { zh: '字段级溯源', en: 'Field-level provenance' },
     methodTwoCopy: { zh: '名称、坐标、署名与关系分别保存证据；一个来源的“有记录”不等于本项目“已核验”。', en: 'Names, coordinates, credits, and relations keep separate evidence. “Recorded by a source” is not “verified by this project.”' },
     methodThreeTitle: { zh: '师承严格分型', en: 'Strict lineage typing' },
@@ -212,7 +212,7 @@
     licenseTitle: { zh: '许可与快照边界', en: 'Rights and snapshot boundary' },
     licenseCopy: { zh: '结构化 Wikidata 数据按 CC0 复用，Getty ULAN 数据按 ODC-By 1.0 复用；页面保留固定修订或响应哈希。其他来源只有在登记的 allowed_operations 允许时才会进入发布数据。', en: 'Structured Wikidata data is reused under CC0 and Getty ULAN data under ODC-By 1.0; pinned revision or response hashes are retained. Other sources enter published data only when their registered allowed_operations permit it.' },
     footerScope: { zh: '开放研究原型 · 候选数据不构成完整或权威的全球建筑史。', en: 'Open research prototype · Candidate data is not a complete or authoritative global architectural history.' },
-    backHome: { zh: '返回 QROST 首页', en: 'Back to QROST home' },
+    backHome: { zh: '返回 CuriousArc 实验室', en: 'Back to CuriousArc Lab' },
     closeDetail: { zh: '关闭详情', en: 'Close details' },
     initErrorTitle: { zh: '数据浏览器未能初始化', en: 'The data browser could not initialize' },
     initErrorCopy: { zh: '请通过本地 HTTP 服务器或 GitHub Pages 打开；静态说明仍可阅读。', en: 'Open through a local HTTP server or GitHub Pages; the static methodology remains readable.' },

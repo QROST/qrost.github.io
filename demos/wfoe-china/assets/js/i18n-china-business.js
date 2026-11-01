@@ -6,7 +6,7 @@
     const STORAGE_KEY = 'china-biz-lang';
 
     const ZH = {
-        'meta.title': '在中国开公司（外商独资/内资/合资/港澳）与用工成本 | QROST',
+        'meta.title': '在中国开公司（外商独资/内资/合资/港澳）与用工成本 | CuriousArc',
 
         'nav.setup': '设置',
         'nav.regions': '区域',
@@ -135,8 +135,8 @@
         'dash.sar_body': '您选择的是特别行政区。底薪通常更高，但雇主法定薪酬缴费按<strong>强积金</strong>（香港，有上限）或<strong>FSS 定额</strong>（澳门）建模——非大陆五险一金。<strong>港澳公司不能直接雇佣在大陆工作的员工，也不能开具大陆增值税发票（数电票）</strong>；在大陆 payroll 与开票须通过大陆外商独资/合资等主体。图表数值仅为人民币/美元等价比较。',
         'dash.macro_disclaimer': '跨城市条形图比较按规划假设计算的<strong>年度用工成本</strong>——大陆城市按五险一金示意模型；港澳按强积金/FSS。港澳及国际城市条形<strong>不能替代</strong>需要大陆员工或大陆发票时的 mainland 主体。',
 
-        'footer.rights': '© 2026 QROST. 保留所有权利。',
-        'footer.disclaimer': '免责声明：本站信息仅供教育与战略规划参考，不对绝对准确性、完整性或时效作任何保证。QROST 对基于本内容的商业、法律或财务决策不承担责任。跨境扩张前请咨询当地持牌律师与会计师。',
+        'footer.rights': '© 2026 CuriousArc LLC. 保留所有权利。',
+        'footer.disclaimer': '免责声明：本站信息仅供教育与战略规划参考，不对绝对准确性、完整性或时效作任何保证。CuriousArc 对基于本内容的商业、法律或财务决策不承担责任。跨境扩张前请咨询当地持牌律师与会计师。',
 
         'method.h2': '方法论、数据来源与披露',
         'method.sources_h': '数据来源',
@@ -437,7 +437,7 @@
         if (isZh && ZH[titleKey]) {
             document.title = ZH[titleKey];
         } else {
-            document.title = 'How to open a company in China — WFOE, domestic, JV, HK/Macau & hiring costs | QROST';
+            document.title = 'How to open a company in China — WFOE, domestic, JV, HK/Macau & hiring costs | CuriousArc';
         }
 
         const btn = document.getElementById('lang-toggle');

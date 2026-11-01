@@ -123,10 +123,10 @@ svg { display: block; }
   display: flex;
   align-items: center;
   text-decoration: none;
-  font-size: .69rem;
+  font-size: .95rem;
   line-height: 1;
-  font-weight: 800;
-  letter-spacing: .36em;
+  font-weight: 650;
+  letter-spacing: -0.03em;
 }
 .nav-links {
   display: flex;

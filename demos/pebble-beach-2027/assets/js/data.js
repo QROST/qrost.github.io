@@ -20,7 +20,7 @@
       )
     },
     meta: {
-      title: bilingual('Pebble Beach 2027 初步规划 · 官方日期已确认 | QROST', 'Pebble Beach 2027 early guide · official dates confirmed | QROST'),
+      title: bilingual('Pebble Beach 2027 初步规划 · 官方日期已确认 | CuriousArc', 'Pebble Beach 2027 early guide · official dates confirmed | CuriousArc'),
       description: bilingual('Pebble Beach 2027 独立双语规划页：已核实 7 项官方 signature event 日期及少量 Tour、门票、停车与接驳信息；路线图、票价、品牌活动和住宿仍待发布。', 'An independent bilingual Pebble Beach 2027 guide with seven official signature-event date ranges and limited Tour, ticket, parking, and shuttle facts verified. Route maps, prices, brand programs, and stays remain pending.'),
       imageAlt: bilingual('Pebble Beach 2027 初步规划，官方日历已就位，路线与票价仍待发布', 'Pebble Beach 2027 early guide with the official calendar recorded and routes and prices still pending')
     },
@@ -31,7 +31,7 @@
     },
     labels: {
       skip: bilingual('跳到正文', 'Skip to content'),
-      home: bilingual('返回 QROST 首页', 'Back to QROST home'),
+      home: bilingual('返回 CuriousArc 实验室', 'Back to CuriousArc Lab'),
       navStatus: bilingual('已知与待补', 'Known & pending'),
       navFramework: bilingual('沿用框架', 'Framework'),
       navWatchlist: bilingual('官方来源', 'Official sources'),

@@ -131,7 +131,7 @@ Index.html size: previously ~130 KB / 1460 lines → now ~61 KB / 760 lines. JSO
 
 - [ ] Desktop (≥ 1024 px): top nav shows three anchors + lang toggle, no hamburger.
 - [ ] Mobile (≤ 640 px): three anchors hidden; hamburger visible; tapping opens panel; tapping a link closes panel and scrolls to section.
-- [ ] Tab key from address bar: Skip-to-content appears, then QROST logo, then nav links, then lang toggle. Each has a visible emerald focus ring.
+- [ ] Tab key from address bar: Skip-to-content appears, then the CuriousArc wordmark, then nav links, then lang toggle. Each has a visible emerald focus ring.
 - [ ] Language toggle: html `lang` flips between `en` and `zh-CN`. City dropdown options switch to Chinese names.
 - [ ] City dropdown: pick any city → bar chart highlights that bar, doughnut + itemised list refresh.
 - [ ] Bar chart click on a different city → dropdown value updates in step.

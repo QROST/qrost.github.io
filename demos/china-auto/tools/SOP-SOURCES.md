@@ -5,7 +5,7 @@ government statistical release, regulator record, company filing, company
 facility page, association disclosure, or university unit profile that directly
 supports the linked claim dimension.
 
-QROST-authored research briefs, working notes, local files, and this site's own
+Research briefs written by qrost, working notes, local files, and this site's own
 pages never count as sources. A company or university homepage may establish
 identity only; it must not be stretched to support headquarters, ownership,
 facility status, output, or partnership claims.

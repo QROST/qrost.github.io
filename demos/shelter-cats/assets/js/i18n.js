@@ -1,6 +1,6 @@
 /* Bilingual (zh/en) labels + enum-label resolution. window.SHELTERCATS_I18N
    Enum labels come from assets/data/enums.json (loaded by data-loader); UI strings
-   live here. Mirrors the i18n API used across the other QROST demos. */
+   live here. Mirrors the i18n API used across the other lab demos. */
 (function () {
   'use strict';
   var KEY = 'shelter-cats-lang';

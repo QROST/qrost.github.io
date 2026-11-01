@@ -874,7 +874,7 @@ html.dark .fx-status-chip.fx-pending {
 }
 
 /* Theme-toggle icon swap: moon shown in light mode (click to go dark),
-   sun shown in dark mode (click to go light) — animated SVG, unified with QROST home. */
+   sun shown in dark mode (click to go light) — animated SVG, unified with the lab home. */
 #theme-toggle .sun-icon,
 #theme-toggle .moon-icon { transition: opacity 0.25s, transform 0.3s; }
 html.dark #theme-toggle .sun-icon  { opacity: 1; transform: rotate(0deg) scale(1); }

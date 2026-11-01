@@ -362,19 +362,16 @@ h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;
   .topbar .right .btn { min-height: 44px; }
 }
 
-/* ── Demo watermark: a super-large, faint QROST overlay to mark this as a
-   prototype under qrost.github.io. Purely visual — pointer-events:none so it
-   never blocks clicks. Uses --ink so it stays legible (low-opacity) in both
-   light and dark themes. ── */
+/* Faint corner credit. The product name on this prototype stays Makoauto. */
 body::after {
-  content: "QROST";
+  content: "CuriousArc";
   position: fixed;
   right: -0.1em;
   bottom: -0.18em;
   z-index: 0;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: clamp(8rem, 28vw, 22rem);
+  font-size: clamp(3.2rem, 12vw, 8rem);
   letter-spacing: -0.04em;
   line-height: 0.8;
   color: var(--ink);
