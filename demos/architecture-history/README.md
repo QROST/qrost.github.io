@@ -9,7 +9,7 @@ global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
 The current catalog contains 1846 works, 2099 people, 88 practices, 81
-places, 1202 relationship edges, and 22,312 source claims. Exact
+places, 1242 relationship edges, and 22,312 source claims. Exact
 direct-P31 mapping currently classifies 1240 works, while 564 remain unmapped and
 42 remain ambiguous. Wikidata is the primary structured source; a refreshed
 24-anchor Getty ULAN P245 crosswalk is regenerated locally per re-hydrate

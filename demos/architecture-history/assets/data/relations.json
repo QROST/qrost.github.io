@@ -287,6 +287,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q1132047-q726082",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: William Strickland worked in the office of Benjamin Henry Latrobe. Source quote: \"Strickland first became known as a scene painter, although he studied architecture under Benjamin Latrobe from 1803 to 1805.\" (William Strickland | Greek Revival, Neoclassical, Philadelphia | Britannica).",
+        "note_zh": "履历任职边：William Strickland 曾在 Benjamin Henry Latrobe 门下任职。来源引文：\"Strickland first became known as a scene painter, although he studied architecture under Benjamin Latrobe from 1803 to 1805.\"（William Strickland | Greek Revival, Neoclassical, Philadelphia | Britannica）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1132047",
+      "id": "relation-res-worked-for-q1132047-q726082",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q726082",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q1173530-q312831",
       "confidence": 0.5,
       "context": {
@@ -507,6 +529,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q1377712-q4724",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Georgios Candilis worked in the office of Le Corbusier. Source quote: \"From 1945, the young Greek architect joined the Frenchman's workshop where he supervised the Unité d'Habitation site in Marseille.\" (Georges Candilis, architect of the Mirail in Toulouse | INA).",
+        "note_zh": "履历任职边：Georgios Candilis 曾在 Le Corbusier 门下任职。来源引文：\"From 1945, the young Greek architect joined the Frenchman's workshop where he supervised the Unité d'Habitation site in Marseille.\"（Georges Candilis, architect of the Mirail in Toulouse | INA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1377712",
+      "id": "relation-res-worked-for-q1377712-q4724",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q4724",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q1396719-q151794",
       "confidence": 0.5,
       "context": {
@@ -551,6 +595,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q1509035-q924704",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Georges Parcq worked in the office of Victor Laloux. Source quote: \"élève de son père (à l'atelier le 18 février 1892), puis de Victor Laloux\" (Parcq, Georges (27/03/1874 - 1939) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Georges Parcq 曾在 Victor Laloux 门下任职。来源引文：\"élève de son père (à l'atelier le 18 février 1892), puis de Victor Laloux\"（Parcq, Georges (27/03/1874 - 1939) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1509035",
+      "id": "relation-res-worked-for-q1509035-q924704",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q924704",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q151794-q129938",
       "confidence": 0.5,
       "context": {
@@ -570,6 +636,94 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q129938",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q1605703-q314886",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Edvard Ravnikar worked in the office of Jože Plečnik. Source quote: \"arhitekturo je študiral 1926 do 1930 na Dunaju, zatem pa v Lj., kjer je bil Plečnikov (SBL II, 372–6) učenec, in je dipl. 1938.\" (Ravnikar, Edvard (1907–1993) - Slovenska biografija).",
+        "note_zh": "履历任职边：Edvard Ravnikar 曾在 Jože Plečnik 门下任职。来源引文：\"arhitekturo je študiral 1926 do 1930 na Dunaju, zatem pa v Lj., kjer je bil Plečnikov (SBL II, 372–6) učenec, in je dipl. 1938.\"（Ravnikar, Edvard (1907–1993) - Slovenska biografija）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1605703",
+      "id": "relation-res-worked-for-q1605703-q314886",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q314886",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q1605703-q4724",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Edvard Ravnikar worked in the office of Le Corbusier. Source quote: \"Po diplomi je krajši čas delal v ateljeju Le-Corbusiera v Parizu.\" (Ravnikar, Edvard (1907–1993) - Slovenska biografija).",
+        "note_zh": "履历任职边：Edvard Ravnikar 曾在 Le Corbusier 门下任职。来源引文：\"Po diplomi je krajši čas delal v ateljeju Le-Corbusiera v Parizu.\"（Ravnikar, Edvard (1907–1993) - Slovenska biografija）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1605703",
+      "id": "relation-res-worked-for-q1605703-q4724",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q4724",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q1634329-q464603",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Hugh Ferriss worked in the office of Cass Gilbert. Source quote: \"Ferriss worked briefly as an architect for Cass Gilbert before venturing into an independent practice as an architectural renderer in 1915.\" (Hugh Ferriss papers, 1897-1992 | Avery Drawings & Archives finding aid).",
+        "note_zh": "履历任职边：Hugh Ferriss 曾在 Cass Gilbert 门下任职。来源引文：\"Ferriss worked briefly as an architect for Cass Gilbert before venturing into an independent practice as an architectural renderer in 1915.\"（Hugh Ferriss papers, 1897-1992 | Avery Drawings & Archives finding aid）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1634329",
+      "id": "relation-res-worked-for-q1634329-q464603",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q464603",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q16582153-q4724",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Jorge Ferrari-Hardoy worked in the office of Le Corbusier. Source quote: \"In 1938, Jorge Ferrari Hardoy and Juan Kurchan, founding members of the Austral Group along with Antonio Bonet, worked in Le Corbusier's studio in Paris.\" (Modern utopia as a legacy. Chacarita Moderna, the Brutalist necropolis of Buenos Aires - METALOCUS).",
+        "note_zh": "履历任职边：Jorge Ferrari-Hardoy 曾在 Le Corbusier 门下任职。来源引文：\"In 1938, Jorge Ferrari Hardoy and Juan Kurchan, founding members of the Austral Group along with Antonio Bonet, worked in Le Corbusier's studio in Paris.\"（Modern utopia as a legacy. Chacarita Moderna, the Brutalist necropolis of Buenos Aires - METALOCUS）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q16582153",
+      "id": "relation-res-worked-for-q16582153-q4724",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q4724",
       "verification_status": "candidate"
     },
     {
@@ -925,6 +1079,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q2278518-q7154390",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: J. Max Bond, Jr. worked in the office of Paul R. Williams. Source quote: \"He worked briefly in the Los Angeles office of architect Paul Williams before apprenticing under André Wogenscky at Le Corbusier’s studio in France on a Fulbright Scholarship.\" (J. Max Bond, Jr. | The Cultural Landscape Foundation).",
+        "note_zh": "履历任职边：J. Max Bond, Jr. 曾在 Paul R. Williams 门下任职。来源引文：\"He worked briefly in the Los Angeles office of architect Paul Williams before apprenticing under André Wogenscky at Le Corbusier’s studio in France on a Fulbright Scholarship.\"（J. Max Bond, Jr. | The Cultural Landscape Foundation）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2278518",
+      "id": "relation-res-worked-for-q2278518-q7154390",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q7154390",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q242002-q381924",
       "confidence": 0.5,
       "context": {
@@ -1123,6 +1299,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q254662-q1043102",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Enrique del Moral worked in the office of Carlos Obregón Santacilia. Source quote: \"From 1928 to 1935, del Moral worked in the studio of Carlos Obregón Santacilia, whose works in those years encompassed diverse projects.\" (Enrique del Moral - architecture-history.org).",
+        "note_zh": "履历任职边：Enrique del Moral 曾在 Carlos Obregón Santacilia 门下任职。来源引文：\"From 1928 to 1935, del Moral worked in the studio of Carlos Obregón Santacilia, whose works in those years encompassed diverse projects.\"（Enrique del Moral - architecture-history.org）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q254662",
+      "id": "relation-res-worked-for-q254662-q1043102",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1043102",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q2562455-q4196379",
       "confidence": 0.5,
       "context": {
@@ -1186,6 +1384,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q925721",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q2589897-q3837633",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Eva Jiřičná worked in the office of Louis de Soissons. Source quote: \"In London, she worked in the architecture department at Greater London Council, later in the studio of Louise de Soissons.\" (CZEXPATS Interview: Eva Jiřičná, architect and designer).",
+        "note_zh": "履历任职边：Eva Jiřičná 曾在 Louis de Soissons 门下任职。来源引文：\"In London, she worked in the architecture department at Greater London Council, later in the studio of Louise de Soissons.\"（CZEXPATS Interview: Eva Jiřičná, architect and designer）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2589897",
+      "id": "relation-res-worked-for-q2589897-q3837633",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3837633",
       "verification_status": "candidate"
     },
     {
@@ -1274,6 +1494,94 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q4196379",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q2842372-q712867",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Ambroise Baudry worked in the office of Hippolyte Le Bas. Source quote: \"élève de Victor Louvet puis de Hippolyte Lebas\" (Baudry, Ambroise (01/07/1838 - 03/07/1906) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Ambroise Baudry 曾在 Hippolyte Le Bas 门下任职。来源引文：\"élève de Victor Louvet puis de Hippolyte Lebas\"（Baudry, Ambroise (01/07/1838 - 03/07/1906) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2842372",
+      "id": "relation-res-worked-for-q2842372-q712867",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q712867",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q29046896-q47074862",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Billie Tsien worked in the office of Tod Williams. Source quote: \"Tsien's first job was working for Williams in 1977.\" (Tod Williams and Billie Tsien | USModernist).",
+        "note_zh": "履历任职边：Billie Tsien 曾在 Tod Williams 门下任职。来源引文：\"Tsien's first job was working for Williams in 1977.\"（Tod Williams and Billie Tsien | USModernist）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q29046896",
+      "id": "relation-res-worked-for-q29046896-q47074862",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q47074862",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q2959192-q3060197",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Charles Genuys worked in the office of Eugène Train. Source quote: \"élève d'Eugène Train à l'École des arts décoratifs de 1867 à 1870\" (Genuys, Charles (09/10/1852 - 08/12/1928) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Charles Genuys 曾在 Eugène Train 门下任职。来源引文：\"élève d'Eugène Train à l'École des arts décoratifs de 1867 à 1870\"（Genuys, Charles (09/10/1852 - 08/12/1928) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2959192",
+      "id": "relation-res-worked-for-q2959192-q3060197",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3060197",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q3052762-q3260671",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Emmanuel Le Ray worked in the office of Louis Jules André. Source quote: \"élève de Louis Jules André\" (Le Ray, Emmanuel (17/11/1859 - 28/11/1936) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Emmanuel Le Ray 曾在 Louis Jules André 门下任职。来源引文：\"élève de Louis Jules André\"（Le Ray, Emmanuel (17/11/1859 - 28/11/1936) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3052762",
+      "id": "relation-res-worked-for-q3052762-q3260671",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3260671",
       "verification_status": "candidate"
     },
     {
@@ -1387,6 +1695,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q312635-q2424824",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Robert Adam worked in the office of William Adam. Source quote: \"Robert joined John as an architect apprentice to his father William Adam in 1746.\" (Robert Adam Architect Scotland, buildings | e-architect).",
+        "note_zh": "履历任职边：Robert Adam 曾在 William Adam 门下任职。来源引文：\"Robert joined John as an architect apprentice to his father William Adam in 1746.\"（Robert Adam Architect Scotland, buildings | e-architect）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q312635",
+      "id": "relation-res-worked-for-q312635-q2424824",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q2424824",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q312827-q467712",
       "confidence": 0.5,
       "context": {
@@ -1453,6 +1783,72 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q3130832-q1544",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Henri Chomette worked in the office of Tony Garnier. Source quote: \"élève de Tony Garnier à l'École régionale d'architecture de Lyon en 1941-45\" (Chomette, Henri (01/04/1921 - 1995) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Henri Chomette 曾在 Tony Garnier 门下任职。来源引文：\"élève de Tony Garnier à l'École régionale d'architecture de Lyon en 1941-45\"（Chomette, Henri (01/04/1921 - 1995) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3130832",
+      "id": "relation-res-worked-for-q3130832-q1544",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1544",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q3130832-q381978",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Henri Chomette worked in the office of Auguste Perret. Source quote: \"élève d'Otello Zavaroni (entré à l'atelier le 8 janvier 1947, AJ/52/1353) et Auguste Perret à Paris\" (Chomette, Henri (01/04/1921 - 1995) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Henri Chomette 曾在 Auguste Perret 门下任职。来源引文：\"élève d'Otello Zavaroni (entré à l'atelier le 8 janvier 1947, AJ/52/1353) et Auguste Perret à Paris\"（Chomette, Henri (01/04/1921 - 1995) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3130832",
+      "id": "relation-res-worked-for-q3130832-q381978",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q381978",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q3131856-q3289095",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Henri Prost worked in the office of Marcel Lambert. Source quote: \"élève de Marcel Lambert\" (Prost, Henri (25/02/1874 - 16/07/1959) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Henri Prost 曾在 Marcel Lambert 门下任职。来源引文：\"élève de Marcel Lambert\"（Prost, Henri (25/02/1874 - 16/07/1959) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3131856",
+      "id": "relation-res-worked-for-q3131856-q3289095",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3289095",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q314636-q1507993",
       "confidence": 0.5,
       "context": {
@@ -1497,6 +1893,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q316422-q26252489",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Hector Guimard worked in the office of Gustave Raulin. Source quote: \"puis élève de Gustave Raulin\" (Guimard, Hector (10/03/1867 - 20/05/1942) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Hector Guimard 曾在 Gustave Raulin 门下任职。来源引文：\"puis élève de Gustave Raulin\"（Guimard, Hector (10/03/1867 - 20/05/1942) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q316422",
+      "id": "relation-res-worked-for-q316422-q26252489",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q26252489",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q316422-q2959192",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Hector Guimard worked in the office of Charles Genuys. Source quote: \"élève de Charles Genuys à l'École des arts décoratifs\" (Guimard, Hector (10/03/1867 - 20/05/1942) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Hector Guimard 曾在 Charles Genuys 门下任职。来源引文：\"élève de Charles Genuys à l'École des arts décoratifs\"（Guimard, Hector (10/03/1867 - 20/05/1942) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q316422",
+      "id": "relation-res-worked-for-q316422-q2959192",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q2959192",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q317135-q151794",
       "confidence": 0.5,
       "context": {
@@ -1516,6 +1956,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q151794",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q3190319-q721452",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Juste Lisch worked in the office of Léon Vaudoyer. Source quote: \"École des Beaux-Arts, élève de Vaudoyer et de Labrouste.\" (Jean-Just Lisch | Les architectes - ACMH).",
+        "note_zh": "履历任职边：Juste Lisch 曾在 Léon Vaudoyer 门下任职。来源引文：\"École des Beaux-Arts, élève de Vaudoyer et de Labrouste.\"（Jean-Just Lisch | Les architectes - ACMH）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3190319",
+      "id": "relation-res-worked-for-q3190319-q721452",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q721452",
       "verification_status": "candidate"
     },
     {
@@ -1695,6 +2157,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q3426543-q3166930",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: René Levavasseur worked in the office of Jean-Louis Pascal. Source quote: \"élève de Jean Louis Pascal, admis en 2è classe le 7 mai 1901\" (Levavasseur, René (24/10/1881 - 1962) | AGORHA - INHA).",
+        "note_zh": "履历任职边：René Levavasseur 曾在 Jean-Louis Pascal 门下任职。来源引文：\"élève de Jean Louis Pascal, admis en 2è classe le 7 mai 1901\"（Levavasseur, René (24/10/1881 - 1962) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3426543",
+      "id": "relation-res-worked-for-q3426543-q3166930",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3166930",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q363914-q1363098",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Juan de Herrera worked in the office of Juan Bautista de Toledo. Source quote: \"In 1563 he was appointed assistant to Juan Bautista de Toledo at El Escorial, and in 1572 he was appointed head architect.\" (Juan de Herrera | Spanish architect | Britannica).",
+        "note_zh": "履历任职边：Juan de Herrera 曾在 Juan Bautista de Toledo 门下任职。来源引文：\"In 1563 he was appointed assistant to Juan Bautista de Toledo at El Escorial, and in 1572 he was appointed head architect.\"（Juan de Herrera | Spanish architect | Britannica）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q363914",
+      "id": "relation-res-worked-for-q363914-q1363098",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1363098",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q369645-q253350",
       "confidence": 0.5,
       "context": {
@@ -1736,6 +2242,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q333585",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q377128-q3166930",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Adrien Peyrot worked in the office of Jean-Louis Pascal. Source quote: \"élève de Jean Louis Pascal (à l'atelier le 10 mars 1877)\" (Peyrot, Adrien (08/01/1856 - 28/07/1918) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Adrien Peyrot 曾在 Jean-Louis Pascal 门下任职。来源引文：\"élève de Jean Louis Pascal (à l'atelier le 10 mars 1877)\"（Peyrot, Adrien (08/01/1856 - 28/07/1918) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q377128",
+      "id": "relation-res-worked-for-q377128-q3166930",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3166930",
       "verification_status": "candidate"
     },
     {
@@ -1959,6 +2487,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q452318-q177213",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Sebastiano Serlio worked in the office of Baldassare Peruzzi. Source quote: \"In 1514 CE he moved to Rome, where he became the assistant of the Sienese architect and painter Baldassare Tommaso Peruzzi\" (Sebastiano Serlio | World History Encyclopedia).",
+        "note_zh": "履历任职边：Sebastiano Serlio 曾在 Baldassare Peruzzi 门下任职。来源引文：\"In 1514 CE he moved to Rome, where he became the assistant of the Sienese architect and painter Baldassare Tommaso Peruzzi\"（Sebastiano Serlio | World History Encyclopedia）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q452318",
+      "id": "relation-res-worked-for-q452318-q177213",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q177213",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q45618155-q3189515",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Georges Debrie worked in the office of Julien Guadet. Source quote: \"élève de Marcellin Varcollier (à l'atelier le 12 mars 1875) et Julien Guadet\" (Debrie, Georges (07/06/1856 - 04/05/1909) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Georges Debrie 曾在 Julien Guadet 门下任职。来源引文：\"élève de Marcellin Varcollier (à l'atelier le 12 mars 1875) et Julien Guadet\"（Debrie, Georges (07/06/1856 - 04/05/1909) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q45618155",
+      "id": "relation-res-worked-for-q45618155-q3189515",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3189515",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q466400-q969009",
       "confidence": 0.5,
       "context": {
@@ -2022,6 +2594,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q540431",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q47074862-q159612",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Tod Williams worked in the office of Richard Meier. Source quote: \"He worked for Richard Meier for a few years, doing projects such as the Douglas House, and leaving in 1974 to for a partnership, Potters Williams.\" (Tod Williams and Billie Tsien | USModernist).",
+        "note_zh": "履历任职边：Tod Williams 曾在 Richard Meier 门下任职。来源引文：\"He worked for Richard Meier for a few years, doing projects such as the Douglas House, and leaving in 1974 to for a partnership, Potters Williams.\"（Tod Williams and Billie Tsien | USModernist）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q47074862",
+      "id": "relation-res-worked-for-q47074862-q159612",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q159612",
       "verification_status": "candidate"
     },
     {
@@ -2110,6 +2704,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q232364",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q4914145-q312827",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Bing Thom worked in the office of Fumihiko Maki. Source quote: \"Thom went to work for Japanese architect-urbanist Fumihiko Maki in 1971, returning to Canada in 1972 when he joined Arthur Erickson Architects and oversaw a number of high-profile projects in Canada and abroad.\" (Memoriam: Bing Thom | Building.ca).",
+        "note_zh": "履历任职边：Bing Thom 曾在 Fumihiko Maki 门下任职。来源引文：\"Thom went to work for Japanese architect-urbanist Fumihiko Maki in 1971, returning to Canada in 1972 when he joined Arthur Erickson Architects and oversaw a number of high-profile projects in Canada and abroad.\"（Memoriam: Bing Thom | Building.ca）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q4914145",
+      "id": "relation-res-worked-for-q4914145-q312827",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q312827",
       "verification_status": "candidate"
     },
     {
@@ -2289,6 +2905,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q559447-q3166930",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Henri Sauvage worked in the office of Jean-Louis Pascal. Source quote: \"élève de Jean Louis Pascal\" (Sauvage, Henri (10/05/1873 - 03/1932) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Henri Sauvage 曾在 Jean-Louis Pascal 门下任职。来源引文：\"élève de Jean Louis Pascal\"（Sauvage, Henri (10/05/1873 - 03/1932) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q559447",
+      "id": "relation-res-worked-for-q559447-q3166930",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3166930",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q559852-q5604",
       "confidence": 0.5,
       "context": {
@@ -2355,6 +2993,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q572735-q723234",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Stanford White worked in the office of Henry Hobson Richardson. Source quote: \"He was carefully trained as an architect by Henry Hobson Richardson.\" (Stanford White | American architect | Britannica).",
+        "note_zh": "履历任职边：Stanford White 曾在 Henry Hobson Richardson 门下任职。来源引文：\"He was carefully trained as an architect by Henry Hobson Richardson.\"（Stanford White | American architect | Britannica）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q572735",
+      "id": "relation-res-worked-for-q572735-q723234",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q723234",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q5950628-q4724",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Juan Kurchan worked in the office of Le Corbusier. Source quote: \"In 1938, Jorge Ferrari Hardoy and Juan Kurchan, founding members of the Austral Group along with Antonio Bonet, worked in Le Corbusier's studio in Paris.\" (Modern utopia as a legacy. Chacarita Moderna, the Brutalist necropolis of Buenos Aires - METALOCUS).",
+        "note_zh": "履历任职边：Juan Kurchan 曾在 Le Corbusier 门下任职。来源引文：\"In 1938, Jorge Ferrari Hardoy and Juan Kurchan, founding members of the Austral Group along with Antonio Bonet, worked in Le Corbusier's studio in Paris.\"（Modern utopia as a legacy. Chacarita Moderna, the Brutalist necropolis of Buenos Aires - METALOCUS）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q5950628",
+      "id": "relation-res-worked-for-q5950628-q4724",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q4724",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q601339-q3321064",
       "confidence": 0.5,
       "context": {
@@ -2399,6 +3081,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q6408981-q4724",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Kim Chung-up worked in the office of Le Corbusier. Source quote: \"In 1952, the architect moved to Paris, where he worked at Le Corbusier’s atelier from October 1952 to December 1955.\" (‘Kim Chung-up Dialogue’ features first-generation Korean architect - The Korea Herald).",
+        "note_zh": "履历任职边：Kim Chung-up 曾在 Le Corbusier 门下任职。来源引文：\"In 1952, the architect moved to Paris, where he worked at Le Corbusier’s atelier from October 1952 to December 1955.\"（‘Kim Chung-up Dialogue’ features first-generation Korean architect - The Korea Herald）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q6408981",
+      "id": "relation-res-worked-for-q6408981-q4724",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q4724",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q641667-q2493977",
       "confidence": 0.5,
       "context": {
@@ -2421,6 +3125,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q657848-q723234",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Charles Follen McKim worked in the office of Henry Hobson Richardson. Source quote: \"He was trained as a draftsman by the architect Henry Hobson Richardson while the latter was completing Trinity Church in Boston.\" (Charles Follen McKim | Beaux-Arts style, McKim, Mead & White, NYC landmarks | Britannica).",
+        "note_zh": "履历任职边：Charles Follen McKim 曾在 Henry Hobson Richardson 门下任职。来源引文：\"He was trained as a draftsman by the architect Henry Hobson Richardson while the latter was completing Trinity Church in Boston.\"（Charles Follen McKim | Beaux-Arts style, McKim, Mead & White, NYC landmarks | Britannica）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q657848",
+      "id": "relation-res-worked-for-q657848-q723234",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q723234",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q6705375-q2433909",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Lutah Maria Riggs worked in the office of George Washington Smith. Source quote: \"Once employed at Smith’s office, Lutah began drafting and designing details for a number of the firm’s residential commissions.\" (Lutah Maria Riggs | Institute of Classical Architecture & Art).",
+        "note_zh": "履历任职边：Lutah Maria Riggs 曾在 George Washington Smith 门下任职。来源引文：\"Once employed at Smith’s office, Lutah began drafting and designing details for a number of the firm’s residential commissions.\"（Lutah Maria Riggs | Institute of Classical Architecture & Art）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q6705375",
+      "id": "relation-res-worked-for-q6705375-q2433909",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q2433909",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q679049-q381978",
       "confidence": 0.5,
       "context": {
@@ -2440,6 +3188,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q381978",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q704356-q160538",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Carlo Fontana worked in the office of Gian Lorenzo Bernini. Source quote: \"Fontana ließ sich um 1655 in Rom nieder, arbeitete zuerst unter Cortona und Rainaldi, dann unter Bernini, bei dem er 10 Jahre blieb.\" (Carlo Fontana [en] | archINFORM).",
+        "note_zh": "履历任职边：Carlo Fontana 曾在 Gian Lorenzo Bernini 门下任职。来源引文：\"Fontana ließ sich um 1655 in Rom nieder, arbeitete zuerst unter Cortona und Rainaldi, dann unter Bernini, bei dem er 10 Jahre blieb.\"（Carlo Fontana [en] | archINFORM）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q704356",
+      "id": "relation-res-worked-for-q704356-q160538",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q160538",
       "verification_status": "candidate"
     },
     {
@@ -2528,6 +3298,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q2466368",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q721452-q712867",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Léon Vaudoyer worked in the office of Hippolyte Le Bas. Source quote: \"élève de son père et Hippolyte Lebas\" (Vaudoyer, Léon (07/06/1803 - 09/02/1872) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Léon Vaudoyer 曾在 Hippolyte Le Bas 门下任职。来源引文：\"élève de son père et Hippolyte Lebas\"（Vaudoyer, Léon (07/06/1803 - 09/02/1872) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q721452",
+      "id": "relation-res-worked-for-q721452-q712867",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q712867",
       "verification_status": "candidate"
     },
     {
@@ -2685,6 +3477,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q770802-q3166930",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Pierre Patout worked in the office of Jean-Louis Pascal. Source quote: \"élève de Jean Louis Pascal\" (Patout, Pierre (23/04/1879 - 21/05/1965) | AGORHA - INHA).",
+        "note_zh": "履历任职边：Pierre Patout 曾在 Jean-Louis Pascal 门下任职。来源引文：\"élève de Jean Louis Pascal\"（Patout, Pierre (23/04/1879 - 21/05/1965) | AGORHA - INHA）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q770802",
+      "id": "relation-res-worked-for-q770802-q3166930",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3166930",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q77311-q5081164",
       "confidence": 0.5,
       "context": {
@@ -2704,6 +3518,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q5081164",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q7807335-q15452424",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Timothy L. Pflueger worked in the office of James Rupert Miller. Source quote: \"Pflueger (1892-1946) had been an employee of Miller's since 1907.\" (Miller and Pflueger, Architects (Partnership) | PCAD).",
+        "note_zh": "履历任职边：Timothy L. Pflueger 曾在 James Rupert Miller 门下任职。来源引文：\"Pflueger (1892-1946) had been an employee of Miller's since 1907.\"（Miller and Pflueger, Architects (Partnership) | PCAD）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q7807335",
+      "id": "relation-res-worked-for-q7807335-q15452424",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q15452424",
       "verification_status": "candidate"
     },
     {
@@ -2861,6 +3697,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q892140-q2066635",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Leopold Eidlitz worked in the office of Richard Upjohn. Source quote: \"He emigrated to the United States in 1843 and trained in the office of Richard Upjohn.\" (Leopold Eidlitz | The Canadian Architects site).",
+        "note_zh": "履历任职边：Leopold Eidlitz 曾在 Richard Upjohn 门下任职。来源引文：\"He emigrated to the United States in 1843 and trained in the office of Richard Upjohn.\"（Leopold Eidlitz | The Canadian Architects site）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q892140",
+      "id": "relation-res-worked-for-q892140-q2066635",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q2066635",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q930-q1376819",
       "confidence": 0.5,
       "context": {
@@ -2924,6 +3782,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q3837633",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q965234-q5604",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: John Lautner worked in the office of Frank Lloyd Wright. Source quote: \"After graduating with a degree in English from the University of Northern Michigan, Lautner became an apprentice to Frank Lloyd Wright for six years.\" (John Lautner | Modern San Diego).",
+        "note_zh": "履历任职边：John Lautner 曾在 Frank Lloyd Wright 门下任职。来源引文：\"After graduating with a degree in English from the University of Northern Michigan, Lautner became an apprentice to Frank Lloyd Wright for six years.\"（John Lautner | Modern San Diego）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q965234",
+      "id": "relation-res-worked-for-q965234-q5604",
+      "last_verified": "2026-11-01",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q5604",
       "verification_status": "candidate"
     },
     {
