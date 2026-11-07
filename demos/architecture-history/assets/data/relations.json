@@ -375,6 +375,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q12603866-q497301",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Seung H-Sang worked in the office of Kim Swoo-geun. Source quote: \"Seung, who worked for prominent South Korean architect Kim Swoo Geun before setting up his own practice IROJE architects & planners in 1989\" (Seoul names Seung H-Sang as its first city architect).",
+        "note_zh": "履历任职边：Seung H-Sang 曾在 Kim Swoo-geun 门下任职。来源引文：\"Seung, who worked for prominent South Korean architect Kim Swoo Geun before setting up his own practice IROJE architects & planners in 1989\"（Seoul names Seung H-Sang as its first city architect）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q12603866",
+      "id": "relation-res-worked-for-q12603866-q497301",
+      "last_verified": "2026-11-06",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q497301",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q1270804-q46868",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: John Hejduk worked in the office of I. M. Pei. Source quote: \"He worked for several firms in New York including I. M. Pei and A. M. Kinney.\" (John Hejduk | USModernist).",
+        "note_zh": "履历任职边：John Hejduk 曾在 I. M. Pei 门下任职。来源引文：\"He worked for several firms in New York including I. M. Pei and A. M. Kinney.\"（John Hejduk | USModernist）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1270804",
+      "id": "relation-res-worked-for-q1270804-q46868",
+      "last_verified": "2026-11-06",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q46868",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q1277977-q16499856",
       "confidence": 0.5,
       "context": {
@@ -460,6 +504,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q1960380",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q134165-q298926",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Oscar Niemeyer worked in the office of Lucio Costa. Source quote: \"he entered the office of Lúcio Costa, a leader of the Modernist movement in Brazilian architecture\" (Oscar Niemeyer — Britannica).",
+        "note_zh": "履历任职边：Oscar Niemeyer 曾在 Lucio Costa 门下任职。来源引文：\"he entered the office of Lúcio Costa, a leader of the Modernist movement in Brazilian architecture\"（Oscar Niemeyer — Britannica）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q134165",
+      "id": "relation-res-worked-for-q134165-q298926",
+      "last_verified": "2026-11-06",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q298926",
       "verification_status": "candidate"
     },
     {
@@ -900,6 +966,50 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q7184227",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q2068088-q3260671",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Emmanuel Pontremoli worked in the office of Louis Jules André. Source quote: \"1883-1890. École des Beaux-Arts de Paris, élève de J. André, puis de V. Laloux.\" (PONTRÉMOLI Emmanuel | CTHS - La France savante).",
+        "note_zh": "履历任职边：Emmanuel Pontremoli 曾在 Louis Jules André 门下任职。来源引文：\"1883-1890. École des Beaux-Arts de Paris, élève de J. André, puis de V. Laloux.\"（PONTRÉMOLI Emmanuel | CTHS - La France savante）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-res-worked-for-q2068088-q3260671",
+      "last_verified": "2026-11-06",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3260671",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q2068088-q924704",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Emmanuel Pontremoli worked in the office of Victor Laloux. Source quote: \"1883-1890. École des Beaux-Arts de Paris, élève de J. André, puis de V. Laloux.\" (PONTRÉMOLI Emmanuel | CTHS - La France savante).",
+        "note_zh": "履历任职边：Emmanuel Pontremoli 曾在 Victor Laloux 门下任职。来源引文：\"1883-1890. École des Beaux-Arts de Paris, élève de J. André, puis de V. Laloux.\"（PONTRÉMOLI Emmanuel | CTHS - La France savante）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-res-worked-for-q2068088-q924704",
+      "last_verified": "2026-11-06",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q924704",
       "verification_status": "candidate"
     },
     {
@@ -1406,6 +1516,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q3837633",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q26252489-q981466",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Gustave Raulin worked in the office of Charles-Auguste Questel. Source quote: \"Il entre en 1855 à l’Ecole des beaux-Arts, où il est élève d'Horeau et de Questel.\" (RAULIN Gustave Laurent | CTHS - La France savante).",
+        "note_zh": "履历任职边：Gustave Raulin 曾在 Charles-Auguste Questel 门下任职。来源引文：\"Il entre en 1855 à l’Ecole des beaux-Arts, où il est élève d'Horeau et de Questel.\"（RAULIN Gustave Laurent | CTHS - La France savante）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q26252489",
+      "id": "relation-res-worked-for-q26252489-q981466",
+      "last_verified": "2026-11-06",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q981466",
       "verification_status": "candidate"
     },
     {
@@ -3191,6 +3323,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q6965904-q5604",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Nari Gandhi worked in the office of Frank Lloyd Wright. Source quote: \"He was an Indian architect known for his very innovative building designs inspired by the great architect Frank Lloyd Wright, with whom Nari apprenticed for five years in Wright’s studio at Taliesin, USA.\" (ECHOES OF GENIUS: A Tribute to Nari Gandhi's Architectural Legacy).",
+        "note_zh": "履历任职边：Nari Gandhi 曾在 Frank Lloyd Wright 门下任职。来源引文：\"He was an Indian architect known for his very innovative building designs inspired by the great architect Frank Lloyd Wright, with whom Nari apprenticed for five years in Wright’s studio at Taliesin, USA.\"（ECHOES OF GENIUS: A Tribute to Nari Gandhi's Architectural Legacy）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q6965904",
+      "id": "relation-res-worked-for-q6965904-q5604",
+      "last_verified": "2026-11-06",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q5604",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q704356-q160538",
       "confidence": 0.5,
       "context": {
@@ -3565,6 +3719,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q8002724-q1554720",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Will Bruder worked in the office of Gunnar Birkerts. Source quote: \"Bruder spent a year as an apprentice of Gunnar Birkerts, where he worked on the Contemporary Arts Museum Houston.\" (Will Bruder | USModernist).",
+        "note_zh": "履历任职边：Will Bruder 曾在 Gunnar Birkerts 门下任职。来源引文：\"Bruder spent a year as an apprentice of Gunnar Birkerts, where he worked on the Contemporary Arts Museum Houston.\"（Will Bruder | USModernist）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q8002724",
+      "id": "relation-res-worked-for-q8002724-q1554720",
+      "last_verified": "2026-11-06",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1554720",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q8048959-q317164",
       "confidence": 0.5,
       "context": {
@@ -3760,6 +3936,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q380282",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q94005-q715701",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: John Wellborn Root worked in the office of William Le Baron Jenney. Source quote: \"…including Louis Sullivan, Daniel Burnham, John Root, and William Holabird—served at one time in Jenney's office.\" (William Le Baron Jenney | Chicago skyscraper, steel frame, Home Insurance Building | Britannica).",
+        "note_zh": "履历任职边：John Wellborn Root 曾在 William Le Baron Jenney 门下任职。来源引文：\"…including Louis Sullivan, Daniel Burnham, John Root, and William Holabird—served at one time in Jenney's office.\"（William Le Baron Jenney | Chicago skyscraper, steel frame, Home Insurance Building | Britannica）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q94005",
+      "id": "relation-res-worked-for-q94005-q715701",
+      "last_verified": "2026-11-06",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q715701",
       "verification_status": "candidate"
     },
     {

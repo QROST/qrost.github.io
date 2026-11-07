@@ -599,6 +599,76 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-06",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q12603866/worked_for/q497301#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q12603866/Q497301",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-06-c4aa72d6d1f2",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "3829542242d910ffdc2cd86c94194830269fa1c8c2e2bee0731fe3a48fda6b82",
+          "support": "explicit",
+          "url": "https://www.dezeen.com/2014/09/08/seung-h-sang-first-city-architect-seoul-south-korea/"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q12603866-q497301",
+      "object": {
+        "entity_id": "person-wd-q497301"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q12603866"
+      },
+      "reviewed_at": "2026-11-06",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q12603866-q497301",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-06",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q1270804/worked_for/q46868#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q1270804/Q46868",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-06-c4aa72d6d1f2",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "7842eb71970cf991a680612686a945c90d81edf7437387341229fa1af6b6b3f0",
+          "support": "explicit",
+          "url": "https://usmodernist.org/hejduk.htm"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q1270804-q46868",
+      "object": {
+        "entity_id": "person-wd-q46868"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q1270804"
+      },
+      "reviewed_at": "2026-11-06",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q1270804-q46868",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-08-22",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -751,6 +821,41 @@
       "reviewed_at": "2026-08-22",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q134165-q1960380",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-06",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q134165/worked_for/q298926#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q134165/Q298926",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-06-c4aa72d6d1f2",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "0805387bc66bc957f9d481a0b9269a4eae6e080a797433c93e8e143cb5b058fa",
+          "support": "explicit",
+          "url": "https://www.britannica.com/biography/Oscar-Niemeyer"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q134165-q298926",
+      "object": {
+        "entity_id": "person-wd-q298926"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q134165"
+      },
+      "reviewed_at": "2026-11-06",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q134165-q298926",
       "verification_status": "candidate"
     },
     {
@@ -1451,6 +1556,76 @@
       "reviewed_at": "2026-08-22",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q20643094-q7184227",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-06",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q2068088/worked_for/q3260671#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q2068088/Q3260671",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-06-c4aa72d6d1f2",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "113012305b8e3924672b941ef78f74aa5d1d508ff95327dede7ae7da6e0619f6",
+          "support": "explicit",
+          "url": "https://cths.fr/an/savant.php?id=121970"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q2068088-q3260671",
+      "object": {
+        "entity_id": "person-wd-q3260671"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q2068088"
+      },
+      "reviewed_at": "2026-11-06",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q2068088-q3260671",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-06",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q2068088/worked_for/q924704#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q2068088/Q924704",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-06-c4aa72d6d1f2",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "c22b49f78e1d91a1ee623bd68fd539cfd8b34a1bb8ab633987d58effe0e62cc9",
+          "support": "explicit",
+          "url": "https://cths.fr/an/savant.php?id=121970"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q2068088-q924704",
+      "object": {
+        "entity_id": "person-wd-q924704"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q2068088"
+      },
+      "reviewed_at": "2026-11-06",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q2068088-q924704",
       "verification_status": "candidate"
     },
     {
@@ -2256,6 +2431,41 @@
       "reviewed_at": "2026-11-01",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q2589897-q3837633",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-06",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q26252489/worked_for/q981466#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q26252489/Q981466",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-06-c4aa72d6d1f2",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "cdd14da3de8d01bf5469d02ff81b47b91f30563e17f6f1ff8460a10160fac75c",
+          "support": "explicit",
+          "url": "https://cths.fr/an/savant.php?id=106148"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q26252489-q981466",
+      "object": {
+        "entity_id": "person-wd-q981466"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q26252489"
+      },
+      "reviewed_at": "2026-11-06",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q26252489-q981466",
       "verification_status": "candidate"
     },
     {
@@ -5097,6 +5307,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-06",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q6965904/worked_for/q5604#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q6965904/Q5604",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-06-c4aa72d6d1f2",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "85ce8596517f6e04516a44ffe4e6d8847db3f3ae78af226bf4c52662cc12303f",
+          "support": "explicit",
+          "url": "https://architecture.live/echoes-of-genius-a-tribute-to-nari-gandhis-architectural-legacy/"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q6965904-q5604",
+      "object": {
+        "entity_id": "person-wd-q5604"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q6965904"
+      },
+      "reviewed_at": "2026-11-06",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q6965904-q5604",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-01",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -5692,6 +5937,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-06",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q8002724/worked_for/q1554720#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q8002724/Q1554720",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-06-c4aa72d6d1f2",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "7313121dcce5b94241469034b7d3190c1e803c62665f24f03b15a220175e0ee8",
+          "support": "explicit",
+          "url": "https://usmodernist.org/bruder.htm"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q8002724-q1554720",
+      "object": {
+        "entity_id": "person-wd-q1554720"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q8002724"
+      },
+      "reviewed_at": "2026-11-06",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q8002724-q1554720",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-08-22",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -6001,6 +6281,41 @@
       "reviewed_at": "2026-08-22",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q930-q380282",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-06",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q94005/worked_for/q715701#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q94005/Q715701",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-06-c4aa72d6d1f2",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "438f4c2823cf789e87539a71817b071400df5321669c526885d79b7ec2d008f2",
+          "support": "explicit",
+          "url": "https://www.britannica.com/biography/William-Le-Baron-Jenney"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q94005-q715701",
+      "object": {
+        "entity_id": "person-wd-q715701"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q94005"
+      },
+      "reviewed_at": "2026-11-06",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q94005-q715701",
       "verification_status": "candidate"
     },
     {
