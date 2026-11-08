@@ -287,6 +287,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q10329451-q1172126",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Michael Hopkins worked in the office of Basil Spence. Source quote: \"After working as an assistant to Frederick Gibberd and then Sir Basil Spence, he returned to study at the Architectural Association (AA) in London and there encountered an influential group of young designers and architectural theorists.\" (Michael Hopkins Biography).",
+        "note_zh": "履历任职边：Michael Hopkins 曾在 Basil Spence 门下任职。来源引文：\"After working as an assistant to Frederick Gibberd and then Sir Basil Spence, he returned to study at the Architectural Association (AA) in London and there encountered an influential group of young designers and architectural theorists.\"（Michael Hopkins Biography）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q10329451",
+      "id": "relation-res-worked-for-q10329451-q1172126",
+      "last_verified": "2026-11-07",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1172126",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q10329451-q5497851",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Michael Hopkins worked in the office of Frederick Gibberd. Source quote: \"After working as an assistant to Frederick Gibberd and then Sir Basil Spence, he returned to study at the Architectural Association (AA) in London and there encountered an influential group of young designers and architectural theorists.\" (Michael Hopkins Biography).",
+        "note_zh": "履历任职边：Michael Hopkins 曾在 Frederick Gibberd 门下任职。来源引文：\"After working as an assistant to Frederick Gibberd and then Sir Basil Spence, he returned to study at the Architectural Association (AA) in London and there encountered an influential group of young designers and architectural theorists.\"（Michael Hopkins Biography）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q10329451",
+      "id": "relation-res-worked-for-q10329451-q5497851",
+      "last_verified": "2026-11-07",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q5497851",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q1132047-q726082",
       "confidence": 0.5,
       "context": {
@@ -944,6 +988,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q121598806",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q202267-q495011",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Jacopo Sansovino worked in the office of Andrea Sansovino. Source quote: \"In 1502 he entered the Florence workshop of the sculptor Andrea Sansovino\" (Jacopo Sansovino | Italian Renaissance Sculptor & Architect | Britannica).",
+        "note_zh": "履历任职边：Jacopo Sansovino 曾在 Andrea Sansovino 门下任职。来源引文：\"In 1502 he entered the Florence workshop of the sculptor Andrea Sansovino\"（Jacopo Sansovino | Italian Renaissance Sculptor & Architect | Britannica）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q202267",
+      "id": "relation-res-worked-for-q202267-q495011",
+      "last_verified": "2026-11-07",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q495011",
       "verification_status": "candidate"
     },
     {
@@ -2861,6 +2927,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q51129-q401557",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Vasili Bazhenov worked in the office of Charles de Wailly. Source quote: \"two leading Russian architects were Vasily Ivanovich Bazhenov and Ivan Yegorovich Starov, both of whom studied in Paris under de Wailly in the 1760s\" (Vasily Ivanovich Bazhenov | Russian architect | Britannica).",
+        "note_zh": "履历任职边：Vasili Bazhenov 曾在 Charles de Wailly 门下任职。来源引文：\"two leading Russian architects were Vasily Ivanovich Bazhenov and Ivan Yegorovich Starov, both of whom studied in Paris under de Wailly in the 1760s\"（Vasily Ivanovich Bazhenov | Russian architect | Britannica）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q51129",
+      "id": "relation-res-worked-for-q51129-q401557",
+      "last_verified": "2026-11-07",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q401557",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q51221-q401557",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Ivan Starov worked in the office of Charles de Wailly. Source quote: \"two leading Russian architects were Vasily Ivanovich Bazhenov and Ivan Yegorovich Starov, both of whom studied in Paris under de Wailly in the 1760s\" (Vasily Ivanovich Bazhenov | Russian architect | Britannica).",
+        "note_zh": "履历任职边：Ivan Starov 曾在 Charles de Wailly 门下任职。来源引文：\"two leading Russian architects were Vasily Ivanovich Bazhenov and Ivan Yegorovich Starov, both of whom studied in Paris under de Wailly in the 1760s\"（Vasily Ivanovich Bazhenov | Russian architect | Britannica）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q51221",
+      "id": "relation-res-worked-for-q51221-q401557",
+      "last_verified": "2026-11-07",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q401557",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q519135-q940647",
       "confidence": 0.5,
       "context": {
@@ -2924,6 +3034,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q466400",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q542546-q5604",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Marion Mahony Griffin worked in the office of Frank Lloyd Wright. Source quote: \"When he had to let her go, she soon found work in the office of another young Chicago architect, Frank Lloyd Wright\" (Marion Mahony Griffin | Pioneering Women of American Architecture).",
+        "note_zh": "履历任职边：Marion Mahony Griffin 曾在 Frank Lloyd Wright 门下任职。来源引文：\"When he had to let her go, she soon found work in the office of another young Chicago architect, Frank Lloyd Wright\"（Marion Mahony Griffin | Pioneering Women of American Architecture）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q542546",
+      "id": "relation-res-worked-for-q542546-q5604",
+      "last_verified": "2026-11-07",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q5604",
       "verification_status": "candidate"
     },
     {

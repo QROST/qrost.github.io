@@ -459,6 +459,76 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-07",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q10329451/worked_for/q1172126#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q10329451/Q1172126",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-07-ecdd8877d63c",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "b5ca92c76b20caab274d5c85ca1aee22bcd60568cd0928b55a3ea408c87345bc",
+          "support": "explicit",
+          "url": "https://architecture-history.org/architects/architects/HOPKINS/biography.html"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q10329451-q1172126",
+      "object": {
+        "entity_id": "person-wd-q1172126"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q10329451"
+      },
+      "reviewed_at": "2026-11-07",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q10329451-q1172126",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-07",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q10329451/worked_for/q5497851#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q10329451/Q5497851",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-07-ecdd8877d63c",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "768573151e3100b392230fcc773a7856f67b37f1dcf2d02f850f31fca3d313b3",
+          "support": "explicit",
+          "url": "https://architecture-history.org/architects/architects/HOPKINS/biography.html"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q10329451-q5497851",
+      "object": {
+        "entity_id": "person-wd-q5497851"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q10329451"
+      },
+      "reviewed_at": "2026-11-07",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q10329451-q5497851",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-01",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -1521,6 +1591,41 @@
       "reviewed_at": "2026-08-20",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q190148-q121598806",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-07",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q202267/worked_for/q495011#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q202267/Q495011",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-07-ecdd8877d63c",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "dab85b8199fd7e42eacdb6e8d84e8b8e332c11a22253ed97d601498da9cd59d2",
+          "support": "explicit",
+          "url": "https://www.britannica.com/biography/Jacopo-Sansovino"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q202267-q495011",
+      "object": {
+        "entity_id": "person-wd-q495011"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q202267"
+      },
+      "reviewed_at": "2026-11-07",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q202267-q495011",
       "verification_status": "candidate"
     },
     {
@@ -4572,6 +4677,76 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-07",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q51129/worked_for/q401557#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q51129/Q401557",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-07-ecdd8877d63c",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "1199c20b8c44afd90ed462056611ccf4b52f7bbe5370464b1d5793a931fff914",
+          "support": "explicit",
+          "url": "https://www.britannica.com/biography/Vasily-Ivanovich-Bazhenov"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q51129-q401557",
+      "object": {
+        "entity_id": "person-wd-q401557"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q51129"
+      },
+      "reviewed_at": "2026-11-07",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q51129-q401557",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-07",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q51221/worked_for/q401557#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q51221/Q401557",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-07-ecdd8877d63c",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "6e81a879c0646d4ed2330f8cd4e8cd674fce17e2ecfd928a3d1d189fd22b7957",
+          "support": "explicit",
+          "url": "https://www.britannica.com/biography/Vasily-Ivanovich-Bazhenov"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q51221-q401557",
+      "object": {
+        "entity_id": "person-wd-q401557"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q51221"
+      },
+      "reviewed_at": "2026-11-07",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q51221-q401557",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-08-22",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -4671,6 +4846,41 @@
       "reviewed_at": "2026-08-22",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q5342473-q466400",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-07",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q542546/worked_for/q5604#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q542546/Q5604",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-07-ecdd8877d63c",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "538324141f85ac76873e2c19db0832ac1e658cc8dd76b952e6b6febcb3f4d5ce",
+          "support": "explicit",
+          "url": "https://pioneeringwomen.bwaf.org/marion-mahony-griffin/"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q542546-q5604",
+      "object": {
+        "entity_id": "person-wd-q5604"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q542546"
+      },
+      "reviewed_at": "2026-11-07",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q542546-q5604",
       "verification_status": "candidate"
     },
     {
