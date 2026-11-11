@@ -1,6 +1,6 @@
 {
   "config_kind": "planned_coverage_frame",
-  "config_version": "0.5.0",
+  "config_version": "0.6.0",
   "country_region_authority": [
     {
       "country_qid": "Q228",
@@ -1021,6 +1021,116 @@
       "country_qid": "Q954",
       "iso2": "ZW",
       "region": "africa"
+    },
+    {
+      "country_qid": "Q13426199",
+      "iso2": "CN",
+      "region": "east_asia"
+    },
+    {
+      "country_qid": "Q868780",
+      "iso2": "CN",
+      "region": "east_asia"
+    },
+    {
+      "country_qid": "Q34266",
+      "iso2": "RU",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q15180",
+      "iso2": "RU",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q174193",
+      "iso2": "GB",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q161885",
+      "iso2": "GB",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q179876",
+      "iso2": "GB",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q27306",
+      "iso2": "DE",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q28513",
+      "iso2": "AT",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q131964",
+      "iso2": "AT",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q533534",
+      "iso2": "AT",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q172579",
+      "iso2": "IT",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q4948",
+      "iso2": "IT",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q70972",
+      "iso2": "FR",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q29999",
+      "iso2": "NL",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q756617",
+      "iso2": "DK",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q33946",
+      "iso2": "CZ",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q15102440",
+      "iso2": "RS",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q191077",
+      "iso2": "RS",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q83286",
+      "iso2": "RS",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q12560",
+      "iso2": "TR",
+      "region": "central_west_asia"
+    },
+    {
+      "country_qid": "Q1054923",
+      "iso2": "HK",
+      "region": "east_asia"
     }
   ],
   "coverage_grid": {
@@ -1475,7 +1585,7 @@
           "Q19844914",
           "Q25550691"
         ],
-        "snapshot_id": "wikidata-work-type-authority-2026-09-07-08841eb70030"
+        "snapshot_id": "wikidata-work-type-authority-2026-11-07-1fa4a1774387"
       }
     ],
     "authority_policy": "new_mappings_require_revision_pinned_snapshot",
