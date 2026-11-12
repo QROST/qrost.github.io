@@ -1,5 +1,8 @@
 # Architecture History data tools
 
+Unless a section explicitly switches to the repository root, run these commands
+from `demos/architecture-history/`.
+
 ## Data source of truth (read this first)
 
 The **local SQLite store** (`data/architecture-history.db`, gitignored) is the
@@ -37,11 +40,11 @@ sqlite3 data/architecture-history.db
 python3 tools/db.py export
 #    Use --no-build for fast iteration (writes only the shard).
 
-# 4. Review the diff, then commit. Only the 8 public JSON tables + manifest
-#    + loader constants + index.html tokens change in git:
-git diff --stat assets/data/ index.html assets/js/data-loader.js
-git commit
+# 4. Before committing, run the required root publication gate below.
+#    Include changed root summaries and cache tokens with the module changes.
 ```
+
+Finish with the [required root publication gate](#required-root-publication-gate).
 
 ### Proven re-hydrate sequence (2026-08-14)
 
@@ -74,7 +77,43 @@ fresh snapshot and breaks provenance gates; use a **fresh import** instead:
 8. `python3 tools/db.py export` (full validate + test gates), update pinned
    counts/sha256s in `test_wikidata_pilot.py`, refresh
    `data/region-snapshot.json` from the store for the next cycle, delete stale
-   crosswalk snapshots, and commit.
+   crosswalk snapshots.
+9. Run the [required root publication gate](#required-root-publication-gate),
+   then commit the reviewed module changes and generated root files together.
+
+### Required root publication gate
+
+Run this after the module export/build succeeds and before committing or pushing
+any published data update, including every re-hydrate. The module's
+`tools/build.py` does not update the repository homepage. The commands below
+explicitly switch to the **repository root**, where `tools/build.py` generates
+the manifest-backed homepage summaries and cache tokens.
+
+```bash
+(
+  cd "$(git rev-parse --show-toplevel)" &&
+  npm ci --ignore-scripts &&
+  python3 tools/build.py &&
+  python3 tools/check_all.py &&
+  git diff --check &&
+  git diff --stat -- demos/architecture-history/ index.html assets/js/home-i18n.js README.md &&
+  git status --short
+)
+```
+
+The subshell preserves the caller's working directory; `&&` stops the sequence
+if any step fails. Do not commit or push a failed gate. If data changes again
+after validation, repeat this gate against the final files.
+
+Review and commit the module changes together with any changed root
+`index.html`, `assets/js/home-i18n.js`, and `README.md` in the **same commit**.
+Let the generator update their counts and asset tokens; do not edit them by hand.
+Only stage files belonging to the update, leaving unrelated work untouched.
+
+After pushing, verify **Public site checks** for that exact commit, including
+the desktop/touch browser regressions and clean-checkout check, as well as
+**pages build and deployment**. A successful Pages deployment alone does not
+mean the public-site checks passed.
 
 ### Wikidata re-hydrate (non-daily, only when pulling fresh Wikidata data)
 

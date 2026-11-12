@@ -158,6 +158,11 @@ closed on provenance or verification errors. Generated public arrays are merged
 from source-scoped `assets/data/catalog/*.json` shards; failed builds restore all
 generated outputs instead of leaving a half-written tree.
 
+Before committing or publishing a data update, also run the
+[required root publication gate](tools/README.md#required-root-publication-gate)
+to regenerate the repository homepage summaries, run the root checks, and commit
+any changed root outputs together with the module update.
+
 Research notes and raw working material live under `tmp/research/` and are
 gitignored. Redistributable, minimized source snapshots used for reproducible
 public builds may be committed under `assets/data/source-snapshots/`.
