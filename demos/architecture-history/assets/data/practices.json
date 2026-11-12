@@ -32,7 +32,7 @@
         "value": null
       },
       "id": "practice-wd-q100604548",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Renzo Piano Building Workshop",
       "name_native": null,
       "name_zh": null,
@@ -71,7 +71,7 @@
         "value": null
       },
       "id": "practice-wd-q102255990",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Celsing Arkitekter",
       "name_native": null,
       "name_zh": null,
@@ -112,7 +112,7 @@
         "value": null
       },
       "id": "practice-wd-q1045365",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Carrère and Hastings",
       "name_native": null,
       "name_zh": "卡雷尔和黑斯廷斯建筑师事务所",
@@ -152,7 +152,7 @@
         "value": null
       },
       "id": "practice-wd-q106520535",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Bond Ryder & Associates",
       "name_native": null,
       "name_zh": null,
@@ -192,8 +192,48 @@
         "value": null
       },
       "id": "practice-wd-q107004999",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Johnson Burgee Architects",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "north_america",
+      "summary_en": "architectural firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q107005355-country-codes",
+        "claim-wd-q107005355-external-ids",
+        "claim-wd-q107005355-name-en",
+        "claim-wd-q107005355-practice-type",
+        "claim-wd-q107005355-region",
+        "claim-wd-q107005355-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q107005355"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q107005355",
+      "last_verified": "2026-11-12",
+      "name_en": "Taliesin Fellowship",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",
@@ -234,7 +274,7 @@
         "value": null
       },
       "id": "practice-wd-q1082849",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Populous",
       "name_native": null,
       "name_zh": "Populous",
@@ -274,7 +314,7 @@
         "value": null
       },
       "id": "practice-wd-q108395615",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Brinkman & Van der Vlugt",
       "name_native": null,
       "name_zh": null,
@@ -309,7 +349,7 @@
         "value": null
       },
       "id": "practice-wd-q108916018",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Heatherwick Studio",
       "name_native": null,
       "name_zh": null,
@@ -350,7 +390,7 @@
         "value": null
       },
       "id": "practice-wd-q11509101",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Nihon Sekkei",
       "name_native": null,
       "name_zh": "日本设计",
@@ -391,13 +431,92 @@
         "value": null
       },
       "id": "practice-wd-q11682592",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Hopkins Architects",
       "name_native": null,
       "name_zh": "霍普金斯建築師事務所",
       "practice_type": "architecture_firm",
       "region": "europe",
       "summary_en": "British architectural firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q117115854-country-codes",
+        "claim-wd-q117115854-external-ids",
+        "claim-wd-q117115854-name-en",
+        "claim-wd-q117115854-practice-type",
+        "claim-wd-q117115854-region",
+        "claim-wd-q117115854-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "JP"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q117115854"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q117115854",
+      "last_verified": "2026-11-12",
+      "name_en": "Toyo Ito & Associates, Architects",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "east_asia",
+      "summary_en": "founded 1971",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q11715055-country-codes",
+        "claim-wd-q11715055-external-ids",
+        "claim-wd-q11715055-name-en",
+        "claim-wd-q11715055-practice-type",
+        "claim-wd-q11715055-region"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "PL"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q11715055"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q11715055",
+      "last_verified": "2026-11-12",
+      "name_en": "JEMS Architekci",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "europe",
+      "summary_en": "",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -433,7 +552,7 @@
         "value": null
       },
       "id": "practice-wd-q1208016",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Foster and Partners",
       "name_native": null,
       "name_zh": "福斯特建築事務所",
@@ -473,13 +592,54 @@
         "value": null
       },
       "id": "practice-wd-q1223628",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Dietrich Untertrifaller Architekten",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",
       "region": "europe",
       "summary_en": "Austrian architectural firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q1229307-country-codes",
+        "claim-wd-q1229307-external-ids",
+        "claim-wd-q1229307-name-en",
+        "claim-wd-q1229307-name-zh",
+        "claim-wd-q1229307-practice-type",
+        "claim-wd-q1229307-region",
+        "claim-wd-q1229307-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q1229307"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q1229307",
+      "last_verified": "2026-11-12",
+      "name_en": "Dissing+Weitling",
+      "name_native": null,
+      "name_zh": "迪辛-威特灵",
+      "practice_type": "architecture_firm",
+      "region": "europe",
+      "summary_en": "architectural firm",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -513,7 +673,7 @@
         "value": null
       },
       "id": "practice-wd-q124614868",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Kallmann, McKinnell and Knowles",
       "name_native": null,
       "name_zh": null,
@@ -549,7 +709,7 @@
         "value": null
       },
       "id": "practice-wd-q124675323",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Danielson Design Group",
       "name_native": null,
       "name_zh": null,
@@ -584,7 +744,7 @@
         "value": null
       },
       "id": "practice-wd-q12471469",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Algemeen Ingenieurs- en Architectenbureau (AIA)",
       "name_native": null,
       "name_zh": null,
@@ -624,7 +784,7 @@
         "value": null
       },
       "id": "practice-wd-q125506154",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Tadao Ando Architects & Associates",
       "name_native": null,
       "name_zh": null,
@@ -664,7 +824,7 @@
         "value": null
       },
       "id": "practice-wd-q125661694",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Architectuurstudio Herman Hertzberger",
       "name_native": null,
       "name_zh": null,
@@ -704,7 +864,7 @@
         "value": null
       },
       "id": "practice-wd-q130139778",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Werner Sobek AG",
       "name_native": null,
       "name_zh": null,
@@ -744,7 +904,7 @@
         "value": null
       },
       "id": "practice-wd-q133730802",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Cesar Pelli & Associates",
       "name_native": null,
       "name_zh": null,
@@ -784,7 +944,7 @@
         "value": null
       },
       "id": "practice-wd-q135236773",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Noero Wolff Architects",
       "name_native": null,
       "name_zh": null,
@@ -819,13 +979,53 @@
         "value": null
       },
       "id": "practice-wd-q136719153",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Werkplaats voor Publieke Werken",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",
       "region": "unknown",
       "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q141256426-country-codes",
+        "claim-wd-q141256426-external-ids",
+        "claim-wd-q141256426-name-en",
+        "claim-wd-q141256426-practice-type",
+        "claim-wd-q141256426-region",
+        "claim-wd-q141256426-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "RU"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q141256426"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q141256426",
+      "last_verified": "2026-11-12",
+      "name_en": "APEX Project Bureau",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "europe",
+      "summary_en": "Moscow-based multidisciplinary architecture and engineering design firm founded in 2014",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -861,7 +1061,7 @@
         "value": null
       },
       "id": "practice-wd-q14634037",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Charles and Ray Eames",
       "name_native": null,
       "name_zh": "伊姆斯夫婦",
@@ -902,7 +1102,7 @@
         "value": null
       },
       "id": "practice-wd-q1602991",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "HOK",
       "name_native": null,
       "name_zh": "HOK",
@@ -943,7 +1143,7 @@
         "value": null
       },
       "id": "practice-wd-q16951458",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Beyer Blinder Belle",
       "name_native": null,
       "name_zh": "拜尔·布莱德·贝勒事務所",
@@ -983,7 +1183,7 @@
         "value": null
       },
       "id": "practice-wd-q16972153",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Campbell, Aldrich & Nulty",
       "name_native": null,
       "name_zh": null,
@@ -1023,13 +1223,90 @@
         "value": null
       },
       "id": "practice-wd-q17111789",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Patkau Architects",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",
       "region": "north_america",
       "summary_en": "architecture firm based in Vancouver, British Columbia, Canada",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q17314169-external-ids",
+        "claim-wd-q17314169-name-en",
+        "claim-wd-q17314169-name-zh",
+        "claim-wd-q17314169-practice-type",
+        "claim-wd-q17314169-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q17314169"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q17314169",
+      "last_verified": "2026-11-12",
+      "name_en": "Farrells",
+      "name_native": null,
+      "name_zh": "Farrells",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "architecture and urban design firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q17985462-country-codes",
+        "claim-wd-q17985462-external-ids",
+        "claim-wd-q17985462-name-en",
+        "claim-wd-q17985462-practice-type",
+        "claim-wd-q17985462-region",
+        "claim-wd-q17985462-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q17985462"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q17985462",
+      "last_verified": "2026-11-12",
+      "name_en": "Albert Kahn Associates",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "north_america",
+      "summary_en": "American architectural firm",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -1062,7 +1339,7 @@
         "value": null
       },
       "id": "practice-wd-q18672430",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Emery Roth & Sons",
       "name_native": null,
       "name_zh": null,
@@ -1102,7 +1379,7 @@
         "value": null
       },
       "id": "practice-wd-q18739419",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "CannonDesign",
       "name_native": null,
       "name_zh": null,
@@ -1142,7 +1419,7 @@
         "value": null
       },
       "id": "practice-wd-q1877438",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Lundt & Kallmorgen",
       "name_native": null,
       "name_zh": null,
@@ -1183,7 +1460,7 @@
         "value": null
       },
       "id": "practice-wd-q1915267",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "McKim, Mead & White",
       "name_native": null,
       "name_zh": "McKim, Mead, & White建筑事务所",
@@ -1223,7 +1500,7 @@
         "value": null
       },
       "id": "practice-wd-q1948404",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Morphosis",
       "name_native": null,
       "name_zh": null,
@@ -1265,7 +1542,7 @@
         "value": null
       },
       "id": "practice-wd-q2015762",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Office for Metropolitan Architecture",
       "name_native": null,
       "name_zh": "大都會建築事務所",
@@ -1306,7 +1583,7 @@
         "value": null
       },
       "id": "practice-wd-q2074328",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Peter Chermayeff LLC",
       "name_native": null,
       "name_zh": "彼得·切尔马耶夫",
@@ -1348,7 +1625,7 @@
         "value": null
       },
       "id": "practice-wd-q212487",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Kohn Pedersen Fox",
       "name_native": null,
       "name_zh": "美國KPF建築師事務所",
@@ -1356,6 +1633,47 @@
       "region": "north_america",
       "summary_en": "American architectural firm",
       "summary_zh": "總部在紐約的建築事務所",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q2481701-country-codes",
+        "claim-wd-q2481701-external-ids",
+        "claim-wd-q2481701-name-en",
+        "claim-wd-q2481701-name-zh",
+        "claim-wd-q2481701-practice-type",
+        "claim-wd-q2481701-region",
+        "claim-wd-q2481701-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q2481701"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q2481701",
+      "last_verified": "2026-11-12",
+      "name_en": "BIG",
+      "name_native": null,
+      "name_zh": "比亞克·英格爾斯集團",
+      "practice_type": "architecture_firm",
+      "region": "europe",
+      "summary_en": "architecture firm based in Copenhagen",
+      "summary_zh": "",
       "verification_status": "verified"
     },
     {
@@ -1389,7 +1707,7 @@
         "value": null
       },
       "id": "practice-wd-q2563295",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Gesellius, Lindgren, and Saarinen",
       "name_native": null,
       "name_zh": null,
@@ -1429,7 +1747,7 @@
         "value": null
       },
       "id": "practice-wd-q26268266",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Andrault & Parat",
       "name_native": null,
       "name_zh": null,
@@ -1468,13 +1786,49 @@
         "value": null
       },
       "id": "practice-wd-q27972964",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Holzer Kobler Architekturen",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",
       "region": "europe",
       "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q2868839-external-ids",
+        "claim-wd-q2868839-name-en",
+        "claim-wd-q2868839-practice-type",
+        "claim-wd-q2868839-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q2868839"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q2868839",
+      "last_verified": "2026-11-12",
+      "name_en": "Atelier d'Art urbain",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "Belgian architectural company",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -1508,7 +1862,7 @@
         "value": null
       },
       "id": "practice-wd-q2868849",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Atelier de Montrouge",
       "name_native": null,
       "name_zh": null,
@@ -1547,7 +1901,7 @@
         "value": null
       },
       "id": "practice-wd-q2879922",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Lagos y De la Torre Sánchez",
       "name_native": null,
       "name_zh": null,
@@ -1587,7 +1941,7 @@
         "value": null
       },
       "id": "practice-wd-q29561372",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Adamson Associates",
       "name_native": null,
       "name_zh": null,
@@ -1629,7 +1983,7 @@
         "value": null
       },
       "id": "practice-wd-q308776",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Herzog & de Meuron",
       "name_native": null,
       "name_zh": "赫尔佐格和德梅隆",
@@ -1670,7 +2024,7 @@
         "value": null
       },
       "id": "practice-wd-q3091301",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Future Systems",
       "name_native": null,
       "name_zh": "未来系统公司",
@@ -1711,7 +2065,7 @@
         "value": null
       },
       "id": "practice-wd-q3100834",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Gensler",
       "name_native": null,
       "name_zh": "Gensler建筑设计事务所",
@@ -1751,7 +2105,7 @@
         "value": null
       },
       "id": "practice-wd-q320788",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "BBPR",
       "name_native": null,
       "name_zh": null,
@@ -1792,7 +2146,7 @@
         "value": null
       },
       "id": "practice-wd-q3415248",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "RMJM",
       "name_native": null,
       "name_zh": "英国RMJM公司",
@@ -1833,7 +2187,7 @@
         "value": null
       },
       "id": "practice-wd-q3564873",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "WZMH Architects",
       "name_native": null,
       "name_zh": "WZMH建築師樓",
@@ -1875,7 +2229,7 @@
         "value": null
       },
       "id": "practice-wd-q3567818",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Warren and Wetmore",
       "name_native": null,
       "name_zh": "沃伦怀特茂公司",
@@ -1915,7 +2269,7 @@
         "value": null
       },
       "id": "practice-wd-q4683278",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Adler & Sullivan",
       "name_native": null,
       "name_zh": null,
@@ -1956,7 +2310,7 @@
         "value": null
       },
       "id": "practice-wd-q4685364",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Adrian Smith + Gordon Gill Architecture",
       "name_native": null,
       "name_zh": "艾德里安史密斯和戈登吉爾建築事務所",
@@ -1992,7 +2346,7 @@
         "value": null
       },
       "id": "practice-wd-q4739677",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "AL_A",
       "name_native": null,
       "name_zh": null,
@@ -2033,7 +2387,7 @@
         "value": null
       },
       "id": "practice-wd-q4999763",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Burnham and Root",
       "name_native": null,
       "name_zh": "伯納姆和魯特建築工作室",
@@ -2069,7 +2423,7 @@
         "value": null
       },
       "id": "practice-wd-q5065687",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Cetra/Ruddy",
       "name_native": null,
       "name_zh": null,
@@ -2110,7 +2464,7 @@
         "value": null
       },
       "id": "practice-wd-q5069606",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Chamberlin, Powell and Bon",
       "name_native": null,
       "name_zh": "張伯倫、鮑威爾與本恩公司",
@@ -2151,7 +2505,7 @@
         "value": null
       },
       "id": "practice-wd-q511335",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Snøhetta",
       "name_native": null,
       "name_zh": "斯諾赫塔建築事務所",
@@ -2191,7 +2545,7 @@
         "value": null
       },
       "id": "practice-wd-q51137078",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "David Chipperfield Architects",
       "name_native": null,
       "name_zh": null,
@@ -2231,7 +2585,7 @@
         "value": null
       },
       "id": "practice-wd-q5167728",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Cooper Robertson",
       "name_native": null,
       "name_zh": null,
@@ -2271,7 +2625,7 @@
         "value": null
       },
       "id": "practice-wd-q5338939",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Edmond and Corrigan",
       "name_native": null,
       "name_zh": null,
@@ -2308,7 +2662,7 @@
         "value": null
       },
       "id": "practice-wd-q5443251",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Fender Katsalidis Architects",
       "name_native": null,
       "name_zh": "芬德·卡特里迪斯",
@@ -2349,7 +2703,7 @@
         "value": null
       },
       "id": "practice-wd-q547644",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Alison and Peter Smithson",
       "name_native": null,
       "name_zh": "艾莉森和彼得史密森",
@@ -2390,7 +2744,7 @@
         "value": null
       },
       "id": "practice-wd-q5603899",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Greene and Greene",
       "name_native": null,
       "name_zh": "格林與格林",
@@ -2430,7 +2784,7 @@
         "value": null
       },
       "id": "practice-wd-q5665458",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Harrison & Abramovitz",
       "name_native": null,
       "name_zh": null,
@@ -2466,7 +2820,7 @@
         "value": null
       },
       "id": "practice-wd-q5714154",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Heneghan Peng",
       "name_native": null,
       "name_zh": null,
@@ -2506,7 +2860,7 @@
         "value": null
       },
       "id": "practice-wd-q6000974",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Rogers Stirk Harbour + Partners",
       "name_native": null,
       "name_zh": null,
@@ -2546,7 +2900,7 @@
         "value": null
       },
       "id": "practice-wd-q60292146",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Lawrence Halprin and Associates",
       "name_native": null,
       "name_zh": null,
@@ -2586,7 +2940,7 @@
         "value": null
       },
       "id": "practice-wd-q6138310",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Ricardo Bofill Taller de Arquitectura",
       "name_native": null,
       "name_zh": null,
@@ -2627,7 +2981,7 @@
         "value": null
       },
       "id": "practice-wd-q617190",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Shreve, Lamb & Harmon",
       "name_native": null,
       "name_zh": "施里夫、兰姆与哈蒙建筑公司",
@@ -2667,7 +3021,7 @@
         "value": null
       },
       "id": "practice-wd-q634960",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Architecture-Studio",
       "name_native": null,
       "name_zh": null,
@@ -2707,7 +3061,7 @@
         "value": null
       },
       "id": "practice-wd-q65581184",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Jasmax",
       "name_native": null,
       "name_zh": null,
@@ -2749,7 +3103,7 @@
         "value": null
       },
       "id": "practice-wd-q6623279",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "PCF Architects",
       "name_native": null,
       "name_zh": "贝-考伯-弗里德及合伙人建筑师事务所",
@@ -2788,7 +3142,7 @@
         "value": null
       },
       "id": "practice-wd-q67173626",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "VenhoevenCS",
       "name_native": null,
       "name_zh": null,
@@ -2828,7 +3182,7 @@
         "value": null
       },
       "id": "practice-wd-q6767030",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Mark Cavagnero Associates",
       "name_native": null,
       "name_zh": null,
@@ -2869,7 +3223,7 @@
         "value": null
       },
       "id": "practice-wd-q6804385",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Mecanoo",
       "name_native": null,
       "name_zh": "Mecanoo",
@@ -2909,7 +3263,7 @@
         "value": null
       },
       "id": "practice-wd-q6859288",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Miller and Pflueger",
       "name_native": null,
       "name_zh": null,
@@ -2949,7 +3303,7 @@
         "value": null
       },
       "id": "practice-wd-q69570584",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Grafton Architects",
       "name_native": null,
       "name_zh": null,
@@ -2991,7 +3345,7 @@
         "value": null
       },
       "id": "practice-wd-q7306714",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Reed and Stem",
       "name_native": null,
       "name_zh": "Reed and Stem",
@@ -3033,7 +3387,7 @@
         "value": null
       },
       "id": "practice-wd-q737536",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "SANAA",
       "name_native": null,
       "name_zh": "SANAA",
@@ -3074,7 +3428,7 @@
         "value": null
       },
       "id": "practice-wd-q7494520",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Shepley, Rutan and Coolidge",
       "name_native": null,
       "name_zh": "雪普莉、穆坦和柯立芝设计公司",
@@ -3114,7 +3468,7 @@
         "value": null
       },
       "id": "practice-wd-q76167085",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "KCAP",
       "name_native": null,
       "name_zh": null,
@@ -3155,7 +3509,7 @@
         "value": null
       },
       "id": "practice-wd-q7628180",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Studio Gang",
       "name_native": null,
       "name_zh": "建筑设计",
@@ -3196,7 +3550,7 @@
         "value": null
       },
       "id": "practice-wd-q7691420",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Team 4",
       "name_native": null,
       "name_zh": "小组四",
@@ -3237,7 +3591,7 @@
         "value": null
       },
       "id": "practice-wd-q7846674",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Trowbridge & Livingston",
       "name_native": null,
       "name_zh": "“特罗布里奇和利文斯顿”建筑师事务所",
@@ -3277,7 +3631,7 @@
         "value": null
       },
       "id": "practice-wd-q7970617",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Warren and Mahoney",
       "name_native": null,
       "name_zh": null,
@@ -3318,7 +3672,7 @@
         "value": null
       },
       "id": "practice-wd-q8064602",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Zaha Hadid Architects",
       "name_native": null,
       "name_zh": "扎哈·哈迪德建筑事务所",
@@ -3358,7 +3712,7 @@
         "value": null
       },
       "id": "practice-wd-q8066296",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Zantzinger, Borie & Medary",
       "name_native": null,
       "name_zh": null,
@@ -3399,7 +3753,7 @@
         "value": null
       },
       "id": "practice-wd-q814536",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Behnisch & Partner",
       "name_native": null,
       "name_zh": "贝尼施与伙伴",
@@ -3440,7 +3794,7 @@
         "value": null
       },
       "id": "practice-wd-q867205",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Coop Himmelb(l)au",
       "name_native": null,
       "name_zh": "库柏·西梅布芬事务所",
@@ -3478,7 +3832,7 @@
         "value": null
       },
       "id": "practice-wd-q9026279",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "MAD Studio",
       "name_native": null,
       "name_zh": "MAD建筑事务所",
@@ -3486,6 +3840,86 @@
       "region": "unknown",
       "summary_en": "Chinese architecture studio",
       "summary_zh": "中国建筑事务所",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q92135147-country-codes",
+        "claim-wd-q92135147-external-ids",
+        "claim-wd-q92135147-name-en",
+        "claim-wd-q92135147-practice-type",
+        "claim-wd-q92135147-region",
+        "claim-wd-q92135147-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "NL"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q92135147"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q92135147",
+      "last_verified": "2026-11-12",
+      "name_en": "Barcode Architects",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "europe",
+      "summary_en": "Dutch architecture firm from Rotterdam",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q932801-country-codes",
+        "claim-wd-q932801-external-ids",
+        "claim-wd-q932801-name-en",
+        "claim-wd-q932801-practice-type",
+        "claim-wd-q932801-region",
+        "claim-wd-q932801-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "NL"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q932801"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q932801",
+      "last_verified": "2026-11-12",
+      "name_en": "MVRDV",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "europe",
+      "summary_en": "Dutch architecture firm",
+      "summary_zh": "",
       "verification_status": "verified"
     },
     {
@@ -3514,13 +3948,53 @@
         "value": null
       },
       "id": "practice-wd-q944660",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "WOHA",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",
       "region": "unknown",
       "summary_en": "architectural firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q95996678-country-codes",
+        "claim-wd-q95996678-external-ids",
+        "claim-wd-q95996678-name-en",
+        "claim-wd-q95996678-practice-type",
+        "claim-wd-q95996678-region",
+        "claim-wd-q95996678-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q95996678"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q95996678",
+      "last_verified": "2026-11-12",
+      "name_en": "Harboe Architects",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "north_america",
+      "summary_en": "architectural firm, Chicago",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -3554,13 +4028,49 @@
         "value": null
       },
       "id": "practice-wd-q97573278",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "name_en": "Ende & Böckmann",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",
       "region": "europe",
       "summary_en": "German architectural partnership",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q99761764-external-ids",
+        "claim-wd-q99761764-name-en",
+        "claim-wd-q99761764-practice-type",
+        "claim-wd-q99761764-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q99761764"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q99761764",
+      "last_verified": "2026-11-12",
+      "name_en": "MDW Architecture",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "architectural firm",
       "summary_zh": "",
       "verification_status": "verified"
     }

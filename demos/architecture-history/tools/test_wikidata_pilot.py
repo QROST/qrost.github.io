@@ -96,7 +96,7 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q917274": "1980_1999",
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
-    "5d9487b2a780a918a194b5e0a2326a443d9d0e1c6054c479feb455e8eab84b37"
+    "4e9b89b1c909e75439786e735943103ccaf9dda748886d897224ec13e9c07f52"
 )
 NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q2977",
@@ -121,7 +121,7 @@ NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q11315",
 }
 NEW_WORK_TYPE_WORK_IDS_SHA256 = (
-    "f2499cc75912c8993311b0a7248c2164b8be37a828492611058b44e53f54cb54"
+    "0f8a8e85fc8189546912527522e9a53b4347ce860f65ada2edc5c1e6c7936e3e"
 )
 
 
@@ -223,7 +223,7 @@ def minimal_lineage_snapshot(
             "seed": "fixture",
             "seed_sha256": "fixture",
         },
-        "snapshot_id": "wikidata-hydration-2026-11-11-27d3affa956c",
+        "snapshot_id": "wikidata-hydration-2026-11-12-ac2e9d4424e7",
         "source_id": "wikidata",
     }
 
@@ -894,7 +894,7 @@ class WikidataPilotTests(unittest.TestCase):
                     next(iter(self.authority_snapshots)),
                 )
         affected_ids.sort()
-        self.assertEqual(len(affected_ids), 324)
+        self.assertEqual(len(affected_ids), 662)
         self.assertEqual(
             hashlib.sha256(
                 json.dumps(
@@ -914,7 +914,7 @@ class WikidataPilotTests(unittest.TestCase):
         }
         self.assertEqual(
             statuses,
-            {"mapped_exact": 1240, "unmapped": 564, "ambiguous": 43},
+            {"mapped_exact": 1703, "unmapped": 1000, "ambiguous": 44},
         )
 
     def test_automatic_records_remain_candidates(self):
@@ -1083,25 +1083,25 @@ class WikidataPilotTests(unittest.TestCase):
             sort_keys=True,
             separators=(",", ":"),
         ).encode("utf-8")
-        self.assertEqual(len(prior_assignments), 1429)
+        self.assertEqual(len(prior_assignments), 1928)
         self.assertEqual(
             hashlib.sha256(prior_payload).hexdigest(),
             PRIOR_PERIOD_ASSIGNMENT_SHA256,
         )
         self.assertEqual(
             sum(period != "unknown" for period in assignments.values()),
-            1490,
+            1989,
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
-            357,
+            758,
         )
         self.assertEqual(
             sum(
                 claim["predicate"] == "field_period"
                 for claim in self.catalog["claims"]
             ),
-            1490,
+            1989,
         )
 
     def test_raw_lineage_edges_never_become_mentorship(self):
@@ -1287,11 +1287,12 @@ class WikidataPilotTests(unittest.TestCase):
         works = self.catalog["works"]
         people = self.catalog["people"]
         self.assertGreaterEqual(len(works), 700)
-        # Wave1 newest-to-oldest coverage promotion expands English-heavy WD rows;
-        # keep bilingual floors honest rather than blocking denser lineage mesh.
+        # Hero-works intake (2026-11-12) added ~900 WD rows whose subjects have
+        # no zhwiki coverage at all; hold the bilingual floor at the absolute
+        # 2026-11-11 level instead of a ratio so growth never regresses zh.
         self.assertGreaterEqual(
             sum(work["name_zh"] is not None for work in works),
-            int(len(works) * 0.60),
+            1394,
         )
         self.assertGreaterEqual(
             sum(
