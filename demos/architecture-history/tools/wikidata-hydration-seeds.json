@@ -13626,6 +13626,16 @@
    ]
   },
   {
+   "expected_country_qid": "Q30",
+   "expected_country_code": "US",
+   "label_hint_en": "New York Public Library Main Branch",
+   "qid": "Q7013887",
+   "region": "north_america",
+   "risk_tags": [
+    "cell_verification"
+   ]
+  },
+  {
    "expected_country_code": "NZ",
    "expected_country_qid": "Q664",
    "label_hint_en": "New Zealand Parliament Buildings",
@@ -19149,6 +19159,14 @@
    "label_hint_en": "Leopoldo Rother"
   },
   {
+   "qid": "Q95595",
+   "label_hint_en": "Rolf Gutbrod"
+  },
+  {
+   "qid": "Q96239",
+   "label_hint_en": "Otto March"
+  },
+  {
    "qid": "Q101791",
    "label_hint_en": "Sep Ruf"
   },
@@ -19237,8 +19255,8 @@
    "label_hint_en": "John Ruskin"
   },
   {
-   "qid": "Q182046",
-   "label_hint_en": "Leon Battista Alberti"
+   "qid": "Q179638",
+   "label_hint_en": "Henry Holland"
   },
   {
    "qid": "Q201854",
@@ -19593,6 +19611,10 @@
    "label_hint_en": "Genia Averbuch"
   },
   {
+   "qid": "Q529978",
+   "label_hint_en": "Thomas Church"
+  },
+  {
    "qid": "Q536951",
    "label_hint_en": "Jacob van Campen"
   },
@@ -19631,6 +19653,10 @@
   {
    "qid": "Q553804",
    "label_hint_en": "Bruce Goff"
+  },
+  {
+   "qid": "Q555640",
+   "label_hint_en": "Cedric Price"
   },
   {
    "qid": "Q558155",
@@ -19843,6 +19869,10 @@
   {
    "qid": "Q970544",
    "label_hint_en": "Francis Greenway"
+  },
+  {
+   "qid": "Q977815",
+   "label_hint_en": "Raymond Unwin"
   },
   {
    "qid": "Q982097",
@@ -20065,6 +20095,10 @@
    "label_hint_en": "Spiro Kostof"
   },
   {
+   "qid": "Q1770335",
+   "label_hint_en": "George Dance the Younger"
+  },
+  {
    "qid": "Q1777577",
    "label_hint_en": "Arne Korsmo"
   },
@@ -20135,6 +20169,10 @@
   {
    "qid": "Q2079131",
    "label_hint_en": "Henri Maclaine Pont"
+  },
+  {
+   "qid": "Q2131424",
+   "label_hint_en": "Raphael Soriano"
   },
   {
    "qid": "Q2140435",
@@ -20277,6 +20315,10 @@
    "label_hint_en": "Y. B. Mangunwijaya"
   },
   {
+   "qid": "Q2739603",
+   "label_hint_en": "Jane Drew"
+  },
+  {
    "qid": "Q2739984",
    "label_hint_en": "Hara Hiroshi"
   },
@@ -20305,6 +20347,10 @@
    "label_hint_en": "Albert Laprade"
   },
   {
+   "qid": "Q2831588",
+   "label_hint_en": "Albert Tournaire"
+  },
+  {
    "qid": "Q2834105",
    "label_hint_en": "Alexander Vallaury"
   },
@@ -20327,6 +20373,14 @@
   {
    "qid": "Q2845329",
    "label_hint_en": "Anant Raje"
+  },
+  {
+   "qid": "Q2848816",
+   "label_hint_en": "André Wogenscky"
+  },
+  {
+   "qid": "Q2856788",
+   "label_hint_en": "A. L. T. Vaudoyer"
   },
   {
    "qid": "Q2859562",
@@ -20405,6 +20459,10 @@
    "label_hint_en": "Gaston Lelarge"
   },
   {
+   "qid": "Q3099132",
+   "label_hint_en": "Gaston Redon"
+  },
+  {
    "qid": "Q3113251",
    "label_hint_en": "Graham Harman"
   },
@@ -20465,6 +20523,10 @@
    "label_hint_en": "Joseph Marrast"
   },
   {
+   "qid": "Q3199944",
+   "label_hint_en": "Maxwell Fry"
+  },
+  {
    "qid": "Q3293422",
    "label_hint_en": "George Drumgoole Coleman"
   },
@@ -20477,6 +20539,10 @@
    "label_hint_en": "Michel Écochard"
   },
   {
+   "qid": "Q3313019",
+   "label_hint_en": "Miguel Ventura Terra"
+  },
+  {
    "qid": "Q3314962",
    "label_hint_en": "Miguel Fisac"
   },
@@ -20487,6 +20553,10 @@
   {
    "qid": "Q3350730",
    "label_hint_en": "Olivier-Clément Cacoub"
+  },
+  {
+   "qid": "Q3357594",
+   "label_hint_en": "Otello Zavaroni"
   },
   {
    "qid": "Q3381859",
@@ -20547,6 +20617,10 @@
   {
    "qid": "Q3609433",
    "label_hint_en": "Alejandro Alavena"
+  },
+  {
+   "qid": "Q3656215",
+   "label_hint_en": "Ernst L. Freud"
   },
   {
    "qid": "Q3724202",
@@ -20619,6 +20693,10 @@
   {
    "qid": "Q4380947",
    "label_hint_en": "Joseph Lyman Silsbee"
+  },
+  {
+   "qid": "Q4614345",
+   "label_hint_en": "Warren H. Manning"
   },
   {
    "qid": "Q4678270",
@@ -20705,6 +20783,10 @@
    "label_hint_en": "Doğan Kuban"
   },
   {
+   "qid": "Q5318166",
+   "label_hint_en": "Dwight Heald Perkins"
+  },
+  {
    "qid": "Q5339292",
    "label_hint_en": "Edmund Blacket"
   },
@@ -20765,6 +20847,14 @@
    "label_hint_en": "George Anselevicius"
   },
   {
+   "qid": "Q5538317",
+   "label_hint_en": "George D. Mason"
+  },
+  {
+   "qid": "Q5539444",
+   "label_hint_en": "George Fred Keck"
+  },
+  {
    "qid": "Q5606827",
    "label_hint_en": "Gregory Burgess"
   },
@@ -20803,6 +20893,10 @@
   {
    "qid": "Q5725765",
    "label_hint_en": "Henry Medd"
+  },
+  {
+   "qid": "Q5741022",
+   "label_hint_en": "Hermann von Holst"
   },
   {
    "qid": "Q5750538",
@@ -20963,6 +21057,10 @@
   {
    "qid": "Q6263028",
    "label_hint_en": "John Wardle"
+  },
+  {
+   "qid": "Q6264259",
+   "label_hint_en": "Sir John Simpson"
   },
   {
    "qid": "Q6280989",
@@ -21183,6 +21281,10 @@
   {
    "qid": "Q7322868",
    "label_hint_en": "Ricardo Malachowski"
+  },
+  {
+   "qid": "Q7327245",
+   "label_hint_en": "Richard Lane"
   },
   {
    "qid": "Q7327339",
@@ -21445,6 +21547,10 @@
    "label_hint_en": "Rocco Yim"
   },
   {
+   "qid": "Q11067059",
+   "label_hint_en": "Zhang Kaiji"
+  },
+  {
    "qid": "Q11067739",
    "label_hint_en": "Zhang Bo"
   },
@@ -21453,8 +21559,16 @@
    "label_hint_en": "Dai Nianci"
   },
   {
+   "qid": "Q11094007",
+   "label_hint_en": "Chu Pin"
+  },
+  {
    "qid": "Q11096818",
    "label_hint_en": "Li Chun"
+  },
+  {
+   "qid": "Q11098235",
+   "label_hint_en": "Poy Gum Lee"
   },
   {
    "qid": "Q11100939",
@@ -21609,6 +21723,10 @@
    "label_hint_en": "Kazys Varnelis"
   },
   {
+   "qid": "Q16205885",
+   "label_hint_en": "Li Xinggang"
+  },
+  {
    "qid": "Q16218141",
    "label_hint_en": "Ivan Mercep"
   },
@@ -21687,6 +21805,10 @@
   {
    "qid": "Q20687524",
    "label_hint_en": "Vo Trong Nghia"
+  },
+  {
+   "qid": "Q20689199",
+   "label_hint_en": "Kwan Sung Sing"
   },
   {
    "qid": "Q20985552",
@@ -21769,6 +21891,10 @@
    "label_hint_en": "Regent Alfred John Bidwell"
   },
   {
+   "qid": "Q25991639",
+   "label_hint_en": "John W. Reid Jr."
+  },
+  {
    "qid": "Q26712362",
    "label_hint_en": "Lim Chong Keat"
   },
@@ -21783,6 +21909,10 @@
   {
    "qid": "Q27451427",
    "label_hint_en": "Marina Tabassum"
+  },
+  {
+   "qid": "Q27635455",
+   "label_hint_en": "Marcellin Varcollier"
   },
   {
    "qid": "Q27881442",
@@ -21853,6 +21983,10 @@
    "label_hint_en": "Patricia Patkau"
   },
   {
+   "qid": "Q43371216",
+   "label_hint_en": "Gordon Leith"
+  },
+  {
    "qid": "Q43472959",
    "label_hint_en": "Francisco de Oliveira Passos"
   },
@@ -21863,6 +21997,10 @@
   {
    "qid": "Q47537785",
    "label_hint_en": "Manuel Aires Mateus"
+  },
+  {
+   "qid": "Q48900476",
+   "label_hint_en": "Cui Kai"
   },
   {
    "qid": "Q48969787",
@@ -21939,6 +22077,10 @@
   {
    "qid": "Q63847179",
    "label_hint_en": "Fu Xinqi"
+  },
+  {
+   "qid": "Q65056543",
+   "label_hint_en": "Meng Jianmin"
   },
   {
    "qid": "Q65685745",
@@ -22129,6 +22271,10 @@
    "label_hint_en": "Renate Prince"
   },
   {
+   "qid": "Q118442004",
+   "label_hint_en": "Atmaram Gajjar"
+  },
+  {
    "qid": "Q122832463",
    "label_hint_en": "Geoff Payne"
   },
@@ -22139,6 +22285,18 @@
   {
    "qid": "Q124855431",
    "label_hint_en": "Uttam C. Jain"
+  },
+  {
+   "qid": "Q124901471",
+   "label_hint_en": "Koppel Brown"
+  },
+  {
+   "qid": "Q124904251",
+   "label_hint_en": "Ernest Cléret"
+  },
+  {
+   "qid": "Q125031402",
+   "label_hint_en": "Augustus Bauer"
   },
   {
    "qid": "Q125267532",

@@ -8,8 +8,8 @@ The project is intentionally a **curated pilot**, not a claim to have completed
 global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
-The current catalog contains 1847 works, 2135 people, 89 practices, 81
-places, 1289 relationship edges, and 22,717 source claims. Exact
+The current catalog contains 1847 works, 2139 people, 89 practices, 81
+places, 1289 relationship edges, and 22,432 source claims. Exact
 direct-P31 mapping currently classifies 1240 works, while 564 remain unmapped and
 42 remain ambiguous. Wikidata is the primary structured source; a refreshed
 24-anchor Getty ULAN P245 crosswalk is regenerated locally per re-hydrate

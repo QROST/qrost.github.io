@@ -133,7 +133,7 @@ def request_bytes(
                 else 2 ** attempt
             )
             time.sleep(min(delay, 30))
-        except (TimeoutError, urllib.error.URLError):
+        except (TimeoutError, urllib.error.URLError, ConnectionError):
             if attempt + 1 == attempts:
                 raise
             time.sleep(min(2 ** attempt, 20))
