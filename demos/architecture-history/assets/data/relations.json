@@ -1,6 +1,50 @@
 {
   "relations": [
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q11067059-q30947660",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Zhang Kaiji worked in the office of Beijing Institute of Architectural Design. Source quote: \"曾任北京市建筑设计研究院总建筑师，教授级高级工程师。\" (张开济 - 快懂百科).",
+        "note_zh": "履历任职边：Zhang Kaiji 曾在 Beijing Institute of Architectural Design 门下任职。来源引文：\"曾任北京市建筑设计研究院总建筑师，教授级高级工程师。\"（张开济 - 快懂百科）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q11067059",
+      "id": "relation-res-worked-at-practice-q11067059-q30947660",
+      "last_verified": "2026-11-13",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q30947660",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q11067739-q30947660",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Zhang Bo worked in the office of Beijing Institute of Architectural Design. Source quote: \"1951年3月从香港回京，任北京市建筑设计研究院总建筑师。\" (张镈 - 快懂百科).",
+        "note_zh": "履历任职边：Zhang Bo 曾在 Beijing Institute of Architectural Design 门下任职。来源引文：\"1951年3月从香港回京，任北京市建筑设计研究院总建筑师。\"（张镈 - 快懂百科）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q11067739",
+      "id": "relation-res-worked-at-practice-q11067739-q30947660",
+      "last_verified": "2026-11-13",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q30947660",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q1356269-q2015762",
       "confidence": 0.5,
       "context": {
@@ -5017,6 +5061,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-cofounded-with-q1859204-q106490031",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded founding edge: William Pereira → William Pereira & Associates. Raw Wikidata P112 founding edge; it does not by itself establish cofounder status or founding partnership.",
+        "note_zh": "待审创立边：威廉·佩雷拉 → William Pereira & Associates。Wikidata P112 原始创立边；本身不能证明联合创始人身份或创立合作关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1859204",
+      "id": "relation-wd-cofounded-with-q1859204-q106490031",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "cofounded_with",
+      "to_id": "practice-wd-q106490031",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-cofounded-with-q190148-q100604548",
       "confidence": 0.45,
       "context": {
@@ -5058,6 +5124,28 @@
       ],
       "relation_type": "cofounded_with",
       "to_id": "practice-wd-q6804385",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-cofounded-with-q2040935-q1229307",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded founding edge: Otto Weitling → Dissing+Weitling. Raw Wikidata P112 founding edge; it does not by itself establish cofounder status or founding partnership.",
+        "note_zh": "待审创立边：Otto Weitling → 迪辛-威特灵。Wikidata P112 原始创立边；本身不能证明联合创始人身份或创立合作关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2040935",
+      "id": "relation-wd-cofounded-with-q2040935-q1229307",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "cofounded_with",
+      "to_id": "practice-wd-q1229307",
       "verification_status": "candidate"
     },
     {
@@ -5831,25 +5919,25 @@
       "verification_status": "candidate"
     },
     {
-      "claim_id": "claim-relation-wd-cofounded-with-q6273796-q11509101",
+      "claim_id": "claim-relation-wd-cofounded-with-q57588-q106520604",
       "confidence": 0.45,
       "context": {
         "date_end": null,
         "date_start": null,
         "institution_id": null,
-        "note_en": "Recorded founding edge: Takekuni Ikeda → Nihon Sekkei. Raw Wikidata P112 founding edge; it does not by itself establish cofounder status or founding partnership.",
-        "note_zh": "待审创立边：Takekuni Ikeda → 日本设计。Wikidata P112 原始创立边；本身不能证明联合创始人身份或创立合作关系。",
+        "note_en": "Recorded founding edge: Marcel Breuer → Marcel Breuer & Associates. Raw Wikidata P112 founding edge; it does not by itself establish cofounder status or founding partnership.",
+        "note_zh": "待审创立边：马塞尔·布罗伊尔 → Marcel Breuer & Associates。Wikidata P112 原始创立边；本身不能证明联合创始人身份或创立合作关系。",
         "practice_id": null,
         "work_id": null
       },
-      "from_id": "person-wd-q6273796",
-      "id": "relation-wd-cofounded-with-q6273796-q11509101",
+      "from_id": "person-wd-q57588",
+      "id": "relation-wd-cofounded-with-q57588-q106520604",
       "last_verified": "2026-11-12",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
       "relation_type": "cofounded_with",
-      "to_id": "practice-wd-q11509101",
+      "to_id": "practice-wd-q106520604",
       "verification_status": "candidate"
     },
     {
@@ -6579,6 +6667,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-documented-influence-q467712-q17281126",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded influence edge: Josep Lluís Sert → Jaume Freixa. Raw Wikidata P737 influence edge; it does not by itself establish mentorship, apprenticeship, or formal training.",
+        "note_zh": "待审影响边：约瑟夫·鲁伊斯·塞特 → Jaume Freixa。Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q467712",
+      "id": "relation-wd-documented-influence-q467712-q17281126",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "documented_influence",
+      "to_id": "person-wd-q17281126",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-documented-influence-q470765-q956665",
       "confidence": 0.45,
       "context": {
@@ -7305,6 +7415,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q114894479-q33112428",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1930,
+        "institution_id": null,
+        "note_en": "Recorded edge: Henri Marie Delaage → Jérôme Delaage. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Henri Marie Delaage → Jérôme Delaage。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q114894479",
+      "id": "relation-wd-student-recorded-q114894479-q33112428",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q33112428",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q11627824-q358502",
       "confidence": 0.45,
       "context": {
@@ -7522,6 +7654,138 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q331108",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q12309385-q12315480",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1929,
+        "institution_id": null,
+        "note_en": "Recorded edge: Edvard Thomsen → Hans Munk Hansen. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Edvard Thomsen → Hans Munk Hansen。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q12309385",
+      "id": "relation-wd-student-recorded-q12309385-q12315480",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q12315480",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q123138-q16946374",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1904,
+        "institution_id": null,
+        "note_en": "Recorded edge: Johannes Itten → Hertha Olivet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约翰内斯·伊顿 → Hertha Olivet。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q123138",
+      "id": "relation-wd-student-recorded-q123138-q16946374",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q16946374",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q123138-q170071",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1888,
+        "institution_id": null,
+        "note_en": "Recorded edge: Johannes Itten → Josef Albers. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约翰内斯·伊顿 → 约瑟夫·艾伯斯。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q123138",
+      "id": "relation-wd-student-recorded-q123138-q170071",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q170071",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q123138-q1871308",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1901,
+        "institution_id": null,
+        "note_en": "Recorded edge: Johannes Itten → Lou Scheper-Berkenkamp. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约翰内斯·伊顿 → 卢·舍佩尔-贝肯坎普。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q123138",
+      "id": "relation-wd-student-recorded-q123138-q1871308",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1871308",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q123138-q22102127",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1905,
+        "institution_id": null,
+        "note_en": "Recorded edge: Johannes Itten → Blida Heynold von Graefe. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约翰内斯·伊顿 → Blida Heynold von Graefe。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q123138",
+      "id": "relation-wd-student-recorded-q123138-q22102127",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q22102127",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q123138-q57588",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1902,
+        "institution_id": null,
+        "note_en": "Recorded edge: Johannes Itten → Marcel Breuer. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：约翰内斯·伊顿 → 马塞尔·布罗伊尔。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q123138",
+      "id": "relation-wd-student-recorded-q123138-q57588",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q57588",
       "verification_status": "candidate"
     },
     {
@@ -9153,6 +9417,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q18642799-q11309861",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1903,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jean Bréasson → Jacques Lagisquet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Jean Bréasson → Jacques Lagisquet。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q18642799",
+      "id": "relation-wd-student-recorded-q18642799-q11309861",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q11309861",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q18642799-q3434723",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1903,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jean Bréasson → Robert Camelot. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Jean Bréasson → 罗贝尔·卡姆洛。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q18642799",
+      "id": "relation-wd-student-recorded-q18642799-q3434723",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3434723",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q191423-q5592",
       "confidence": 0.45,
       "context": {
@@ -9351,6 +9659,94 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q11309861",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1903,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → Jacques Lagisquet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → Jacques Lagisquet。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q11309861",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q11309861",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q137885038",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1914,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → François Saulnier. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → François Saulnier。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q137885038",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q137885038",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q15617060",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1905,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → André Aubert. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → André Aubert。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q15617060",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q15617060",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q2898777",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1911,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → Bernard Zehrfuss. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → 贝尔纳·泽尔菲斯。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q2898777",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q2898777",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q2068088-q3132860",
       "confidence": 0.45,
       "context": {
@@ -9370,6 +9766,116 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q3132860",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q3173724",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1897,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → Jean Niermans. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → Jean Niermans。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q3173724",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3173724",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q3219123",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1915,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → Laurent Chappis. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → Laurent Chappis。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q3219123",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3219123",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q3371462",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1903,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → Paul Herbé. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → Paul Herbé。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q3371462",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3371462",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q3371897",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1895,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → Paul Nelson. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → Paul Nelson。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q3371897",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3371897",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q3434723",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1903,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → Robert Camelot. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → 罗贝尔·卡姆洛。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q3434723",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3434723",
       "verification_status": "candidate"
     },
     {
@@ -9395,6 +9901,116 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q69806253",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1921,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → Michel Dikansky. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → Michel Dikansky。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q69806253",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q69806253",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q735161",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1907,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → Gaston Bardet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → Gaston Bardet。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q735161",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q735161",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2068088-q94351426",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1926,
+        "institution_id": null,
+        "note_en": "Recorded edge: Emmanuel Pontremoli → Pierre Prunet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Emmanuel Pontremoli → Pierre Prunet。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-student-recorded-q2068088-q94351426",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q94351426",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20706383-q83494679",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1929,
+        "institution_id": null,
+        "note_en": "Recorded edge: Pierre Bourdeix → Claude Balick. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Pierre Bourdeix → Claude Balick。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20706383",
+      "id": "relation-wd-student-recorded-q20706383-q83494679",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q83494679",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q124863243",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1928,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Jean-Marie Pison. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Jean-Marie Pison。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q124863243",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q124863243",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q20707956-q125243237",
       "confidence": 0.45,
       "context": {
@@ -9414,6 +10030,72 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q125243237",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q125272050",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1926,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Pierre Baptiste. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Pierre Baptiste。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q125272050",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q125272050",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q125274989",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1923,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Pierre Bernasconi. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Pierre Bernasconi。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q125274989",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q125274989",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q15617060",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1905,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → André Aubert. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → André Aubert。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q15617060",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q15617060",
       "verification_status": "candidate"
     },
     {
@@ -9461,6 +10143,160 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q28044748",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1911,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Michaël Patout. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Michaël Patout。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q28044748",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q28044748",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q2898777",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1911,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Bernard Zehrfuss. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → 贝尔纳·泽尔菲斯。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q2898777",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q2898777",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q3103138",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1913,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Georges Maillols. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Georges Maillols。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q3103138",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3103138",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q3168643",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1945,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Jean-Paul Philippon. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Jean-Paul Philippon。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q3168643",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3168643",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q3169623",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1907,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Jean-Pierre Paquet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Jean-Pierre Paquet。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q3169623",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3169623",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q3169758",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1923,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Jean-Pierre Secq. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Jean-Pierre Secq。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q3169758",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3169758",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q3219123",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1915,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Laurent Chappis. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Laurent Chappis。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q3219123",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3219123",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q20707956-q33106506",
       "confidence": 0.45,
       "context": {
@@ -9483,6 +10319,72 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q33112428",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1930,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Jérôme Delaage. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Jérôme Delaage。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q33112428",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q33112428",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q3434723",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1903,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Robert Camelot. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → 罗贝尔·卡姆洛。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q3434723",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3434723",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q36007427",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1911,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Georges Jouven. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Georges Jouven。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q36007427",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q36007427",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q20707956-q47346294",
       "confidence": 0.45,
       "context": {
@@ -9502,6 +10404,94 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q47346294",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q69806253",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1921,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Michel Dikansky. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Michel Dikansky。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q69806253",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q69806253",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q735161",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1907,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Gaston Bardet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Gaston Bardet。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q735161",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q735161",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q75178300",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1914,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Jacques Rabinel. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Jacques Rabinel。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q75178300",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q75178300",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q20707956-q94351426",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1926,
+        "institution_id": null,
+        "note_en": "Recorded edge: André Leconte → Pierre Prunet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：André Leconte → Pierre Prunet。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q20707956",
+      "id": "relation-wd-student-recorded-q20707956-q94351426",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q94351426",
       "verification_status": "candidate"
     },
     {
@@ -10671,6 +11661,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q28049295-q12309385",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1884,
+        "institution_id": null,
+        "note_en": "Recorded edge: Sophus Vermehren → Edvard Thomsen. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Sophus Vermehren → Edvard Thomsen。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q28049295",
+      "id": "relation-wd-student-recorded-q28049295-q12309385",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q12309385",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2831588-q15617060",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1905,
+        "institution_id": null,
+        "note_en": "Recorded edge: Albert Tournaire → André Aubert. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Albert Tournaire → André Aubert。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2831588",
+      "id": "relation-wd-student-recorded-q2831588-q15617060",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q15617060",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q2831588-q2831314",
       "confidence": 0.45,
       "context": {
@@ -11089,6 +12123,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q2839760-q106410787",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1905,
+        "institution_id": null,
+        "note_en": "Recorded edge: Alphonse Defrasse → Henri Madelain. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Alphonse Defrasse → Henri Madelain。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2839760",
+      "id": "relation-wd-student-recorded-q2839760-q106410787",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q106410787",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q2839760-q110740937",
       "confidence": 0.45,
       "context": {
@@ -11218,6 +12274,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q116246344",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2853539-q733304",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1836,
+        "institution_id": null,
+        "note_en": "Recorded edge: Antoine-Nicolas Bailly → Ernest Sanson. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Antoine-Nicolas Bailly → 埃内斯特-保罗·桑松。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2853539",
+      "id": "relation-wd-student-recorded-q2853539-q733304",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q733304",
       "verification_status": "candidate"
     },
     {
@@ -12409,6 +13487,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q2980803-q3434723",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1903,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jacques Gréber → Robert Camelot. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Jacques Gréber → 罗贝尔·卡姆洛。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2980803",
+      "id": "relation-wd-student-recorded-q2980803-q3434723",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3434723",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2980803-q66424586",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1885,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jacques Gréber → André Cordonnier. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Jacques Gréber → André Cordonnier。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2980803",
+      "id": "relation-wd-student-recorded-q2980803-q66424586",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q66424586",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q3020383-q3737312",
       "confidence": 0.45,
       "context": {
@@ -12428,6 +13550,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q3737312",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3022502-q733304",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1836,
+        "institution_id": null,
+        "note_en": "Recorded edge: Denis-Louis Destors → Ernest Sanson. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Denis-Louis Destors → 埃内斯特-保罗·桑松。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3022502",
+      "id": "relation-wd-student-recorded-q3022502-q733304",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q733304",
       "verification_status": "candidate"
     },
     {
@@ -13355,6 +14499,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q3099132-q2847879",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1881,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gaston Redon → André Granet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Gaston Redon → André Granet。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3099132",
+      "id": "relation-wd-student-recorded-q3099132-q2847879",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q2847879",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q3099132-q3438604",
       "confidence": 0.45,
       "context": {
@@ -14100,6 +15266,578 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q5460673",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q106410787",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1905,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Henri Madelain. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Henri Madelain。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q106410787",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q106410787",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q110223692",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1904,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Édouard Niermans. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Édouard Niermans。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q110223692",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q110223692",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q11309861",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1903,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Jacques Lagisquet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Jacques Lagisquet。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q11309861",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q11309861",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q124937499",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1889,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Robert Gabriel Enault. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Robert Gabriel Enault。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q124937499",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q124937499",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q131169911",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1884,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Jacques Ballereau. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Jacques Ballereau。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q131169911",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q131169911",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q14917149",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1884,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Maurice Durand. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Maurice Durand。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q14917149",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q14917149",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q15137818",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1903,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Marcel Gardinier. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Marcel Gardinier。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q15137818",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q15137818",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q18214739",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1892,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Georges Feray. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Georges Feray。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q18214739",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q18214739",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q19945275",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1904,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Georges Tourry. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Georges Tourry。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q19945275",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q19945275",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q20027518",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1891,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Jean Zimmermann. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Jean Zimmermann。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q20027518",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q20027518",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q20670119",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1877,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Émile Molinié. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Émile Molinié。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q20670119",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q20670119",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q2383148",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1891,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → André Jacob. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → André Jacob。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q2383148",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q2383148",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q2848512",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1908,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → André Remondet. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → 安德烈·勒蒙代。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q2848512",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q2848512",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q3173584",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1892,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Jean Montariol. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Jean Montariol。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q3173584",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3173584",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q3173724",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1897,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Jean Niermans. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Jean Niermans。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q3173724",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3173724",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q3371897",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1895,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Paul Nelson. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Paul Nelson。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q3371897",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3371897",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q3434723",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1903,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Robert Camelot. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → 罗贝尔·卡姆洛。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q3434723",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3434723",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q3438604",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1882,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Roger-Henri Expert. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → 罗热-亨利·埃克斯佩尔。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q3438604",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3438604",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q58880095",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1908,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Claude Meyer-Lévy. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Claude Meyer-Lévy。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q58880095",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q58880095",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q62603411",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1888,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → René Dupire. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → René Dupire。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q62603411",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q62603411",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q65677552",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Jean Lacaille. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Jean Lacaille。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q65677552",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q65677552",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q713804",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1879,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Henri Tauzin. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → 亨利·托赞。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q713804",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q713804",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q787480",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1885,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Henry Lacoste. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Henry Lacoste。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q787480",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q787480",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q98526232",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1897,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Jean Démaret. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Jean Démaret。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q98526232",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q98526232",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q98635808",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1887,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Jean Viraut. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Jean Viraut。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q98635808",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q98635808",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3121338-q99693282",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1886,
+        "institution_id": null,
+        "note_en": "Recorded edge: Gustave Umbdenstock → Albert Ferran. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：居斯塔夫·昂布登斯托克 → Albert Ferran。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3121338",
+      "id": "relation-wd-student-recorded-q3121338-q99693282",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q99693282",
       "verification_status": "candidate"
     },
     {
@@ -16017,6 +17755,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q3173724-q125274989",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1923,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jean Niermans → Pierre Bernasconi. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Jean Niermans → Pierre Bernasconi。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3173724",
+      "id": "relation-wd-student-recorded-q3173724-q125274989",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q125274989",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3175552-q63248583",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1922,
+        "institution_id": null,
+        "note_en": "Recorded edge: Jean de Mailly → Pierre-André Dufétel. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Jean de Mailly → Pierre-André Dufétel。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3175552",
+      "id": "relation-wd-student-recorded-q3175552-q63248583",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q63248583",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q317920-q271676",
       "confidence": 0.45,
       "context": {
@@ -16762,6 +18544,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q83494679",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3262157-q14917149",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1884,
+        "institution_id": null,
+        "note_en": "Recorded edge: Louis Henri Georges Scellier de Gisors → Maurice Durand. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Louis Henri Georges Scellier de Gisors → Maurice Durand。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3262157",
+      "id": "relation-wd-student-recorded-q3262157-q14917149",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q14917149",
       "verification_status": "candidate"
     },
     {
@@ -17601,6 +19405,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q3378568-q984344",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1893,
+        "institution_id": null,
+        "note_en": "Recorded edge: Anton Rosen → Kay Fisker. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Anton Rosen → 卡伊·菲斯克。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3378568",
+      "id": "relation-wd-student-recorded-q3378568-q984344",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q984344",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q337876-q466064",
       "confidence": 0.45,
       "context": {
@@ -17752,6 +19578,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q18286363",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3434723-q124865625",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1945,
+        "institution_id": null,
+        "note_en": "Recorded edge: Robert Camelot → Bernard Paurd. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：罗贝尔·卡姆洛 → Bernard Paurd。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3434723",
+      "id": "relation-wd-student-recorded-q3434723-q124865625",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q124865625",
       "verification_status": "candidate"
     },
     {
@@ -17997,6 +19845,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q3438604-q65677552",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded edge: Roger-Henri Expert → Jean Lacaille. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：罗热-亨利·埃克斯佩尔 → Jean Lacaille。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3438604",
+      "id": "relation-wd-student-recorded-q3438604-q65677552",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q65677552",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q3497986-q128623",
       "confidence": 0.45,
       "context": {
@@ -18170,6 +20040,50 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q3166930",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3588575-q733304",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1836,
+        "institution_id": null,
+        "note_en": "Recorded edge: Émile Gilbert → Ernest Sanson. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Émile Gilbert → 埃内斯特-保罗·桑松。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3588575",
+      "id": "relation-wd-student-recorded-q3588575-q733304",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q733304",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q362498-q123138",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1888,
+        "institution_id": null,
+        "note_en": "Recorded edge: Adolf Hölzel → Johannes Itten. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：阿道夫·赫尔策尔 → 约翰内斯·伊顿。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q362498",
+      "id": "relation-wd-student-recorded-q362498-q123138",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q123138",
       "verification_status": "candidate"
     },
     {
@@ -18544,6 +20458,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q331108",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q381978-q3371897",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1895,
+        "institution_id": null,
+        "note_en": "Recorded edge: Auguste Perret → Paul Nelson. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：奥古斯特·佩雷 → Paul Nelson。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q381978",
+      "id": "relation-wd-student-recorded-q381978-q3371897",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3371897",
       "verification_status": "candidate"
     },
     {
@@ -20150,6 +22086,72 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q7939385",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q514665-q3751535",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1941,
+        "institution_id": null,
+        "note_en": "Recorded edge: Ludovico Quaroni → Franco Purini. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Ludovico Quaroni → Franco Purini。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q514665",
+      "id": "relation-wd-student-recorded-q514665-q3751535",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3751535",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q514665-q3932735",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1942,
+        "institution_id": null,
+        "note_en": "Recorded edge: Ludovico Quaroni → Renato Nicolini. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Ludovico Quaroni → Renato Nicolini。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q514665",
+      "id": "relation-wd-student-recorded-q514665-q3932735",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q3932735",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q514665-q969726",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1944,
+        "institution_id": null,
+        "note_en": "Recorded edge: Ludovico Quaroni → Massimiliano Fuksas. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Ludovico Quaroni → 馬希米拉諾·佛克薩斯。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q514665",
+      "id": "relation-wd-student-recorded-q514665-q969726",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q969726",
       "verification_status": "candidate"
     },
     {
@@ -25939,6 +27941,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q924704-q124937499",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1889,
+        "institution_id": null,
+        "note_en": "Recorded edge: Victor Laloux → Robert Gabriel Enault. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：维克多·拉卢 → Robert Gabriel Enault。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q924704",
+      "id": "relation-wd-student-recorded-q924704-q124937499",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q124937499",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q924704-q16222714",
       "confidence": 0.45,
       "context": {
@@ -25980,6 +28004,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q16253269",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q924704-q20027518",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1891,
+        "institution_id": null,
+        "note_en": "Recorded edge: Victor Laloux → Jean Zimmermann. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：维克多·拉卢 → Jean Zimmermann。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q924704",
+      "id": "relation-wd-student-recorded-q924704-q20027518",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q20027518",
       "verification_status": "candidate"
     },
     {
@@ -26310,6 +28356,50 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q97643788",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q924704-q99693282",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1886,
+        "institution_id": null,
+        "note_en": "Recorded edge: Victor Laloux → Albert Ferran. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：维克多·拉卢 → Albert Ferran。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q924704",
+      "id": "relation-wd-student-recorded-q924704-q99693282",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q99693282",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q931295-q1806244",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1870,
+        "institution_id": null,
+        "note_en": "Recorded edge: Isak Gustaf Clason → Lars Israel Wahlman. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Isak Gustaf Clason → Lars Israel Wahlman。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q931295",
+      "id": "relation-wd-student-recorded-q931295-q1806244",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1806244",
       "verification_status": "candidate"
     },
     {
@@ -26995,6 +29085,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q981466-q733304",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1836,
+        "institution_id": null,
+        "note_en": "Recorded edge: Charles-Auguste Questel → Ernest Sanson. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：Charles-Auguste Questel → 埃内斯特-保罗·桑松。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q981466",
+      "id": "relation-wd-student-recorded-q981466-q733304",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q733304",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q983736-q11812",
       "confidence": 0.45,
       "context": {
@@ -27017,6 +29129,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q984344-q12315480",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": 1929,
+        "institution_id": null,
+        "note_en": "Recorded edge: Kay Fisker → Hans Munk Hansen. Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "待审记录边：卡伊·菲斯克 → Hans Munk Hansen。Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q984344",
+      "id": "relation-wd-student-recorded-q984344-q12315480",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q12315480",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-worked-at-practice-q1041207-q97573278",
       "confidence": 0.45,
       "context": {
@@ -27036,6 +29170,28 @@
       ],
       "relation_type": "worked_at_practice",
       "to_id": "practice-wd-q97573278",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-at-practice-q105751863-q106520604",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment edge: Hamilton P. Smith → Marcel Breuer & Associates. Raw Wikidata P108/P463 employment or membership edge; it does not by itself establish tenure, role, or firm affiliation.",
+        "note_zh": "待审雇佣边：Hamilton P. Smith → Marcel Breuer & Associates。Wikidata P108/P463 原始雇佣或成员边；本身不能证明任期、职务或事务所归属。",
+        "practice_id": "practice-wd-q106520604",
+        "work_id": null
+      },
+      "from_id": "person-wd-q105751863",
+      "id": "relation-wd-worked-at-practice-q105751863-q106520604",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q106520604",
       "verification_status": "candidate"
     },
     {
@@ -27743,6 +29899,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-worked-at-practice-q48900476-q52848380",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment edge: Cui Kai → China Architecture Design & Research Group. Raw Wikidata P108/P463 employment or membership edge; it does not by itself establish tenure, role, or firm affiliation.",
+        "note_zh": "待审雇佣边：崔愷 → 中国建筑设计研究院。Wikidata P108/P463 原始雇佣或成员边；本身不能证明任期、职务或事务所归属。",
+        "practice_id": "practice-wd-q52848380",
+        "work_id": null
+      },
+      "from_id": "person-wd-q48900476",
+      "id": "relation-wd-worked-at-practice-q48900476-q52848380",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q52848380",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-worked-at-practice-q5590225-q107004999",
       "confidence": 0.45,
       "context": {
@@ -27784,28 +29962,6 @@
       ],
       "relation_type": "worked_at_practice",
       "to_id": "practice-wd-q17111789",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-worked-at-practice-q6273796-q11509101",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded employment edge: Takekuni Ikeda → Nihon Sekkei. Raw Wikidata P108/P463 employment or membership edge; it does not by itself establish tenure, role, or firm affiliation.",
-        "note_zh": "待审雇佣边：Takekuni Ikeda → 日本设计。Wikidata P108/P463 原始雇佣或成员边；本身不能证明任期、职务或事务所归属。",
-        "practice_id": "practice-wd-q11509101",
-        "work_id": null
-      },
-      "from_id": "person-wd-q6273796",
-      "id": "relation-wd-worked-at-practice-q6273796-q11509101",
-      "last_verified": "2026-11-12",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "worked_at_practice",
-      "to_id": "practice-wd-q11509101",
       "verification_status": "candidate"
     },
     {
@@ -28136,6 +30292,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q78979",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q105751863-q57588",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Hamilton P. Smith → Marcel Breuer. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Hamilton P. Smith → 马塞尔·布罗伊尔。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q105751863",
+      "id": "relation-wd-worked-for-q105751863-q57588",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q57588",
       "verification_status": "candidate"
     },
     {
@@ -28491,6 +30669,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-worked-for-q17281126-q467712",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Jaume Freixa → Josep Lluís Sert. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Jaume Freixa → 约瑟夫·鲁伊斯·塞特。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q17281126",
+      "id": "relation-wd-worked-for-q17281126-q467712",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q467712",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-worked-for-q1801886-q154083",
       "confidence": 0.45,
       "context": {
@@ -28510,6 +30710,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q154083",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q2068088-q1332383",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Emmanuel Pontremoli → François Coty. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：Emmanuel Pontremoli → 科蒂。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2068088",
+      "id": "relation-wd-worked-for-q2068088-q1332383",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q1332383",
       "verification_status": "candidate"
     },
     {
@@ -28686,6 +30908,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q210134",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-worked-for-q2898777-q3059718",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Recorded employment-under edge: Bernard Zehrfuss → Eugène Beaudouin. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
+        "note_zh": "待审任职边：贝尔纳·泽尔菲斯 → Eugène Beaudouin。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2898777",
+      "id": "relation-wd-worked-for-q2898777-q3059718",
+      "last_verified": "2026-11-12",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q3059718",
       "verification_status": "candidate"
     },
     {
@@ -28972,28 +31216,6 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q6730220",
-      "verification_status": "candidate"
-    },
-    {
-      "claim_id": "claim-relation-wd-worked-for-q725462-q6273796",
-      "confidence": 0.45,
-      "context": {
-        "date_end": null,
-        "date_start": null,
-        "institution_id": null,
-        "note_en": "Recorded employment-under edge: Kengo Kuma → Takekuni Ikeda. Raw Wikidata P108 employment edge between two architects, recorded directly against the employer or derived through the employer practice's founder; it does not by itself establish tenure, role, or deputy rank.",
-        "note_zh": "待审任职边：隈研吾 → Takekuni Ikeda。Wikidata P108 原始任职边（直接指向雇主本人，或经雇主事务所的创立人推导）；本身不能证明任期、职务或副手身份。",
-        "practice_id": null,
-        "work_id": null
-      },
-      "from_id": "person-wd-q725462",
-      "id": "relation-wd-worked-for-q725462-q6273796",
-      "last_verified": "2026-11-12",
-      "rejection_reasons": [
-        "Requires human classification and stronger relationship evidence."
-      ],
-      "relation_type": "worked_for",
-      "to_id": "person-wd-q6273796",
       "verification_status": "candidate"
     },
     {

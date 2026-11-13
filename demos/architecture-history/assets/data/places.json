@@ -26,6 +26,30 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q1020-name-en",
+        "claim-wd-q1020-name-zh",
+        "claim-wd-q1020-country-code",
+        "claim-wd-q1020-region",
+        "claim-wd-q1020-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "MW",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q1020"
+      },
+      "id": "place-wd-q1020",
+      "last_verified": "2026-11-12",
+      "lat": null,
+      "lng": null,
+      "name_en": "Malawi",
+      "name_native": null,
+      "name_zh": "马拉维",
+      "region": "africa",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q1028-name-en",
         "claim-wd-q1028-name-zh",
         "claim-wd-q1028-country-code",
@@ -530,6 +554,30 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q219-name-en",
+        "claim-wd-q219-name-zh",
+        "claim-wd-q219-country-code",
+        "claim-wd-q219-region",
+        "claim-wd-q219-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "BG",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q219"
+      },
+      "id": "place-wd-q219",
+      "last_verified": "2026-11-12",
+      "lat": null,
+      "lng": null,
+      "name_en": "Bulgaria",
+      "name_native": null,
+      "name_zh": "保加利亚",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q219060-name-en",
         "claim-wd-q219060-name-zh",
         "claim-wd-q219060-country-code",
@@ -550,6 +598,30 @@
       "name_native": null,
       "name_zh": "巴勒斯坦",
       "region": "central_west_asia",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q221-name-en",
+        "claim-wd-q221-name-zh",
+        "claim-wd-q221-country-code",
+        "claim-wd-q221-region",
+        "claim-wd-q221-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "MK",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q221"
+      },
+      "id": "place-wd-q221",
+      "last_verified": "2026-11-12",
+      "lat": null,
+      "lng": null,
+      "name_en": "North Macedonia",
+      "name_native": null,
+      "name_zh": "北马其顿",
+      "region": "europe",
       "verification_status": "verified"
     },
     {
@@ -866,6 +938,30 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q265-name-en",
+        "claim-wd-q265-name-zh",
+        "claim-wd-q265-country-code",
+        "claim-wd-q265-region",
+        "claim-wd-q265-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "UZ",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q265"
+      },
+      "id": "place-wd-q265",
+      "last_verified": "2026-11-12",
+      "lat": null,
+      "lng": null,
+      "name_en": "Uzbekistan",
+      "name_native": null,
+      "name_zh": "乌兹别克斯坦",
+      "region": "central_west_asia",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q27-name-en",
         "claim-wd-q27-name-zh",
         "claim-wd-q27-country-code",
@@ -1005,6 +1101,30 @@
       "name_en": "Belgium",
       "name_native": null,
       "name_zh": "比利时",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q32-name-en",
+        "claim-wd-q32-name-zh",
+        "claim-wd-q32-country-code",
+        "claim-wd-q32-region",
+        "claim-wd-q32-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "LU",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q32"
+      },
+      "id": "place-wd-q32",
+      "last_verified": "2026-11-12",
+      "lat": null,
+      "lng": null,
+      "name_en": "Luxembourg",
+      "name_native": null,
+      "name_zh": "卢森堡",
       "region": "europe",
       "verification_status": "verified"
     },
@@ -1706,6 +1826,30 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q817-name-en",
+        "claim-wd-q817-name-zh",
+        "claim-wd-q817-country-code",
+        "claim-wd-q817-region",
+        "claim-wd-q817-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "KW",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q817"
+      },
+      "id": "place-wd-q817",
+      "last_verified": "2026-11-12",
+      "lat": null,
+      "lng": null,
+      "name_en": "Kuwait",
+      "name_native": null,
+      "name_zh": "科威特",
+      "region": "central_west_asia",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q819-name-en",
         "claim-wd-q819-name-zh",
         "claim-wd-q819-country-code",
@@ -1894,6 +2038,30 @@
       "name_native": null,
       "name_zh": "斯里兰卡",
       "region": "south_asia",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q858-name-en",
+        "claim-wd-q858-name-zh",
+        "claim-wd-q858-country-code",
+        "claim-wd-q858-region",
+        "claim-wd-q858-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "SY",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q858"
+      },
+      "id": "place-wd-q858",
+      "last_verified": "2026-11-12",
+      "lat": null,
+      "lng": null,
+      "name_en": "Syria",
+      "name_native": null,
+      "name_zh": "叙利亚",
+      "region": "central_west_asia",
       "verification_status": "verified"
     },
     {

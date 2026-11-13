@@ -55,6 +55,25 @@ def build_name_index(rows: list[dict]) -> dict[str, dict]:
     return index
 
 
+def match_with_suffix_tolerance(
+    name: str | None, index: dict[str, dict]
+) -> dict | None:
+    """Exact normalized match first; then containment for CJK corporate
+    suffix drift (e.g. 北京市建筑设计研究院 vs ...研究院有限公司)."""
+    key = normalize(name)
+    if not key:
+        return None
+    if key in index:
+        return index[key]
+    if len(key) >= 6:
+        for cand_key, entry in index.items():
+            if len(cand_key) >= 6 and (
+                key in cand_key or cand_key in key
+            ):
+                return entry
+    return None
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--accessed", required=True)
@@ -82,9 +101,9 @@ def main() -> int:
         employee = people_ix.get(normalize(fact.get("employee")))
         rel = fact.get("relation_type")
         if rel == "worked_for":
-            employer = people_ix.get(normalize(fact.get("employer")))
+            employer = people_ix.get(normalize(fact.get("employer"))) or match_with_suffix_tolerance(fact.get("employer"), people_ix)
         elif rel == "worked_at_practice":
-            employer = practice_ix.get(normalize(fact.get("employer")))
+            employer = practice_ix.get(normalize(fact.get("employer"))) or match_with_suffix_tolerance(fact.get("employer"), practice_ix)
         else:
             skipped.append({**fact, "reason": f"unknown relation_type {rel!r}"})
             continue

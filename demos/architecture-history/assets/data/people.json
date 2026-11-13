@@ -94,6 +94,86 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1921,
+        "latest": 1921,
+        "precision": "year",
+        "value": "1921"
+      },
+      "claim_ids": [
+        "claim-wd-q100542-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 1983,
+        "latest": 1983,
+        "precision": "year",
+        "value": "1983"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q100542"
+      },
+      "id": "person-wd-q100542",
+      "last_verified": "2026-11-12",
+      "name_en": "Werner Düttmann",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect (1921–1983)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1900,
+        "latest": 1900,
+        "precision": "year",
+        "value": "1900"
+      },
+      "claim_ids": [
+        "claim-wd-q100556-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 1985,
+        "latest": 1985,
+        "precision": "year",
+        "value": "1985"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q100556"
+      },
+      "id": "person-wd-q100556",
+      "last_verified": "2026-11-12",
+      "name_en": "Norman Braun",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect (1900–1985)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1945,
         "latest": 1945,
         "precision": "day",
@@ -776,6 +856,49 @@
       ],
       "summary_en": "Brazilian-Italian architect (1901–1965)",
       "summary_zh": "巴西建築師",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Rosendo Garcia de Aráujo Carvalheira"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1864,
+        "latest": 1864,
+        "precision": "year",
+        "value": "1864"
+      },
+      "claim_ids": [
+        "claim-wd-q10364621-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "PT"
+      ],
+      "death": {
+        "earliest": 1919,
+        "latest": 1919,
+        "precision": "year",
+        "value": "1919"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q10364621"
+      },
+      "id": "person-wd-q10364621",
+      "last_verified": "2026-11-12",
+      "name_en": "Rosendo Carvalheira",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "patron"
+      ],
+      "summary_en": "Portuguese architect",
+      "summary_zh": "",
       "verification_status": "candidate"
     },
     {
@@ -1516,6 +1639,44 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1847,
+        "latest": 1847,
+        "precision": "day",
+        "value": "1847-04-08"
+      },
+      "claim_ids": [
+        "claim-wd-q1047835-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1939,
+        "latest": 1939,
+        "precision": "day",
+        "value": "1939-11-07"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1047835"
+      },
+      "id": "person-wd-q1047835",
+      "last_verified": "2026-11-12",
+      "name_en": "Caspar Clemens Pickel",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1897,
         "latest": 1897,
         "precision": "year",
@@ -1923,6 +2084,90 @@
       "summary_en": "Nigerien architect",
       "summary_zh": "尼日利亞建築師",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
+        "Hamilton Smith"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1925,
+        "latest": 1925,
+        "precision": "year",
+        "value": "1925"
+      },
+      "claim_ids": [
+        "claim-wd-q105751863-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q105751863"
+      },
+      "id": "person-wd-q105751863",
+      "last_verified": "2026-11-12",
+      "name_en": "Hamilton P. Smith",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "north_america",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Rudolf W. Reichel"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q105785328-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q105785328"
+      },
+      "id": "person-wd-q105785328",
+      "last_verified": "2026-11-12",
+      "name_en": "Rudolf Reichel",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -2365,6 +2610,46 @@
         "patron"
       ],
       "summary_en": "American architect (1763–1844)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1905,
+        "latest": 1905,
+        "precision": "day",
+        "value": "1905-04-14"
+      },
+      "claim_ids": [
+        "claim-wd-q106410787-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2003,
+        "latest": 2003,
+        "precision": "day",
+        "value": "2003-07-05"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q106410787"
+      },
+      "id": "person-wd-q106410787",
+      "last_verified": "2026-11-12",
+      "name_en": "Henri Madelain",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -3321,6 +3606,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1967,
+        "latest": 1967,
+        "precision": "year",
+        "value": "1967"
+      },
+      "claim_ids": [
+        "claim-wd-q108435577-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "NL"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q108435577"
+      },
+      "id": "person-wd-q108435577",
+      "last_verified": "2026-11-12",
+      "name_en": "Patrick Fransen",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Dutch architect (born 1967)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Taniguchi Yoshirō"
       ],
@@ -3939,6 +4264,88 @@
         "architect"
       ],
       "summary_en": "French architect (1855–1939)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1922,
+        "latest": 1922,
+        "precision": "year",
+        "value": "1922"
+      },
+      "claim_ids": [
+        "claim-wd-q110153773-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 2008,
+        "latest": 2008,
+        "precision": "year",
+        "value": "2008"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q110153773"
+      },
+      "id": "person-wd-q110153773",
+      "last_verified": "2026-11-12",
+      "name_en": "Hansrudolf Plarre",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Edouard Niermans"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1904,
+        "latest": 1904,
+        "precision": "day",
+        "value": "1904-11-29"
+      },
+      "claim_ids": [
+        "claim-wd-q110223692-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1984,
+        "latest": 1984,
+        "precision": "day",
+        "value": "1984-10-16"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q110223692"
+      },
+      "id": "person-wd-q110223692",
+      "last_verified": "2026-11-12",
+      "name_en": "Édouard Niermans",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Born 29 November 1904 in Paris Died 16 October 1984 Son of Édouard-Jean Niermans",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -5125,6 +5532,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1903,
+        "latest": 1903,
+        "precision": "year",
+        "value": "1903"
+      },
+      "claim_ids": [
+        "claim-wd-q11309861-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1970,
+        "latest": 1970,
+        "precision": "day",
+        "value": "1970-07-13"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q11309861"
+      },
+      "id": "person-wd-q11309861",
+      "last_verified": "2026-11-12",
+      "name_en": "Jacques Lagisquet",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Franz Anton Hillebrand",
         "Franz Anton Hildebrand"
@@ -5301,6 +5748,48 @@
     },
     {
       "aliases_en": [
+        "Robert L. Zion"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1921,
+        "latest": 1921,
+        "precision": "year",
+        "value": "1921"
+      },
+      "claim_ids": [
+        "claim-wd-q11350570-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "death": {
+        "earliest": 2000,
+        "latest": 2000,
+        "precision": "year",
+        "value": "2000"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q11350570"
+      },
+      "id": "person-wd-q11350570",
+      "last_verified": "2026-11-12",
+      "name_en": "Robert Lewis Zion",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "north_america",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "American gardener",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Ernst Arnold Egli"
       ],
       "aliases_zh": [],
@@ -5458,6 +5947,86 @@
         "architect"
       ],
       "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1972,
+        "latest": 1972,
+        "precision": "year",
+        "value": "1972"
+      },
+      "claim_ids": [
+        "claim-wd-q113808925-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "LU"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q113808925"
+      },
+      "id": "person-wd-q113808925",
+      "last_verified": "2026-11-12",
+      "name_en": "Mathias Fritsch",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Luxembourg architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1888,
+        "latest": 1888,
+        "precision": "day",
+        "value": "1888-01-17"
+      },
+      "claim_ids": [
+        "claim-wd-q11399696-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "JP"
+      ],
+      "death": {
+        "earliest": 1954,
+        "latest": 1954,
+        "precision": "day",
+        "value": "1954-08-08"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q11399696"
+      },
+      "id": "person-wd-q11399696",
+      "last_verified": "2026-11-12",
+      "name_en": "Shōtarō Kaga",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "east_asia",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Japanese businessman",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -5729,6 +6298,49 @@
         "architect"
       ],
       "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Louis Rayssiguier",
+        "Louis Édouard Pierre Rayssiguier"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1920,
+        "latest": 1920,
+        "precision": "day",
+        "value": "1920-02-21"
+      },
+      "claim_ids": [
+        "claim-wd-q114800383-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1956,
+        "latest": 1956,
+        "precision": "day",
+        "value": "1956-12-04"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q114800383"
+      },
+      "id": "person-wd-q114800383",
+      "last_verified": "2026-11-12",
+      "name_en": "Louis-Bertrand Rayssiguier",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -6706,6 +7318,46 @@
         "unknown"
       ],
       "summary_en": "English LGBT+ author",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1892,
+        "latest": 1892,
+        "precision": "day",
+        "value": "1892-11-20"
+      },
+      "claim_ids": [
+        "claim-wd-q116785854-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1971,
+        "latest": 1971,
+        "precision": "day",
+        "value": "1971-02-04"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q116785854"
+      },
+      "id": "person-wd-q116785854",
+      "last_verified": "2026-11-12",
+      "name_en": "Louis Milon de Peillon",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1892–1971)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -8593,6 +9245,46 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1942,
+        "latest": 1942,
+        "precision": "year",
+        "value": "1942"
+      },
+      "claim_ids": [
+        "claim-wd-q1223657-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1223657"
+      },
+      "id": "person-wd-q1223657",
+      "last_verified": "2026-11-12",
+      "name_en": "Dietrich Bangert",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1875,
         "latest": 1875,
         "precision": "day",
@@ -8995,6 +9687,93 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Edvard Johan Thomsen",
+        "E. J. Thomsen"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1884,
+        "latest": 1884,
+        "precision": "day",
+        "value": "1884-01-09"
+      },
+      "claim_ids": [
+        "claim-wd-q12309385-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "death": {
+        "earliest": 1980,
+        "latest": 1980,
+        "precision": "day",
+        "value": "1980-04-11"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q12309385"
+      },
+      "id": "person-wd-q12309385",
+      "last_verified": "2026-11-12",
+      "name_en": "Edvard Thomsen",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Danish architect (1884-1980)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Johannes van Itten"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1888,
+        "latest": 1888,
+        "precision": "day",
+        "value": "1888-11-11"
+      },
+      "claim_ids": [
+        "claim-wd-q123138-name-en",
+        "claim-wd-q123138-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "CH"
+      ],
+      "death": {
+        "earliest": 1967,
+        "latest": 1967,
+        "precision": "day",
+        "value": "1967-03-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q123138"
+      },
+      "id": "person-wd-q123138",
+      "last_verified": "2026-11-12",
+      "name_en": "Johannes Itten",
+      "name_native": null,
+      "name_zh": "约翰内斯·伊顿",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "craftsperson"
+      ],
+      "summary_en": "Swiss painter and art educator (1888-1967)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -9124,6 +9903,46 @@
         "craftsperson"
       ],
       "summary_en": "Italian architect from Ticino and leading figure in Roman Baroque architecture (1599-1667), sculptor, engineer, stonemason and draughtsman (1599–1667)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1929,
+        "latest": 1929,
+        "precision": "day",
+        "value": "1929-10-06"
+      },
+      "claim_ids": [
+        "claim-wd-q12315480-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "death": {
+        "earliest": 2021,
+        "latest": 2021,
+        "precision": "day",
+        "value": "2021-05-20"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q12315480"
+      },
+      "id": "person-wd-q12315480",
+      "last_verified": "2026-11-12",
+      "name_en": "Hans Munk Hansen",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Danish architect (1929-2021)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -9726,6 +10545,86 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1928,
+        "latest": 1928,
+        "precision": "year",
+        "value": "1928"
+      },
+      "claim_ids": [
+        "claim-wd-q124863243-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q124863243"
+      },
+      "id": "person-wd-q124863243",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean-Marie Pison",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect, active in Grenoble",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1945,
+        "latest": 1945,
+        "precision": "year",
+        "value": "1945"
+      },
+      "claim_ids": [
+        "claim-wd-q124865625-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q124865625"
+      },
+      "id": "person-wd-q124865625",
+      "last_verified": "2026-11-12",
+      "name_en": "Bernard Paurd",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1926,
         "latest": 1926,
         "precision": "month",
@@ -9940,6 +10839,46 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1889,
+        "latest": 1889,
+        "precision": "day",
+        "value": "1889-08-03"
+      },
+      "claim_ids": [
+        "claim-wd-q124937499-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1967,
+        "latest": 1967,
+        "precision": "day",
+        "value": "1967-11-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q124937499"
+      },
+      "id": "person-wd-q124937499",
+      "last_verified": "2026-11-12",
+      "name_en": "Robert Gabriel Enault",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": null,
         "latest": null,
         "precision": "unknown",
@@ -10147,6 +11086,46 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1904,
+        "latest": 1904,
+        "precision": "year",
+        "value": "1904"
+      },
+      "claim_ids": [
+        "claim-wd-q125044669-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 1986,
+        "latest": 1986,
+        "precision": "year",
+        "value": "1986"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q125044669"
+      },
+      "id": "person-wd-q125044669",
+      "last_verified": "2026-11-12",
+      "name_en": "Werner Harting",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect, active in Berlin",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1942,
         "latest": 1942,
         "precision": "day",
@@ -10260,6 +11239,128 @@
         "architect"
       ],
       "summary_en": "Australian architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1926,
+        "latest": 1926,
+        "precision": "day",
+        "value": "1926-08-23"
+      },
+      "claim_ids": [
+        "claim-wd-q125272050-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2009,
+        "latest": 2009,
+        "precision": "day",
+        "value": "2009-04-21"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q125272050"
+      },
+      "id": "person-wd-q125272050",
+      "last_verified": "2026-11-12",
+      "name_en": "Pierre Baptiste",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1923,
+        "latest": 1923,
+        "precision": "day",
+        "value": "1923-10-09"
+      },
+      "claim_ids": [
+        "claim-wd-q125274989-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2019,
+        "latest": 2019,
+        "precision": "day",
+        "value": "2019-01-13"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q125274989"
+      },
+      "id": "person-wd-q125274989",
+      "last_verified": "2026-11-12",
+      "name_en": "Pierre Bernasconi",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Gunter Standke"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1945,
+        "latest": 1945,
+        "precision": "day",
+        "value": "1945-03-04"
+      },
+      "claim_ids": [
+        "claim-wd-q125280846-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 2023,
+        "latest": 2023,
+        "precision": "day",
+        "value": "2023-12-05"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q125280846"
+      },
+      "id": "person-wd-q125280846",
+      "last_verified": "2026-11-12",
+      "name_en": "Gunter R. Standke",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect, active in Munich (1945–2023)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -11707,6 +12808,46 @@
     },
     {
       "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1884,
+        "latest": 1884,
+        "precision": "day",
+        "value": "1884-01-21"
+      },
+      "claim_ids": [
+        "claim-wd-q131169911-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1963,
+        "latest": 1963,
+        "precision": "day",
+        "value": "1963-11-01"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q131169911"
+      },
+      "id": "person-wd-q131169911",
+      "last_verified": "2026-11-12",
+      "name_en": "Jacques Ballereau",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
       "aliases_zh": [
         "伊姆贺特普",
         "印和阗",
@@ -12416,6 +13557,54 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Joseph Marie François Spoturno"
+      ],
+      "aliases_zh": [
+        "法蘭索瓦‧科蒂",
+        "弗朗索瓦·科蒂",
+        "弗朗索瓦·柯蒂"
+      ],
+      "birth": {
+        "earliest": 1874,
+        "latest": 1874,
+        "precision": "day",
+        "value": "1874-05-03"
+      },
+      "claim_ids": [
+        "claim-wd-q1332383-name-en",
+        "claim-wd-q1332383-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1934,
+        "latest": 1934,
+        "precision": "day",
+        "value": "1934-07-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1332383"
+      },
+      "id": "person-wd-q1332383",
+      "last_verified": "2026-11-12",
+      "name_en": "François Coty",
+      "name_native": null,
+      "name_zh": "科蒂",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "patron",
+        "landscape_architect"
+      ],
+      "summary_en": "French perfumer, businessman, newspaper publisher, politician and patron of the arts (1874-1934)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -12821,6 +14010,50 @@
       "summary_en": "French architect (1739-1813)",
       "summary_zh": "法国建筑师",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
+        "Enrico del Debbio"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1891,
+        "latest": 1891,
+        "precision": "day",
+        "value": "1891-05-26"
+      },
+      "claim_ids": [
+        "claim-wd-q1343752-name-en",
+        "claim-wd-q1343752-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 1973,
+        "latest": 1973,
+        "precision": "day",
+        "value": "1973-07-12"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1343752"
+      },
+      "id": "person-wd-q1343752",
+      "last_verified": "2026-11-12",
+      "name_en": "Enrico Del Debbio",
+      "name_native": null,
+      "name_zh": "恩里克·德尔德比",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "patron"
+      ],
+      "summary_en": "Italian architect (1891-1973)",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -14403,6 +15636,46 @@
       "verification_status": "verified"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1914,
+        "latest": 1914,
+        "precision": "day",
+        "value": "1914-04-11"
+      },
+      "claim_ids": [
+        "claim-wd-q137885038-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q137885038"
+      },
+      "id": "person-wd-q137885038",
+      "last_verified": "2026-11-12",
+      "name_en": "François Saulnier",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Suger of Saint-Denis",
         "Abbot of Saint Denis Suger",
@@ -15635,6 +16908,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1884,
+        "latest": 1884,
+        "precision": "day",
+        "value": "1884-12-06"
+      },
+      "claim_ids": [
+        "claim-wd-q14917149-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1978,
+        "latest": 1978,
+        "precision": "day",
+        "value": "1978-02-17"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q14917149"
+      },
+      "id": "person-wd-q14917149",
+      "last_verified": "2026-11-12",
+      "name_en": "Maurice Durand",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "father of modern Lahore"
       ],
@@ -15923,6 +17236,46 @@
         "architect"
       ],
       "summary_en": "French architect (1874–1939)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1903,
+        "latest": 1903,
+        "precision": "day",
+        "value": "1903-04-18"
+      },
+      "claim_ids": [
+        "claim-wd-q15137818-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1990,
+        "latest": 1990,
+        "precision": "day",
+        "value": "1990-12-21"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q15137818"
+      },
+      "id": "person-wd-q15137818",
+      "last_verified": "2026-11-12",
+      "name_en": "Marcel Gardinier",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -16889,6 +18242,46 @@
         "architect"
       ],
       "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1905,
+        "latest": 1905,
+        "precision": "day",
+        "value": "1905-10-01"
+      },
+      "claim_ids": [
+        "claim-wd-q15617060-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1987,
+        "latest": 1987,
+        "precision": "day",
+        "value": "1987-11-29"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q15617060"
+      },
+      "id": "person-wd-q15617060",
+      "last_verified": "2026-11-12",
+      "name_en": "André Aubert",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -20155,6 +21548,48 @@
     },
     {
       "aliases_en": [
+        "Luis Cubillo"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1921,
+        "latest": 1921,
+        "precision": "day",
+        "value": "1921-06-08"
+      },
+      "claim_ids": [
+        "claim-wd-q16594226-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 2000,
+        "latest": 2000,
+        "precision": "day",
+        "value": "2000-12-21"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q16594226"
+      },
+      "id": "person-wd-q16594226",
+      "last_verified": "2026-11-12",
+      "name_en": "Luis Cubillo de Arteaga",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Jehan Ravy"
       ],
       "aliases_zh": [],
@@ -20986,6 +22421,46 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1904,
+        "latest": 1904,
+        "precision": "day",
+        "value": "1904-03-18"
+      },
+      "claim_ids": [
+        "claim-wd-q16946374-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "SE"
+      ],
+      "death": {
+        "earliest": 1987,
+        "latest": 1987,
+        "precision": "day",
+        "value": "1987-03-15"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q16946374"
+      },
+      "id": "person-wd-q16946374",
+      "last_verified": "2026-11-12",
+      "name_en": "Hertha Olivet",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "unknown"
+      ],
+      "summary_en": "Swedish painter (1904–1987)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": null,
         "latest": null,
         "precision": "unknown",
@@ -21073,6 +22548,54 @@
       "summary_en": "Dutch architect (1890–1935)",
       "summary_zh": "",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
+        "Joseph Albers",
+        "Albers"
+      ],
+      "aliases_zh": [
+        "Josef Albers"
+      ],
+      "birth": {
+        "earliest": 1888,
+        "latest": 1888,
+        "precision": "day",
+        "value": "1888-03-19"
+      },
+      "claim_ids": [
+        "claim-wd-q170071-name-en",
+        "claim-wd-q170071-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE",
+        "US"
+      ],
+      "death": {
+        "earliest": 1976,
+        "latest": 1976,
+        "precision": "day",
+        "value": "1976-03-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q170071"
+      },
+      "id": "person-wd-q170071",
+      "last_verified": "2026-11-12",
+      "name_en": "Josef Albers",
+      "name_native": null,
+      "name_zh": "约瑟夫·艾伯斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "transregional",
+      "roles": [
+        "craftsperson",
+        "designer"
+      ],
+      "summary_en": "German-American designer, painter, educator and typographer (1888–1976)",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -21512,6 +23035,46 @@
         "architect"
       ],
       "summary_en": "French architect (1904-1974)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1942,
+        "latest": 1942,
+        "precision": "year",
+        "value": "1942"
+      },
+      "claim_ids": [
+        "claim-wd-q17281126-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q17281126"
+      },
+      "id": "person-wd-q17281126",
+      "last_verified": "2026-11-12",
+      "name_en": "Jaume Freixa",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect and professor",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -22172,6 +23735,46 @@
       ],
       "summary_en": "Italian architect and sculptor (1532-1602)",
       "summary_zh": "16世纪意大利建筑师",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1910,
+        "latest": 1910,
+        "precision": "day",
+        "value": "1910-01-28"
+      },
+      "claim_ids": [
+        "claim-wd-q1760476-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 1992,
+        "latest": 1992,
+        "precision": "day",
+        "value": "1992-01-02"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1760476"
+      },
+      "id": "person-wd-q1760476",
+      "last_verified": "2026-11-12",
+      "name_en": "Walter Rossow",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German landscape architect (1910–1992)",
+      "summary_zh": "",
       "verification_status": "candidate"
     },
     {
@@ -23282,6 +24885,86 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1892,
+        "latest": 1892,
+        "precision": "day",
+        "value": "1892-07-16"
+      },
+      "claim_ids": [
+        "claim-wd-q18214739-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1965,
+        "latest": 1965,
+        "precision": "day",
+        "value": "1965-03-21"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q18214739"
+      },
+      "id": "person-wd-q18214739",
+      "last_verified": "2026-11-12",
+      "name_en": "Georges Feray",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1946,
+        "latest": 1946,
+        "precision": "day",
+        "value": "1946-02-16"
+      },
+      "claim_ids": [
+        "claim-wd-q18217878-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q18217878"
+      },
+      "id": "person-wd-q18217878",
+      "last_verified": "2026-11-12",
+      "name_en": "Stefanos Polyzoides",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "north_america",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "American architect and urban planner",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1690,
         "latest": 1690,
         "precision": "year",
@@ -23938,6 +25621,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1907,
+        "latest": 1907,
+        "precision": "year",
+        "value": "1907"
+      },
+      "claim_ids": [
+        "claim-wd-q18575538-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "NL"
+      ],
+      "death": {
+        "earliest": 1995,
+        "latest": 1995,
+        "precision": "day",
+        "value": "1995-09-05"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q18575538"
+      },
+      "id": "person-wd-q18575538",
+      "last_verified": "2026-11-12",
+      "name_en": "Abraham Elzas",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Dutch architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "William Leonard Pereira",
         "William L. Pereira"
@@ -24121,6 +25844,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1848,
+        "latest": 1848,
+        "precision": "day",
+        "value": "1848-07-24"
+      },
+      "claim_ids": [
+        "claim-wd-q18642799-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1927,
+        "latest": 1927,
+        "precision": "day",
+        "value": "1927-02-11"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q18642799"
+      },
+      "id": "person-wd-q18642799",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean Bréasson",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Frank Lloyd, Jr. Wright",
         "Frank Lloyd, II Wright",
@@ -24177,6 +25940,95 @@
       "summary_en": "American architect (1890-1978)",
       "summary_zh": "",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
+        "M.F. Asselbergs"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1956,
+        "latest": 1956,
+        "precision": "year",
+        "value": "1956"
+      },
+      "claim_ids": [
+        "claim-wd-q1868082-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "NL"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1868082"
+      },
+      "id": "person-wd-q1868082",
+      "last_verified": "2026-11-12",
+      "name_en": "Thijs Asselbergs",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "engineer"
+      ],
+      "summary_en": "Dutch architect",
+      "summary_zh": "研究者",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Hermine Luise Berkenkamp",
+        "Lou Scheper",
+        "Lou Berkenkamp",
+        "Louise Berkenkamp"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1901,
+        "latest": 1901,
+        "precision": "day",
+        "value": "1901-05-15"
+      },
+      "claim_ids": [
+        "claim-wd-q1871308-name-en",
+        "claim-wd-q1871308-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 1976,
+        "latest": 1976,
+        "precision": "day",
+        "value": "1976-04-11"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1871308"
+      },
+      "id": "person-wd-q1871308",
+      "last_verified": "2026-11-12",
+      "name_en": "Lou Scheper-Berkenkamp",
+      "name_native": null,
+      "name_zh": "卢·舍佩尔-贝肯坎普",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "unknown"
+      ],
+      "summary_en": "German painter, color designer, author and illustrator of children's books and costume designer (1901-1976)",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -24260,6 +26112,99 @@
       "summary_en": "Argentinean architect",
       "summary_zh": "",
       "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1869,
+        "latest": 1869,
+        "precision": "day",
+        "value": "1869-02-18"
+      },
+      "claim_ids": [
+        "claim-wd-q1874244-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 1930,
+        "latest": 1930,
+        "precision": "day",
+        "value": "1930-01-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1874244"
+      },
+      "id": "person-wd-q1874244",
+      "last_verified": "2026-11-12",
+      "name_en": "Ludwig Bopp",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect (1869–1930)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "L. W. Moretti",
+        "Luigi Walter Moretti"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1907,
+        "latest": 1907,
+        "precision": "day",
+        "value": "1907-01-02"
+      },
+      "claim_ids": [
+        "claim-wd-q1876230-aliases-en",
+        "claim-wd-q1876230-birth",
+        "claim-wd-q1876230-country-codes",
+        "claim-wd-q1876230-death",
+        "claim-wd-q1876230-external-ids",
+        "claim-wd-q1876230-name-en",
+        "claim-wd-q1876230-name-zh",
+        "claim-wd-q1876230-name-zh-status",
+        "claim-wd-q1876230-region",
+        "claim-wd-q1876230-roles",
+        "claim-wd-q1876230-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 1973,
+        "latest": 1973,
+        "precision": "day",
+        "value": "1973-07-14"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1876230"
+      },
+      "id": "person-wd-q1876230",
+      "last_verified": "2026-11-12",
+      "name_en": "Luigi Moretti",
+      "name_native": null,
+      "name_zh": "路易吉·莫雷蒂",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Italian architect (1907–1973)",
+      "summary_zh": "",
+      "verification_status": "verified"
     },
     {
       "aliases_en": [
@@ -24489,6 +26434,46 @@
       ],
       "summary_en": "Brazilian architect",
       "summary_zh": "巴西建築師",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1561,
+        "latest": 1561,
+        "precision": "year",
+        "value": "1561"
+      },
+      "claim_ids": [
+        "claim-wd-q1897014-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 1636,
+        "latest": 1636,
+        "precision": "year",
+        "value": "1636"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1897014"
+      },
+      "id": "person-wd-q1897014",
+      "last_verified": "2026-11-12",
+      "name_en": "Mariano Smiriglio",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Italian architect and painter (1561-1636)",
+      "summary_zh": "",
       "verification_status": "candidate"
     },
     {
@@ -25415,6 +27400,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1952,
+        "latest": 1952,
+        "precision": "day",
+        "value": "1952-01-29"
+      },
+      "claim_ids": [
+        "claim-wd-q1982791-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "NL"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1982791"
+      },
+      "id": "person-wd-q1982791",
+      "last_verified": "2026-11-12",
+      "name_en": "Hans van Heeswijk",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Dutch architect (born 1952)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Mathias Withoos",
         "Matthias Calzetta Bianca",
@@ -25703,6 +27728,84 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1904,
+        "latest": 1904,
+        "precision": "day",
+        "value": "1904-05-14"
+      },
+      "claim_ids": [
+        "claim-wd-q19945275-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1991,
+        "latest": 1991,
+        "precision": "day",
+        "value": "1991-07-16"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q19945275"
+      },
+      "id": "person-wd-q19945275",
+      "last_verified": "2026-11-12",
+      "name_en": "Georges Tourry",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q19947512-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q19947512"
+      },
+      "id": "person-wd-q19947512",
+      "last_verified": "2026-11-12",
+      "name_en": "Mario Jossa",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Italian architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Francisco Tamburini"
       ],
@@ -25956,6 +28059,46 @@
         "architect"
       ],
       "summary_en": "Peruvian architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1891,
+        "latest": 1891,
+        "precision": "year",
+        "value": "1891"
+      },
+      "claim_ids": [
+        "claim-wd-q20027518-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1989,
+        "latest": 1989,
+        "precision": "year",
+        "value": "1989"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q20027518"
+      },
+      "id": "person-wd-q20027518",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean Zimmermann",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -26547,6 +28690,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1930,
+        "latest": 1930,
+        "precision": "day",
+        "value": "1930-01-12"
+      },
+      "claim_ids": [
+        "claim-wd-q2040935-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2040935"
+      },
+      "id": "person-wd-q2040935",
+      "last_verified": "2026-11-12",
+      "name_en": "Otto Weitling",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Danish architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Pafnuty Lvovich Chebyshev"
       ],
@@ -26637,6 +28820,46 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1873,
+        "latest": 1873,
+        "precision": "year",
+        "value": "1873"
+      },
+      "claim_ids": [
+        "claim-wd-q20640432-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 1943,
+        "latest": 1943,
+        "precision": "year",
+        "value": "1943"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q20640432"
+      },
+      "id": "person-wd-q20640432",
+      "last_verified": "2026-11-12",
+      "name_en": "Francisco Urcola Lazcanotegui",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1923,
         "latest": 1923,
         "precision": "day",
@@ -26710,6 +28933,46 @@
         "architect"
       ],
       "summary_en": "English-American architect (1802–1878)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1877,
+        "latest": 1877,
+        "precision": "day",
+        "value": "1877-06-01"
+      },
+      "claim_ids": [
+        "claim-wd-q20670119-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1964,
+        "latest": 1964,
+        "precision": "day",
+        "value": "1964-09-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q20670119"
+      },
+      "id": "person-wd-q20670119",
+      "last_verified": "2026-11-12",
+      "name_en": "Émile Molinié",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -27025,6 +29288,46 @@
         "architect"
       ],
       "summary_en": "Catalan architect (1881–1962)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1906,
+        "latest": 1906,
+        "precision": "day",
+        "value": "1906-10-17"
+      },
+      "claim_ids": [
+        "claim-wd-q20706383-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1987,
+        "latest": 1987,
+        "precision": "day",
+        "value": "1987-08-20"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q20706383"
+      },
+      "id": "person-wd-q20706383",
+      "last_verified": "2026-11-12",
+      "name_en": "Pierre Bourdeix",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1906-1987)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -27490,6 +29793,54 @@
       ],
       "summary_en": "French chemical engineer and architect (1832–1923)",
       "summary_zh": "法國土木工程師和建築師",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Manuel de Solà Morales",
+        "Manuel de Solà-Morales i Rubió",
+        "Manuel de Solà-Morales Rubió",
+        "Manuel de Sola-Morales",
+        "Manuel de Sola Morales",
+        "Manuel de Sola-Morales i Rubio",
+        "Manuel de Sola-Morales Rubio"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1939,
+        "latest": 1939,
+        "precision": "day",
+        "value": "1939-01-08"
+      },
+      "claim_ids": [
+        "claim-wd-q2088275-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 2012,
+        "latest": 2012,
+        "precision": "day",
+        "value": "2012-02-27"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2088275"
+      },
+      "id": "person-wd-q2088275",
+      "last_verified": "2026-11-12",
+      "name_en": "Manuel de Solà-Morales",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect (1939–2012)",
+      "summary_zh": "",
       "verification_status": "candidate"
     },
     {
@@ -28398,6 +30749,46 @@
       "summary_en": "Mexican artist (1924-2015)",
       "summary_zh": "",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1904,
+        "latest": 1904,
+        "precision": "year",
+        "value": "1904"
+      },
+      "claim_ids": [
+        "claim-wd-q21270017-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 1978,
+        "latest": 1978,
+        "precision": "year",
+        "value": "1978"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q21270017"
+      },
+      "id": "person-wd-q21270017",
+      "last_verified": "2026-11-12",
+      "name_en": "Joan Baptista Subirana i Subirana",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect (1904-1978)",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -30013,6 +32404,50 @@
     },
     {
       "aliases_en": [
+        "Blida Heynold-von Graefe",
+        "Blida Heynold-Graefe",
+        "Blida Heynold"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1905,
+        "latest": 1905,
+        "precision": "day",
+        "value": "1905-12-18"
+      },
+      "claim_ids": [
+        "claim-wd-q22102127-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 1999,
+        "latest": 1999,
+        "precision": "day",
+        "value": "1999-05-16"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q22102127"
+      },
+      "id": "person-wd-q22102127",
+      "last_verified": "2026-11-12",
+      "name_en": "Blida Heynold von Graefe",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "unknown"
+      ],
+      "summary_en": "German writer and journalist (1905–1999)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Simone Memmi of Sienna",
         "Simone Memmi",
         "Simone Mommi",
@@ -30547,6 +32982,44 @@
         "patron"
       ],
       "summary_en": "Austria-Hungary politician",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1833,
+        "latest": 1833,
+        "precision": "day",
+        "value": "1833-06-14"
+      },
+      "claim_ids": [
+        "claim-wd-q22670810-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1889,
+        "latest": 1889,
+        "precision": "day",
+        "value": "1889-08-01"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q22670810"
+      },
+      "id": "person-wd-q22670810",
+      "last_verified": "2026-11-12",
+      "name_en": "Carl Friederich Müller",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -31907,6 +34380,48 @@
         "architect"
       ],
       "summary_en": "Bangladeshi architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Andre Jacob"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1891,
+        "latest": 1891,
+        "precision": "day",
+        "value": "1891-01-31"
+      },
+      "claim_ids": [
+        "claim-wd-q2383148-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1944,
+        "latest": 1944,
+        "precision": "day",
+        "value": "1944-04-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2383148"
+      },
+      "id": "person-wd-q2383148",
+      "last_verified": "2026-11-12",
+      "name_en": "André Jacob",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1891–1944)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -33483,6 +35998,48 @@
         "architect"
       ],
       "summary_en": "Indian architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Vinzenz Statz"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1819,
+        "latest": 1819,
+        "precision": "day",
+        "value": "1819-04-09"
+      },
+      "claim_ids": [
+        "claim-wd-q2526818-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 1898,
+        "latest": 1898,
+        "precision": "day",
+        "value": "1898-08-21"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2526818"
+      },
+      "id": "person-wd-q2526818",
+      "last_verified": "2026-11-12",
+      "name_en": "Vincenz Statz",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect (1819–1898)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -35800,6 +38357,46 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1823,
+        "latest": 1823,
+        "precision": "year",
+        "value": "1823"
+      },
+      "claim_ids": [
+        "claim-wd-q26882307-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 1884,
+        "latest": 1884,
+        "precision": "day",
+        "value": "1884-12-17"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q26882307"
+      },
+      "id": "person-wd-q26882307",
+      "last_verified": "2026-11-12",
+      "name_en": "Severiano Sainz de la Lastra",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1871,
         "latest": 1871,
         "precision": "day",
@@ -37314,6 +39911,86 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1911,
+        "latest": 1911,
+        "precision": "day",
+        "value": "1911-06-12"
+      },
+      "claim_ids": [
+        "claim-wd-q28044748-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1974,
+        "latest": 1974,
+        "precision": "day",
+        "value": "1974-02-04"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q28044748"
+      },
+      "id": "person-wd-q28044748",
+      "last_verified": "2026-11-12",
+      "name_en": "Michaël Patout",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1866,
+        "latest": 1866,
+        "precision": "day",
+        "value": "1866-08-28"
+      },
+      "claim_ids": [
+        "claim-wd-q28049295-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "death": {
+        "earliest": 1950,
+        "latest": 1950,
+        "precision": "day",
+        "value": "1950-03-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q28049295"
+      },
+      "id": "person-wd-q28049295",
+      "last_verified": "2026-11-12",
+      "name_en": "Sophus Vermehren",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "unknown"
+      ],
+      "summary_en": "Danish painter (1866–1950)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1836,
         "latest": 1836,
         "precision": "day",
@@ -37836,6 +40513,100 @@
         "architect"
       ],
       "summary_en": "French architect (1862–1958)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "A. Sartoris"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1901,
+        "latest": 1901,
+        "precision": "day",
+        "value": "1901-02-02"
+      },
+      "claim_ids": [
+        "claim-wd-q2831830-aliases-en",
+        "claim-wd-q2831830-birth",
+        "claim-wd-q2831830-country-codes",
+        "claim-wd-q2831830-death",
+        "claim-wd-q2831830-external-ids",
+        "claim-wd-q2831830-name-en",
+        "claim-wd-q2831830-name-zh",
+        "claim-wd-q2831830-name-zh-status",
+        "claim-wd-q2831830-region",
+        "claim-wd-q2831830-roles",
+        "claim-wd-q2831830-summary-en",
+        "claim-wd-q2831830-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 1998,
+        "latest": 1998,
+        "precision": "day",
+        "value": "1998-03-08"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2831830"
+      },
+      "id": "person-wd-q2831830",
+      "last_verified": "2026-11-12",
+      "name_en": "Alberto Sartoris",
+      "name_native": null,
+      "name_zh": "阿爾貝托·薩托里斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Italian architect (1901-1998)",
+      "summary_zh": "意大利建築師 (1901-1998)",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1862,
+        "latest": 1862,
+        "precision": "day",
+        "value": "1862-11-05"
+      },
+      "claim_ids": [
+        "claim-wd-q2833468-name-en",
+        "claim-wd-q2833468-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1927,
+        "latest": 1927,
+        "precision": "day",
+        "value": "1927-04-11"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2833468"
+      },
+      "id": "person-wd-q2833468",
+      "last_verified": "2026-11-12",
+      "name_en": "Alexandre Bigot",
+      "name_native": null,
+      "name_zh": "亚历山大·比戈",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French artist (1862–1927)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -38674,6 +41445,48 @@
     },
     {
       "aliases_en": [
+        "Andre Granet"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1881,
+        "latest": 1881,
+        "precision": "year",
+        "value": "1881"
+      },
+      "claim_ids": [
+        "claim-wd-q2847879-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1974,
+        "latest": 1974,
+        "precision": "day",
+        "value": "1974-10-27"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2847879"
+      },
+      "id": "person-wd-q2847879",
+      "last_verified": "2026-11-12",
+      "name_en": "André Granet",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1881–1974)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Andre Remondet"
       ],
       "aliases_zh": [],
@@ -38864,6 +41677,50 @@
     },
     {
       "aliases_en": [
+        "Antoine-Nicolas-Louis Bailly",
+        "A. N. Bailly",
+        "Antoine-Nicolas Louis Bailly"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1810,
+        "latest": 1810,
+        "precision": "day",
+        "value": "1810-06-06"
+      },
+      "claim_ids": [
+        "claim-wd-q2853539-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1892,
+        "latest": 1892,
+        "precision": "day",
+        "value": "1892-01-01"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2853539"
+      },
+      "id": "person-wd-q2853539",
+      "last_verified": "2026-11-12",
+      "name_en": "Antoine-Nicolas Bailly",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1810–1892)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Paul Amaury Michel"
       ],
       "aliases_zh": [],
@@ -38901,6 +41758,46 @@
         "architect"
       ],
       "summary_en": "Belgian architect (1912–1988)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1935,
+        "latest": 1935,
+        "precision": "year",
+        "value": "1935"
+      },
+      "claim_ids": [
+        "claim-wd-q28538816-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 2013,
+        "latest": 2013,
+        "precision": "day",
+        "value": "2013-10-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q28538816"
+      },
+      "id": "person-wd-q28538816",
+      "last_verified": "2026-11-12",
+      "name_en": "José María de la Mata Gorostizaga",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -39497,6 +42394,50 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Eduardo de Adaro Magro",
+        "Eduardo Adaro Magro",
+        "Eduardo de Adaro y Magro"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1848,
+        "latest": 1848,
+        "precision": "day",
+        "value": "1848-02-06"
+      },
+      "claim_ids": [
+        "claim-wd-q2882850-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 1906,
+        "latest": 1906,
+        "precision": "day",
+        "value": "1906-02-27"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2882850"
+      },
+      "id": "person-wd-q2882850",
+      "last_verified": "2026-11-12",
+      "name_en": "Eduardo Adaro",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect (1848-1906)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -39807,6 +42748,62 @@
       "summary_en": "French architect and architectural theoretician (1932–2001)",
       "summary_zh": "",
       "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Bernard Louis Zehrfuss",
+        "Bernard-Louis Zehrfuss",
+        "Bernard Henri Zehrfuss",
+        "Bernard H. Zehrfuss"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1911,
+        "latest": 1911,
+        "precision": "day",
+        "value": "1911-10-20"
+      },
+      "claim_ids": [
+        "claim-wd-q2898777-aliases-en",
+        "claim-wd-q2898777-birth",
+        "claim-wd-q2898777-country-codes",
+        "claim-wd-q2898777-death",
+        "claim-wd-q2898777-external-ids",
+        "claim-wd-q2898777-name-en",
+        "claim-wd-q2898777-name-zh",
+        "claim-wd-q2898777-name-zh-status",
+        "claim-wd-q2898777-region",
+        "claim-wd-q2898777-roles",
+        "claim-wd-q2898777-summary-en",
+        "claim-wd-q2898777-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1996,
+        "latest": 1996,
+        "precision": "day",
+        "value": "1996-07-03"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2898777"
+      },
+      "id": "person-wd-q2898777",
+      "last_verified": "2026-11-12",
+      "name_en": "Bernard Zehrfuss",
+      "name_native": null,
+      "name_zh": "贝尔纳·泽尔菲斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1911–1996)",
+      "summary_zh": "法国建筑师",
+      "verification_status": "verified"
     },
     {
       "aliases_en": [],
@@ -40950,6 +43947,49 @@
     },
     {
       "aliases_en": [
+        "Jacques Greber",
+        "Jacques-Henri-Auguste Gréber"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1882,
+        "latest": 1882,
+        "precision": "day",
+        "value": "1882-09-10"
+      },
+      "claim_ids": [
+        "claim-wd-q2980803-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1962,
+        "latest": 1962,
+        "precision": "day",
+        "value": "1962-06-05"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2980803"
+      },
+      "id": "person-wd-q2980803",
+      "last_verified": "2026-11-12",
+      "name_en": "Jacques Gréber",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Anthemios of Tralles",
         "Anthemius"
       ],
@@ -41365,6 +44405,46 @@
         "architect"
       ],
       "summary_en": "Finnish architect and professor",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1816,
+        "latest": 1816,
+        "precision": "day",
+        "value": "1816-10-27"
+      },
+      "claim_ids": [
+        "claim-wd-q3022502-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1882,
+        "latest": 1882,
+        "precision": "day",
+        "value": "1882-05-26"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3022502"
+      },
+      "id": "person-wd-q3022502",
+      "last_verified": "2026-11-12",
+      "name_en": "Denis-Louis Destors",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1816–1882)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -42994,6 +46074,46 @@
       "verification_status": "verified"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1934,
+        "latest": 1934,
+        "precision": "day",
+        "value": "1934-12-03"
+      },
+      "claim_ids": [
+        "claim-wd-q3084443-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2009,
+        "latest": 2009,
+        "precision": "day",
+        "value": "2009-12-18"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3084443"
+      },
+      "id": "person-wd-q3084443",
+      "last_verified": "2026-11-12",
+      "name_en": "François Deslaugiers",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "François Barreau de Chefdeville",
         "François-Dominique Barreau de Chefdeville"
@@ -43904,6 +47024,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1913,
+        "latest": 1913,
+        "precision": "day",
+        "value": "1913-04-21"
+      },
+      "claim_ids": [
+        "claim-wd-q3103138-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1998,
+        "latest": 1998,
+        "precision": "day",
+        "value": "1998-07-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3103138"
+      },
+      "id": "person-wd-q3103138",
+      "last_verified": "2026-11-12",
+      "name_en": "Georges Maillols",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1913–1998)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Louis le Vau",
         "Louis Leveau"
@@ -44546,6 +47706,95 @@
       ],
       "summary_en": "Swedish architect (1885-1940)",
       "summary_zh": "瑞典建筑师",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1876,
+        "latest": 1876,
+        "precision": "year",
+        "value": "1876"
+      },
+      "claim_ids": [
+        "claim-wd-q3121290-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1952,
+        "latest": 1952,
+        "precision": "year",
+        "value": "1952"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3121290"
+      },
+      "id": "person-wd-q3121290",
+      "last_verified": "2026-11-12",
+      "name_en": "Gustave Perret",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1876-1952)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1866,
+        "latest": 1866,
+        "precision": "day",
+        "value": "1866-12-24"
+      },
+      "claim_ids": [
+        "claim-wd-q3121338-birth",
+        "claim-wd-q3121338-country-codes",
+        "claim-wd-q3121338-death",
+        "claim-wd-q3121338-external-ids",
+        "claim-wd-q3121338-name-en",
+        "claim-wd-q3121338-name-zh",
+        "claim-wd-q3121338-name-zh-status",
+        "claim-wd-q3121338-region",
+        "claim-wd-q3121338-roles",
+        "claim-wd-q3121338-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1940,
+        "latest": 1940,
+        "precision": "day",
+        "value": "1940-11-16"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3121338"
+      },
+      "id": "person-wd-q3121338",
+      "last_verified": "2026-11-12",
+      "name_en": "Gustave Umbdenstock",
+      "name_native": null,
+      "name_zh": "居斯塔夫·昂布登斯托克",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
       "verification_status": "verified"
     },
     {
@@ -47449,6 +50698,132 @@
     },
     {
       "aliases_en": [
+        "Jean Paul Philippon"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1945,
+        "latest": 1945,
+        "precision": "day",
+        "value": "1945-08-17"
+      },
+      "claim_ids": [
+        "claim-wd-q3168643-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3168643"
+      },
+      "id": "person-wd-q3168643",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean-Paul Philippon",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Pierre Paquet",
+        "Jean Pierre André Paquet",
+        "Jean Pierre Andre Paquet"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1907,
+        "latest": 1907,
+        "precision": "day",
+        "value": "1907-02-23"
+      },
+      "claim_ids": [
+        "claim-wd-q3169623-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1975,
+        "latest": 1975,
+        "precision": "day",
+        "value": "1975-07-11"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3169623"
+      },
+      "id": "person-wd-q3169623",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean-Pierre Paquet",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1907–1975)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1923,
+        "latest": 1923,
+        "precision": "day",
+        "value": "1923-09-20"
+      },
+      "claim_ids": [
+        "claim-wd-q3169758-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2013,
+        "latest": 2013,
+        "precision": "day",
+        "value": "2013-04-18"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3169758"
+      },
+      "id": "person-wd-q3169758",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean-Pierre Secq",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1923–2013)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "ISO"
       ],
       "aliases_zh": [
@@ -47586,6 +50961,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1892,
+        "latest": 1892,
+        "precision": "day",
+        "value": "1892-04-24"
+      },
+      "claim_ids": [
+        "claim-wd-q3173584-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1966,
+        "latest": 1966,
+        "precision": "day",
+        "value": "1966-07-22"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3173584"
+      },
+      "id": "person-wd-q3173584",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean Montariol",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1892–1966)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Jean Metezeau"
       ],
@@ -47624,6 +51039,46 @@
         "architect"
       ],
       "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1897,
+        "latest": 1897,
+        "precision": "day",
+        "value": "1897-12-14"
+      },
+      "claim_ids": [
+        "claim-wd-q3173724-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1989,
+        "latest": 1989,
+        "precision": "day",
+        "value": "1989-02-26"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3173724"
+      },
+      "id": "person-wd-q3173724",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean Niermans",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect and urban planner (1897–1989)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -47816,6 +51271,48 @@
       "summary_en": "French architect",
       "summary_zh": "",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
+        "Jean Demailly"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1911,
+        "latest": 1911,
+        "precision": "day",
+        "value": "1911-02-13"
+      },
+      "claim_ids": [
+        "claim-wd-q3175552-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1975,
+        "latest": 1975,
+        "precision": "day",
+        "value": "1975-08-26"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3175552"
+      },
+      "id": "person-wd-q3175552",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean de Mailly",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1911-1975)",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -48765,6 +52262,46 @@
         "designer"
       ],
       "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1915,
+        "latest": 1915,
+        "precision": "day",
+        "value": "1915-05-08"
+      },
+      "claim_ids": [
+        "claim-wd-q3219123-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2013,
+        "latest": 2013,
+        "precision": "day",
+        "value": "2013-12-28"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3219123"
+      },
+      "id": "person-wd-q3219123",
+      "last_verified": "2026-11-12",
+      "name_en": "Laurent Chappis",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1915-2013)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -50222,6 +53759,86 @@
       "verification_status": "verified"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1930,
+        "latest": 1930,
+        "precision": "day",
+        "value": "1930-03-17"
+      },
+      "claim_ids": [
+        "claim-wd-q33112428-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2018,
+        "latest": 2018,
+        "precision": "day",
+        "value": "2018-08-21"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q33112428"
+      },
+      "id": "person-wd-q33112428",
+      "last_verified": "2026-11-12",
+      "name_en": "Jérôme Delaage",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1936,
+        "latest": 1936,
+        "precision": "day",
+        "value": "1936-06-27"
+      },
+      "claim_ids": [
+        "claim-wd-q33122413-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q33122413"
+      },
+      "id": "person-wd-q33122413",
+      "last_verified": "2026-11-12",
+      "name_en": "Michel Macary",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Ventura Terra"
       ],
@@ -50987,6 +54604,46 @@
       "verification_status": "verified"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1902,
+        "latest": 1902,
+        "precision": "day",
+        "value": "1902-08-27"
+      },
+      "claim_ids": [
+        "claim-wd-q3340298-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1989,
+        "latest": 1989,
+        "precision": "day",
+        "value": "1989-01-21"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3340298"
+      },
+      "id": "person-wd-q3340298",
+      "last_verified": "2026-11-12",
+      "name_en": "Nicolas Esquillan",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French engineer (1902–1989)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Nicolas-Marie Potain",
         "Nicolas Potain",
@@ -51525,6 +55182,48 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Paul Herbe"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1903,
+        "latest": 1903,
+        "precision": "day",
+        "value": "1903-10-15"
+      },
+      "claim_ids": [
+        "claim-wd-q3371462-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1963,
+        "latest": 1963,
+        "precision": "day",
+        "value": "1963-08-26"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3371462"
+      },
+      "id": "person-wd-q3371462",
+      "last_verified": "2026-11-12",
+      "name_en": "Paul Herbé",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1903-1963)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -51606,6 +55305,49 @@
         "architect"
       ],
       "summary_en": "French architect (1795–1855)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Paul Daniel Nelson"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1895,
+        "latest": 1895,
+        "precision": "day",
+        "value": "1895-11-08"
+      },
+      "claim_ids": [
+        "claim-wd-q3371897-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR",
+        "US"
+      ],
+      "death": {
+        "earliest": 1979,
+        "latest": 1979,
+        "precision": "year",
+        "value": "1979"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3371897"
+      },
+      "id": "person-wd-q3371897",
+      "last_verified": "2026-11-12",
+      "name_en": "Paul Nelson",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "transregional",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1895–1979)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -51698,6 +55440,50 @@
       ],
       "summary_en": "British philosopher and logician (1872–1970)",
       "summary_zh": "英国哲学家",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Anton Sophus Rosen",
+        "Prof. Anton Rosen"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1859,
+        "latest": 1859,
+        "precision": "day",
+        "value": "1859-09-13"
+      },
+      "claim_ids": [
+        "claim-wd-q3378568-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "death": {
+        "earliest": 1928,
+        "latest": 1928,
+        "precision": "day",
+        "value": "1928-07-02"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3378568"
+      },
+      "id": "person-wd-q3378568",
+      "last_verified": "2026-11-12",
+      "name_en": "Anton Rosen",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Danish architect (1859-1928)",
+      "summary_zh": "",
       "verification_status": "candidate"
     },
     {
@@ -53067,6 +56853,55 @@
       ],
       "summary_en": "Japanese architect (1945-)",
       "summary_zh": "日本建筑师",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1903,
+        "latest": 1903,
+        "precision": "day",
+        "value": "1903-05-20"
+      },
+      "claim_ids": [
+        "claim-wd-q3434723-birth",
+        "claim-wd-q3434723-country-codes",
+        "claim-wd-q3434723-death",
+        "claim-wd-q3434723-external-ids",
+        "claim-wd-q3434723-name-en",
+        "claim-wd-q3434723-name-zh",
+        "claim-wd-q3434723-name-zh-status",
+        "claim-wd-q3434723-region",
+        "claim-wd-q3434723-roles",
+        "claim-wd-q3434723-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1992,
+        "latest": 1992,
+        "precision": "day",
+        "value": "1992-11-04"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3434723"
+      },
+      "id": "person-wd-q3434723",
+      "last_verified": "2026-11-12",
+      "name_en": "Robert Camelot",
+      "name_native": null,
+      "name_zh": "罗贝尔·卡姆洛",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1903-1992)",
+      "summary_zh": "",
       "verification_status": "verified"
     },
     {
@@ -55155,6 +58990,46 @@
     },
     {
       "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1911,
+        "latest": 1911,
+        "precision": "day",
+        "value": "1911-06-17"
+      },
+      "claim_ids": [
+        "claim-wd-q36007427-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1986,
+        "latest": 1986,
+        "precision": "year",
+        "value": "1986"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q36007427"
+      },
+      "id": "person-wd-q36007427",
+      "last_verified": "2026-11-12",
+      "name_en": "Georges Jouven",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
       "aliases_zh": [
         "安托内·普雷多克"
       ],
@@ -55562,6 +59437,54 @@
         "unknown"
       ],
       "summary_en": "German painter (1826-1882)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Adolf Holzel",
+        "Adolf Hoelzel",
+        "ad. holzel",
+        "adolf holzl",
+        "Holzel"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1853,
+        "latest": 1853,
+        "precision": "day",
+        "value": "1853-05-13"
+      },
+      "claim_ids": [
+        "claim-wd-q362498-name-en",
+        "claim-wd-q362498-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "AT",
+        "DE"
+      ],
+      "death": {
+        "earliest": 1934,
+        "latest": 1934,
+        "precision": "day",
+        "value": "1934-10-17"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q362498"
+      },
+      "id": "person-wd-q362498",
+      "last_verified": "2026-11-12",
+      "name_en": "Adolf Hölzel",
+      "name_native": null,
+      "name_zh": "阿道夫·赫尔策尔",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "unknown"
+      ],
+      "summary_en": "German painter (1853–1934)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -55989,6 +59912,46 @@
         "engineer"
       ],
       "summary_en": "artist from Picardy in Northern France",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1902,
+        "latest": 1902,
+        "precision": "day",
+        "value": "1902-06-17"
+      },
+      "claim_ids": [
+        "claim-wd-q3665556-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 2000,
+        "latest": 2000,
+        "precision": "day",
+        "value": "2000-09-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3665556"
+      },
+      "id": "person-wd-q3665556",
+      "last_verified": "2026-11-12",
+      "name_en": "Cesare Valle",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Italian architect (1902–2000)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -56659,6 +60622,46 @@
         "architect"
       ],
       "summary_en": "Finnish architect (1932-2021)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1941,
+        "latest": 1941,
+        "precision": "day",
+        "value": "1941-11-09"
+      },
+      "claim_ids": [
+        "claim-wd-q3751535-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3751535"
+      },
+      "id": "person-wd-q3751535",
+      "last_verified": "2026-11-12",
+      "name_en": "Franco Purini",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Italian architect and essayist (born 1941)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -58854,6 +62857,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1894,
+        "latest": 1894,
+        "precision": "day",
+        "value": "1894-01-25"
+      },
+      "claim_ids": [
+        "claim-wd-q3903998-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 1968,
+        "latest": 1968,
+        "precision": "day",
+        "value": "1968-05-15"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3903998"
+      },
+      "id": "person-wd-q3903998",
+      "last_verified": "2026-11-12",
+      "name_en": "Pietro Lingeri",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Italian architect (1894–1968)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Bozhi Mo"
       ],
@@ -58989,6 +63032,47 @@
         "architect"
       ],
       "summary_en": "British architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1942,
+        "latest": 1942,
+        "precision": "day",
+        "value": "1942-03-01"
+      },
+      "claim_ids": [
+        "claim-wd-q3932735-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 2012,
+        "latest": 2012,
+        "precision": "day",
+        "value": "2012-08-04"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3932735"
+      },
+      "id": "person-wd-q3932735",
+      "last_verified": "2026-11-12",
+      "name_en": "Renato Nicolini",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "patron"
+      ],
+      "summary_en": "Italian architect, university professor, politics, dramaturge, and actor (1942–2012)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -60237,6 +64321,52 @@
     },
     {
       "aliases_en": [
+        "Doriana O. Mandrelli",
+        "Doriana O. Mandrelli Fuksas",
+        "Doriana Fuksas"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1955,
+        "latest": 1955,
+        "precision": "day",
+        "value": "1955-03-09"
+      },
+      "claim_ids": [
+        "claim-wd-q42314621-name-en",
+        "claim-wd-q42314621-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q42314621"
+      },
+      "id": "person-wd-q42314621",
+      "last_verified": "2026-11-12",
+      "name_en": "Doriana Mandrelli",
+      "name_native": null,
+      "name_zh": "多莉安娜·奥曼德雷利",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Italian architect and designer",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Samuil Mironovich Kravets"
       ],
       "aliases_zh": [],
@@ -60274,6 +64404,46 @@
         "architect"
       ],
       "summary_en": "Soviet architect (1891-1966)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1985,
+        "latest": 1985,
+        "precision": "day",
+        "value": "1985-01-22"
+      },
+      "claim_ids": [
+        "claim-wd-q42394957-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "UY"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q42394957"
+      },
+      "id": "person-wd-q42394957",
+      "last_verified": "2026-11-12",
+      "name_en": "Fernando Ramos",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "latin_america_caribbean",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "writer and drawer",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -67002,6 +71172,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1911,
+        "latest": 1911,
+        "precision": "day",
+        "value": "1911-03-28"
+      },
+      "claim_ids": [
+        "claim-wd-q514665-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 1987,
+        "latest": 1987,
+        "precision": "day",
+        "value": "1987-07-22"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q514665"
+      },
+      "id": "person-wd-q514665",
+      "last_verified": "2026-11-12",
+      "name_en": "Ludovico Quaroni",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Italian architect (1911-1987)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "C. Lindberg",
         "Karolus Lindberg"
@@ -69218,6 +73428,59 @@
     },
     {
       "aliases_en": [
+        "Francis Reginald Stevens Yorke",
+        "Kay"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1906,
+        "latest": 1906,
+        "precision": "day",
+        "value": "1906-12-03"
+      },
+      "claim_ids": [
+        "claim-wd-q5424017-aliases-en",
+        "claim-wd-q5424017-birth",
+        "claim-wd-q5424017-country-codes",
+        "claim-wd-q5424017-death",
+        "claim-wd-q5424017-external-ids",
+        "claim-wd-q5424017-name-en",
+        "claim-wd-q5424017-name-zh",
+        "claim-wd-q5424017-name-zh-status",
+        "claim-wd-q5424017-region",
+        "claim-wd-q5424017-roles",
+        "claim-wd-q5424017-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "GB"
+      ],
+      "death": {
+        "earliest": 1962,
+        "latest": 1962,
+        "precision": "day",
+        "value": "1962-06-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5424017"
+      },
+      "id": "person-wd-q5424017",
+      "last_verified": "2026-11-12",
+      "name_en": "F. R. S. Yorke",
+      "name_native": null,
+      "name_zh": "F. R. S.約克",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "British architect",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
         "Marion Mahony",
         "Mary Mahoney",
         "Marion Lucy Griffin",
@@ -69311,6 +73574,50 @@
         "architect"
       ],
       "summary_en": "architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Fleming Lassen"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1902,
+        "latest": 1902,
+        "precision": "day",
+        "value": "1902-02-23"
+      },
+      "claim_ids": [
+        "claim-wd-q5458652-name-en",
+        "claim-wd-q5458652-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "death": {
+        "earliest": 1984,
+        "latest": 1984,
+        "precision": "day",
+        "value": "1984-02-18"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5458652"
+      },
+      "id": "person-wd-q5458652",
+      "last_verified": "2026-11-12",
+      "name_en": "Flemming Lassen",
+      "name_native": null,
+      "name_zh": "弗萊明·拉斯森",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Architect and designer (1902-1984)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -70190,6 +74497,46 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1909,
+        "latest": 1909,
+        "precision": "year",
+        "value": "1909"
+      },
+      "claim_ids": [
+        "claim-wd-q55078048-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2005,
+        "latest": 2005,
+        "precision": "year",
+        "value": "2005"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q55078048"
+      },
+      "id": "person-wd-q55078048",
+      "last_verified": "2026-11-12",
+      "name_en": "Jacques Tournant",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1966,
         "latest": 1966,
         "precision": "year",
@@ -70223,6 +74570,46 @@
         "architect"
       ],
       "summary_en": "Argentine architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1904,
+        "latest": 1904,
+        "precision": "year",
+        "value": "1904"
+      },
+      "claim_ids": [
+        "claim-wd-q55195998-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "RU"
+      ],
+      "death": {
+        "earliest": 1990,
+        "latest": 1990,
+        "precision": "year",
+        "value": "1990"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q55195998"
+      },
+      "id": "person-wd-q55195998",
+      "last_verified": "2026-11-12",
+      "name_en": "Erich Böckler",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Baltic German architect, art historian and photographer (1904–1990)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -73364,6 +77751,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1788,
+        "latest": 1788,
+        "precision": "day",
+        "value": "1788-02-02"
+      },
+      "claim_ids": [
+        "claim-wd-q5781935-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "SE"
+      ],
+      "death": {
+        "earliest": 1839,
+        "latest": 1839,
+        "precision": "year",
+        "value": "1839"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5781935"
+      },
+      "id": "person-wd-q5781935",
+      "last_verified": "2026-11-12",
+      "name_en": "Jonas Hagberg",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Swedish architect",
+      "summary_zh": "瑞典建築師",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Mohammad Salih al-Mazandarani",
         "Muḥammad Ṣāliḥ ibn Aḥmad Māzandarānī"
@@ -73805,6 +78232,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1949,
+        "latest": 1949,
+        "precision": "year",
+        "value": "1949"
+      },
+      "claim_ids": [
+        "claim-wd-q5833975-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5833975"
+      },
+      "id": "person-wd-q5833975",
+      "last_verified": "2026-11-12",
+      "name_en": "Enrique de Teresa",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Jose Damian Ortiz de Castro"
       ],
@@ -74187,6 +78654,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1908,
+        "latest": 1908,
+        "precision": "year",
+        "value": "1908"
+      },
+      "claim_ids": [
+        "claim-wd-q58880095-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2008,
+        "latest": 2008,
+        "precision": "year",
+        "value": "2008"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q58880095"
+      },
+      "id": "person-wd-q58880095",
+      "last_verified": "2026-11-12",
+      "name_en": "Claude Meyer-Lévy",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Walter Jung",
         "Valter Gabriel Jung"
@@ -74427,6 +78934,48 @@
         "architect"
       ],
       "summary_en": "Iranian architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Jose Yarnoz Larrosa"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1884,
+        "latest": 1884,
+        "precision": "year",
+        "value": "1884"
+      },
+      "claim_ids": [
+        "claim-wd-q5946144-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 1966,
+        "latest": 1966,
+        "precision": "day",
+        "value": "1966-12-26"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5946144"
+      },
+      "id": "person-wd-q5946144",
+      "last_verified": "2026-11-12",
+      "name_en": "José Yarnoz Larrosa",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -77120,6 +81669,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1944,
+        "latest": 1944,
+        "precision": "day",
+        "value": "1944-09-27"
+      },
+      "claim_ids": [
+        "claim-wd-q6150095-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6150095"
+      },
+      "id": "person-wd-q6150095",
+      "last_verified": "2026-11-12",
+      "name_en": "Jan Utzon",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Danish architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Alan Kenneth Hamer Vaughan-Richards"
       ],
@@ -77207,6 +81796,58 @@
         "architect"
       ],
       "summary_en": "German architect (1886-1970)",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
+        "Wojciech Mikołaj Zabłocki"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1930,
+        "latest": 1930,
+        "precision": "day",
+        "value": "1930-12-06"
+      },
+      "claim_ids": [
+        "claim-wd-q616330-aliases-en",
+        "claim-wd-q616330-birth",
+        "claim-wd-q616330-country-codes",
+        "claim-wd-q616330-death",
+        "claim-wd-q616330-external-ids",
+        "claim-wd-q616330-name-en",
+        "claim-wd-q616330-name-zh",
+        "claim-wd-q616330-name-zh-status",
+        "claim-wd-q616330-region",
+        "claim-wd-q616330-roles",
+        "claim-wd-q616330-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "PL"
+      ],
+      "death": {
+        "earliest": 2020,
+        "latest": 2020,
+        "precision": "day",
+        "value": "2020-12-05"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q616330"
+      },
+      "id": "person-wd-q616330",
+      "last_verified": "2026-11-12",
+      "name_en": "Wojciech Zabłocki",
+      "name_native": null,
+      "name_zh": "沃伊切赫·扎布沃茨基",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Polish architect and fencer (1930-2020)",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -78363,6 +83004,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q62566358-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q62566358"
+      },
+      "id": "person-wd-q62566358",
+      "last_verified": "2026-11-12",
+      "name_en": "Eugène Voltz",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Bruce J. Graham",
         "Bruce John Graham"
@@ -78548,6 +83229,46 @@
       "summary_en": "German architect (1885–1967)",
       "summary_zh": "",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1888,
+        "latest": 1888,
+        "precision": "day",
+        "value": "1888-04-13"
+      },
+      "claim_ids": [
+        "claim-wd-q62603411-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1948,
+        "latest": 1948,
+        "precision": "day",
+        "value": "1948-05-03"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q62603411"
+      },
+      "id": "person-wd-q62603411",
+      "last_verified": "2026-11-12",
+      "name_en": "René Dupire",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1888-1948)",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -78829,46 +83550,6 @@
       "summary_en": "British architect (1858–1933)",
       "summary_zh": "",
       "verification_status": "verified"
-    },
-    {
-      "aliases_en": [],
-      "aliases_zh": [],
-      "birth": {
-        "earliest": 1924,
-        "latest": 1924,
-        "precision": "day",
-        "value": "1924-01-14"
-      },
-      "claim_ids": [
-        "claim-wd-q6273796-name-en"
-      ],
-      "confidence": 0.6,
-      "country_codes": [
-        "JP"
-      ],
-      "death": {
-        "earliest": 2022,
-        "latest": 2022,
-        "precision": "day",
-        "value": "2022-05-15"
-      },
-      "entity_type": "person",
-      "external_ids": {
-        "wikidata": "Q6273796"
-      },
-      "id": "person-wd-q6273796",
-      "last_verified": "2026-11-12",
-      "name_en": "Takekuni Ikeda",
-      "name_native": null,
-      "name_zh": null,
-      "name_zh_status": "missing",
-      "region": "east_asia",
-      "roles": [
-        "architect"
-      ],
-      "summary_en": "Japanese architect (1924-2022)",
-      "summary_zh": "",
-      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -80540,6 +85221,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1957,
+        "latest": 1957,
+        "precision": "day",
+        "value": "1957-01-01"
+      },
+      "claim_ids": [
+        "claim-wd-q6409526-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6409526"
+      },
+      "id": "person-wd-q6409526",
+      "last_verified": "2026-11-12",
+      "name_en": "Kim Utzon",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Danish architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Ivan Il'ič Leonidov",
         "Ivan Ivanovich Leonidov",
@@ -81795,6 +86516,46 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q65677552-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2002,
+        "latest": 2002,
+        "precision": "day",
+        "value": "2002-10-03"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q65677552"
+      },
+      "id": "person-wd-q65677552",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean Lacaille",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1940,
         "latest": 1940,
         "precision": "year",
@@ -82346,6 +87107,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1885,
+        "latest": 1885,
+        "precision": "day",
+        "value": "1885-11-24"
+      },
+      "claim_ids": [
+        "claim-wd-q66424586-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1954,
+        "latest": 1954,
+        "precision": "day",
+        "value": "1954-05-06"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q66424586"
+      },
+      "id": "person-wd-q66424586",
+      "last_verified": "2026-11-12",
+      "name_en": "André Cordonnier",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Ferdinand Heinrich Ludwig von Arnim",
         "Heinrich Ludwig Ferdinand von Arnim"
@@ -82520,6 +87321,46 @@
         "designer"
       ],
       "summary_en": "German architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1904,
+        "latest": 1904,
+        "precision": "day",
+        "value": "1904-06-29"
+      },
+      "claim_ids": [
+        "claim-wd-q66737983-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1999,
+        "latest": 1999,
+        "precision": "day",
+        "value": "1999-02-18"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q66737983"
+      },
+      "id": "person-wd-q66737983",
+      "last_verified": "2026-11-12",
+      "name_en": "Louis Piessat",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -84462,6 +89303,46 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1921,
+        "latest": 1921,
+        "precision": "day",
+        "value": "1921-11-13"
+      },
+      "claim_ids": [
+        "claim-wd-q69806253-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1997,
+        "latest": 1997,
+        "precision": "day",
+        "value": "1997-09-08"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q69806253"
+      },
+      "id": "person-wd-q69806253",
+      "last_verified": "2026-11-12",
+      "name_en": "Michel Dikansky",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1847,
         "latest": 1847,
         "precision": "day",
@@ -86390,6 +91271,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1853,
+        "latest": 1853,
+        "precision": "year",
+        "value": "1853"
+      },
+      "claim_ids": [
+        "claim-wd-q72211012-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 1912,
+        "latest": 1912,
+        "precision": "year",
+        "value": "1912"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q72211012"
+      },
+      "id": "person-wd-q72211012",
+      "last_verified": "2026-11-12",
+      "name_en": "Tomás Rico Valarino",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "H. H. Richardson"
       ],
@@ -87895,6 +92816,60 @@
     },
     {
       "aliases_en": [
+        "Paul-Ernest Sanson",
+        "Paul Ernest Sanson",
+        "Ernest-Paul Sanson"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1836,
+        "latest": 1836,
+        "precision": "day",
+        "value": "1836-05-12"
+      },
+      "claim_ids": [
+        "claim-wd-q733304-aliases-en",
+        "claim-wd-q733304-birth",
+        "claim-wd-q733304-country-codes",
+        "claim-wd-q733304-death",
+        "claim-wd-q733304-external-ids",
+        "claim-wd-q733304-name-en",
+        "claim-wd-q733304-name-zh",
+        "claim-wd-q733304-name-zh-status",
+        "claim-wd-q733304-region",
+        "claim-wd-q733304-roles",
+        "claim-wd-q733304-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1918,
+        "latest": 1918,
+        "precision": "day",
+        "value": "1918-01-16"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q733304"
+      },
+      "id": "person-wd-q733304",
+      "last_verified": "2026-11-12",
+      "name_en": "Ernest Sanson",
+      "name_native": null,
+      "name_zh": "埃内斯特-保罗·桑松",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1836–1918)",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "aliases_en": [
         "Rifat Kamil Chadirji"
       ],
       "aliases_zh": [
@@ -88194,6 +93169,48 @@
     },
     {
       "aliases_en": [
+        "Jean-Gaston"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1907,
+        "latest": 1907,
+        "precision": "day",
+        "value": "1907-04-01"
+      },
+      "claim_ids": [
+        "claim-wd-q735161-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1989,
+        "latest": 1989,
+        "precision": "day",
+        "value": "1989-05-30"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q735161"
+      },
+      "id": "person-wd-q735161",
+      "last_verified": "2026-11-12",
+      "name_en": "Gaston Bardet",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect (1907-1989)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Robin Penleigh Gerald Boyd",
         "Robin Gerard Penleigh Boyd"
       ],
@@ -88379,6 +93396,46 @@
         "craftsperson"
       ],
       "summary_en": "Italian architect, painter, antiquarian and garden designer",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1928,
+        "latest": 1928,
+        "precision": "year",
+        "value": "1928"
+      },
+      "claim_ids": [
+        "claim-wd-q73625135-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "NL"
+      ],
+      "death": {
+        "earliest": 2018,
+        "latest": 2018,
+        "precision": "day",
+        "value": "2018-06-09"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q73625135"
+      },
+      "id": "person-wd-q73625135",
+      "last_verified": "2026-11-12",
+      "name_en": "J.L.C. Choisy",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -88946,6 +94003,46 @@
         "architect"
       ],
       "summary_en": "Indian architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1914,
+        "latest": 1914,
+        "precision": "day",
+        "value": "1914-08-03"
+      },
+      "claim_ids": [
+        "claim-wd-q75178300-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1999,
+        "latest": 1999,
+        "precision": "day",
+        "value": "1999-11-22"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q75178300"
+      },
+      "id": "person-wd-q75178300",
+      "last_verified": "2026-11-12",
+      "name_en": "Jacques Rabinel",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -91524,6 +96621,49 @@
     },
     {
       "aliases_en": [
+        "Henri Lacoste"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1885,
+        "latest": 1885,
+        "precision": "day",
+        "value": "1885-01-16"
+      },
+      "claim_ids": [
+        "claim-wd-q787480-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "BE"
+      ],
+      "death": {
+        "earliest": 1968,
+        "latest": 1968,
+        "precision": "day",
+        "value": "1968-04-28"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q787480"
+      },
+      "id": "person-wd-q787480",
+      "last_verified": "2026-11-12",
+      "name_en": "Henry Lacoste",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Belgian architect (1885-1968)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Nikolaus Pacassi",
         "Pacassi, Nicolò",
         "Pacassi, Nikolaus",
@@ -93765,6 +98905,46 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1903,
+        "latest": 1903,
+        "precision": "day",
+        "value": "1903-03-30"
+      },
+      "claim_ids": [
+        "claim-wd-q825228-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 1995,
+        "latest": 1995,
+        "precision": "day",
+        "value": "1995-04-17"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q825228"
+      },
+      "id": "person-wd-q825228",
+      "last_verified": "2026-11-12",
+      "name_en": "Bernhard Hermkes",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect (1903–1995)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1862,
         "latest": 1862,
         "precision": "day",
@@ -94234,6 +99414,46 @@
     },
     {
       "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1904,
+        "latest": 1904,
+        "precision": "year",
+        "value": "1904"
+      },
+      "claim_ids": [
+        "claim-wd-q83562678-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 1995,
+        "latest": 1995,
+        "precision": "year",
+        "value": "1995"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q83562678"
+      },
+      "id": "person-wd-q83562678",
+      "last_verified": "2026-11-12",
+      "name_en": "Hans Hoffmann",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect (1910-1990)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
       "aliases_zh": [
         "预浩",
         "喻浩"
@@ -94535,6 +99755,46 @@
       "summary_en": "Austrian–American architect (1892-1970)",
       "summary_zh": "",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1930,
+        "latest": 1930,
+        "precision": "day",
+        "value": "1930-11-07"
+      },
+      "claim_ids": [
+        "claim-wd-q84359398-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DE"
+      ],
+      "death": {
+        "earliest": 2013,
+        "latest": 2013,
+        "precision": "day",
+        "value": "2013-02-18"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q84359398"
+      },
+      "id": "person-wd-q84359398",
+      "last_verified": "2026-11-12",
+      "name_en": "Bodo Fleischer",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "German architect (1930–2013)",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -95155,6 +100415,46 @@
       "summary_en": "Austrian-born Australian architect",
       "summary_zh": "澳大利亞建築師",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1962,
+        "latest": 1962,
+        "precision": "year",
+        "value": "1962"
+      },
+      "claim_ids": [
+        "claim-wd-q85711046-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q85711046"
+      },
+      "id": "person-wd-q85711046",
+      "last_verified": "2026-11-12",
+      "name_en": "Gaëlle Lauriot-Prévost",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -96538,6 +101838,48 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Luis Lacasa"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1899,
+        "latest": 1899,
+        "precision": "year",
+        "value": "1899"
+      },
+      "claim_ids": [
+        "claim-wd-q9025150-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 1966,
+        "latest": 1966,
+        "precision": "year",
+        "value": "1966"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q9025150"
+      },
+      "id": "person-wd-q9025150",
+      "last_verified": "2026-11-12",
+      "name_en": "Luis Lacasa Navarro",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect (1899–1966)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -97420,6 +102762,48 @@
     },
     {
       "aliases_en": [
+        "Isak Gustav Clason"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1856,
+        "latest": 1856,
+        "precision": "day",
+        "value": "1856-07-30"
+      },
+      "claim_ids": [
+        "claim-wd-q931295-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "SE"
+      ],
+      "death": {
+        "earliest": 1930,
+        "latest": 1930,
+        "precision": "day",
+        "value": "1930-07-19"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q931295"
+      },
+      "id": "person-wd-q931295",
+      "last_verified": "2026-11-12",
+      "name_en": "Isak Gustaf Clason",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Swedish architect (1856–1930)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Johann von Steinbach"
       ],
       "aliases_zh": [],
@@ -97457,6 +102841,46 @@
         "architect"
       ],
       "summary_en": "German architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1861,
+        "latest": 1861,
+        "precision": "day",
+        "value": "1861-03-27"
+      },
+      "claim_ids": [
+        "claim-wd-q93419972-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 1915,
+        "latest": 1915,
+        "precision": "day",
+        "value": "1915-04-17"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q93419972"
+      },
+      "id": "person-wd-q93419972",
+      "last_verified": "2026-11-12",
+      "name_en": "Francisco de Paula Oliver Rolandi",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Spanish architect (1861-1915)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -98004,6 +103428,86 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": 1844,
+        "latest": 1844,
+        "precision": "day",
+        "value": "1844-07-31"
+      },
+      "claim_ids": [
+        "claim-wd-q942415-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "IT"
+      ],
+      "death": {
+        "earliest": 1935,
+        "latest": 1935,
+        "precision": "day",
+        "value": "1935-04-18"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q942415"
+      },
+      "id": "person-wd-q942415",
+      "last_verified": "2026-11-12",
+      "name_en": "Ignazio Guidi",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "patron"
+      ],
+      "summary_en": "Italian orientalist (1844-1935)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1926,
+        "latest": 1926,
+        "precision": "year",
+        "value": "1926"
+      },
+      "claim_ids": [
+        "claim-wd-q94351426-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 2005,
+        "latest": 2005,
+        "precision": "year",
+        "value": "2005"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q94351426"
+      },
+      "id": "person-wd-q94351426",
+      "last_verified": "2026-11-12",
+      "name_en": "Pierre Prunet",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1866,
         "latest": 1866,
         "precision": "day",
@@ -98199,6 +103703,46 @@
         "architect"
       ],
       "summary_en": "Dutch-Surinamese architect (1942–2024)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1929,
+        "latest": 1929,
+        "precision": "year",
+        "value": "1929"
+      },
+      "claim_ids": [
+        "claim-wd-q94683093-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "NL"
+      ],
+      "death": {
+        "earliest": 1999,
+        "latest": 1999,
+        "precision": "day",
+        "value": "1999-12-02"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q94683093"
+      },
+      "id": "person-wd-q94683093",
+      "last_verified": "2026-11-12",
+      "name_en": "Arie Hagoort",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "Dutch architect (1929–1999)",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -99716,6 +105260,50 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Josep Torres i Clave",
+        "Josep Torres Clavé"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1906,
+        "latest": 1906,
+        "precision": "year",
+        "value": "1906"
+      },
+      "claim_ids": [
+        "claim-wd-q957853-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 1939,
+        "latest": 1939,
+        "precision": "year",
+        "value": "1939"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q957853"
+      },
+      "id": "person-wd-q957853",
+      "last_verified": "2026-11-12",
+      "name_en": "Josep Torres i Clavé",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Spanish architect (1906–1939)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -100051,6 +105639,46 @@
       ],
       "summary_en": "Swedish architect (1914–2005)",
       "summary_zh": "瑞典建築師",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1922,
+        "latest": 1922,
+        "precision": "day",
+        "value": "1922-08-04"
+      },
+      "claim_ids": [
+        "claim-wd-q96033955-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q96033955"
+      },
+      "id": "person-wd-q96033955",
+      "last_verified": "2026-11-12",
+      "name_en": "Charles Sommermatter",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
       "verification_status": "candidate"
     },
     {
@@ -101254,6 +106882,52 @@
     },
     {
       "aliases_en": [
+        "Palacio Elissague",
+        "Alberto de Palacio Elissagüe",
+        "Alberto del Palacio Elissagüe",
+        "Alberto de Palacio y Elissague"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1856,
+        "latest": 1856,
+        "precision": "day",
+        "value": "1856-01-24"
+      },
+      "claim_ids": [
+        "claim-wd-q982959-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "ES"
+      ],
+      "death": {
+        "earliest": 1939,
+        "latest": 1939,
+        "precision": "day",
+        "value": "1939-05-18"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q982959"
+      },
+      "id": "person-wd-q982959",
+      "last_verified": "2026-11-12",
+      "name_en": "Alberto Palacio",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "engineer"
+      ],
+      "summary_en": "Spanish architect and bridge engineer (1856–1939)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Francesco Laparelli da Cortona"
       ],
       "aliases_zh": [],
@@ -101446,6 +107120,50 @@
     },
     {
       "aliases_en": [
+        "Kay Otto Fisker"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1893,
+        "latest": 1893,
+        "precision": "day",
+        "value": "1893-02-14"
+      },
+      "claim_ids": [
+        "claim-wd-q984344-name-en",
+        "claim-wd-q984344-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "DK"
+      ],
+      "death": {
+        "earliest": 1965,
+        "latest": 1965,
+        "precision": "day",
+        "value": "1965-06-21"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q984344"
+      },
+      "id": "person-wd-q984344",
+      "last_verified": "2026-11-12",
+      "name_en": "Kay Fisker",
+      "name_native": null,
+      "name_zh": "卡伊·菲斯克",
+      "name_zh_status": "source_label_candidate",
+      "region": "europe",
+      "roles": [
+        "architect",
+        "designer"
+      ],
+      "summary_en": "Danish architect (1893–1965)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Max Arwed Roßbach",
         "Max Arwed Rossbach",
         "Arwed Rossbach"
@@ -101485,6 +107203,46 @@
         "architect"
       ],
       "summary_en": "German architect (1844–1902)",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1897,
+        "latest": 1897,
+        "precision": "year",
+        "value": "1897"
+      },
+      "claim_ids": [
+        "claim-wd-q98526232-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1967,
+        "latest": 1967,
+        "precision": "year",
+        "value": "1967"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q98526232"
+      },
+      "id": "person-wd-q98526232",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean Démaret",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -101567,6 +107325,46 @@
         "architect"
       ],
       "summary_en": "Lebanese painter",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1887,
+        "latest": 1887,
+        "precision": "day",
+        "value": "1887-04-13"
+      },
+      "claim_ids": [
+        "claim-wd-q98635808-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "FR"
+      ],
+      "death": {
+        "earliest": 1970,
+        "latest": 1970,
+        "precision": "day",
+        "value": "1970-04-12"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q98635808"
+      },
+      "id": "person-wd-q98635808",
+      "last_verified": "2026-11-12",
+      "name_en": "Jean Viraut",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "europe",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
       "summary_zh": "",
       "verification_status": "candidate"
     },
@@ -101830,6 +107628,46 @@
       "summary_en": "German-Burkinabe architect based in Berlin, Germany since 1985 (born 1965)",
       "summary_zh": "德國-布基納法索建築師",
       "verification_status": "verified"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1886,
+        "latest": 1886,
+        "precision": "year",
+        "value": "1886"
+      },
+      "claim_ids": [
+        "claim-wd-q99693282-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "death": {
+        "earliest": 1952,
+        "latest": 1952,
+        "precision": "year",
+        "value": "1952"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q99693282"
+      },
+      "id": "person-wd-q99693282",
+      "last_verified": "2026-11-12",
+      "name_en": "Albert Ferran",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "north_america",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "French architect",
+      "summary_zh": "",
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],

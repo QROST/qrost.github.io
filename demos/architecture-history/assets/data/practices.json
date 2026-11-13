@@ -124,6 +124,42 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q106490031-external-ids",
+        "claim-wd-q106490031-name-en",
+        "claim-wd-q106490031-practice-type",
+        "claim-wd-q106490031-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q106490031"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q106490031",
+      "last_verified": "2026-11-12",
+      "name_en": "William Pereira & Associates",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "American architectural firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q106520535-country-codes",
         "claim-wd-q106520535-external-ids",
         "claim-wd-q106520535-name-en",
@@ -158,6 +194,42 @@
       "name_zh": null,
       "practice_type": "architecture_firm",
       "region": "north_america",
+      "summary_en": "architectural firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q106520604-external-ids",
+        "claim-wd-q106520604-name-en",
+        "claim-wd-q106520604-practice-type",
+        "claim-wd-q106520604-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q106520604"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q106520604",
+      "last_verified": "2026-11-12",
+      "name_en": "Marcel Breuer & Associates",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
       "summary_en": "architectural firm",
       "summary_zh": "",
       "verification_status": "verified"
@@ -911,6 +983,46 @@
       "practice_type": "architecture_firm",
       "region": "north_america",
       "summary_en": "architectural firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q134283229-country-codes",
+        "claim-wd-q134283229-external-ids",
+        "claim-wd-q134283229-name-en",
+        "claim-wd-q134283229-practice-type",
+        "claim-wd-q134283229-region",
+        "claim-wd-q134283229-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "CZ"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q134283229"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q134283229",
+      "last_verified": "2026-11-12",
+      "name_en": "CUBOID Architekti",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "europe",
+      "summary_en": "Czech architecture firm",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -1798,6 +1910,48 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q2804130-country-codes",
+        "claim-wd-q2804130-external-ids",
+        "claim-wd-q2804130-name-en",
+        "claim-wd-q2804130-name-zh",
+        "claim-wd-q2804130-practice-type",
+        "claim-wd-q2804130-region",
+        "claim-wd-q2804130-summary-en",
+        "claim-wd-q2804130-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "JP"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q2804130"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q2804130",
+      "last_verified": "2026-11-12",
+      "name_en": "Nikken Sekkei",
+      "name_native": null,
+      "name_zh": "日建设计",
+      "practice_type": "architecture_firm",
+      "region": "east_asia",
+      "summary_en": "Japanese architecture firm",
+      "summary_zh": "日本建筑公司",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q2868839-external-ids",
         "claim-wd-q2868839-name-en",
         "claim-wd-q2868839-practice-type",
@@ -1908,6 +2062,46 @@
       "practice_type": "architecture_firm",
       "region": "latin_america_caribbean",
       "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q29109825-country-codes",
+        "claim-wd-q29109825-external-ids",
+        "claim-wd-q29109825-name-en",
+        "claim-wd-q29109825-practice-type",
+        "claim-wd-q29109825-region",
+        "claim-wd-q29109825-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "NL"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q29109825"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q29109825",
+      "last_verified": "2026-11-12",
+      "name_en": "Rietveld, Van Dillen & Van Tricht",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "europe",
+      "summary_en": "Dutch architectural firm",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -2036,6 +2230,48 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q30947660-country-codes",
+        "claim-wd-q30947660-external-ids",
+        "claim-wd-q30947660-name-en",
+        "claim-wd-q30947660-name-zh",
+        "claim-wd-q30947660-practice-type",
+        "claim-wd-q30947660-region",
+        "claim-wd-q30947660-summary-en",
+        "claim-wd-q30947660-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "CN"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q30947660"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q30947660",
+      "last_verified": "2026-11-12",
+      "name_en": "Beijing Institute of Architectural Design",
+      "name_native": null,
+      "name_zh": "北京市建筑设计研究院有限公司",
+      "practice_type": "architecture_firm",
+      "region": "east_asia",
+      "summary_en": "architectural firm in China",
+      "summary_zh": "建筑设计企业",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q3100834-country-codes",
         "claim-wd-q3100834-external-ids",
         "claim-wd-q3100834-name-en",
@@ -2113,6 +2349,48 @@
       "region": "europe",
       "summary_en": "architectural partnership in Milan. Italy",
       "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q3359930-country-codes",
+        "claim-wd-q3359930-external-ids",
+        "claim-wd-q3359930-name-en",
+        "claim-wd-q3359930-name-zh",
+        "claim-wd-q3359930-practice-type",
+        "claim-wd-q3359930-region",
+        "claim-wd-q3359930-summary-en",
+        "claim-wd-q3359930-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "CN"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q3359930"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q3359930",
+      "last_verified": "2026-11-12",
+      "name_en": "P&T Architects & Engineers Ltd.",
+      "name_native": null,
+      "name_zh": "巴馬丹拿",
+      "practice_type": "architecture_firm",
+      "region": "east_asia",
+      "summary_en": "architectural firm in Hong Kong",
+      "summary_zh": "香港建築師事務所",
       "verification_status": "verified"
     },
     {
@@ -2597,6 +2875,48 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q52848380-country-codes",
+        "claim-wd-q52848380-external-ids",
+        "claim-wd-q52848380-name-en",
+        "claim-wd-q52848380-name-zh",
+        "claim-wd-q52848380-practice-type",
+        "claim-wd-q52848380-region",
+        "claim-wd-q52848380-summary-en",
+        "claim-wd-q52848380-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "CN"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q52848380"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q52848380",
+      "last_verified": "2026-11-12",
+      "name_en": "China Architecture Design & Research Group",
+      "name_native": null,
+      "name_zh": "中国建筑设计研究院",
+      "practice_type": "architecture_firm",
+      "region": "east_asia",
+      "summary_en": "architecture firm in Beijing, China",
+      "summary_zh": "建筑设计公司",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q5338939-country-codes",
         "claim-wd-q5338939-external-ids",
         "claim-wd-q5338939-name-en",
@@ -2827,6 +3147,46 @@
       "practice_type": "architecture_firm",
       "region": "unknown",
       "summary_en": "German architecture firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q5926939-country-codes",
+        "claim-wd-q5926939-external-ids",
+        "claim-wd-q5926939-name-en",
+        "claim-wd-q5926939-practice-type",
+        "claim-wd-q5926939-region",
+        "claim-wd-q5926939-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q5926939"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q5926939",
+      "last_verified": "2026-11-12",
+      "name_en": "Hubbell & Benes",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "north_america",
+      "summary_en": "American architectural firm",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -4066,6 +4426,42 @@
       "id": "practice-wd-q99761764",
       "last_verified": "2026-11-12",
       "name_en": "MDW Architecture",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "architectural firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q99761867-external-ids",
+        "claim-wd-q99761867-name-en",
+        "claim-wd-q99761867-practice-type",
+        "claim-wd-q99761867-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q99761867"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q99761867",
+      "last_verified": "2026-11-12",
+      "name_en": "SumProject architecture &  engineering",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",

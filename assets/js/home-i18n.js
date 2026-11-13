@@ -39,8 +39,8 @@
       zh: '建筑谱系 · 全球建筑史证据图谱',
     },
     cardArchitectureDesc: {
-      en: "A source-first bilingual browser for 2,747 revision-pinned works, 2,215 people, 102 practices and 93 places — searchable map, field-level evidence, raw relation review and a 9 × 8 coverage ledger, with 911 verified entity/relationship records.",
-      zh: "来源优先的双语浏览器：2,747 件固定修订作品、2,215 位人物、102 家事务所与 93 个地点；可搜索地图、字段级证据、原始关系复核及 9 × 8 覆盖账本，已核验 911 条实体/关系记录。",
+      en: "A source-first bilingual browser for 3,443 revision-pinned works, 2,355 people, 112 practices and 100 places — searchable map, field-level evidence, raw relation review and a 9 × 8 coverage ledger, with 936 verified entity/relationship records.",
+      zh: "来源优先的双语浏览器：3,443 件固定修订作品、2,355 位人物、112 家事务所与 100 个地点；可搜索地图、字段级证据、原始关系复核及 9 × 8 覆盖账本，已核验 936 条实体/关系记录。",
     },
     cardHousingTitle: {
       en: 'Where to live well — and cheap · China small-city housing',
