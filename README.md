@@ -2,7 +2,7 @@
 
 ## Demo structure
 
-- `demos/architecture-history/` — 建筑谱系 · Architecture Lineages. A source-first bilingual browser for 1,847 revision-pinned works, 2,139 people, 89 practices and 81 places — searchable map, field-level evidence, raw relation review and a 9 × 8 coverage ledger, with 881 verified entity/relationship records.
+- `demos/architecture-history/` — 建筑谱系 · Architecture Lineages. A source-first bilingual browser for 3,443 revision-pinned works, 2,355 people, 112 practices and 100 places — searchable map, field-level evidence, raw relation review and a 9 × 8 coverage ledger, with 936 verified entity/relationship records.
 - `demos/wfoe-china/` contains the China WFOE + hiring costs interactive page.
 - `demos/china-housing/` — small-city housing & rent data visualization.
 - `demos/china-auto/` — China auto city atlas: 28 cities (17 core + 11 specialist), 168 organizations, 128 facility records, and 56 auto media titles (including national review-video KOLs) grouped by beat; every org has a headquarters city, explicit founded/ownership/listing/headcount/sales/plant states, pinyin/initials search, HQ vs plant vs battery/software roles, clusters and sourced 2025 local output figures.
