@@ -16,6 +16,7 @@ import os
 import tempfile
 import time
 import urllib.error
+import http.client
 import urllib.request
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -133,7 +134,7 @@ def request_bytes(
                 else 2 ** attempt
             )
             time.sleep(min(delay, 30))
-        except (TimeoutError, urllib.error.URLError, ConnectionError):
+        except (TimeoutError, urllib.error.URLError, ConnectionError, http.client.IncompleteRead, http.client.HTTPException):
             if attempt + 1 == attempts:
                 raise
             time.sleep(min(2 ** attempt, 20))
