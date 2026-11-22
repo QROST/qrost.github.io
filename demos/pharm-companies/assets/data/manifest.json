@@ -1,9 +1,9 @@
 {
   "build_time": "2026-06-20T00:00:00Z",
-  "data_version": "8954c929b8",
+  "data_version": "6be0c9c8e4",
   "total_companies": 1913,
   "total_sites": 3036,
-  "total_products": 2588,
+  "total_products": 2582,
   "total_modalities": 21,
   "total_therapeutic_areas": 16,
   "total_milestones": 71,
@@ -13,13 +13,13 @@
   "total_deals": 87,
   "shard_counts": {
     "europe": 390,
-    "greater_china": 912,
+    "greater_china": 908,
     "japan": 141,
     "latam": 28,
     "mea": 50,
-    "north_america": 503,
+    "north_america": 502,
     "oceania": 20,
-    "other_apac": 544
+    "other_apac": 543
   },
   "company_type_counts": {
     "cdmo_cro": 128,
@@ -49,15 +49,15 @@
     "biosimilar": 87,
     "fusion_protein": 33,
     "biologic": 186,
-    "small_molecule": 1418,
-    "mab": 153,
+    "small_molecule": 1416,
+    "mab": 152,
     "bispecific": 34,
-    "adc": 40,
-    "vaccine": 135,
+    "adc": 39,
+    "vaccine": 134,
     "peptide": 86,
     "gene_therapy": 25,
     "radioligand": 29,
-    "cell_therapy": 86,
+    "cell_therapy": 85,
     "rna_oligo": 38,
     "tcm": 238
   },
@@ -65,17 +65,17 @@
     "biosimilar": 87,
     "fusion-protein": 33,
     "recombinant-protein": 186,
-    "small-molecule": 1418,
-    "mab": 153,
+    "small-molecule": 1416,
+    "mab": 152,
     "bispecific-antibody": 34,
-    "adc": 40,
+    "adc": 39,
     "viral-vector-vaccine": 25,
     "peptide": 86,
     "aav-gene-therapy": 25,
     "radioligand": 29,
     "protein-subunit-vaccine": 35,
-    "inactivated-vaccine": 55,
-    "car-t": 63,
+    "inactivated-vaccine": 54,
+    "car-t": 62,
     "antisense-oligo": 9,
     "msc-therapy": 20,
     "mrna-vaccine": 20,
@@ -86,12 +86,12 @@
   },
   "ta_counts": {
     "immunology": 229,
-    "oncology": 505,
+    "oncology": 501,
     "neuroscience": 294,
     "rare-disease": 164,
-    "hematology": 168,
+    "hematology": 167,
     "nephrology": 34,
-    "vaccines": 91,
+    "vaccines": 90,
     "dermatology": 57,
     "infectious-disease": 304,
     "womens-health": 57,
@@ -109,7 +109,7 @@
     {
       "id": "greater_china",
       "file": "catalog/greater_china.json",
-      "count": 912
+      "count": 908
     },
     {
       "id": "japan",
@@ -129,7 +129,7 @@
     {
       "id": "north_america",
       "file": "catalog/north_america.json",
-      "count": 503
+      "count": 502
     },
     {
       "id": "oceania",
@@ -139,7 +139,7 @@
     {
       "id": "other_apac",
       "file": "catalog/other_apac.json",
-      "count": 544
+      "count": 543
     }
   ]
 }

@@ -422,18 +422,42 @@ def main() -> int:
         warns.append(f"min-count: only {len(modalities)} modalities (target full vocab)")
 
     # ---- report ----
+    # Optional cross-refs to entities we deliberately don't catalog are soft by design;
+    # collapse them into grouped summaries so actionable warnings stay visible. Detail
+    # per record remains available via --verbose.
+    verbose = "--verbose" in sys.argv
+    OPTIONAL_REF_KEYS = ("therapeutic_focus", "parent_id", "originator_product_id",
+                         "incumbent_product_ids", "representative_product_ids")
+    emitted = 0
+    groups: dict[tuple[str, str], list[str]] = {}
     for w in warns:
+        m = re.match(r".+?: (\w+) -> (?:uncatalogued|unknown) (\w+)", w)
+        if m and m.group(1) in OPTIONAL_REF_KEYS and not verbose:
+            groups.setdefault((m.group(1), m.group(2)), []).append(w)
+            continue
         print(f"WARN: {w}", file=sys.stderr)
+        emitted += 1
+    for (field, kind), members in sorted(groups.items()):
+        targets: dict[str, int] = {}
+        for w2 in members:
+            t = re.search(r"-> (?:uncatalogued|unknown) \w+ (.+)$", w2)
+            if t:
+                targets[t.group(1)] = targets.get(t.group(1), 0) + 1
+        top = ", ".join(f"{k}×{v}" for k, v in sorted(targets.items(), key=lambda kv: -kv[1])[:5])
+        print(f"WARN: {len(members)} optional {field} refs -> uncatalogued {kind} "
+              f"(by design, not individually actionable; --verbose for detail): top {top}",
+              file=sys.stderr)
+        emitted += 1
     if errors:
         for e in errors:
             print(f"ERROR: {e}", file=sys.stderr)
-        print(f"\nValidation FAILED: {len(errors)} error(s), {len(warns)} warning(s)", file=sys.stderr)
+        print(f"\nValidation FAILED: {len(errors)} error(s), {emitted} warning(s)", file=sys.stderr)
         return 1
     src = "tmp/research" if using_research else "assets/data"
     print(f"Validation OK [{src}]: {len(companies)} companies, {len(sites)} sites, "
           f"{len(products)} products, {len(modalities)} modalities, {len(tas)} TAs, "
           f"{len(milestones)} milestones, {len(countries)} countries "
-          f"({len(warns)} warning(s)).")
+          f"({emitted} warning(s) grouped from {len(warns)} raw).")
     return 0
 
 

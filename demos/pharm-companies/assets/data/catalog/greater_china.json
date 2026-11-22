@@ -15969,54 +15969,6 @@
       ]
     },
     {
-      "id": "zanubrutinib-beigene",
-      "name_zh": "泽布替尼",
-      "name_en": "Zanubrutinib",
-      "brand_name": "BRUKINSA",
-      "company_id": "beigene-star",
-      "modality_id": "small-molecule",
-      "therapeutic_area_id": "hematology",
-      "indication_zh": "慢性淋巴细胞白血病、套细胞淋巴瘤、边缘区淋巴瘤等多种 B 细胞恶性肿瘤",
-      "indication_en": "CLL/SLL, MCL, MZL, WM and other B-cell malignancies; approved in US, EU, China and 70+ countries",
-      "approval_status": "approved",
-      "is_blockbuster": true,
-      "drug_class": "originator",
-      "region": "greater_china",
-      "confidence": 0.95,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.biospace.com/press-releases/beigene-announces-fourth-quarter-and-full-year-2024-financial-results-and-business-updates",
-          "title": "BeiGene 2024 Full Year Results",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "tislelizumab-beigene",
-      "name_zh": "替雷利珠单抗",
-      "name_en": "Tislelizumab",
-      "brand_name": "TEVIMBRA",
-      "company_id": "beigene-star",
-      "modality_id": "mab",
-      "therapeutic_area_id": "oncology",
-      "indication_zh": "多种实体瘤及血液肿瘤，包括非小细胞肺癌、食道癌、肝细胞癌等",
-      "indication_en": "NSCLC, esophageal SCC, HCC, gastric/GEJ cancer and other solid tumors; approved in US (esophageal SCC) and China",
-      "approval_status": "approved",
-      "is_blockbuster": false,
-      "drug_class": "originator",
-      "region": "greater_china",
-      "confidence": 0.92,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.biospace.com/press-releases/beigene-announces-fourth-quarter-and-full-year-2024-financial-results-and-business-updates",
-          "title": "BeiGene 2024 Full Year Results",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
       "id": "toripalimab-junshi",
       "name_zh": "托利帕利单抗",
       "name_en": "Toripalimab",
@@ -16468,30 +16420,6 @@
         {
           "url": "https://www.businesswire.com/news/home/20200717005123/en/Bio-Thera-Solutions-Partners-Pharmapark-Market-BAT2506-Russia",
           "title": "Bio-Thera BAT2506 Partnership",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "9mw2821-mabwell",
-      "name_zh": "9MW2821（Nectin-4靶向ADC）",
-      "name_en": "9MW2821 (Anti-Nectin-4 ADC)",
-      "brand_name": "9MW2821",
-      "company_id": "mabwell-bioscience",
-      "modality_id": "adc",
-      "therapeutic_area_id": "oncology",
-      "indication_zh": "宫颈癌及其他Nectin-4高表达实体肿瘤",
-      "indication_en": "Cervical cancer (Phase III) and other solid tumors expressing Nectin-4; pivotal trial ongoing",
-      "approval_status": "ph3",
-      "is_blockbuster": false,
-      "drug_class": "originator",
-      "region": "greater_china",
-      "confidence": 0.88,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.prnewswire.com/news-releases/mabwell-releases-preclinical-study-results-of-multiple-innovative-drugs-released-at-the-2024-aacr-annual-meeting-302117739.html",
-          "title": "Mabwell 2024 AACR Pipeline",
           "accessed": "2026-06"
         }
       ]
@@ -17691,30 +17619,6 @@
           "url": "https://www.nbdavid.com/En/about.html",
           "title": "Ningbo David Medical Device About",
           "accessed": "2026-06"
-        }
-      ],
-      "confidence": 0.6,
-      "last_verified": "2026-06"
-    },
-    {
-      "id": "dizal-sunvozertinib",
-      "name_zh": "舒沃替尼",
-      "name_en": "Sunvozertinib",
-      "brand_name": "ZEGFROVY",
-      "company_id": "dizal",
-      "modality_id": "small-molecule",
-      "therapeutic_area_id": "oncology",
-      "indication_zh": "EGFR外显子20插入突变阳性的局部晚期或转移性非小细胞肺癌（NSCLC）",
-      "indication_en": "Locally advanced or metastatic NSCLC with EGFR exon 20 insertion mutations",
-      "approval_status": "approved",
-      "drug_class": "originator",
-      "is_blockbuster": false,
-      "region": "greater_china",
-      "sources": [
-        {
-          "url": "https://flcube.com/?p=32795",
-          "title": "Dizal Pharmaceutical 2024 Revenue – FL Cube",
-          "accessed": "2026-06-19"
         }
       ],
       "confidence": 0.6,
