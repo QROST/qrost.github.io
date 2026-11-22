@@ -1,7 +1,7 @@
 {
   "catalog_profile": {
     "evidence_by_source_family": {
-      "editorial": 240,
+      "editorial": 259,
       "wikimedia": 32955
     },
     "periods": {
@@ -100,7 +100,7 @@
       }
     },
     "verification": {
-      "candidate": 6645,
+      "candidate": 6664,
       "verified": 931
     },
     "work_type_mapping": {
@@ -110,14 +110,14 @@
     }
   },
   "counts": {
-    "candidate_entities_and_relations": 6645,
-    "claims": 32357,
+    "candidate_entities_and_relations": 6664,
+    "claims": 32376,
     "contested_entities_and_relations": 0,
     "declined_entities_and_relations": 0,
     "people": 2372,
     "places": 102,
     "practices": 120,
-    "relations": 1457,
+    "relations": 1476,
     "reviewers": 2,
     "sources": 13,
     "verified_entities_and_relations": 931,
@@ -737,15 +737,15 @@
     "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "e5764aa08b99a0ccbe97ee062e561171538fd435e658c51d43edb8a08078f1cd",
+  "data_version": "aadf6f4e8dd3c8399ce23a1893d3451f20a0b834be31816f264bf50410853c0c",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "a89cfb3fd582b3798d6b5ee7b55d6927d3730ad6e919bce0d8c98366a601bd2b"
+      "sha256": "86dd857aa462febd942152c44b34aee526133b6471cd9947836ea5af1961bea3"
     },
     "claims.json": {
-      "count": 32357,
-      "sha256": "12029f4744f209fcf278a976c562ab3140a398789939dc31574ee9e6592f8f64"
+      "count": 32376,
+      "sha256": "6419029cb0245f00682e4cbc5dbf713e85348fdef802835fada2ccd2893c7afd"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
@@ -764,8 +764,8 @@
       "sha256": "1752bd68d46ba79c8e6bb99baa9043db39b0830df0d3dffad4473a2189926e8d"
     },
     "relations.json": {
-      "count": 1457,
-      "sha256": "dbe696563d89270c76a05e28fb191b12fc50ce4207e173f5bc196e600840fa24"
+      "count": 1476,
+      "sha256": "55711bfcc8ced11fd63f899f20f352798df4bdf85b92c7d3bf4ab22dd6541e73"
     },
     "reviewers.json": {
       "count": 2,
@@ -830,6 +830,10 @@
     "source-snapshots/editorial-research-2026-11-21-22cd369e63a0.json": {
       "count": 1,
       "sha256": "6933078ce5b285ec5e0c189d75f391d94e96df5b469db83d0f2908ebd693d02b"
+    },
+    "source-snapshots/editorial-research-2026-11-22-df9b4b3f1b11.json": {
+      "count": 1,
+      "sha256": "ecd1ed4c3bf0211187892013aff279b504f05aa2141c78b30192b2a99f9de2b6"
     },
     "source-snapshots/wikidata-coverage-2026-08-07-041c94fde1c9.json": {
       "count": 1,

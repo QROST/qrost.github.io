@@ -133,6 +133,72 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q1813434-q511335",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Kjetil Trædal Thorsen worked in the office of Snøhetta. Source quote: \"In 1987, he co-founded the architecture firm Snøhetta.\" (Kjetil Thorsen).",
+        "note_zh": "履历任职边：Kjetil Trædal Thorsen 曾在 Snøhetta 门下任职。来源引文：\"In 1987, he co-founded the architecture firm Snøhetta.\"（Kjetil Thorsen）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1813434",
+      "id": "relation-res-worked-at-practice-q1813434-q511335",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q511335",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q21056425-q2015762",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Amale Andraos worked in the office of Office for Metropolitan Architecture. Source quote: \"went on to work for Koolhaas and OMA in Rotterdam\" (Holding Together: WORKac's Amale Andraos on Focused Creativity, Setbacks, Advances, and Generosity).",
+        "note_zh": "履历任职边：Amale Andraos 曾在 Office for Metropolitan Architecture 门下任职。来源引文：\"went on to work for Koolhaas and OMA in Rotterdam\"（Holding Together: WORKac's Amale Andraos on Focused Creativity, Setbacks, Advances, and Generosity）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q21056425",
+      "id": "relation-res-worked-at-practice-q21056425-q2015762",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q2132569-q2015762",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Xaveer De Geyter worked in the office of Office for Metropolitan Architecture. Source quote: \"During the eighties and nineties, he was project leader at OMA.\" (Xaveer De Geyter | Rice School of Architecture).",
+        "note_zh": "履历任职边：Xaveer De Geyter 曾在 Office for Metropolitan Architecture 门下任职。来源引文：\"During the eighties and nineties, he was project leader at OMA.\"（Xaveer De Geyter | Rice School of Architecture）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2132569",
+      "id": "relation-res-worked-at-practice-q2132569-q2015762",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q2015762",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q225927-q2015762",
       "confidence": 0.5,
       "context": {
@@ -155,6 +221,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q232364-q2015762",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Rem Koolhaas worked in the office of Office for Metropolitan Architecture. Source quote: \"OMA was founded in 1975 by Dutch architect Rem Koolhaas and Greek architect Elia Zenghelis\" (Office for Metropolitan Architecture).",
+        "note_zh": "履历任职边：Rem Koolhaas 曾在 Office for Metropolitan Architecture 门下任职。来源引文：\"OMA was founded in 1975 by Dutch architect Rem Koolhaas and Greek architect Elia Zenghelis\"（Office for Metropolitan Architecture）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q232364",
+      "id": "relation-res-worked-at-practice-q232364-q2015762",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q23664178-q6000974",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Ivan Harbour worked in the office of Rogers Stirk Harbour + Partners. Source quote: \"When Harbour joined Rogers Stirk Harbour + Partners in 1985, he started as part of a team working on the Richard Rogers Lloyd's building in London.\" (Ivan Harbour).",
+        "note_zh": "履历任职边：Ivan Harbour 曾在 Rogers Stirk Harbour + Partners 门下任职。来源引文：\"When Harbour joined Rogers Stirk Harbour + Partners in 1985, he started as part of a team working on the Richard Rogers Lloyd's building in London.\"（Ivan Harbour）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q23664178",
+      "id": "relation-res-worked-at-practice-q23664178-q6000974",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q6000974",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q237412-q7691420",
       "confidence": 0.5,
       "context": {
@@ -174,6 +284,50 @@
       ],
       "relation_type": "worked_at_practice",
       "to_id": "practice-wd-q7691420",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q23883926-q6000974",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Graham Stirk worked in the office of Rogers Stirk Harbour + Partners. Source quote: \"My personal experience of Richard began in January 1983 when I first worked in his practice as a young architect\" (Richard Rogers Architect 1933 - 2021 – News – RSHP).",
+        "note_zh": "履历任职边：Graham Stirk 曾在 Rogers Stirk Harbour + Partners 门下任职。来源引文：\"My personal experience of Richard began in January 1983 when I first worked in his practice as a young architect\"（Richard Rogers Architect 1933 - 2021 – News – RSHP）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q23883926",
+      "id": "relation-res-worked-at-practice-q23883926-q6000974",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q6000974",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q2745982-q308776",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Jacques Herzog worked in the office of Herzog & de Meuron. Source quote: \"Herzog & de Meuron Basel Ltd. was founded in 1978 in Basel, Switzerland, by Jacques Herzog and Pierre de Meuron, graduates of the Swiss Federal Institute of Technology (ETH Zurich) in 1977.\" (Herzog & de Meuron).",
+        "note_zh": "履历任职边：Jacques Herzog 曾在 Herzog & de Meuron 门下任职。来源引文：\"Herzog & de Meuron Basel Ltd. was founded in 1978 in Basel, Switzerland, by Jacques Herzog and Pierre de Meuron, graduates of the Swiss Federal Institute of Technology (ETH Zurich) in 1977.\"（Herzog & de Meuron）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2745982",
+      "id": "relation-res-worked-at-practice-q2745982-q308776",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q308776",
       "verification_status": "candidate"
     },
     {
@@ -243,6 +397,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q3174960-q308776",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Pierre de Meuron worked in the office of Herzog & de Meuron. Source quote: \"Herzog & de Meuron Basel Ltd. was founded in 1978 in Basel, Switzerland, by Jacques Herzog and Pierre de Meuron, graduates of the Swiss Federal Institute of Technology (ETH Zurich) in 1977.\" (Herzog & de Meuron).",
+        "note_zh": "履历任职边：Pierre de Meuron 曾在 Herzog & de Meuron 门下任职。来源引文：\"Herzog & de Meuron Basel Ltd. was founded in 1978 in Basel, Switzerland, by Jacques Herzog and Pierre de Meuron, graduates of the Swiss Federal Institute of Technology (ETH Zurich) in 1977.\"（Herzog & de Meuron）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3174960",
+      "id": "relation-res-worked-at-practice-q3174960-q308776",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q308776",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q333585-q117115854",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Toyo Ito worked in the office of Toyo Ito & Associates, Architects. Source quote: \"In 1979, the studio name was changed to Toyo Ito & Associates.\" (Toyo Ito).",
+        "note_zh": "履历任职边：Toyo Ito 曾在 Toyo Ito & Associates, Architects 门下任职。来源引文：\"In 1979, the studio name was changed to Toyo Ito & Associates.\"（Toyo Ito）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q333585",
+      "id": "relation-res-worked-at-practice-q333585-q117115854",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q117115854",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q3567241-q7691420",
       "confidence": 0.5,
       "context": {
@@ -309,6 +507,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q429817-q2481701",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Bjarke Ingels worked in the office of BIG. Source quote: \"Ingels established BIG in late 2006 after he and De Smedt closed down PLOT.\" (Bjarke Ingels Group).",
+        "note_zh": "履历任职边：Bjarke Ingels 曾在 BIG 门下任职。来源引文：\"Ingels established BIG in late 2006 after he and De Smedt closed down PLOT.\"（Bjarke Ingels Group）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q429817",
+      "id": "relation-res-worked-at-practice-q429817-q2481701",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q2481701",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q440786-q6000974",
       "confidence": 0.5,
       "context": {
@@ -353,6 +573,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q444257-q7628180",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Jeanne Gang worked in the office of Studio Gang. Source quote: \"The firm was founded by Jeanne Gang in 1997.\" (Studio Gang).",
+        "note_zh": "履历任职边：Jeanne Gang 曾在 Studio Gang 门下任职。来源引文：\"The firm was founded by Jeanne Gang in 1997.\"（Studio Gang）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q444257",
+      "id": "relation-res-worked-at-practice-q444257-q7628180",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q7628180",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q469961-q6804385",
       "confidence": 0.5,
       "context": {
@@ -375,6 +617,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q47780-q8064602",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Zaha Hadid worked in the office of Zaha Hadid Architects. Source quote: \"a British architecture and design firm founded by architect Zaha Hadid (1950–2016)\" (Zaha Hadid Architects).",
+        "note_zh": "履历任职边：Zaha Hadid 曾在 Zaha Hadid Architects 门下任职。来源引文：\"a British architecture and design firm founded by architect Zaha Hadid (1950–2016)\"（Zaha Hadid Architects）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q47780",
+      "id": "relation-res-worked-at-practice-q47780-q8064602",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q8064602",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q5180916-q511335",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Craig Dykers worked in the office of Snøhetta. Source quote: \"Craig Edward Dykers is an American architect and co-founder of the architecture firm, Snøhetta.\" (Craig Edward Dykers).",
+        "note_zh": "履历任职边：Craig Dykers 曾在 Snøhetta 门下任职。来源引文：\"Craig Edward Dykers is an American architect and co-founder of the architecture firm, Snøhetta.\"（Craig Edward Dykers）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q5180916",
+      "id": "relation-res-worked-at-practice-q5180916-q511335",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q511335",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q5321862-q107005355",
       "confidence": 0.5,
       "context": {
@@ -394,6 +680,28 @@
       ],
       "relation_type": "worked_at_practice",
       "to_id": "practice-wd-q107005355",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q55233237-q2015762",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Floris Alkemade worked in the office of Office for Metropolitan Architecture. Source quote: \"Daarna werkte hij 18 jaar voor het architectenbureau OMA van Rem Koolhaas, waar hij de laatste zeven of acht jaar ook partner was.\" (Floris Alkemade).",
+        "note_zh": "履历任职边：Floris Alkemade 曾在 Office for Metropolitan Architecture 门下任职。来源引文：\"Daarna werkte hij 18 jaar voor het architectenbureau OMA van Rem Koolhaas, waar hij de laatste zeven of acht jaar ook partner was.\"（Floris Alkemade）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q55233237",
+      "id": "relation-res-worked-at-practice-q55233237-q2015762",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q2015762",
       "verification_status": "candidate"
     },
     {
@@ -1101,6 +1409,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q15845329-q317135",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Andrea Maffei worked in the office of Arata Isozaki. Source quote: \"Inizia la sua carriera a Tokyo come Associato di Arata Isozaki dal 1997 al 2004\" (Andrea Maffei (architetto)).",
+        "note_zh": "履历任职边：Andrea Maffei 曾在 Arata Isozaki 门下任职。来源引文：\"Inizia la sua carriera a Tokyo come Associato di Arata Isozaki dal 1997 al 2004\"（Andrea Maffei (architetto)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q15845329",
+      "id": "relation-res-worked-for-q15845329-q317135",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q317135",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q159612-q57588",
       "confidence": 0.5,
       "context": {
@@ -1497,6 +1827,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q21056425-q232364",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Amale Andraos worked in the office of Rem Koolhaas. Source quote: \"went on to work for Koolhaas and OMA in Rotterdam\" (Holding Together: WORKac's Amale Andraos on Focused Creativity, Setbacks, Advances, and Generosity).",
+        "note_zh": "履历任职边：Amale Andraos 曾在 Rem Koolhaas 门下任职。来源引文：\"went on to work for Koolhaas and OMA in Rotterdam\"（Holding Together: WORKac's Amale Andraos on Focused Creativity, Setbacks, Advances, and Generosity）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q21056425",
+      "id": "relation-res-worked-for-q21056425-q232364",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q232364",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q212312-q167073",
       "confidence": 0.5,
       "context": {
@@ -1560,6 +1912,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q3886555",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q2132569-q232364",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Xaveer De Geyter worked in the office of Rem Koolhaas. Source quote: \"During the eighties and nineties, he was project leader at OMA.\" (Xaveer De Geyter | Rice School of Architecture).",
+        "note_zh": "履历任职边：Xaveer De Geyter 曾在 Rem Koolhaas 门下任职。来源引文：\"During the eighties and nineties, he was project leader at OMA.\"（Xaveer De Geyter | Rice School of Architecture）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2132569",
+      "id": "relation-res-worked-for-q2132569-q232364",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q232364",
       "verification_status": "candidate"
     },
     {
@@ -3631,6 +4005,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q4914145-q268732",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Bing Thom worked in the office of Arthur Erickson. Source quote: \"In 1973, his former teacher Arthur Erickson Architects asked him to act as project director on the Robson Square Courthouse Complex.\" (Bing Thom).",
+        "note_zh": "履历任职边：Bing Thom 曾在 Arthur Erickson 门下任职。来源引文：\"In 1973, his former teacher Arthur Erickson Architects asked him to act as project director on the Robson Square Courthouse Complex.\"（Bing Thom）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q4914145",
+      "id": "relation-res-worked-for-q4914145-q268732",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q268732",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q4914145-q312827",
       "confidence": 0.5,
       "context": {
@@ -3892,6 +4288,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q106108",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q55233237-q232364",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Floris Alkemade worked in the office of Rem Koolhaas. Source quote: \"Daarna werkte hij 18 jaar voor het architectenbureau OMA van Rem Koolhaas, waar hij de laatste zeven of acht jaar ook partner was.\" (Floris Alkemade).",
+        "note_zh": "履历任职边：Floris Alkemade 曾在 Rem Koolhaas 门下任职。来源引文：\"Daarna werkte hij 18 jaar voor het architectenbureau OMA van Rem Koolhaas, waar hij de laatste zeven of acht jaar ook partner was.\"（Floris Alkemade）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q55233237",
+      "id": "relation-res-worked-for-q55233237-q232364",
+      "last_verified": "2026-11-22",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q232364",
       "verification_status": "candidate"
     },
     {

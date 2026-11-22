@@ -214,6 +214,111 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q1813434/worked_for/q511335#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q1813434/Q511335",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "d3aa24fba0aa556d6bb8e797dd629c69f946b29c364688449974335d57b00a61",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Kjetil_Tr%C3%A6dal_Thorsen"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q1813434-q511335",
+      "object": {
+        "entity_id": "practice-wd-q511335"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q1813434"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q1813434-q511335",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q21056425/worked_for/q2015762#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q21056425/Q2015762",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "a91d16d68ed66896fe59778866967425427ffe24294a1742de8a1d2f55a9db11",
+          "support": "explicit",
+          "url": "https://www.madamearchitect.org/interviews/2022/8/1/workacs-amale-andraos"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q21056425-q2015762",
+      "object": {
+        "entity_id": "practice-wd-q2015762"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q21056425"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q21056425-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q2132569/worked_for/q2015762#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q2132569/Q2015762",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "44607668bc63130dd1ed95d8952b17269270ffa0d8fbfcce4806f002bc73d3b4",
+          "support": "explicit",
+          "url": "https://arch.rice.edu/latest/events/xaveer-de-geyter-0"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q2132569-q2015762",
+      "object": {
+        "entity_id": "practice-wd-q2015762"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q2132569"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q2132569-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-08-22",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -249,6 +354,76 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q232364/worked_for/q2015762#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q232364/Q2015762",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "c7010c91ec329e2123c0ad308b40fbc79e5b08aced37f73a5bb0f7ba9101d047",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Office_for_Metropolitan_Architecture"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q232364-q2015762",
+      "object": {
+        "entity_id": "practice-wd-q2015762"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q232364"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q232364-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q23664178/worked_for/q6000974#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q23664178/Q6000974",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "81b138078a9c1102b7ede1a21bb79aea44ba069edf76b906120cf6b0b7298fb8",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Ivan_Harbour"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q23664178-q6000974",
+      "object": {
+        "entity_id": "practice-wd-q6000974"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q23664178"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q23664178-q6000974",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-21",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -278,6 +453,76 @@
       "reviewed_at": "2026-11-21",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-at-practice-q237412-q7691420",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q23883926/worked_for/q6000974#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q23883926/Q6000974",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "143ec16848b8af0654002a799d49b6cb6fc91dbccbada8eca530818f7ba68b18",
+          "support": "explicit",
+          "url": "https://www.rshp.com/news/richard-rogers-architect-1933-2021/"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q23883926-q6000974",
+      "object": {
+        "entity_id": "practice-wd-q6000974"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q23883926"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q23883926-q6000974",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q2745982/worked_for/q308776#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q2745982/Q308776",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "85c84cfdb46cd3f7bbdf94c54839e788c3da4d7e7e39a26ee1580e08ebd6b9f2",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Herzog_%26_de_Meuron"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q2745982-q308776",
+      "object": {
+        "entity_id": "practice-wd-q308776"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q2745982"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q2745982-q308776",
       "verification_status": "candidate"
     },
     {
@@ -389,6 +634,76 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q3174960/worked_for/q308776#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q3174960/Q308776",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "572e5d08f0391db66109593ed0718833450a6c35738387ca4973d2ee6791238d",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Herzog_%26_de_Meuron"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q3174960-q308776",
+      "object": {
+        "entity_id": "practice-wd-q308776"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q3174960"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q3174960-q308776",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q333585/worked_for/q117115854#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q333585/Q117115854",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "0d16a927d858b1c74efc7dba7b5ff213ede27a78ca3645f450de54a64a546cab",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Toyo_Ito"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q333585-q117115854",
+      "object": {
+        "entity_id": "practice-wd-q117115854"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q333585"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q333585-q117115854",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-21",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -494,6 +809,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q429817/worked_for/q2481701#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q429817/Q2481701",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "d272d2db6543478f0e89c9ea34e1fadd2ba975bad43bd2b03954e2e863835df8",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Bjarke_Ingels_Group"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q429817-q2481701",
+      "object": {
+        "entity_id": "practice-wd-q2481701"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q429817"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q429817-q2481701",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-08-22",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -564,6 +914,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q444257/worked_for/q7628180#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q444257/Q7628180",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "c0c8eddbc90ad7a8b3f8df498937d70091e2808affa51aae57eb765000271bd0",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Studio_Gang"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q444257-q7628180",
+      "object": {
+        "entity_id": "practice-wd-q7628180"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q444257"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q444257-q7628180",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-08-22",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -599,6 +984,76 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q47780/worked_for/q8064602#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q47780/Q8064602",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "df4b6e3b1204c6920131d2a6b377817c19f2616f6c69c55310a4aafcc2b1c97a",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Zaha_Hadid_Architects"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q47780-q8064602",
+      "object": {
+        "entity_id": "practice-wd-q8064602"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q47780"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q47780-q8064602",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q5180916/worked_for/q511335#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q5180916/Q511335",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "7282deca9020e95e24a5487bb2d814e4a7bebf4cc407309d28c8eb050ffe7226",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Craig_Dykers"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q5180916-q511335",
+      "object": {
+        "entity_id": "practice-wd-q511335"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q5180916"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q5180916-q511335",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-21",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -628,6 +1083,41 @@
       "reviewed_at": "2026-11-21",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-at-practice-q5321862-q107005355",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q55233237/worked_for/q2015762#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q55233237/Q2015762",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "a3c1e3b0a7fe39dcbed9f3a7c2520ff70e83dcbb582b0314464d078d906a4766",
+          "support": "explicit",
+          "url": "https://nl.wikipedia.org/wiki/Floris_Alkemade"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q55233237-q2015762",
+      "object": {
+        "entity_id": "practice-wd-q2015762"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q55233237"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q55233237-q2015762",
       "verification_status": "candidate"
     },
     {
@@ -1772,6 +2262,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q15845329/worked_for/q317135#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q15845329/Q317135",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "adb459af1f41c71da15c304b89ecf1414bca8531a7856efd4d355e36f92be5b0",
+          "support": "explicit",
+          "url": "https://it.wikipedia.org/wiki/Andrea_Maffei_(architetto)"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q15845329-q317135",
+      "object": {
+        "entity_id": "person-wd-q317135"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q15845329"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q15845329-q317135",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-21",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -2402,6 +2927,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q21056425/worked_for/q232364#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q21056425/Q232364",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "1cd51b830761f6f7a8d82a4a6a7952634253374e6e986598f3674ff8f9d0efe8",
+          "support": "explicit",
+          "url": "https://www.madamearchitect.org/interviews/2022/8/1/workacs-amale-andraos"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q21056425-q232364",
+      "object": {
+        "entity_id": "person-wd-q232364"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q21056425"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q21056425-q232364",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-08-20",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -2501,6 +3061,41 @@
       "reviewed_at": "2026-08-20",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q212312-q3886555",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q2132569/worked_for/q232364#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q2132569/Q232364",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "f81b282bc49e2b6905919652e962535f5eeb5151d88f43dff6de13a71f7e31c3",
+          "support": "explicit",
+          "url": "https://arch.rice.edu/latest/events/xaveer-de-geyter-0"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q2132569-q232364",
+      "object": {
+        "entity_id": "person-wd-q232364"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q2132569"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q2132569-q232364",
       "verification_status": "candidate"
     },
     {
@@ -5797,6 +6392,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q4914145/worked_for/q268732#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q4914145/Q268732",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "4f4ff1551c065a7d421bd87f4f058e493d86685a5db39112c0f06fb63fb48a97",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Bing_Thom"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q4914145-q268732",
+      "object": {
+        "entity_id": "person-wd-q268732"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q4914145"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q4914145-q268732",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-01",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -6211,6 +6841,41 @@
       "reviewed_at": "2026-08-22",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q550245-q106108",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-22",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q55233237/worked_for/q232364#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q55233237/Q232364",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-22-df9b4b3f1b11",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "dd63ce8196967f65268e426c6922ba2276053eee518a050c155b68dd4c51d3af",
+          "support": "explicit",
+          "url": "https://nl.wikipedia.org/wiki/Floris_Alkemade"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q55233237-q232364",
+      "object": {
+        "entity_id": "person-wd-q232364"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q55233237"
+      },
+      "reviewed_at": "2026-11-22",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q55233237-q232364",
       "verification_status": "candidate"
     },
     {
