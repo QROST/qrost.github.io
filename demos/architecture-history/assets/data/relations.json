@@ -1,6 +1,50 @@
 {
   "relations": [
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q10329451-q1208016",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Michael Hopkins worked in the office of Foster and Partners. Source quote: \"From the late 1960s, Hopkins spent eight productive years in partnership with Foster.\" (Sir Michael Hopkins obituary | Architecture | The Guardian).",
+        "note_zh": "履历任职边：Michael Hopkins 曾在 Foster and Partners 门下任职。来源引文：\"From the late 1960s, Hopkins spent eight productive years in partnership with Foster.\"（Sir Michael Hopkins obituary | Architecture | The Guardian）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q10329451",
+      "id": "relation-res-worked-at-practice-q10329451-q1208016",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q1208016",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q104898-q7691420",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Norman Foster worked in the office of Team 4. Source quote: \"Team 4 was a British architectural firm, established in 1963 by architecture graduates Su Brumwell, Wendy Cheesman, Norman Foster and Richard Rogers.\" (Team 4).",
+        "note_zh": "履历任职边：Norman Foster 曾在 Team 4 门下任职。来源引文：\"Team 4 was a British architectural firm, established in 1963 by architecture graduates Su Brumwell, Wendy Cheesman, Norman Foster and Richard Rogers.\"（Team 4）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q104898",
+      "id": "relation-res-worked-at-practice-q104898-q7691420",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q7691420",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q11067059-q30947660",
       "confidence": 0.5,
       "context": {
@@ -67,6 +111,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q159612-q106520604",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Richard Meier worked in the office of Marcel Breuer & Associates. Source quote: \"In New York City, Meier worked briefly in 1959 for Skidmore, Owings and Merrill, and then for three years for Marcel Breuer before starting his own firm in 1963.\" (Richard Meier).",
+        "note_zh": "履历任职边：Richard Meier 曾在 Marcel Breuer & Associates 门下任职。来源引文：\"In New York City, Meier worked briefly in 1959 for Skidmore, Owings and Merrill, and then for three years for Marcel Breuer before starting his own firm in 1963.\"（Richard Meier）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q159612",
+      "id": "relation-res-worked-at-practice-q159612-q106520604",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q106520604",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q225927-q2015762",
       "confidence": 0.5,
       "context": {
@@ -86,6 +152,28 @@
       ],
       "relation_type": "worked_at_practice",
       "to_id": "practice-wd-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q237412-q7691420",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Richard Rogers worked in the office of Team 4. Source quote: \"Team 4 was a British architectural firm, established in 1963 by architecture graduates Su Brumwell, Wendy Cheesman, Norman Foster and Richard Rogers.\" (Team 4).",
+        "note_zh": "履历任职边：Richard Rogers 曾在 Team 4 门下任职。来源引文：\"Team 4 was a British architectural firm, established in 1963 by architecture graduates Su Brumwell, Wendy Cheesman, Norman Foster and Richard Rogers.\"（Team 4）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q237412",
+      "id": "relation-res-worked-at-practice-q237412-q7691420",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q7691420",
       "verification_status": "candidate"
     },
     {
@@ -152,6 +240,50 @@
       ],
       "relation_type": "worked_at_practice",
       "to_id": "practice-wd-q737536",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q3567241-q7691420",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Wendy Cheesman worked in the office of Team 4. Source quote: \"Team 4 was a British architectural firm, established in 1963 by architecture graduates Su Brumwell, Wendy Cheesman, Norman Foster and Richard Rogers.\" (Team 4).",
+        "note_zh": "履历任职边：Wendy Cheesman 曾在 Team 4 门下任职。来源引文：\"Team 4 was a British architectural firm, established in 1963 by architecture graduates Su Brumwell, Wendy Cheesman, Norman Foster and Richard Rogers.\"（Team 4）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3567241",
+      "id": "relation-res-worked-at-practice-q3567241-q7691420",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q7691420",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q39171828-q7691420",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Su Rogers worked in the office of Team 4. Source quote: \"Team 4 was a British architectural firm, established in 1963 by architecture graduates Su Brumwell, Wendy Cheesman, Norman Foster and Richard Rogers.\" (Team 4).",
+        "note_zh": "履历任职边：Su Rogers 曾在 Team 4 门下任职。来源引文：\"Team 4 was a British architectural firm, established in 1963 by architecture graduates Su Brumwell, Wendy Cheesman, Norman Foster and Richard Rogers.\"（Team 4）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q39171828",
+      "id": "relation-res-worked-at-practice-q39171828-q7691420",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q7691420",
       "verification_status": "candidate"
     },
     {
@@ -243,6 +375,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q5321862-q107005355",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: E. Fay Jones worked in the office of Taliesin Fellowship. Source quote: \"Jones returned to both Taliesin studios numerous times as both friend and apprentice, becoming a Taliesin Fellow in 1953.\" (E. Fay Jones).",
+        "note_zh": "履历任职边：E. Fay Jones 曾在 Taliesin Fellowship 门下任职。来源引文：\"Jones returned to both Taliesin studios numerous times as both friend and apprentice, becoming a Taliesin Fellow in 1953.\"（E. Fay Jones）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q5321862",
+      "id": "relation-res-worked-at-practice-q5321862-q107005355",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q107005355",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q6290134-q2015762",
       "confidence": 0.5,
       "context": {
@@ -265,6 +419,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-at-practice-q6388488-q1208016",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Ken Shuttleworth worked in the office of Foster and Partners. Source quote: \"Shuttleworth became a partner at Foster and Partners where he worked on some of the world's most iconic buildings.\" (Ken Shuttleworth (architect)).",
+        "note_zh": "履历任职边：Ken Shuttleworth 曾在 Foster and Partners 门下任职。来源引文：\"Shuttleworth became a partner at Foster and Partners where he worked on some of the world's most iconic buildings.\"（Ken Shuttleworth (architect)）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q6388488",
+      "id": "relation-res-worked-at-practice-q6388488-q1208016",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q1208016",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-at-practice-q67031-q2015762",
       "confidence": 0.5,
       "context": {
@@ -284,6 +460,28 @@
       ],
       "relation_type": "worked_at_practice",
       "to_id": "practice-wd-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-at-practice-q707020-q1208016",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: David Chipperfield worked in the office of Foster and Partners. Source quote: \"He worked in the offices of several notable architects, including Douglas Stephen, Norman Foster and Richard Rogers, before founding his firm, David Chipperfield Architects, in 1985.\" (David Chipperfield).",
+        "note_zh": "履历任职边：David Chipperfield 曾在 Foster and Partners 门下任职。来源引文：\"He worked in the offices of several notable architects, including Douglas Stephen, Norman Foster and Richard Rogers, before founding his firm, David Chipperfield Architects, in 1985.\"（David Chipperfield）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q707020",
+      "id": "relation-res-worked-at-practice-q707020-q1208016",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_at_practice",
+      "to_id": "practice-wd-q1208016",
       "verification_status": "candidate"
     },
     {
@@ -350,6 +548,28 @@
       ],
       "relation_type": "worked_at_practice",
       "to_id": "practice-wd-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q10329451-q104898",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Michael Hopkins worked in the office of Norman Foster. Source quote: \"From the late 1960s, Hopkins spent eight productive years in partnership with Foster.\" (Sir Michael Hopkins obituary | Architecture | The Guardian).",
+        "note_zh": "履历任职边：Michael Hopkins 曾在 Norman Foster 门下任职。来源引文：\"From the late 1960s, Hopkins spent eight productive years in partnership with Foster.\"（Sir Michael Hopkins obituary | Architecture | The Guardian）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q10329451",
+      "id": "relation-res-worked-for-q10329451-q104898",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q104898",
       "verification_status": "candidate"
     },
     {
@@ -837,6 +1057,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q152880-q4724",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Iannis Xenakis worked in the office of Le Corbusier. Source quote: \"Although he was an illegal immigrant in Paris, Xenakis was able to get a job at Le Corbusier's architectural studio.\" (Iannis Xenakis).",
+        "note_zh": "履历任职边：Iannis Xenakis 曾在 Le Corbusier 门下任职。来源引文：\"Although he was an illegal immigrant in Paris, Xenakis was able to get a job at Le Corbusier's architectural studio.\"（Iannis Xenakis）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q152880",
+      "id": "relation-res-worked-for-q152880-q4724",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q4724",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q15429753-q333581",
       "confidence": 0.5,
       "context": {
@@ -856,6 +1098,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q333581",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q159612-q57588",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Richard Meier worked in the office of Marcel Breuer. Source quote: \"In New York City, Meier worked briefly in 1959 for Skidmore, Owings and Merrill, and then for three years for Marcel Breuer before starting his own firm in 1963.\" (Richard Meier).",
+        "note_zh": "履历任职边：Richard Meier 曾在 Marcel Breuer 门下任职。来源引文：\"In New York City, Meier worked briefly in 1959 for Skidmore, Owings and Merrill, and then for three years for Marcel Breuer before starting his own firm in 1963.\"（Richard Meier）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q159612",
+      "id": "relation-res-worked-for-q159612-q57588",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q57588",
       "verification_status": "candidate"
     },
     {
@@ -2003,6 +2267,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q2845329-q121598806",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Anant Raje worked in the office of Louis Kahn. Source quote: \"Between 1964 and 1969, Anant D. Raje worked in the Philadelphia office of Louis I. Kahn\" (Anant D. Raje Collection (366), Architect, 1929-2009).",
+        "note_zh": "履历任职边：Anant Raje 曾在 Louis Kahn 门下任职。来源引文：\"Between 1964 and 1969, Anant D. Raje worked in the Philadelphia office of Louis I. Kahn\"（Anant D. Raje Collection (366), Architect, 1929-2009）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2845329",
+      "id": "relation-res-worked-for-q2845329-q121598806",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q121598806",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q29046896-q47074862",
       "confidence": 0.5,
       "context": {
@@ -3015,6 +3301,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q42309284-q237412",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Philip Gumuchdjian worked in the office of Richard Rogers. Source quote: \"Philip Gumuchdjian founded Gumuchdjian Architects (GA) after 18 years with the Richard Rogers Partnership.\" (Biography – Gumuchdjian Architects).",
+        "note_zh": "履历任职边：Philip Gumuchdjian 曾在 Richard Rogers 门下任职。来源引文：\"Philip Gumuchdjian founded Gumuchdjian Architects (GA) after 18 years with the Richard Rogers Partnership.\"（Biography – Gumuchdjian Architects）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q42309284",
+      "id": "relation-res-worked-for-q42309284-q237412",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q237412",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q429817-q232364",
       "confidence": 0.5,
       "context": {
@@ -3741,6 +4049,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q5726216-q46868",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Henry N. Cobb worked in the office of I. M. Pei. Source quote: \"Henry N. Cobb, who in 70 years as an architect — more than half of them in partnership with I.M. Pei — designed some of the country's most prominent buildings, including Boston's blue-glass John Hancock Tower, the tallest building in New England, died on Monday at his home in Manhattan.\" (Obituary: Henry N. Cobb, FAIA, 1926–2020).",
+        "note_zh": "履历任职边：Henry N. Cobb 曾在 I. M. Pei 门下任职。来源引文：\"Henry N. Cobb, who in 70 years as an architect — more than half of them in partnership with I.M. Pei — designed some of the country's most prominent buildings, including Boston's blue-glass John Hancock Tower, the tallest building in New England, died on Monday at his home in Manhattan.\"（Obituary: Henry N. Cobb, FAIA, 1926–2020）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q5726216",
+      "id": "relation-res-worked-for-q5726216-q46868",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q46868",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q572735-q723234",
       "confidence": 0.5,
       "context": {
@@ -3980,6 +4310,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q723234",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q66589991-q214317",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Hala Wardé worked in the office of Jean Nouvel. Source quote: \"Long-term partner of Jean Nouvel, Wardé led the Louvre Abu Dhabi project and the One New Change development in London.\" (Rain of Light | Gagosian Quarterly).",
+        "note_zh": "履历任职边：Hala Wardé 曾在 Jean Nouvel 门下任职。来源引文：\"Long-term partner of Jean Nouvel, Wardé led the Louvre Abu Dhabi project and the One New Change development in London.\"（Rain of Light | Gagosian Quarterly）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q66589991",
+      "id": "relation-res-worked-for-q66589991-q214317",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q214317",
       "verification_status": "candidate"
     },
     {
@@ -4643,6 +4995,50 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-res-worked-for-q85669-q134165",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Harry Seidler worked in the office of Oscar Niemeyer. Source quote: \"Seidler also worked in Rio de Janeiro with the architect Oscar Niemeyer for almost two months from shortly after 20 April to early June 1948.\" (Harry Seidler).",
+        "note_zh": "履历任职边：Harry Seidler 曾在 Oscar Niemeyer 门下任职。来源引文：\"Seidler also worked in Rio de Janeiro with the architect Oscar Niemeyer for almost two months from shortly after 20 April to early June 1948.\"（Harry Seidler）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q85669",
+      "id": "relation-res-worked-for-q85669-q134165",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q134165",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q85669-q57588",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: Harry Seidler worked in the office of Marcel Breuer. Source quote: \"Seidler worked as the first ever assistant to modernist architect Marcel Breuer in New York from late 1946 until March 1948.\" (Harry Seidler).",
+        "note_zh": "履历任职边：Harry Seidler 曾在 Marcel Breuer 门下任职。来源引文：\"Seidler worked as the first ever assistant to modernist architect Marcel Breuer in New York from late 1946 until March 1948.\"（Harry Seidler）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q85669",
+      "id": "relation-res-worked-for-q85669-q57588",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q57588",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-res-worked-for-q892140-q2066635",
       "confidence": 0.5,
       "context": {
@@ -4728,6 +5124,28 @@
       ],
       "relation_type": "worked_for",
       "to_id": "person-wd-q715701",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-res-worked-for-q95330-q46868",
+      "confidence": 0.5,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Biographical employment edge: James Ingo Freed worked in the office of I. M. Pei. Source quote: \"In 1956, he began working with I.M. Pei in New York at the firm eventually known as Pei Cobb Freed & Partners.\" (James Ingo Freed).",
+        "note_zh": "履历任职边：James Ingo Freed 曾在 I. M. Pei 门下任职。来源引文：\"In 1956, he began working with I.M. Pei in New York at the firm eventually known as Pei Cobb Freed & Partners.\"（James Ingo Freed）。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q95330",
+      "id": "relation-res-worked-for-q95330-q46868",
+      "last_verified": "2026-11-21",
+      "rejection_reasons": [
+        "Biographical quote establishes employment but not exact tenure, role, or deputy rank."
+      ],
+      "relation_type": "worked_for",
+      "to_id": "person-wd-q46868",
       "verification_status": "candidate"
     },
     {

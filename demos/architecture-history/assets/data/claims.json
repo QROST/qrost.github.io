@@ -4,6 +4,76 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q10329451/worked_for/q1208016#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q10329451/Q1208016",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "d752e0136e3771681ac61e34039c0b720a0de0148d82c81880ea515b00bd2af3",
+          "support": "explicit",
+          "url": "https://www.theguardian.com/artanddesign/2023/jun/19/sir-michael-hopkins-obituary"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q10329451-q1208016",
+      "object": {
+        "entity_id": "practice-wd-q1208016"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q10329451"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q10329451-q1208016",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q104898/worked_for/q7691420#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q104898/Q7691420",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "22552385deb467e053342da39c920c2d4a3122ac4032a79c9052f96e36c0c6c7",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Team_4"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q104898-q7691420",
+      "object": {
+        "entity_id": "practice-wd-q7691420"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q104898"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q104898-q7691420",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-13",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -109,6 +179,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q159612/worked_for/q106520604#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q159612/Q106520604",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "f7ee9992ceab861f2a5813036c289ebeb0d2af3df4a3e0cdb395e0c77552d4be",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Richard_Meier"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q159612-q106520604",
+      "object": {
+        "entity_id": "practice-wd-q106520604"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q159612"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q159612-q106520604",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-08-22",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -138,6 +243,41 @@
       "reviewed_at": "2026-08-22",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-at-practice-q225927-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q237412/worked_for/q7691420#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q237412/Q7691420",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "1824145fd759d55293eb2a4794876424cd374de4800dc3e28549c4a3c57f1b7f",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Team_4"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q237412-q7691420",
+      "object": {
+        "entity_id": "practice-wd-q7691420"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q237412"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q237412-q7691420",
       "verification_status": "candidate"
     },
     {
@@ -243,6 +383,76 @@
       "reviewed_at": "2026-08-22",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-at-practice-q3070853-q737536",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q3567241/worked_for/q7691420#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q3567241/Q7691420",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "dc7ed34af80fc2c344266acb2460ad17ab8617edd2761a9b06bba4fe3da7a523",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Team_4"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q3567241-q7691420",
+      "object": {
+        "entity_id": "practice-wd-q7691420"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q3567241"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q3567241-q7691420",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q39171828/worked_for/q7691420#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q39171828/Q7691420",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "2e11039266d1b93684e4817fd912a09438450394fa49fb415ab6af4050d09f8e",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Team_4"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q39171828-q7691420",
+      "object": {
+        "entity_id": "practice-wd-q7691420"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q39171828"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q39171828-q7691420",
       "verification_status": "candidate"
     },
     {
@@ -389,6 +599,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q5321862/worked_for/q107005355#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q5321862/Q107005355",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "2f8ce0b261affea4985250da8752941e1196319dcd32ab4aeae0b307fbc0d633",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/E._Fay_Jones"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q5321862-q107005355",
+      "object": {
+        "entity_id": "practice-wd-q107005355"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q5321862"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q5321862-q107005355",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-19",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -424,6 +669,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q6388488/worked_for/q1208016#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q6388488/Q1208016",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "e17132a05f3e056522c7eab591ae3cc0361362faa8a580379883d5542309b4c9",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Ken_Shuttleworth_(architect)"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q6388488-q1208016",
+      "object": {
+        "entity_id": "practice-wd-q1208016"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q6388488"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q6388488-q1208016",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-08-22",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -453,6 +733,41 @@
       "reviewed_at": "2026-08-22",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-at-practice-q67031-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q707020/worked_for/q1208016#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_at_practice",
+          "native_record_id": "Q707020/Q1208016",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "d572861bb7a6a5418694e1242fe183377f0eca0c5b94ee997101bd3cfdfbfcce",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/David_Chipperfield"
+        }
+      ],
+      "id": "claim-relation-res-worked-at-practice-q707020-q1208016",
+      "object": {
+        "entity_id": "practice-wd-q1208016"
+      },
+      "predicate": "worked_at_practice",
+      "qualifiers": {
+        "from_id": "person-wd-q707020"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-at-practice-q707020-q1208016",
       "verification_status": "candidate"
     },
     {
@@ -558,6 +873,41 @@
       "reviewed_at": "2026-08-22",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-at-practice-q966279-q2015762",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q10329451/worked_for/q104898#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q10329451/Q104898",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "c0aa365efdd7277fe2506ccd29bf4c117790b1434b74327927573ec3385e33f9",
+          "support": "explicit",
+          "url": "https://www.theguardian.com/artanddesign/2023/jun/19/sir-michael-hopkins-obituary"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q10329451-q104898",
+      "object": {
+        "entity_id": "person-wd-q104898"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q10329451"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q10329451-q104898",
       "verification_status": "candidate"
     },
     {
@@ -1352,6 +1702,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q152880/worked_for/q4724#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q152880/Q4724",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "77383a38d5a277434543d35d2c6226e099418083fdc2d62fb009a4b035f5b4be",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Iannis_Xenakis"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q152880-q4724",
+      "object": {
+        "entity_id": "person-wd-q4724"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q152880"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q152880-q4724",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-19",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -1381,6 +1766,41 @@
       "reviewed_at": "2026-11-19",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q15429753-q333581",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q159612/worked_for/q57588#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q159612/Q57588",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "3e7ae2b8b5047a1112af4a69d4b5df31d6b160e0433e80dfaa8c253cae08ffac",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Richard_Meier"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q159612-q57588",
+      "object": {
+        "entity_id": "person-wd-q57588"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q159612"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q159612-q57588",
       "verification_status": "candidate"
     },
     {
@@ -3207,6 +3627,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q2845329/worked_for/q121598806#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q2845329/Q121598806",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "0663de76cd6f052e9c268ad3878e4a4360527f772dc719c167a9a4dfc87e421b",
+          "support": "explicit",
+          "url": "https://www.design.upenn.edu/architectural-archives/collections/raje-anant-d"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q2845329-q121598806",
+      "object": {
+        "entity_id": "person-wd-q121598806"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q2845329"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q2845329-q121598806",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-01",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -4817,6 +5272,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q42309284/worked_for/q237412#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q42309284/Q237412",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "5ecb587abd88546aa53488232805a934b95d331b8f682a24428ef29afeec9807",
+          "support": "explicit",
+          "url": "https://gumuchdjian.com/studio/biography"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q42309284-q237412",
+      "object": {
+        "entity_id": "person-wd-q237412"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q42309284"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q42309284-q237412",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-08-22",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -5972,6 +6462,41 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q5726216/worked_for/q46868#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q5726216/Q46868",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "c92252ee620b4694ea5a37eb0c8251caa5c737786edfd05d7c71684edf20bb9e",
+          "support": "explicit",
+          "url": "https://sah.org/2020/03/05/obituary-henry-n-cobb-faia-1926-2020"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q5726216-q46868",
+      "object": {
+        "entity_id": "person-wd-q46868"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q5726216"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q5726216-q46868",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-01",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -6351,6 +6876,41 @@
       "reviewed_at": "2026-11-01",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q657848-q723234",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q66589991/worked_for/q214317#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q66589991/Q214317",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "ab6484fcb9bf6d6707a3721ace4afa896c97fdb32234db571480a46d553f16be",
+          "support": "explicit",
+          "url": "https://gagosian.com/quarterly/2019/07/08/interview-jean-nouvel-giuseppe-penone-louvre-abu-dhabi-rain-light"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q66589991-q214317",
+      "object": {
+        "entity_id": "person-wd-q214317"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q66589991"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q66589991-q214317",
       "verification_status": "candidate"
     },
     {
@@ -7407,6 +7967,76 @@
       "confidence": 0.5,
       "evidence": [
         {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q85669/worked_for/q134165#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q85669/Q134165",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "f393f6e41883dc1c0b4af040cba6fc41c26071d1f9c1d91634202646dab0c85f",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Harry_Seidler"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q85669-q134165",
+      "object": {
+        "entity_id": "person-wd-q134165"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q85669"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q85669-q134165",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q85669/worked_for/q57588#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q85669/Q57588",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "78ee3a35fc693b0c197e9c7f99ea4933f8f46a0efab104433e84bb13c697748b",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/Harry_Seidler"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q85669-q57588",
+      "object": {
+        "entity_id": "person-wd-q57588"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q85669"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q85669-q57588",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
           "accessed": "2026-11-01",
           "contributors": [],
           "extraction_method": "human_excerpt",
@@ -7541,6 +8171,41 @@
       "reviewed_at": "2026-11-06",
       "reviewed_by": "reviewer-agentic-zcode",
       "subject_id": "relation-res-worked-for-q94005-q715701",
+      "verification_status": "candidate"
+    },
+    {
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "accessed": "2026-11-21",
+          "contributors": [],
+          "extraction_method": "human_excerpt",
+          "language": "en",
+          "locator": "q95330/worked_for/q46868#0",
+          "native_field_path": "/entries/0",
+          "native_predicate": "worked_for",
+          "native_record_id": "Q95330/Q46868",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "editorial-research-2026-11-21-22cd369e63a0",
+          "source_id": "editorial-biographical-research",
+          "source_record_sha256": "a8a43b6671ef96c19f7d580c369e0753c9f3393716bb31f546190064cada9c09",
+          "support": "explicit",
+          "url": "https://en.wikipedia.org/wiki/James_Ingo_Freed"
+        }
+      ],
+      "id": "claim-relation-res-worked-for-q95330-q46868",
+      "object": {
+        "entity_id": "person-wd-q46868"
+      },
+      "predicate": "worked_for",
+      "qualifiers": {
+        "from_id": "person-wd-q95330"
+      },
+      "reviewed_at": "2026-11-21",
+      "reviewed_by": "reviewer-agentic-zcode",
+      "subject_id": "relation-res-worked-for-q95330-q46868",
       "verification_status": "candidate"
     },
     {
