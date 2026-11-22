@@ -96,7 +96,7 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q917274": "1980_1999",
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
-    "b5ea85666dd70afdbfc1164b60e07b22b65e6de1089ac71f5316e9edc177cbab"
+    "484ec341c67c5f64296257eefe4974fa541043f937d32d26a8d9df1aefbb0152"
 )
 NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q2977",
@@ -894,7 +894,7 @@ class WikidataPilotTests(unittest.TestCase):
                     next(iter(self.authority_snapshots)),
                 )
         affected_ids.sort()
-        self.assertEqual(len(affected_ids), 821)
+        self.assertEqual(len(affected_ids), 827)
         self.assertEqual(
             hashlib.sha256(
                 json.dumps(
@@ -1083,25 +1083,25 @@ class WikidataPilotTests(unittest.TestCase):
             sort_keys=True,
             separators=(",", ":"),
         ).encode("utf-8")
-        self.assertEqual(len(prior_assignments), 2407)
+        self.assertEqual(len(prior_assignments), 2427)
         self.assertEqual(
             hashlib.sha256(prior_payload).hexdigest(),
             PRIOR_PERIOD_ASSIGNMENT_SHA256,
         )
         self.assertEqual(
             sum(period != "unknown" for period in assignments.values()),
-            2468,
+            2488,
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
-            1023,
+            1037,
         )
         self.assertEqual(
             sum(
                 claim["predicate"] == "field_period"
                 for claim in self.catalog["claims"]
             ),
-            2468,
+            2488,
         )
 
     def test_raw_lineage_edges_never_become_mentorship(self):
