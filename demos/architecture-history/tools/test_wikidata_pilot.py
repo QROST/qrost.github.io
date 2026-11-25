@@ -282,6 +282,73 @@ def wikidata_time_statement(
     return statement
 
 
+class MulLanguageFallbackTests(unittest.TestCase):
+    """Wikidata merges identical labels into ``mul`` and drops ``en``."""
+
+    @staticmethod
+    def record(**maps: dict) -> dict:
+        return {"id": "Q900", "labels": {}, "aliases": {}, "descriptions": {}, **maps}
+
+    def test_english_wins_when_both_languages_are_present(self):
+        record = self.record(
+            labels={"en": {"value": "English"}, "mul": {"value": "Shared"}},
+        )
+        self.assertEqual(importer.english_language(record, "labels"), "en")
+        self.assertEqual(importer.labels(record), (None, "English"))
+        self.assertEqual(fetcher.english_label_value(record), "English")
+
+    def test_shared_mul_label_stands_in_for_english(self):
+        record = self.record(
+            labels={
+                "mul": {"value": "Leon Battista Alberti"},
+                "zh": {"value": "阿尔伯蒂"},
+            },
+            aliases={"mul": [{"value": "L. B. Alberti"}]},
+            descriptions={"mul": {"value": "Italian architect"}},
+        )
+        self.assertEqual(importer.english_language(record, "labels"), "mul")
+        self.assertEqual(importer.english_language(record, "aliases"), "mul")
+        self.assertEqual(importer.english_language(record, "descriptions"), "mul")
+        self.assertEqual(
+            importer.labels(record), ("阿尔伯蒂", "Leon Battista Alberti")
+        )
+        self.assertEqual(importer.descriptions(record), ("Italian architect", ""))
+        self.assertEqual(
+            importer.aliases(record, (importer.english_language(record, "aliases"),)),
+            ["L. B. Alberti"],
+        )
+        self.assertEqual(
+            fetcher.english_label_value(record), "Leon Battista Alberti"
+        )
+
+    def test_missing_both_languages_still_requires_an_english_label(self):
+        import validate
+
+        record = self.record(labels={"zh": {"value": "无名"}})
+        self.assertEqual(importer.english_language(record, "labels"), "en")
+        with self.assertRaises(ValueError):
+            importer.labels(record)
+        self.assertIsNone(fetcher.english_label_value(record))
+        self.assertIsNone(validate.english_label_value(record))
+
+    def test_validator_and_fetcher_accept_the_shared_label(self):
+        import validate
+
+        record = self.record(labels={"mul": {"value": "Shared"}})
+        self.assertEqual(validate.english_label_value(record), "Shared")
+        self.assertEqual(fetcher.english_label_value(record), "Shared")
+
+    def test_minimized_records_keep_mul(self):
+        value = {
+            "en": {"value": "English"},
+            "mul": {"value": "Shared"},
+            "de": {"value": "Deutsch"},
+        }
+        self.assertEqual(
+            sorted(fetcher.minimize_language_map(value)), ["en", "mul"]
+        )
+
+
 class WikidataPilotTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -1477,6 +1544,48 @@ class LineageMeshFixtureTests(unittest.TestCase):
         self.assertEqual(employment["from_id"], "person-wd-q200")
         self.assertEqual(employment["to_id"], "practice-wd-q300")
         self.assertEqual(employment["context"]["practice_id"], "practice-wd-q300")
+
+    def test_mul_only_records_enter_the_catalog(self):
+        studio = practice_record("Q300", label_en="unused")
+        studio["labels"] = {"mul": {"value": "Shared Name Studio"}}
+        studio["descriptions"] = {"mul": {"value": "A shared-name studio."}}
+        founder = human_record(
+            "Q201",
+            label_en="unused",
+            occupations=[importer.ARCHITECT_QID],
+        )
+        founder["labels"] = {"mul": {"value": "Mul Only Architect"}}
+        founder["aliases"] = {"mul": [{"value": "M. O. A."}]}
+        catalog = self.build_catalog(
+            {
+                "Q200": human_record(
+                    "Q200",
+                    label_en="Employee",
+                    occupations=[importer.ARCHITECT_QID],
+                    claims={
+                        "P108": [item_entity_statement("Q300")],
+                        "P737": [item_entity_statement("Q201")],
+                    },
+                ),
+                "Q201": founder,
+                "Q300": studio,
+            }
+        )
+        practice = next(
+            row for row in catalog["practices"] if row["id"] == "practice-wd-q300"
+        )
+        self.assertEqual(practice["name_en"], "Shared Name Studio")
+        self.assertEqual(practice["summary_en"], "A shared-name studio.")
+        person = next(
+            row for row in catalog["people"] if row["id"] == "person-wd-q201"
+        )
+        self.assertEqual(person["name_en"], "Mul Only Architect")
+        self.assertEqual(person["aliases_en"], ["M. O. A."])
+        claims = {claim["id"]: claim for claim in catalog["claims"]}
+        evidence = claims["claim-wd-q300-name-en"]["evidence"][0]
+        self.assertEqual(evidence["native_field_path"], "/labels/mul")
+        self.assertEqual(evidence["locator"], "Q300/labels/mul")
+        self.assertEqual(evidence["language"], "mul")
 
     def test_lineage_imports_cofounded_with_and_multi_edge_pairs(self):
         firm = practice_record("Q400", label_en="Founding Office")

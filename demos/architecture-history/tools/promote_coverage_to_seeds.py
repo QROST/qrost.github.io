@@ -29,7 +29,7 @@ def label_hint_for_work(
     if wrapper is None:
         return work_qid
     labels = wrapper.get("record", {}).get("labels", {})
-    english = labels.get("en", {}).get("value")
+    english = labels.get("en", {}).get("value") or labels.get("mul", {}).get("value")
     if isinstance(english, str) and english.strip():
         return english.strip()
     return work_qid

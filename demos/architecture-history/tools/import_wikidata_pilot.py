@@ -764,9 +764,7 @@ def validate_type_authority_snapshots(
                 "https://www.wikidata.org/wiki/Special:EntityData/"
                 f"{qid}.json?revision={revision}"
             )
-            english_label = (
-                record.get("labels", {}).get("en", {}).get("value")
-            )
+            english_label = label_value(record, english_language(record, "labels"))
             if (
                 record.get("id") != qid
                 or record.get("lastrevid") != revision
@@ -826,8 +824,22 @@ def label_value(record: dict, language: str) -> Optional[str]:
     return value if isinstance(value, str) and value.strip() else None
 
 
+def english_language(record: dict, field: str) -> str:
+    """Language whose entries stand in for English in one language map.
+
+    Wikidata merges labels, aliases, and descriptions that are identical
+    across languages into the shared ``mul`` code and drops the per-language
+    copy, so an item can carry no ``en`` entry at all.
+    """
+    entries = record.get(field, {})
+    for language in ("en", "mul"):
+        if isinstance(entries, dict) and entries.get(language):
+            return language
+    return "en"
+
+
 def labels(record: dict) -> tuple[Optional[str], str]:
-    english = label_value(record, "en")
+    english = label_value(record, english_language(record, "labels"))
     if not english:
         raise ValueError(f"{record.get('id')}: English label is required")
     chinese = label_value(record, "zh-hans") or label_value(record, "zh")
@@ -840,7 +852,9 @@ def description_value(record: dict, language: str) -> Optional[str]:
 
 
 def descriptions(record: dict) -> tuple[str, str]:
-    summary_en = description_value(record, "en") or ""
+    summary_en = description_value(
+        record, english_language(record, "descriptions")
+    ) or ""
     summary_zh = (
         description_value(record, "zh-hans")
         or description_value(record, "zh")
@@ -1202,6 +1216,7 @@ class CatalogBuilder:
         name_zh_seed: Optional[dict] = None,
     ) -> list[str]:
         claim_ids: list[str] = []
+        en_language = english_language(self.record(qid), "labels")
         en_id = f"claim-wd-{qid_slug(qid)}-name-en"
         claim_ids.append(
             self.add_claim(
@@ -1212,10 +1227,10 @@ class CatalogBuilder:
                 evidence=[
                     self.evidence(
                         qid,
-                        path="/labels/en",
+                        path=f"/labels/{en_language}",
                         predicate=None,
-                        locator=f"{qid}/labels/en",
-                        language="en",
+                        locator=f"{qid}/labels/{en_language}",
+                        language=en_language,
                     )
                 ],
             )
@@ -1305,7 +1320,7 @@ class CatalogBuilder:
             role_from_credit=role_from_credit,
         )
         self.people[person_id] = {
-            "aliases_en": aliases(record, ("en",)),
+            "aliases_en": aliases(record, (english_language(record, "aliases"),)),
             "aliases_zh": aliases(record, ("zh-hans", "zh")),
             "birth": time_value(record, "P569"),
             "claim_ids": claim_ids,
@@ -1741,7 +1756,9 @@ class CatalogBuilder:
                 label_value(contributor_record, "zh-hans")
                 or label_value(contributor_record, "zh")
             )
-            source_label_en = label_value(contributor_record, "en")
+            source_label_en = label_value(
+                contributor_record, english_language(contributor_record, "labels")
+            )
             claim_id = (
                 f"claim-wd-{qid_slug(qid)}-p84-unresolved-{index + 1}"
             )
@@ -1804,7 +1821,9 @@ class CatalogBuilder:
                 contributor_record = self.record(contributor_qid)
                 reason = (
                     "missing_english_label"
-                    if not label_value(contributor_record, "en")
+                    if not label_value(
+                        contributor_record, english_language(contributor_record, "labels")
+                    )
                     else "unresolved_entity_type"
                 )
                 queue_unresolved_credit(
@@ -1889,7 +1908,7 @@ class CatalogBuilder:
 
         claim_ids.extend(self.source_date_claims(qid, work_id))
         self.works[work_id] = {
-            "aliases_en": aliases(record, ("en",)),
+            "aliases_en": aliases(record, (english_language(record, "aliases"),)),
             "aliases_zh": aliases(record, ("zh-hans", "zh")),
             "attribution_mode": "unknown",
             "claim_ids": claim_ids,

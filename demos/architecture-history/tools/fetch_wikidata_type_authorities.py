@@ -150,12 +150,9 @@ def hydrate_authority_snapshot(
         for future in concurrent.futures.as_completed(future_to_qid):
             qid = future_to_qid[future]
             wrapper = future.result()
-            english_label = (
-                wrapper.get("record", {})
-                .get("labels", {})
-                .get("en", {})
-                .get("value")
-            )
+            record_labels = wrapper.get("record", {}).get("labels", {})
+            english_label = record_labels.get("en") or record_labels.get("mul") or {}
+            english_label = english_label.get("value")
             expected_label = authority_by_qid[qid]["label_hint_en"]
             if english_label != expected_label:
                 raise RuntimeError(

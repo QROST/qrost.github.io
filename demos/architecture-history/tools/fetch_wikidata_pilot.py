@@ -41,7 +41,7 @@ USER_AGENT = (
     "(https://qrost.github.io/demos/architecture-history/; "
     "bounded revision-pinned research adapter)"
 )
-LANGUAGES = ("zh-hans", "zh", "en")
+LANGUAGES = ("zh-hans", "zh", "en", "mul")
 PERSON_QID = "Q5"
 ARCHITECTURE_FIRM_QID = "Q4387609"
 CREDIT_PROPERTIES = ("P84",)
@@ -208,6 +208,20 @@ def string_values_with_deprecated_fallback(record: dict, property_id: str) -> li
         if isinstance(value, str):
             values.append(value)
     return values
+
+
+def english_label_value(record: dict) -> str | None:
+    """English label, falling back to Wikidata's shared ``mul`` label.
+
+    Wikidata merges a label that is identical across languages into ``mul``
+    and drops the per-language copy, so an item can have no ``en`` label.
+    """
+    labels = record.get("labels", {})
+    for language in ("en", "mul"):
+        value = labels.get(language, {}).get("value")
+        if isinstance(value, str) and value.strip():
+            return value
+    return None
 
 
 def minimize_language_map(value: Any) -> dict:
@@ -436,7 +450,7 @@ def hydrate_snapshot(
 
     for seed in seeds:
         record = entities[seed["qid"]]["record"]
-        english_label = record.get("labels", {}).get("en", {}).get("value")
+        english_label = english_label_value(record)
         if not english_label:
             raise RuntimeError(f"{seed['qid']}: seed work lacks an English label")
         countries = set(item_values(record, "P17"))
@@ -452,7 +466,7 @@ def hydrate_snapshot(
 
     for seed in person_seeds:
         record = entities[seed["qid"]]["record"]
-        english_label = record.get("labels", {}).get("en", {}).get("value")
+        english_label = english_label_value(record)
         if not english_label:
             raise RuntimeError(f"{seed['qid']}: seed person lacks an English label")
         instances = set(item_values(record, "P31"))

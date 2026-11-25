@@ -54,7 +54,10 @@ def check_seed(seed: dict, kind: str) -> list[str]:
         )
         return problems
     record = entities[qid]
-    label = record.get("labels", {}).get("en", {}).get("value")
+    label = (
+        record.get("labels", {}).get("en", {}).get("value")
+        or record.get("labels", {}).get("mul", {}).get("value")
+    )
     if not label:
         problems.append(f"NO-EN-LABEL {kind} {qid}")
     claims = record.get("claims", {})

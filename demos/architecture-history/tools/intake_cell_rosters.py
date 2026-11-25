@@ -64,7 +64,11 @@ def work_country(qid: str, authority: dict[str, dict]) -> dict | None:
     record = entities.get(qid)
     if not record:
         return None
-    label = record.get("labels", {}).get("en", {}).get("value") or ""
+    label = (
+        record.get("labels", {}).get("en", {}).get("value")
+        or record.get("labels", {}).get("mul", {}).get("value")
+        or ""
+    )
     p84 = [
         st["mainsnak"]["datavalue"]["value"]["id"]
         for st in record.get("claims", {}).get("P84", [])

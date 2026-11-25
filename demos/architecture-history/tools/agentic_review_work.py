@@ -30,6 +30,7 @@ from import_wikidata_pilot import (
     aliases,
     derive_period_from_inception,
     entity_id,
+    english_language,
     item_values,
     load_type_authority_snapshots,
     qid_slug,
@@ -178,6 +179,7 @@ def build_field_plan(
     qid = work["external_ids"]["wikidata"]
     plan: dict[str, dict[str, Any]] = {}
     country_authority = builder.country_authority
+    en_aliases_language = english_language(record, "aliases")
 
     expected_place_id = entity_id("place", seed["expected_country_qid"])
     if work.get("place_id") != expected_place_id:
@@ -231,10 +233,10 @@ def build_field_plan(
                 "evidence": [
                     builder.evidence(
                         qid,
-                        path="/aliases/en",
+                        path=f"/aliases/{en_aliases_language}",
                         predicate=None,
-                        locator=f"{qid}/aliases/en",
-                        language="en",
+                        locator=f"{qid}/aliases/{en_aliases_language}",
+                        language=en_aliases_language,
                     )
                 ],
             }
@@ -496,7 +498,7 @@ def build_field_plan(
             "evidence": None,
         }
 
-    snapshot_aliases_en = aliases(record, ("en",))
+    snapshot_aliases_en = aliases(record, (en_aliases_language,))
     snapshot_aliases_zh = aliases(record, ("zh-hans", "zh"))
     if work.get("aliases_en") != snapshot_aliases_en:
         raise ReviewFailure("aliases_en do not match pinned snapshot aliases")

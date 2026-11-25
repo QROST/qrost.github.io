@@ -30,6 +30,7 @@ from import_wikidata_pilot import (
     CatalogBuilder,
     aliases,
     descriptions,
+    english_language,
     item_values,
     load_type_authority_snapshots,
     qid_slug,
@@ -186,6 +187,7 @@ def build_field_plan(
     qid = practice["external_ids"]["wikidata"]
     plan: dict[str, dict[str, Any]] = {}
     country_authority = builder.country_authority
+    en_description_language = english_language(record, "descriptions")
 
     if practice.get("practice_type") == "architecture_firm":
         matched = architecture_firm_statement(record)
@@ -303,10 +305,10 @@ def build_field_plan(
                 "evidence": [
                     builder.evidence(
                         qid,
-                        path="/descriptions/en",
+                        path=f"/descriptions/{en_description_language}",
                         predicate=None,
-                        locator=f"{qid}/descriptions/en",
-                        language="en",
+                        locator=f"{qid}/descriptions/{en_description_language}",
+                        language=en_description_language,
                     )
                 ],
             }

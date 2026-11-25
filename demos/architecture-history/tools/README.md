@@ -174,12 +174,19 @@ python3 tools/build.py
 ```
 
 The two fetch scripts are the only networked steps. The work fetcher hydrates
-the versioned 559-work seed list. The type-authority fetcher reads exactly six
-reviewed class QIDs into a separate sidecar bound to the active work snapshot.
+the versioned work seed list in `tools/wikidata-hydration-seeds.json`. The
+type-authority fetcher reads the reviewed class QIDs listed in the work-type
+authority seeds into a separate sidecar bound to the active work snapshot.
 Both pin exact revisions and refuse to overwrite an existing snapshot by
 default. `import_wikidata_pilot.py` is deterministic and offline; it requires
 the configured authority sidecar and still maps work types only by direct P31
-equality. Country-place editorial promotion is the exception:
+equality.
+
+Labels, aliases, and descriptions are read from `en`. When Wikidata has merged
+an identical English value into the shared `mul` language code and dropped the
+`en` copy, the `mul` entry stands in for it; the claim evidence then records
+`mul` as the language and path actually used, while entity and claim ids keep
+their existing form. Country-place editorial promotion is the exception:
 
 ```bash
 python3 tools/promote_place_verification.py --reviewed-at YYYY-MM-DD

@@ -21,6 +21,7 @@ from import_wikidata_pilot import (
     CONFIG_PATH,
     CatalogBuilder,
     descriptions,
+    english_language,
     load_type_authority_snapshots,
     qid_slug,
 )
@@ -104,13 +105,14 @@ def enrich_summaries(
                     )
                 ]
             else:
+                en_language = english_language(record, "descriptions")
                 evidence = [
                     builder.evidence(
                         qid,
-                        path="/descriptions/en",
+                        path=f"/descriptions/{en_language}",
                         predicate=None,
-                        locator=f"{qid}/descriptions/en",
-                        language="en",
+                        locator=f"{qid}/descriptions/{en_language}",
+                        language=en_language,
                     )
                 ]
 

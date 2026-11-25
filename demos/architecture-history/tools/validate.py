@@ -2312,6 +2312,20 @@ def authority_snapshot_id(snapshot: dict, seed_sha256: str) -> str:
     )
 
 
+def english_label_value(record: dict) -> Optional[str]:
+    """English label, falling back to Wikidata's shared ``mul`` label.
+
+    Wikidata merges a label that is identical across languages into ``mul``
+    and drops the per-language copy, so an item can have no ``en`` label.
+    """
+    labels = record.get("labels", {})
+    for language in ("en", "mul"):
+        value = labels.get(language, {}).get("value")
+        if isinstance(value, str) and value.strip():
+            return value
+    return None
+
+
 def wikidata_item_values(record: dict, property_id: str) -> list[str]:
     values: list[str] = []
     for statement in record.get("claims", {}).get(property_id, []):
@@ -2976,7 +2990,7 @@ def main() -> int:
             record = snapshot["entities"].get(seed["qid"], {}).get("record")
             if record is None:
                 continue
-            english_label = record.get("labels", {}).get("en", {}).get("value")
+            english_label = english_label_value(record)
             if not english_label:
                 errors.append(
                     f"{snapshot_id}/{seed['qid']}: seed work requires an English label"
@@ -3077,9 +3091,7 @@ def main() -> int:
             )
             if record is None:
                 continue
-            english_label = (
-                record.get("labels", {}).get("en", {}).get("value")
-            )
+            english_label = english_label_value(record)
             if english_label != allowlist_by_qid[qid]["label_en"]:
                 errors.append(
                     f"{snapshot_id}/{qid}: authority English label does not "
