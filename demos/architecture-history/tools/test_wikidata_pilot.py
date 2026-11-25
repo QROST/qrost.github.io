@@ -96,7 +96,7 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q917274": "1980_1999",
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
-    "484ec341c67c5f64296257eefe4974fa541043f937d32d26a8d9df1aefbb0152"
+    "771873174717d581c3fe46df1aa2eff10ce9a24793b1351af9e47a8e58d17b62"
 )
 NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q2977",
@@ -121,7 +121,7 @@ NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q11315",
 }
 NEW_WORK_TYPE_WORK_IDS_SHA256 = (
-    "e243755cd4cb2bfc649ff9bf182744e952bbd0dbb0ef5aa19fee32d44714f793"
+    "0fd16819e99f32e9ab24eaa836d7659c7385698ca0106f2503cb4b384a1a11b5"
 )
 
 
@@ -223,7 +223,7 @@ def minimal_lineage_snapshot(
             "seed": "fixture",
             "seed_sha256": "fixture",
         },
-        "snapshot_id": "wikidata-hydration-2026-11-22-18ef6e4bebe5",
+        "snapshot_id": "wikidata-hydration-2026-11-24-32ba7fd04ba5",
         "source_id": "wikidata",
     }
 
@@ -981,7 +981,7 @@ class WikidataPilotTests(unittest.TestCase):
         }
         self.assertEqual(
             statuses,
-            {"mapped_exact": 2104, "unmapped": 1373, "ambiguous": 48},
+            {"mapped_exact": 2104, "unmapped": 1372, "ambiguous": 48},
         )
 
     def test_automatic_records_remain_candidates(self):
@@ -1161,7 +1161,7 @@ class WikidataPilotTests(unittest.TestCase):
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
-            1037,
+            1036,
         )
         self.assertEqual(
             sum(
