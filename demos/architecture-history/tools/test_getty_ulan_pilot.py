@@ -309,11 +309,17 @@ class GettyUlanPilotTests(unittest.TestCase):
                 json.dumps(first, ensure_ascii=False),
                 encoding="utf-8",
             )
-            overlay = importer.build_overlay(
-                ROOT / "assets" / "data" / "catalog",
-                path,
-                snapshot_path,
+        crosswalk_paths = sorted(
+            (ROOT / "assets/data/source-snapshots").glob(
+                "wikidata-ulan-crosswalk-*.json"
             )
+        )
+        self.assertEqual(len(crosswalk_paths), 1)
+        overlay = importer.build_overlay(
+            ROOT / "assets/data/catalog",
+            crosswalk_paths[0],
+            snapshot_path,
+        )
         self.assertEqual(overlay["kind"], "catalog_overlay_v1")
         self.assertRegex(overlay["overlay_id"], r"^getty-ulan-identity-[0-9a-f]{16}$")
         self.assertEqual(len(overlay["entity_patches"]), 22)

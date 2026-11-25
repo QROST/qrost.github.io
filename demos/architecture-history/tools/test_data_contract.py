@@ -1040,7 +1040,7 @@ class DataContractTests(unittest.TestCase):
         errors: list[str] = []
         validator.validate_coverage_config(config, allowed_periods, errors)
         self.assertEqual(errors, [])
-        self.assertEqual(config["config_version"], "0.4.0")
+        self.assertEqual(config["config_version"], "0.6.0")
         self.assertEqual(
             config["period_derivation"]["latest_year_inclusive"],
             2026,
