@@ -43,14 +43,14 @@ from validate import meaningful_fact
 
 
 # A role is verifiable only from the occupation items the shared policy maps
-# to it, with one pinned P106 statement as evidence.
+# to it, with one pinned P106 statement as evidence for each role.
 ROLE_OCCUPATION_QIDS = {
     role: tuple(
         occupation_qid
         for occupation_qid, mapped_role in OCCUPATION_TO_ROLE.items()
         if mapped_role == role
     )
-    for role in ("architect", "landscape_architect", "craftsperson", "educator")
+    for role in sorted(set(OCCUPATION_TO_ROLE.values()))
 }
 
 
@@ -289,29 +289,31 @@ def build_field_plan(
             }
         elif field == "roles":
             roles = person["roles"]
-            if len(roles) != 1 or roles[0] not in ROLE_OCCUPATION_QIDS:
+            unmapped = [role for role in roles if role not in ROLE_OCCUPATION_QIDS]
+            if not roles or unmapped:
                 raise ReviewFailure(
-                    f"roles {roles!r} cannot be verified from a single mapped P106 occupation"
+                    f"roles {roles!r} cannot be verified from mapped P106 occupations"
                 )
-            role = roles[0]
-            occupation_qids = ROLE_OCCUPATION_QIDS[role]
-            matched = next(
-                (
-                    found
-                    for found in (
-                        occupation_statement(record, occupation_qid)
-                        for occupation_qid in occupation_qids
+            matched_statements = []
+            for role in roles:
+                occupation_qids = ROLE_OCCUPATION_QIDS[role]
+                matched = next(
+                    (
+                        found
+                        for found in (
+                            occupation_statement(record, occupation_qid)
+                            for occupation_qid in occupation_qids
+                        )
+                        if found is not None
+                    ),
+                    None,
+                )
+                if matched is None:
+                    raise ReviewFailure(
+                        f"roles claim {role!r} but none of the P106 occupations "
+                        f"{list(occupation_qids)} is present"
                     )
-                    if found is not None
-                ),
-                None,
-            )
-            if matched is None:
-                raise ReviewFailure(
-                    f"roles claim {role!r} but none of the P106 occupations "
-                    f"{list(occupation_qids)} is present"
-                )
-            index, statement = matched
+                matched_statements.append(matched)
             plan[field] = {
                 "claim_id": claim_id,
                 "predicate": "field_roles",
@@ -324,6 +326,7 @@ def build_field_plan(
                         locator=f"{qid}/P106/{statement.get('id', index)}",
                         statement=statement,
                     )
+                    for index, statement in matched_statements
                 ],
             }
         elif field == "country_codes":
