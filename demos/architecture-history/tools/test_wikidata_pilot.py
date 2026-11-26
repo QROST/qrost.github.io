@@ -1450,7 +1450,9 @@ class LineageMeshFixtureTests(unittest.TestCase):
                 occupations=[importer.ARCHITECT_QID],
                 claims={"P802": [item_entity_statement("Q1001")]},
             ),
-            "Q1001": human_record("Q1001", label_en="One-hop student"),
+            "Q1001": human_record(
+                "Q1001", label_en="One-hop student", occupations=["Q201820"]
+            ),
             "Q500": human_record(
                 "Q500",
                 label_en="Curated historian",
@@ -1517,6 +1519,7 @@ class LineageMeshFixtureTests(unittest.TestCase):
                 "Q201": human_record(
                     "Q201",
                     label_en="Influencer",
+                    occupations=["Q201820"],
                 ),
                 "Q300": practice_record("Q300", label_en="Studio Alpha"),
             }
@@ -1596,6 +1599,7 @@ class LineageMeshFixtureTests(unittest.TestCase):
                 "Q401": human_record(
                     "Q401",
                     label_en="Founder",
+                    occupations=[importer.ARCHITECT_QID],
                 ),
                 "Q402": human_record(
                     "Q402",
@@ -1605,7 +1609,7 @@ class LineageMeshFixtureTests(unittest.TestCase):
                         "P1066": [item_entity_statement("Q403")],
                     },
                 ),
-                "Q403": human_record("Q403", label_en="Student"),
+                "Q403": human_record("Q403", label_en="Student", occupations=["Q201820"]),
             }
         )
         relation_keys = {
@@ -1635,6 +1639,7 @@ class LineageMeshFixtureTests(unittest.TestCase):
                 "Q2": human_record(
                     "Q2",
                     label_en="One Hop Influencer",
+                    occupations=["Q201820"],
                     claims={"P802": [item_entity_statement("Q3")]},
                 ),
                 "Q3": human_record(

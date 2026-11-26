@@ -21,20 +21,67 @@ ENGINEER_QID = "Q81096"
 URBAN_PLANNER_QID = "Q1358267"
 DESIGNER_QID = "Q5322166"
 PATRON_QID = "Q82955"
+PATRON_OF_THE_ARTS_QID = "Q15472169"
+CIVIL_ENGINEER_QID = "Q13582652"
+MASTER_BUILDER_QID = "Q1340643"
+GOLDSMITH_QID = "Q211423"
+STAINED_GLASS_ARTIST_QID = "Q2205972"
+ARCHITECTURAL_COLORIST_QID = "Q29167172"
+JEWELRY_DESIGNER_QID = "Q2519376"
+INTERIOR_ARCHITECT_QID = "Q103893954"
 
 OCCUPATION_TO_ROLE: dict[str, str] = {
     ARCHITECT_QID: "architect",
     LANDSCAPE_ARCHITECT_QID: "landscape_architect",
     SCULPTOR_QID: "craftsperson",
+    GOLDSMITH_QID: "craftsperson",
+    STAINED_GLASS_ARTIST_QID: "craftsperson",
     EDUCATOR_QID: "educator",
     HISTORIAN_QID: "historian",
     ENGINEER_QID: "engineer",
+    CIVIL_ENGINEER_QID: "engineer",
+    MASTER_BUILDER_QID: "engineer",
     URBAN_PLANNER_QID: "urban_planner",
     DESIGNER_QID: "designer",
+    INTERIOR_ARCHITECT_QID: "designer",
+    ARCHITECTURAL_COLORIST_QID: "designer",
+    JEWELRY_DESIGNER_QID: "designer",
     PATRON_QID: "patron",
+    PATRON_OF_THE_ARTS_QID: "patron",
 }
 
 SCHEMA_ROLES = frozenset((*OCCUPATION_TO_ROLE.values(), "unknown"))
+
+# Occupations that write about architecture. They belong in the catalog but
+# are not evidence of a role, so they stay unmapped above.
+ARCHITECTURE_WRITING_OCCUPATION_QIDS = frozenset(
+    {
+        "Q11486702",  # architectural historian
+        "Q17391654",  # architecture critic
+        "Q17391659",  # architectural theoretician
+    }
+)
+
+# Person-seed QIDs that resolve to somebody else: a name collision at intake
+# attached an architect's name to an unrelated item. They are withheld until
+# the seed points at the intended person.
+WITHHELD_PERSON_QIDS = frozenset(
+    {
+        "Q10530652",  # "Hugo Sarmiento": association football player
+        "Q107144100",  # "Michael Stock": media critic
+        "Q1162955",  # "Daniel Tovar": actor
+        "Q116659497",  # "Kate Davies": novelist
+        "Q15981913",  # "Hamed Khosravi": association football player
+        "Q256186",  # "Laura Allen": actor
+        "Q49031",  # "Julia King": engineer and politician
+        "Q5125282",  # "Claire Phillips": spy
+        "Q5525088",  # "Gary Fox": farmer and politician
+        "Q6790250",  # "Matthew Butcher": police officer
+        "Q6939241",  # "Murray Fraser": law professor
+        "Q7441055",  # "Sean Hanna": politician
+        "Q9023914",  # "Angela Pang": singer
+    }
+)
 
 
 def item_values(record: dict[str, Any], property_id: str) -> list[str]:
@@ -60,6 +107,30 @@ def person_occupations(record: dict[str, Any]) -> set[str]:
 
 def has_architecture_occupation(record: dict[str, Any]) -> bool:
     return not ARCHITECT_OCCUPATION_QIDS.isdisjoint(person_occupations(record))
+
+
+def has_recognised_occupation(record: dict[str, Any]) -> bool:
+    """Whether a person's occupation gives them a place in the catalog.
+
+    True for a mapped role (architect, engineer, patron, ...) and for the
+    architecture-writing occupations. False for painters, philosophers,
+    composers and everyone else the lineage traversal met only as somebody's
+    teacher, employer or influence: a relationship alone does not admit them.
+    """
+    if derive_person_roles(record, role_from_credit=False) != ["unknown"]:
+        return True
+    return not ARCHITECTURE_WRITING_OCCUPATION_QIDS.isdisjoint(
+        person_occupations(record)
+    )
+
+
+def withheld_person_ids(people: Iterable[dict[str, Any]]) -> set[str]:
+    return {
+        person["id"]
+        for person in people
+        if str(person.get("external_ids", {}).get("wikidata", "")).upper()
+        in WITHHELD_PERSON_QIDS
+    }
 
 
 def derive_person_roles(
@@ -107,8 +178,11 @@ def seed_people_by_policy(
     """Direct keeps: architect occupation, work credit, or person-seed curation."""
     people_by_id = {person["id"]: person for person in people}
     credited = credited_person_ids(works)
+    withheld = withheld_person_ids(people)
     seeds: set[str] = set()
     for person_id, person in people_by_id.items():
+        if person_id in withheld:
+            continue
         qid = person.get("external_ids", {}).get("wikidata")
         record = entity_records.get(qid) if isinstance(qid, str) else None
         if record is not None and has_architecture_occupation(record):
@@ -146,8 +220,13 @@ def keep_people_by_policy(
     entity_records: dict[str, dict[str, Any]],
     seeded_qids: set[str] | None = None,
 ) -> tuple[set[str], dict[str, int]]:
-    """Apply architect/credit/curated seeds plus relation closure from architect/practice anchors."""
+    """Apply architect/credit/curated seeds plus relation closure from architect/practice anchors.
+
+    The relation closure keeps a one-hop neighbour of an architect or practice
+    only when the neighbour's own occupation belongs to the catalog.
+    """
     people_by_id = {person["id"]: person for person in people}
+    withheld = withheld_person_ids(people)
     seeds = seed_people_by_policy(
         people=people,
         works=works,
@@ -163,6 +242,14 @@ def keep_people_by_policy(
     changed = True
     iterations = 0
     relation_kept = 0
+
+    def neighbour_can_be_kept(person_id: str) -> bool:
+        if person_id in withheld or person_id in keep_people:
+            return False
+        qid = people_by_id[person_id].get("external_ids", {}).get("wikidata")
+        record = entity_records.get(qid) if isinstance(qid, str) else None
+        return record is not None and has_recognised_occupation(record)
+
     while changed:
         changed = False
         iterations += 1
@@ -171,11 +258,11 @@ def keep_people_by_policy(
             to_id = relation.get("to_id")
             if not isinstance(from_id, str) or not isinstance(to_id, str):
                 continue
-            if from_id in anchors and to_id in people_by_id and to_id not in keep_people:
+            if from_id in anchors and to_id in people_by_id and neighbour_can_be_kept(to_id):
                 keep_people.add(to_id)
                 relation_kept += 1
                 changed = True
-            if to_id in anchors and from_id in people_by_id and from_id not in keep_people:
+            if to_id in anchors and from_id in people_by_id and neighbour_can_be_kept(from_id):
                 keep_people.add(from_id)
                 relation_kept += 1
                 changed = True

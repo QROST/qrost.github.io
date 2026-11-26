@@ -93,7 +93,7 @@ class PeoplePolicyTests(unittest.TestCase):
         self.assertNotIn("person-wd-q9047", keep)
         self.assertEqual(stats["seed_people"], 1)
 
-    def test_keeps_one_hop_from_architect_anchor(self):
+    def test_drops_unmapped_one_hop_from_architect_anchor(self):
         people = [
             person("person-wd-q78484", "Q78484", name_en="Rudolf Steiner"),
             person("person-wd-q5879", "Q5879", name_en="Goethe"),
@@ -109,7 +109,7 @@ class PeoplePolicyTests(unittest.TestCase):
                 "to_id": "person-wd-q78484",
             }
         ]
-        keep, _ = policy.keep_people_by_policy(
+        keep, stats = policy.keep_people_by_policy(
             people=people,
             works=[],
             practices=[],
@@ -117,7 +117,91 @@ class PeoplePolicyTests(unittest.TestCase):
             entity_records=records,
         )
         self.assertIn("person-wd-q78484", keep)
-        self.assertIn("person-wd-q5879", keep)
+        self.assertNotIn("person-wd-q5879", keep)
+        self.assertEqual(stats["relation_kept"], 0)
+
+    def test_keeps_one_hop_neighbour_with_a_recognised_occupation(self):
+        people = [
+            person("person-wd-q78484", "Q78484", name_en="Rudolf Steiner"),
+            person("person-wd-q244288", "Q244288", name_en="Commissioning Duke"),
+        ]
+        records = {
+            "Q78484": human_record("Q78484", occupations=[policy.ARCHITECT_QID]),
+            "Q244288": human_record("Q244288", occupations=[policy.PATRON_QID]),
+        }
+        relations = [
+            {
+                "id": "relation-wd-employment-q78484-q244288",
+                "from_id": "person-wd-q78484",
+                "to_id": "person-wd-q244288",
+            }
+        ]
+        keep, stats = policy.keep_people_by_policy(
+            people=people,
+            works=[],
+            practices=[],
+            relations=relations,
+            entity_records=records,
+        )
+        self.assertIn("person-wd-q78484", keep)
+        self.assertIn("person-wd-q244288", keep)
+        self.assertEqual(stats["relation_kept"], 1)
+
+    def test_architecture_writer_is_kept_without_gaining_a_role(self):
+        critic_qid = "Q17391654"
+        self.assertIn(critic_qid, policy.ARCHITECTURE_WRITING_OCCUPATION_QIDS)
+        record = human_record("Q900", occupations=[critic_qid])
+        self.assertTrue(policy.has_recognised_occupation(record))
+        self.assertEqual(
+            policy.derive_person_roles(record, role_from_credit=False),
+            ["unknown"],
+        )
+
+    def test_withheld_qid_is_never_kept(self):
+        withheld_qid = next(iter(policy.WITHHELD_PERSON_QIDS)).lower()
+        people = [
+            person("person-wd-q78484", "Q78484", name_en="Rudolf Steiner"),
+            person("person-wd-q900", withheld_qid, name_en="Name Collision"),
+        ]
+        records = {
+            "Q78484": human_record("Q78484", occupations=[policy.ARCHITECT_QID]),
+            withheld_qid: human_record(withheld_qid, occupations=[policy.ARCHITECT_QID]),
+        }
+        relations = [
+            {
+                "id": "relation-wd-influence-q900-q78484",
+                "from_id": "person-wd-q900",
+                "to_id": "person-wd-q78484",
+            }
+        ]
+        keep, _ = policy.keep_people_by_policy(
+            people=people,
+            works=[],
+            practices=[],
+            relations=relations,
+            entity_records=records,
+            seeded_qids={withheld_qid},
+        )
+        self.assertIn("person-wd-q78484", keep)
+        self.assertNotIn("person-wd-q900", keep)
+
+    def test_building_trades_map_to_roles(self):
+        cases = {
+            policy.CIVIL_ENGINEER_QID: "engineer",
+            policy.MASTER_BUILDER_QID: "engineer",
+            policy.GOLDSMITH_QID: "craftsperson",
+            policy.STAINED_GLASS_ARTIST_QID: "craftsperson",
+            policy.INTERIOR_ARCHITECT_QID: "designer",
+            policy.PATRON_OF_THE_ARTS_QID: "patron",
+        }
+        for occupation_qid, role in cases.items():
+            with self.subTest(occupation=occupation_qid):
+                record = human_record("Q900", occupations=[occupation_qid])
+                self.assertEqual(
+                    policy.derive_person_roles(record, role_from_credit=False),
+                    [role],
+                )
+                self.assertTrue(policy.has_recognised_occupation(record))
 
     def test_does_not_chain_through_celebrity_anchors(self):
         people = [
@@ -127,8 +211,10 @@ class PeoplePolicyTests(unittest.TestCase):
         ]
         records = {
             "Q78484": human_record("Q78484", occupations=[policy.ARCHITECT_QID]),
-            "Q5879": human_record("Q5879", occupations=["Q49757"]),
-            "Q935": human_record("Q935", occupations=["Q4964182"]),
+            # Both occupations are recognised, so only the missing anchor can
+            # stop the second hop.
+            "Q5879": human_record("Q5879", occupations=[policy.ENGINEER_QID]),
+            "Q935": human_record("Q935", occupations=[policy.PATRON_QID]),
         }
         relations = [
             {
