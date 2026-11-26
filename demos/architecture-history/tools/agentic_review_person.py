@@ -38,17 +38,19 @@ from import_wikidata_pilot import (
     qid_slug,
     time_value,
 )
+from people_policy import OCCUPATION_TO_ROLE
 from validate import meaningful_fact
 
 
-LANDSCAPE_ARCHITECT_QID = "Q2374149"
-SCULPTOR_QID = "Q1281618"
-EDUCATOR_QID = "Q2566598"
+# A role is verifiable only from the occupation items the shared policy maps
+# to it, with one pinned P106 statement as evidence.
 ROLE_OCCUPATION_QIDS = {
-    "architect": ARCHITECT_QID,
-    "landscape_architect": LANDSCAPE_ARCHITECT_QID,
-    "craftsperson": SCULPTOR_QID,
-    "educator": EDUCATOR_QID,
+    role: tuple(
+        occupation_qid
+        for occupation_qid, mapped_role in OCCUPATION_TO_ROLE.items()
+        if mapped_role == role
+    )
+    for role in ("architect", "landscape_architect", "craftsperson", "educator")
 }
 
 
@@ -292,11 +294,22 @@ def build_field_plan(
                     f"roles {roles!r} cannot be verified from a single mapped P106 occupation"
                 )
             role = roles[0]
-            occupation_qid = ROLE_OCCUPATION_QIDS[role]
-            matched = occupation_statement(record, occupation_qid)
+            occupation_qids = ROLE_OCCUPATION_QIDS[role]
+            matched = next(
+                (
+                    found
+                    for found in (
+                        occupation_statement(record, occupation_qid)
+                        for occupation_qid in occupation_qids
+                    )
+                    if found is not None
+                ),
+                None,
+            )
             if matched is None:
                 raise ReviewFailure(
-                    f"roles claim {role!r} but P106 occupation {occupation_qid} is absent"
+                    f"roles claim {role!r} but none of the P106 occupations "
+                    f"{list(occupation_qids)} is present"
                 )
             index, statement = matched
             plan[field] = {

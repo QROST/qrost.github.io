@@ -15,6 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 IMPORTER_PATH = ROOT / "tools" / "import_wikidata_pilot.py"
 FETCHER_PATH = ROOT / "tools" / "fetch_wikidata_pilot.py"
+POLICY_PATH = ROOT / "tools" / "people_policy.py"
 
 spec = importlib.util.spec_from_file_location(
     "architecture_history_wikidata_importer",
@@ -31,6 +32,14 @@ fetch_spec = importlib.util.spec_from_file_location(
 assert fetch_spec and fetch_spec.loader
 fetcher = importlib.util.module_from_spec(fetch_spec)
 fetch_spec.loader.exec_module(fetcher)
+
+policy_spec = importlib.util.spec_from_file_location(
+    "architecture_history_people_policy",
+    POLICY_PATH,
+)
+assert policy_spec and policy_spec.loader
+policy = importlib.util.module_from_spec(policy_spec)
+policy_spec.loader.exec_module(policy)
 
 EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q1012374": "1500_1799",
@@ -1426,7 +1435,7 @@ class LineageMeshFixtureTests(unittest.TestCase):
                 "Q101": human_record(
                     "Q101",
                     label_en="Student Historian",
-                    occupations=["Q201820"],
+                    occupations=[policy.HISTORIAN_QID],
                 ),
             }
         )
@@ -1451,12 +1460,12 @@ class LineageMeshFixtureTests(unittest.TestCase):
                 claims={"P802": [item_entity_statement("Q1001")]},
             ),
             "Q1001": human_record(
-                "Q1001", label_en="One-hop student", occupations=["Q201820"]
+                "Q1001", label_en="One-hop student", occupations=[policy.HISTORIAN_QID]
             ),
             "Q500": human_record(
                 "Q500",
                 label_en="Curated historian",
-                occupations=["Q201820"],
+                occupations=[policy.HISTORIAN_QID],
                 claims={"P737": [item_entity_statement("Q501")]},
             ),
             "Q510": human_record(
@@ -1519,7 +1528,7 @@ class LineageMeshFixtureTests(unittest.TestCase):
                 "Q201": human_record(
                     "Q201",
                     label_en="Influencer",
-                    occupations=["Q201820"],
+                    occupations=[policy.HISTORIAN_QID],
                 ),
                 "Q300": practice_record("Q300", label_en="Studio Alpha"),
             }
@@ -1609,7 +1618,7 @@ class LineageMeshFixtureTests(unittest.TestCase):
                         "P1066": [item_entity_statement("Q403")],
                     },
                 ),
-                "Q403": human_record("Q403", label_en="Student", occupations=["Q201820"]),
+                "Q403": human_record("Q403", label_en="Student", occupations=[policy.HISTORIAN_QID]),
             }
         )
         relation_keys = {
@@ -1639,7 +1648,7 @@ class LineageMeshFixtureTests(unittest.TestCase):
                 "Q2": human_record(
                     "Q2",
                     label_en="One Hop Influencer",
-                    occupations=["Q201820"],
+                    occupations=[policy.HISTORIAN_QID],
                     claims={"P802": [item_entity_statement("Q3")]},
                 ),
                 "Q3": human_record(
