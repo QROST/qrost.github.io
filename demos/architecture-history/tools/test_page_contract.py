@@ -276,6 +276,16 @@ class PageContractTests(unittest.TestCase):
         self.assertIn("i18n.t('claimsCount', { count: claims.length })", self.app)
         self.assertIn("</ul></details>", self.app)
 
+    def test_architects_without_catalogued_works_are_labelled(self) -> None:
+        self.assertIn("i18n.t('worksPending')", self.app)
+        self.assertIn("i18n.t('worksPendingNote')", self.app)
+        self.assertIn("worksPending: { zh: '作品待补', en: 'Works not yet catalogued' }", self.i18n)
+        self.assertIn("worksPendingNote: { zh:", self.i18n)
+        # The label is for architects only: critics, historians and patrons
+        # are not expected to have works.
+        self.assertIn("role === 'architect' || role === 'landscape_architect'", self.app)
+        self.assertIn("entity.entity_type === 'person' && architect", self.app)
+
     def test_catalog_rendering_is_bounded_but_filters_the_full_catalog(self) -> None:
         for phrase in (
             "const CATALOG_PAGE_SIZE = 100;",

@@ -222,6 +222,8 @@
     claimsCount: { zh: '{count} 条主张', en: '{count} claims' },
     creditsCount: { zh: '{count} 项候选署名', en: '{count} candidate credits' },
     linkedWorksCount: { zh: '{count} 件关联作品', en: '{count} linked works' },
+    worksPending: { zh: '作品待补', en: 'Works not yet catalogued' },
+    worksPendingNote: { zh: '这位建筑师的作品尚未收录到库中。', en: "This architect's works are not yet in the catalog." },
     countryCode: { zh: '国家代码 {code}', en: 'Country code {code}' },
     detailsFor: { zh: '{type}详情', en: '{type} details' },
     detailRegion: { zh: '宏观区域', en: 'Macroregion' },

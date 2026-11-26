@@ -303,6 +303,16 @@
     select.value = periods.includes(previous) ? previous : 'all';
   }
 
+  // Critics, historians and patrons are not expected to have works. Only an
+  // architect with none is waiting for works to be catalogued.
+  function architectHasNoCataloguedWorks(entity) {
+    const architect = (entity.roles || []).some(function (role) {
+      return role === 'architect' || role === 'landscape_architect';
+    });
+    return entity.entity_type === 'person' && architect &&
+      !contributorWorks(entity.id).length;
+  }
+
   function contextFor(entity) {
     if (entity.entity_type === 'work') {
       const place = state.entitiesById[entity.place_id];
@@ -314,6 +324,7 @@
       return pieces.join(' · ') || i18n.t('noData');
     }
     if (entity.entity_type === 'person' || entity.entity_type === 'practice') {
+      if (architectHasNoCataloguedWorks(entity)) return i18n.t('worksPending');
       return i18n.t('linkedWorksCount', { count: contributorWorks(entity.id).length });
     }
     if (entity.entity_type === 'place') {
@@ -903,7 +914,13 @@
     } else if (entity.entity_type === 'place') {
       works = placeWorks(entity.id);
     }
-    if (!works.length) return '';
+    if (!works.length) {
+      if (architectHasNoCataloguedWorks(entity)) {
+        return '<section class="detail-section"><h3>' + escapeHtml(i18n.t('detailWorks')) + '</h3>' +
+          '<p>' + escapeHtml(i18n.t('worksPendingNote')) + '</p></section>';
+      }
+      return '';
+    }
     return '<section class="detail-section"><h3>' + escapeHtml(i18n.t('detailWorks')) + '</h3>' +
       '<ul class="detail-list">' + works.map(function (work) {
         return '<li><button type="button" data-open-entity="' + escapeHtml(work.id) + '">' +
