@@ -119,9 +119,18 @@ def apply(
             demote = " (demote verified→candidate)" if was_empty and stats["demoted_verified"] else ""
             print(f"  WOULD UPDATE {entity_id}: {current_region}/{current_codes} -> {region}/{codes}{demote}")
         else:
+            # The status column follows the payload: db.py export projects the
+            # payload, and a demotion that only reaches the payload leaves the
+            # store contradicting itself.
             conn.execute(
-                "UPDATE entities SET region = ?, payload = ? WHERE id = ?",
-                (region, new_payload, entity_id),
+                "UPDATE entities SET region = ?, payload = ?, verification_status = ? "
+                "WHERE id = ?",
+                (
+                    region,
+                    new_payload,
+                    payload["verification_status"],
+                    entity_id,
+                ),
             )
         stats["applied"] += 1
     if not dry_run:
