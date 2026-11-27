@@ -1377,12 +1377,16 @@ class WikidataPilotTests(unittest.TestCase):
             ),
             int(len(works) * 0.9),
         )
+        # The inclusion rule (2026-11-26) removed 112 people who were neither
+        # architects nor architecture writers; 50 of them carried a Chinese
+        # label, which took the ratio below 35%. Hold the absolute count
+        # instead, as for works, so later removals cannot erode zh coverage.
         self.assertGreaterEqual(
             sum(
                 person["name_zh"] is not None
                 for person in people
             ),
-            int(len(people) * 0.35),
+            852,
         )
         for work in works:
             if work["work_type_mapping_status"] == "mapped_exact":
