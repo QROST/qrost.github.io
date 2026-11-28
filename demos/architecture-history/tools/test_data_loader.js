@@ -18,17 +18,21 @@ function arrayBuffer(bytes) {
 
 function makeHarness(options = {}) {
   const requests = [];
-  let corruptClaims = Boolean(options.corruptClaimsOnce);
+  let corruptRemaining = options.corruptShardRequests || 0;
   const context = {
     TextDecoder,
+    TextEncoder: require('node:util').TextEncoder,
     console,
     window: { crypto: webcrypto },
     fetch: async function (url) {
       requests.push(url);
       const relativePath = url.split('?')[0];
       let bytes = fs.readFileSync(path.join(ROOT, relativePath));
-      if (corruptClaims && relativePath.endsWith('/claims.json')) {
-        corruptClaims = false;
+      if (
+        corruptRemaining > 0 &&
+        relativePath.startsWith('assets/data/' + 'claims/')
+      ) {
+        corruptRemaining -= 1;
         bytes = Buffer.concat([bytes, Buffer.from(' ')]);
       }
       return {
@@ -44,37 +48,64 @@ function makeHarness(options = {}) {
   return { loader: context.window.ARCH_DATA, requests };
 }
 
-function claimRequests(requests) {
+function shardRequests(requests) {
   return requests.filter(function (url) {
-    return url.split('?')[0].endsWith('/claims.json');
+    return url.split('?')[0].includes('/claims/shard-');
   });
 }
 
 async function main() {
   const normal = makeHarness();
   const initial = await normal.loader.load();
-  assert.equal(initial.claims, undefined);
-  assert.equal(claimRequests(normal.requests).length, 0);
+  assert.equal(initial.manifest.files['claims.json'], undefined);
+  assert.equal(shardRequests(normal.requests).length, 0);
 
+  // A person whose claim_ids promise at least one claim.
+  const subject = initial.people.find(function (person) {
+    return person.claim_ids && person.claim_ids.length > 0;
+  });
+  assert.ok(subject, 'fixture catalog has a person with claims');
+  const bucket = normal.loader.claimsBucket(subject.id);
+  assert.ok(bucket >= 0 && bucket < normal.loader.CLAIMS_SHARD_COUNT);
+
+  // Concurrent loads of the same subject share one shard request.
   const concurrent = await Promise.all([
-    normal.loader.loadClaims(),
-    normal.loader.loadClaims(),
+    normal.loader.loadClaimsForSubject(subject.id),
+    normal.loader.loadClaimsForSubject(subject.id),
   ]);
-  assert.strictEqual(concurrent[0], concurrent[1]);
-  assert.equal(concurrent[0].length, initial.manifest.files['claims.json'].count);
-  assert.equal(claimRequests(normal.requests).length, 1);
+  assert.deepStrictEqual(concurrent[0], concurrent[1]);
+  assert.equal(concurrent[0].length, subject.claim_ids.length);
+  assert.ok(concurrent[0].every(function (claim) {
+    return claim.subject_id === subject.id;
+  }));
+  assert.equal(shardRequests(normal.requests).length, 1);
 
-  const retry = makeHarness({ corruptClaimsOnce: true });
+  // A different subject in the same bucket is served from the cached shard.
+  const sameBucket = initial.people.find(function (person) {
+    return (
+      person.id !== subject.id &&
+      person.claim_ids && person.claim_ids.length > 0 &&
+      normal.loader.claimsBucket(person.id) === bucket
+    );
+  });
+  if (sameBucket) {
+    const cached = await normal.loader.loadClaimsForSubject(sameBucket.id);
+    assert.equal(shardRequests(normal.requests).length, 1);
+    assert.equal(cached.length, sameBucket.claim_ids.length);
+  }
+
+  // A corrupted shard fails closed, then recovers on retry.
+  const retry = makeHarness({ corruptShardRequests: 1 });
   await retry.loader.load();
   await assert.rejects(
-    retry.loader.loadClaims(),
-    /SHA-256 mismatch while loading claims\.json/
+    retry.loader.loadClaimsForSubject(subject.id),
+    /SHA-256 mismatch while loading claims\/shard-/
   );
-  const recovered = await retry.loader.loadClaims();
-  assert.equal(recovered.length, initial.manifest.files['claims.json'].count);
-  assert.equal(claimRequests(retry.requests).length, 2);
+  const recovered = await retry.loader.loadClaimsForSubject(subject.id);
+  assert.equal(recovered.length, subject.claim_ids.length);
+  assert.equal(shardRequests(retry.requests).length, 2);
 
-  console.log('Data loader lazy-claims contract OK');
+  console.log('Data loader sharded-claims contract OK');
 }
 
 main().catch(function (error) {

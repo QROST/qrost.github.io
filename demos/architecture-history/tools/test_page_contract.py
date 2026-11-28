@@ -180,7 +180,7 @@ class PageContractTests(unittest.TestCase):
             "practices.json",
             "places.json",
             "relations.json",
-            "claims.json",
+            "claims",
             "source-registry.json",
             "methodology/wikidata-coverage-config.json",
         ):
@@ -188,26 +188,33 @@ class PageContractTests(unittest.TestCase):
         self.assertNotIn("source-snapshots/", self.loader)
         self.assertNotIn("catalog/", self.loader)
 
-    def test_claims_are_lazy_and_not_in_the_initial_request_set(self) -> None:
+    def test_claims_are_lazy_shards_fetched_per_subject(self) -> None:
         initial_files = re.search(
             r"const INITIAL_FILES = \{(?P<body>.*?)\n  \};",
             self.loader,
             flags=re.DOTALL,
         )
         self.assertIsNotNone(initial_files)
-        self.assertNotIn("claims.json", initial_files.group("body"))
-        self.assertIn("const CLAIMS_FILE = 'claims.json';", self.loader)
-        self.assertIn("async function loadClaims()", self.loader)
+        self.assertNotIn("claims/", initial_files.group("body"))
+        self.assertIn("const CLAIMS_SHARD_COUNT = 32;", self.loader)
+        self.assertIn("const CLAIMS_DIR = 'claims';", self.loader)
+        self.assertIn("async function loadClaimsShard(index)", self.loader)
+        self.assertIn("async function loadClaimsForSubject(subjectId)", self.loader)
         self.assertIn("Object.entries(INITIAL_FILES)", self.loader)
-        self.assertIn("loadClaims: loadClaims", self.loader)
+        self.assertIn("loadClaimsForSubject: loadClaimsForSubject", self.loader)
         for phrase in (
-            "fetchJson(CLAIMS_FILE, expected)",
-            "assertArray(payload, 'claims', CLAIMS_FILE)",
+            "fetchJson(filename, expected)",
+            "assertArray(payload, 'claims', filename)",
             "assertCount(",
-            "claimsPromise = null",
+            "claimsShardPromises.delete(index)",
+            # The bucket function must stay byte-identical to
+            # tools/claims_shards.py (FNV-1a over UTF-8 bytes).
+            "hash ^= bytes[i];",
+            "hash = Math.imul(hash, 0x01000193) >>> 0;",
+            "return hash % CLAIMS_SHARD_COUNT;",
         ):
             self.assertIn(phrase, self.loader)
-        self.assertIn("loader.loadClaims()", self.app)
+        self.assertIn("loader.loadClaimsForSubject(subjectId)", self.app)
         self.assertIn("Architecture claims failed:", self.app)
         self.assertIn("data-retry-claims", self.app)
 

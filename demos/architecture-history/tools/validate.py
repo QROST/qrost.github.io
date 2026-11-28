@@ -42,6 +42,14 @@ FILE_KEYS = {
     "relations.json": "relations",
 }
 
+import claims_shards
+
+
+def public_claims() -> list[dict]:
+    """Every claim across the public shard files, in shard order."""
+    return claims_shards.read_shards(DATA)
+
+
 LINEAGE_TYPES = {"direct_mentor", "master_of_apprentice", "formal_teacher"}
 SYMMETRIC_RELATION_TYPES = {"collaborated_with", "cofounded_with"}
 UNREVIEWABLE_EXTRACTIONS = {"ocr_candidate", "llm_candidate"}
@@ -2421,7 +2429,9 @@ def expected_manifest(paths: list[Path]) -> dict:
     payloads = {
         filename: load_json(DATA / filename)[key]
         for filename, key in FILE_KEYS.items()
+        if filename != "claims.json"
     }
+    payloads["claims.json"] = public_claims()
     entities = (
         payloads["people.json"]
         + payloads["practices.json"]
@@ -2587,7 +2597,7 @@ def main() -> int:
     practices = records("practices.json")
     places = records("places.json")
     works = records("works.json")
-    claims = records("claims.json")
+    claims = public_claims()
     relations = records("relations.json")
 
     source_ids = duplicate_ids(sources, "sources", errors)
@@ -3406,14 +3416,33 @@ def main() -> int:
         "practices": practices,
         "places": places,
         "works": works,
-        "claims": claims,
         "relations": relations,
     }
     for key, expected_records in merged_catalog.items():
+        if key == "claims":
+            continue
         if public_graph_arrays[key] != expected_records:
             errors.append(
                 f"{key}.json: public array does not equal ordered catalog merge"
             )
+    # Claims are sharded; each shard must equal the re-partitioned merge, which
+    # also proves every claim sits in the bucket its subject hashes to.
+    expected_shards = claims_shards.split(merged_catalog["claims"])
+    shard_root = DATA
+    for index, expected_rows in enumerate(expected_shards):
+        shard_file = shard_root / claims_shards.shard_relative_path(index)
+        if not shard_file.is_file():
+            errors.append(f"{claims_shards.shard_relative_path(index)}: shard is missing")
+            continue
+        if json.loads(shard_file.read_text(encoding="utf-8"))["claims"] != expected_rows:
+            errors.append(
+                f"{claims_shards.shard_relative_path(index)}: public shard does not "
+                "equal the ordered catalog merge for its bucket"
+            )
+    for stale in sorted((shard_root / "claims").glob("shard-*.json")):
+        index = int(stale.stem.split("-")[1])
+        if index >= claims_shards.SHARD_COUNT:
+            errors.append(f"{stale.name}: shard index is outside the shard count")
 
     for source in sources:
         operations = source["allowed_operations"]

@@ -2,12 +2,13 @@
 (function () {
   'use strict';
 
-  const DATA_VERSION = '702772e31c296b11cfd610ba9a10080e6fc1c276fb8b50c68cc0c6b1d4032a61';
-  const MANIFEST_SHA256 = '937a97fbd6065a20660e5e065a0d5a8464111ab452066663161621d1abab1da0';
+  const DATA_VERSION = 'f13952f7f05a0062b51a69bfea48719a96a1059d92ec6ab07f6dd1b43c6e00ff';
+  const MANIFEST_SHA256 = '19ad1b536c523bebb6aa720afa4b06e28a22fe6966195bd0eb66f3c3422356d7';
   const SCHEMA_ID = 'architecture-lineages';
   const SCHEMA_VERSION = '1.5.0';
   const MANIFEST_FILE = 'manifest.json';
-  const CLAIMS_FILE = 'claims.json';
+  const CLAIMS_SHARD_COUNT = 32;
+  const CLAIMS_DIR = 'claims';
   const INITIAL_FILES = {
     works: 'works.json',
     people: 'people.json',
@@ -20,8 +21,8 @@
 
   let cache = null;
   let manifestCache = null;
-  let claimsCache = null;
-  let claimsPromise = null;
+  const claimsShardCache = new Map();
+  const claimsShardPromises = new Map();
 
   function assertArray(payload, key, filename) {
     if (!payload || !Array.isArray(payload[key])) {
@@ -69,6 +70,62 @@
       );
     }
     return records;
+  }
+
+  // Must stay identical to tools/claims_shards.py: FNV-1a over the UTF-8
+  // bytes of the subject id, mod the shard count.
+  function claimsBucket(subjectId) {
+    const bytes = new TextEncoder().encode(subjectId);
+    let hash = 0x811c9dc5;
+    for (let i = 0; i < bytes.length; i++) {
+      hash ^= bytes[i];
+      // Math.imul keeps the multiplication in 32-bit integers; a plain float64
+      // multiply loses precision above 2^53 and drifts from the Python bucket.
+      hash = Math.imul(hash, 0x01000193) >>> 0;
+    }
+    return hash % CLAIMS_SHARD_COUNT;
+  }
+
+  function claimsShardFile(index) {
+    return CLAIMS_DIR + '/shard-' + String(index).padStart(2, '0') + '.json';
+  }
+
+  async function loadClaimsShard(index) {
+    if (claimsShardCache.has(index)) return claimsShardCache.get(index);
+    if (claimsShardPromises.has(index)) return claimsShardPromises.get(index);
+    const filename = claimsShardFile(index);
+    const request = (async function () {
+      if (!manifestCache) await load();
+      const expected = manifestCache.files && manifestCache.files[filename];
+      if (!expected) throw new Error('Manifest does not declare ' + filename);
+      const payload = await fetchJson(filename, expected);
+      return assertCount(
+        assertArray(payload, 'claims', filename),
+        manifestCache,
+        filename
+      );
+    })();
+    claimsShardPromises.set(index, request);
+    try {
+      const records = await request;
+      claimsShardCache.set(index, records);
+      return records;
+    } catch (error) {
+      // A transient local-server or cache failure can be retried from the
+      // visible detail fallback without weakening hash/count validation.
+      claimsShardPromises.delete(index);
+      throw error;
+    }
+  }
+
+  async function loadClaimsForSubject(subjectId) {
+    if (typeof subjectId !== 'string' || !subjectId) {
+      throw new Error('A subject id is required to load claims');
+    }
+    const shard = await loadClaimsShard(claimsBucket(subjectId));
+    return shard.filter(function (claim) {
+      return claim.subject_id === subjectId;
+    });
   }
 
   async function load() {
@@ -131,36 +188,12 @@
     return data;
   }
 
-  async function loadClaims() {
-    if (claimsCache) return claimsCache;
-    if (claimsPromise) return claimsPromise;
-    claimsPromise = (async function () {
-      if (!manifestCache) await load();
-      const expected = manifestCache.files && manifestCache.files[CLAIMS_FILE];
-      if (!expected) throw new Error('Manifest does not declare ' + CLAIMS_FILE);
-      const payload = await fetchJson(CLAIMS_FILE, expected);
-      const records = assertCount(
-        assertArray(payload, 'claims', CLAIMS_FILE),
-        manifestCache,
-        CLAIMS_FILE
-      );
-      claimsCache = records;
-      return records;
-    })();
-    try {
-      return await claimsPromise;
-    } catch (error) {
-      // A transient local-server or cache failure can be retried from the
-      // visible detail fallback without weakening hash/count validation.
-      claimsPromise = null;
-      throw error;
-    }
-  }
-
   window.ARCH_DATA = {
     DATA_VERSION: DATA_VERSION,
     MANIFEST_SHA256: MANIFEST_SHA256,
+    CLAIMS_SHARD_COUNT: CLAIMS_SHARD_COUNT,
+    claimsBucket: claimsBucket,
     load: load,
-    loadClaims: loadClaims,
+    loadClaimsForSubject: loadClaimsForSubject,
   };
 })();

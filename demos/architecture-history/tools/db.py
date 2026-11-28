@@ -26,6 +26,8 @@ from __future__ import annotations
 
 import argparse
 import json
+
+import claims_shards
 import os
 import sqlite3
 import sys
@@ -91,11 +93,11 @@ def catalog_payload() -> tuple[dict[str, list[dict]], dict[str, str]]:
         ("practices", "practices.json"),
         ("places", "places.json"),
         ("works", "works.json"),
-        ("claims", "claims.json"),
         ("relations", "relations.json"),
     ):
         path = DATA / filename
         payload[key] = load_json(path)[key] if path.exists() else []
+    payload["claims"] = claims_shards.read_shards(DATA)
     return payload, {}
 
 
@@ -601,11 +603,16 @@ def _json_counts() -> dict[str, int]:
         ("practices", "practices.json"),
         ("places", "places.json"),
         ("works", "works.json"),
-        ("claims", "claims.json"),
         ("relations", "relations.json"),
     ):
         path = DATA / filename
         counts[key] = len(load_json(path)[key]) if path.exists() else 0
+    shard_files = claims_shards.shard_paths(DATA)
+    counts["claims"] = (
+        sum(len(json.loads(p.read_text(encoding="utf-8"))["claims"]) for p in shard_files)
+        if all(p.exists() for p in shard_files)
+        else 0
+    )
     return counts
 
 

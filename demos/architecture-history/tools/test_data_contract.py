@@ -17,6 +17,13 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
+CLAIMS_SHARDS_PATH = ROOT / "tools" / "claims_shards.py"
+spec_claims = importlib.util.spec_from_file_location(
+    "architecture_history_claims_shards", CLAIMS_SHARDS_PATH
+)
+assert spec_claims and spec_claims.loader
+claims_shards = importlib.util.module_from_spec(spec_claims)
+spec_claims.loader.exec_module(claims_shards)
 VALIDATOR_PATH = ROOT / "tools" / "validate.py"
 BUILDER_PATH = ROOT / "tools" / "build.py"
 
@@ -38,6 +45,12 @@ class DataContractTests(unittest.TestCase):
             root / "tools" / "wikidata-work-type-authority-seeds.json",
         )
         return temp
+
+    def write_public_claims(self, data: Path, claims: list[dict]) -> None:
+        claims_shards.write_shards(data, claims)
+
+    def read_public_claims(self, data: Path) -> list[dict]:
+        return claims_shards.read_shards(data)
 
     def run_validator(self, root: Path) -> subprocess.CompletedProcess:
         env = dict(os.environ)
@@ -255,10 +268,7 @@ class DataContractTests(unittest.TestCase):
             "reviewed_by": reviewed_by,
             "reviewed_at": "2026-07-25",
         }
-        (data / "claims.json").write_text(
-            json.dumps({"claims": [claim]}, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
+        self.write_public_claims(data, [claim])
         relation = {
             "id": "relation-a-b",
             "from_id": "person-a",
@@ -347,15 +357,9 @@ class DataContractTests(unittest.TestCase):
             json.dumps(registry, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        claims_path = data / "claims.json"
-        claims = json.loads(claims_path.read_text(encoding="utf-8"))
-        claims["claims"][0]["evidence"][0]["url"] = (
-            "https://qrost.github.io/internal-evidence"
-        )
-        claims_path.write_text(
-            json.dumps(claims, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
+        claims = self.read_public_claims(data)
+        claims[0]["evidence"][0]["url"] = "https://qrost.github.io/internal-evidence"
+        self.write_public_claims(data, claims)
         result = self.run_validator(root)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn(
@@ -701,16 +705,12 @@ class DataContractTests(unittest.TestCase):
         self.add_malicious_relation_fixture(root)
         data = root / "assets" / "data"
 
-        claims_path = data / "claims.json"
-        claims_payload = json.loads(claims_path.read_text(encoding="utf-8"))
-        duplicate_claim = dict(claims_payload["claims"][0])
+        claims = self.read_public_claims(data)
+        duplicate_claim = dict(claims[0])
         duplicate_claim["id"] = "claim-relation-duplicate"
         duplicate_claim["subject_id"] = "relation-a-b-duplicate"
-        claims_payload["claims"].append(duplicate_claim)
-        claims_path.write_text(
-            json.dumps(claims_payload, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
+        claims.append(duplicate_claim)
+        self.write_public_claims(data, claims)
 
         relations_path = data / "relations.json"
         relations_payload = json.loads(relations_path.read_text(encoding="utf-8"))
@@ -732,19 +732,15 @@ class DataContractTests(unittest.TestCase):
         self.addCleanup(temp.cleanup)
         root = Path(temp.name)
         self.add_malicious_relation_fixture(root)
-        claims_path = root / "assets" / "data" / "claims.json"
-        payload = json.loads(claims_path.read_text(encoding="utf-8"))
-        competing = dict(payload["claims"][0])
+        claims = self.read_public_claims(root / "assets" / "data")
+        competing = dict(claims[0])
         competing["id"] = "claim-relation-contested"
         competing["verification_status"] = "contested"
         competing["confidence"] = 0.8
         competing["reviewed_by"] = None
         competing["reviewed_at"] = None
-        payload["claims"].append(competing)
-        claims_path.write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
+        claims.append(competing)
+        self.write_public_claims(root / "assets" / "data", claims)
         result = self.run_validator(root)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn(
@@ -758,9 +754,8 @@ class DataContractTests(unittest.TestCase):
         self.addCleanup(temp.cleanup)
         root = Path(temp.name)
         self.add_malicious_relation_fixture(root)
-        claims_path = root / "assets" / "data" / "claims.json"
-        payload = json.loads(claims_path.read_text(encoding="utf-8"))
-        payload["claims"].append(
+        claims = self.read_public_claims(root / "assets" / "data")
+        claims.append(
             {
                 "id": "claim-hidden",
                 "subject_id": "person-a",
@@ -774,10 +769,7 @@ class DataContractTests(unittest.TestCase):
                 "reviewed_at": None,
             }
         )
-        claims_path.write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
+        self.write_public_claims(root / "assets" / "data", claims)
         result = self.run_validator(root)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn(
@@ -808,13 +800,9 @@ class DataContractTests(unittest.TestCase):
         self.addCleanup(temp.cleanup)
         root = Path(temp.name)
         self.add_malicious_relation_fixture(root)
-        claims_path = root / "assets" / "data" / "claims.json"
-        payload = json.loads(claims_path.read_text(encoding="utf-8"))
-        payload["claims"][0]["verification_status"] = "candidate"
-        claims_path.write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
+        claims = self.read_public_claims(root / "assets" / "data")
+        claims[0]["verification_status"] = "candidate"
+        self.write_public_claims(root / "assets" / "data", claims)
         result = self.run_validator(root)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn(

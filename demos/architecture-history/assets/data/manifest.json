@@ -737,15 +737,139 @@
     "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "702772e31c296b11cfd610ba9a10080e6fc1c276fb8b50c68cc0c6b1d4032a61",
+  "data_version": "f13952f7f05a0062b51a69bfea48719a96a1059d92ec6ab07f6dd1b43c6e00ff",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
       "sha256": "6afd2843ce4dd1d181b9643f35d5cd2d498d593bd889832ae0a1544dbe6624fd"
     },
-    "claims.json": {
-      "count": 35308,
-      "sha256": "8a08e50309b8429a5665e36dccd84e19013d07dbb8c3d1517930b455a7d9b4b4"
+    "claims/shard-00.json": {
+      "count": 967,
+      "sha256": "1a4135897ab45fdbab62d146c046f79df8b089da0a22700a830444bfac6148f2"
+    },
+    "claims/shard-01.json": {
+      "count": 1124,
+      "sha256": "534de0d29d8f0a21a290f447c075c4c287c91780a77e92f2f8cd02f25aaa7f99"
+    },
+    "claims/shard-02.json": {
+      "count": 1170,
+      "sha256": "994ba5aa0378d762294e85b3c92efef67b4314256177e7829122bf4e2ae3092d"
+    },
+    "claims/shard-03.json": {
+      "count": 1035,
+      "sha256": "01a62d064ed16d1f83a48e0328463954ca81d2b8449f3db32b6399c90a1b6304"
+    },
+    "claims/shard-04.json": {
+      "count": 882,
+      "sha256": "67181bab7a3c63b627f6ba5047f0a9a180c63eaf0474bb33e0b4e4c7b421b4a1"
+    },
+    "claims/shard-05.json": {
+      "count": 1154,
+      "sha256": "11648007648c2545e6b74eb4044738cc0107462242a7277d252784036a1829c6"
+    },
+    "claims/shard-06.json": {
+      "count": 1192,
+      "sha256": "55505352e690bbff4738d0755e238b61617e6e1f41fa40433ba2f5b109f2292f"
+    },
+    "claims/shard-07.json": {
+      "count": 1107,
+      "sha256": "190cf23650241341531f5ec68cfb2a3ed89bd9938eaf92035b17f15f557ddfa6"
+    },
+    "claims/shard-08.json": {
+      "count": 1325,
+      "sha256": "646eac653751864c35ace92c1ea7503a155e476023c4ff78a26287d67a96f60e"
+    },
+    "claims/shard-09.json": {
+      "count": 998,
+      "sha256": "127756656cf5e7210bea49389729664117b075be93b650c99cf24edeb6c618f6"
+    },
+    "claims/shard-10.json": {
+      "count": 1071,
+      "sha256": "ef9ba3f5fc365bbd9d7b3b26f831cf8e6fd0207aaa8e2dce9fb5a199e1c78fb0"
+    },
+    "claims/shard-11.json": {
+      "count": 943,
+      "sha256": "dc338a459a5de4783fba561fb32663624be642def54eac26ce9043ae12c7845f"
+    },
+    "claims/shard-12.json": {
+      "count": 1071,
+      "sha256": "0911193a9a959549e06d5b7a9c1ace08df2c02ec32f33cfeaf7da5d75a8dffea"
+    },
+    "claims/shard-13.json": {
+      "count": 1197,
+      "sha256": "377738f3694bd0a8db82e12381945d07aa71e762f20a89aa78b20f5b1dde3b33"
+    },
+    "claims/shard-14.json": {
+      "count": 1069,
+      "sha256": "5a23506c531381e642d75e313a0400e89171f646f2791e63602848c341de8032"
+    },
+    "claims/shard-15.json": {
+      "count": 1063,
+      "sha256": "54beb49c525ab82d841dc60281dadb449e3aceb8e7b1e099ba40658b0b59c7b9"
+    },
+    "claims/shard-16.json": {
+      "count": 1188,
+      "sha256": "7c0c611f81262bc6ca68d8b8e95455ab46f1a9d8558ea67c5cedb7f4e0712456"
+    },
+    "claims/shard-17.json": {
+      "count": 983,
+      "sha256": "8f72b6cc6d361fbcb4123f44e907efda782569592c18f18c36991c661265efe0"
+    },
+    "claims/shard-18.json": {
+      "count": 1209,
+      "sha256": "6a156bd33a567d62408d5774964f5dd395d605f4eeafde710e210bf5a6a2c1db"
+    },
+    "claims/shard-19.json": {
+      "count": 1154,
+      "sha256": "87cb642471aaa73570e41acf4f925ffc0f89ed578acbb1a199da3aba28ff6aee"
+    },
+    "claims/shard-20.json": {
+      "count": 1180,
+      "sha256": "41fbcfc645f1b57f552820202f66ee8bbe83123e6081ae56428c0ecbe47fc18a"
+    },
+    "claims/shard-21.json": {
+      "count": 1023,
+      "sha256": "f2f79bf7af20318968c3e5fceff67d6dd5cfdd94598abcdca0b2ffcf118b5100"
+    },
+    "claims/shard-22.json": {
+      "count": 1016,
+      "sha256": "ea3076623bb1369f9d931641d9e984575c1e902d4dcaf340913742d29c822516"
+    },
+    "claims/shard-23.json": {
+      "count": 1230,
+      "sha256": "8e0c0200ca903fbdbef93e10cb52e36b5c141d0c84ac03cc8d286cc234badf17"
+    },
+    "claims/shard-24.json": {
+      "count": 1182,
+      "sha256": "ec24b229c51bf4437d3fba6e94969a4d8dea3d2ea2634c17f8290ba717d72f42"
+    },
+    "claims/shard-25.json": {
+      "count": 939,
+      "sha256": "72d2758fa1ce05a26d50a41487e442f58110effbe2479aeac54606f7c2dbabd4"
+    },
+    "claims/shard-26.json": {
+      "count": 1031,
+      "sha256": "37f358172cc88b05978907e1bbeef5e4342b99fbfd72a529fcc01f30fc9780a7"
+    },
+    "claims/shard-27.json": {
+      "count": 1120,
+      "sha256": "f42de8524979725b2ba42dfa4c57d7cc6eb469e4fe07830daa3503f7bc40326c"
+    },
+    "claims/shard-28.json": {
+      "count": 1282,
+      "sha256": "688a3a1c74efa7782a51fb92a9bd9c66e337ef0a64ac2510589d627190c21c61"
+    },
+    "claims/shard-29.json": {
+      "count": 1033,
+      "sha256": "824414100a0dc78a0d7a5bdcf0e2b50990b6c74cf4c123076cba4625d7b2f597"
+    },
+    "claims/shard-30.json": {
+      "count": 1078,
+      "sha256": "4ce2f9160ba9efdec288a19540482a723e128f546e41ff61ea21c8e3c302e508"
+    },
+    "claims/shard-31.json": {
+      "count": 1292,
+      "sha256": "cbeabd721642c0596900b5a2f4e6e063aa968881fac04c662b508830a9bc532b"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,

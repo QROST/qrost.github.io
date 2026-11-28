@@ -14,6 +14,8 @@ from collections import Counter
 from pathlib import Path
 from typing import Optional
 
+import claims_shards
+
 
 ROOT = Path(
     os.environ.get(
@@ -232,9 +234,12 @@ def merge_catalog_shards() -> None:
         base_claim_ids.update(claim_by_id)
 
     for filename, key in FILE_KEYS.items():
-        if filename in {"source-registry.json", "reviewers.json"}:
+        if filename in {"source-registry.json", "reviewers.json", "claims.json"}:
             continue
         write_json(DATA / filename, {key: merged[key]})
+    # The claims table is sharded so the browser can fetch one small shard per
+    # opened entity or relation instead of the whole table.
+    claims_shards.write_shards(DATA, merged["claims"])
 
 
 def sha256(path: Path) -> str:
@@ -280,7 +285,9 @@ def derive_manifest(paths: list[Path], version: str) -> dict:
     payloads = {
         filename: load_json(DATA / filename)[key]
         for filename, key in FILE_KEYS.items()
+        if filename != "claims.json"
     }
+    payloads["claims.json"] = claims_shards.read_shards(DATA)
     entities = (
         payloads["people.json"]
         + payloads["practices.json"]
@@ -499,8 +506,9 @@ def mutable_outputs() -> list[Path]:
     paths = [
         DATA / filename
         for filename in FILE_KEYS
-        if filename not in {"source-registry.json", "reviewers.json"}
+        if filename not in {"source-registry.json", "reviewers.json", "claims.json"}
     ]
+    paths.extend(claims_shards.shard_paths(DATA))
     paths.append(MANIFEST)
     if LOADER.exists():
         paths.append(LOADER)

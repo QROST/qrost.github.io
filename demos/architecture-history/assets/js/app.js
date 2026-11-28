@@ -12,6 +12,7 @@
     entitiesById: {},
     claimsById: {},
     claimsStatus: 'idle',
+    claimsSubject: null,
     claimsPromise: null,
     claimsError: '',
     relationsById: {},
@@ -1066,17 +1067,21 @@
   }
 
   function loadClaimsForDetail() {
-    if (state.claimsStatus === 'loaded' || state.claimsPromise) return;
+    const subjectId = state.detailRelationId || state.detailEntityId;
+    if (!subjectId) return;
+    if (state.claimsSubject === subjectId && state.claimsStatus === 'loaded') return;
+    if (state.claimsPromise) return;
     state.claimsStatus = 'loading';
     state.claimsError = '';
+    state.claimsSubject = subjectId;
     rerenderCurrentDetail();
-    const request = loader.loadClaims();
+    const request = loader.loadClaimsForSubject(subjectId);
     state.claimsPromise = request;
     request.then(function (claims) {
       if (state.claimsPromise !== request) return;
-      state.claimsById = Object.fromEntries(claims.map(function (claim) {
-        return [claim.id, claim];
-      }));
+      claims.forEach(function (claim) {
+        state.claimsById[claim.id] = claim;
+      });
       state.claimsStatus = 'loaded';
     }).catch(function (error) {
       if (state.claimsPromise !== request) return;

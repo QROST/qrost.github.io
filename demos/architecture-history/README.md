@@ -44,12 +44,15 @@ The public data graph lives in `assets/data/`:
 - `source-registry.json` — source access, reuse, attribution, and bias decisions;
 - `reviewers.json` — explicitly authorized human or agentic editorial reviewers;
 - `people.json`, `practices.json`, `places.json`, `works.json` — entities;
-- `claims.json` — field- and relation-level evidence;
+- `claims/` — field- and relation-level evidence, sharded by subject id
+  (`claims/shard-00.json` … `shard-31.json`, bucketed via
+  `tools/claims_shards.py`);
 - `relations.json` — typed relationships, never inferred from visual similarity;
 - `manifest.json` — content hashes, counts, and coverage derived by the build.
 
-The browser loads the entity graph first and fetches `claims.json` only when a
-reader opens an entity or relation detail. The deferred request is still bound
+The browser loads the entity graph first and fetches one claims shard only
+when a reader opens an entity or relation detail (a shard is a few hundred
+kilobytes gzipped, not the whole table). The deferred request is still bound
 to the manifest SHA-256 and record count; a failed evidence request leaves the
 summary usable, shows a retryable error, and never falls back to unverified
 bytes. The catalog filters and sorts the full in-memory entity set, then renders
