@@ -40,7 +40,9 @@ class FetchArchitectWorksTests(unittest.TestCase):
         self.assertIn("wdt:P84 wd:Q180374", query)
         self.assertIn("wdt:P31 ?type", query)
         self.assertIn("wdt:P17 ?country", query)
-        self.assertIn('FILTER(LANG(?label) = "en")', query)
+        self.assertIn('FILTER(LANG(?label) = "en" || LANG(?label) = "mul")', query)
+        self.assertIn('FILTER(LANG(?label) = "en" || NOT EXISTS {', query)
+
         for row in self.config["exact_instance_allowlist"]:
             self.assertIn(f"wd:{row['qid']}", query)
 

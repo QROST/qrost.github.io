@@ -75,7 +75,11 @@ def build_architect_sparql(*, architect_qid: str, config: dict[str, Any]) -> str
   ?work wdt:P84 wd:{architect_qid} .
   ?work wdt:P17 ?country .
   ?work rdfs:label ?label .
-  FILTER(LANG(?label) = "en")
+  FILTER(LANG(?label) = "en" || LANG(?label) = "mul")
+  FILTER(LANG(?label) = "en" || NOT EXISTS {{
+    ?work rdfs:label ?enLabel .
+    FILTER(LANG(?enLabel) = "en")
+  }})
 }}
 """
 

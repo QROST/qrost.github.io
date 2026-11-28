@@ -127,7 +127,11 @@ def build_cell_sparql(
   BIND(YEAR(?date) AS ?year)
 {period_filters}
   ?work rdfs:label ?label .
-  FILTER(LANG(?label) = "en")
+  FILTER(LANG(?label) = "en" || LANG(?label) = "mul")
+  FILTER(LANG(?label) = "en" || NOT EXISTS {{
+    ?work rdfs:label ?enLabel .
+    FILTER(LANG(?enLabel) = "en")
+  }})
 }}
 LIMIT {query_limit}
 """
