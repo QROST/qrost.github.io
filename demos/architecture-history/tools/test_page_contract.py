@@ -410,6 +410,43 @@ class PageContractTests(unittest.TestCase):
         self.assertEqual((width, height), (1200, 630))
         self.assertIn("architecture-history-og.png", self.html)
 
+        # The figures are drawn into the image, so the card goes stale with
+        # every publish unless it is rendered again. tools/build_og_card.py
+        # stores what it drew; it must equal what the manifest publishes.
+        metadata = self.png_text_chunks(payload)
+        manifest = json.loads(
+            (ROOT / "assets" / "data" / "manifest.json").read_text(encoding="utf-8")
+        )
+        grid = json.loads(
+            (
+                ROOT
+                / "assets"
+                / "data"
+                / "methodology"
+                / "wikidata-coverage-config.json"
+            ).read_text(encoding="utf-8")
+        )["coverage_grid"]
+        self.assertIn("counts", metadata)
+        self.assertEqual(json.loads(metadata["counts"]), manifest["counts"])
+        self.assertEqual(
+            json.loads(metadata["cells"]),
+            {"run": len(manifest["coverage"]["cells"]), "total": grid["cell_count"]},
+        )
+
+    @staticmethod
+    def png_text_chunks(payload: bytes) -> dict[str, str]:
+        """Return the tEXt chunks of a PNG as key -> value."""
+        chunks: dict[str, str] = {}
+        offset = 8
+        while offset < len(payload):
+            length, kind = struct.unpack(">I4s", payload[offset:offset + 8])
+            body = payload[offset + 8:offset + 8 + length]
+            if kind == b"tEXt":
+                key, value = body.split(b"\x00", 1)
+                chunks[key.decode("latin-1")] = value.decode("latin-1")
+            offset += 12 + length
+        return chunks
+
     def test_site_header_matches_qrost_research_shell(self) -> None:
         self.assertRegex(
             self.html,

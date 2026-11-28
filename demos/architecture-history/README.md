@@ -168,6 +168,13 @@ closed on provenance or verification errors. Generated public arrays are merged
 from source-scoped `assets/data/catalog/*.json` shards; failed builds restore all
 generated outputs instead of leaving a half-written tree.
 
+The 1200 × 630 share card (`assets/img/architecture-history-og.png`) is drawn
+from the published manifest by `python3 tools/build_og_card.py`. Re-run it after
+any publish that changes the counts: the figures are baked into the image, and
+`tools/test_page_contract.py` compares the counts stored in the PNG against the
+manifest, so a stale card fails the gate instead of quietly announcing last
+month's numbers.
+
 Before committing or publishing a data update, also run the
 [required root publication gate](tools/README.md#required-root-publication-gate)
 to regenerate the repository homepage summaries, run the root checks, and commit
